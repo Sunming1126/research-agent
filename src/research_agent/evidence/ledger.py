@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import replace
+import re
 
 from ..integrations.llm import ModelError
 
@@ -86,7 +87,8 @@ def verify_claims(llm, ledger, chunks):
             checked.append(replace(evidence, role=role, facet=facet, verification="semantic_supported"))
         else:
             # 原文连续摘录已在提取时校验；去掉不确定的模型解释，保留可回查原文。
-            checked.append(replace(evidence, claim="原文摘录：" + evidence.quote,
+            excerpt = re.sub(r"\[\d{1,2}\]", "（原文所引）", evidence.quote)
+            checked.append(replace(evidence, claim="原文摘录（文内参考编号另标）：" + excerpt,
                                    role="unknown", facet="unspecified", verification="verbatim_only"))
         audit.append({"evidence_id": evidence.evidence_id, "verdict": decision.get("verdict", "not_verified"),
                       "reason": str(decision.get("reason", failure or ""))[:240]})

@@ -309,10 +309,15 @@ def validate_citations(markdown, evidence, used_ids, minimum=1):
                                 passages=passages[:2])
     # 已发生的数值事实必须附页码；待验证方案交由语义审查区分。
     for paragraph in markdown.split("\n\n"):
+        plain_paragraph = re.sub(r"[*#>`]", "", paragraph.strip())
+        proposal_heading = re.match(r"^[^。！？]{0,36}[（(](?:建议|待验证|拟议)[^）)]{0,40}[）)][:：]", plain_paragraph)
         sentences = re.split(r"(?<=[。！？])\s*(?!\s*\[)|\n", paragraph)
         for sentence in sentences:
             if not re.search(r"\d+(?:\.\d+)?\s*(?:%|ms|秒|分数|samples/s|queries/s)", sentence):
                 continue
-            proposed = re.match(r"^(?:[-*]\s*)?(?:建议|待验证|假设|目标|拟|作为待验证|我们建议|本方案建议)", sentence.strip())
+            plain = re.sub(r"[*#>`]", "", sentence.strip())
+            proposed = re.match(r"^(?:[-*]\s*)?(?:建议|待验证|假设|目标|拟|作为待验证|我们建议|本方案建议)", plain)
+            attributed = re.search(r"(?:论文|作者|文献|原文).{0,10}(?:报告|发现|使用|达到|提升|实测|表明)", plain)
+            proposed = (proposed or proposal_heading) and not attributed
             if not re.search(r"\[\d+,\s*p\.\s*\d+\]", sentence) and not proposed:
-                raise EvidenceError("numeric claim has no page citation")
+                raise EvidenceError("numeric claim has no page citation", passages=[sentence])

@@ -20,7 +20,7 @@ def test_unsupported_interpretation_returns_to_exact_source_quote():
                             "role": "own_work", "reason": "原文否定因果解释"}]}
     with patch.object(llm, "json", return_value=response):
         checked, audit = verify_claims(llm, [evidence], [chunk])
-    assert checked[0].claim == "原文摘录：" + quote
+    assert checked[0].claim.endswith(quote)
     assert checked[0].verification == "verbatim_only"
     assert audit["supported"] == 0 and audit["verbatim_only"] == 1
 
@@ -78,3 +78,21 @@ def test_citation_diagnostics_identify_exact_passage_for_repair():
         validate_citations(draft, evidence, ["ev-1"])
     assert error.value.passages == [bad]
     assert "26" in str(error.value)
+
+
+def test_verbatim_excerpt_does_not_leak_paper_internal_reference_number():
+    quote = "The benchmark uses an established indoor scene dataset [30]."
+    evidence = Evidence("ev-1", "不充分解释。", "new.pdf", 2, "c", quote)
+    llm = GatewayLLM()
+    with patch.object(llm, "json", return_value={"claims": []}):
+        checked, _ = verify_claims(llm, [evidence], [])
+    assert "[30]" not in checked[0].claim and checked[0].quote == quote
+
+
+def test_explicit_proposal_heading_allows_designed_numeric_parameters():
+    body = "比较证据及其适用条件。" * 90 + " [1, p.2]\n\n**预算（建议/待验证设计，非实测）**：拟议掩码比例25%，重复5次，报告95%置信区间。"
+    evidence = [{"evidence_id": "e", "ref": 1, "page": 2}]
+    validate_citations(body, evidence, ["e"])
+    body += "论文报告准确率达到99%。"
+    with pytest.raises(EvidenceError, match="numeric"):
+        validate_citations(body, evidence, ["e"])

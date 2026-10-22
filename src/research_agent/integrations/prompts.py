@@ -46,3 +46,6 @@ INSTRUCTIONS["report"] = INSTRUCTIONS["report"].replace(
 INSTRUCTIONS["repair"] += (
     "新增或更改引用时使用对应证据标记[E:ev-数字]，程序生成最终页码；"
     "原段落中无需更改的有效引用可保留。original必须逐字复制当前paragraphs，不能改写原句。")
+INSTRUCTIONS["report"] += (
+    "role=related_work表示本篇引述他人研究，只能作为文内所引背景，不能称为本篇实测或贡献；"
+    "role=unknown不能直接归为本篇原创结果。")

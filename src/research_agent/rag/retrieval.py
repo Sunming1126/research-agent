@@ -55,7 +55,9 @@ class HybridRetriever:
         self.counts = [Counter(tokenize(c.text)) for c in self.chunks]
         self.df = Counter()
         self.postings = defaultdict(set)
+        self.documents = defaultdict(list)
         for index, counts in enumerate(self.counts):
+            self.documents[self.chunks[index].filename].append(index)
             self.df.update(counts.keys())
             for term in counts:
                 self.postings[term].add(index)
@@ -72,9 +74,12 @@ class HybridRetriever:
         methods = set(tokenize(plan.methods))
         focus = set(tokenize(plan.focus))
         terms = topic | methods | focus
+        explicit_files = {name for name in self.documents if name.casefold() in plan.topic.casefold()}
         rows = []
         # 倒排表先缩小候选，避免每个子问题重复扫描所有片段。
         candidates = set().union(*(self.postings.get(term, set()) for term in terms))
+        for name in explicit_files:
+            candidates.update(self.documents[name])
         for index in sorted(candidates):
             if index % 256 == 0:
                 checkpoint("retrieval")
@@ -82,7 +87,7 @@ class HybridRetriever:
             if filename and chunk.filename != filename:
                 continue
             matched = terms & counts.keys()
-            if not matched:
+            if not matched and chunk.filename not in explicit_files:
                 continue
             length = sum(counts.values())
             bm25 = 0.
@@ -98,8 +103,8 @@ class HybridRetriever:
             penalty = .25 * sum(phrase.lower() in chunk.text.lower() for phrase in plan.exclusions)
             # 按预设权重融合覆盖率与词法得分，排除词另行扣分。
             score = .35*cover(topic)+.25*(cover(methods) if methods else lexical)+.20*title+.10*(cover(focus) if focus else lexical)+.10*quality-penalty
-            if chunk.filename in plan.topic:
-                score += .3
+            if chunk.filename in explicit_files:
+                score += .9
             rows.append(RetrievalHit(chunk, score, tuple(sorted(matched))))
         return sorted(rows, key=lambda h: (-h.score, h.chunk.filename, h.chunk.start))[:top_k]
 

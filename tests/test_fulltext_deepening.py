@@ -60,3 +60,10 @@ def test_explicit_uncertainty_is_not_overridden_by_high_lexical_score():
     case = SimpleNamespace(case_id="B-98", input="adaptive encoder", to_dict=lambda: {})
     result = handler.retrieval(case, Retriever(), QueryPlan("adaptive encoder", subqueries=["encoder"]))
     assert result["papers"] == []
+
+
+def test_exact_filename_matches_even_without_body_keyword_overlap():
+    from research_agent.core.models import Chunk
+    c = Chunk("c", "2501.12345-Special.pdf", 1, "Abstract", "A study of previously unseen physical phenomena.", "text", "h")
+    hits = HybridRetriever([c]).search("2501.12345-special.PDF")
+    assert hits and hits[0].chunk.filename == "2501.12345-Special.pdf"
