@@ -1,0 +1,13 @@
+{
+  "case_id": "A-01",
+  "function": "Chat",
+  "title": "开放域问答中的检索增强生成路线",
+  "input": "研究开放域问答时，DPR 检索、RAG 生成和 FiD 融合各解决什么问题？请给出简明回答，并提出一个最关键的研究范围澄清问题。",
+  "materials": [],
+  "constraints": [
+    "仅使用本题授权材料",
+    "事实与模拟观察分开"
+  ],
+  "expected_output": "回答与一个澄清问题",
+  "output_schema_ref": "Chat"
+}

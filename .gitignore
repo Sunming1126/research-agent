@@ -1,0 +1,20 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+build/
+output/
+local-workspace/
+paper_library/pdfs/
+paper_library/pdfs-300/
+.pytest_cache/
+.superpowers/sdd/pytest-tmp/
+.tmp_learning_doc/
+.venv*/
+*.egg-info/
+
+# 本地构建交付物；源码、构建说明和交付清单仍纳入版本控制。
+/team_share.zip
+/team_share/image/*.tar

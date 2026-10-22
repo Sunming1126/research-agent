@@ -1,0 +1,82 @@
+[
+  {
+    "category": "cs.CL",
+    "arxiv_id": "2601.02404",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "cs.CL",
+    "arxiv_id": "2601.11580",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "cs.CV",
+    "arxiv_id": "2601.00090",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "cs.CV",
+    "arxiv_id": "2512.25073",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "cs.CV",
+    "arxiv_id": "2512.25071",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "cs.CV",
+    "arxiv_id": "2512.25066",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "cs.CV",
+    "arxiv_id": "2512.25000",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "astro-ph.GA",
+    "arxiv_id": "2601.00106",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "astro-ph.GA",
+    "arxiv_id": "2601.00061",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "cond-mat.mtrl-sci",
+    "arxiv_id": "2601.00133",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "cond-mat.mtrl-sci",
+    "arxiv_id": "2601.00117",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "cond-mat.mtrl-sci",
+    "arxiv_id": "2601.00112",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "econ.GN",
+    "arxiv_id": "2512.24520",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "physics.optics",
+    "arxiv_id": "2601.00130",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "physics.optics",
+    "arxiv_id": "2512.25048",
+    "error_type": "ValueError"
+  },
+  {
+    "category": "physics.optics",
+    "arxiv_id": "2512.25046",
+    "error_type": "ValueError"
+  }
+]

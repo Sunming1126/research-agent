@@ -1,0 +1,14 @@
+{
+  "task_id": "share-c-01",
+  "constraints": {"timeout_ms": 300000},
+  "input": {
+    "case_id": "C-01",
+    "function": "Survey",
+    "title": "检索增强生成路线综述",
+    "input": "比较指定五篇论文的检索位置、生成阶段的证据融合方式、开放域问答评测、参数或计算代价与可核验的局限。请明确区分论文结论和基于证据提出的推断。",
+    "materials": ["2004.04906-DPR.pdf", "2005.11401-RAG.pdf", "2007.01282-FiD.pdf", "2112.04426-RETRO.pdf", "2310.11511-Self-RAG.pdf"],
+    "constraints": ["只使用本题授权材料", "正文至少 800 字并带页码引用"],
+    "expected_output": "至少 800 字的证据综述",
+    "output_schema_ref": "Survey"
+  }
+}

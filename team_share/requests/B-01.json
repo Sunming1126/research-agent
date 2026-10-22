@@ -1,0 +1,14 @@
+{
+  "task_id": "share-b-01",
+  "constraints": {"timeout_ms": 300000},
+  "input": {
+    "case_id": "B-01",
+    "function": "Literature_Retrieval",
+    "title": "检索增强生成原始论文检索",
+    "input": "只找提出 RAG-Sequence/RAG-Token、Fusion-in-Decoder 或 Self-RAG 按需检索与反思机制的原始论文。不要返回只做指令微调的论文，也不要把普通稠密检索、基准评测或 RETRO 当成这些方法。",
+    "materials": ["2004.04906-DPR.pdf", "2005.11401-RAG.pdf", "2007.01282-FiD.pdf", "2104.08663-BEIR.pdf", "2112.04426-RETRO.pdf", "2203.02155-InstructGPT.pdf", "2310.11511-Self-RAG.pdf"],
+    "constraints": ["只使用本题授权材料", "返回真实存在的 PDF 文件名和匹配理由"],
+    "expected_output": "完整 PDF 文件名和理由",
+    "output_schema_ref": "Literature_Retrieval"
+  }
+}

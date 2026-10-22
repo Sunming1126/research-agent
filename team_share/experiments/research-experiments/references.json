@@ -1,0 +1,244 @@
+{
+  "source": "three_real_offline_frozen_runner_samples_median",
+  "version": "D-offline-measured-20261010-v2",
+  "resources": {
+    "cpus": 1,
+    "memory_mib": 1024,
+    "pids": 64,
+    "network": "none",
+    "seed": 42
+  },
+  "image_id": "sha256:2df16ce5e28c196ca29239de70571f68c7efa28b95599e9b08dfaf919eea33fd",
+  "cases": {
+    "D-01": {
+      "metrics": [
+        {
+          "name": "Macro-F1",
+          "unit": "分数",
+          "reference_value": 1.0,
+          "relative_tolerance": 0.01,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": false
+        },
+        {
+          "name": "Accuracy",
+          "unit": "%",
+          "reference_value": 100.0,
+          "relative_tolerance": 0.01,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            100.0,
+            100.0,
+            100.0
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": false
+        },
+        {
+          "name": "运行时间",
+          "unit": "秒",
+          "reference_value": 0.004425296996487305,
+          "relative_tolerance": 0.40507517435789603,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            0.004425296996487305,
+            0.004262761998688802,
+            0.005049163999501616
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": true
+        }
+      ]
+    },
+    "D-02": {
+      "metrics": [
+        {
+          "name": "Recall@5",
+          "unit": "%",
+          "reference_value": 100.0,
+          "relative_tolerance": 0.01,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            100.0,
+            100.0,
+            100.0
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": false
+        },
+        {
+          "name": "MRR@10",
+          "unit": "分数",
+          "reference_value": 1.0,
+          "relative_tolerance": 0.01,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": false
+        },
+        {
+          "name": "查询吞吐",
+          "unit": "queries/s",
+          "reference_value": 3185.1106716272434,
+          "relative_tolerance": 0.36344705600109833,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            3471.5873616536287,
+            2856.6184636874327,
+            3185.1106716272434
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": true
+        }
+      ]
+    },
+    "D-03": {
+      "metrics": [
+        {
+          "name": "推理吞吐",
+          "unit": "samples/s",
+          "reference_value": 1679.7074973417975,
+          "relative_tolerance": 0.6819230705840933,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            1193.6709188453044,
+            1679.7074973417975,
+            2339.256970009972
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": true
+        },
+        {
+          "name": "P95 延迟",
+          "unit": "ms",
+          "reference_value": 0.9136547472735399,
+          "relative_tolerance": 0.7686268001135474,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            0.989048548944993,
+            0.9136547472735399,
+            0.48288580364896916
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": true
+        },
+        {
+          "name": "缓存命中率",
+          "unit": "%",
+          "reference_value": 96.875,
+          "relative_tolerance": 0.01,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            96.875,
+            96.875,
+            96.875
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": false
+        }
+      ]
+    },
+    "D-04": {
+      "metrics": [
+        {
+          "name": "验证集准确率",
+          "unit": "%",
+          "reference_value": 100.0,
+          "relative_tolerance": 0.01,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            100.0,
+            100.0,
+            100.0
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": false
+        },
+        {
+          "name": "约束通过率",
+          "unit": "%",
+          "reference_value": 100.0,
+          "relative_tolerance": 0.01,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            100.0,
+            100.0,
+            100.0
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": false
+        },
+        {
+          "name": "搜索耗时",
+          "unit": "分钟",
+          "reference_value": 0.000844056250207359,
+          "relative_tolerance": 0.5756512606149669,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            0.0005941762666528424,
+            0.000844056250207359,
+            0.0010781092666244756
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": true
+        }
+      ]
+    },
+    "D-05": {
+      "metrics": [
+        {
+          "name": "公平性 Jain 指数",
+          "unit": "分数",
+          "reference_value": 0.9922480620155039,
+          "relative_tolerance": 0.01,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            0.9922480620155039,
+            0.9922480620155039,
+            0.9922480620155039
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": false
+        },
+        {
+          "name": "归一化吞吐",
+          "unit": "%",
+          "reference_value": 64.0,
+          "relative_tolerance": 0.01,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            64.0,
+            64.0,
+            64.0
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": false
+        },
+        {
+          "name": "平均等待时间",
+          "unit": "ms",
+          "reference_value": 34.3125,
+          "relative_tolerance": 0.01,
+          "absolute_tolerance": 1e-08,
+          "samples": [
+            34.3125,
+            34.3125,
+            34.3125
+          ],
+          "reference_source": "median_of_three_real_frozen_runner_executions",
+          "timing_sensitive": false
+        }
+      ]
+    }
+  }
+}

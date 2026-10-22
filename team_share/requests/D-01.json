@@ -1,0 +1,14 @@
+{
+  "task_id": "share-d-01",
+  "constraints": {"timeout_ms": 300000},
+  "input": {
+    "case_id": "D-01",
+    "function": "Reproduction",
+    "title": "公开文本分类实验",
+    "input": "运行授权公开小实验 D-01，固定 seed=42，逐项报告三个实测指标：name=Macro-F1, unit=分数; name=Accuracy, unit=%; name=运行时间, unit=秒。提交真实图表。",
+    "materials": ["D-01.json"],
+    "constraints": ["只使用本题授权实验材料", "必须返回三个指标和真实图表"],
+    "expected_output": "真实指标、图表和实验状态",
+    "output_schema_ref": "Reproduction"
+  }
+}

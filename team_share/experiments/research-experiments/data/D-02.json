@@ -1,0 +1,34 @@
+{
+  "case_id": "D-02",
+  "seed": 42,
+  "k1": 1.5,
+  "b": 0.75,
+  "documents": [
+    {"id": "doc-01", "title": "Mountain trail", "text": "mountain trail hiking forest viewpoint sunrise outdoor route"},
+    {"id": "doc-02", "title": "Lake cycling", "text": "lake cycling river park picnic bicycle outdoor route"},
+    {"id": "doc-03", "title": "Coastal beach", "text": "coast beach island swimming sunset seaside walk"},
+    {"id": "doc-04", "title": "Botanical garden", "text": "garden flowers botanical path bird watching nature"},
+    {"id": "doc-05", "title": "Museum history", "text": "museum gallery painting history exhibition heritage ticket"},
+    {"id": "doc-06", "title": "Historic castle", "text": "castle heritage architecture monument historic guided tour"},
+    {"id": "doc-07", "title": "Theater concert", "text": "theater concert music performance orchestra evening hall"},
+    {"id": "doc-08", "title": "Art gallery", "text": "gallery artist sculpture art exhibition cultural center"},
+    {"id": "doc-09", "title": "Local restaurant", "text": "restaurant menu local cuisine dinner reservation food"},
+    {"id": "doc-10", "title": "Market bakery", "text": "market bakery coffee pastry street food vendor"},
+    {"id": "doc-11", "title": "Cooking class", "text": "chef kitchen recipe lunch noodles vegetarian cooking class"},
+    {"id": "doc-12", "title": "Cafe breakfast", "text": "cafe breakfast dessert coffee brunch ingredients"}
+  ],
+  "queries": [
+    {"id": "q-01", "text": "forest hiking mountain trail", "relevant_ids": ["doc-01"]},
+    {"id": "q-02", "text": "lake river cycling park", "relevant_ids": ["doc-02"]},
+    {"id": "q-03", "text": "beach coast swimming island", "relevant_ids": ["doc-03"]},
+    {"id": "q-04", "text": "flowers botanical garden nature", "relevant_ids": ["doc-04"]},
+    {"id": "q-05", "text": "museum history exhibition", "relevant_ids": ["doc-05"]},
+    {"id": "q-06", "text": "castle heritage architecture", "relevant_ids": ["doc-06"]},
+    {"id": "q-07", "text": "theater concert music", "relevant_ids": ["doc-07"]},
+    {"id": "q-08", "text": "gallery sculpture art", "relevant_ids": ["doc-08"]},
+    {"id": "q-09", "text": "restaurant local cuisine dinner", "relevant_ids": ["doc-09"]},
+    {"id": "q-10", "text": "market bakery coffee", "relevant_ids": ["doc-10"]},
+    {"id": "q-11", "text": "chef recipe cooking kitchen", "relevant_ids": ["doc-11"]},
+    {"id": "q-12", "text": "cafe breakfast coffee", "relevant_ids": ["doc-12"]}
+  ]
+}

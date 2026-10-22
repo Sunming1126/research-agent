@@ -1,0 +1,16 @@
+{
+  "case_id": "D-05",
+  "function": "Reproduction",
+  "title": "自适应检索、证据可信度与推理效率",
+  "input": "运行授权公开小实验 D-05，固定 seed=42，逐项报告三个实测指标：name=公平性 Jain 指数, unit=分数; name=归一化吞吐, unit=%; name=平均等待时间, unit=ms。提交真实图表。",
+  "materials": [
+    "D-05.json"
+  ],
+  "constraints": [
+    "仅使用本题授权材料",
+    "指标名称和单位必须逐项匹配",
+    "无法核验时不得猜测"
+  ],
+  "expected_output": "真实指标、图表和实验状态",
+  "output_schema_ref": "Reproduction"
+}

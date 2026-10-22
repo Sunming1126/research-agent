@@ -1,0 +1,13 @@
+{
+  "workspace": "/workspace",
+  "output": "/output",
+  "team": "workspace_team",
+  "material_roots": ["/workspace/papers"],
+  "material_aliases": {"本地论文文件夹内的 PDF": ["papers"]},
+  "experiment_mode": "platform",
+  "ocr": false,
+  "llm_calls": 30,
+  "llm_tokens": 40000,
+  "case_timeout": 180
+}
+

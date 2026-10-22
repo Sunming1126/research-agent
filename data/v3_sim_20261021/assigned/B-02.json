@@ -1,0 +1,21 @@
+{
+  "case_id": "B-02",
+  "function": "Literature_Retrieval",
+  "title": "检索质量、跨域稳健性与外部记忆",
+  "input": "寻找 DPR 稠密段落检索的原始论文、BEIR 零样本信息检索基准论文，以及 RETRO 外部文本库语言模型论文。排除只做指令微调的论文，也不要返回 FiD、RAG 或 Self-RAG。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2112.04426-RETRO.pdf",
+    "2310.11511-Self-RAG.pdf",
+    "2104.08663-BEIR.pdf",
+    "2203.02155-InstructGPT.pdf"
+  ],
+  "constraints": [
+    "仅使用本题授权材料",
+    "事实与模拟观察分开"
+  ],
+  "expected_output": "完整 PDF 文件名和理由",
+  "output_schema_ref": "Literature_Retrieval"
+}

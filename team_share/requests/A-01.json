@@ -1,0 +1,14 @@
+{
+  "task_id": "share-a-01",
+  "constraints": {"timeout_ms": 300000},
+  "input": {
+    "case_id": "A-01",
+    "function": "Chat",
+    "title": "城市绿地科研对话",
+    "input": "解释城市绿地与地表温度的可能关系，并提出一个关键澄清问题。",
+    "materials": [],
+    "constraints": [],
+    "expected_output": "回答和澄清问题",
+    "output_schema_ref": "Chat"
+  }
+}

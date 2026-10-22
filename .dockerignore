@@ -1,0 +1,11 @@
+**
+!agent.py
+!requirements.txt
+!Dockerfile
+!README.md
+!src/
+!src/**
+src/**/__pycache__/
+src/**/*.pyc
+# 正式 D 类不把本地公开算法夹具放进镜像；平台要求当前题 Gateway 生成源码。
+src/research_agent/workflows/d_algorithms/**

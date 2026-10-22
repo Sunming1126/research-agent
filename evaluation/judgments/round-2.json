@@ -1,0 +1,17 @@
+{
+  "E-02": {
+    "covered": ["motivation", "route", "experiment", "metrics", "bottleneck", "complement", "feasibility"],
+    "evidence": {
+      "motivation": "模拟观察与问题定位说明医学语料召回下降的待验证成因。",
+      "route": "建议与待验证设计提出稀疏、稠密、混合、分块检索及自适应生成。",
+      "experiment": "基线、消融与失败边界列出四条件、负例、权重、检索触发和反思标记的对照。",
+      "metrics": "可证伪方式要求报告 recall 与生成事实性，并固定评估集。",
+      "bottleneck": "失败边界讨论跨域语义失效、数据泄漏、热替换和反思标记校准。",
+      "complement": "结论与局限把 DPR、RAG、RETRO、SELF-RAG 的机制组合为消融体系。",
+      "feasibility": "可行性由固定评估集、过滤规则、资源允许时增量加入 RAG/SELF-RAG 表述支撑。"
+    },
+    "missing_reason": {
+      "benchmark": "文中提及 PopQA 等既有论文数据，却没有选定本 Idea 在医学域可复现的命名基准数据集。"
+    }
+  }
+}

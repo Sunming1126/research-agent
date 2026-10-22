@@ -1,0 +1,39 @@
+# 运行时依赖由本文件固定；基础镜像是否预装同版本不作假设。
+# 模型网关客户端（本项目显式调用，版本固定）
+openai==1.109.1
+# openai 的传递依赖也固定，保证本地私有依赖目录与 Docker 构建一致
+anyio==4.15.1
+annotated-types==0.8.0
+certifi==2026.10.19
+colorama==0.4.6
+distro==1.9.0
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
+idna==3.20
+jiter==0.17.0
+pydantic==2.14.1
+pydantic-core==2.50.1
+sniffio==1.3.1
+tqdm==4.70.1
+typing-extensions==4.16.0
+typing-inspection==0.4.4
+
+# 文档解析和公开实验依赖
+PyMuPDF==1.24.14
+pypdf==5.1.0
+numpy==1.26.4
+scipy==1.13.1
+scikit-learn==1.5.2
+matplotlib==3.9.4
+Pillow==11.0.0
+joblib==1.4.2
+threadpoolctl==3.5.0
+
+contourpy==1.3.3
+cycler==0.12.1
+fonttools==4.67.0
+kiwisolver==1.5.1
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0
+six==1.17.0

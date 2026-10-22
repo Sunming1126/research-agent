@@ -1,0 +1,27 @@
+{
+  "C-03": {
+    "correct_fact_ids": ["fid-1", "retro-1", "selfrag-1", "selfrag-2"],
+    "severe_errors": [],
+    "review_notes": {
+      "dpr-1": "正文讨论 DPR 的独立检索模块，但没有交代双编码器与稠密向量相似度。",
+      "dpr-2": "正文提到稠密与稀疏表示差异，但未覆盖与 BM25 的 top-k 召回比较。",
+      "rag-1": "正文描述 RAG 的统一架构，却没有明确参数化 seq2seq 与非参数化索引的组合。",
+      "rag-2": "正文未说明 RAG-Sequence 与 RAG-Token 两种形式。",
+      "fid-2": "正文列出 NaturalQuestions、TriviaQA，但未说明段落数变化的比较。",
+      "retro-2": "正文没有给出约 2 万亿 token 检索库和参数效率比较。"
+    }
+  },
+  "E-03": {
+    "covered": ["motivation", "route", "experiment", "benchmark", "metrics", "bottleneck", "complement", "feasibility"],
+    "evidence": {
+      "motivation": "第一节把简单问题不必检索与复杂问题固定检索成本高标为题目观察。",
+      "route": "第二节提出置信度触发、证据筛选和多段融合三层结构。",
+      "experiment": "第四节列出五组对照及触发、阈值、筛选、段落数消融。",
+      "benchmark": "第三节明确选用 NaturalQuestions、TriviaQA，并将 PubHealth、PopQA 列为权衡分析候选。",
+      "metrics": "第五节列出答案准确率或 EM、检索次数、段落数与端到端延迟。",
+      "bottleneck": "第三、四、六、七节讨论触发标注数据待建、训练设置迁移、推理能力限制、阈值跨数据集泛化及偏见。",
+      "complement": "第六节逐项连接 DPR、RAG、FiD、RETRO 与 Self-RAG 的不同作用。",
+      "feasibility": "第六节说明推理侧实现可能性，第七节给出预注册与可证伪边界。"
+    }
+  }
+}

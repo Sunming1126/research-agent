@@ -1,0 +1,21 @@
+{
+  "case_id": "B-03",
+  "function": "Literature_Retrieval",
+  "title": "自适应检索、证据可信度与推理效率",
+  "input": "只找研究生成时按需检索并使用反思 token 的 Self-RAG 原始论文，以及提出 RAG-Sequence/RAG-Token 的 RAG 原始论文。排除仅做指令微调、纯检索器、FiD、BEIR 和 RETRO。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2112.04426-RETRO.pdf",
+    "2310.11511-Self-RAG.pdf",
+    "2104.08663-BEIR.pdf",
+    "2203.02155-InstructGPT.pdf"
+  ],
+  "constraints": [
+    "仅使用本题授权材料",
+    "事实与模拟观察分开"
+  ],
+  "expected_output": "完整 PDF 文件名和理由",
+  "output_schema_ref": "Literature_Retrieval"
+}

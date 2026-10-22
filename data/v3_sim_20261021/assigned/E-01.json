@@ -1,0 +1,19 @@
+{
+  "case_id": "E-01",
+  "function": "Idea",
+  "title": "开放域问答中的检索增强生成路线",
+  "input": "模拟观察：在本团队的小样本开放域问答试验中，固定 top-k 检索偶尔引入无关段落，但尚未形成论文级实验结论。基于指定论文提出按需检索与多段融合的可证伪 Idea，说明互补机制、复现瓶颈和量化指标。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2112.04426-RETRO.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "constraints": [
+    "仅使用本题授权材料",
+    "事实与模拟观察分开"
+  ],
+  "expected_output": "至少 800 字的可验证 Idea 报告",
+  "output_schema_ref": "Idea"
+}

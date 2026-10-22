@@ -1,0 +1,28 @@
+{
+  "C-04": {
+    "correct_fact_ids": ["dpr-1", "dpr-2", "rag-1", "retro-1", "selfrag-1", "selfrag-2"],
+    "severe_errors": [
+      "正文把原始 RAG 的文档边缘化机制概括为查询前拼接检索文档，并用 Self-RAG 中的标准 RAG 基线支持该归因；这混淆了原始模型与基线实现。"
+    ],
+    "review_notes": {
+      "rag-2": "正文未写出 RAG-Sequence 和 RAG-Token 两种形式。",
+      "fid-1": "正文没有准确说明逐段独立编码、由解码器融合的机制。",
+      "fid-2": "正文没有写出 FiD 随检索段落数量变化的实验。",
+      "retro-2": "正文没有写出 2 万亿 token 检索库及参数效率比较。",
+      "ledger": "DPR 双编码器虽有原文支持，却不在本轮抽取的 Claim Ledger 中；模型审查没有识别出这一证据绑定缺口。"
+    }
+  },
+  "E-04": {
+    "covered": ["motivation", "route", "experiment", "benchmark", "metrics", "bottleneck", "complement", "feasibility"],
+    "evidence": {
+      "motivation": "动机节把简单问答中的固定检索干扰明确标为题目模拟观察。",
+      "route": "方法节提出按需触发、DPR/RETRO 检索候选、Self-RAG 判断和 FiD/RAG 融合。",
+      "experiment": "实验与消融节列出固定检索、关闭多段融合、阈值、检索器和解码策略的对照。",
+      "benchmark": "数据与基准节具体命名 Natural Questions、TriviaQA、PubHealth、PopQA 和 Pile，并提示协议适配。",
+      "metrics": "指标节列出检索准确率、答案质量、触发率、运行效率与归因可核查性。",
+      "bottleneck": "方法、数据和局限节讨论解码成本、数据协议、隐私及跨任务的失败边界。",
+      "complement": "方法节逐篇解释 DPR、RAG、FiD、RETRO、Self-RAG 在检索、融合和控制中的互补位置。",
+      "feasibility": "局限与失败边界节提出可实施的消融与预设反证条件。"
+    }
+  }
+}

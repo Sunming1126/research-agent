@@ -1,0 +1,108 @@
+{
+  "dispatch_id": "local-v3-simulation-20261021",
+  "team": "v3_opt_20261022_r3",
+  "schema_version": 3,
+  "rules_version": "research-assistant-objective-v3",
+  "cases_per_category": {
+    "A": 1,
+    "B": 3,
+    "C": 2,
+    "D": 3,
+    "E": 2
+  },
+  "case_ids": [
+    "A-01",
+    "B-01",
+    "B-02",
+    "B-03",
+    "C-01",
+    "C-03",
+    "D-01",
+    "D-02",
+    "D-05",
+    "E-01",
+    "E-02"
+  ],
+  "cases": [
+    {
+      "case_id": "A-01",
+      "function": "Chat",
+      "title": "开放域问答中的检索增强生成路线",
+      "question_file": "data/v3_opt_20261022_r3/assigned/A-01.json",
+      "question_sha256": "bb57feeeb68c8b471d48e42ba47958631453a4bfe635c234bbecb18bf81369fd"
+    },
+    {
+      "case_id": "B-01",
+      "function": "Literature_Retrieval",
+      "title": "开放域问答中的检索增强生成路线",
+      "question_file": "data/v3_opt_20261022_r3/assigned/B-01.json",
+      "question_sha256": "ef5dfc815ebacceb83f6b59ebfe083db7abd8bbd0d33eeb2924b2ea385f50809"
+    },
+    {
+      "case_id": "B-02",
+      "function": "Literature_Retrieval",
+      "title": "检索质量、跨域稳健性与外部记忆",
+      "question_file": "data/v3_opt_20261022_r3/assigned/B-02.json",
+      "question_sha256": "1cb16b6ec7a3cf5c62fda46af32e54e6d4c47a0fdc56bada2d6ea3894f8ebe94"
+    },
+    {
+      "case_id": "B-03",
+      "function": "Literature_Retrieval",
+      "title": "自适应检索、证据可信度与推理效率",
+      "question_file": "data/v3_opt_20261022_r3/assigned/B-03.json",
+      "question_sha256": "3412c21bd286a21370a3a0ac1d5bc2abfcd592768b9aa9206856ef29041a935b"
+    },
+    {
+      "case_id": "C-01",
+      "function": "Survey",
+      "title": "开放域问答中的检索增强生成路线",
+      "question_file": "data/v3_opt_20261022_r3/assigned/C-01.json",
+      "question_sha256": "cdde4591447178b59d3e6461ef3593f2d3f53b2e93cbc74c46ff822068644c36"
+    },
+    {
+      "case_id": "C-03",
+      "function": "Survey",
+      "title": "自适应检索、证据可信度与推理效率",
+      "question_file": "data/v3_opt_20261022_r3/assigned/C-03.json",
+      "question_sha256": "22873db27ae6bbafed358e27357426e6561e5920677cf724f11177cf3d1c5972"
+    },
+    {
+      "case_id": "D-01",
+      "function": "Reproduction",
+      "title": "开放域问答中的检索增强生成路线",
+      "question_file": "data/v3_opt_20261022_r3/assigned/D-01.json",
+      "question_sha256": "e99eca18130431626fd7755d5d9a6004c67484bed8bf4fe85cfcde69042d7c70",
+      "difficulty": "easy"
+    },
+    {
+      "case_id": "D-02",
+      "function": "Reproduction",
+      "title": "检索质量、跨域稳健性与外部记忆",
+      "question_file": "data/v3_opt_20261022_r3/assigned/D-02.json",
+      "question_sha256": "058a44fd4b5961081972acab6e18e93c5df92cf599adc2f1949ccd370fe9a6db",
+      "difficulty": "medium"
+    },
+    {
+      "case_id": "D-05",
+      "function": "Reproduction",
+      "title": "自适应检索、证据可信度与推理效率",
+      "question_file": "data/v3_opt_20261022_r3/assigned/D-05.json",
+      "question_sha256": "05f7386e25350108a9ffcebb2abd1bbc4d64fde17718a4cc6949d2f70bb53e7d",
+      "difficulty": "hard"
+    },
+    {
+      "case_id": "E-01",
+      "function": "Idea",
+      "title": "开放域问答中的检索增强生成路线",
+      "question_file": "data/v3_opt_20261022_r3/assigned/E-01.json",
+      "question_sha256": "8fe2b8b07c89eaa09048bcb84980a80ad353eb6f9cef14ced3ac2d0925dae28c"
+    },
+    {
+      "case_id": "E-02",
+      "function": "Idea",
+      "title": "检索质量、跨域稳健性与外部记忆",
+      "question_file": "data/v3_opt_20261022_r3/assigned/E-02.json",
+      "question_sha256": "34bc5bfcf3b1bd0f06151e80ceb159044089fff6aa9623d46e8322074f6ceb75"
+    }
+  ]
+}

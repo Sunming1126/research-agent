@@ -1,0 +1,19 @@
+{
+  "workspace": "/workspace",
+  "output": "/output",
+  "team": "workspace_team",
+  "material_roots": ["/workspace/papers", "/experiments"],
+  "material_aliases": {
+    "D-01.json": ["publicdata/D-01.json"],
+    "D-02.json": ["publicdata/D-02.json"],
+    "D-03.json": ["publicdata/D-03.json"],
+    "D-04.json": ["publicdata/D-04.json"],
+    "D-05.json": ["publicdata/D-05.json"]
+  },
+  "experiment_mode": "local",
+  "local_experiment_root": "/experiments",
+  "ocr": false,
+  "llm_calls": 30,
+  "llm_tokens": 40000,
+  "case_timeout": 300
+}

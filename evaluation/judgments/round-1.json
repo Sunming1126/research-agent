@@ -1,0 +1,15 @@
+{
+  "E-01": {
+    "covered": ["motivation", "route", "experiment", "benchmark", "metrics", "bottleneck", "complement", "feasibility"],
+    "evidence": {
+      "motivation": "模拟观察与动机一节说明固定 top-k 引入无关段落的待验证问题。",
+      "route": "建议技术路线一节提出按需检索、反思过滤和多段融合。",
+      "experiment": "建议数据、基线与实验及可证伪方式列出对照与消融。",
+      "benchmark": "建议数据与基线引用 Natural Questions、TriviaQA 等开放域问答数据。",
+      "metrics": "建议指标一节列出准确率、事实性、Recall@k、MRR、延迟和调用率。",
+      "bottleneck": "失败边界分析规模扩展、隐私和不同架构直接组合的复现限制。",
+      "complement": "多文献互补一节连接 RAG、FiD、Self-RAG 与 DPR。",
+      "feasibility": "可行性一节建议小样本试点与固定评测协议，并注明成本和风险。"
+    }
+  }
+}
