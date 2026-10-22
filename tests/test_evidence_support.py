@@ -8,6 +8,7 @@ from research_agent.core.models import Chunk, Evidence
 from research_agent.evidence import EvidenceError
 from research_agent.evidence.ledger import coverage_matrix, select_claims, verify_claims
 from research_agent.evidence.reporting import validate_citations, render_evidence_citations
+from research_agent.evidence.reporting import deterministic_idea, deterministic_survey
 from research_agent.integrations.llm import GatewayLLM, ModelError
 
 
@@ -96,3 +97,16 @@ def test_explicit_proposal_heading_allows_designed_numeric_parameters():
     body += "论文报告准确率达到99%。"
     with pytest.raises(EvidenceError, match="numeric"):
         validate_citations(body, evidence, ["e"])
+
+
+@pytest.mark.parametrize("kind", ["idea", "survey"])
+def test_verbatim_fallback_keeps_multiline_numeric_facts_bound_to_pages(kind):
+    quote = "该数据集报告准确率78.4%。另一基线为59.1%。\nThe benchmark uses 100 samples/s."
+    ledger = [Evidence(f"e-{i}", quote, f"paper-{i}.pdf", 2, f"chunk-{i}", quote,
+                       verification="verbatim_only") for i in range(5)]
+    function = deterministic_idea if kind == "idea" else deterministic_survey
+    markdown, used = function("当前公开问题", ledger)
+    evidence = [dict(asdict(item), ref=i+1) for i, item in enumerate(ledger)]
+    validate_citations(markdown.split("## 参考文献")[0], evidence, used, minimum=5 if kind == "survey" else 1)
+    assert ledger[0].quote == quote and ledger[0].claim == quote
+    assert "准确率78.4%。 [1, p.2]" in markdown

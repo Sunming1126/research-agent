@@ -150,6 +150,13 @@ def correct_paper_ids(markdown, filenames):
     return re.sub(r"(?<!\d)\d{4}\.\d{5}(?!\d)", replace, markdown)
 
 
+def _cited_fact(text, cite):
+    """PDF 换行不应拆断数字与页码；每个已绑定事实句各自带引用。"""
+    text = re.sub(r"\s+", " ", text.strip())
+    return " ".join(part.strip() + " " + cite for part in
+                    re.split(r"(?<=[。！？])\s*(?!\s*\[)", text) if part.strip())
+
+
 def render_claim_ledger_section(ledger, refs):
     """把通过原文摘录核验的事实转为带物理页码的综述摘要。"""
     lines, used = ["## 逐篇可回查事实"], []
@@ -160,7 +167,7 @@ def render_claim_ledger_section(ledger, refs):
         lines.append(f"### 论文 {refs[filename]}：{filename}")
         for item in grouped[filename]:
             cite = f"[{refs[filename]}, p.{item.page}]" if item.page is not None else f"[{refs[filename]}]"
-            lines.append(f"- {item.claim.strip()} {cite}")
+            lines.append("- " + _cited_fact(item.claim, cite))
             used.append(item.evidence_id)
     return "\n".join(lines), used
 
@@ -219,7 +226,7 @@ def specific_idea_sections(ledger, refs):
         role = ("验证约束" if re.search(r"约束|证明|边界|不能|代价", claim.claim)
                 else "候选机制或模型")
         cite = f"[{refs[name]}, p.{claim.page}]" if claim.page is not None else f"[{refs[name]}]"
-        roles.append(f"- 论文 {refs[name]}（{name}）作为{role}：{claim.claim.strip()} {cite} "
+        roles.append(f"- 论文 {refs[name]}（{name}）作为{role}：{_cited_fact(claim.claim, cite)} "
                      "建议记录其输入条件、输出状态和可测量变量，再检验与其他模块连接是否有意义；连接本身尚未验证。")
     roles.append("建议接口顺序为：先由各候选机制输出状态或预测，再将输出送入验证约束，最后用共同指标比较；"
                  "若论文任务不同，先建立映射表并报告不能对齐的变量，不能直接声称模型能够无缝耦合。")
@@ -232,7 +239,7 @@ def specific_idea_sections(ledger, refs):
                 break
     for name, claim in selected[:3]:
         cite = f"[{refs[name]}, p.{claim.page}]" if claim.page is not None else f"[{refs[name]}]"
-        benchmarks.append(f"- 以论文 {refs[name]} 提及的对象作为候选：{claim.claim.strip()} {cite} "
+        benchmarks.append(f"- 以论文 {refs[name]} 提及的对象作为候选：{_cited_fact(claim.claim, cite)} "
                           "本方案仅建议据此寻找可授权的数据或脚本；实际可用性需逐项核验。")
     if not selected:
         benchmarks.append("当前证据没有明确命名的数据或实验系统；具体基准待取得授权材料后再确定。")
@@ -266,7 +273,7 @@ def deterministic_survey(topic, ledger):
         )
         for item in grouped[name]:
             cite = f"[{ref}, p.{item.page}]" if item.page is not None else f"[{ref}]"
-            paragraphs.append(f"已核验事实：{item.claim.strip()} {cite}")
+            paragraphs.append("已核验事实：" + _cited_fact(item.claim, cite))
             used.append(item.evidence_id)
         paragraphs.append(
             "该篇材料与其他论文的横向比较，应在相同任务、语料、检索预算和指标定义下进行。"

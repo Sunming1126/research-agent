@@ -1,5 +1,7 @@
 # 科研助手 Agent
 
+2026-10-23 可靠性更新至 **0.4.1**：扩展 D-05 公开边界自测，修复反馈携带失败源码和具体输入，保留每次模型生成版本；增加 D-01 重复性检查、正式客户端取消清理及平台错误分类。参考依据与实现范围见 [优化说明](docs/2026-10-23-开源与论文参考及D类可靠性优化.md)。实际验收与镜像交付结果以本次独立报告为准，历史分数不代表新版成绩。
+
 基于官方 `agenthack/base:1.1.1` 的科研助手。正式路径支持 v3/11 题派题，兼容历史 25 题测试；包含 A/B/C/D/E 处理器、授权材料定位、页码切分、混合检索、证据台账、报告审查、layered-d-v3 实验执行和提交预检查。
 
 ## 工程目录
@@ -25,12 +27,12 @@ paper_library/              # 本地百篇真实 PDF 与来源清单，不进入
 
 ## 快速使用
 
-2026-10-22 源码已更新到 `0.3.1`，完成三轮 11 题仿真及失败路径定向复测，见 [三轮测试报告](docs/2026-10-22-三轮仿真与逐轮优化.md)。当前本机 Docker 引擎未运行，`team_share/image/` 内已有的 `0.3.0-source-v1` tar 仍为上一版，不包含本次优化。
+当前源码为 `0.4.1`。2026-10-22 的三轮 11 题仿真属于历史 0.3.1，见 [三轮测试报告](docs/2026-10-22-三轮仿真与逐轮优化.md)，不能当作本次镜像成绩。历史 `team_share/image/` 中的 `0.3.0-source-v1` tar 不包含当前优化；本次镜像与验收清单另存于交付目录。
 
 建议使用 Docker，保持官方 SDK 和 Linux 运行环境。先导入组委会基础镜像，再执行：
 
 ```powershell
-docker build --platform linux/amd64 -t research-assistant:0.3.1-source-v1 .
+docker build --platform linux/amd64 -t research-assistant:0.4.1-source-v1 .
 ```
 
 本地密钥位于 `.env.local`，通过 `--env-file` 注入。文件已从版本跟踪和 Docker 构建上下文排除。镜像中不包含密钥、论文、题目、测试答案或本地输出。服务器不会自动读取本机密钥文件。
@@ -38,7 +40,7 @@ docker build --platform linux/amd64 -t research-assistant:0.3.1-source-v1 .
 将论文放到 `local-workspace/papers`，将 `config.container.example.json` 中材料描述别名改为实际题目采用的描述，然后：
 
 ```powershell
-docker run --rm --name research-agent-local --cpus 1 --memory 1024m --env-file .env.local -e RESEARCH_CONFIG=/app/settings.json -e AGENTHACK_TELEMETRY_REQUIRED=false -p 127.0.0.1:18080:8080 -v "${PWD}/config.container.example.json:/app/settings.json:ro" -v "${PWD}/local-workspace:/workspace:ro" -v "${PWD}/output:/output" research-assistant:0.3.1-source-v1
+docker run --rm --init --name research-agent-local --cpus 1 --memory 1024m --env-file .env.local -e RESEARCH_CONFIG=/app/settings.json -e AGENTHACK_TELEMETRY_REQUIRED=false -p 127.0.0.1:18080:8080 -v "${PWD}/config.container.example.json:/app/settings.json:ro" -v "${PWD}/local-workspace:/workspace:ro" -v "${PWD}/output:/output" research-assistant:0.4.1-source-v1
 ```
 
 正式平台不设置关闭遥测的开发选项。按平台公告提供配置和模型环境变量。
