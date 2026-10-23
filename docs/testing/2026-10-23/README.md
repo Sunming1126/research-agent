@@ -2,6 +2,8 @@
 
 被测功能提交为 `2cae890ead17666361a46e09c0cee33d68f7660f`，基于 `7ceaaa2`；此目录是随后补交的验收证据，不代表重新取得官方成绩。
 
+已上传：[PR #1](https://github.com/Sunming1126/research-agent/pull/1)、[0.4.1预发布下载](https://github.com/Sunming1126/research-agent/releases/tag/v0.4.1-source-v1)。Release含12个附件，GitHub返回的资产摘要已与本地SHA-256比对，见[发布回执](github-publication.json)。主分支等待队友审查合并。
+
 | 检查 | 结果 | 记录 |
 | --- | --- | --- |
 | 项目全量离线回归 | 129通过、1跳过、0失败；跳过项需300篇论文库 | [regression.xml](regression.xml) |
@@ -45,6 +47,8 @@ python scripts/acceptance/verify_public_source.py --case D-05 --source docs/test
 ## 镜像与源码交付
 
 最终镜像为`research-assistant:0.4.1-source-v1`，镜像tar约282 MiB；[交付清单](artifact-manifest.json)和[SHA256SUMS](SHA256SUMS.txt)记录校验值。大文件使用GitHub Release资产分发，不加入Git历史。镜像加载：
+
+Release上的小文件使用唯一英文名，下载后按`RELEASE-SHA256SUMS.txt`核对；原`SHA256SUMS.txt`保留构建快照的中文原始文件名校验值。镜像和源码大文件名保持不变。
 
 ```powershell
 Get-FileHash research-assistant-0.4.1-source-v1.tar -Algorithm SHA256

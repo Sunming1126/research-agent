@@ -4,6 +4,8 @@
 
 本次[验收记录、已知失败和队友复测入口](docs/testing/2026-10-23/README.md)随代码同步。镜像tar与源码构建快照通过GitHub Release分发，校验值记录在验收目录。
 
+[0.4.1镜像及校验文件下载](https://github.com/Sunming1126/research-agent/releases/tag/v0.4.1-source-v1) · [代码审查与讨论 PR #1](https://github.com/Sunming1126/research-agent/pull/1)。此版本为本地验收预发布，尚未合并主分支或进行官方比赛提交。
+
 基于官方 `agenthack/base:1.1.1` 的科研助手。正式路径支持 v3/11 题派题，兼容历史 25 题测试；包含 A/B/C/D/E 处理器、授权材料定位、页码切分、混合检索、证据台账、报告审查、layered-d-v3 实验执行和提交预检查。
 
 ## 工程目录
