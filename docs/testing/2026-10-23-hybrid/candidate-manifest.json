@@ -1,8 +1,8 @@
 {
-  "version": "0.4.2-hybrid-v4",
-  "image": "research-assistant:0.4.2-hybrid-v4",
-  "image_id": "sha256:472bd79d96e2c2d56d6dd87709c554fcb134214e7c5e92b6600fc06b1e876e0e",
-  "build_commit": "9edd7f267d5154fc7cffbfe86a7c65acda3b0112",
+  "version": "0.4.2-hybrid-v5",
+  "image": "research-assistant:0.4.2-hybrid-v5",
+  "image_id": "sha256:46656082485084f353e16295d5c0c091a28b64582c0cb71e22362105396274f7",
+  "build_commit": "19601b989a5bb770cda7f9e00e4a3fb08f8982bc",
   "status": "ARCHIVE_PREPARED_PENDING_NATIVE_HARNESS_ACCEPTANCE",
   "ready_for_recommended_contest_submission": false,
   "uploaded_to_contest": false,
@@ -16,14 +16,14 @@
   "source_snapshot_files": 42,
   "files": [
     {
-      "file": "research-assistant-0.4.2-hybrid-v4.tar",
-      "bytes": 295537152,
-      "sha256": "57a8dfa8df2899261f724f48777c0225fbc2a5320b36f4e0355da724f764388f"
+      "file": "research-assistant-0.4.2-hybrid-v5.tar",
+      "bytes": 295538688,
+      "sha256": "51246fca1c056a358980bd0770090611fcd897ef46530f023c341b1c5774cfcc"
     },
     {
-      "file": "research-agent-0.4.2-hybrid-v4-build-source.zip",
-      "bytes": 101971,
-      "sha256": "32cf67ea171fee9a21bf8f187b72877df38fb1b1d44d0483feea30d46c66a433"
+      "file": "research-agent-0.4.2-hybrid-v5-build-source.zip",
+      "bytes": 103497,
+      "sha256": "bee060fe3992c2188c7eb6c590b8fc39d99bc3ad342017a652dd8dcec3463370"
     }
   ]
 }
