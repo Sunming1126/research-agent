@@ -1,0 +1,14 @@
+{
+  "target": "research-assistant:0.4.2-hybrid-v4",
+  "image_id": "sha256:472bd79d96e2c2d56d6dd87709c554fcb134214e7c5e92b6600fc06b1e876e0e",
+  "counts": {
+    "PASS": 122,
+    "BLOCKED": 1
+  },
+  "official_score": null,
+  "official_admission_verified": false,
+  "run": "hybrid-20261023-v042-v4-magic-native-api-r3",
+  "mandatory_failures": [],
+  "quality_failures": [],
+  "note": "Actual Harness account calls and immutable installed-image execution; no algorithm hand edits"
+}

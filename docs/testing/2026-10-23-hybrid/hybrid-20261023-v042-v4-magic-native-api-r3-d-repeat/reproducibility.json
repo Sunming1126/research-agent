@@ -1,0 +1,35 @@
+[
+  {
+    "id": "replay.D-01",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "source_sha256": "26a1b897e46059bc04e6f27bd9db9eaa7115a94356bebfc5ca664b1c5f6850d4",
+    "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat\\public-workers\\D-01\\D-01-3b8b71\\result.json",
+    "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat\\reproducibility\\D-01\\stdout.txt",
+    "python": "3.9",
+    "network": "none",
+    "official_provenance": false
+  },
+  {
+    "id": "replay.D-02",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "source_sha256": "3dc07a20dd91dbf9eeba1dca46a09f9b254fe3ad86c357ed79456fb915bc8266",
+    "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat\\public-workers\\D-02\\D-02-55fbf9\\result.json",
+    "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat\\reproducibility\\D-02\\stdout.txt",
+    "python": "3.9",
+    "network": "none",
+    "official_provenance": false
+  },
+  {
+    "id": "replay.D-05",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "source_sha256": "585131da84cace23dfc60c810ea8845b9842d221b681ba51fa7a88cd03dd41fb",
+    "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat\\public-workers\\D-05\\D-05-a54f6d\\result.json",
+    "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat\\reproducibility\\D-05\\stdout.txt",
+    "python": "3.9",
+    "network": "none",
+    "official_provenance": false
+  }
+]

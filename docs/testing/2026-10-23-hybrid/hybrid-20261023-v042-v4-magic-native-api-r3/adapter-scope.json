@@ -1,0 +1,13 @@
+{
+  "backend": "Existing magic API called by the native Harness workspace test job",
+  "credentials": "Read-only existing selected connection; memory-only; never supplied to Docker",
+  "profile_modified": false,
+  "plugin_installed": false,
+  "headless_model_process_used": false,
+  "max_tokens_forwarded": true,
+  "thinking_forwarded": true,
+  "exact_api_usage_forwarded": true,
+  "custom_RESEARCH_CONFIG_supplied": false,
+  "public_cases_only": true,
+  "official_score": null
+}
