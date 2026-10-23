@@ -18,6 +18,7 @@ class ModelError(RuntimeError):
 
 class ModelQuotaError(ModelError):
     """账户额度已耗尽，重试同一账户不会立即恢复。"""
+    code = "ACCOUNT_QUOTA"
 
 
 def _account_quota_exceeded(body):

@@ -21,6 +21,9 @@ from research_agent.workflows.layered_d_runner import LayeredDRunner
 from research_agent.workflows.sample_validation import PublicSampleError, run_public_sample
 from research_agent.workflows.public_probes import public_probes
 from unittest.mock import patch
+from research_agent.integrations.llm import ModelQuotaError
+from research_agent.core.models import CaseContext
+from research_agent.workflows.experiment_diagnostics import error_record
 
 
 def worker(source):
@@ -95,6 +98,27 @@ def test_single_flow_probe_does_not_assume_a_flow_switch():
     assert 'deadline_before_horizon' not in {row[0] for row in rows}
     same_time = next(row for row in rows if row[0] == 'simultaneous_reservation')
     assert same_time[2]['trace_ids']['baseline'] == same_time[2]['trace_ids']['candidate']
+
+
+def test_quota_does_not_trigger_three_full_source_repair_attempts(tmp_path):
+    material = Path('科研助手赛题材料/x新/research-experiments-20261020-source-v1').resolve()
+    runner = LayeredDRunner(Settings(tmp_path, tmp_path / 'out', material_roots=[material]), tmp_path / 'work')
+    case = CaseContext.from_dict({'case_id': 'D-01', 'function': 'Reproduction', 'title': 'public',
+        'input': 'current public method', 'materials': [], 'constraints': [],
+        'expected_output': 'result', 'output_schema_ref': 'Reproduction'})
+    with patch.object(runner, 'prepare_generated_implementation', side_effect=ModelQuotaError('quota exhausted')) as call:
+        with pytest.raises(ModelQuotaError):
+            runner.prepare_checked_implementation(case)
+    assert call.call_count == 1
+    history = json.loads((runner.work / 'public-selftest.json').read_text())['attempts']
+    assert len(history) == 1 and history[0]['code'] == 'ACCOUNT_QUOTA'
+    assert history[0]['retryable'] is False
+
+
+def test_quota_is_classified_separately_from_source_admission_and_algorithm_errors():
+    row = error_record(ModelQuotaError('quota exhausted'), 'generation')
+    assert row['code'] == 'ACCOUNT_QUOTA'
+    assert row['category'] == 'model_quota' and row['retryable'] is False
 
 
 def test_optional_extraction_reuses_existing_coverage_and_stops_without_losing_claims():

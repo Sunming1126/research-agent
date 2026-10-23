@@ -1,6 +1,6 @@
 """分阶段模型提示词；版本写入模型调用记录。"""
 
-PROMPT_VERSION = "20261023-hybrid-v2"
+PROMPT_VERSION = "20261023-hybrid-v3"
 
 instructions = {
     "chat": "回答科研问题，输出 answer 和一个 clarifying_question。",

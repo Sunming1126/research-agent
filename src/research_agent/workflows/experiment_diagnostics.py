@@ -13,10 +13,12 @@ class ExperimentProcessError(RuntimeError):
 
 def error_record(exc, stage):
     code = getattr(exc, "code", None)
-    category = ("platform_infrastructure" if code == "D_SOURCE_AUDIT_UNAVAILABLE" else
+    category = ("model_quota" if code == "ACCOUNT_QUOTA" else
+                "platform_infrastructure" if code == "D_SOURCE_AUDIT_UNAVAILABLE" else
                 "source_admission" if code else
                 "timeout_or_cancelled" if isinstance(exc, TimeoutError) or type(exc).__name__ == "TimeoutExpired" else
                 "generation_or_validation" if stage in {"generation", "public_selftest"} else
                 "execution_or_artifacts")
     return {"type": type(exc).__name__, "message": str(exc)[:600], "stage": stage,
-            "code": code, "category": category, "returncode": getattr(exc, "returncode", None)}
+            "code": code, "category": category, "returncode": getattr(exc, "returncode", None),
+            "retryable": False if code == "ACCOUNT_QUOTA" else None}

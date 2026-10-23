@@ -13,6 +13,7 @@ from ..core.process import run_case_process
 from .experiment_diagnostics import ExperimentProcessError, error_record
 from .source_generation import build_source_prompt, read_generation_materials, save_generation_response, save_source
 from .sample_validation import run_public_sample
+from ..integrations.llm import ModelQuotaError
 
 
 CASE_MODULES = {"D-01": "d01.py", "D-02": "d02.py", "D-05": "d05.py"}
@@ -135,6 +136,8 @@ class LayeredDRunner:
             except (ValueError, SyntaxError, TypeError, KeyError, RuntimeError) as exc:
                 feedback = {"error_type": type(exc).__name__, "message": str(exc)[:2000]}
                 failure = {"attempt": attempt, "status": "failed", "stage": self.stage, **feedback}
+                if isinstance(exc, ModelQuotaError):
+                    failure.update(code=exc.code, retryable=False)
                 if path is not None:
                     failure["source_sha256"] = sha256_file(path)
                     feedback["previous_source"] = path.read_text(encoding="utf-8")
@@ -143,6 +146,8 @@ class LayeredDRunner:
                     failure["public_counterexample"] = exc.feedback
                 history.append(failure)
                 write_json(confined(self.work, "public-selftest.json"), {"attempts": history})
+                if isinstance(exc, ModelQuotaError):
+                    raise
                 session = current_session()
                 if attempt == 3 or (session and session.remaining() < 65):
                     raise RuntimeError("model implementation failed public self-test") from None
