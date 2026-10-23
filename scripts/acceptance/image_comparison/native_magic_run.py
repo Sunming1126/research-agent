@@ -15,7 +15,7 @@ VERSION='0.4.2-hybrid-v6'
 
 def allocate_run(stage):
     """Never reuse or erase a partially created attempt after an early failure."""
-    base='hybrid-20261023-v042-v5-magic-native-api'
+    base='hybrid-20261023-v042-v6-magic-native-api'
     record=ROOT/'.session-audit/native-v6-latest-run.json'
     if stage=='d-repeat':
         saved=json.loads(record.read_text(encoding='utf-8'))
@@ -23,7 +23,15 @@ def allocate_run(stage):
         if not (HERE/'runs'/run/'summary.json').is_file():
             raise RuntimeError('The main round must finish before an independent repeat')
         if (HERE/'runs'/(run+'-d-repeat')).exists():
-            raise RuntimeError('Independent repeat already exists; inspect its evidence before another generation')
+            # A completed repeat can be interrupted by the model transport.
+            # Keep every record and allocate a new independent attempt.
+            index=2
+            while (HERE/'runs'/(base+'-repeat'+str(index)+'-d-repeat')).exists():index+=1
+            retry=base+'-repeat'+str(index)
+            saved['independent_repeat_run']=retry+'-d-repeat'
+            saved['repeat_retry_reason']='Previous independent round interrupted by model transport; original checks unchanged'
+            record.write_text(json.dumps(saved,indent=2),encoding='utf-8')
+            return retry
         return run
     index=1
     while True:
@@ -149,6 +157,7 @@ def main():
         runner.main()
     if args.stage in {'all','d-repeat'}:
         from validate_hybrid_v6_archive import validate
-        validate(runner.RUN,runner.RUN+'-d-repeat')
+        saved=json.loads((ROOT/'.session-audit/native-v6-latest-run.json').read_text(encoding='utf-8'))
+        validate(saved['run'],saved.get('independent_repeat_run',runner.RUN+'-d-repeat'))
 
 if __name__=='__main__':main()

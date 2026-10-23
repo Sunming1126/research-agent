@@ -1,8 +1,10 @@
 # 科研助手 Agent
 
-当前融合候选 **0.4.2-hybrid-v6**：基于双镜像对照，保留 source-v1 的 D 可靠性并吸收队友 v14 的证据/报告改进，修复补检预算、自测兼容、D05 边界探针、额度错误重试和无自定义配置时的材料挂载识别。详见[融合依据](docs/2026-10-23-融合优化与项目论文依据.md)。下方0.4.1为历史基线，不代表融合版成绩。
+当前提交候选 **0.4.2-hybrid-v6** 已通过本地公开验收：完整源码及evaluation回归166通过、1条件跳过；实际镜像主轮122通过、1官方环境阻塞；独立D恢复轮21通过，两个独立生成轮次的26个公开算法输入全部通过。固定历史缺陷6/6拦截、真实触发的完整源码修复2/2恢复，仅代表这些明确样本，不是官方成绩或全部未知场景保证。
 
-v4主轮122通过、1官方阻塞；独立D重复轮19通过、2项D02开发Recall失败，因此v4不推荐提交。v5补上从公开开发排名重算普通/分组指标、不等组探针和原始错误源码回归，v5又发现D02忽略查询与D05首次开销反馈不精确的问题。v6加入查询变化探针、具体开销诊断和按题型分开的生成提示，源码及evaluation回归166通过、1因缺300篇库跳过。新镜像真实验收待独立结果。v3镜像已构建和导出，离线修正夹具后83项通过；原生GUI逐调用试运行发现无法可靠传递输出上限，已保留中断记录，不能当作验收通过。现已在固定Harness主对话中通过原生工具调用magic API冒烟：实际输出8 Token，上限64，关闭思考。后续阶段沿用该对话，详见[工作区约定](docs/2026-10-23-Harness工作区与连接约定.md)。
+镜像、SHA、源码快照和完整公开证据见[GitHub预发布](https://github.com/Sunming1126/research-agent/releases/tag/v0.4.2-hybrid-v6-20261023)。[最终验收与量化报告](docs/testing/2026-10-23-hybrid/最终验收与量化报告.md)给出分母、修复历史和未验证范围；[提交说明](docs/testing/2026-10-23-hybrid/打榜提交说明.md)指明唯一应上传的tar。正式Gateway/可信实验/私有题仍需平台验证，尚未上传赛事。
+
+所有本轮数据测试集中在既有DeepSeek Harness“Agent挑战赛”的同一“科研助手镜像验收总控”对话，由原生工具调度现有magic API。v4/v5真实失败和v6第一次独立轮的模型连接中断原样保留。v6改进指标核算、查询敏感探针、精确反例反馈和按题型提示；[融合与论文依据](docs/2026-10-23-融合优化与项目论文依据.md)、[工作区约定](docs/2026-10-23-Harness工作区与连接约定.md)说明机制和边界。
 
 2026-10-23 可靠性更新至 **0.4.1**：扩展 D-05 公开边界自测，修复反馈携带失败源码和具体输入，保留每次模型生成版本；增加 D-01 重复性检查、正式客户端取消清理及平台错误分类。参考依据与实现范围见 [优化说明](docs/2026-10-23-开源与论文参考及D类可靠性优化.md)。实际验收与镜像交付结果以本次独立报告为准，历史分数不代表新版成绩。
 
@@ -48,7 +50,7 @@ docker build --platform linux/amd64 -t research-assistant:0.4.2-hybrid-v6 .
 将论文放到 `local-workspace/papers`，将 `config.container.example.json` 中材料描述别名改为实际题目采用的描述，然后：
 
 ```powershell
-docker run --rm --init --name research-agent-local --cpus 1 --memory 1024m --env-file .env.local -e RESEARCH_CONFIG=/app/settings.json -e AGENTHACK_TELEMETRY_REQUIRED=false -p 127.0.0.1:18080:8080 -v "${PWD}/config.container.example.json:/app/settings.json:ro" -v "${PWD}/local-workspace:/workspace:ro" -v "${PWD}/output:/output" research-assistant:0.4.1-source-v1
+docker run --rm --init --name research-agent-local --cpus 1 --memory 1024m --env-file .env.local -e RESEARCH_CONFIG=/app/settings.json -e AGENTHACK_TELEMETRY_REQUIRED=false -p 127.0.0.1:18080:8080 -v "${PWD}/config.container.example.json:/app/settings.json:ro" -v "${PWD}/local-workspace:/workspace:ro" -v "${PWD}/output:/output" research-assistant:0.4.2-hybrid-v6
 ```
 
 正式平台不设置关闭遥测的开发选项。按平台公告提供配置和模型环境变量。

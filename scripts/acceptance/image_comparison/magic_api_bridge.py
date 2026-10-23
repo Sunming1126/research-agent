@@ -65,8 +65,12 @@ class MagicAPI:
             meta.update(http_status=exc.code,error_code=code,seconds=round(time.monotonic()-started,3))
             write_json(directory/'call.json',meta)
             raise RuntimeError('magic HTTP '+str(exc.code)+' '+code) from None
-        except (urllib.error.URLError,TimeoutError,OSError):
-            meta.update(error_code='TRANSPORT_ERROR',seconds=round(time.monotonic()-started,3))
+        except (urllib.error.URLError,TimeoutError,OSError) as exc:
+            reason=getattr(exc,'reason',exc)
+            number=getattr(reason,'errno',None)
+            meta.update(error_code='TRANSPORT_ERROR',seconds=round(time.monotonic()-started,3),
+                        transport_exception_type=type(reason).__name__,
+                        transport_errno=number if type(number) is int else None)
             write_json(directory/'call.json',meta)
             raise RuntimeError('magic connection transport failed; no credentials displayed') from None
         usage=value.get('usage') or {}

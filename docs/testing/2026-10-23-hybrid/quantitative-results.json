@@ -1,0 +1,87 @@
+{
+  "source_regression": {
+    "tests": 167,
+    "skipped": 1,
+    "errors": 0,
+    "failures": 0,
+    "passed": 166
+  },
+  "main": {
+    "PASS": 122,
+    "BLOCKED": 1
+  },
+  "repeat": {
+    "PASS": 21
+  },
+  "main_executed_pass_pct": 100.0,
+  "main_all_recorded_pass_pct": 99.19,
+  "public_algorithm_inputs": 26,
+  "public_algorithm_pass": 26,
+  "api_calls": 57,
+  "api_usage": {
+    "prompt_tokens": 123567,
+    "completion_tokens": 42130,
+    "total_tokens": 165697
+  },
+  "api_usage_excludes_native_orchestrator_overhead": true,
+  "d_generation_histories": [
+    {
+      "run": "hybrid-20261023-v042-v5-magic-native-api-r2",
+      "case": "D-05",
+      "attempts": 2,
+      "first_status": "failed",
+      "last_status": "passed",
+      "first_error": "D-05/simultaneous_reservation: public protocol probe must count assigned service immediately before choosing the next simultaneously idle server"
+    },
+    {
+      "run": "hybrid-20261023-v042-v5-magic-native-api-r2",
+      "case": "D-02",
+      "attempts": 2,
+      "first_status": "failed",
+      "last_status": "passed",
+      "first_error": "D-02/provided_sample: public sample execution failed: {\"error_type\": \"ValueError\", \"message\": \"line 110: self-test forbids attribute _score_field; use public member names\"}"
+    },
+    {
+      "run": "hybrid-20261023-v042-v5-magic-native-api-r2",
+      "case": "D-01",
+      "attempts": 1,
+      "first_status": "passed",
+      "last_status": "passed",
+      "first_error": null
+    },
+    {
+      "run": "hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat",
+      "case": "D-05",
+      "attempts": 1,
+      "first_status": "passed",
+      "last_status": "passed",
+      "first_error": null
+    },
+    {
+      "run": "hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat",
+      "case": "D-02",
+      "attempts": 1,
+      "first_status": "passed",
+      "last_status": "passed",
+      "first_error": null
+    },
+    {
+      "run": "hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat",
+      "case": "D-01",
+      "attempts": 1,
+      "first_status": "passed",
+      "last_status": "passed",
+      "first_error": null
+    }
+  ],
+  "real_repair_triggered_tasks": 2,
+  "real_internal_repair_recovery_pct": 100.0,
+  "real_external_public_recovered_tasks": 2,
+  "historical_selected_defects": {
+    "intercepted": 6,
+    "total": 6,
+    "pct": 100
+  },
+  "all_unknown_or_all_known_defect_interception_rate": null,
+  "official_score": null
+}

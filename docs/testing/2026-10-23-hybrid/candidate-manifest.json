@@ -1,10 +1,10 @@
 {
-  "version": "0.4.2-hybrid-v5",
-  "image": "research-assistant:0.4.2-hybrid-v5",
-  "image_id": "sha256:46656082485084f353e16295d5c0c091a28b64582c0cb71e22362105396274f7",
-  "build_commit": "19601b989a5bb770cda7f9e00e4a3fb08f8982bc",
-  "status": "ARCHIVE_PREPARED_PENDING_NATIVE_HARNESS_ACCEPTANCE",
-  "ready_for_recommended_contest_submission": false,
+  "version": "0.4.2-hybrid-v6",
+  "image": "research-assistant:0.4.2-hybrid-v6",
+  "image_id": "sha256:fdb88f177b337dd68cf4720a9a26cca44820e04cdd5f324b57cc07534f7157ef",
+  "build_commit": "094d6222b799239eca9b4ff9c34a213f54cdaec4",
+  "status": "LOCAL_PUBLIC_ACCEPTANCE_PASSED_READY_FOR_FIRST_PLATFORM_VALIDATION",
+  "ready_for_recommended_contest_submission": true,
   "uploaded_to_contest": false,
   "official_score": null,
   "platform": "linux/amd64",
@@ -16,14 +16,31 @@
   "source_snapshot_files": 42,
   "files": [
     {
-      "file": "research-assistant-0.4.2-hybrid-v5.tar",
-      "bytes": 295538688,
-      "sha256": "51246fca1c056a358980bd0770090611fcd897ef46530f023c341b1c5774cfcc"
+      "file": "research-assistant-0.4.2-hybrid-v6.tar",
+      "bytes": 295539200,
+      "sha256": "a920a93cf7418320e127692ce838c3f6f05727141a73accd73d7ee92059f00ea"
     },
     {
-      "file": "research-agent-0.4.2-hybrid-v5-build-source.zip",
-      "bytes": 103497,
-      "sha256": "bee060fe3992c2188c7eb6c590b8fc39d99bc3ad342017a652dd8dcec3463370"
+      "file": "research-agent-0.4.2-hybrid-v6-build-source.zip",
+      "bytes": 104082,
+      "sha256": "cd2c2c362059b429dfb598bba43ae6c12df786fac7efe4eea3a78bf512690e49"
     }
-  ]
+  ],
+  "real_model_acceptance_complete": true,
+  "local_results": [
+    {
+      "run": "hybrid-20261023-v042-v5-magic-native-api-r2",
+      "counts": {
+        "PASS": 122,
+        "BLOCKED": 1
+      }
+    },
+    {
+      "run": "hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat",
+      "counts": {
+        "PASS": 21
+      }
+    }
+  ],
+  "official_gateway_admission_verified": false
 }

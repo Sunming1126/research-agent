@@ -1,0 +1,53 @@
+{
+  "scope": "Six fixed historical algorithm/metric protocol defects, not all possible defects",
+  "total": 6,
+  "intercepted": 6,
+  "rate_pct": 100,
+  "defects": [
+    {
+      "id": "D05-deadline-priority",
+      "probe": "deadline_before_horizon",
+      "regression_test": "test_deadline_before_horizon_probe_rejects_wrong_drop_reason",
+      "intercepted": true,
+      "original_unmodified_source_evidence": "镜像测试/runs/hybrid-20261023-v042/original-d05-priority-regression.json"
+    },
+    {
+      "id": "D05-concurrent-reservation",
+      "probe": "simultaneous_reservation",
+      "regression_test": "test_new_probes_reject_original_unmodified_model_regression[simultaneous_reservation]",
+      "intercepted": true,
+      "fixture": "tests/fixtures/d05-hybrid-v1-repeat.py-text",
+      "sha256": "4037932ddde31ec7551e7e072dcf60d91a288e03fe28f112ab9653d8f8f41ea9"
+    },
+    {
+      "id": "D05-window-conservation",
+      "probe": "window_exact_and_pending",
+      "regression_test": "test_new_probes_reject_original_unmodified_model_regression[window_exact_and_pending]",
+      "intercepted": true,
+      "fixture": "tests/fixtures/d05-hybrid-v1-repeat.py-text",
+      "sha256": "4037932ddde31ec7551e7e072dcf60d91a288e03fe28f112ab9653d8f8f41ea9"
+    },
+    {
+      "id": "D02-dict-unpacking",
+      "probe": "ordinary dev Recall",
+      "regression_test": "test_original_unmodified_model_source_with_dict_unpacking_is_rejected",
+      "intercepted": true,
+      "fixture": "tests/fixtures/d02-hybrid-v4-repeat.py-text",
+      "sha256": "3dc07a20dd91dbf9eeba1dca46a09f9b254fe3ad86c357ed79456fb915bc8266"
+    },
+    {
+      "id": "D02-query-ignored",
+      "regression_test": "test_unmodified_real_v5_faults_are_rejected_with_specific_counterexample[D-02-d02-hybrid-v5-ignored-query.py-text-query_changes_ranking-use query tokens]",
+      "intercepted": true,
+      "fixture": "tests/fixtures/d02-hybrid-v5-ignored-query.py-text",
+      "sha256": "98f9c04d94b81d7b365d6b5d4fb7523b43cb1cf043fbdee396ecf75986de9095"
+    },
+    {
+      "id": "D05-first-setup",
+      "regression_test": "test_unmodified_real_v5_faults_are_rejected_with_specific_counterexample[D-05-d05-hybrid-v5-first-setup.py-text-provided_sample-expected_setup_ms=0, observed_setup_ms=2]",
+      "intercepted": true,
+      "fixture": "tests/fixtures/d05-hybrid-v5-first-setup.py-text",
+      "sha256": "dd02172d09fdc2fda312231d71fc5b548e1528321cf019c5fa7702590001adc8"
+    }
+  ]
+}

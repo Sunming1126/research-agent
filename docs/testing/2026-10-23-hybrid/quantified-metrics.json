@@ -2,7 +2,7 @@
   "date": "2026-10-23",
   "new_model_calls_in_this_readonly_analysis": 0,
   "new_tests_started_in_this_analysis": 0,
-  "latest_source_candidate": "0.4.2-hybrid-v5",
+  "latest_source_candidate": "0.4.2-hybrid-v6",
   "latest_source_image_built": true,
   "latest_full_end_to_end_pass_rate": null,
   "all_known_defect_interception_rate": null,
@@ -76,22 +76,45 @@
       "recorded_checks": 21,
       "pass_over_all_recorded_pct": 90.48,
       "pass_over_pass_and_fail_pct": 90.48
+    },
+    "hybrid-20261023-v042-v5-magic-native-api": {
+      "image": "research-assistant:0.4.2-hybrid-v5",
+      "image_id": "sha256:46656082485084f353e16295d5c0c091a28b64582c0cb71e22362105396274f7",
+      "counts": {
+        "PASS": 113,
+        "FAIL": 1,
+        "BLOCKED": 3
+      },
+      "recorded_checks": 117,
+      "pass_over_all_recorded_pct": 96.58,
+      "pass_over_pass_and_fail_pct": 99.12
+    },
+    "hybrid-20261023-v042-v5-magic-native-api-d-repeat": {
+      "image": "research-assistant:0.4.2-hybrid-v5",
+      "image_id": "sha256:46656082485084f353e16295d5c0c091a28b64582c0cb71e22362105396274f7",
+      "counts": {
+        "PASS": 18,
+        "FAIL": 3
+      },
+      "recorded_checks": 21,
+      "pass_over_all_recorded_pct": 85.71,
+      "pass_over_pass_and_fail_pct": 85.71
     }
   },
-  "offline_v5_regression": {
-    "tests": 163,
+  "offline_v6_regression": {
+    "tests": 167,
     "failures": 0,
     "errors": 0,
     "skipped": 1,
-    "passed": 162,
+    "passed": 166,
     "executed_pass_pct": 100.0,
-    "all_planned_pass_pct": 99.39
+    "all_planned_pass_pct": 99.4
   },
   "frozen_selected_protocol_defects": {
-    "intercepted": 4,
-    "fixtures": 4,
+    "intercepted": 6,
+    "fixtures": 6,
     "pct": 100,
-    "scope": "Three D05 defects and one D02 dict-unpacking metric defect; selected historical sample only"
+    "scope": "Four D05 defects and two D02 defects; selected historical sample only"
   },
   "frozen_d05_defect_fixture_interception": {
     "intercepted": 3,
@@ -135,10 +158,16 @@
     "镜像测试/runs/hybrid-20261023-v042-v4-magic-native-api-r3/checks.json": "467c41c36adf2cffc5be84d6f8fc84f7960626be144b024412df9d3cbbc909be",
     "镜像测试/runs/hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat/summary.json": "f0614f2323404205a1b06f16721edee86de700fd29feabb7bfd5ab0544f5a840",
     "镜像测试/runs/hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat/checks.json": "ed7a5bc7d878a19a232f59ab5841cf081dd12ca89248020e1fd1edf5acc3ce0f",
-    "协同开发/research-agent/docs/testing/2026-10-23-hybrid/regression-v5-r2.xml": "290b6ca8bc1832618027e9a74fb46d676a53772447663bd84c0edf2a8216db86",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api/summary.json": "f49b2d543cef1b250e6ca314300cd324d6b3fbb57f6dd8d344f414d0f673ee4c",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api/checks.json": "d2ec5dff0d0342371c5ed5d9ef2c73edfbf7a94ade618516f08478b2a90c3fd4",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api-d-repeat/summary.json": "01bd72d256772da6924286b75d967543d6e6b188375f7078cec4674205f428b1",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api-d-repeat/checks.json": "ee6245fc5a748257a428a2be5c573ad972cefee0538667ae281718ecd4476c5d",
+    "协同开发/research-agent/docs/testing/2026-10-23-hybrid/regression-v6.xml": "7214df5362f0d7862b0f097b654aaad29be16b1df7a356f82982bd18f01b8015",
     "镜像测试/runs/hybrid-20261023-v042/original-d05-priority-regression.json": "f6c59292f9872028ac6c881253b1628a47b8599cc3d906d44f238e9ca3108bb4",
     "协同开发/research-agent/tests/fixtures/d05-hybrid-v1-repeat.py-text": "4037932ddde31ec7551e7e072dcf60d91a288e03fe28f112ab9653d8f8f41ea9",
     "协同开发/research-agent/tests/fixtures/d02-hybrid-v4-repeat.py-text": "3dc07a20dd91dbf9eeba1dca46a09f9b254fe3ad86c357ed79456fb915bc8266",
+    "协同开发/research-agent/tests/fixtures/d02-hybrid-v5-ignored-query.py-text": "98f9c04d94b81d7b365d6b5d4fb7523b43cb1cf043fbdee396ecf75986de9095",
+    "协同开发/research-agent/tests/fixtures/d05-hybrid-v5-first-setup.py-text": "dd02172d09fdc2fda312231d71fc5b548e1528321cf019c5fa7702590001adc8",
     "镜像测试/runs/comparison-20261023-v041-v14/checks.json": "4f85bbd5194e48f4ff074a76db5567410640d092e7f78b0fceed3ac39ba9f9cf",
     "镜像测试/runs/comparison-20261023-v041-v14/live-D-05/output/data/workspace_team/work/D-05/eefdd599231741d08390c36fc2f07598/public-selftest.json": "b15ee0f04084d3f9e9d622a7f72f22682440bfd3097c9a4b0ab4d9e0f7b8b228",
     "镜像测试/runs/comparison-20261023-v041-v14/live-D-02/output/data/workspace_team/work/D-02/b7dd5db1fca6404e9bab6baa85bfcb0a/public-selftest.json": "43da7ac95ba79fb437c193c01f68c74c458f44225065ff13e99da105ccf62f1e",
@@ -153,16 +182,19 @@
     "镜像测试/runs/hybrid-20261023-v042-d-repeat/live-D-05/output/data/workspace_team/work/D-05/c64fd0270db145a282be00d74ad27465/public-selftest.json": "a79e8a64c429fa6f3aeaa537b4ce7c4669ba400dd78c155ac9e8918a3bfefd68",
     "镜像测试/runs/hybrid-20261023-v042-d-repeat/live-D-02/output/data/workspace_team/work/D-02/22a01b2adbfa4e9cb480bf900ca5333c/public-selftest.json": "9d37713e8bb8727c267d74bcf35ae792133f1ad3f81d77ff336226438fcb8904",
     "镜像测试/runs/hybrid-20261023-v042-d-repeat/live-D-01/output/data/workspace_team/work/D-01/360e17d4c75e4ba9887110ae82debaa3/public-selftest.json": "b6da9fdf750b4c1c4c2df4dbe16f2c3429b96795ee57242ba93244c2065b14bf",
-    "镜像测试/交付/0.4.2-hybrid-v5/delivery-manifest.json": "6ff8e237ef630e4c0c8c7bea1107de26dfd1d7bbad36a8c0010013647ea77cf7",
-    "镜像测试/runs/native-magic-api-smoke-20261023/summary.json": "1893beeb5c1916e1185cdcd211788f7f6d0b7ebb53af8267228e7065fab8aa0c"
+    "镜像测试/交付/0.4.2-hybrid-v6/delivery-manifest.json": "315ea2a174f810ca4c6f86661cdfed3ef0ed2834f3cee417b66e86417cad4de3",
+    "镜像测试/runs/native-magic-api-smoke-20261023/summary.json": "1893beeb5c1916e1185cdcd211788f7f6d0b7ebb53af8267228e7065fab8aa0c",
+    ".session-audit/native-v6-latest-run.json": "7f2f1919847bce3b680e0b7ca5fbb7e9a46f3e5096844c9663951a86734c4ad8",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api-r2/summary.json": "f7f2aa90bc5f933bd53ff8140592fc2d6db945c533fe5c3a92b34dbf069d4dd4",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api-r2/checks.json": "6c56848acfdf6ed27edcc8fd0fe934bacad74571514a294364f0d3ddf70e298a"
   },
   "candidate_manifest": {
-    "version": "0.4.2-hybrid-v5",
-    "image": "research-assistant:0.4.2-hybrid-v5",
-    "image_id": "sha256:46656082485084f353e16295d5c0c091a28b64582c0cb71e22362105396274f7",
-    "build_commit": "19601b989a5bb770cda7f9e00e4a3fb08f8982bc",
-    "status": "ARCHIVE_PREPARED_PENDING_NATIVE_HARNESS_ACCEPTANCE",
-    "ready_for_recommended_contest_submission": false,
+    "version": "0.4.2-hybrid-v6",
+    "image": "research-assistant:0.4.2-hybrid-v6",
+    "image_id": "sha256:fdb88f177b337dd68cf4720a9a26cca44820e04cdd5f324b57cc07534f7157ef",
+    "build_commit": "094d6222b799239eca9b4ff9c34a213f54cdaec4",
+    "status": "LOCAL_PUBLIC_ACCEPTANCE_PASSED_READY_FOR_FIRST_PLATFORM_VALIDATION",
+    "ready_for_recommended_contest_submission": true,
     "uploaded_to_contest": false,
     "official_score": null,
     "platform": "linux/amd64",
@@ -174,16 +206,33 @@
     "source_snapshot_files": 42,
     "files": [
       {
-        "file": "research-assistant-0.4.2-hybrid-v5.tar",
-        "bytes": 295538688,
-        "sha256": "51246fca1c056a358980bd0770090611fcd897ef46530f023c341b1c5774cfcc"
+        "file": "research-assistant-0.4.2-hybrid-v6.tar",
+        "bytes": 295539200,
+        "sha256": "a920a93cf7418320e127692ce838c3f6f05727141a73accd73d7ee92059f00ea"
       },
       {
-        "file": "research-agent-0.4.2-hybrid-v5-build-source.zip",
-        "bytes": 103497,
-        "sha256": "bee060fe3992c2188c7eb6c590b8fc39d99bc3ad342017a652dd8dcec3463370"
+        "file": "research-agent-0.4.2-hybrid-v6-build-source.zip",
+        "bytes": 104082,
+        "sha256": "cd2c2c362059b429dfb598bba43ae6c12df786fac7efe4eea3a78bf512690e49"
       }
-    ]
+    ],
+    "real_model_acceptance_complete": true,
+    "local_results": [
+      {
+        "run": "hybrid-20261023-v042-v5-magic-native-api-r2",
+        "counts": {
+          "PASS": 122,
+          "BLOCKED": 1
+        }
+      },
+      {
+        "run": "hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat",
+        "counts": {
+          "PASS": 21
+        }
+      }
+    ],
+    "official_gateway_admission_verified": false
   },
   "native_api_smoke": {
     "status": "PASS",
@@ -211,5 +260,25 @@
         "reasoning_tokens": 0
       }
     }
+  },
+  "latest_local_real_round": {
+    "run": "hybrid-20261023-v042-v5-magic-native-api-r2",
+    "complete": true,
+    "summary": {
+      "target": "research-assistant:0.4.2-hybrid-v6",
+      "image_id": "sha256:fdb88f177b337dd68cf4720a9a26cca44820e04cdd5f324b57cc07534f7157ef",
+      "counts": {
+        "PASS": 122,
+        "BLOCKED": 1
+      },
+      "official_score": null,
+      "official_admission_verified": false,
+      "run": "hybrid-20261023-v042-v5-magic-native-api-r2",
+      "mandatory_failures": [],
+      "quality_failures": [],
+      "note": "Actual Harness account calls and immutable installed-image execution; no algorithm hand edits"
+    },
+    "all_recorded_pass_pct": 99.19,
+    "executed_pass_pct": 100.0
   }
 }

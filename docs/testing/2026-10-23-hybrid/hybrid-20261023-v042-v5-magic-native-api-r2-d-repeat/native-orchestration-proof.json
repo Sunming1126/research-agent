@@ -1,0 +1,10 @@
+{
+  "native_tool_execution_verified": true,
+  "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+  "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+  "tool_name": "pwsh",
+  "native_tool_call_sha256": "654b51e1b08f052c29bdf9982ed57c7faf4ca08710ce94323ac6f4a20ebf9fa6",
+  "profile_modified": false,
+  "plugin_installed": false,
+  "headless_model_process_used": false
+}
