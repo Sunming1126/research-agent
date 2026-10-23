@@ -212,7 +212,10 @@ def validate_sample_output(case_id, request, result):
                     raise ValueError("D-05 overlapping jobs on the same server")
                 expected_setup = data["setup_ms"] if server in last_flow and last_flow[server] != original["flow"] else 0
                 if job["setup_ms"] != expected_setup:
-                    raise ValueError("D-05 setup must preserve previous flow even across idle intervals")
+                    raise ValueError(f"D-05 {name} job={job['id']} server={server}: "
+                                     f"previous_flow={last_flow.get(server)!r}, next_flow={original['flow']!r}, "
+                                     f"expected_setup_ms={expected_setup}, observed_setup_ms={job['setup_ms']}; "
+                                     "the first assignment has zero setup; retain previous flow across idle intervals")
                 if (abs(job["end_ms"] - job["start_ms"] - original["service_ms"]) > 1e-8
                         or abs(job["wait_ms"] - (job["start_ms"] - original["arrival_ms"])) > 1e-8
                         or abs(job["start_ms"] - job["dispatch_ms"] - job["setup_ms"]) > 1e-8
@@ -271,7 +274,19 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8):
         try:
             body = _run_sample(source, probe, remaining_timeout(budget, reserve=35))
             report = validate_sample_output(case_id, probe, body["result"])
-            if isinstance(expected_completed, dict):
+            if case_id == "D-02" and isinstance(expected_completed, dict):
+                for strategy in ("baseline", "candidate"):
+                    value = body["result"][strategy]
+                    if value is None:
+                        continue
+                    rankings = _d02_rankings(value, probe["data"]["test_queries"],
+                                             {d["id"] for d in probe["data"]["documents"]})
+                    for query, expected in expected_completed["d02_expected_top"].items():
+                        if rankings[query][0] != expected:
+                            raise ValueError(f"D-02 {strategy} query={query}: expected first document {expected}, "
+                                             f"observed {rankings[query][0]}; use query tokens and document term frequency, "
+                                             "not document tokens or document length as frequency")
+            elif isinstance(expected_completed, dict):
                 for strategy in ("baseline", "candidate"):
                     result = body["result"][strategy]
                     if result is not None:

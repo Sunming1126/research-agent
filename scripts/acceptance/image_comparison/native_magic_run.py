@@ -11,12 +11,12 @@ import time
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parent
-VERSION='0.4.2-hybrid-v5'
+VERSION='0.4.2-hybrid-v6'
 
 def allocate_run(stage):
     """Never reuse or erase a partially created attempt after an early failure."""
     base='hybrid-20261023-v042-v5-magic-native-api'
-    record=ROOT/'.session-audit/native-v5-latest-run.json'
+    record=ROOT/'.session-audit/native-v6-latest-run.json'
     if stage=='d-repeat':
         saved=json.loads(record.read_text(encoding='utf-8'))
         run=saved['run']
@@ -84,8 +84,8 @@ def main():
             '--mount',f'type=bind,source={repo / "科研助手赛题材料/research-experiments"},target=/materials,readonly',
             '--mount',f'type=bind,source={output},target=/results',
             '--workdir','/src','--entrypoint','python','research-assistant:0.4.2-hybrid-v4',
-            '-m','pytest','-q','-p','no:cacheprovider','--junitxml=/results/regression-v5-r2.xml',timeout=180)
-        (output/'regression-v5-r2.stdout.txt').write_text(log,encoding='utf-8')
+            '-m','pytest','-q','-p','no:cacheprovider','--junitxml=/results/regression-v6.xml',timeout=180)
+        (output/'regression-v6.stdout.txt').write_text(log,encoding='utf-8')
         print(log,flush=True)
         return
     import magic_api_bridge as bridge
@@ -137,7 +137,7 @@ def main():
             n:hashlib.sha256((HERE/n).read_bytes()).hexdigest() for n in [
                 'native_magic_run.py','magic_api_bridge.py','read_magic_connection.cjs','accept_hybrid.py',
                 'compare_images.py','comparison_d_repeat.py','test_agent.py','public_oracles.py',
-                'validate_hybrid_v5_archive.py','prepare_hybrid_v5.py']})
+                'validate_hybrid_v6_archive.py','prepare_hybrid_v6.py']})
         return identity
     runner.C.metadata=metadata
     sys.argv=[sys.argv[0],'--stage',args.stage]
@@ -148,7 +148,7 @@ def main():
         sys.argv=[sys.argv[0],'--stage','d-repeat']
         runner.main()
     if args.stage in {'all','d-repeat'}:
-        from validate_hybrid_v5_archive import validate
+        from validate_hybrid_v6_archive import validate
         validate(runner.RUN,runner.RUN+'-d-repeat')
 
 if __name__=='__main__':main()

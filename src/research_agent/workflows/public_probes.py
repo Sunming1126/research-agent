@@ -17,6 +17,17 @@ def public_probes(case_id, request):
                 duplicate["id"] += "_copy"
             probe["data"]["dev_queries"].append(duplicate)
             probes.append(("unequal_dev_group_sizes", probe, None))
+        # 单词互斥语料：只核对查询是否实际参与检索，不给完整BM25实现。
+        probe = deepcopy(request)
+        probe["data"] = {
+            "documents": [{"id": "doc_z", "title": "", "text": "alpha"},
+                          {"id": "doc_a", "title": "", "text": "beta"},
+                          {"id": "doc_m", "title": "", "text": "gamma"}],
+            "dev_queries": [{"id": "qa", "text": "alpha", "group": "a", "relevant": ["doc_z"]},
+                            {"id": "qb", "text": "beta", "group": "b", "relevant": ["doc_a"]}],
+            "test_queries": [{"id": "qa", "text": "alpha"}, {"id": "qb", "text": "beta"}],
+        }
+        probes.append(("query_changes_ranking", probe, {"d02_expected_top": {"qa": "doc_z", "qb": "doc_a"}}))
         return probes
     if case_id != "D-05":
         return probes
