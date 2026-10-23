@@ -1,0 +1,13 @@
+{
+  "status": "WAITING_NATIVE_DOCKER_APPROVAL_AFTER_COLLECTION_FIX",
+  "source_build_commit": "831e45c0a3518dbbf27c833cceb3b2239cb2e28f",
+  "image_id": "sha256:0f9233b601522d83848ec72e940bf19f57408fb5298976cd595061e1f6d80683",
+  "ready_for_recommended_contest_submission": false,
+  "source_regression_passed": false,
+  "v8_real_model_case_tests_started": false,
+  "initial_collection_failure_preserved": true,
+  "initial_failure": "pytest collected archived documentation test_agent and scripts/acceptance test_agent under the same module name",
+  "fix": "Explicit tests/evaluation testpaths, complete stdout/stderr/XML per native attempt",
+  "native_session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+  "provider": "magic"
+}

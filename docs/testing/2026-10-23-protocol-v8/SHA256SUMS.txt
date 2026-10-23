@@ -1,0 +1,2 @@
+4ab5b6ed72269ef9dbde601360773e9042f1ff109a0bd098d96800b5d33202ca  research-assistant-0.4.2-hybrid-v8.tar
+28d74e5353002fbae1d1046317c1b6ce5744d9b8280ce30e6784c47732f6e2ae  research-agent-0.4.2-hybrid-v8-build-source.zip
