@@ -1,0 +1,13 @@
+{
+  "native_magic_run.py": "eff3cae8cce53d90f030c22358979365b0320293eafd61b494eac95f6ec0bce9",
+  "magic_api_bridge.py": "829542f5fac3be59d8f7492a3aeb845145c17522fde341a43cfc14479601ffa8",
+  "read_magic_connection.cjs": "875c82f92c49b3f439b5cc550923132771b348732ba4f224e87339ccb4422e44",
+  "accept_hybrid.py": "b5d8dca98e5d8dab837cd81cc7559f7d942362d133057dbb28234da11e63ad5f",
+  "compare_images.py": "38b74195f4d5658aac9d1c2d885a6cf0e9b08f8b59e7f4c7e65b9a16fea71e59",
+  "comparison_d_repeat.py": "fb0efcfaf0bc45d1e03c0a8b6bbc823e21e7c5e623a1aea1daba99c8dba8ad29",
+  "test_agent.py": "6a328a61142775ba644963fda0f191c5f638f293ae82830645bc6f5a6a4da341",
+  "public_oracles.py": "d22291e7bc8e7f3e1c89987ade5b5d403a1993bbaf55e5dd3575d78d3c47f1bb",
+  "protocol_422_checks.py": "ab26531b879017ab0d215431833d4c4c7ffa5ab1af26d6eebc9558c5c5fc5b7d",
+  "validate_hybrid_v8_archive.py": "4b9c93e4836f3548d76ac3b857d78e48bc23ea6a1794e74993bbb862b6c5caeb",
+  "prepare_hybrid_v8.py": "8140cb956b1bb73b3593ee420f39484da60bfad9a51e26ebb2683c1caef010f1"
+}

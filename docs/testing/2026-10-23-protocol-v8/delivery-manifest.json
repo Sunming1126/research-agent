@@ -3,8 +3,8 @@
   "image": "research-assistant:0.4.2-hybrid-v8",
   "image_id": "sha256:0f9233b601522d83848ec72e940bf19f57408fb5298976cd595061e1f6d80683",
   "build_commit": "831e45c0a3518dbbf27c833cceb3b2239cb2e28f",
-  "status": "ARCHIVE_PREPARED_PENDING_NATIVE_HARNESS_ACCEPTANCE",
-  "ready_for_recommended_contest_submission": false,
+  "status": "LOCAL_PUBLIC_ACCEPTANCE_PASSED_READY_FOR_FIRST_PLATFORM_VALIDATION",
+  "ready_for_recommended_contest_submission": true,
   "uploaded_to_contest": false,
   "official_score": null,
   "platform": "linux/amd64",
@@ -25,5 +25,22 @@
       "bytes": 105892,
       "sha256": "28d74e5353002fbae1d1046317c1b6ce5744d9b8280ce30e6784c47732f6e2ae"
     }
-  ]
+  ],
+  "real_model_acceptance_complete": true,
+  "local_results": [
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "counts": {
+        "PASS": 128,
+        "BLOCKED": 1
+      }
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+      "counts": {
+        "PASS": 21
+      }
+    }
+  ],
+  "official_gateway_admission_verified": false
 }

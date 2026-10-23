@@ -1,0 +1,237 @@
+{
+  "source_regression": {
+    "tests": 192,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "passed": 191
+  },
+  "main": {
+    "PASS": 128,
+    "BLOCKED": 1
+  },
+  "repeat": {
+    "PASS": 21
+  },
+  "direct_case_http_requests": 14,
+  "direct_case_http_200": 14,
+  "direct_cases": [
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "A-01",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "B-01",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "B-02",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "B-03",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "C-01",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "C-02",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "E-01",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "E-02",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "D-01",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "D-02",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case_id": "D-05",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+      "case_id": "D-01",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+      "case_id": "D-02",
+      "http": 200
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+      "case_id": "D-05",
+      "http": 200
+    }
+  ],
+  "public_algorithm_inputs": 26,
+  "public_algorithm_pass": 26,
+  "api_calls": 58,
+  "api_usage": {
+    "prompt_tokens": 120902,
+    "completion_tokens": 39107,
+    "total_tokens": 160009
+  },
+  "api_usage_excludes_native_orchestrator_overhead": true,
+  "baseline": {
+    "PASS": 4,
+    "FAIL": 0
+  },
+  "official_score": null,
+  "official_platform_result_after_fix": null,
+  "prior_v6_recommendation_withdrawn": true,
+  "prior_v6_local_wrapped_results_preserved": true,
+  "source_executed_pass_pct": 100.0,
+  "source_all_planned_pass_pct": 99.47916666666667,
+  "main_executed_pass_pct": 100.0,
+  "main_all_recorded_pass_pct": 99.2248062015504,
+  "repeat_executed_pass_pct": 100.0,
+  "repeat_all_recorded_pass_pct": 100.0,
+  "selected_historical_defects": {
+    "intercepted": 7,
+    "total": 7,
+    "pct": 100,
+    "scope": "Seven selected protocol defects only; not all known or unknown defects",
+    "cases": [
+      {
+        "defect": "deadline_before_horizon",
+        "regression": "test_deadline_before_horizon_probe_rejects_wrong_drop_reason"
+      },
+      {
+        "defect": "simultaneous_reservation",
+        "regression": "test_new_probes_reject_original_unmodified_model_regression[simultaneous_reservation]"
+      },
+      {
+        "defect": "window_conservation",
+        "regression": "test_new_probes_reject_original_unmodified_model_regression[window_exact_and_pending]"
+      },
+      {
+        "defect": "d02_dict_unpacking",
+        "regression": "test_original_unmodified_model_source_with_dict_unpacking_is_rejected"
+      },
+      {
+        "defect": "d02_ignores_query",
+        "regression": "test_unmodified_real_v5_faults_are_rejected_with_specific_counterexample[D-02-d02-hybrid-v5-ignored-query.py-text-query_changes_ranking-use query tokens]"
+      },
+      {
+        "defect": "d05_first_setup",
+        "regression": "test_unmodified_real_v5_faults_are_rejected_with_specific_counterexample[D-05-d05-hybrid-v5-first-setup.py-text-provided_sample-expected_setup_ms=0, observed_setup_ms=2]"
+      },
+      {
+        "defect": "d05_reject_retry_same_server",
+        "regression": "test_unmodified_real_v5_faults_are_rejected_with_specific_counterexample[D-05-d05-hybrid-v7-reject-retry.py-text-retry_after_deadline_rejection-after rejection retry the same idle server]"
+      }
+    ]
+  },
+  "new_frozen_defect_control": {
+    "intercepted": 1,
+    "total": 1,
+    "repeated_rejections": 2,
+    "full_source_controlled_repair_pass": 1,
+    "total_controlled_repairs": 1
+  },
+  "d_generation_histories": [
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case": "D-05",
+      "attempts": 2,
+      "first_status": "failed",
+      "final_status": "passed",
+      "first_probe": "window_future_arrivals",
+      "first_error": "D-05/window_future_arrivals: D-05 every job must occur exactly once in trace or dropped",
+      "all_external_public_pass": true
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case": "D-02",
+      "attempts": 1,
+      "first_status": "passed",
+      "final_status": "passed",
+      "first_probe": null,
+      "first_error": null,
+      "all_external_public_pass": true
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "case": "D-01",
+      "attempts": 1,
+      "first_status": "passed",
+      "final_status": "passed",
+      "first_probe": null,
+      "first_error": null,
+      "all_external_public_pass": true
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+      "case": "D-05",
+      "attempts": 1,
+      "first_status": "passed",
+      "final_status": "passed",
+      "first_probe": null,
+      "first_error": null,
+      "all_external_public_pass": true
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+      "case": "D-02",
+      "attempts": 1,
+      "first_status": "passed",
+      "final_status": "passed",
+      "first_probe": null,
+      "first_error": null,
+      "all_external_public_pass": true
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+      "case": "D-01",
+      "attempts": 1,
+      "first_status": "passed",
+      "final_status": "passed",
+      "first_probe": null,
+      "first_error": null,
+      "all_external_public_pass": true
+    }
+  ],
+  "real_repair_triggered_tasks": 1,
+  "real_repair_recovered_tasks": 1,
+  "observed_real_repair_recovery_pct": 100.0,
+  "v7_comparison": {
+    "main": {
+      "PASS": 127,
+      "FAIL": 1,
+      "BLOCKED": 1
+    },
+    "repeat": {
+      "PASS": 21
+    },
+    "d_public_pass": 25,
+    "d_public_total": 26,
+    "causal_improvement_estimate": null,
+    "reason": "Independently generated model code differs between rounds; sample too small for stable causal effect"
+  },
+  "d05_internal_probe_count_before": 9,
+  "d05_internal_probe_count_after": 12
+}

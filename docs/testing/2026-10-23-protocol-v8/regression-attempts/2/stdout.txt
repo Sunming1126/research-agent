@@ -1,0 +1,33 @@
+......................................................F................. [ 37%]
+......................................................s................. [ 75%]
+................................................                         [100%]
+=================================== FAILURES ===================================
+_ test_repair_receives_failed_source_and_counterexample_and_keeps_both_versions _
+tests/test_d_execution_reliability.py:88: in test_repair_receives_failed_source_and_counterexample_and_keeps_both_versions
+    assert history[1]["probe_count"] == 9
+E   assert 12 == 9
+=============================== warnings summary ===============================
+<frozen importlib._bootstrap>:241
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:241
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+../usr/local/lib/python3.11/site-packages/starlette/formparsers.py:12
+  /usr/local/lib/python3.11/site-packages/starlette/formparsers.py:12: PendingDeprecationWarning: Please use `import python_multipart` instead.
+    import multipart
+
+../usr/local/lib/python3.11/site-packages/starlette/testclient.py:41
+  /usr/local/lib/python3.11/site-packages/starlette/testclient.py:41: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    [], typing.ContextManager[anyio.abc.BlockingPortal]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+----- generated xml file: /results/regression-v8-attempts/2/regression.xml -----
+=========================== short test summary info ============================
+FAILED tests/test_d_execution_reliability.py::test_repair_receives_failed_source_and_counterexample_and_keeps_both_versions
+1 failed, 190 passed, 1 skipped, 7 warnings in 27.17s
