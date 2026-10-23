@@ -1,0 +1,243 @@
+import math
+import re
+from collections import defaultdict
+
+
+def _tokenize(text):
+    if text is None:
+        return []
+    return re.findall(r"[a-z0-9]+", str(text).lower())
+
+
+def _build_field_index(documents, field):
+    n = len(documents)
+    doc_tokens = []
+    lengths = []
+    df = defaultdict(int)
+    for doc in documents:
+        toks = _tokenize(doc.get(field, ""))
+        doc_tokens.append(toks)
+        lengths.append(len(toks))
+        for w in set(toks):
+            df[w] += 1
+    avg = (sum(lengths) / n) if n > 0 else 0.0
+    if avg <= 0.0:
+        avg = 1.0
+    return {
+        "n": n,
+        "doc_tokens": doc_tokens,
+        "lengths": lengths,
+        "df": dict(df),
+        "avg": avg,
+    }
+
+
+def _field_score(tokens, length, df, n, avg, k1, b):
+    total = 0.0
+    for w in tokens:
+        d = df.get(w, 0)
+        if d == 0:
+            continue
+        idf = math.log(1.0 + (n - d + 0.5) / (d + 0.5))
+        denom = length / avg if avg > 0 else 0.0
+        sat = length * (k1 + 1.0) / (length + k1 * (1.0 - b + b * denom))
+        total += idf * sat
+    return total
+
+
+def _rank_all(documents, queries, body_idx, title_idx, config):
+    k1 = float(config["k1"])
+    b = float(config["b"])
+    tw = float(config["title_weight"])
+
+    doc_ids = [d.get("id") for d in documents]
+    n = body_idx["n"]
+    body_df = body_idx["df"]
+    body_avg = body_idx["avg"]
+    title_df = title_idx["df"]
+    title_avg = title_idx["avg"]
+
+    doc_body = body_idx["doc_tokens"]
+    doc_title = title_idx["doc_tokens"]
+    body_len = body_idx["lengths"]
+    title_len = title_idx["lengths"]
+
+    rankings = {}
+    for q in queries:
+        qid = q.get("id")
+        qtoks = _tokenize(q.get("text", ""))
+        scored = []
+        for i, did in enumerate(doc_ids):
+            bs = _field_score(doc_body[i], body_len[i], body_df, n, body_avg, k1, b)
+            ts = _field_score(doc_title[i], title_len[i], title_df, n, title_avg, k1, b)
+            score = bs + tw * ts
+            scored.append({"id": did, "score": score})
+        scored.sort(key=lambda row: (-row["score"], row["id"]))
+        rankings[qid] = scored
+    return rankings
+
+
+def _query_recall_mrr(ranking, relevant, k_recall=5, k_mrr=10):
+    rel_set = set(relevant) if relevant is not None else set()
+    top5 = ranking[:k_recall]
+    hits = 0
+    for row in top5:
+        if row["id"] in rel_set:
+            hits += 1
+    if len(rel_set) == 0:
+        recall = 0.0
+    else:
+        recall = hits / len(rel_set)
+    mrr = 0.0
+    for pos, row in enumerate(ranking[:k_mrr], start=1):
+        if row["id"] in rel_set:
+            mrr = 1.0 / pos
+            break
+    return recall, mrr
+
+
+def _evaluate(queries, rankings):
+    recalls = []
+    mrrs = []
+    group_data = defaultdict(lambda: {"recalls": [], "mrrs": []})
+    for q in queries:
+        qid = q.get("id")
+        ranking = rankings.get(qid, [])
+        rel = q.get("relevant", [])
+        r, m = _query_recall_mrr(ranking, rel)
+        recalls.append(r)
+        mrrs.append(m)
+        g = q.get("group", "")
+        group_data[g]["recalls"].append(r)
+        group_data[g]["mrrs"].append(m)
+
+    recall_mean = (sum(recalls) / len(recalls)) if recalls else 0.0
+    mrr_mean = (sum(mrrs) / len(mrrs)) if mrrs else 0.0
+
+    groups = {}
+    for g, vals in group_data.items():
+        grec = (sum(vals["recalls"]) / len(vals["recalls"])) if vals["recalls"] else 0.0
+        gmrr = (sum(vals["mrrs"]) / len(vals["mrrs"])) if vals["mrrs"] else 0.0
+        groups[g] = {
+            "recall_at_5_percent": grec * 100.0,
+            "mrr_at_10": gmrr,
+        }
+
+    if groups:
+        worst = min(v["mrr_at_10"] for v in groups.values())
+        macro_mrr = sum(v["mrr_at_10"] for v in groups.values()) / len(groups)
+        macro_recall = sum(v["recall_at_5_percent"] for v in groups.values()) / len(groups)
+    else:
+        worst = 0.0
+        macro_mrr = 0.0
+        macro_recall = 0.0
+
+    group_metrics = {
+        "groups": groups,
+        "worst_mrr_at_10": worst,
+        "macro_mrr_at_10": macro_mrr,
+        "macro_recall_at_5_percent": macro_recall,
+    }
+
+    return {
+        "recall_at_5_percent": recall_mean * 100.0,
+        "mrr_at_10": mrr_mean,
+        "group_metrics": group_metrics,
+    }
+
+
+def _config_key(cfg):
+    return (cfg["title_weight"], cfg["k1"], cfg["b"])
+
+
+def run_experiment(request):
+    phase = request.get("phase")
+    data = request.get("data", {})
+    documents = data.get("documents", []) or []
+    dev_queries = data.get("dev_queries", []) or []
+    test_queries = data.get("test_queries", []) or []
+
+    body_idx = _build_field_index(documents, "text")
+    title_idx = _build_field_index(documents, "title")
+
+    if phase == "rank":
+        selected = data.get("selected", {})
+        if not selected:
+            selected = {"k1": 1.2, "b": 0.75, "title_weight": 0.0}
+        cfg = {
+            "k1": selected.get("k1", 1.2),
+            "b": selected.get("b", 0.75),
+            "title_weight": selected.get("title_weight", 0.0),
+        }
+        candidate = _rank_all(documents, test_queries, body_idx, title_idx, cfg)
+        return {"candidate": candidate}
+
+    default_config = {"k1": 1.2, "b": 0.75, "title_weight": 0.0}
+    protocol = request.get("protocol", {})
+    if isinstance(protocol, dict) and "default_config" in protocol:
+        dc = protocol["default_config"]
+        default_config = {
+            "k1": dc.get("k1", 1.2),
+            "b": dc.get("b", 0.75),
+            "title_weight": dc.get("title_weight", 0.0),
+        }
+
+    grid = None
+    if isinstance(protocol, dict) and "grid" in protocol:
+        grid = protocol["grid"]
+    if not grid:
+        grid = []
+        for tw in [0.0, 0.5, 2.0]:
+            for k1 in [0.4, 1.2, 2.0]:
+                for b in [0.0, 0.5, 1.0]:
+                    grid.append({"b": b, "k1": k1, "title_weight": tw})
+
+    baseline_rankings = _rank_all(documents, test_queries, body_idx, title_idx, default_config)
+
+    search_rows = []
+    for cfg in grid:
+        cfg_norm = {
+            "k1": float(cfg["k1"]),
+            "b": float(cfg["b"]),
+            "title_weight": float(cfg["title_weight"]),
+        }
+        dev_rankings = _rank_all(documents, dev_queries, body_idx, title_idx, cfg_norm)
+        ev = _evaluate(dev_queries, dev_rankings)
+        search_rows.append({
+            "config": cfg_norm,
+            "rankings": dev_rankings,
+            "recall_at_5_percent": ev["recall_at_5_percent"],
+            "mrr_at_10": ev["mrr_at_10"],
+            "group_metrics": ev["group_metrics"],
+        })
+
+    def sort_key(row):
+        gm = row["group_metrics"]
+        return (
+            -round(gm["worst_mrr_at_10"], 12),
+            -round(gm["macro_mrr_at_10"], 12),
+            -round(gm["macro_recall_at_5_percent"], 12),
+            _config_key(row["config"]),
+        )
+
+    ordered = sorted(search_rows, key=sort_key)
+    selected = ordered[0]["config"] if ordered else {
+        "k1": default_config["k1"],
+        "b": default_config["b"],
+        "title_weight": default_config["title_weight"],
+    }
+
+    candidate_rankings = _rank_all(documents, test_queries, body_idx, title_idx, selected)
+
+    return {
+        "baseline": baseline_rankings,
+        "candidate": candidate_rankings,
+        "details": {
+            "selected": {
+                "k1": selected["k1"],
+                "b": selected["b"],
+                "title_weight": selected["title_weight"],
+            },
+            "search": search_rows,
+        },
+    }
