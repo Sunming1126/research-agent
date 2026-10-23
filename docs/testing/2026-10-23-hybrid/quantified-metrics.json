@@ -1,0 +1,187 @@
+{
+  "date": "2026-10-23",
+  "new_model_calls_in_this_readonly_analysis": 0,
+  "new_tests_started_in_this_analysis": 0,
+  "latest_source_candidate": "0.4.2-hybrid-v4",
+  "latest_source_image_built": true,
+  "latest_full_end_to_end_pass_rate": null,
+  "all_known_defect_interception_rate": null,
+  "denominator_warning": "Recorded checks include dependent checks and BLOCKED placeholders; totals differ between runs. Not independent questions, planned full coverage, or comparable overall rates.",
+  "runs": {
+    "hybrid-20261023-v042": {
+      "image": "research-assistant:0.4.2-hybrid-v1",
+      "image_id": "sha256:fa10c952e718f197363b3c38ff00e3059caea70c2b9f5dbebf507853d56842fa",
+      "counts": {
+        "PASS": 122,
+        "BLOCKED": 1
+      },
+      "recorded_checks": 123,
+      "pass_over_all_recorded_pct": 99.19,
+      "pass_over_pass_and_fail_pct": 100.0
+    },
+    "hybrid-20261023-v042-d-repeat": {
+      "image": "research-assistant:0.4.2-hybrid-v1",
+      "image_id": "sha256:fa10c952e718f197363b3c38ff00e3059caea70c2b9f5dbebf507853d56842fa",
+      "counts": {
+        "PASS": 14,
+        "FAIL": 3,
+        "BLOCKED": 2
+      },
+      "recorded_checks": 19,
+      "pass_over_all_recorded_pct": 73.68,
+      "pass_over_pass_and_fail_pct": 82.35
+    },
+    "hybrid-20261023-v042-v2": {
+      "image": "research-assistant:0.4.2-hybrid-v2",
+      "image_id": "sha256:c16438fecb1afbb7b6d8412c3f7282a59929ec06aec293eec5874cae9439bf34",
+      "counts": {
+        "PASS": 101,
+        "FAIL": 7,
+        "BLOCKED": 7
+      },
+      "recorded_checks": 115,
+      "pass_over_all_recorded_pct": 87.83,
+      "pass_over_pass_and_fail_pct": 93.52
+    },
+    "hybrid-20261023-v042-v2-d-repeat": {
+      "image": "research-assistant:0.4.2-hybrid-v2",
+      "image_id": "sha256:c16438fecb1afbb7b6d8412c3f7282a59929ec06aec293eec5874cae9439bf34",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 4,
+        "BLOCKED": 6
+      },
+      "recorded_checks": 11,
+      "pass_over_all_recorded_pct": 9.09,
+      "pass_over_pass_and_fail_pct": 20.0
+    }
+  },
+  "offline_v4_regression": {
+    "tests": 148,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 147,
+    "executed_pass_pct": 100.0,
+    "all_planned_pass_pct": 99.32
+  },
+  "frozen_d05_defect_fixture_interception": {
+    "intercepted": 3,
+    "fixtures": 3,
+    "unchanged_historical_model_sources": 2,
+    "pct": 100.0,
+    "scope": "Three selected D05 protocol defects only, not all known defects"
+  },
+  "real_repair_observations": {
+    "comparison-20261023-v041-v14": {
+      "initial_failure_tasks": 3,
+      "eventually_internal_pass": 1,
+      "eventual_all_external_public_checks_pass": 1,
+      "internal_recovery_pct": 33.33,
+      "external_public_recovery_pct": 33.33
+    },
+    "hybrid-20261023-v042": {
+      "initial_failure_tasks": 2,
+      "eventually_internal_pass": 2,
+      "eventual_all_external_public_checks_pass": 1,
+      "internal_recovery_pct": 100.0,
+      "external_public_recovery_pct": 50.0
+    }
+  },
+  "cancel_fixture": {
+    "before_seconds": 3.167,
+    "after_seconds": 0.3561163240000269,
+    "reduction_pct": 88.76,
+    "scope": "One actual sleeping child-process fixture per version; not production latency or root-cause proof for historical D05 hang"
+  },
+  "evidence_sha256": {
+    "镜像测试/runs/hybrid-20261023-v042/summary.json": "251e626502fe623f73617cf71304e978f66d34d1890b55aa72f131d64cd5715a",
+    "镜像测试/runs/hybrid-20261023-v042/checks.json": "fbe4db36ed1b4785b9df3191e8ea148774b06a53dc8e62fb1b935bfcb470f38b",
+    "镜像测试/runs/hybrid-20261023-v042-d-repeat/summary.json": "40c4095c26ef26701faa17fd3a5c131719cde611bc2c101c3944af0e08e9a911",
+    "镜像测试/runs/hybrid-20261023-v042-d-repeat/checks.json": "cfe2121e4af2ef99f5b5c8fa99af96af4cb021c54a7298d4fbee20849f1d7de9",
+    "镜像测试/runs/hybrid-20261023-v042-v2/summary.json": "30d41c31a1179cfaf58e494e9c857ba72a69bdbd9d7c570af10c715e7ffc8bbd",
+    "镜像测试/runs/hybrid-20261023-v042-v2/checks.json": "e8704eade1188c55249d8d8ad913c68ab7eeaa9beabd64e713f67787dbfc2047",
+    "镜像测试/runs/hybrid-20261023-v042-v2-d-repeat/summary.json": "b72b4fda0e8587ccc2cc48bf19883dd60e64d66701682bde82fb05eee1da437c",
+    "镜像测试/runs/hybrid-20261023-v042-v2-d-repeat/checks.json": "cd68c43014f623858a37d465c1447bd9ac0dc25d6fc28593d409bc81accf6702",
+    "协同开发/research-agent/docs/testing/2026-10-23-hybrid/regression-v4.xml": "2aca161f0812f16e9bb1b1b3bebd0b59e4534ae88a1662a91306bf8095a4238b",
+    "镜像测试/runs/hybrid-20261023-v042/original-d05-priority-regression.json": "f6c59292f9872028ac6c881253b1628a47b8599cc3d906d44f238e9ca3108bb4",
+    "协同开发/research-agent/tests/fixtures/d05-hybrid-v1-repeat.py-text": "4037932ddde31ec7551e7e072dcf60d91a288e03fe28f112ab9653d8f8f41ea9",
+    "镜像测试/runs/comparison-20261023-v041-v14/checks.json": "4f85bbd5194e48f4ff074a76db5567410640d092e7f78b0fceed3ac39ba9f9cf",
+    "镜像测试/runs/comparison-20261023-v041-v14/live-D-05/output/data/workspace_team/work/D-05/eefdd599231741d08390c36fc2f07598/public-selftest.json": "b15ee0f04084d3f9e9d622a7f72f22682440bfd3097c9a4b0ab4d9e0f7b8b228",
+    "镜像测试/runs/comparison-20261023-v041-v14/live-D-02/output/data/workspace_team/work/D-02/b7dd5db1fca6404e9bab6baa85bfcb0a/public-selftest.json": "43da7ac95ba79fb437c193c01f68c74c458f44225065ff13e99da105ccf62f1e",
+    "镜像测试/runs/comparison-20261023-v041-v14/live-D-01/output/data/workspace_team/work/D-01/23b3797c91f043b2a25a168976176c9e/public-selftest.json": "68854453ac9050add722d04e226bc6a60863465c4e28db0d100b5f0e36ff56c1",
+    "镜像测试/runs/comparison-20261023-v041-v14-d-repeat/checks.json": "2bbf16ca009d9b9d158fb76cdac3ed25b136f9fd9f5dbf0af3293eb525a6631f",
+    "镜像测试/runs/comparison-20261023-v041-v14-d-repeat/live-D-05/output/data/workspace_team/work/D-05/08f7c36ba3674de89d85409b4916c026/public-selftest.json": "340a75645b7198db157a9593001379e0f05530ddcfbd280be20fb7a43817cde0",
+    "镜像测试/runs/comparison-20261023-v041-v14-d-repeat/live-D-02/output/data/workspace_team/work/D-02/87c38e2a73654ddea73c59c42cee8ce8/public-selftest.json": "fbc8db125b35648fd9149fb9c8c9f03bc5ae71e5cf1a4d00a70fdc51d68f3861",
+    "镜像测试/runs/comparison-20261023-v041-v14-d-repeat/live-D-01/output/data/workspace_team/work/D-01/1b882c01a5af4dff99d4bde51bd3d830/public-selftest.json": "7c8a704c707d65e5a452bbf606f06182054c04828808edcdaa087986939d6d1a",
+    "镜像测试/runs/hybrid-20261023-v042/live-D-05/output/data/workspace_team/work/D-05/7db6b4e8f8e54cb393479a08e0cc0dbe/public-selftest.json": "ba1b825a02b3a0b64648c6f7a5d09f85c2454e9d568da83fc5b3644627539273",
+    "镜像测试/runs/hybrid-20261023-v042/live-D-02/output/data/workspace_team/work/D-02/cd4a77d6517944e7b21783bd33fc1d18/public-selftest.json": "790e9a0d4ebf61a4259a581d2f7b2b2f9c2a1788d5c33dfde008905cb65052f7",
+    "镜像测试/runs/hybrid-20261023-v042/live-D-01/output/data/workspace_team/work/D-01/00d0d508e9574715a4e8893a6510ee7a/public-selftest.json": "c3eecf558b976bc8f3c2a36935188d2d6d62f5287fb8ee613ddb19e724b4abfc",
+    "镜像测试/runs/hybrid-20261023-v042-d-repeat/live-D-05/output/data/workspace_team/work/D-05/c64fd0270db145a282be00d74ad27465/public-selftest.json": "a79e8a64c429fa6f3aeaa537b4ce7c4669ba400dd78c155ac9e8918a3bfefd68",
+    "镜像测试/runs/hybrid-20261023-v042-d-repeat/live-D-02/output/data/workspace_team/work/D-02/22a01b2adbfa4e9cb480bf900ca5333c/public-selftest.json": "9d37713e8bb8727c267d74bcf35ae792133f1ad3f81d77ff336226438fcb8904",
+    "镜像测试/runs/hybrid-20261023-v042-d-repeat/live-D-01/output/data/workspace_team/work/D-01/360e17d4c75e4ba9887110ae82debaa3/public-selftest.json": "b6da9fdf750b4c1c4c2df4dbe16f2c3429b96795ee57242ba93244c2065b14bf",
+    "镜像测试/交付/0.4.2-hybrid-v4/delivery-manifest.json": "3889484da50065fe12ad9ade383b8ddda97bf50311d8b73ca747568c92873211",
+    "镜像测试/runs/native-magic-api-smoke-20261023/summary.json": "1893beeb5c1916e1185cdcd211788f7f6d0b7ebb53af8267228e7065fab8aa0c",
+    ".session-audit/native-v4-latest-run.json": "57d9078d2b8d56b56088b85a2ccc496602813055d28c14964e4d727db43f75ec"
+  },
+  "candidate_manifest": {
+    "version": "0.4.2-hybrid-v4",
+    "image": "research-assistant:0.4.2-hybrid-v4",
+    "image_id": "sha256:472bd79d96e2c2d56d6dd87709c554fcb134214e7c5e92b6600fc06b1e876e0e",
+    "build_commit": "9edd7f267d5154fc7cffbfe86a7c65acda3b0112",
+    "status": "ARCHIVE_PREPARED_PENDING_NATIVE_HARNESS_ACCEPTANCE",
+    "ready_for_recommended_contest_submission": false,
+    "uploaded_to_contest": false,
+    "official_score": null,
+    "platform": "linux/amd64",
+    "user": "agent",
+    "port": 8080,
+    "nonempty_credential_env": {
+      "PLATFORM_API_KEY": false
+    },
+    "source_snapshot_files": 42,
+    "files": [
+      {
+        "file": "research-assistant-0.4.2-hybrid-v4.tar",
+        "bytes": 295537152,
+        "sha256": "57a8dfa8df2899261f724f48777c0225fbc2a5320b36f4e0355da724f764388f"
+      },
+      {
+        "file": "research-agent-0.4.2-hybrid-v4-build-source.zip",
+        "bytes": 101971,
+        "sha256": "32cf67ea171fee9a21bf8f187b72877df38fb1b1d44d0483feea30d46c66a433"
+      }
+    ]
+  },
+  "native_api_smoke": {
+    "status": "PASS",
+    "native_orchestration": {
+      "native_tool_execution_verified": true,
+      "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+      "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+      "tool_name": "pwsh",
+      "native_tool_call_sha256": "ea1260ca8b3de575edbfd0e7f86884ab0964b1e88de24c2223feca744c40ac31",
+      "profile_modified": false,
+      "plugin_installed": false,
+      "headless_model_process_used": false
+    },
+    "model": "deepseek-v4.1-flash",
+    "forwarded_max_tokens": 64,
+    "thinking": "disabled",
+    "actual_usage": {
+      "completion_tokens": 8,
+      "prompt_tokens": 14,
+      "total_tokens": 22,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    }
+  },
+  "latest_local_real_round": {
+    "run": "hybrid-20261023-v042-v4-magic-native-api-r3",
+    "complete": false
+  }
+}

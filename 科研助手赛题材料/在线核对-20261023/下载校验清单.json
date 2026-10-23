@@ -1,0 +1,303 @@
+[
+  {
+    "file": "research-agent-spec.md",
+    "url": "http://aiagent-anic.com/api/v1/challenges/challenge-tbd/materials/research-agent-spec",
+    "bytes": 31677,
+    "sha256": "b33896572ea9979b148798e4487b85c48a4282a8b963ceb52dd2d3f12cd8a0e9"
+  },
+  {
+    "file": "research-description.md",
+    "url": "http://aiagent-anic.com/api/v1/challenges/challenge-tbd/materials/research-description",
+    "bytes": 29701,
+    "sha256": "8de39e2b2370e808e345ee4feadf0a627df02886809f788f7e6cfe362650ce46"
+  },
+  {
+    "file": "research-scoring-rules.md",
+    "url": "http://aiagent-anic.com/api/v1/challenges/challenge-tbd/materials/research-scoring-rules",
+    "bytes": 18844,
+    "sha256": "85976cacb85af37b3c1d910d9c1af55d68d9a8ed2244bdebf0718009c6fcccf6"
+  },
+  {
+    "file": "research-experiments.zip",
+    "url": "http://aiagent-anic.com/api/v1/challenges/challenge-tbd/materials/research-experiments",
+    "bytes": 88147,
+    "sha256": "4470ac3f4245ed8374dc6df7599549d6391468144b12c5762dcd1c3b89978739",
+    "content_comparison": [
+      {
+        "file": "Agent适配与源码来源要求.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-01/artifacts.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-01/experiment.agent.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-01/experiment.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-01/font.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-01/implementation.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-01/manifest.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-01/method.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-01/protocol.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-01/sample.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-01/worker.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-02/artifacts.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-02/experiment.agent.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-02/experiment.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-02/font.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-02/implementation.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-02/manifest.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-02/method.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-02/protocol.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-02/sample.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-02/worker.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-05/artifacts.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-05/experiment.agent.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-05/experiment.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-05/font.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-05/implementation.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-05/manifest.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-05/method.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-05/protocol.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-05/sample.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D-05/worker.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D类实验要求.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "D类数据与图表判分规则.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "PACKAGE_MANIFEST.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "README.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "model_source.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "run_experiment.py",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-01.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-01/不均衡-重复词-标点.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-01/均衡-空文本-未知词.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-02.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-02/rank-default.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-02/空字段-重复未知词-不等组.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-05.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-05/并发预留.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-05/拒绝后同服务器重试.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-05/空任务与零服务流.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-05/空闲间隔与流切换.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-05/窗口恰好与超窗.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/D-05/过期与同时到达.json",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "公开样例请求/README.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "参赛流程与文档导航.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "报错对照与测试清单.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "版本说明.md",
+        "exists_in_previous": true,
+        "equal": true
+      },
+      {
+        "file": "离线自测与平台运行指南.md",
+        "exists_in_previous": true,
+        "equal": true
+      }
+    ]
+  }
+]

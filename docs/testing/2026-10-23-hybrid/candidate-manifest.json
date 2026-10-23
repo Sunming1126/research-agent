@@ -1,0 +1,29 @@
+{
+  "version": "0.4.2-hybrid-v4",
+  "image": "research-assistant:0.4.2-hybrid-v4",
+  "image_id": "sha256:472bd79d96e2c2d56d6dd87709c554fcb134214e7c5e92b6600fc06b1e876e0e",
+  "build_commit": "9edd7f267d5154fc7cffbfe86a7c65acda3b0112",
+  "status": "ARCHIVE_PREPARED_PENDING_NATIVE_HARNESS_ACCEPTANCE",
+  "ready_for_recommended_contest_submission": false,
+  "uploaded_to_contest": false,
+  "official_score": null,
+  "platform": "linux/amd64",
+  "user": "agent",
+  "port": 8080,
+  "nonempty_credential_env": {
+    "PLATFORM_API_KEY": false
+  },
+  "source_snapshot_files": 42,
+  "files": [
+    {
+      "file": "research-assistant-0.4.2-hybrid-v4.tar",
+      "bytes": 295537152,
+      "sha256": "57a8dfa8df2899261f724f48777c0225fbc2a5320b36f4e0355da724f764388f"
+    },
+    {
+      "file": "research-agent-0.4.2-hybrid-v4-build-source.zip",
+      "bytes": 101971,
+      "sha256": "32cf67ea171fee9a21bf8f187b72877df38fb1b1d44d0483feea30d46c66a433"
+    }
+  ]
+}
