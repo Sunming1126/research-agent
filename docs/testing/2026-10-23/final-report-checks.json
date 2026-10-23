@@ -1,0 +1,34 @@
+[
+  {
+    "id": "final.C-01",
+    "group": "report-live-retest",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "C-01",
+      "kind": "Survey",
+      "status": "answered",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-reports-final/live-ABCE/output/data/workspace_team/C-01.json",
+      "seconds": 81.987,
+      "real_model": true
+    },
+    "error": null,
+    "seconds": 81.988
+  },
+  {
+    "id": "final.E-01",
+    "group": "report-live-retest",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "E-01",
+      "kind": "Idea",
+      "status": "answered",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-reports-final/live-ABCE/output/data/workspace_team/E-01.json",
+      "seconds": 52.886,
+      "real_model": true
+    },
+    "error": null,
+    "seconds": 52.887
+  }
+]

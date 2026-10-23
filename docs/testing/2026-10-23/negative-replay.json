@@ -1,0 +1,8 @@
+{
+  "status": "REPAIR_NOT_COMPLETED",
+  "historical_failure_detected": true,
+  "real_repair_attempted": true,
+  "second_attempt_error": "D-05/provided_sample: public sample execution failed: {\"error_type\": \"ValueError\", \"message\": \"sample self-test forbids private or runtime attributes\"}",
+  "safety_boundary_preserved": true,
+  "note": "Explicit historical negative replay; real second generation was rejected for private runtime attributes. This failure is retained and is not represented as successful repair."
+}

@@ -1,0 +1,425 @@
+[
+  {
+    "id": "agent.harness_test_planning",
+    "group": "LLM-orchestration",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "actual_backend": "DeepSeek Harness",
+      "seconds": 6.887,
+      "plan": {
+        "focus": [
+          "验证 D01、D02、D05 的模型生成源代码完整性：源文件由模型生成、内容齐全，禁止占位、截断或空实现，并逐字节校验未被后处理改写（无格式化、换行或编码漂移）",
+          "Python 3.9 标准库兼容性：语法与 API 不得使用 3.10 及以后特性（如 match、新式类型联合、tomllib 等），导入仅限标准库，无第三方依赖与网络访问",
+          "180 秒整例预算控制：单用例全流程（生成+运行+校验）计时，关注超时边界、冷启动、最坏输入规模与超时后的判定一致性",
+          "A、B、C、E 类严格模式校验：输出须逐字段匹配规定 schema（必填、类型、枚举、取值范围、禁止额外字段），错误用例应明确失败而非静默降级",
+          "E 类及各类文件产物验收：产物文件存在性、命名、目录结构、可读性与内容校验，覆盖缺失、多余、损坏、只读/权限异常情形",
+          "确定性复现：相同输入多次运行结果一致，避免随机数、时间戳、哈希顺序、路径绝对化导致的非确定性输出",
+          "边界与鲁棒性：空输入、超长输入、非法编码、特殊字符、深层嵌套、极值数值，关注崩溃、异常泄漏与错误信息可读性",
+          "隔离性与可移植性：仅使用工作区内相对路径，不读取凭据、网络、其他队伍文件或隐藏答案，无硬编码测试答案"
+        ],
+        "risks": [
+          "字节保存被工具链破坏：编辑器、换行转换或编码规范化自动改写源文件，导致字节校验失败",
+          "Python 3.9 环境存在隐性不兼容：本地高版本运行通过但在 3.9 上语法或 API 失败",
+          "180 秒预算超限：生成或运行阶段性能波动、重试或校验返工使整例超时",
+          "schema 校验宽松：对额外字段或错误类型放行，或对失败用例误判为通过",
+          "文件产物校验缺口：只校验内容不校验存在性与路径，或多轮运行残留旧产物导致假通过",
+          "测试结果非确定性：环境差异、随机种子、遍历顺序造成偶发失败，难以定位",
+          "隔离越界：无意访问网络、凭据或其他队伍文件，触发沙箱拒绝或验收失败",
+          "答案硬编码或过拟合：针对特定样例输出结果，泛化用例下失效"
+        ],
+        "extra_chat_inputs": [
+          "请说明在仅用 Python 3.9 标准库的前提下，如何设计可复现的单元测试用例覆盖超长输入与深层嵌套的鲁棒性验证？",
+          "请给出对模型生成源代码进行逐字节完整性校验的常见方法及其局限，例如行尾与编码规范化带来的风险。"
+        ]
+      }
+    },
+    "error": null,
+    "seconds": 6.894
+  },
+  {
+    "id": "live.A-01",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "A-01",
+      "kind": "Chat",
+      "status": "answered",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/live-ABCE/output/data/workspace_team/A-01.json",
+      "seconds": 3.8978851000138093,
+      "real_model": true
+    },
+    "error": null,
+    "seconds": 3.901
+  },
+  {
+    "id": "live.B-01",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "B-01",
+      "kind": "Literature_Retrieval",
+      "status": "answered",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/live-ABCE/output/data/workspace_team/B-01.json",
+      "seconds": 44.64889839998796,
+      "real_model": true
+    },
+    "error": null,
+    "seconds": 44.651
+  },
+  {
+    "id": "live.C-01",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "C-01",
+      "kind": "Survey",
+      "status": "answered",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/live-ABCE/output/data/workspace_team/C-01.json",
+      "seconds": 66.83902700000908,
+      "real_model": true
+    },
+    "error": null,
+    "seconds": 66.843
+  },
+  {
+    "id": "live.E-01",
+    "group": "A-E-live",
+    "status": "FAIL",
+    "level": "required",
+    "evidence": null,
+    "error": "AssertionError: SDK execution failed: {\"task_id\": \"share-e-01\", \"status\": \"error\", \"output\": {\"answer\": \"\", \"error\": \"EvidenceError\"}, \"metadata\": {\"llm_call_count\": 9, \"max_depth\": 4, \"retry_count_total\": 0, \"total_input_tokens\": 21067, \"total_output_tokens\": 4698, \"tool_call_count\": 29, \"unique_tool_count\": 6, \"parallel_tool_count\": 3, \"session_id\": \"d225da22c1134fc2952408dd3be3743d\", \"trace_id\": \"d3176a49cda595d4859a5f42370e7138\", \"llm_calls\": 9, \"total_tokens\": 25765, \"duration_ms\": 42900.098307, \"tools_used\": [\"build_authorized_index\", \"build_claim_ledger\", \"compose_and_check_report\", \"hybrid_retrieve\", \"resolve_authorized_materials\", \"run_assigned_case\"]}}",
+    "seconds": 42.921
+  },
+  {
+    "id": "live.harness_generated_chat.0",
+    "group": "LLM-generated-tests",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "A-02",
+      "kind": "Chat",
+      "status": "answered",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/live-ABCE/output/data/workspace_team/A-02.json"
+    },
+    "error": null,
+    "seconds": 5.288
+  },
+  {
+    "id": "live.harness_generated_chat.1",
+    "group": "LLM-generated-tests",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "A-03",
+      "kind": "Chat",
+      "status": "answered",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/live-ABCE/output/data/workspace_team/A-03.json"
+    },
+    "error": null,
+    "seconds": 5.477
+  },
+  {
+    "id": "live.D-01.model_source_generation",
+    "group": "D-source-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "D-01",
+      "source": "workspace/镜像测试/runs/optimization-20261023-v041-verified/live-D-01/output/data/workspace_team/work/D-01/d46dedfdcadc48a09be7403f74e3aeb9/implementation.py",
+      "sha256": "cea786174939280cdf5d449b7c52257629016166d00fba33572066b8738de708",
+      "real_model_calls": 1,
+      "seconds": 9.83322970001609,
+      "formal_experiment": "BLOCKED: competition Unix socket/credential service not supplied"
+    },
+    "error": null,
+    "seconds": 11.631
+  },
+  {
+    "id": "public_algorithm.D-01.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "training_rows": 18,
+      "test_rows": 4,
+      "vocabulary": 24,
+      "model_replay_verified": true,
+      "request": "D-01.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-01/D-01-bc8d60"
+    },
+    "error": null,
+    "seconds": 0.755
+  },
+  {
+    "id": "public_algorithm.D-01/不均衡-重复词-标点.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "training_rows": 4,
+      "test_rows": 4,
+      "vocabulary": 4,
+      "model_replay_verified": true,
+      "request": "D-01/不均衡-重复词-标点.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-01/不均衡-重复词-标点-555a5a"
+    },
+    "error": null,
+    "seconds": 0.63
+  },
+  {
+    "id": "public_algorithm.D-01/均衡-空文本-未知词.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "training_rows": 2,
+      "test_rows": 4,
+      "vocabulary": 4,
+      "model_replay_verified": true,
+      "request": "D-01/均衡-空文本-未知词.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-01/均衡-空文本-未知词-f20bf0"
+    },
+    "error": null,
+    "seconds": 0.609
+  },
+  {
+    "id": "live.D-02.model_source_generation",
+    "group": "D-source-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "D-02",
+      "source": "workspace/镜像测试/runs/optimization-20261023-v041-verified/live-D-02/output/data/workspace_team/work/D-02/8688ef0b754548abbf4ab4b21848747a/implementation.py",
+      "sha256": "52ed0bc2116a7653c2d24ff45ca9e165543bb570b2929f8c7c443eec754106a5",
+      "real_model_calls": 1,
+      "seconds": 11.274683099996764,
+      "formal_experiment": "BLOCKED: competition Unix socket/credential service not supplied"
+    },
+    "error": null,
+    "seconds": 12.984
+  },
+  {
+    "id": "public_algorithm.D-02.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "grid_checked": 27,
+      "groups": 2,
+      "selected": {
+        "b": 0.0,
+        "k1": 0.4,
+        "title_weight": 0.5
+      },
+      "request": "D-02.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-02/D-02-e0fb30"
+    },
+    "error": null,
+    "seconds": 0.645
+  },
+  {
+    "id": "public_algorithm.D-02/rank-default.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rank_phase": true,
+      "queries": 3,
+      "request": "D-02/rank-default.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-02/rank-default-18a237"
+    },
+    "error": null,
+    "seconds": 0.65
+  },
+  {
+    "id": "public_algorithm.D-02/空字段-重复未知词-不等组.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "grid_checked": 27,
+      "groups": 2,
+      "selected": {
+        "b": 0.0,
+        "k1": 0.4,
+        "title_weight": 0.0
+      },
+      "request": "D-02/空字段-重复未知词-不等组.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-02/空字段-重复未知词-不等组-14bbfa"
+    },
+    "error": null,
+    "seconds": 0.614
+  },
+  {
+    "id": "live.D-05.model_source_generation",
+    "group": "D-source-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "D-05",
+      "source": "workspace/镜像测试/runs/optimization-20261023-v041-verified/live-D-05/output/data/workspace_team/work/D-05/a0cdbed6cb4b41d3a5373c97d0eaf000/implementation.py",
+      "sha256": "acae75de91055c480e81d1c6811ba80721980349e6db314c06a5ab7cf4f3a966",
+      "real_model_calls": 2,
+      "seconds": 19.801530800003093,
+      "formal_experiment": "BLOCKED: competition Unix socket/credential service not supplied"
+    },
+    "error": null,
+    "seconds": 21.578
+  },
+  {
+    "id": "public_algorithm.D-05.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 2,
+      "servers": 1,
+      "fifo_and_fair_verified": true,
+      "request": "D-05.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-05/D-05-bd012f"
+    },
+    "error": null,
+    "seconds": 0.626
+  },
+  {
+    "id": "public_algorithm.D-05/并发预留.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 3,
+      "servers": 2,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/并发预留.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-05/并发预留-b6268e"
+    },
+    "error": null,
+    "seconds": 0.633
+  },
+  {
+    "id": "public_algorithm.D-05/拒绝后同服务器重试.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 3,
+      "servers": 1,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/拒绝后同服务器重试.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-05/拒绝后同服务器重试-01ec26"
+    },
+    "error": null,
+    "seconds": 0.637
+  },
+  {
+    "id": "public_algorithm.D-05/空任务与零服务流.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 0,
+      "servers": 1,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/空任务与零服务流.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-05/空任务与零服务流-2ab566"
+    },
+    "error": null,
+    "seconds": 0.621
+  },
+  {
+    "id": "public_algorithm.D-05/空闲间隔与流切换.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 2,
+      "servers": 1,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/空闲间隔与流切换.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-05/空闲间隔与流切换-7462a9"
+    },
+    "error": null,
+    "seconds": 0.602
+  },
+  {
+    "id": "public_algorithm.D-05/窗口恰好与超窗.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 2,
+      "servers": 1,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/窗口恰好与超窗.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-05/窗口恰好与超窗-0c0628"
+    },
+    "error": null,
+    "seconds": 0.633
+  },
+  {
+    "id": "public_algorithm.D-05/过期与同时到达.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 2,
+      "servers": 2,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/过期与同时到达.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-05/过期与同时到达-a1459c"
+    },
+    "error": null,
+    "seconds": 0.613
+  },
+  {
+    "id": "official.source_admission_and_full_scoring",
+    "group": "official-platform",
+    "status": "BLOCKED",
+    "level": "required",
+    "evidence": null,
+    "error": "Requires competition current-case Gateway audit, signed source service, private cases and trusted runner; local Harness does not replace them"
+  },
+  {
+    "id": "agent.harness_result_review",
+    "group": "LLM-orchestration",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "real_model": true,
+      "review_file": "workspace/镜像测试/runs/optimization-20261023-v041-verified/harness-review.json",
+      "seconds": 7.452
+    },
+    "error": null,
+    "seconds": 7.462
+  }
+]
