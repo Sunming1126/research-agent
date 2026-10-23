@@ -1,0 +1,53 @@
+{
+  "request": {
+    "case_id": "A-03",
+    "function": "Chat",
+    "title": "城市绿地科研对话",
+    "input": "解释城市绿地与地表温度的可能关系，并提出一个关键澄清问题。",
+    "materials": [],
+    "constraints": [],
+    "expected_output": "回答和澄清问题",
+    "output_schema_ref": "Chat"
+  },
+  "http": 422,
+  "response": {
+    "detail": [
+      {
+        "type": "missing",
+        "loc": [
+          "body",
+          "task_id"
+        ],
+        "msg": "Field required",
+        "input": {
+          "case_id": "A-03",
+          "function": "Chat",
+          "title": "城市绿地科研对话",
+          "input": "解释城市绿地与地表温度的可能关系，并提出一个关键澄清问题。",
+          "materials": [],
+          "constraints": [],
+          "expected_output": "回答和澄清问题",
+          "output_schema_ref": "Chat"
+        }
+      },
+      {
+        "type": "dict_type",
+        "loc": [
+          "body",
+          "input"
+        ],
+        "msg": "Input should be a valid dictionary",
+        "input": "解释城市绿地与地表温度的可能关系，并提出一个关键澄清问题。"
+      },
+      {
+        "type": "model_attributes_type",
+        "loc": [
+          "body",
+          "constraints"
+        ],
+        "msg": "Input should be a valid dictionary or object to extract fields from",
+        "input": []
+      }
+    ]
+  }
+}

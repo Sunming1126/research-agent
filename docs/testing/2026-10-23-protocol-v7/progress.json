@@ -14,8 +14,18 @@
   "ready_for_recommended_contest_submission": false,
   "known_baseline_fixture_error_preserved": true,
   "v6_recommendation_withdrawn": true,
-  "next_native_stage": "baseline, then all",
+  "next_native_stage": "all (already submitted, awaiting native Docker approval)",
   "workspace": "Agent挑战赛",
   "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
-  "provider": "magic"
+  "provider": "magic",
+  "corrected_baseline": {
+    "image": "research-assistant:0.4.2-hybrid-v6",
+    "counts": {
+      "PASS": 4,
+      "FAIL": 0
+    },
+    "meaning": "PASS means the old defect was reproduced, not that v6 is acceptable",
+    "fixture_not_real_llm": true,
+    "input_scope": "Public frozen cases; A-01 renamed A-03 for protocol identity only, not the private platform question"
+  }
 }
