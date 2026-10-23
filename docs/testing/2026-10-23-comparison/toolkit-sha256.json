@@ -1,0 +1,9 @@
+{
+  "compare_images.py": "04f0a65db4fbac20099971ff4021e5d645baaf43c6a3277b77e288a2eebc180c",
+  "comparison_container_checks.py": "cd53ccb78d8da12b516d991e53e84997ce0ee4250c80d3da8d40bb899ce4880b",
+  "comparison_report_evidence.py": "1008fdf8ea9e1b94ee108f14cdef3e69e47fd376d668503447f824fb05795a1e",
+  "test_agent.py": "54b7f237197614f68ac497bb7a63a4467eaf554b1199cde94ab8399ef21c4942",
+  "public_oracles.py": "d22291e7bc8e7f3e1c89987ade5b5d403a1993bbaf55e5dd3575d78d3c47f1bb",
+  "harness_bridge.py": "18c99cc147bf17eecf5b48520986ba27e71a701dfc23d1d45b40baacd98d0a07",
+  "check_reproducibility.py": "eef324e290c8fdcb732badaccc0abc99960d17ea8414e8970da7fcadb48a0c9c"
+}

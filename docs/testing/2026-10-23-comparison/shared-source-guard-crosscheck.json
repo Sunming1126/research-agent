@@ -1,0 +1,42 @@
+[
+  {
+    "version": "source",
+    "case_id": "D-01",
+    "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-D-01\\output\\data\\workspace_team\\work\\D-01\\23b3797c91f043b2a25a168976176c9e\\implementation.py",
+    "result": {
+      "accepted": false,
+      "error_type": "PublicSampleError",
+      "message": "D-01/provided_sample: public sample execution failed: {\"error_type\": \"ValueError\", \"message\": \"sample self-test forbids dynamic loading, I/O and introspection\"}"
+    }
+  },
+  {
+    "version": "source",
+    "case_id": "D-02",
+    "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-D-02\\output\\data\\workspace_team\\work\\D-02\\b7dd5db1fca6404e9bab6baa85bfcb0a\\implementation.py",
+    "result": {
+      "accepted": false,
+      "error_type": "PublicSampleError",
+      "message": "D-02/provided_sample: public sample execution failed: {\"error_type\": \"ValueError\", \"message\": \"sample self-test forbids private or runtime attributes\"}"
+    }
+  },
+  {
+    "version": "v14",
+    "case_id": "D-01",
+    "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-D-01\\output\\data\\workspace_team\\work\\D-01\\23b3797c91f043b2a25a168976176c9e\\implementation.py",
+    "result": {
+      "accepted": false,
+      "error_type": "ValueError",
+      "message": "public sample execution failed: {\"error_type\": \"ValueError\", \"message\": \"sample self-test forbids dynamic loading, I/O and introspection\"}"
+    }
+  },
+  {
+    "version": "v14",
+    "case_id": "D-02",
+    "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-D-02\\output\\data\\workspace_team\\work\\D-02\\b7dd5db1fca6404e9bab6baa85bfcb0a\\implementation.py",
+    "result": {
+      "accepted": false,
+      "error_type": "ValueError",
+      "message": "public sample execution failed: {\"error_type\": \"ValueError\", \"message\": \"sample self-test forbids private or runtime attributes\"}"
+    }
+  }
+]

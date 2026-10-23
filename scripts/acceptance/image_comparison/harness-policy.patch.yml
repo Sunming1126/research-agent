@@ -1,0 +1,7 @@
+- id: headless-runner
+  inject:
+    - headlessStartup
+    - acceptanceRequestPolicy
+- insert:
+    - id: acceptance-request-policy
+      name: !!js process.env.TEST_HARNESS_POLICY_MODULE

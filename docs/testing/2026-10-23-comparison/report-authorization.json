@@ -1,0 +1,185 @@
+[
+  {
+    "version": "source",
+    "case_id": "C-01",
+    "status": "PASS",
+    "assigned": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "ledger_files": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "referenced_filenames": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "independent_host_check": true
+  },
+  {
+    "version": "source",
+    "case_id": "C-02",
+    "status": "PASS",
+    "assigned": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "ledger_files": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "referenced_filenames": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "independent_host_check": true
+  },
+  {
+    "version": "source",
+    "case_id": "E-01",
+    "status": "PASS",
+    "assigned": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "ledger_files": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "referenced_filenames": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "independent_host_check": true
+  },
+  {
+    "version": "source",
+    "case_id": "E-02",
+    "status": "PASS",
+    "assigned": [
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "ledger_files": [
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "referenced_filenames": [
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "independent_host_check": true
+  },
+  {
+    "version": "v14",
+    "case_id": "C-01",
+    "status": "PASS",
+    "assigned": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "ledger_files": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "referenced_filenames": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "independent_host_check": true
+  },
+  {
+    "version": "v14",
+    "case_id": "C-02",
+    "status": "BLOCKED",
+    "error": "FileNotFoundError: report or ledger missing"
+  },
+  {
+    "version": "v14",
+    "case_id": "E-01",
+    "status": "PASS",
+    "assigned": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "ledger_files": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "referenced_filenames": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "independent_host_check": true
+  },
+  {
+    "version": "v14",
+    "case_id": "E-02",
+    "status": "PASS",
+    "assigned": [
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "ledger_files": [
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "referenced_filenames": [
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "independent_host_check": true
+  }
+]
