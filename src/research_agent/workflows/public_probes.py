@@ -25,13 +25,22 @@ def public_probes(case_id, request):
         ("future_first_arrival", [job("probe_future", first, 5, 1)], 2, 0, 12, ["probe_future"]),
         ("simultaneous_reservation", [job("probe_a", first, 0, 2), job("probe_b", first, 0, 2),
                                       job("probe_c", second, 0, 2)], 2, 0, 12,
-         ["probe_a", "probe_b", "probe_c"]),
+         {"states": {"probe_a": "completed", "probe_b": "completed", "probe_c": "completed"},
+          "trace_ids": {"baseline": ["probe_a", "probe_b", "probe_c"],
+                        "candidate": ["probe_a", "probe_c", "probe_b"] if len(flows) > 1 else
+                                     ["probe_a", "probe_b", "probe_c"]}}),
         ("deadline_setup_and_window", [job("probe_a", first, 0, 1), job("probe_b", second, 1, 1, 3),
                                         job("probe_c", first, 1, 3)], 1, 2, 4, None),
-        # 同时违反两个条件时，公开方法明确规定先 deadline 后 horizon。
-        ("deadline_before_horizon", [job("probe_a", first, 0, 2), job("probe_b", second, 1, 2, 3)],
-         1, 3, 6, {"probe_a": "completed", "probe_b": "deadline"}),
+        ("window_exact_and_pending", [job("probe_a", first, 0, 4), job("probe_b", second, 0, 5)],
+         1, 0, 4, {"states": {"probe_a": "completed", "probe_b": "horizon"}}),
+        ("window_future_arrivals", [job("probe_a", first, 0, 4), job("probe_b", second, 4, 1),
+                                     job("probe_c", first, 7, 1)],
+         1, 0, 4, {"states": {"probe_a": "completed", "probe_b": "horizon", "probe_c": "horizon"}}),
     ]
+    if len(flows) > 1:
+        # 单流没有切换开销，不能构造此双条件冲突；避免自测误拒有效单流算法。
+        cases.append(("deadline_before_horizon", [job("probe_a", first, 0, 2), job("probe_b", second, 1, 2, 3)],
+                      1, 3, 6, {"states": {"probe_a": "completed", "probe_b": "deadline"}}))
     for name, jobs, servers, setup, horizon, completed in cases:
         probe = deepcopy(request)
         probe["data"].update(jobs=jobs, servers=servers, setup_ms=setup, horizon_ms=horizon)

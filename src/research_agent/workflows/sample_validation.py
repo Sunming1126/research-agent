@@ -216,8 +216,13 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8):
                     if result is not None:
                         states = {row["id"]: "completed" for row in result["trace"]}
                         states.update({row["id"]: row["reason"] for row in result["dropped"]})
-                        if states != expected_completed:
-                            raise ValueError("public protocol probe requires deadline check before horizon check")
+                        if states != expected_completed["states"]:
+                            raise ValueError(f"public protocol probe {name} has wrong completed/drop states; "
+                                             "check deadline priority and account for all jobs at the horizon")
+                        expected_ids = expected_completed.get("trace_ids", {}).get(strategy)
+                        if expected_ids is not None and [row["id"] for row in result["trace"]] != expected_ids:
+                            raise ValueError("public protocol probe must count assigned service immediately "
+                                             "before choosing the next simultaneously idle server")
             elif expected_completed is not None:
                 for strategy in ("baseline", "candidate"):
                     result = body["result"][strategy]

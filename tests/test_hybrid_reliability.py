@@ -19,6 +19,8 @@ from research_agent.workflows.tasks import TaskHandlers
 from research_agent.core.config import Settings
 from research_agent.workflows.layered_d_runner import LayeredDRunner
 from research_agent.workflows.sample_validation import PublicSampleError, run_public_sample
+from research_agent.workflows.public_probes import public_probes
+from unittest.mock import patch
 
 
 def worker(source):
@@ -71,6 +73,28 @@ def test_deadline_before_horizon_probe_rejects_wrong_drop_reason(tmp_path):
     with pytest.raises(PublicSampleError) as error:
         run_public_sample(path, materials, 'D-05')
     assert error.value.feedback['probe'] == 'deadline_before_horizon'
+
+
+@pytest.mark.parametrize('name', ['simultaneous_reservation', 'window_exact_and_pending'])
+def test_new_probes_reject_original_unmodified_model_regression(name):
+    root = Path('科研助手赛题材料/x新/research-experiments-20261020-source-v1/D-05')
+    materials = {k: (root / n).read_text(encoding='utf-8') for k, n in
+                 [('protocol', 'protocol.json'), ('sample', 'sample.json')]}
+    request = json.loads(materials['sample']); request['protocol'] = json.loads(materials['protocol'])
+    selected = next(row for row in public_probes('D-05', request) if row[0] == name)
+    source = Path(__file__).parent / 'fixtures/d05-hybrid-v1-repeat.py-text'
+    # 仅选择要核对的测试输入；历史模型源码原始字节不变，不作算法修补。
+    with patch('research_agent.workflows.sample_validation.public_probes', return_value=[selected]):
+        with pytest.raises(PublicSampleError) as error:
+            run_public_sample(source, materials, 'D-05')
+    assert error.value.feedback['probe'] == name
+
+
+def test_single_flow_probe_does_not_assume_a_flow_switch():
+    rows = public_probes('D-05', {'data': {'flow_weights': {'only': 1}, 'jobs': []}})
+    assert 'deadline_before_horizon' not in {row[0] for row in rows}
+    same_time = next(row for row in rows if row[0] == 'simultaneous_reservation')
+    assert same_time[2]['trace_ids']['baseline'] == same_time[2]['trace_ids']['candidate']
 
 
 def test_optional_extraction_reuses_existing_coverage_and_stops_without_losing_claims():
