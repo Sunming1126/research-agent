@@ -91,6 +91,8 @@ def build_source_prompt(case, materials: dict[str, str]) -> str:
         "仅使用算法所需标准库，如math、collections、re、heapq、itertools、random、statistics、time；"
         "不使用动态加载、反射、私有运行时属性或第三方包。\n"
         "严格遵守 protocol.response_schema；这是算法内部返回，不是最终 Reproduction 答卷。\n\n"
+        "D-02特别检查：排名中的每项若为{id,score}字典，要读row['id']，不能当成(id,score)元组解包；"
+        "开发集Recall/MRR必须由实际完整排名和公开relevant核算，普通查询均值与分组等权宏均值分别计算。\n"
         "生成前检查：事件驱动循环没有可派发任务时，只能跳到严格晚于当前时刻的下一次到达或完成事件，"
         "不能反复选择已空闲服务器的旧完成时刻；无未来事件时退出。\n"
         "检查空输入、首次任务晚到、空闲后换流、同时到达、截止时间及窗口边界。"

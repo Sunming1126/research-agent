@@ -6,15 +6,17 @@ import argparse
 import hashlib
 import json
 import os
+import sys
 import time
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parent
+VERSION='0.4.2-hybrid-v5'
 
 def allocate_run(stage):
     """Never reuse or erase a partially created attempt after an early failure."""
-    base='hybrid-20261023-v042-v4-magic-native-api'
-    record=ROOT/'.session-audit/native-v4-latest-run.json'
+    base='hybrid-20261023-v042-v5-magic-native-api'
+    record=ROOT/'.session-audit/native-v5-latest-run.json'
     if stage=='d-repeat':
         saved=json.loads(record.read_text(encoding='utf-8'))
         run=saved['run']
@@ -59,12 +61,33 @@ def native_launch_proof(stage):
                 profile_modified=False,plugin_installed=False,headless_model_process_used=False)
 
 def main():
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+    os.environ['PYTHONIOENCODING']='utf-8'
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--stage',choices=['smoke','all','d-repeat'],required=True)
+    parser.add_argument('--stage',choices=['smoke','regression','all','d-repeat'],required=True)
     args=parser.parse_args()
     proof=native_launch_proof(args.stage)
     os.environ['PATH']=str(Path.home()/'AppData/Local/Programs/DockerDesktop/resources/bin')+os.pathsep+os.environ.get('PATH','')
     os.environ['TEST_HARNESS_REASONING']='off'
+    if args.stage=='regression':
+        import test_agent as T
+        repo=ROOT/'协同开发/research-agent'
+        output=repo/'output/hybrid-20261023';output.mkdir(parents=True,exist_ok=True)
+        log=T.docker('run','--rm','--pull=never','--network','none','--read-only',
+            '--cpus','1','--memory','1024m','--cap-drop','ALL','--security-opt','no-new-privileges',
+            '--tmpfs','/tmp:rw,nosuid,size=256m','-e','PYTHONDONTWRITEBYTECODE=1',
+            '-e','PYTHONPATH=/src/output/test-deps:/src:/src/src:/src/tests','-e','RESEARCH_RUNTIME=local',
+            '-e','PUBLIC_EXPERIMENT_ROOT=/materials',
+            '-e','AGENTHACK_TELEMETRY_REQUIRED=false',
+            '--mount',f'type=bind,source={repo},target=/src,readonly',
+            '--mount',f'type=bind,source={repo / "科研助手赛题材料/research-experiments"},target=/materials,readonly',
+            '--mount',f'type=bind,source={output},target=/results',
+            '--workdir','/src','--entrypoint','python','research-assistant:0.4.2-hybrid-v4',
+            '-m','pytest','-q','-p','no:cacheprovider','--junitxml=/results/regression-v5-r2.xml',timeout=180)
+        (output/'regression-v5-r2.stdout.txt').write_text(log,encoding='utf-8')
+        print(log,flush=True)
+        return
     import magic_api_bridge as bridge
     if args.stage=='smoke':
         directory=HERE/'runs/native-magic-api-smoke-20261023'
@@ -79,7 +102,10 @@ def main():
         return
     import accept_hybrid as runner
     import test_agent as T
-    runner.IMAGE='research-assistant:0.4.2-hybrid-v4'
+    runner.IMAGE='research-assistant:'+VERSION
+    # Check native Docker permission before allocating any result directory.
+    # A sandbox refusal then leaves no new directory that can block a retry.
+    T.docker('image','inspect',runner.IMAGE)
     runner.RUN=allocate_run(args.stage)
     runner.C.HarnessBridge=bridge.HarnessBridge
     runner.D.HarnessBridge=bridge.HarnessBridge
@@ -110,11 +136,19 @@ def main():
         bridge.write_json(rec.root/'actual-toolkit-sha256.json',{
             n:hashlib.sha256((HERE/n).read_bytes()).hexdigest() for n in [
                 'native_magic_run.py','magic_api_bridge.py','read_magic_connection.cjs','accept_hybrid.py',
-                'compare_images.py','comparison_d_repeat.py','test_agent.py','public_oracles.py']})
+                'compare_images.py','comparison_d_repeat.py','test_agent.py','public_oracles.py',
+                'validate_hybrid_v5_archive.py','prepare_hybrid_v5.py']})
         return identity
     runner.C.metadata=metadata
-    import sys
     sys.argv=[sys.argv[0],'--stage',args.stage]
     runner.main()
+    if args.stage=='all':
+        # Same approved native job, fresh containers and current-case model calls.
+        # No additional chat or workspace is created for the independent round.
+        sys.argv=[sys.argv[0],'--stage','d-repeat']
+        runner.main()
+    if args.stage in {'all','d-repeat'}:
+        from validate_hybrid_v5_archive import validate
+        validate(runner.RUN,runner.RUN+'-d-repeat')
 
 if __name__=='__main__':main()

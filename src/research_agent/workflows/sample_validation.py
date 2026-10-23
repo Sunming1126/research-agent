@@ -32,6 +32,76 @@ def _finite(value):
     return not isinstance(value, float) or math.isfinite(value)
 
 
+def _d02_rankings(raw, queries, documents):
+    """规范允许多种排名表示；只核对公开输入，不重建检索算法。"""
+    if isinstance(raw, list):
+        if raw and isinstance(raw[0], dict) and "query_id" in raw[0]:
+            if len({row["query_id"] for row in raw}) != len(raw):
+                raise ValueError("D-02 duplicate query ranking")
+            raw = {row["query_id"]: row["rankings"] for row in raw}
+        elif len(raw) == len(queries):
+            raw = {query["id"]: rows for query, rows in zip(queries, raw)}
+    if not isinstance(raw, dict) or not {q["id"] for q in queries} <= set(raw):
+        raise ValueError("D-02 rankings must cover every supplied query")
+    normalized = {}
+    for query in queries:
+        rows = raw[query["id"]]
+        if not isinstance(rows, list):
+            raise ValueError("D-02 query ranking must be a list")
+        pairs = []
+        for row in rows:
+            if isinstance(row, dict) and set(row) == {"id", "score"}:
+                identifier, score = row["id"], row["score"]
+            elif isinstance(row, list) and len(row) == 2:
+                identifier, score = row
+            else:
+                raise ValueError("D-02 ranking items require id and score")
+            if type(score) not in {int, float} or not math.isfinite(score):
+                raise ValueError("D-02 ranking score must be finite numeric")
+            pairs.append((identifier, score))
+        if len(pairs) != len(documents) or {row[0] for row in pairs} != documents:
+            raise ValueError("D-02 ranking must contain every document exactly once")
+        if pairs != sorted(pairs, key=lambda row: (-row[1], row[0])):
+            raise ValueError("D-02 rankings must use descending scores and lexical ties")
+        normalized[query["id"]] = [row[0] for row in pairs]
+    return normalized
+
+
+def _d02_dev_metrics(row, data):
+    """从公开开发排名与公开相关标注核算，防止虚报或混淆两种均值。"""
+    queries = data["dev_queries"]
+    rankings = _d02_rankings(row.get("rankings"), queries, {d["id"] for d in data["documents"]})
+    values, groups = [], defaultdict(list)
+    for query in queries:
+        ids, relevant = rankings[query["id"]], set(query.get("relevant", []))
+        recall = 100 * len(set(ids[:5]) & relevant) / len(relevant) if relevant else 0
+        mrr = next((1 / (i + 1) for i, identifier in enumerate(ids[:10]) if identifier in relevant), 0)
+        values.append((recall, mrr)); groups[query.get("group", "default")].append((recall, mrr))
+    def means(items):
+        return tuple(sum(item[i] for item in items) / len(items) for i in (0, 1)) if items else (0, 0)
+    def check(actual, expected, name):
+        if type(actual) not in {int, float} or abs(actual - expected) > 1e-8 * max(1, abs(expected)):
+            raise ValueError(f"D-02 {name} inconsistent with public dev rankings: expected {expected}, got {actual}")
+    recall, mrr = means(values)
+    check(row.get("recall_at_5_percent"), recall, "ordinary dev Recall")
+    check(row.get("mrr_at_10"), mrr, "ordinary dev MRR")
+    metrics = row.get("group_metrics", {})
+    reported = metrics.get("groups")
+    if not isinstance(reported, dict) or set(reported) != set(groups):
+        raise ValueError("D-02 group metrics must cover exactly the public dev groups")
+    group_means = []
+    for group, items in groups.items():
+        if not isinstance(reported[group], dict):
+            raise ValueError("D-02 each group metric must be an object")
+        gr, gm = means(items); group_means.append((gr, gm))
+        check(reported[group].get("recall_at_5_percent"), gr, "group Recall")
+        check(reported[group].get("mrr_at_10"), gm, "group MRR")
+    macro_recall, macro_mrr = means(group_means)
+    for key, expected in [("worst_mrr_at_10", min((v[1] for v in group_means), default=0)),
+                          ("macro_mrr_at_10", macro_mrr), ("macro_recall_at_5_percent", macro_recall)]:
+        check(metrics.get(key), expected, key)
+
+
 def validate_sample_output(case_id, request, result):
     if not isinstance(result, dict) or not _finite(result):
         raise ValueError("algorithm output must be a finite JSON object")
@@ -81,18 +151,8 @@ def validate_sample_output(case_id, request, result):
                 if value != [majority] * len(data["texts"]):
                     raise ValueError("D-01 majority baseline violates lexical tie handling")
         elif case_id == "D-02":
-            queries = {q["id"] for q in data["test_queries"]}
             documents = {d["id"] for d in data["documents"]}
-            if not isinstance(value, dict) or set(value) != queries:
-                raise ValueError("D-02 rankings must cover every test query")
-            for ranking in value.values():
-                if (not isinstance(ranking, list) or any(not isinstance(row, dict) or set(row) != {"id", "score"}
-                    or type(row["score"]) not in {int, float} for row in ranking)):
-                    raise ValueError("D-02 ranking items require id and numeric score")
-                if len(ranking) != len(documents) or {row["id"] for row in ranking} != documents:
-                    raise ValueError("D-02 ranking must contain every document exactly once")
-                if ranking != sorted(ranking, key=lambda row: (-row["score"], row["id"])):
-                    raise ValueError("D-02 rankings must use descending scores and lexical ties")
+            _d02_rankings(value, data["test_queries"], documents)
             if name == "candidate":
                 details = result["details"]
                 if not isinstance(details.get("selected"), dict) or not isinstance(details.get("search"), list):
@@ -106,6 +166,7 @@ def validate_sample_output(case_id, request, result):
                 if expected_grid and canonical(configs) != canonical(expected_grid):
                     raise ValueError("D-02 search must cover each public grid configuration exactly once")
                 for row in search:
+                    _d02_dev_metrics(row, data)
                     metrics = row.get("group_metrics", {})
                     if not {"groups", "worst_mrr_at_10", "macro_mrr_at_10", "macro_recall_at_5_percent"} <= set(metrics):
                         raise ValueError("D-02 search group metrics are incomplete")

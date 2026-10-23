@@ -6,6 +6,18 @@ from copy import deepcopy
 
 def public_probes(case_id, request):
     probes = [("provided_sample", request, None)]
+    if case_id == "D-02":
+        queries = request["data"].get("dev_queries", [])
+        if len({q.get("group", "default") for q in queries}) > 1:
+            probe = deepcopy(request)
+            duplicate = deepcopy(queries[0])
+            identifiers = {q["id"] for q in queries}
+            duplicate["id"] = str(duplicate["id"]) + "_public_duplicate"
+            while duplicate["id"] in identifiers:
+                duplicate["id"] += "_copy"
+            probe["data"]["dev_queries"].append(duplicate)
+            probes.append(("unequal_dev_group_sizes", probe, None))
+        return probes
     if case_id != "D-05":
         return probes
     flows = list(request["data"]["flow_weights"])
