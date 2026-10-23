@@ -11,7 +11,7 @@ ENV PYTHONPATH=/app/src RESEARCH_WORKSPACE_ROOT=/data RESEARCH_RESULT_ROOT=/outp
 ARG SOURCE_REVISION=unknown
 LABEL org.opencontainers.image.revision="${SOURCE_REVISION}"
 LABEL org.agenthack.team_id="research-assistant"
-LABEL org.agenthack.version="0.4.2-hybrid-v6"
+LABEL org.agenthack.version="0.4.2-hybrid-v7"
 LABEL org.agenthack.protocol="layered-d-v3-source-v1"
 USER agent
 EXPOSE 8080
