@@ -85,7 +85,9 @@ def test_repair_receives_failed_source_and_counterexample_and_keeps_both_version
         assert (runner.work / f"implementation-attempt-{attempt}.py").read_text(encoding="utf-8") == extract_source(response)
     history = json.loads((runner.work / "public-selftest.json").read_text(encoding="utf-8"))["attempts"]
     assert [row["status"] for row in history] == ["failed", "passed"]
-    assert history[1]["probe_count"] == 9
+    assert history[1]["probe_count"] == 12
+    assert {"retry_after_deadline_rejection", "retry_after_horizon_rejection",
+            "retry_after_multiple_rejections"} <= {row["probe"] for row in history[1]["probes"]}
 
 
 def test_cancel_kills_client_before_it_can_write_late_artifact(tmp_path):
