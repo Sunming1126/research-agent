@@ -118,10 +118,11 @@ class LayeredDRunner:
         return destination
 
     def prepare_checked_implementation(self, case, tester=run_public_sample):
-        """锁源前允许两次模型完整生成；正式请求发出后不再变更源码。"""
+        """锁源前允许最多三次完整生成；正式请求发出后不再变更源码。"""
         history, feedback = [], None
         materials = read_generation_materials(case.case_id, [self.settings.workspace, *self.settings.material_roots])
-        for attempt in range(1, 3):
+        # 格式/兼容性快速拒绝可消耗一次机会，第三次仍受整题剩余时间和 Token 限制。
+        for attempt in range(1, 4):
             path = None
             try:
                 self.stage = "generation"
@@ -143,7 +144,7 @@ class LayeredDRunner:
                 history.append(failure)
                 write_json(confined(self.work, "public-selftest.json"), {"attempts": history})
                 session = current_session()
-                if attempt == 2 or (session and session.remaining() < 65):
+                if attempt == 3 or (session and session.remaining() < 65):
                     raise RuntimeError("model implementation failed public self-test") from None
         raise RuntimeError("no model implementation passed public self-test")
 

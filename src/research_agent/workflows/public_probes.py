@@ -28,6 +28,9 @@ def public_probes(case_id, request):
          ["probe_a", "probe_b", "probe_c"]),
         ("deadline_setup_and_window", [job("probe_a", first, 0, 1), job("probe_b", second, 1, 1, 3),
                                         job("probe_c", first, 1, 3)], 1, 2, 4, None),
+        # 同时违反两个条件时，公开方法明确规定先 deadline 后 horizon。
+        ("deadline_before_horizon", [job("probe_a", first, 0, 2), job("probe_b", second, 1, 2, 3)],
+         1, 3, 6, {"probe_a": "completed", "probe_b": "deadline"}),
     ]
     for name, jobs, servers, setup, horizon, completed in cases:
         probe = deepcopy(request)

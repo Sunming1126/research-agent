@@ -210,7 +210,15 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8):
         try:
             body = _run_sample(source, probe, remaining_timeout(budget, reserve=35))
             report = validate_sample_output(case_id, probe, body["result"])
-            if expected_completed is not None:
+            if isinstance(expected_completed, dict):
+                for strategy in ("baseline", "candidate"):
+                    result = body["result"][strategy]
+                    if result is not None:
+                        states = {row["id"]: "completed" for row in result["trace"]}
+                        states.update({row["id"]: row["reason"] for row in result["dropped"]})
+                        if states != expected_completed:
+                            raise ValueError("public protocol probe requires deadline check before horizon check")
+            elif expected_completed is not None:
                 for strategy in ("baseline", "candidate"):
                     result = body["result"][strategy]
                     if result is not None and sorted(row["id"] for row in result["trace"]) != sorted(expected_completed):
