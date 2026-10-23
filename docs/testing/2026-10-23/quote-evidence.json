@@ -1,0 +1,320 @@
+[
+  {
+    "case_id": "C-01",
+    "status": "PASS",
+    "quotes_found": 25,
+    "quotes_checked": 25,
+    "checks": [
+      {
+        "evidence_id": "ev-1",
+        "filename": "2004.04906-DPR.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-3",
+        "filename": "2004.04906-DPR.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-4",
+        "filename": "2004.04906-DPR.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-2",
+        "filename": "2004.04906-DPR.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-5",
+        "filename": "2004.04906-DPR.pdf",
+        "page": 8,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-6",
+        "filename": "2005.11401-RAG.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-7",
+        "filename": "2005.11401-RAG.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-8",
+        "filename": "2005.11401-RAG.pdf",
+        "page": 17,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-9",
+        "filename": "2005.11401-RAG.pdf",
+        "page": 17,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-10",
+        "filename": "2005.11401-RAG.pdf",
+        "page": 8,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-11",
+        "filename": "2007.01282-FiD.pdf",
+        "page": 3,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-13",
+        "filename": "2007.01282-FiD.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-14",
+        "filename": "2007.01282-FiD.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-12",
+        "filename": "2007.01282-FiD.pdf",
+        "page": 3,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-15",
+        "filename": "2007.01282-FiD.pdf",
+        "page": 4,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-16",
+        "filename": "2112.04426-RETRO.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-20",
+        "filename": "2112.04426-RETRO.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-21",
+        "filename": "2112.04426-RETRO.pdf",
+        "page": 7,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-29",
+        "filename": "2112.04426-RETRO.pdf",
+        "page": 9,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-17",
+        "filename": "2112.04426-RETRO.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-23",
+        "filename": "2310.11511-Self-RAG.pdf",
+        "page": 3,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-25",
+        "filename": "2310.11511-Self-RAG.pdf",
+        "page": 20,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-24",
+        "filename": "2310.11511-Self-RAG.pdf",
+        "page": 3,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-26",
+        "filename": "2310.11511-Self-RAG.pdf",
+        "page": 20,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-27",
+        "filename": "2310.11511-Self-RAG.pdf",
+        "page": 7,
+        "quote_found_on_cited_page": true
+      }
+    ],
+    "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+  },
+  {
+    "case_id": "E-01",
+    "status": "PASS",
+    "quotes_found": 25,
+    "quotes_checked": 25,
+    "checks": [
+      {
+        "evidence_id": "ev-1",
+        "filename": "2005.11401-RAG.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-3",
+        "filename": "2005.11401-RAG.pdf",
+        "page": 3,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-4",
+        "filename": "2005.11401-RAG.pdf",
+        "page": 6,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-5",
+        "filename": "2005.11401-RAG.pdf",
+        "page": 6,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-2",
+        "filename": "2005.11401-RAG.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-6",
+        "filename": "2007.01282-FiD.pdf",
+        "page": 3,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-8",
+        "filename": "2007.01282-FiD.pdf",
+        "page": 4,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-11",
+        "filename": "2007.01282-FiD.pdf",
+        "page": 3,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-7",
+        "filename": "2007.01282-FiD.pdf",
+        "page": 3,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-9",
+        "filename": "2007.01282-FiD.pdf",
+        "page": 4,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-12",
+        "filename": "2112.04426-RETRO.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-15",
+        "filename": "2112.04426-RETRO.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-16",
+        "filename": "2112.04426-RETRO.pdf",
+        "page": 7,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-13",
+        "filename": "2112.04426-RETRO.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-14",
+        "filename": "2112.04426-RETRO.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-17",
+        "filename": "2310.11511-Self-RAG.pdf",
+        "page": 1,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-18",
+        "filename": "2310.11511-Self-RAG.pdf",
+        "page": 9,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-19",
+        "filename": "2310.11511-Self-RAG.pdf",
+        "page": 9,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-20",
+        "filename": "2310.11511-Self-RAG.pdf",
+        "page": 8,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-21",
+        "filename": "2310.11511-Self-RAG.pdf",
+        "page": 3,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-22",
+        "filename": "2004.04906-DPR.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-27",
+        "filename": "2004.04906-DPR.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-28",
+        "filename": "2004.04906-DPR.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-23",
+        "filename": "2004.04906-DPR.pdf",
+        "page": 2,
+        "quote_found_on_cited_page": true
+      },
+      {
+        "evidence_id": "ev-24",
+        "filename": "2004.04906-DPR.pdf",
+        "page": 3,
+        "quote_found_on_cited_page": true
+      }
+    ],
+    "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "original_case": "C-02",
+  "original_materials_count": 2,
+  "rule": "Survey must cite at least five actual specified papers",
+  "source": "科研助手赛题材料/research-description.md:57",
+  "classification": "test_author_error; expected rejection of an infeasible input; do not count as product failure",
+  "action": "Separate corrected five-paper C-02 for BOTH images; keep original evidence unchanged",
+  "supplement_toolkit_sha256": "283262f499b0baae64870e9f1e0bffe9b4f2eefbdcc3724466640e26fb4e65e6"
+}

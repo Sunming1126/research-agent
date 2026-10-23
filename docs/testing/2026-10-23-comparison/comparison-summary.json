@@ -1,0 +1,4958 @@
+{
+  "run": "comparison-20261023-v041",
+  "versions": {
+    "source": {
+      "target": "research-assistant:0.4.1-source-v1",
+      "immutable_id": "sha256:eeda9634e08854bf2e39de8398023536e6111ad09fe6eb16a52833d9f1838f6b",
+      "raw_primary_counts": {
+        "PASS": 116,
+        "FAIL": 1,
+        "BLOCKED": 2
+      },
+      "raw_primary_unique_check_count": 119,
+      "raw_failures": [
+        {
+          "id": "live.C-02",
+          "group": "A-E-live",
+          "status": "FAIL",
+          "level": "required",
+          "evidence": null,
+          "error": "AssertionError: SDK execution failed: {\"task_id\": \"comparison-public-C-02\", \"status\": \"error\", \"output\": {\"answer\": \"\", \"error\": \"EvidenceError\"}, \"metadata\": {\"llm_call_count\": 4, \"max_depth\": 4, \"retry_count_total\": 0, \"total_input_tokens\": 8013, \"total_output_tokens\": 2139, \"tool_call_count\": 13, \"unique_tool_count\": 6, \"parallel_tool_count\": 3, \"session_id\": \"5f9bd2e6241a4c6ca6ac3d6a4a1871e2\", \"trace_id\": \"47c030dc864b20be899959715f701592\", \"llm_calls\": 4, \"total_tokens\": 10152, \"duration_ms\": 24301.00047, \"tools_used\": [\"build_authorized_index\", \"build_claim_ledger\", \"compose_and_check_report\", \"hybrid_retrieve\", \"resolve_authorized_materials\", \"run_assigned_case\"]}}",
+          "seconds": 24.34
+        }
+      ],
+      "product_failures": [],
+      "invalid_two_paper_survey": {
+        "observed": "FAIL",
+        "classification": "Test-author invalid expectation; Survey requires five papers. Raw FAIL is preserved, but is not a product defect."
+      },
+      "abce": {
+        "A-01": {
+          "status": "PASS",
+          "seconds": 27.835,
+          "error": null,
+          "evidence": {
+            "case_id": "A-01",
+            "kind": "Chat",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\live-ABCE\\output\\data\\workspace_team\\A-01.json",
+            "seconds": 27.82831390001229,
+            "real_model_calls": 1
+          }
+        },
+        "B-01": {
+          "status": "PASS",
+          "seconds": 114.244,
+          "error": null,
+          "evidence": {
+            "case_id": "B-01",
+            "kind": "Literature_Retrieval",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\live-ABCE\\output\\data\\workspace_team\\B-01.json",
+            "seconds": 114.21250550000696,
+            "real_model_calls": 3
+          }
+        },
+        "B-02": {
+          "status": "PASS",
+          "seconds": 28.837,
+          "error": null,
+          "evidence": {
+            "case_id": "B-02",
+            "kind": "Literature_Retrieval",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\live-ABCE\\output\\data\\workspace_team\\B-02.json",
+            "seconds": 28.83048050000798,
+            "real_model_calls": 3
+          }
+        },
+        "B-03": {
+          "status": "PASS",
+          "seconds": 46.332,
+          "error": null,
+          "evidence": {
+            "case_id": "B-03",
+            "kind": "Literature_Retrieval",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\live-ABCE\\output\\data\\workspace_team\\B-03.json",
+            "seconds": 46.324645499989856,
+            "real_model_calls": 3
+          }
+        },
+        "C-01": {
+          "status": "PASS",
+          "seconds": 70.739,
+          "error": null,
+          "evidence": {
+            "case_id": "C-01",
+            "kind": "Survey",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\live-ABCE\\output\\data\\workspace_team\\C-01.json",
+            "seconds": 70.73033409999334,
+            "real_model_calls": 10
+          }
+        },
+        "C-02": {
+          "status": "PASS",
+          "seconds": 117.23,
+          "error": null,
+          "evidence": {
+            "case_id": "C-02",
+            "kind": "Survey",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-c02-corrected\\live-ABCE\\output\\data\\workspace_team\\C-02.json",
+            "seconds": 117.2222678999824,
+            "real_model_calls": 9
+          }
+        },
+        "E-01": {
+          "status": "PASS",
+          "seconds": 55.66,
+          "error": null,
+          "evidence": {
+            "case_id": "E-01",
+            "kind": "Idea",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\live-ABCE\\output\\data\\workspace_team\\E-01.json",
+            "seconds": 55.64962100001867,
+            "real_model_calls": 9
+          }
+        },
+        "E-02": {
+          "status": "PASS",
+          "seconds": 63.566,
+          "error": null,
+          "evidence": {
+            "case_id": "E-02",
+            "kind": "Idea",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\live-ABCE\\output\\data\\workspace_team\\E-02.json",
+            "seconds": 63.5589701999852,
+            "real_model_calls": 9
+          }
+        }
+      },
+      "abce_pass": 8,
+      "retrieval": {
+        "B-01": {
+          "id": "retrieval.exact.B-01",
+          "group": "retrieval-quality",
+          "status": "PASS",
+          "level": "quality",
+          "evidence": {
+            "matched": [
+              "2005.11401-RAG.pdf",
+              "2007.01282-FiD.pdf",
+              "2310.11511-Self-RAG.pdf"
+            ],
+            "frozen_public_relevance_expectation": true
+          },
+          "error": null,
+          "seconds": 0.011
+        },
+        "B-02": {
+          "id": "retrieval.exact.B-02",
+          "group": "retrieval-quality",
+          "status": "PASS",
+          "level": "quality",
+          "evidence": {
+            "matched": [
+              "2004.04906-DPR.pdf"
+            ],
+            "frozen_public_relevance_expectation": true
+          },
+          "error": null,
+          "seconds": 0.003
+        },
+        "B-03": {
+          "id": "retrieval.exact.B-03",
+          "group": "retrieval-quality",
+          "status": "PASS",
+          "level": "quality",
+          "evidence": {
+            "matched": [
+              "2104.08663-BEIR.pdf"
+            ],
+            "frozen_public_relevance_expectation": true
+          },
+          "error": null,
+          "seconds": 0.003
+        }
+      },
+      "D": {
+        "D-01": {
+          "generation_status": "PASS",
+          "generation_error": null,
+          "whole_local_flow_seconds": 10.49825130001409,
+          "selftest_attempts": [
+            {
+              "attempt": 1,
+              "source_sha256": "befe327407223b786fb4bafada91b106c9aa5a03da5a5c1b5677c885aee9dd24",
+              "status": "passed",
+              "scope": "public_samples_and_protocol_boundary_invariants",
+              "candidate_present": true,
+              "reproducible": true,
+              "volatile_detail_fields": [],
+              "probe": "provided_sample",
+              "isolation": {
+                "resource_limits": true,
+                "syscall_filter": true
+              },
+              "probes": [
+                {
+                  "status": "passed",
+                  "scope": "public_sample_structure_and_invariants",
+                  "candidate_present": true,
+                  "reproducible": true,
+                  "volatile_detail_fields": [],
+                  "probe": "provided_sample",
+                  "isolation": {
+                    "resource_limits": true,
+                    "syscall_filter": true
+                  }
+                }
+              ],
+              "probe_count": 1
+            }
+          ],
+          "formal_submission_status": "failed",
+          "formal_verified": false
+        },
+        "D-02": {
+          "generation_status": "PASS",
+          "generation_error": null,
+          "whole_local_flow_seconds": 12.895860799995717,
+          "selftest_attempts": [
+            {
+              "attempt": 1,
+              "source_sha256": "1ec69e9117102f5693b36995f9712a7598cc2c23085cf4906bf5d305d55f4d3e",
+              "status": "passed",
+              "scope": "public_samples_and_protocol_boundary_invariants",
+              "candidate_present": true,
+              "rank_consistent": true,
+              "probe": "provided_sample",
+              "isolation": {
+                "resource_limits": true,
+                "syscall_filter": true
+              },
+              "probes": [
+                {
+                  "status": "passed",
+                  "scope": "public_sample_structure_and_invariants",
+                  "candidate_present": true,
+                  "rank_consistent": true,
+                  "probe": "provided_sample",
+                  "isolation": {
+                    "resource_limits": true,
+                    "syscall_filter": true
+                  }
+                }
+              ],
+              "probe_count": 1
+            }
+          ],
+          "formal_submission_status": "failed",
+          "formal_verified": false
+        },
+        "D-05": {
+          "generation_status": "PASS",
+          "generation_error": null,
+          "whole_local_flow_seconds": 11.954810199997155,
+          "selftest_attempts": [
+            {
+              "attempt": 1,
+              "source_sha256": "3c7bff206f5245758287410a851ab0cc28b0d150dd26d7f11b5fcf54ab1282a3",
+              "status": "passed",
+              "scope": "public_samples_and_protocol_boundary_invariants",
+              "candidate_present": true,
+              "probe": "provided_sample",
+              "isolation": {
+                "resource_limits": true,
+                "syscall_filter": true
+              },
+              "probes": [
+                {
+                  "status": "passed",
+                  "scope": "public_sample_structure_and_invariants",
+                  "candidate_present": true,
+                  "probe": "provided_sample",
+                  "isolation": {
+                    "resource_limits": true,
+                    "syscall_filter": true
+                  }
+                },
+                {
+                  "status": "passed",
+                  "scope": "public_sample_structure_and_invariants",
+                  "candidate_present": true,
+                  "probe": "empty_jobs",
+                  "isolation": {
+                    "resource_limits": true,
+                    "syscall_filter": true
+                  }
+                },
+                {
+                  "status": "passed",
+                  "scope": "public_sample_structure_and_invariants",
+                  "candidate_present": true,
+                  "probe": "idle_gap_and_switch",
+                  "isolation": {
+                    "resource_limits": true,
+                    "syscall_filter": true
+                  }
+                },
+                {
+                  "status": "passed",
+                  "scope": "public_sample_structure_and_invariants",
+                  "candidate_present": true,
+                  "probe": "future_first_arrival",
+                  "isolation": {
+                    "resource_limits": true,
+                    "syscall_filter": true
+                  }
+                },
+                {
+                  "status": "passed",
+                  "scope": "public_sample_structure_and_invariants",
+                  "candidate_present": true,
+                  "probe": "simultaneous_reservation",
+                  "isolation": {
+                    "resource_limits": true,
+                    "syscall_filter": true
+                  }
+                },
+                {
+                  "status": "passed",
+                  "scope": "public_sample_structure_and_invariants",
+                  "candidate_present": true,
+                  "probe": "deadline_setup_and_window",
+                  "isolation": {
+                    "resource_limits": true,
+                    "syscall_filter": true
+                  }
+                }
+              ],
+              "probe_count": 6
+            }
+          ],
+          "formal_submission_status": "failed",
+          "formal_verified": false
+        }
+      },
+      "public_algorithm": {
+        "pass": 13,
+        "rows": [
+          {
+            "id": "public_algorithm.D-01.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "training_rows": 18,
+              "test_rows": 4,
+              "vocabulary": 24,
+              "model_replay_verified": true,
+              "request": "D-01.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-01\\D-01-8abddf"
+            },
+            "error": null,
+            "seconds": 1.197
+          },
+          {
+            "id": "public_algorithm.D-01/不均衡-重复词-标点.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "training_rows": 4,
+              "test_rows": 4,
+              "vocabulary": 4,
+              "model_replay_verified": true,
+              "request": "D-01/不均衡-重复词-标点.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-01\\不均衡-重复词-标点-85939c"
+            },
+            "error": null,
+            "seconds": 1.099
+          },
+          {
+            "id": "public_algorithm.D-01/均衡-空文本-未知词.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "training_rows": 2,
+              "test_rows": 4,
+              "vocabulary": 4,
+              "model_replay_verified": true,
+              "request": "D-01/均衡-空文本-未知词.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-01\\均衡-空文本-未知词-bd0028"
+            },
+            "error": null,
+            "seconds": 1.107
+          },
+          {
+            "id": "public_algorithm.D-02.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "grid_checked": 27,
+              "groups": 2,
+              "selected": {
+                "b": 0.0,
+                "k1": 0.4,
+                "title_weight": 0.5
+              },
+              "request": "D-02.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-02\\D-02-8e4789"
+            },
+            "error": null,
+            "seconds": 1.076
+          },
+          {
+            "id": "public_algorithm.D-02/rank-default.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "rank_phase": true,
+              "queries": 3,
+              "request": "D-02/rank-default.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-02\\rank-default-b91860"
+            },
+            "error": null,
+            "seconds": 1.04
+          },
+          {
+            "id": "public_algorithm.D-02/空字段-重复未知词-不等组.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "grid_checked": 27,
+              "groups": 2,
+              "selected": {
+                "b": 0.0,
+                "k1": 0.4,
+                "title_weight": 0.0
+              },
+              "request": "D-02/空字段-重复未知词-不等组.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-02\\空字段-重复未知词-不等组-b53ea0"
+            },
+            "error": null,
+            "seconds": 1.145
+          },
+          {
+            "id": "public_algorithm.D-05.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-05\\D-05-c635d4"
+            },
+            "error": null,
+            "seconds": 1.098
+          },
+          {
+            "id": "public_algorithm.D-05/并发预留.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 3,
+              "servers": 2,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/并发预留.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-05\\并发预留-1ac560"
+            },
+            "error": null,
+            "seconds": 0.99
+          },
+          {
+            "id": "public_algorithm.D-05/拒绝后同服务器重试.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 3,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/拒绝后同服务器重试.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-05\\拒绝后同服务器重试-395f2a"
+            },
+            "error": null,
+            "seconds": 1.032
+          },
+          {
+            "id": "public_algorithm.D-05/空任务与零服务流.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 0,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/空任务与零服务流.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-05\\空任务与零服务流-3c6872"
+            },
+            "error": null,
+            "seconds": 1.057
+          },
+          {
+            "id": "public_algorithm.D-05/空闲间隔与流切换.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/空闲间隔与流切换.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-05\\空闲间隔与流切换-edc7af"
+            },
+            "error": null,
+            "seconds": 0.969
+          },
+          {
+            "id": "public_algorithm.D-05/窗口恰好与超窗.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/窗口恰好与超窗.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-05\\窗口恰好与超窗-f68b0d"
+            },
+            "error": null,
+            "seconds": 0.976
+          },
+          {
+            "id": "public_algorithm.D-05/过期与同时到达.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 2,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/过期与同时到达.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-05\\过期与同时到达-5f1b75"
+            },
+            "error": null,
+            "seconds": 1.038
+          }
+        ]
+      },
+      "D_repeat": {
+        "generation_pass": 3,
+        "public_pass": 13,
+        "rows": [
+          {
+            "id": "image.immutable_identity",
+            "group": "runtime",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "tag": "research-assistant:0.4.1-source-v1",
+              "id": "sha256:eeda9634e08854bf2e39de8398023536e6111ad09fe6eb16a52833d9f1838f6b",
+              "user": "agent",
+              "platform": "linux/amd64"
+            },
+            "error": null,
+            "seconds": 0.002
+          },
+          {
+            "id": "live.D-01.model_source_generation",
+            "group": "D-source-live",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "case_id": "D-01",
+              "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\live-D-01\\output\\data\\workspace_team\\work\\D-01\\3e7f891bb3bf4c8d86d4724db7bf5d0f\\implementation.py",
+              "sha256": "2a59e2035608dc209635a234aa06d91b1821002fb69b92ddff0afaf05ee9118a",
+              "seconds": 10.506392700015567,
+              "real_model_calls": 1,
+              "official_execution": "BLOCKED"
+            },
+            "error": null,
+            "seconds": 13.923
+          },
+          {
+            "id": "public_algorithm.D-01.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "training_rows": 18,
+              "test_rows": 4,
+              "vocabulary": 24,
+              "model_replay_verified": true,
+              "request": "D-01.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-01\\D-01-d69c86"
+            },
+            "error": null,
+            "seconds": 1.415
+          },
+          {
+            "id": "public_algorithm.D-01/不均衡-重复词-标点.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "training_rows": 4,
+              "test_rows": 4,
+              "vocabulary": 4,
+              "model_replay_verified": true,
+              "request": "D-01/不均衡-重复词-标点.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-01\\不均衡-重复词-标点-c88d51"
+            },
+            "error": null,
+            "seconds": 1.206
+          },
+          {
+            "id": "public_algorithm.D-01/均衡-空文本-未知词.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "training_rows": 2,
+              "test_rows": 4,
+              "vocabulary": 4,
+              "model_replay_verified": true,
+              "request": "D-01/均衡-空文本-未知词.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-01\\均衡-空文本-未知词-2caf89"
+            },
+            "error": null,
+            "seconds": 1.232
+          },
+          {
+            "id": "live.D-02.model_source_generation",
+            "group": "D-source-live",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "case_id": "D-02",
+              "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\live-D-02\\output\\data\\workspace_team\\work\\D-02\\961f44bbe2d4428fa93eab3829826384\\implementation.py",
+              "sha256": "9685718431c089a47dfa76338dcc5f648de8216d43707e89b3b02f6b1de9c33b",
+              "seconds": 13.21818950001034,
+              "real_model_calls": 1,
+              "official_execution": "BLOCKED"
+            },
+            "error": null,
+            "seconds": 16.651
+          },
+          {
+            "id": "public_algorithm.D-02.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "grid_checked": 27,
+              "groups": 2,
+              "selected": {
+                "b": 0.0,
+                "k1": 0.4,
+                "title_weight": 0.5
+              },
+              "request": "D-02.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-02\\D-02-3bc4fa"
+            },
+            "error": null,
+            "seconds": 1.119
+          },
+          {
+            "id": "public_algorithm.D-02/rank-default.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "rank_phase": true,
+              "queries": 3,
+              "request": "D-02/rank-default.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-02\\rank-default-d4a99c"
+            },
+            "error": null,
+            "seconds": 1.009
+          },
+          {
+            "id": "public_algorithm.D-02/空字段-重复未知词-不等组.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "grid_checked": 27,
+              "groups": 2,
+              "selected": {
+                "b": 0.0,
+                "k1": 0.4,
+                "title_weight": 0.0
+              },
+              "request": "D-02/空字段-重复未知词-不等组.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-02\\空字段-重复未知词-不等组-007b93"
+            },
+            "error": null,
+            "seconds": 1.285
+          },
+          {
+            "id": "live.D-05.model_source_generation",
+            "group": "D-source-live",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "case_id": "D-05",
+              "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\live-D-05\\output\\data\\workspace_team\\work\\D-05\\21411266b54c454996200ae67cd2e1b0\\implementation.py",
+              "sha256": "c7032b6589ce0aa41afc80b466dc523a119cfbe150bf256a0471187167fd8882",
+              "seconds": 14.107218699995428,
+              "real_model_calls": 1,
+              "official_execution": "BLOCKED"
+            },
+            "error": null,
+            "seconds": 17.51
+          },
+          {
+            "id": "public_algorithm.D-05.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-05\\D-05-a5f251"
+            },
+            "error": null,
+            "seconds": 1.298
+          },
+          {
+            "id": "public_algorithm.D-05/并发预留.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 3,
+              "servers": 2,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/并发预留.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-05\\并发预留-a13284"
+            },
+            "error": null,
+            "seconds": 1.26
+          },
+          {
+            "id": "public_algorithm.D-05/拒绝后同服务器重试.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 3,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/拒绝后同服务器重试.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-05\\拒绝后同服务器重试-bff846"
+            },
+            "error": null,
+            "seconds": 1.206
+          },
+          {
+            "id": "public_algorithm.D-05/空任务与零服务流.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 0,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/空任务与零服务流.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-05\\空任务与零服务流-b6572d"
+            },
+            "error": null,
+            "seconds": 1.066
+          },
+          {
+            "id": "public_algorithm.D-05/空闲间隔与流切换.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/空闲间隔与流切换.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-05\\空闲间隔与流切换-2e4c50"
+            },
+            "error": null,
+            "seconds": 1.176
+          },
+          {
+            "id": "public_algorithm.D-05/窗口恰好与超窗.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/窗口恰好与超窗.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-05\\窗口恰好与超窗-70e5db"
+            },
+            "error": null,
+            "seconds": 1.248
+          },
+          {
+            "id": "public_algorithm.D-05/过期与同时到达.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 2,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/过期与同时到达.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-05\\过期与同时到达-b74ddd"
+            },
+            "error": null,
+            "seconds": 1.001
+          },
+          {
+            "id": "replay.D-01",
+            "group": "D-reproducibility",
+            "status": "PASS",
+            "level": "quality",
+            "evidence": {
+              "id": "replay.D-01",
+              "group": "D-reproducibility",
+              "status": "PASS",
+              "source_sha256": "2a59e2035608dc209635a234aa06d91b1821002fb69b92ddff0afaf05ee9118a",
+              "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-01\\D-01-d69c86\\result.json",
+              "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\reproducibility\\D-01\\stdout.txt",
+              "python": "3.9",
+              "network": "none",
+              "official_provenance": false
+            },
+            "error": null
+          },
+          {
+            "id": "replay.D-02",
+            "group": "D-reproducibility",
+            "status": "PASS",
+            "level": "quality",
+            "evidence": {
+              "id": "replay.D-02",
+              "group": "D-reproducibility",
+              "status": "PASS",
+              "source_sha256": "9685718431c089a47dfa76338dcc5f648de8216d43707e89b3b02f6b1de9c33b",
+              "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-02\\D-02-3bc4fa\\result.json",
+              "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\reproducibility\\D-02\\stdout.txt",
+              "python": "3.9",
+              "network": "none",
+              "official_provenance": false
+            },
+            "error": null
+          },
+          {
+            "id": "replay.D-05",
+            "group": "D-reproducibility",
+            "status": "PASS",
+            "level": "quality",
+            "evidence": {
+              "id": "replay.D-05",
+              "group": "D-reproducibility",
+              "status": "PASS",
+              "source_sha256": "c7032b6589ce0aa41afc80b466dc523a119cfbe150bf256a0471187167fd8882",
+              "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\public-workers\\D-05\\D-05-a5f251\\result.json",
+              "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\reproducibility\\D-05\\stdout.txt",
+              "python": "3.9",
+              "network": "none",
+              "official_provenance": false
+            },
+            "error": null
+          }
+        ]
+      },
+      "replays": [
+        {
+          "id": "replay.D-01",
+          "group": "D-reproducibility",
+          "status": "PASS",
+          "source_sha256": "befe327407223b786fb4bafada91b106c9aa5a03da5a5c1b5677c885aee9dd24",
+          "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-01\\D-01-8abddf\\result.json",
+          "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\reproducibility\\D-01\\stdout.txt",
+          "python": "3.9",
+          "network": "none",
+          "official_provenance": false
+        },
+        {
+          "id": "replay.D-02",
+          "group": "D-reproducibility",
+          "status": "PASS",
+          "source_sha256": "1ec69e9117102f5693b36995f9712a7598cc2c23085cf4906bf5d305d55f4d3e",
+          "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-02\\D-02-8e4789\\result.json",
+          "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\reproducibility\\D-02\\stdout.txt",
+          "python": "3.9",
+          "network": "none",
+          "official_provenance": false
+        },
+        {
+          "id": "replay.D-05",
+          "group": "D-reproducibility",
+          "status": "PASS",
+          "source_sha256": "3c7bff206f5245758287410a851ab0cc28b0d150dd26d7f11b5fcf54ab1282a3",
+          "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\public-workers\\D-05\\D-05-c635d4\\result.json",
+          "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\reproducibility\\D-05\\stdout.txt",
+          "python": "3.9",
+          "network": "none",
+          "official_provenance": false
+        }
+      ],
+      "quotes": [
+        {
+          "case_id": "C-01",
+          "status": "PASS",
+          "quotes_found": 25,
+          "quotes_checked": 25,
+          "checks": [
+            {
+              "evidence_id": "ev-1",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-2",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-3",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-4",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 7,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-5",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-6",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 17,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-7",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 17,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-8",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 17,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-9",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-10",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 9,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-11",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-12",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-13",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-14",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-15",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 4,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-17",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-20",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-30",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 10,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-18",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-19",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-22",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 20,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-23",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 7,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-24",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 7,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-25",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-26",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            }
+          ],
+          "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+        },
+        {
+          "case_id": "E-01",
+          "status": "PASS",
+          "quotes_found": 24,
+          "quotes_checked": 24,
+          "checks": [
+            {
+              "evidence_id": "ev-1",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-3",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-5",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 5,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-2",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-4",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 6,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-6",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-9",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-29",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-7",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-8",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-11",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-13",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 4,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-12",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-14",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 4,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-15",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-16",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-19",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-17",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-18",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 7,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-20",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 15,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-21",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 4,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-24",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-22",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 4,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-23",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            }
+          ],
+          "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+        },
+        {
+          "case_id": "E-02",
+          "status": "PASS",
+          "quotes_found": 15,
+          "quotes_checked": 15,
+          "checks": [
+            {
+              "evidence_id": "ev-1",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-3",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 19,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-5",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 18,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-16",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 7,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-2",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-6",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-8",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-18",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-7",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-9",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 4,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-11",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-12",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 9,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-15",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 6,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-13",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 9,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-14",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            }
+          ],
+          "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+        },
+        {
+          "case_id": "C-02",
+          "status": "PASS",
+          "quotes_found": 25,
+          "quotes_checked": 25,
+          "checks": [
+            {
+              "evidence_id": "ev-1",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-2",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-3",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-5",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-4",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-6",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-9",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 5,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-10",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-7",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-8",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-11",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-12",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 4,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-14",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-15",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-13",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-16",
+              "filename": "2104.08663-BEIR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-19",
+              "filename": "2104.08663-BEIR.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-20",
+              "filename": "2104.08663-BEIR.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-21",
+              "filename": "2104.08663-BEIR.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-17",
+              "filename": "2104.08663-BEIR.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-23",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 17,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-26",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-24",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-25",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-27",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            }
+          ],
+          "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+        }
+      ],
+      "quotes_found": 89,
+      "quotes_checked": 89,
+      "native_harness_calls": 58,
+      "native_usage_total_tokens": 188660,
+      "model_calls": [
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-review\\call.json",
+          "session_id": "session-78efc79b-a33d-429a-89cf-4e718816c110",
+          "seconds": 9.184,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 5295,
+              "outputTokens": 867,
+              "cacheReadTokens": 256,
+              "cacheWriteTokens": 0,
+              "totalTokens": 6418
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\fee94836c0114003814b8934d7e5f228\\harness\\call.json",
+          "session_id": "session-106f10f9-fbf6-464d-90f1-cc3f8e8cca98",
+          "seconds": 5.306,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 164,
+              "outputTokens": 219,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1151
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\fda9c13edf014a40bd557080c776b47f\\harness\\call.json",
+          "session_id": "session-863c0121-af7c-4ec9-94e5-e6e9a6595b4e",
+          "seconds": 6.074,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1097,
+              "outputTokens": 523,
+              "cacheReadTokens": 1152,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2772
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\fa4650e80c1940248c556cdbdaa27164\\harness\\call.json",
+          "session_id": "session-9f0b22b8-c9e3-4bbe-b2bc-23b06bca3ea3",
+          "seconds": 6.917,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1277,
+              "outputTokens": 688,
+              "cacheReadTokens": 1024,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2989
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\f49c7fe20eeb427086a5ff8610108ba3\\harness\\call.json",
+          "session_id": "session-9dcc4125-96d0-43d5-a1a0-d5d694343e73",
+          "seconds": 4.764,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 430,
+              "outputTokens": 211,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1153
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\f147c618e3a541f08ad9c0d55c16fd9a\\harness\\call.json",
+          "session_id": "session-9a7f3447-5b31-4b37-b80a-fb9bddb4ac09",
+          "seconds": 5.374,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 2921,
+              "outputTokens": 171,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3604
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\ebb8070f855541c1991449dca638fc59\\harness\\call.json",
+          "session_id": "session-b0b6639c-fc7c-4bc5-80b5-c6857f6e7e2e",
+          "seconds": 4.55,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1434,
+              "outputTokens": 6,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2208
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\e5c05e5c016a487bac5cfdd50e46d1a0\\harness\\call.json",
+          "session_id": "session-6fbea8ae-2902-47fd-8579-4d5c1e0b13ac",
+          "seconds": 6.504,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1498,
+              "outputTokens": 726,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2864
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\e26b41b3cb9241739753d13b317113ee\\harness\\call.json",
+          "session_id": "session-a57b2524-10cb-431d-bc6f-8492ddf25a80",
+          "seconds": 14.356,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 2563,
+              "outputTokens": 1524,
+              "cacheReadTokens": 896,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4983
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\de58a8c2daea40abbcde75d9f8a501ee\\harness\\call.json",
+          "session_id": "session-d9711c54-b73a-4406-94da-db5bd0d05808",
+          "seconds": 17.556,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 3127,
+              "outputTokens": 395,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4290
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\db28ffebb89b4fcc9246907c3dc452ad\\harness\\call.json",
+          "session_id": "session-8717a2e2-312f-4c75-9a54-19453e95562b",
+          "seconds": 6.039,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1578,
+              "outputTokens": 545,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2763
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\d3578c13eb11439ea69cb1d4a8f33a46\\harness\\call.json",
+          "session_id": "session-334b1633-5826-4f77-a8a5-abd61918f8bf",
+          "seconds": 5.298,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1202,
+              "outputTokens": 449,
+              "cacheReadTokens": 1152,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2803
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\d2e4199ae92147f7aca5895e25e515aa\\harness\\call.json",
+          "session_id": "session-54e2506d-bf8a-4adc-9a01-9c95e4143abb",
+          "seconds": 10.749,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 3448,
+              "outputTokens": 1208,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 5168
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\d228315ea9d54f1d89a529f243f9f24b\\harness\\call.json",
+          "session_id": "session-11814f67-8f29-4e69-9ae5-8c72804e5e24",
+          "seconds": 6.431,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1180,
+              "outputTokens": 576,
+              "cacheReadTokens": 1024,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2780
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\d00a302b0f4c40ebae054b9ac6d12065\\harness\\call.json",
+          "session_id": "session-36a0f948-9053-454e-bc57-5bbcbd142ccf",
+          "seconds": 3.94,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1426,
+              "outputTokens": 6,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2072
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\cf934df963ed4abd81cb866600573d07\\harness\\call.json",
+          "session_id": "session-c68521ab-ee26-4504-9f32-787bc2d7e20a",
+          "seconds": 4.026,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 152,
+              "outputTokens": 134,
+              "cacheReadTokens": 896,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1182
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\c8741d43693349b9811703096c2726fa\\harness\\call.json",
+          "session_id": "session-a7139006-7a33-4256-a765-939ff3df4007",
+          "seconds": 13.45,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 183,
+              "outputTokens": 279,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1230
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\c68455f010da4ca0af75929d233a962c\\harness\\call.json",
+          "session_id": "session-024573ca-da12-4266-9553-ce1ad1d98cf0",
+          "seconds": 6.89,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 3232,
+              "outputTokens": 690,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4434
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\bc9adbbec83f46b896015e24ad34167a\\harness\\call.json",
+          "session_id": "session-01e43402-44c3-445f-940d-229be5d9180c",
+          "seconds": 4.677,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 437,
+              "outputTokens": 175,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1252
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\bb356b4f289c498ca9ee6ac5d912ffd3\\harness\\call.json",
+          "session_id": "session-84960248-384c-4452-9140-59b1a4e7c826",
+          "seconds": 6.244,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1680,
+              "outputTokens": 544,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2864
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\ae68f53f11db4fcfbf5a3ec20694bd88\\harness\\call.json",
+          "session_id": "session-6040f947-b16a-4620-a7a9-1f040e8c69f6",
+          "seconds": 9.097,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 221,
+              "outputTokens": 1563,
+              "cacheReadTokens": 2688,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4472
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\a4a6568c1c6e49ffb3c714222c336261\\harness\\call.json",
+          "session_id": "session-77a90e3a-ffad-4280-8849-5943aa11ca6f",
+          "seconds": 6.153,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1216,
+              "outputTokens": 521,
+              "cacheReadTokens": 1024,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2761
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\a2aa438364bc4716a5fb75767f574e95\\harness\\call.json",
+          "session_id": "session-45d1b4ea-a47b-49a6-ba95-debc6bddb229",
+          "seconds": 5.718,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 818,
+              "outputTokens": 525,
+              "cacheReadTokens": 1280,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2623
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\9c82519654f44f128f2f6ab750a5e5d7\\harness\\call.json",
+          "session_id": "session-c2a30ac2-e2fd-4a90-b9aa-6906ffb83e8d",
+          "seconds": 5.479,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1781,
+              "outputTokens": 447,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2868
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\903e8c96d2bf4be1b0ceb82b7c0d374e\\harness\\call.json",
+          "session_id": "session-3ca6a75b-3fa9-4c11-9d53-2d0ec4dcd38a",
+          "seconds": 4.682,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 418,
+              "outputTokens": 223,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1281
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\8eb8db81902b421bac32c913817ea5cd\\harness\\call.json",
+          "session_id": "session-b503c9f1-041b-43f1-a5db-c9f347173928",
+          "seconds": 4.832,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 412,
+              "outputTokens": 154,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1078
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\8bef75de5a3e4614b3c20f69fdf16d1e\\harness\\call.json",
+          "session_id": "session-c5e97b9d-15e7-4202-aaf2-77c645afb99a",
+          "seconds": 5.867,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 444,
+              "outputTokens": 212,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1168
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\81d1872e7ea147ab955c89ee22e15505\\harness\\call.json",
+          "session_id": "session-01b62d3a-1365-4745-8da7-7e31b2787128",
+          "seconds": 11.411,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 240,
+              "outputTokens": 2563,
+              "cacheReadTokens": 4224,
+              "cacheWriteTokens": 0,
+              "totalTokens": 7027
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\7cb819c8f41d41b0ab6b01673366bb5b\\harness\\call.json",
+          "session_id": "session-3fce8fb1-f3f1-414e-9f89-4f2656656254",
+          "seconds": 10.241,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 167,
+              "outputTokens": 2075,
+              "cacheReadTokens": 2688,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4930
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\7b68f9336f3746649e4a02077e0bbfde\\harness\\call.json",
+          "session_id": "session-465eb23c-4db5-4c70-99d6-8d195fbed60f",
+          "seconds": 3.7,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 4310,
+              "outputTokens": 10,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 5088
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\67f5345da32c493aa3f258496494ab77\\harness\\call.json",
+          "session_id": "session-9c649597-7efb-43d2-a30c-fbef4bea730b",
+          "seconds": 4.488,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 430,
+              "outputTokens": 194,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1136
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\54bac83f85234e66920bf15ef1f39940\\harness\\call.json",
+          "session_id": "session-8e2983cb-3866-45e0-bf74-17ae44e76881",
+          "seconds": 5.152,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 514,
+              "outputTokens": 347,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1501
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\497ee9ced7bc43c7b2ad95d3d3be2db5\\harness\\call.json",
+          "session_id": "session-f6e8f76e-9b8b-4c7e-86b8-0388d0e46718",
+          "seconds": 4.365,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1281,
+              "outputTokens": 6,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2055
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\36e024969f61450fbdbd6d0779522107\\harness\\call.json",
+          "session_id": "session-3d1d9a01-f05a-4961-b31c-ae5794e10645",
+          "seconds": 5.435,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 472,
+              "outputTokens": 502,
+              "cacheReadTokens": 896,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1870
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\335caa64b953432aa3193616df3f2eea\\harness\\call.json",
+          "session_id": "session-2db5c1ce-0d3a-4dd4-aa68-d89539c44fe0",
+          "seconds": 10.3,
+          "finish": "max-tokens",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 5571,
+              "outputTokens": 1662,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 7745
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\2e3bd6a96a3e40398631da8410ac4083\\harness\\call.json",
+          "session_id": "session-bfaab0ab-6b86-4328-b03e-953b717e2c19",
+          "seconds": 6.542,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1305,
+              "outputTokens": 555,
+              "cacheReadTokens": 1024,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2884
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\2a6198ba1ccc4c15a8cbca5f4480c94b\\harness\\call.json",
+          "session_id": "session-04991347-deaa-4041-80e8-025ed442ebc2",
+          "seconds": 5.469,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 617,
+              "outputTokens": 387,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1644
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\2235695f396a4e41a549a043575e073d\\harness\\call.json",
+          "session_id": "session-3b3b903a-4fde-4220-8b5d-dfc1ad58bbc9",
+          "seconds": 5.765,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 256,
+              "outputTokens": 477,
+              "cacheReadTokens": 2048,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2781
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\1aeef9bda9914f7e8b2d32f9e9a434b5\\harness\\call.json",
+          "session_id": "session-34cafaca-31d0-4ab7-b883-61b4bfc78666",
+          "seconds": 6.817,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 2271,
+              "outputTokens": 723,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3506
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\1a6d89e64e3a4d158f6357d277916a8e\\harness\\call.json",
+          "session_id": "session-f2024a0d-73f7-4935-9e97-69f4de715ec1",
+          "seconds": 6.082,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1139,
+              "outputTokens": 618,
+              "cacheReadTokens": 1024,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2781
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\1205c958732141f5bd90bac334dd897c\\harness\\call.json",
+          "session_id": "session-3ddc7fd2-9e44-4b80-b4de-2ab6fb4b5659",
+          "seconds": 27.465,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 134,
+              "outputTokens": 235,
+              "cacheReadTokens": 638,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1007
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\09e38b2259254649a34acbae9c53e2c9\\harness\\call.json",
+          "session_id": "session-b36e6313-029e-4ef8-8cff-5c688a48c556",
+          "seconds": 4.751,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 175,
+              "outputTokens": 209,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1152
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\08e95e30b0d24fdebf794d986d07b665\\harness\\call.json",
+          "session_id": "session-712a6de3-b022-4d46-a907-807fdd0ee0ab",
+          "seconds": 5.681,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1510,
+              "outputTokens": 479,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2629
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\04a22adc85d547e1b0804740d9f12543\\harness\\call.json",
+          "session_id": "session-94fb546f-5793-4a2d-80a3-4912e71d160e",
+          "seconds": 12.243,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 3342,
+              "outputTokens": 1540,
+              "cacheReadTokens": 1152,
+              "cacheWriteTokens": 0,
+              "totalTokens": 6034
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\044925b73c3540f1bc96416987b82c17\\harness\\call.json",
+          "session_id": "session-e52e6f66-b8be-43ca-8d3b-d47ec2631fc9",
+          "seconds": 6.03,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 206,
+              "outputTokens": 516,
+              "cacheReadTokens": 2048,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2770
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source\\harness-model-calls\\03cf2fef86004536b123c98a799c8b4f\\harness\\call.json",
+          "session_id": "session-910e9c24-2c16-4bd6-ba7a-8b09e7346205",
+          "seconds": 11.112,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 5575,
+              "outputTokens": 1589,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 7676
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-c02-corrected\\harness-model-calls\\f7e09f36b66143588612b36af9924f7f\\harness\\call.json",
+          "session_id": "session-7cead65c-58c0-4b2e-a92a-d43133fe1009",
+          "seconds": 6.755,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1641,
+              "outputTokens": 611,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2892
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-c02-corrected\\harness-model-calls\\ef76c7a4fab44d5986abc36bf52c552e\\harness\\call.json",
+          "session_id": "session-7dcce845-23dd-44b4-bb2b-b0cd944c7430",
+          "seconds": 6.254,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 587,
+              "outputTokens": 488,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1715
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-c02-corrected\\harness-model-calls\\eabdf2efc08b41bbbf3be837a0f3280c\\harness\\call.json",
+          "session_id": "session-79382116-b792-44ec-9d76-719f886cbde3",
+          "seconds": 10.628,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 5774,
+              "outputTokens": 1527,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 7813
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-c02-corrected\\harness-model-calls\\cb61fde2acfb42eeb7142d16989ff0af\\harness\\call.json",
+          "session_id": "session-998ab7da-da7e-484e-a0d8-e99a404e59ed",
+          "seconds": 6.339,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 444,
+              "outputTokens": 260,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1216
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-c02-corrected\\harness-model-calls\\afc09aa1c41e4a90bf3edcf9931e34d2\\harness\\call.json",
+          "session_id": "session-3f34880a-52f6-42d3-882f-b37971d47c63",
+          "seconds": 6.028,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1685,
+              "outputTokens": 530,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2855
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-c02-corrected\\harness-model-calls\\a7e0f4173b6343dd925ee0c5b3653e88\\harness\\call.json",
+          "session_id": "session-00a5d7fd-9130-4caa-a258-75bfed67808d",
+          "seconds": 12.455,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 3673,
+              "outputTokens": 1549,
+              "cacheReadTokens": 896,
+              "cacheWriteTokens": 0,
+              "totalTokens": 6118
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-c02-corrected\\harness-model-calls\\9533d9b1083944299b30654e074f62cd\\harness\\call.json",
+          "session_id": "session-c7caaba9-68a6-46f2-b4f4-9c9e804c14b8",
+          "seconds": 6.062,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1523,
+              "outputTokens": 571,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2734
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-c02-corrected\\harness-model-calls\\8108735b7244422ba10f924031ed3e9c\\harness\\call.json",
+          "session_id": "session-6b947ddc-f65d-459e-9dde-2d1f206f415e",
+          "seconds": 6.542,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1459,
+              "outputTokens": 619,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2718
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-c02-corrected\\harness-model-calls\\4f429c7939be4d8cb0a3c6a0bfaab525\\harness\\call.json",
+          "session_id": "session-0a9aa17c-37dc-4091-86e5-e59a066c5b19",
+          "seconds": 6.249,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1535,
+              "outputTokens": 582,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2757
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\harness-model-calls\\ee16bb64a5b5405db5b9c2e1c460a21a\\harness\\call.json",
+          "session_id": "session-e6ced75b-2da9-49e4-bcf5-717f3d79fc7e",
+          "seconds": 9.135,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 221,
+              "outputTokens": 1501,
+              "cacheReadTokens": 2688,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4410
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\harness-model-calls\\9fa0f6d97a6f45d29a837a9ffc9239e1\\harness\\call.json",
+          "session_id": "session-f32bf0b2-06e5-4ab6-b0b9-9af8359e82aa",
+          "seconds": 11.308,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 167,
+              "outputTokens": 2195,
+              "cacheReadTokens": 2688,
+              "cacheWriteTokens": 0,
+              "totalTokens": 5050
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-source-d-repeat\\harness-model-calls\\233597de636a406198f6130430087f7d\\harness\\call.json",
+          "session_id": "session-2204415e-3638-471b-8b66-ee85e1c69bc7",
+          "seconds": 11.864,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 240,
+              "outputTokens": 2471,
+              "cacheReadTokens": 4224,
+              "cacheWriteTokens": 0,
+              "totalTokens": 6935
+            }
+          ],
+          "errors": []
+        }
+      ],
+      "official_score": null
+    },
+    "v14": {
+      "target": "research-assistant:0.4.1-v14-20261023",
+      "immutable_id": "sha256:e0a0d36a8bfec77d3ed2a25f4fede7dbb155715b9dfbb3f757355346b78eab11",
+      "raw_primary_counts": {
+        "PASS": 105,
+        "FAIL": 5,
+        "BLOCKED": 6
+      },
+      "raw_primary_unique_check_count": 115,
+      "raw_failures": [
+        {
+          "id": "container.D.cancel_stops_child",
+          "group": "time-budget",
+          "status": "FAIL",
+          "level": "quality",
+          "evidence": null,
+          "error": "AssertionError: Child not stopped within case/cancel budget: 3.167s"
+        },
+        {
+          "id": "container.quality.platform_error_classification",
+          "group": "recovery",
+          "status": "FAIL",
+          "level": "quality",
+          "evidence": null,
+          "error": "AssertionError: Structured error loses upstream code and returns failed; raw stderr still retained"
+        },
+        {
+          "id": "live.C-02",
+          "group": "A-E-live",
+          "status": "FAIL",
+          "level": "required",
+          "evidence": null,
+          "error": "AssertionError: SDK execution failed: {\"task_id\": \"comparison-public-C-02\", \"status\": \"error\", \"output\": {\"answer\": \"\", \"error\": \"EvidenceError\"}, \"metadata\": {\"llm_call_count\": 6, \"max_depth\": 4, \"retry_count_total\": 0, \"total_input_tokens\": 10650, \"total_output_tokens\": 3205, \"tool_call_count\": 21, \"unique_tool_count\": 7, \"parallel_tool_count\": 3, \"session_id\": \"31e7e54104e34683bd164fe348bda4b6\", \"trace_id\": \"e319cd9e21a21900cf4d8a3082d04565\", \"llm_calls\": 6, \"total_tokens\": 13855, \"duration_ms\": 37433.045804, \"tools_used\": [\"build_authorized_index\", \"build_claim_ledger\", \"compose_and_check_report\", \"hybrid_retrieve\", \"resolve_authorized_materials\", \"run_assigned_case\", \"write_evidence_backed_report\"]}}",
+          "seconds": 37.467
+        },
+        {
+          "id": "live.D-01.model_source_generation",
+          "group": "D-source-live",
+          "status": "FAIL",
+          "level": "required",
+          "evidence": null,
+          "error": "AssertionError: Final internal self-test failed; source is rejected",
+          "seconds": 22.265
+        },
+        {
+          "id": "live.D-02.model_source_generation",
+          "group": "D-source-live",
+          "status": "FAIL",
+          "level": "required",
+          "evidence": null,
+          "error": "AssertionError: Final internal self-test failed; source is rejected",
+          "seconds": 33.488
+        }
+      ],
+      "product_failures": [
+        {
+          "id": "container.D.cancel_stops_child",
+          "group": "time-budget",
+          "status": "FAIL",
+          "level": "quality",
+          "evidence": null,
+          "error": "AssertionError: Child not stopped within case/cancel budget: 3.167s"
+        },
+        {
+          "id": "container.quality.platform_error_classification",
+          "group": "recovery",
+          "status": "FAIL",
+          "level": "quality",
+          "evidence": null,
+          "error": "AssertionError: Structured error loses upstream code and returns failed; raw stderr still retained"
+        },
+        {
+          "id": "live.D-01.model_source_generation",
+          "group": "D-source-live",
+          "status": "FAIL",
+          "level": "required",
+          "evidence": null,
+          "error": "AssertionError: Final internal self-test failed; source is rejected",
+          "seconds": 22.265
+        },
+        {
+          "id": "live.D-02.model_source_generation",
+          "group": "D-source-live",
+          "status": "FAIL",
+          "level": "required",
+          "evidence": null,
+          "error": "AssertionError: Final internal self-test failed; source is rejected",
+          "seconds": 33.488
+        },
+        {
+          "id": "live.C-02.corrected",
+          "group": "A-E-live",
+          "status": "FAIL",
+          "level": "required",
+          "evidence": null,
+          "error": "AssertionError: SDK execution failed: {\"task_id\": \"comparison-public-C-02-corrected\", \"status\": \"error\", \"output\": {\"answer\": \"\", \"error\": \"ModelError\"}, \"metadata\": {\"llm_call_count\": 6, \"max_depth\": 4, \"retry_count_total\": 0, \"total_input_tokens\": 12664, \"total_output_tokens\": 3761, \"tool_call_count\": 41, \"unique_tool_count\": 8, \"parallel_tool_count\": 3, \"session_id\": \"f30210f987d848d0ae57527e1e4438bd\", \"trace_id\": \"f8d8b14340a99168555cf39d133e67e8\", \"llm_calls\": 6, \"total_tokens\": 16425, \"duration_ms\": 91627.266349, \"tools_used\": [\"build_authorized_index\", \"build_claim_ledger\", \"chunk_pages\", \"compose_and_check_report\", \"hybrid_retrieve\", \"read_document_pages\", \"resolve_authorized_materials\", \"run_assigned_case\"]}}",
+          "seconds": 91.647,
+          "run": "corrected-C-02"
+        },
+        {
+          "id": "public_algorithm.D-05.json",
+          "group": "D-public-algorithm",
+          "status": "FAIL",
+          "level": "required",
+          "evidence": null,
+          "error": "AssertionError: Wrong value at baseline/dropped/0/reason",
+          "seconds": 1.048,
+          "run": "D-independent-repeat"
+        }
+      ],
+      "invalid_two_paper_survey": {
+        "observed": "FAIL",
+        "classification": "Test-author invalid expectation; Survey requires five papers. Raw FAIL is preserved, but is not a product defect."
+      },
+      "abce": {
+        "A-01": {
+          "status": "PASS",
+          "seconds": 6.157,
+          "error": null,
+          "evidence": {
+            "case_id": "A-01",
+            "kind": "Chat",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-ABCE\\output\\data\\workspace_team\\A-01.json",
+            "seconds": 6.1509967999882065,
+            "real_model_calls": 1
+          }
+        },
+        "B-01": {
+          "status": "PASS",
+          "seconds": 120.724,
+          "error": null,
+          "evidence": {
+            "case_id": "B-01",
+            "kind": "Literature_Retrieval",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-ABCE\\output\\data\\workspace_team\\B-01.json",
+            "seconds": 120.71842759998981,
+            "real_model_calls": 3
+          }
+        },
+        "B-02": {
+          "status": "PASS",
+          "seconds": 27.463,
+          "error": null,
+          "evidence": {
+            "case_id": "B-02",
+            "kind": "Literature_Retrieval",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-ABCE\\output\\data\\workspace_team\\B-02.json",
+            "seconds": 27.457000599999446,
+            "real_model_calls": 3
+          }
+        },
+        "B-03": {
+          "status": "PASS",
+          "seconds": 15.522,
+          "error": null,
+          "evidence": {
+            "case_id": "B-03",
+            "kind": "Literature_Retrieval",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-ABCE\\output\\data\\workspace_team\\B-03.json",
+            "seconds": 15.514035400003195,
+            "real_model_calls": 3
+          }
+        },
+        "C-01": {
+          "status": "PASS",
+          "seconds": 68.322,
+          "error": null,
+          "evidence": {
+            "case_id": "C-01",
+            "kind": "Survey",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-ABCE\\output\\data\\workspace_team\\C-01.json",
+            "seconds": 68.3142459000228,
+            "real_model_calls": 9
+          }
+        },
+        "C-02": {
+          "status": "FAIL",
+          "seconds": 91.647,
+          "error": "AssertionError: SDK execution failed: {\"task_id\": \"comparison-public-C-02-corrected\", \"status\": \"error\", \"output\": {\"answer\": \"\", \"error\": \"ModelError\"}, \"metadata\": {\"llm_call_count\": 6, \"max_depth\": 4, \"retry_count_total\": 0, \"total_input_tokens\": 12664, \"total_output_tokens\": 3761, \"tool_call_count\": 41, \"unique_tool_count\": 8, \"parallel_tool_count\": 3, \"session_id\": \"f30210f987d848d0ae57527e1e4438bd\", \"trace_id\": \"f8d8b14340a99168555cf39d133e67e8\", \"llm_calls\": 6, \"total_tokens\": 16425, \"duration_ms\": 91627.266349, \"tools_used\": [\"build_authorized_index\", \"build_claim_ledger\", \"chunk_pages\", \"compose_and_check_report\", \"hybrid_retrieve\", \"read_document_pages\", \"resolve_authorized_materials\", \"run_assigned_case\"]}}",
+          "evidence": null
+        },
+        "E-01": {
+          "status": "PASS",
+          "seconds": 80.137,
+          "error": null,
+          "evidence": {
+            "case_id": "E-01",
+            "kind": "Idea",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-ABCE\\output\\data\\workspace_team\\E-01.json",
+            "seconds": 80.12857649999205,
+            "real_model_calls": 12
+          }
+        },
+        "E-02": {
+          "status": "PASS",
+          "seconds": 61.278,
+          "error": null,
+          "evidence": {
+            "case_id": "E-02",
+            "kind": "Idea",
+            "status": "answered",
+            "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\live-ABCE\\output\\data\\workspace_team\\E-02.json",
+            "seconds": 61.271483299991814,
+            "real_model_calls": 9
+          }
+        }
+      },
+      "abce_pass": 7,
+      "retrieval": {
+        "B-01": {
+          "id": "retrieval.exact.B-01",
+          "group": "retrieval-quality",
+          "status": "PASS",
+          "level": "quality",
+          "evidence": {
+            "matched": [
+              "2005.11401-RAG.pdf",
+              "2007.01282-FiD.pdf",
+              "2310.11511-Self-RAG.pdf"
+            ],
+            "frozen_public_relevance_expectation": true
+          },
+          "error": null,
+          "seconds": 0.002
+        },
+        "B-02": {
+          "id": "retrieval.exact.B-02",
+          "group": "retrieval-quality",
+          "status": "PASS",
+          "level": "quality",
+          "evidence": {
+            "matched": [
+              "2004.04906-DPR.pdf"
+            ],
+            "frozen_public_relevance_expectation": true
+          },
+          "error": null,
+          "seconds": 0.002
+        },
+        "B-03": {
+          "id": "retrieval.exact.B-03",
+          "group": "retrieval-quality",
+          "status": "PASS",
+          "level": "quality",
+          "evidence": {
+            "matched": [
+              "2104.08663-BEIR.pdf"
+            ],
+            "frozen_public_relevance_expectation": true
+          },
+          "error": null,
+          "seconds": 0.004
+        }
+      },
+      "D": {
+        "D-01": {
+          "generation_status": "FAIL",
+          "generation_error": "AssertionError: Final internal self-test failed; source is rejected",
+          "whole_local_flow_seconds": 19.0735352000047,
+          "selftest_attempts": [
+            {
+              "attempt": 1,
+              "status": "failed",
+              "error_type": "ValueError",
+              "message": "algorithm output requires exactly baseline/candidate/details"
+            },
+            {
+              "attempt": 2,
+              "status": "failed",
+              "error_type": "ValueError",
+              "message": "public sample execution failed: {\"error_type\": \"ValueError\", \"message\": \"sample self-test forbids dynamic loading, I/O and introspection\"}"
+            }
+          ],
+          "formal_submission_status": "failed",
+          "formal_verified": false
+        },
+        "D-02": {
+          "generation_status": "FAIL",
+          "generation_error": "AssertionError: Final internal self-test failed; source is rejected",
+          "whole_local_flow_seconds": 29.97340710001299,
+          "selftest_attempts": [
+            {
+              "attempt": 1,
+              "status": "failed",
+              "error_type": "ValueError",
+              "message": "public sample execution failed: {\"error_type\": \"ValueError\", \"message\": \"sample self-test forbids dynamic loading, I/O and introspection\"}"
+            },
+            {
+              "attempt": 2,
+              "status": "failed",
+              "error_type": "ValueError",
+              "message": "public sample execution failed: {\"error_type\": \"ValueError\", \"message\": \"sample self-test forbids private or runtime attributes\"}"
+            }
+          ],
+          "formal_submission_status": "failed",
+          "formal_verified": false
+        },
+        "D-05": {
+          "generation_status": "PASS",
+          "generation_error": null,
+          "whole_local_flow_seconds": 21.607563000026857,
+          "selftest_attempts": [
+            {
+              "attempt": 1,
+              "status": "failed",
+              "error_type": "ValueError",
+              "message": "public sample execution failed: {\"error_type\": \"ValueError\", \"message\": \"sample self-test forbids dynamic loading, I/O and introspection\"}"
+            },
+            {
+              "attempt": 2,
+              "source_sha256": "1a0c5e8d6ccdb1a78ddc360fde717a3efb1c9d20f8bd5275dcca220cadf9e2a4",
+              "status": "passed",
+              "scope": "public_sample_structure_and_invariants",
+              "candidate_present": true,
+              "isolation": {
+                "resource_limits": true,
+                "syscall_filter": true
+              }
+            }
+          ],
+          "formal_submission_status": "failed",
+          "formal_verified": false
+        }
+      },
+      "public_algorithm": {
+        "pass": 7,
+        "rows": [
+          {
+            "id": "public_algorithm.D-01",
+            "group": "D-public-algorithm",
+            "status": "BLOCKED",
+            "level": "required",
+            "evidence": null,
+            "error": "No accepted source from this run"
+          },
+          {
+            "id": "public_algorithm.D-02",
+            "group": "D-public-algorithm",
+            "status": "BLOCKED",
+            "level": "required",
+            "evidence": null,
+            "error": "No accepted source from this run"
+          },
+          {
+            "id": "public_algorithm.D-05.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\public-workers\\D-05\\D-05-504f69"
+            },
+            "error": null,
+            "seconds": 1.067
+          },
+          {
+            "id": "public_algorithm.D-05/并发预留.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 3,
+              "servers": 2,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/并发预留.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\public-workers\\D-05\\并发预留-4764ae"
+            },
+            "error": null,
+            "seconds": 1.054
+          },
+          {
+            "id": "public_algorithm.D-05/拒绝后同服务器重试.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 3,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/拒绝后同服务器重试.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\public-workers\\D-05\\拒绝后同服务器重试-68e495"
+            },
+            "error": null,
+            "seconds": 1.399
+          },
+          {
+            "id": "public_algorithm.D-05/空任务与零服务流.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 0,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/空任务与零服务流.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\public-workers\\D-05\\空任务与零服务流-036ab1"
+            },
+            "error": null,
+            "seconds": 1.012
+          },
+          {
+            "id": "public_algorithm.D-05/空闲间隔与流切换.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/空闲间隔与流切换.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\public-workers\\D-05\\空闲间隔与流切换-9a6a6e"
+            },
+            "error": null,
+            "seconds": 1.049
+          },
+          {
+            "id": "public_algorithm.D-05/窗口恰好与超窗.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/窗口恰好与超窗.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\public-workers\\D-05\\窗口恰好与超窗-460a6c"
+            },
+            "error": null,
+            "seconds": 1.106
+          },
+          {
+            "id": "public_algorithm.D-05/过期与同时到达.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 2,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/过期与同时到达.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\public-workers\\D-05\\过期与同时到达-4a01ae"
+            },
+            "error": null,
+            "seconds": 1.075
+          }
+        ]
+      },
+      "D_repeat": {
+        "generation_pass": 3,
+        "public_pass": 12,
+        "rows": [
+          {
+            "id": "image.immutable_identity",
+            "group": "runtime",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "tag": "research-assistant:0.4.1-v14-20261023",
+              "id": "sha256:e0a0d36a8bfec77d3ed2a25f4fede7dbb155715b9dfbb3f757355346b78eab11",
+              "user": "agent",
+              "platform": "linux/amd64"
+            },
+            "error": null,
+            "seconds": 0.003
+          },
+          {
+            "id": "live.D-01.model_source_generation",
+            "group": "D-source-live",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "case_id": "D-01",
+              "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\live-D-01\\output\\data\\workspace_team\\work\\D-01\\1b882c01a5af4dff99d4bde51bd3d830\\implementation.py",
+              "sha256": "f6417da521dc766017d6d0b643994202ef134309a48b678080f12c02a68e600e",
+              "seconds": 11.036005100002512,
+              "real_model_calls": 1,
+              "official_execution": "BLOCKED"
+            },
+            "error": null,
+            "seconds": 14.146
+          },
+          {
+            "id": "public_algorithm.D-01.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "training_rows": 18,
+              "test_rows": 4,
+              "vocabulary": 24,
+              "model_replay_verified": true,
+              "request": "D-01.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-01\\D-01-13d7ba"
+            },
+            "error": null,
+            "seconds": 1.252
+          },
+          {
+            "id": "public_algorithm.D-01/不均衡-重复词-标点.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "training_rows": 4,
+              "test_rows": 4,
+              "vocabulary": 4,
+              "model_replay_verified": true,
+              "request": "D-01/不均衡-重复词-标点.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-01\\不均衡-重复词-标点-dae02e"
+            },
+            "error": null,
+            "seconds": 1.098
+          },
+          {
+            "id": "public_algorithm.D-01/均衡-空文本-未知词.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "training_rows": 2,
+              "test_rows": 4,
+              "vocabulary": 4,
+              "model_replay_verified": true,
+              "request": "D-01/均衡-空文本-未知词.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-01\\均衡-空文本-未知词-c6ea6a"
+            },
+            "error": null,
+            "seconds": 1.264
+          },
+          {
+            "id": "live.D-02.model_source_generation",
+            "group": "D-source-live",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "case_id": "D-02",
+              "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\live-D-02\\output\\data\\workspace_team\\work\\D-02\\87c38e2a73654ddea73c59c42cee8ce8\\implementation.py",
+              "sha256": "82adc005f0e398c790e72d7857c45c1d92b80b23d473a70fe9f25ef6c6b44a10",
+              "seconds": 13.585152500018012,
+              "real_model_calls": 1,
+              "official_execution": "BLOCKED"
+            },
+            "error": null,
+            "seconds": 16.926
+          },
+          {
+            "id": "public_algorithm.D-02.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "grid_checked": 27,
+              "groups": 2,
+              "selected": {
+                "b": 0.0,
+                "k1": 0.4,
+                "title_weight": 0.5
+              },
+              "request": "D-02.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-02\\D-02-9c04dd"
+            },
+            "error": null,
+            "seconds": 1.055
+          },
+          {
+            "id": "public_algorithm.D-02/rank-default.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "rank_phase": true,
+              "queries": 3,
+              "request": "D-02/rank-default.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-02\\rank-default-61ec04"
+            },
+            "error": null,
+            "seconds": 1.08
+          },
+          {
+            "id": "public_algorithm.D-02/空字段-重复未知词-不等组.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "grid_checked": 27,
+              "groups": 2,
+              "selected": {
+                "b": 0.0,
+                "k1": 0.4,
+                "title_weight": 0.0
+              },
+              "request": "D-02/空字段-重复未知词-不等组.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-02\\空字段-重复未知词-不等组-e77870"
+            },
+            "error": null,
+            "seconds": 1.25
+          },
+          {
+            "id": "live.D-05.model_source_generation",
+            "group": "D-source-live",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "case_id": "D-05",
+              "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\live-D-05\\output\\data\\workspace_team\\work\\D-05\\08f7c36ba3674de89d85409b4916c026\\implementation.py",
+              "sha256": "832e6964669f18d5e2c686e782d25b55d7f6cdbdd8d0fcd907e05b8a9b01d097",
+              "seconds": 13.751094799983548,
+              "real_model_calls": 1,
+              "official_execution": "BLOCKED"
+            },
+            "error": null,
+            "seconds": 16.907
+          },
+          {
+            "id": "public_algorithm.D-05.json",
+            "group": "D-public-algorithm",
+            "status": "FAIL",
+            "level": "required",
+            "evidence": null,
+            "error": "AssertionError: Wrong value at baseline/dropped/0/reason",
+            "seconds": 1.048
+          },
+          {
+            "id": "public_algorithm.D-05/并发预留.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 3,
+              "servers": 2,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/并发预留.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-05\\并发预留-af7d4e"
+            },
+            "error": null,
+            "seconds": 1.14
+          },
+          {
+            "id": "public_algorithm.D-05/拒绝后同服务器重试.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 3,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/拒绝后同服务器重试.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-05\\拒绝后同服务器重试-977467"
+            },
+            "error": null,
+            "seconds": 1.238
+          },
+          {
+            "id": "public_algorithm.D-05/空任务与零服务流.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 0,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/空任务与零服务流.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-05\\空任务与零服务流-01b504"
+            },
+            "error": null,
+            "seconds": 1.048
+          },
+          {
+            "id": "public_algorithm.D-05/空闲间隔与流切换.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/空闲间隔与流切换.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-05\\空闲间隔与流切换-256bdb"
+            },
+            "error": null,
+            "seconds": 1.158
+          },
+          {
+            "id": "public_algorithm.D-05/窗口恰好与超窗.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 1,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/窗口恰好与超窗.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-05\\窗口恰好与超窗-9eba09"
+            },
+            "error": null,
+            "seconds": 1.12
+          },
+          {
+            "id": "public_algorithm.D-05/过期与同时到达.json",
+            "group": "D-public-algorithm",
+            "status": "PASS",
+            "level": "required",
+            "evidence": {
+              "jobs": 2,
+              "servers": 2,
+              "fifo_and_fair_verified": true,
+              "request": "D-05/过期与同时到达.json",
+              "python": "3.9",
+              "network": "none",
+              "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-05\\过期与同时到达-758d22"
+            },
+            "error": null,
+            "seconds": 1.063
+          },
+          {
+            "id": "replay.D-01",
+            "group": "D-reproducibility",
+            "status": "PASS",
+            "level": "quality",
+            "evidence": {
+              "id": "replay.D-01",
+              "group": "D-reproducibility",
+              "status": "PASS",
+              "source_sha256": "f6417da521dc766017d6d0b643994202ef134309a48b678080f12c02a68e600e",
+              "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-01\\D-01-13d7ba\\result.json",
+              "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\reproducibility\\D-01\\stdout.txt",
+              "python": "3.9",
+              "network": "none",
+              "official_provenance": false
+            },
+            "error": null
+          },
+          {
+            "id": "replay.D-02",
+            "group": "D-reproducibility",
+            "status": "PASS",
+            "level": "quality",
+            "evidence": {
+              "id": "replay.D-02",
+              "group": "D-reproducibility",
+              "status": "PASS",
+              "source_sha256": "82adc005f0e398c790e72d7857c45c1d92b80b23d473a70fe9f25ef6c6b44a10",
+              "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-02\\D-02-9c04dd\\result.json",
+              "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\reproducibility\\D-02\\stdout.txt",
+              "python": "3.9",
+              "network": "none",
+              "official_provenance": false
+            },
+            "error": null
+          },
+          {
+            "id": "replay.D-05",
+            "group": "D-reproducibility",
+            "status": "PASS",
+            "level": "quality",
+            "evidence": {
+              "id": "replay.D-05",
+              "group": "D-reproducibility",
+              "status": "PASS",
+              "source_sha256": "832e6964669f18d5e2c686e782d25b55d7f6cdbdd8d0fcd907e05b8a9b01d097",
+              "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\public-workers\\D-05\\D-05-b8f51c\\result.json",
+              "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\reproducibility\\D-05\\stdout.txt",
+              "python": "3.9",
+              "network": "none",
+              "official_provenance": false
+            },
+            "error": null
+          }
+        ]
+      },
+      "replays": [
+        {
+          "id": "replay.D-01",
+          "group": "D-reproducibility",
+          "status": "BLOCKED",
+          "error": "AssertionError: No accepted source available"
+        },
+        {
+          "id": "replay.D-02",
+          "group": "D-reproducibility",
+          "status": "BLOCKED",
+          "error": "AssertionError: No accepted source available"
+        },
+        {
+          "id": "replay.D-05",
+          "group": "D-reproducibility",
+          "status": "PASS",
+          "source_sha256": "1a0c5e8d6ccdb1a78ddc360fde717a3efb1c9d20f8bd5275dcca220cadf9e2a4",
+          "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\public-workers\\D-05\\D-05-504f69\\result.json",
+          "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\reproducibility\\D-05\\stdout.txt",
+          "python": "3.9",
+          "network": "none",
+          "official_provenance": false
+        }
+      ],
+      "quotes": [
+        {
+          "case_id": "C-01",
+          "status": "PASS",
+          "quotes_found": 29,
+          "quotes_checked": 29,
+          "checks": [
+            {
+              "evidence_id": "ev-1",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-4",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-6",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-5",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-2",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-3",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-7",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-10",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 5,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-12",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 18,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-11",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 5,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-8",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-9",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-13",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-15",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-16",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 4,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-17",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-14",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-18",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-22",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-23",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 15,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-21",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-19",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-20",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-24",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-26",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-28",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-29",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-25",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-27",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            }
+          ],
+          "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+        },
+        {
+          "case_id": "E-01",
+          "status": "PASS",
+          "quotes_found": 20,
+          "quotes_checked": 20,
+          "checks": [
+            {
+              "evidence_id": "ev-1",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-4",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 4,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-5",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-25",
+              "filename": "2004.04906-DPR.pdf",
+              "page": 5,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-7",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-10",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 5,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-11",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 5,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-8",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-13",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-17",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-14",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-18",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 4,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-19",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-20",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-24",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 7,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-21",
+              "filename": "2112.04426-RETRO.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-30",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-33",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-31",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-32",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            }
+          ],
+          "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+        },
+        {
+          "case_id": "E-02",
+          "status": "PASS",
+          "quotes_found": 12,
+          "quotes_checked": 12,
+          "checks": [
+            {
+              "evidence_id": "ev-1",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-2",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-5",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 5,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-22",
+              "filename": "2005.11401-RAG.pdf",
+              "page": 17,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-7",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-11",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 1,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-12",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-9",
+              "filename": "2007.01282-FiD.pdf",
+              "page": 3,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-13",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-17",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 8,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-18",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 10,
+              "quote_found_on_cited_page": true
+            },
+            {
+              "evidence_id": "ev-14",
+              "filename": "2310.11511-Self-RAG.pdf",
+              "page": 2,
+              "quote_found_on_cited_page": true
+            }
+          ],
+          "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+        },
+        {
+          "case_id": "C-02",
+          "status": "BLOCKED",
+          "reason": "No unique completed evidence ledger"
+        }
+      ],
+      "quotes_found": 61,
+      "quotes_checked": 61,
+      "native_harness_calls": 62,
+      "native_usage_total_tokens": 201598,
+      "model_calls": [
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-review\\call.json",
+          "session_id": "session-d1a26dd3-eaf0-4a22-a764-39422290cb1b",
+          "seconds": 11.228,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 2678,
+              "outputTokens": 1519,
+              "cacheReadTokens": 2816,
+              "cacheWriteTokens": 0,
+              "totalTokens": 7013
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\fe27c8dd125242d59973815dcdcce545\\harness\\call.json",
+          "session_id": "session-3adbdda0-f294-4d42-a1f7-1f5899d36e98",
+          "seconds": 7.142,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1403,
+              "outputTokens": 634,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2549
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\fb8db050dcae48109d4d1e84aa826f97\\harness\\call.json",
+          "session_id": "session-35607d15-bfef-40df-9e42-01f22cfec712",
+          "seconds": 14.009,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1780,
+              "outputTokens": 1602,
+              "cacheReadTokens": 896,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4278
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\fb58db00b9ff4680a50375980d3cfb7b\\harness\\call.json",
+          "session_id": "session-758b1d9a-6072-444f-9085-772b0bb972ab",
+          "seconds": 7.181,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1477,
+              "outputTokens": 791,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2908
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\f355416e200e461f969a13c91103e2a8\\harness\\call.json",
+          "session_id": "session-56701a19-4ce4-4805-839f-6abd9b95c038",
+          "seconds": 6.998,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1665,
+              "outputTokens": 677,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2854
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\f1760e3139a94743973fb105c939d54e\\harness\\call.json",
+          "session_id": "session-ba695b08-a63b-4d30-8fca-7d7eaf61fff7",
+          "seconds": 3.849,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1109,
+              "outputTokens": 6,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1755
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\eb8e9546ee2a4fd888a9af14f990b111\\harness\\call.json",
+          "session_id": "session-da8ffb00-844d-4847-9e38-982ae907def3",
+          "seconds": 6.487,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1329,
+              "outputTokens": 609,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2578
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\ea52827ebec541038de2e168c09066b3\\harness\\call.json",
+          "session_id": "session-5a8fafd9-9512-4dbc-9581-6ec3fd136ef1",
+          "seconds": 5.602,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 3026,
+              "outputTokens": 219,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4013
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\e89b9285acb44521b95a20dd0cbdb7d8\\harness\\call.json",
+          "session_id": "session-2e6f9ac9-5dc2-4483-94b0-6670ce6203ec",
+          "seconds": 5.87,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1280,
+              "outputTokens": 538,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2458
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\e1a42fc28d5647e58ce6a2814cf69503\\harness\\call.json",
+          "session_id": "session-f01dd0bc-e6d7-49e1-8f64-b864b1073bdc",
+          "seconds": 6.076,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1293,
+              "outputTokens": 578,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2511
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\d970db8ab3884e71a970a270a7237aec\\harness\\call.json",
+          "session_id": "session-eeabb9b6-d206-4ee6-95de-b4448cc5aed3",
+          "seconds": 7.191,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1825,
+              "outputTokens": 734,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3199
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\d634afcfdc4d40fd93be332a44d2c96e\\harness\\call.json",
+          "session_id": "session-218e33a9-77b7-40c5-8dbb-54a0163bd258",
+          "seconds": 4.635,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 2041,
+              "outputTokens": 264,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2817
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\c4a5885fa5f54b36bed5d5583031f385\\harness\\call.json",
+          "session_id": "session-6da96bfe-eb14-4b4c-bc34-6900e36d69e6",
+          "seconds": 15.624,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 3389,
+              "outputTokens": 1962,
+              "cacheReadTokens": 384,
+              "cacheWriteTokens": 0,
+              "totalTokens": 5735
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\c36b3980769e4206a96960937b451a0a\\harness\\call.json",
+          "session_id": "session-56e8c80a-c6fb-4e0a-9dc4-e7480b19ec6b",
+          "seconds": 7.631,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1774,
+              "outputTokens": 641,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3055
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\bf4fad1d48c241568cd0944640bcd24e\\harness\\call.json",
+          "session_id": "session-7b4556e5-519f-4114-9f72-a82c176ba81a",
+          "seconds": 6.793,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1996,
+              "outputTokens": 658,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3294
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\beee20db53c84bc784c4b069929dd008\\harness\\call.json",
+          "session_id": "session-c14f0c89-bc8a-4ef7-81e6-4d4dc854a9d2",
+          "seconds": 7.172,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1899,
+              "outputTokens": 748,
+              "cacheReadTokens": 384,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3031
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\b80f0e0a3b764572ba273099c2ac0275\\harness\\call.json",
+          "session_id": "session-bc4702f6-1bd9-459d-afc2-2db4f8aa5c54",
+          "seconds": 12.555,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 419,
+              "outputTokens": 2581,
+              "cacheReadTokens": 2432,
+              "cacheWriteTokens": 0,
+              "totalTokens": 5432
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\b5c8592c5e244882b7dac16e9943e545\\harness\\call.json",
+          "session_id": "session-7447b98c-3b0b-4311-a50e-dae87ab4deb8",
+          "seconds": 5.861,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 3081,
+              "outputTokens": 487,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4080
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\b3d29f81f57842ebac368533e1edca7c\\harness\\call.json",
+          "session_id": "session-806aced0-37f9-43f8-9b06-70a6e06f0be4",
+          "seconds": 5.817,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 134,
+              "outputTokens": 231,
+              "cacheReadTokens": 638,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1003
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\abf08cdee5074e8291b58c280cb901e0\\harness\\call.json",
+          "session_id": "session-ae339f2a-60ae-4edf-9b82-c15839fca149",
+          "seconds": 5.556,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 174,
+              "outputTokens": 274,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1216
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\a8a87582ac5f4c1b8f1c2c4796d18b5c\\harness\\call.json",
+          "session_id": "session-0c8441c3-514e-4bdc-8bba-7ff1e84b6e62",
+          "seconds": 4.603,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 2144,
+              "outputTokens": 260,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2916
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\a4d18bc6b25947c3be118ef7b40645d4\\harness\\call.json",
+          "session_id": "session-69eea9e6-05aa-4044-b566-6c224780b5cf",
+          "seconds": 4.297,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1074,
+              "outputTokens": 6,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1848
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\9d8d087c991c4d7aa5020b2fd7cbd6e2\\harness\\call.json",
+          "session_id": "session-a61a095b-9103-4c78-92f5-6ee065ade00c",
+          "seconds": 6.006,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 2440,
+              "outputTokens": 483,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3691
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\9b33a97b480e47a2bcc0a560ebdbe4e6\\harness\\call.json",
+          "session_id": "session-a24f59ea-5fa3-4748-ae5c-9659cd3e893c",
+          "seconds": 12.634,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 3855,
+              "outputTokens": 2712,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 7079
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\99c2f46a927844288eb1d37e51680b2b\\harness\\call.json",
+          "session_id": "session-a533d42a-3ee9-482d-a130-b68da90412e1",
+          "seconds": 13.741,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 2750,
+              "outputTokens": 1485,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4747
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\97310615b4a1499391da176d949744bc\\harness\\call.json",
+          "session_id": "session-d85a755d-078f-4a97-923e-b81506593c1a",
+          "seconds": 7.042,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1700,
+              "outputTokens": 757,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3097
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\94fbaf7444e241b4bad840be8a2930b9\\harness\\call.json",
+          "session_id": "session-329f342f-8f9a-415e-b749-c5aac1274c88",
+          "seconds": 6.497,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1558,
+              "outputTokens": 557,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2755
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\88319c37b05948f5af60c5298f53fe55\\harness\\call.json",
+          "session_id": "session-a9bb975d-c9ec-48ec-af7a-fba3d5bf4318",
+          "seconds": 6.291,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 4712,
+              "outputTokens": 655,
+              "cacheReadTokens": 384,
+              "cacheWriteTokens": 0,
+              "totalTokens": 5751
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\874f3e418e0745df892620760a588274\\harness\\call.json",
+          "session_id": "session-6a5b5cf6-5be9-4e0b-b4e4-0b222e92665c",
+          "seconds": 7.949,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 185,
+              "outputTokens": 1288,
+              "cacheReadTokens": 2688,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4161
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\857da7da2b844f5a894e45ed34d213d0\\harness\\call.json",
+          "session_id": "session-ef1c8703-d438-4dc6-90bd-90436abd2b60",
+          "seconds": 4.874,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 156,
+              "outputTokens": 185,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1109
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\7cfabb9521d34a4886d0327edcfe2646\\harness\\call.json",
+          "session_id": "session-a9f55263-6a9e-447b-8c2a-49e9e4e40a3d",
+          "seconds": 6.53,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 744,
+              "outputTokens": 671,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2055
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\7a848c63e34e454aab6f69138a804fc4\\harness\\call.json",
+          "session_id": "session-9cfa4f50-b203-4d5c-b1d9-29c9a73904bb",
+          "seconds": 4.706,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1434,
+              "outputTokens": 164,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2366
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\73d29b2f03c6449a8bd9889cc280829d\\harness\\call.json",
+          "session_id": "session-accaeca1-01e4-498d-b6bc-dfe48c4b4bb4",
+          "seconds": 6.389,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 688,
+              "outputTokens": 619,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1947
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\6d23c12cb8374646ad847694f043c65a\\harness\\call.json",
+          "session_id": "session-618c614b-22c0-4bd3-b621-cdddc3b9f462",
+          "seconds": 4.969,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 164,
+              "outputTokens": 185,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1117
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\6ab9d31582d94b1b986518f94744a788\\harness\\call.json",
+          "session_id": "session-839cf807-9da0-4427-a469-fa2379c5c87d",
+          "seconds": 9.584,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 2300,
+              "outputTokens": 1808,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4620
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\60a125482be94823953cd79d1deb500e\\harness\\call.json",
+          "session_id": "session-ee3457c4-851b-40a9-aeb3-131a4f15019b",
+          "seconds": 4.499,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 433,
+              "outputTokens": 75,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1020
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\5a224a2552d74dceb3cffabf6c0c9509\\harness\\call.json",
+          "session_id": "session-145b5c64-b894-4af6-8131-6552bebce426",
+          "seconds": 7.431,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 2246,
+              "outputTokens": 953,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3711
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\518c00d514af4fb1986a250c88e8cbd6\\harness\\call.json",
+          "session_id": "session-91f5d15d-7fde-4409-bc9d-bbb28ba8e01a",
+          "seconds": 5.7,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 175,
+              "outputTokens": 232,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1175
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\4e563b8ad47642e39bfb99d4e2e50028\\harness\\call.json",
+          "session_id": "session-cebcf185-2371-40c7-bb8a-217cdf16b33e",
+          "seconds": 6.458,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1455,
+              "outputTokens": 634,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2601
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\4547fb29d624481fbea4b05c21b361c8\\harness\\call.json",
+          "session_id": "session-add5d943-5da2-4cff-97fc-3748f045162c",
+          "seconds": 5.807,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 188,
+              "outputTokens": 328,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1284
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\3e9f46138ec24b10b40ba975e372ef81\\harness\\call.json",
+          "session_id": "session-07700788-d113-4d62-a897-63ca1f96556f",
+          "seconds": 5.691,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 188,
+              "outputTokens": 282,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1238
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\3dc2ebda518f4bebbe12986c14cf6c6b\\harness\\call.json",
+          "session_id": "session-d5f90d3b-599d-4b74-bc53-6747c66a48aa",
+          "seconds": 6.094,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1792,
+              "outputTokens": 516,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2948
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\37b22fa22c3d405ea74e6a7df3e69a77\\harness\\call.json",
+          "session_id": "session-6d96876f-52c3-4546-949f-09a7093c9d0a",
+          "seconds": 3.498,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 3835,
+              "outputTokens": 10,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4485
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\3403a4ac22bb4022b614ce658361c438\\harness\\call.json",
+          "session_id": "session-3ebd554e-151d-4084-bc56-ca25f2540702",
+          "seconds": 5.502,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 6802,
+              "outputTokens": 262,
+              "cacheReadTokens": 384,
+              "cacheWriteTokens": 0,
+              "totalTokens": 7448
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\28097a0072124421b51d3327e387b9f2\\harness\\call.json",
+          "session_id": "session-6d1cff9b-4531-4b05-9b5a-9bf1aed43005",
+          "seconds": 6.402,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1310,
+              "outputTokens": 635,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2585
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\25cf0034b6564b3ba4b8235ba7f45351\\harness\\call.json",
+          "session_id": "session-bebdacd5-cf47-460d-b40c-17293b1546fb",
+          "seconds": 4.661,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 174,
+              "outputTokens": 175,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1117
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\248a189b662c4c5ab62248166734f677\\harness\\call.json",
+          "session_id": "session-508ae260-12d5-42b2-bc0d-56c39a220314",
+          "seconds": 3.85,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 4208,
+              "outputTokens": 10,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4858
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\240353798baf4c2c91f9d99bf7e2ad02\\harness\\call.json",
+          "session_id": "session-26029955-8495-4f28-af68-5c7d3e37a4bd",
+          "seconds": 6.812,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1442,
+              "outputTokens": 717,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2799
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\217f668dfed4439ea6c0218f45d9eb1a\\harness\\call.json",
+          "session_id": "session-4f84335e-ddb3-40b0-add9-aa83d791cf9c",
+          "seconds": 15.88,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 364,
+              "outputTokens": 3237,
+              "cacheReadTokens": 4096,
+              "cacheWriteTokens": 0,
+              "totalTokens": 7697
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\1ae80aeadaef42fa8881a07b4714ab05\\harness\\call.json",
+          "session_id": "session-2b5e6694-21f5-4e8c-a884-dc8cd30e0267",
+          "seconds": 6.006,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 614,
+              "outputTokens": 562,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1816
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\1771afbb979b4c2c82fbbd72e42ae981\\harness\\call.json",
+          "session_id": "session-7d5bc0c2-70a5-4f68-a370-4c474e2f808a",
+          "seconds": 4.664,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 745,
+              "outputTokens": 146,
+              "cacheReadTokens": 2688,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3579
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\0fd2ccc3e8ec44ddb80ae6f3e21c7969\\harness\\call.json",
+          "session_id": "session-4984a633-f898-446d-9d6f-af79c5be9a65",
+          "seconds": 5.688,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 491,
+              "outputTokens": 486,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1617
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14\\harness-model-calls\\0b8e6f598cee47b5905f2735cc0dbf0c\\harness\\call.json",
+          "session_id": "session-9d9490e6-d48b-4cc2-add0-ab10bd10eb69",
+          "seconds": 5.349,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 183,
+              "outputTokens": 212,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1163
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-c02-corrected\\harness-model-calls\\ef9625152c7f43d4853d400401b490d0\\harness\\call.json",
+          "session_id": "session-a4151495-a720-4e61-a486-a09578eb4293",
+          "seconds": 6.792,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1816,
+              "outputTokens": 658,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3114
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-c02-corrected\\harness-model-calls\\c3af764a687548fa9879c1f798d1e6b3\\harness\\call.json",
+          "session_id": "session-40745d9b-a515-4fa6-81f7-9b263cd4e54d",
+          "seconds": 5.752,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 188,
+              "outputTokens": 297,
+              "cacheReadTokens": 768,
+              "cacheWriteTokens": 0,
+              "totalTokens": 1253
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-c02-corrected\\harness-model-calls\\b0122198b4054d03b52f14d827783d0e\\harness\\call.json",
+          "session_id": "session-8fff8186-258e-47b9-9c89-5f4193137fab",
+          "seconds": 7.909,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1660,
+              "outputTokens": 893,
+              "cacheReadTokens": 512,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3065
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-c02-corrected\\harness-model-calls\\acadf065375b4cffb1ebec412c9fff23\\harness\\call.json",
+          "session_id": "session-830dd542-fb7c-4e21-b098-1a32802ca947",
+          "seconds": 6.815,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1864,
+              "outputTokens": 717,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 3221
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-c02-corrected\\harness-model-calls\\75cb40223a4c45b79ab94ce12623ee70\\harness\\call.json",
+          "session_id": "session-d130f410-662c-4e40-b141-718f94307c6e",
+          "seconds": 6.962,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1582,
+              "outputTokens": 602,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2824
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-c02-corrected\\harness-model-calls\\0ddbe845f43f42b1a8fca8fe593b679d\\harness\\call.json",
+          "session_id": "session-199a671e-b5ec-43e0-99a0-5819ae0f970f",
+          "seconds": 6.768,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 1714,
+              "outputTokens": 594,
+              "cacheReadTokens": 640,
+              "cacheWriteTokens": 0,
+              "totalTokens": 2948
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\harness-model-calls\\d51c34fc8e9d444382c95e9abac9281b\\harness\\call.json",
+          "session_id": "session-9162022f-9d1f-4957-8023-4d5630dae036",
+          "seconds": 12.323,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 143,
+              "outputTokens": 2599,
+              "cacheReadTokens": 4224,
+              "cacheWriteTokens": 0,
+              "totalTokens": 6966
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\harness-model-calls\\89f89715ebf54979be8ce12cab9035a0\\harness\\call.json",
+          "session_id": "session-de03edda-b22b-4f44-859b-25b4ad57ff25",
+          "seconds": 9.748,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 252,
+              "outputTokens": 1871,
+              "cacheReadTokens": 2560,
+              "cacheWriteTokens": 0,
+              "totalTokens": 4683
+            }
+          ],
+          "errors": []
+        },
+        {
+          "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\comparison-20261023-v041-v14-d-repeat\\harness-model-calls\\29e081ae02db4883b1532a51ab902382\\harness\\call.json",
+          "session_id": "session-8212f65b-7e16-4fc1-a82f-b3f629d565a3",
+          "seconds": 12.422,
+          "finish": "stop",
+          "reasoning": "off",
+          "usage": [
+            {
+              "inputTokens": 198,
+              "outputTokens": 2587,
+              "cacheReadTokens": 2560,
+              "cacheWriteTokens": 0,
+              "totalTokens": 5345
+            }
+          ],
+          "errors": []
+        }
+      ],
+      "official_score": null
+    }
+  },
+  "test_author_correction": {
+    "original_case": "C-02",
+    "original_materials_count": 2,
+    "rule": "Survey must cite at least five actual specified papers",
+    "source": "科研助手赛题材料/research-description.md:57",
+    "classification": "test_author_error; expected rejection of an infeasible input; do not count as product failure",
+    "action": "Separate corrected five-paper C-02 for BOTH images; keep original evidence unchanged",
+    "supplement_toolkit_sha256": "283262f499b0baae64870e9f1e0bffe9b4f2eefbdcc3724466640e26fb4e65e6"
+  },
+  "source_comparison": {
+    "changed_files": [
+      "agent.py",
+      "requirements.txt",
+      "src/research_agent/__init__.py",
+      "src/research_agent/__main__.py",
+      "src/research_agent/contracts/__init__.py",
+      "src/research_agent/contracts/validation.py",
+      "src/research_agent/core/__init__.py",
+      "src/research_agent/core/config.py",
+      "src/research_agent/core/dispatch.py",
+      "src/research_agent/core/dispatch_plan.py",
+      "src/research_agent/core/engine.py",
+      "src/research_agent/core/models.py",
+      "src/research_agent/core/process.py",
+      "src/research_agent/core/session.py",
+      "src/research_agent/core/utils.py",
+      "src/research_agent/evidence/attribution.py",
+      "src/research_agent/evidence/ledger.py",
+      "src/research_agent/evidence/reporting.py",
+      "src/research_agent/integrations/__init__.py",
+      "src/research_agent/integrations/instrumentation.py",
+      "src/research_agent/integrations/llm.py",
+      "src/research_agent/integrations/prompts.py",
+      "src/research_agent/rag/__init__.py",
+      "src/research_agent/rag/materials.py",
+      "src/research_agent/rag/report_selection.py",
+      "src/research_agent/rag/retrieval.py",
+      "src/research_agent/workflows/__init__.py",
+      "src/research_agent/workflows/experiment_diagnostics.py",
+      "src/research_agent/workflows/experiments.py",
+      "src/research_agent/workflows/layered_d_runner.py",
+      "src/research_agent/workflows/public_probes.py",
+      "src/research_agent/workflows/report_context.py",
+      "src/research_agent/workflows/reports.py",
+      "src/research_agent/workflows/sample_validation.py",
+      "src/research_agent/workflows/sample_worker.py",
+      "src/research_agent/workflows/source_generation.py",
+      "src/research_agent/workflows/tasks.py"
+    ],
+    "same_files": 7,
+    "package_differences": {},
+    "python_equal": true,
+    "content_changed_files": [
+      "src/research_agent/core/process.py",
+      "src/research_agent/evidence/attribution.py",
+      "src/research_agent/evidence/ledger.py",
+      "src/research_agent/evidence/reporting.py",
+      "src/research_agent/integrations/llm.py",
+      "src/research_agent/integrations/prompts.py",
+      "src/research_agent/rag/report_selection.py",
+      "src/research_agent/workflows/experiment_diagnostics.py",
+      "src/research_agent/workflows/layered_d_runner.py",
+      "src/research_agent/workflows/public_probes.py",
+      "src/research_agent/workflows/report_context.py",
+      "src/research_agent/workflows/reports.py",
+      "src/research_agent/workflows/sample_validation.py",
+      "src/research_agent/workflows/sample_worker.py",
+      "src/research_agent/workflows/source_generation.py",
+      "src/research_agent/workflows/tasks.py"
+    ],
+    "newline_only_files": [
+      "agent.py",
+      "requirements.txt",
+      "src/research_agent/__init__.py",
+      "src/research_agent/__main__.py",
+      "src/research_agent/contracts/__init__.py",
+      "src/research_agent/contracts/validation.py",
+      "src/research_agent/core/__init__.py",
+      "src/research_agent/core/config.py",
+      "src/research_agent/core/dispatch.py",
+      "src/research_agent/core/dispatch_plan.py",
+      "src/research_agent/core/engine.py",
+      "src/research_agent/core/models.py",
+      "src/research_agent/core/session.py",
+      "src/research_agent/core/utils.py",
+      "src/research_agent/integrations/__init__.py",
+      "src/research_agent/integrations/instrumentation.py",
+      "src/research_agent/rag/__init__.py",
+      "src/research_agent/rag/materials.py",
+      "src/research_agent/rag/retrieval.py",
+      "src/research_agent/workflows/__init__.py",
+      "src/research_agent/workflows/experiments.py"
+    ]
+  },
+  "image_integrity": [
+    {
+      "version": "source",
+      "image": "research-assistant:0.4.1-source-v1",
+      "image_id": "sha256:eeda9634e08854bf2e39de8398023536e6111ad09fe6eb16a52833d9f1838f6b",
+      "tar": "镜像测试\\交付\\0.4.1-source-v1\\research-assistant-0.4.1-source-v1.tar",
+      "bytes": 295470080,
+      "sha256": "530aa3d5468622db16d9dc6e69807e999d422800c841b9cdaae59a03a40152eb",
+      "nonempty_credential_env": {
+        "PLATFORM_API_KEY": false
+      },
+      "matches_release_digest": true
+    },
+    {
+      "version": "v14",
+      "image": "research-assistant:0.4.1-v14-20261023",
+      "image_id": "sha256:e0a0d36a8bfec77d3ed2a25f4fede7dbb155715b9dfbb3f757355346b78eab11",
+      "tar": "测试输入\\队友镜像-0.4.1-v14-20261023\\research-assistant-0.4.1-v14-20261023.tar",
+      "bytes": 295421952,
+      "sha256": "d8b16cbde0dd3c85a63f3aded6505fe5167866d068a1f43f8cc0fd84ef946946",
+      "nonempty_credential_env": {
+        "PLATFORM_API_KEY": false
+      },
+      "matches_release_digest": true
+    }
+  ],
+  "scope": "One paired ABCE public-data round plus two independent D-generation rounds. No official Gateway provenance, trusted experiments, private cases or score.",
+  "frozen_toolkit_verified_unchanged": true,
+  "all_requirements_verified": false
+}

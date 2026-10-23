@@ -1,0 +1,26 @@
+[
+  {
+    "version": "source",
+    "image": "research-assistant:0.4.1-source-v1",
+    "image_id": "sha256:eeda9634e08854bf2e39de8398023536e6111ad09fe6eb16a52833d9f1838f6b",
+    "tar": "镜像测试\\交付\\0.4.1-source-v1\\research-assistant-0.4.1-source-v1.tar",
+    "bytes": 295470080,
+    "sha256": "530aa3d5468622db16d9dc6e69807e999d422800c841b9cdaae59a03a40152eb",
+    "nonempty_credential_env": {
+      "PLATFORM_API_KEY": false
+    },
+    "matches_release_digest": true
+  },
+  {
+    "version": "v14",
+    "image": "research-assistant:0.4.1-v14-20261023",
+    "image_id": "sha256:e0a0d36a8bfec77d3ed2a25f4fede7dbb155715b9dfbb3f757355346b78eab11",
+    "tar": "测试输入\\队友镜像-0.4.1-v14-20261023\\research-assistant-0.4.1-v14-20261023.tar",
+    "bytes": 295421952,
+    "sha256": "d8b16cbde0dd3c85a63f3aded6505fe5167866d068a1f43f8cc0fd84ef946946",
+    "nonempty_credential_env": {
+      "PLATFORM_API_KEY": false
+    },
+    "matches_release_digest": true
+  }
+]

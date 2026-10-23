@@ -1,0 +1,21 @@
+{
+  "target": "research-assistant:0.4.1-source-v1",
+  "run_directory": "workspace/镜像测试/runs/optimization-20261023-v041",
+  "counts": {
+    "FAIL": 6,
+    "PASS": 3,
+    "BLOCKED": 4
+  },
+  "mandatory_failures": [
+    "agent.harness_test_planning",
+    "live.C-01",
+    "live.E-01",
+    "live.D-01.model_source_generation",
+    "live.D-02.model_source_generation",
+    "live.D-05.model_source_generation"
+  ],
+  "quality_failures": [],
+  "official_score": null,
+  "all_requirements_verified": false,
+  "note": "Real image tests and actual DeepSeek Harness calls; fixtures explicitly labelled. Official signed provenance/private full scoring unavailable."
+}

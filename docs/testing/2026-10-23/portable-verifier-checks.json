@@ -1,0 +1,155 @@
+{
+  "status": "PASS",
+  "public_inputs": 13,
+  "checks": [
+    {
+      "case_id": "D-01",
+      "passed": 3,
+      "failed": 0,
+      "checks": [
+        {
+          "request": "D-01.json",
+          "status": "PASS",
+          "evidence": {
+            "training_rows": 18,
+            "test_rows": 4,
+            "vocabulary": 24,
+            "model_replay_verified": true
+          }
+        },
+        {
+          "request": "D-01/不均衡-重复词-标点.json",
+          "status": "PASS",
+          "evidence": {
+            "training_rows": 4,
+            "test_rows": 4,
+            "vocabulary": 4,
+            "model_replay_verified": true
+          }
+        },
+        {
+          "request": "D-01/均衡-空文本-未知词.json",
+          "status": "PASS",
+          "evidence": {
+            "training_rows": 2,
+            "test_rows": 4,
+            "vocabulary": 4,
+            "model_replay_verified": true
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "D-02",
+      "passed": 3,
+      "failed": 0,
+      "checks": [
+        {
+          "request": "D-02.json",
+          "status": "PASS",
+          "evidence": {
+            "grid_checked": 27,
+            "groups": 2,
+            "selected": {
+              "b": 0.0,
+              "k1": 0.4,
+              "title_weight": 0.5
+            }
+          }
+        },
+        {
+          "request": "D-02/rank-default.json",
+          "status": "PASS",
+          "evidence": {
+            "rank_phase": true,
+            "queries": 3
+          }
+        },
+        {
+          "request": "D-02/空字段-重复未知词-不等组.json",
+          "status": "PASS",
+          "evidence": {
+            "grid_checked": 27,
+            "groups": 2,
+            "selected": {
+              "b": 0.0,
+              "k1": 0.4,
+              "title_weight": 0.0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "D-05",
+      "passed": 7,
+      "failed": 0,
+      "checks": [
+        {
+          "request": "D-05.json",
+          "status": "PASS",
+          "evidence": {
+            "jobs": 2,
+            "servers": 1,
+            "fifo_and_fair_verified": true
+          }
+        },
+        {
+          "request": "D-05/并发预留.json",
+          "status": "PASS",
+          "evidence": {
+            "jobs": 3,
+            "servers": 2,
+            "fifo_and_fair_verified": true
+          }
+        },
+        {
+          "request": "D-05/拒绝后同服务器重试.json",
+          "status": "PASS",
+          "evidence": {
+            "jobs": 3,
+            "servers": 1,
+            "fifo_and_fair_verified": true
+          }
+        },
+        {
+          "request": "D-05/空任务与零服务流.json",
+          "status": "PASS",
+          "evidence": {
+            "jobs": 0,
+            "servers": 1,
+            "fifo_and_fair_verified": true
+          }
+        },
+        {
+          "request": "D-05/空闲间隔与流切换.json",
+          "status": "PASS",
+          "evidence": {
+            "jobs": 2,
+            "servers": 1,
+            "fifo_and_fair_verified": true
+          }
+        },
+        {
+          "request": "D-05/窗口恰好与超窗.json",
+          "status": "PASS",
+          "evidence": {
+            "jobs": 2,
+            "servers": 1,
+            "fifo_and_fair_verified": true
+          }
+        },
+        {
+          "request": "D-05/过期与同时到达.json",
+          "status": "PASS",
+          "evidence": {
+            "jobs": 2,
+            "servers": 2,
+            "fifo_and_fair_verified": true
+          }
+        }
+      ]
+    }
+  ],
+  "official_score": null
+}

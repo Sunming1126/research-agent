@@ -1,0 +1,94 @@
+{
+  "pr_url": "https://github.com/Sunming1126/research-agent/pull/1",
+  "pr_number": 1,
+  "release_id": 421418666,
+  "release_url": "https://github.com/Sunming1126/research-agent/releases/tag/v0.4.1-source-v1",
+  "assets": {
+    "research-assistant-0.4.1-source-v1.tar": {
+      "id": 667835978,
+      "name": "research-assistant-0.4.1-source-v1.tar",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/research-assistant-0.4.1-source-v1.tar",
+      "sha256": "sha256:530aa3d5468622db16d9dc6e69807e999d422800c841b9cdaae59a03a40152eb",
+      "bytes": 295470080
+    },
+    "research-agent-0.4.1-source.zip": {
+      "id": 667839026,
+      "name": "research-agent-0.4.1-source.zip",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/research-agent-0.4.1-source.zip",
+      "sha256": "sha256:c268076e12fc44a12b1802e1ce4b7b185c0c4aa964ebd8285561d871c23be5ee",
+      "bytes": 184255033
+    },
+    "research-agent-0.4.1.patch": {
+      "id": 667841048,
+      "name": "research-agent-0.4.1.patch",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/research-agent-0.4.1.patch",
+      "sha256": "sha256:230267e5f6c6faa24d0b3ba26dded4500d428b5568b9386648e1a7a026436f03",
+      "bytes": 51767
+    },
+    "SHA256SUMS.txt": {
+      "id": 667841103,
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/SHA256SUMS.txt",
+      "sha256": "sha256:c34ffb9822b087ee519e9b382c764824da55a09b39f7f48dac1ee230658b8cd1",
+      "bytes": 742
+    },
+    "交付清单.json": {
+      "id": 667841181,
+      "name": "delivery-manifest.json",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/delivery-manifest.json",
+      "sha256": "sha256:c49da14f632333e3ebe57f5b43e72f9eb040d33802f8089b8a79fb2ce40912d5",
+      "bytes": 1391
+    },
+    "使用与验收说明.md": {
+      "id": 667841255,
+      "name": "usage-and-acceptance.md",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/usage-and-acceptance.md",
+      "sha256": "sha256:b7f808962837752b936d47836c2be8611859115ae8c37ebdd85a96f81477278b",
+      "bytes": 5459
+    },
+    "验收汇总.json": {
+      "id": 667844946,
+      "name": "acceptance-summary.json",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/acceptance-summary.json",
+      "sha256": "sha256:6fed81c3a4f1d6e196e87e31a341997ad667a3e9994ff473364bda8f5335ceab",
+      "bytes": 12779
+    },
+    "报告原文核验.json": {
+      "id": 667844984,
+      "name": "report-evidence.json",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/report-evidence.json",
+      "sha256": "sha256:8ff9894dec757cb8e479eed341895fd7a0db2a6d033320f509fa44a4b14344e5",
+      "bytes": 8106
+    },
+    "最终回归.xml": {
+      "id": 667845044,
+      "name": "regression.xml",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/regression.xml",
+      "sha256": "sha256:6e20aa949509fa14e54c14c218576cf39fe35a8eb2a6405a0313a4f9f73b2dd0",
+      "bytes": 18087
+    },
+    "镜像源码审计.json": {
+      "id": 667845083,
+      "name": "image-source-audit.json",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/image-source-audit.json",
+      "sha256": "sha256:2ab082045988e50b197b8e8cdfd60503b3fa5e866736b917ee2bb197513fa18e",
+      "bytes": 4647
+    },
+    "acceptance-evidence-20261023.zip": {
+      "id": 667845117,
+      "name": "acceptance-evidence-20261023.zip",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/acceptance-evidence-20261023.zip",
+      "sha256": "sha256:c2edd026d67dbfb2ecaf7d2983deaaf4debf905a22f76fd286246c0a1763c56e",
+      "bytes": 40949
+    },
+    "RELEASE-SHA256SUMS.txt": {
+      "id": 667845221,
+      "name": "RELEASE-SHA256SUMS.txt",
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/v0.4.1-source-v1/RELEASE-SHA256SUMS.txt",
+      "sha256": "sha256:6042d5fb18ad23da0cee23cd4d41c0a5e474d3c1f23822adbd14e7828c8d623b",
+      "bytes": 1014
+    }
+  },
+  "published": true,
+  "release_target_commit": "b9927bcff5b9b9b6f4ee5cb4ddc7adc4108756c4"
+}

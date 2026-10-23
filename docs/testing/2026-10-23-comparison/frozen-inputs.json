@@ -1,0 +1,284 @@
+{
+  "scope": "Public-data local 11-case suite; not official hidden cases or official scores",
+  "seed": 42,
+  "reasoning": "off",
+  "cpu": 1,
+  "memory_mb": 1024,
+  "case_seconds": 180,
+  "tasks": {
+    "A-01": {
+      "task_id": "share-a-01",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "A-01",
+        "function": "Chat",
+        "title": "城市绿地科研对话",
+        "input": "解释城市绿地与地表温度的可能关系，并提出一个关键澄清问题。",
+        "materials": [],
+        "constraints": [],
+        "expected_output": "回答和澄清问题",
+        "output_schema_ref": "Chat"
+      }
+    },
+    "B-01": {
+      "task_id": "share-b-01",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "B-01",
+        "function": "Literature_Retrieval",
+        "title": "检索增强生成原始论文检索",
+        "input": "只找提出 RAG-Sequence/RAG-Token、Fusion-in-Decoder 或 Self-RAG 按需检索与反思机制的原始论文。不要返回只做指令微调的论文，也不要把普通稠密检索、基准评测或 RETRO 当成这些方法。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只使用本题授权材料",
+          "返回真实存在的 PDF 文件名和匹配理由"
+        ],
+        "expected_output": "完整 PDF 文件名和理由",
+        "output_schema_ref": "Literature_Retrieval"
+      }
+    },
+    "C-01": {
+      "task_id": "share-c-01",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "C-01",
+        "function": "Survey",
+        "title": "检索增强生成路线综述",
+        "input": "比较指定五篇论文的检索位置、生成阶段的证据融合方式、开放域问答评测、参数或计算代价与可核验的局限。请明确区分论文结论和基于证据提出的推断。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只使用本题授权材料",
+          "正文至少 800 字并带页码引用"
+        ],
+        "expected_output": "至少 800 字的证据综述",
+        "output_schema_ref": "Survey"
+      }
+    },
+    "E-01": {
+      "task_id": "share-e-01",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "E-01",
+        "function": "Idea",
+        "title": "自适应检索与多段融合研究方案",
+        "input": "模拟观察：固定 top-k 检索偶尔引入无关段落，但尚未形成论文级实验结论。基于指定论文提出按需检索与多段融合的可证伪 Idea，说明互补机制、复现瓶颈和量化指标。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只使用本题授权材料",
+          "正文至少 800 字并区分论文事实和待验证建议"
+        ],
+        "expected_output": "至少 800 字的可验证 Idea 报告",
+        "output_schema_ref": "Idea"
+      }
+    },
+    "B-02": {
+      "task_id": "comparison-public-B-02",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "B-02",
+        "function": "Literature_Retrieval",
+        "title": "稠密检索原始方法检索",
+        "input": "只找提出 Dense Passage Retrieval 双编码器方法的原始论文。排除 RAG、FiD、BEIR、RETRO、InstructGPT 和 Self-RAG；不要因为引用 DPR 就返回其他论文。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只使用本题授权材料",
+          "返回真实存在的 PDF 文件名和匹配理由"
+        ],
+        "expected_output": "完整 PDF 文件名和理由",
+        "output_schema_ref": "Literature_Retrieval"
+      }
+    },
+    "B-03": {
+      "task_id": "comparison-public-B-03",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "B-03",
+        "function": "Literature_Retrieval",
+        "title": "异域检索评测基准检索",
+        "input": "只找提出 BEIR 零样本异域信息检索评测基准的原始论文，排除检索器、检索增强生成方法和指令微调论文。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只使用本题授权材料",
+          "返回真实存在的 PDF 文件名和匹配理由"
+        ],
+        "expected_output": "完整 PDF 文件名和理由",
+        "output_schema_ref": "Literature_Retrieval"
+      }
+    },
+    "C-02": {
+      "task_id": "comparison-public-C-02",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "C-02",
+        "function": "Survey",
+        "title": "检索方法与评测基准的边界",
+        "input": "只基于 DPR 与 BEIR 两篇材料，综述双编码器检索方法与零样本异域评测基准分别解决什么问题、训练与评测的区别、可核验的局限。不要把基准当成生成器，区分论文事实与推断。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2104.08663-BEIR.pdf"
+        ],
+        "constraints": [
+          "只使用本题授权材料",
+          "正文至少 800 字并带页码引用"
+        ],
+        "expected_output": "至少 800 字的证据综述",
+        "output_schema_ref": "Survey"
+      }
+    },
+    "E-02": {
+      "task_id": "comparison-public-E-02",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "E-02",
+        "function": "Idea",
+        "title": "检索预算与证据融合的消融方案",
+        "input": "模拟观察：检索预算增大可能提升覆盖率但也增加无关证据，此观察尚未被实验验证。仅依据 RAG、FiD、Self-RAG 提出可证伪方案；给出基线、消融、量化指标与失败判据，所有新结果必须标为待验证。",
+        "materials": [
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只使用本题授权材料",
+          "正文至少 800 字并区分论文事实和待验证建议"
+        ],
+        "expected_output": "至少 800 字的可验证 Idea 报告",
+        "output_schema_ref": "Idea"
+      }
+    },
+    "D-01": {
+      "task_id": "comparison-public-D-01",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "D-01",
+        "function": "Reproduction",
+        "title": "新版源码来源公开测试 D-01",
+        "input": "根据本题公开方法和协议生成完整算法，交由官方客户端执行。三个指标：name=Macro-F1, unit=分数; name=Accuracy, unit=%; name=运行时间, unit=秒。",
+        "materials": [
+          "D-01/method.md",
+          "D-01/protocol.json",
+          "D-01/sample.json"
+        ],
+        "constraints": [
+          "只使用本题授权实验材料",
+          "必须返回三个指标和真实图表"
+        ],
+        "expected_output": "真实指标、图表和实验状态",
+        "output_schema_ref": "Reproduction"
+      }
+    },
+    "D-02": {
+      "task_id": "comparison-public-D-02",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "D-02",
+        "function": "Reproduction",
+        "title": "新版源码来源公开测试 D-02",
+        "input": "根据本题公开方法和协议生成完整算法，交由官方客户端执行。三个指标：name=Recall@5, unit=%; name=MRR@10, unit=分数; name=查询吞吐, unit=queries/s。",
+        "materials": [
+          "D-02/method.md",
+          "D-02/protocol.json",
+          "D-02/sample.json"
+        ],
+        "constraints": [
+          "只使用本题授权实验材料",
+          "必须返回三个指标和真实图表"
+        ],
+        "expected_output": "真实指标、图表和实验状态",
+        "output_schema_ref": "Reproduction"
+      }
+    },
+    "D-05": {
+      "task_id": "comparison-public-D-05",
+      "constraints": {
+        "timeout_ms": 180000
+      },
+      "input": {
+        "case_id": "D-05",
+        "function": "Reproduction",
+        "title": "新版源码来源公开测试 D-05",
+        "input": "根据本题公开方法和协议生成完整算法，交由官方客户端执行。三个指标：name=公平性 Jain 指数, unit=分数; name=归一化吞吐, unit=%; name=平均等待时间, unit=ms。",
+        "materials": [
+          "D-05/method.md",
+          "D-05/protocol.json",
+          "D-05/sample.json"
+        ],
+        "constraints": [
+          "只使用本题授权实验材料",
+          "必须返回三个指标和真实图表"
+        ],
+        "expected_output": "真实指标、图表和实验状态",
+        "output_schema_ref": "Reproduction"
+      }
+    }
+  },
+  "retrieval_expected": {
+    "B-01": [
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "B-02": [
+      "2004.04906-DPR.pdf"
+    ],
+    "B-03": [
+      "2104.08663-BEIR.pdf"
+    ]
+  }
+}

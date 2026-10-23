@@ -11,6 +11,7 @@ import math
 import os
 import sys
 import types
+from copy import deepcopy
 
 
 ALLOWED_MODULES = {"__future__", "math", "cmath", "collections", "heapq", "itertools", "functools", "random",
@@ -103,14 +104,19 @@ def main():
     sys.modules[module.__name__] = module
     isolation = restrict_process(int(message.get("seconds", 8)))
     exec(code, module.__dict__)
-    result = module.run_experiment(request)
+    result = module.run_experiment(deepcopy(request))
+    repeat_result = None
+    if request.get("case_id") == "D-01":
+        importlib.import_module("random").seed(request.get("protocol", {}).get("seed", 42))
+        repeat_result = module.run_experiment(deepcopy(request))
     rank_result = None
     if request.get("case_id") == "D-02" and isinstance(result, dict) and result.get("candidate") is not None:
         selected = result.get("details", {}).get("selected")
         rank_request = dict(request, phase="rank", data=dict(request["data"], selected=selected))
         rank_result = module.run_experiment(rank_request)
     # 标准 JSON 禁止 NaN/Infinity，限制输出避免不正常结果耗尽父进程内存。
-    encoded = json.dumps({"result": result, "rank_result": rank_result, "isolation": isolation}, ensure_ascii=False, allow_nan=False)
+    encoded = json.dumps({"result": result, "rank_result": rank_result,
+                          "repeat_result": repeat_result, "isolation": isolation}, ensure_ascii=False, allow_nan=False)
     if len(encoded.encode("utf-8")) > 1024 * 1024:
         raise ValueError("sample result exceeds one MiB")
     print(encoded)

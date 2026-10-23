@@ -1,0 +1,38 @@
+{
+  "source_commit": "2cae890ead17666361a46e09c0cee33d68f7660f",
+  "image_id": "sha256:eeda9634e08854bf2e39de8398023536e6111ad09fe6eb16a52833d9f1838f6b",
+  "artifacts": {
+    "research-agent-0.4.1-source.zip": {
+      "bytes": 184255033,
+      "sha256": "c268076e12fc44a12b1802e1ce4b7b185c0c4aa964ebd8285561d871c23be5ee"
+    },
+    "research-agent-0.4.1.patch": {
+      "bytes": 51767,
+      "sha256": "230267e5f6c6faa24d0b3ba26dded4500d428b5568b9386648e1a7a026436f03"
+    },
+    "research-assistant-0.4.1-source-v1.tar": {
+      "bytes": 295470080,
+      "sha256": "530aa3d5468622db16d9dc6e69807e999d422800c841b9cdaae59a03a40152eb"
+    },
+    "使用与验收说明.md": {
+      "bytes": 5459,
+      "sha256": "b7f808962837752b936d47836c2be8611859115ae8c37ebdd85a96f81477278b"
+    },
+    "报告原文核验.json": {
+      "bytes": 8106,
+      "sha256": "8ff9894dec757cb8e479eed341895fd7a0db2a6d033320f509fa44a4b14344e5"
+    },
+    "最终回归.xml": {
+      "bytes": 18087,
+      "sha256": "6e20aa949509fa14e54c14c218576cf39fe35a8eb2a6405a0313a4f9f73b2dd0"
+    },
+    "镜像源码审计.json": {
+      "bytes": 4647,
+      "sha256": "2ab082045988e50b197b8e8cdfd60503b3fa5e866736b917ee2bb197513fa18e"
+    },
+    "验收汇总.json": {
+      "bytes": 12779,
+      "sha256": "6fed81c3a4f1d6e196e87e31a341997ad667a3e9994ff473364bda8f5335ceab"
+    }
+  }
+}

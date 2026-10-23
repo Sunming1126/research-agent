@@ -7,10 +7,21 @@ import os
 import subprocess
 import sys
 import re
+import time
+from copy import deepcopy
 from collections import Counter, defaultdict
 from pathlib import Path
 
 from ..core.session import checkpoint, current_session, remaining_timeout
+from .public_probes import public_probes
+
+
+class PublicSampleError(ValueError):
+    """可直接交回模型的公开反例；不包含凭据或平台隐藏数据。"""
+    def __init__(self, case_id, probe, request, error):
+        super().__init__(f"{case_id}/{probe}: {error}")
+        self.feedback = {"case_id": case_id, "probe": probe,
+                         "request": request, "error": str(error)[:1800]}
 
 
 def _finite(value):
@@ -117,7 +128,14 @@ def validate_sample_output(case_id, request, result):
             flows = data["flow_weights"]
             if not isinstance(value["served_ms"], dict) or set(value["served_ms"]) != set(flows):
                 raise ValueError("D-05 served_ms must include every declared flow")
-            served, last_end = defaultdict(float), {}
+            if value["trace"] != sorted(value["trace"], key=lambda row: (row["dispatch_ms"], row["server"])):
+                raise ValueError("D-05 trace must be ordered by dispatch time and server")
+            if value["dropped"] != sorted(value["dropped"], key=lambda row: row["id"]):
+                raise ValueError("D-05 dropped jobs must be ordered by id")
+            if any(set(row) != {"id", "reason"} or row["reason"] not in {"deadline", "horizon"}
+                   for row in value["dropped"]):
+                raise ValueError("D-05 drop reasons must be deadline or horizon")
+            served, last_end, last_flow = defaultdict(float), {}, {}
             for job in value["trace"]:
                 if not {"server", "dispatch_ms", "setup_ms", "start_ms", "end_ms", "wait_ms"} <= set(job):
                     raise ValueError("D-05 trace timing fields missing")
@@ -129,8 +147,11 @@ def validate_sample_output(case_id, request, result):
                 server = job["server"]
                 if type(server) is not int or not 0 <= server < data["servers"]:
                     raise ValueError("D-05 server index is invalid")
-                if job["dispatch_ms"] < last_end.get(server, 0):
+                if job["dispatch_ms"] < max(last_end.get(server, 0), original["arrival_ms"]):
                     raise ValueError("D-05 overlapping jobs on the same server")
+                expected_setup = data["setup_ms"] if server in last_flow and last_flow[server] != original["flow"] else 0
+                if job["setup_ms"] != expected_setup:
+                    raise ValueError("D-05 setup must preserve previous flow even across idle intervals")
                 if (abs(job["end_ms"] - job["start_ms"] - original["service_ms"]) > 1e-8
                         or abs(job["wait_ms"] - (job["start_ms"] - original["arrival_ms"])) > 1e-8
                         or abs(job["start_ms"] - job["dispatch_ms"] - job["setup_ms"]) > 1e-8
@@ -138,26 +159,20 @@ def validate_sample_output(case_id, request, result):
                     raise ValueError("D-05 service/wait/setup/deadline/horizon invariants do not hold")
                 served[original["flow"]] += original["service_ms"]
                 last_end[server] = job["end_ms"]
+                last_flow[server] = original["flow"]
             if any(abs(value["served_ms"][flow] - served[flow]) > 1e-8 for flow in flows):
                 raise ValueError("D-05 served_ms differs from completed trace service")
     return {"status": "passed", "scope": "public_sample_structure_and_invariants",
             "candidate_present": result["candidate"] is not None}
 
 
-def run_public_sample(source: Path, materials, case_id, *, timeout=8):
-    protocol, request = json.loads(materials["protocol"]), json.loads(materials["sample"])
-    if request.get("case_id") != case_id or protocol.get("case_id") != case_id:
-        raise ValueError("public sample or protocol belongs to another case")
-    request = dict(request, protocol=protocol)
-    checkpoint("d_public_sample")
-    timeout = remaining_timeout(timeout, reserve=35)
+def _run_sample(source, request, timeout):
     message = {"source": source.read_text(encoding="utf-8"), "request": request, "seconds": max(1, int(timeout))}
     # 子进程不继承模型凭据、平台会话或用户 PYTHONPATH；-I/-S 禁止加载用户包。
     env = {key: os.environ[key] for key in ("SYSTEMROOT", "WINDIR", "PATH") if key in os.environ}
     command = [sys.executable, "-I", "-S", "-X", "utf8", str(Path(__file__).with_name("sample_worker.py"))]
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                text=True, encoding="utf-8", env=env, cwd=source.parent)
-    import time
     deadline = time.monotonic() + timeout
     payload = json.dumps(message, ensure_ascii=False)
     try:
@@ -176,12 +191,51 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8):
         raise
     if process.returncode:
         raise ValueError("public sample execution failed: " + (stdout.strip() or stderr.strip())[:1800])
-    body = json.loads(stdout)
-    report = validate_sample_output(case_id, request, body["result"])
-    if case_id == "D-02" and body["result"]["candidate"] is not None:
-        repeated = body.get("rank_result")
-        if not isinstance(repeated, dict) or set(repeated) != {"candidate"} or repeated["candidate"] != body["result"]["candidate"]:
-            raise ValueError("D-02 rank must reuse the selected configuration and reproduce run rankings")
-        report["rank_consistent"] = True
-    report["isolation"] = body["isolation"]
-    return report
+    return json.loads(stdout)
+
+
+def run_public_sample(source: Path, materials, case_id, *, timeout=8):
+    """整个公开自测共用额度；反例与源码交回模型，绝不就地改算法。"""
+    protocol, request = json.loads(materials["protocol"]), json.loads(materials["sample"])
+    if request.get("case_id") != case_id or protocol.get("case_id") != case_id:
+        raise ValueError("public sample or protocol belongs to another case")
+    request = dict(request, protocol=protocol)
+    checkpoint("d_public_sample")
+    deadline = time.monotonic() + remaining_timeout(timeout, reserve=35)
+    reports = []
+    for name, probe, expected_completed in public_probes(case_id, request):
+        budget = min(deadline - time.monotonic(), 2 if case_id == "D-05" else timeout)
+        if budget <= 0:
+            raise PublicSampleError(case_id, name, probe, "public test suite exhausted its shared time budget")
+        try:
+            body = _run_sample(source, probe, remaining_timeout(budget, reserve=35))
+            report = validate_sample_output(case_id, probe, body["result"])
+            if expected_completed is not None:
+                for strategy in ("baseline", "candidate"):
+                    result = body["result"][strategy]
+                    if result is not None and sorted(row["id"] for row in result["trace"]) != sorted(expected_completed):
+                        raise ValueError("ample-window probe must complete every supplied job")
+            if case_id == "D-02" and body["result"]["candidate"] is not None:
+                repeated = body.get("rank_result")
+                if not isinstance(repeated, dict) or set(repeated) != {"candidate"} or repeated["candidate"] != body["result"]["candidate"]:
+                    raise ValueError("D-02 rank must reuse the selected configuration and reproduce run rankings")
+                report["rank_consistent"] = True
+            if case_id == "D-01":
+                first, repeated = deepcopy(body["result"]), deepcopy(body.get("repeat_result"))
+                # 真实计时不是算法预测漂移；仅剥离已知 details 诊断，不忽略预测或模型字段。
+                volatile = []
+                for key in ("elapsed_seconds",):
+                    if key in first["details"] or (isinstance(repeated, dict) and key in repeated.get("details", {})):
+                        volatile.append(key)
+                        first["details"].pop(key, None)
+                        if isinstance(repeated, dict):
+                            repeated["details"].pop(key, None)
+                if first != repeated:
+                    raise ValueError("D-01 repeated predictions or model fields are not deterministic")
+                report.update(reproducible=True, volatile_detail_fields=volatile)
+            report.update(probe=name, isolation=body["isolation"])
+            reports.append(report)
+        except (ValueError, KeyError, TypeError, RuntimeError) as exc:
+            raise PublicSampleError(case_id, name, probe, str(exc)) from None
+    return {**reports[0], "probes": reports, "probe_count": len(reports),
+            "scope": "public_samples_and_protocol_boundary_invariants"}

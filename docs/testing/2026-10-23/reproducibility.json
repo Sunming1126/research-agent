@@ -1,0 +1,35 @@
+[
+  {
+    "id": "replay.D-01",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "source_sha256": "cea786174939280cdf5d449b7c52257629016166d00fba33572066b8738de708",
+    "first_result": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-01/D-01-bc8d60/result.json",
+    "replay": "workspace/镜像测试/runs/optimization-20261023-v041-verified/reproducibility/D-01/stdout.txt",
+    "python": "3.9",
+    "network": "none",
+    "official_provenance": false
+  },
+  {
+    "id": "replay.D-02",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "source_sha256": "52ed0bc2116a7653c2d24ff45ca9e165543bb570b2929f8c7c443eec754106a5",
+    "first_result": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-02/D-02-e0fb30/result.json",
+    "replay": "workspace/镜像测试/runs/optimization-20261023-v041-verified/reproducibility/D-02/stdout.txt",
+    "python": "3.9",
+    "network": "none",
+    "official_provenance": false
+  },
+  {
+    "id": "replay.D-05",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "source_sha256": "acae75de91055c480e81d1c6811ba80721980349e6db314c06a5ab7cf4f3a966",
+    "first_result": "workspace/镜像测试/runs/optimization-20261023-v041-verified/public-workers/D-05/D-05-bd012f/result.json",
+    "replay": "workspace/镜像测试/runs/optimization-20261023-v041-verified/reproducibility/D-05/stdout.txt",
+    "python": "3.9",
+    "network": "none",
+    "official_provenance": false
+  }
+]

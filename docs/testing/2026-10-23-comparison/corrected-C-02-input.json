@@ -1,0 +1,25 @@
+{
+  "task_id": "comparison-public-C-02-corrected",
+  "constraints": {
+    "timeout_ms": 180000
+  },
+  "input": {
+    "case_id": "C-02",
+    "function": "Survey",
+    "title": "检索方法、生成方法与评测基准的边界",
+    "input": "比较指定五篇 DPR、RAG、FiD、BEIR、Self-RAG：检索器、检索增强生成、评测基准分别解决什么问题，训练与推理阶段如何使用证据；说明评测与可核验的局限。正文至少800字，实际引用全部五篇，区分论文事实与推断。",
+    "materials": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "constraints": [
+      "只使用本题授权材料",
+      "正文至少 800 字并带页码引用"
+    ],
+    "expected_output": "至少 800 字的证据综述",
+    "output_schema_ref": "Survey"
+  }
+}
