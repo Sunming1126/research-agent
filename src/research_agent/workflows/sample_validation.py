@@ -294,11 +294,23 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8):
                         states.update({row["id"]: row["reason"] for row in result["dropped"]})
                         if states != expected_completed["states"]:
                             raise ValueError(f"public protocol probe {name} has wrong completed/drop states; "
-                                             "check deadline priority and account for all jobs at the horizon")
+                                             f"strategy={strategy}, expected_states={expected_completed['states']}, "
+                                             f"observed_states={states}; " + expected_completed.get("rule",
+                                             "check deadline priority and account for all jobs at the horizon"))
                         expected_ids = expected_completed.get("trace_ids", {}).get(strategy)
                         if expected_ids is not None and [row["id"] for row in result["trace"]] != expected_ids:
-                            raise ValueError("public protocol probe must count assigned service immediately "
-                                             "before choosing the next simultaneously idle server")
+                            raise ValueError(f"public protocol probe {name} strategy={strategy}: "
+                                             f"expected_trace_ids={expected_ids}, "
+                                             f"observed_trace_ids={[row['id'] for row in result['trace']]}; "
+                                             + expected_completed.get("rule", "count assigned service immediately "
+                                             "before choosing the next simultaneously idle server"))
+                        by_id = {row["id"]: row for row in result["trace"]}
+                        for identifier, timing in expected_completed.get("timings", {}).items():
+                            actual = {key: by_id[identifier][key] for key in timing}
+                            if actual != timing:
+                                raise ValueError(f"public protocol probe {name} strategy={strategy} job={identifier}: "
+                                                 f"expected_timing={timing}, observed_timing={actual}; "
+                                                 + expected_completed["rule"])
             elif expected_completed is not None:
                 for strategy in ("baseline", "candidate"):
                     result = body["result"][strategy]

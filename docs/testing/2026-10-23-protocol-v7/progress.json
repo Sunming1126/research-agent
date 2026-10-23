@@ -1,31 +1,17 @@
 {
-  "status": "WAITING_NATIVE_DOCKER_APPROVAL",
-  "source_regression": {
-    "tests": 189,
-    "skipped": 1,
-    "failures": 0,
-    "errors": 0
-  },
-  "passed": 188,
-  "build_commit": "bcec6ee111da0ced24ae983ea4eb430611d7e89a",
-  "image": "research-assistant:0.4.2-hybrid-v7",
-  "image_id": "sha256:55e23962d40026abb8e8ca7f139dc5ae5c617d4d9ba1dea5acab64f6a4bd823a",
-  "full_v7_model_acceptance_started": false,
+  "status": "REJECTED_D05_RETRY_AFTER_REJECTION",
+  "full_v7_model_tests_executed": true,
   "ready_for_recommended_contest_submission": false,
-  "known_baseline_fixture_error_preserved": true,
-  "v6_recommendation_withdrawn": true,
-  "next_native_stage": "all (already submitted, awaiting native Docker approval)",
-  "workspace": "Agent挑战赛",
-  "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
-  "provider": "magic",
-  "corrected_baseline": {
-    "image": "research-assistant:0.4.2-hybrid-v6",
-    "counts": {
-      "PASS": 4,
-      "FAIL": 0
-    },
-    "meaning": "PASS means the old defect was reproduced, not that v6 is acceptable",
-    "fixture_not_real_llm": true,
-    "input_scope": "Public frozen cases; A-01 renamed A-03 for protocol identity only, not the private platform question"
-  }
+  "direct_http_fix_verified": true,
+  "main": {
+    "PASS": 127,
+    "FAIL": 1,
+    "BLOCKED": 1
+  },
+  "repeat": {
+    "PASS": 21
+  },
+  "repeated_generation_pass_does_not_erase_original_failure": true,
+  "original_defect_source_sha256": "758806f095d81dbc78b8f2818b1e7dc5b39f5224bf1723c367a32abe1a5c8a0a",
+  "next_candidate": "0.4.2-hybrid-v8"
 }

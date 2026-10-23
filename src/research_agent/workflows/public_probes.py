@@ -64,6 +64,26 @@ def public_probes(case_id, request):
         # 单流没有切换开销，不能构造此双条件冲突；避免自测误拒有效单流算法。
         cases.append(("deadline_before_horizon", [job("probe_a", first, 0, 2), job("probe_b", second, 1, 2, 3)],
                       1, 3, 6, {"states": {"probe_a": "completed", "probe_b": "deadline"}}))
+        # 拒绝不占用服务器、不更新上个流/分配量，必须在同一时刻继续尝试。
+        # 既检查任务守恒，也检查及时派发，避免“最终补跑但已错过时间”蒙混过关。
+        for name, rejected in [
+            ("retry_after_deadline_rejection", [job("probe_b", second, 1, 1, 3)]),
+            ("retry_after_horizon_rejection", [job("probe_b", second, 1, 20)]),
+            ("retry_after_multiple_rejections", [job("probe_b", second, 1, 1, 3),
+                                                  job("probe_c", second, 1, 20)]),
+        ]:
+            states = {"probe_a": "completed", "probe_z": "completed"}
+            states.update({row["id"]: "deadline" if row["deadline_ms"] == 3 else "horizon"
+                           for row in rejected})
+            cases.append((name, [job("probe_a", first, 0, 2), *rejected,
+                                  job("probe_z", first, 1, 1, 12)], 1, 2, 12,
+                          {"states": states,
+                           "trace_ids": {"baseline": ["probe_a", "probe_z"],
+                                         "candidate": ["probe_a", "probe_z"]},
+                           "timings": {"probe_z": {"server": 0, "dispatch_ms": 2, "setup_ms": 0,
+                                                      "start_ms": 2, "end_ms": 3, "wait_ms": 1}},
+                           "rule": "after rejection retry the same idle server at the unchanged dispatch time; "
+                                   "rejection must not change previous flow, availability or assigned service"}))
     for name, jobs, servers, setup, horizon, completed in cases:
         probe = deepcopy(request)
         probe["data"].update(jobs=jobs, servers=servers, setup_ms=setup, horizon_ms=horizon)

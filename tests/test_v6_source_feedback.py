@@ -1,5 +1,6 @@
 """冻结真实v5反例，验证精确反馈能驱动完整源码替换而非局部手改。"""
 import json
+import hashlib
 from pathlib import Path
 
 import pytest
@@ -12,7 +13,9 @@ from research_agent.workflows.sample_validation import PublicSampleError,run_pub
 MATERIAL=Path('科研助手赛题材料/x新/research-experiments-20261020-source-v1')
 FIXTURES=Path(__file__).parent/'fixtures'
 CASES=[('D-02','d02-hybrid-v5-ignored-query.py-text','query_changes_ranking','use query tokens'),
-       ('D-05','d05-hybrid-v5-first-setup.py-text','provided_sample','expected_setup_ms=0, observed_setup_ms=2')]
+       ('D-05','d05-hybrid-v5-first-setup.py-text','provided_sample','expected_setup_ms=0, observed_setup_ms=2'),
+       ('D-05','d05-hybrid-v7-reject-retry.py-text','retry_after_deadline_rejection',
+        'after rejection retry the same idle server')]
 
 @pytest.mark.parametrize('cid,filename,probe,message',CASES)
 def test_unmodified_real_v5_faults_are_rejected_with_specific_counterexample(cid,filename,probe,message):
@@ -42,3 +45,19 @@ def test_controlled_repair_receives_exact_failure_and_preserves_second_full_resp
     assert final.read_text(encoding='utf-8')==good and model.calls==2
     history=json.loads((runner.work/'public-selftest.json').read_text(encoding='utf-8'))['attempts']
     assert [row['status'] for row in history]==['failed','passed']
+
+
+def test_frozen_v7_rejection_bug_is_deterministic_and_source_is_unchanged():
+    path=FIXTURES/'d05-hybrid-v7-reject-retry.py-text'
+    expected='758806f095d81dbc78b8f2818b1e7dc5b39f5224bf1723c367a32abe1a5c8a0a'
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==expected
+    materials={k:(MATERIAL/'D-05'/n).read_text(encoding='utf-8') for k,n in [('protocol','protocol.json'),('sample','sample.json')]}
+    feedback=[]
+    for _ in range(2):
+        with pytest.raises(PublicSampleError,match='after rejection retry the same idle server') as error:
+            run_public_sample(path,materials,'D-05')
+        feedback.append(error.value.feedback)
+    assert feedback[0]==feedback[1]
+    assert feedback[0]['probe']=='retry_after_deadline_rejection'
+    assert 'expected_states' in feedback[0]['error'] and 'observed_states' in feedback[0]['error']
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==expected

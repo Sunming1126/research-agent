@@ -96,6 +96,9 @@ def build_source_prompt(case, materials: dict[str, str]) -> str:
             "空闲期间保留上个流；不能把last_flow is None当作发生流切换。"
             "没有可派发任务时只跳到严格晚于当前时刻的到达/完成事件，无未来事件时退出，不能反复选择旧空闲时刻。"
             "同一时刻按服务器编号依次派发，每次立刻计入该流已分配量，之后再选下一台任务。"
+            "若选中任务因deadline或horizon被拒绝，当前服务器仍空闲，必须在同一派发时刻继续尝试其他等待任务，"
+            "直到接收一个任务或等待队列为空；不能直接continue到下一服务器、跳事件或提前退出。"
+            "拒绝不消耗时间、不改变服务器上个流或空闲时间、不增加该流已分配量。"
             "同时违反deadline和horizon先判deadline；end==horizon可完成；到窗口停止派发，等待和未来任务均恰好一次horizon。\n"),
     }.get(case.case_id, "")
     return (

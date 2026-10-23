@@ -22,6 +22,9 @@ def test_public_samples_run_in_separate_process(tmp_path, case_id):
                  for key, name in (("protocol", "protocol.json"), ("sample", "sample.json"))}
     report = run_public_sample(path, materials, case_id)
     assert report["status"] == "passed" and report["candidate_present"]
+    if case_id == "D-05":
+        assert {"retry_after_deadline_rejection", "retry_after_horizon_rejection",
+                "retry_after_multiple_rejections"} <= {row["probe"] for row in report["probes"]}
 
 
 @pytest.mark.parametrize("source", ["import socket", "import os", "x = open('secret')",
