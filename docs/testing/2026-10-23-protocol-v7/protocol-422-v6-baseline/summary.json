@@ -1,0 +1,9 @@
+{
+  "image": "research-assistant:0.4.2-hybrid-v6",
+  "counts": {
+    "PASS": 1,
+    "FAIL": 3
+  },
+  "meaning": "PASS means the old defect was reproduced, not that v6 is acceptable",
+  "fixture_not_real_llm": true
+}

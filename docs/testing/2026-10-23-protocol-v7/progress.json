@@ -1,0 +1,21 @@
+{
+  "status": "WAITING_NATIVE_DOCKER_APPROVAL",
+  "source_regression": {
+    "tests": 189,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0
+  },
+  "passed": 188,
+  "build_commit": "bcec6ee111da0ced24ae983ea4eb430611d7e89a",
+  "image": "research-assistant:0.4.2-hybrid-v7",
+  "image_id": "sha256:55e23962d40026abb8e8ca7f139dc5ae5c617d4d9ba1dea5acab64f6a4bd823a",
+  "full_v7_model_acceptance_started": false,
+  "ready_for_recommended_contest_submission": false,
+  "known_baseline_fixture_error_preserved": true,
+  "v6_recommendation_withdrawn": true,
+  "next_native_stage": "baseline, then all",
+  "workspace": "Agent挑战赛",
+  "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+  "provider": "magic"
+}
