@@ -1,6 +1,6 @@
 """分阶段模型提示词；版本写入模型调用记录。"""
 
-PROMPT_VERSION = "20261024-v16-c1-budget"
+PROMPT_VERSION = "20261024-v17-contract-batch"
 
 instructions = {
     "chat": "回答科研问题，输出 answer 和一个 clarifying_question。",
@@ -133,3 +133,12 @@ def instructions_for(stage, data):
         if function == "Idea":
             return IDEA_INSTRUCTION
     return INSTRUCTIONS[stage]
+
+
+INSTRUCTIONS["extract_batch"] = (
+    "逐篇独立提取给定papers中的证据，最多3篇；每篇都必须返回，没证据返回空claims，禁止跨论文借用片段。"
+    "输出papers数组，每项filename（原样）、claims数组、missing_queries数组。每篇最多5条紧凑且不重复的事实，"
+    "优先覆盖方法的关键机制、比较条件、结果及限制。每条含claim（不超过100字）、chunk_id（必须属于本篇）、"
+    "quote（本篇片段中连续原文12至180字符，不得拼接）、facet=method/data/metric/result/limitation/unspecified、"
+    "role=own_work/related_work/unknown。保留否定、前提、比较对象和不确定性；相关工作不能冒充本篇贡献。"
+    "missing_queries最多2个由当前片段导出的具体缺口短语，没有缺口返回空数组。不要省略论文、重复filename或补充未授权内容。")

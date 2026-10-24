@@ -291,7 +291,8 @@ def specific_idea_sections(ledger, refs):
 
 
 def deterministic_survey(topic, ledger):
-    """使用逐条核验的事实生成保底综述，不作无依据的跨论文归因。"""
+    """按正文/引用额度均衡选择完整事实；证据不足时拒绝，不用模板补字数。"""
+    from ..contracts.validation import validate_report_limits
     grouped = defaultdict(list)
     for item in ledger:
         grouped[item.filename].append(item)
@@ -299,42 +300,48 @@ def deterministic_survey(topic, ledger):
     if len(filenames) < 5:
         raise EvidenceError("deterministic Survey requires five supported papers")
     refs = {name: index for index, name in enumerate(filenames, 1)}
-    paragraphs = [
-        "# 文献综述：" + topic[:100],
-        "## 研究范围与证据方法",
-        "本文仅梳理本题指定的论文，按照研究问题、检索或生成方法、实验设置、评价口径与局限进行比较。"
-        "下文的已核验事实均来自当前能够定位的原文片段，紧随事实标出对应论文编号与 PDF 物理页码。"
-        "没有进入证据台账的性能数字、数据集细节和方法差异一律不推断；题目中出现的模拟观察也不作为论文结论。"
-        "这些限制会使综述偏保守，但便于逐句回查，并为后续补充全文证据留出清晰边界。",
-    ]
-    used = []
-    for name in filenames:
-        ref = refs[name]
-        paragraphs.append(f"## 文献 {ref}：{name}")
-        paragraphs.append(
-            "本节记录该论文在当前授权片段中可核验的内容。阅读时应分别确认方法描述、实验条件与结论，"
-            "不能把其他论文的设置移到本篇，也不能把某段证据未提到的项目直接判为全文没有实施。"
-        )
-        for item in grouped[name]:
-            cite = f"[{ref}, p.{item.page}]" if item.page is not None else f"[{ref}]"
-            paragraphs.append(f"已核验事实：{item.claim.strip()} {cite}")
-            used.append(item.evidence_id)
-        paragraphs.append(
-            "该篇材料与其他论文的横向比较，应在相同任务、语料、检索预算和指标定义下进行。"
-            "当前摘录可用于确定本篇的局部事实；若某一比较维度尚无直接证据，应该继续回查全文，"
-            "而不是把缺失的摘录解释为实验失败、方法无效或作者未讨论该问题。"
-        )
-    paragraphs += [
-        "## 横向比较与后续验证",
-        "这些文献共同涉及从检索到生成的不同环节。可先将上述事实映射到检索器、外部记忆、证据融合和生成控制四个位置，"
-        "再在统一的数据划分和检索语料下测试差异。这只是后续研究的比较框架，不是声称五篇论文已有同一套对照实验。"
-        "建议同时保存问题、候选段落、最终引用、答案和运行成本，以便判断改善来自召回、筛选还是生成阶段。",
-        "局限在于当前证据片段不足以支持所有跨模型结论，也不能直接比较不同论文报告的数值。"
-        "若后续补入新的页级证据，可逐条扩充事实台账；对尚未验证的假设，需要独立对照实验。",
-    ]
-    body = "\n\n".join(paragraphs)
     references = "\n".join(f"[{refs[name]}] {name}" for name in filenames)
-    return body + "\n\n## 参考文献\n\n" + references, used
+    selected = {name: [] for name in filenames}
+
+    def render(rows):
+        paragraphs = ["# 文献综述：" + topic[:100], "## 研究范围与证据边界",
+                      "以下按论文整理当前授权原文中能够回查的事实，保留各自条件、比较对象与不确定性。"
+                      "引文标明本题论文编号及PDF物理页码；不同任务、数据与指标下的观察不能直接解释为同一条件下的排名。"
+                      "尚未取得支持的比较维度不补写结论；题目模拟观察和未来研究建议不冒充论文已有结果。"]
+        used = []
+        for name in filenames:
+            if not rows[name]:
+                continue
+            paragraphs.append(f"## 文献 {refs[name]}")
+            for item in rows[name]:
+                cite = f"[{refs[name]}, p.{item.page}]" if item.page is not None else f"[{refs[name]}]"
+                paragraphs.append(item.claim.strip() + " " + cite)
+                used.append(item.evidence_id)
+        body = "\n\n".join(paragraphs)
+        return body + "\n\n## 参考文献\n\n" + references, used
+
+    # 逐轮为每篇选一条，避免前几篇独占4500字符；只舍弃整条事实，不截掉条件。
+    seen = set()
+    for index in range(max(map(len, grouped.values()))):
+        for name in filenames:
+            if index >= len(grouped[name]):
+                continue
+            item = grouped[name][index]
+            if item.evidence_id in seen:
+                continue
+            selected[name].append(item)
+            candidate, _ = render(selected)
+            try:
+                validate_report_limits(candidate, "Survey")
+            except ValueError:
+                selected[name].pop()
+            else:
+                seen.add(item.evidence_id)
+    markdown, used = render(selected)
+    body = markdown.split("## 参考文献", 1)[0]
+    if any(not selected[name] for name in filenames) or len(re.sub(r"\s", "", body)) < 800:
+        raise EvidenceError("insufficient complete evidence for a bounded Survey fallback")
+    return markdown, used
 
 
 def validate_citations(markdown, evidence, used_ids, minimum=1, *, function=None):

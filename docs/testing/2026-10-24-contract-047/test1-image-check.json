@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-10-24T19:56:50.6681069+08:00",
+  "branch": "test1",
+  "commit": "80dd81d5a89c3a0a3dd3e0e565ad0ce6fd772c72",
+  "main_commit": "64f5efd881d41b24354d6e82f02b450c799e48ff",
+  "test1_tree": "d3415d276fbd1b3063b82f500fa62e905440f050",
+  "main_tree": "d3415d276fbd1b3063b82f500fa62e905440f050",
+  "tar_archive_count": 0,
+  "checksum_file_count": 7,
+  "lfs_pointer_count": 0,
+  "official_runtime_entry_static_review": "Uses official AgentRuntime instance and run(); installed image not inspected",
+  "target_tests_executed": 0,
+  "reason": "Remote test1 has the same source tree as already reviewed main; only checksum files are present in team_share/image."
+}

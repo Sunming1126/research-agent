@@ -9,8 +9,11 @@ from pathlib import Path
 
 from ..core.utils import confined, sha256_file, write_json, atomic_text
 from ..core.session import checkpoint, current_session, remaining_timeout
+from ..core.process import run_case_process
+from .experiment_diagnostics import ExperimentProcessError, error_record
 from .source_generation import build_source_prompt, read_generation_materials, save_generation_response, save_source
 from .sample_validation import run_public_sample
+from ..integrations.llm import ModelQuotaError
 
 
 CASE_MODULES = {"D-01": "d01.py", "D-02": "d02.py", "D-05": "d05.py"}
@@ -52,6 +55,7 @@ class LayeredDRunner:
         self.work = work
         self.llm = llm
         self.proof = None
+        self.stage = "generation"
 
     def prepare_implementation(self, case_id: str) -> Path:
         """把本队算法源码复制为平台要求的单文件实现。"""
@@ -110,25 +114,42 @@ class LayeredDRunner:
         save_generation_response(response, confined(self.work, "generation-response.json"))
         destination = confined(self.work, "implementation.py")
         save_source(response, destination)
+        # 每个版本单独留存，成功提交的文件仍逐字来自该次模型完整回复。
+        atomic_text(confined(self.work, f"implementation-attempt-{attempt}.py"), destination.read_text(encoding="utf-8"))
         return destination
 
     def prepare_checked_implementation(self, case, tester=run_public_sample):
-        """锁源前允许两次模型完整生成；正式请求发出后不再变更源码。"""
+        """锁源前允许最多三次完整生成；正式请求发出后不再变更源码。"""
         history, feedback = [], None
         materials = read_generation_materials(case.case_id, [self.settings.workspace, *self.settings.material_roots])
-        for attempt in range(1, 3):
+        # 格式/兼容性快速拒绝可消耗一次机会，第三次仍受整题剩余时间和 Token 限制。
+        for attempt in range(1, 4):
+            path = None
             try:
+                self.stage = "generation"
                 path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                self.stage = "public_selftest"
                 report = tester(path, materials, case.case_id)
                 history.append({"attempt": attempt, "source_sha256": sha256_file(path), **report})
                 write_json(confined(self.work, "public-selftest.json"), {"attempts": history})
                 return path
             except (ValueError, SyntaxError, TypeError, KeyError, RuntimeError) as exc:
                 feedback = {"error_type": type(exc).__name__, "message": str(exc)[:2000]}
-                history.append({"attempt": attempt, "status": "failed", **feedback})
+                failure = {"attempt": attempt, "status": "failed", "stage": self.stage, **feedback}
+                if isinstance(exc, ModelQuotaError):
+                    failure.update(code=exc.code, retryable=False)
+                if path is not None:
+                    failure["source_sha256"] = sha256_file(path)
+                    feedback["previous_source"] = path.read_text(encoding="utf-8")
+                if hasattr(exc, "feedback"):
+                    feedback["public_counterexample"] = exc.feedback
+                    failure["public_counterexample"] = exc.feedback
+                history.append(failure)
                 write_json(confined(self.work, "public-selftest.json"), {"attempts": history})
+                if isinstance(exc, ModelQuotaError):
+                    raise
                 session = current_session()
-                if attempt == 2 or (session and session.remaining() < 65):
+                if attempt == 3 or (session and session.remaining() < 65):
                     raise RuntimeError("model implementation failed public self-test") from None
         raise RuntimeError("no model implementation passed public self-test")
 
@@ -148,13 +169,14 @@ class LayeredDRunner:
             env.update(PYTHONIOENCODING="utf-8", RESEARCH_RESULT_ROOT=str(source_root),
                        RESEARCH_WORKSPACE_TEAM=self.settings.team)
             checkpoint("d_formal_execution")
-            completed = subprocess.run(command, capture_output=True, encoding="utf-8", errors="replace",
-                                       timeout=remaining_timeout(min(175, self.settings.case_timeout), reserve=5), env=env, check=False)
+            self.stage = "formal_execution"
+            completed = run_case_process(command, timeout=min(175, self.settings.case_timeout), env=env)
             checkpoint("d_formal_artifacts")
             atomic_text(confined(self.work, "experiment.stdout.jsonl"), completed.stdout)
             atomic_text(confined(self.work, "experiment.stderr.log"), completed.stderr)
             if completed.returncode:
-                raise RuntimeError("layered experiment process failed")
+                raise ExperimentProcessError(completed.returncode, completed.stderr)
+            self.stage = "artifacts"
             lines = [line for line in completed.stdout.splitlines() if line.strip()]
             if not lines:
                 raise ValueError("layered runner returned empty output")
@@ -170,11 +192,14 @@ class LayeredDRunner:
             return submission
         except FileNotFoundError as exc:
             write_json(confined(self.work, "experiment-error.json"),
-                       {"type": type(exc).__name__, "message": str(exc)[:600]})
+                       error_record(exc, self.stage))
             return self._failed(case.case_id, specs, "materials_missing")
         except (ValueError, KeyError, OSError, RuntimeError, subprocess.TimeoutExpired, json.JSONDecodeError) as exc:
+            if getattr(exc, "stdout", None) is not None:
+                atomic_text(confined(self.work, "experiment.stdout.jsonl"), exc.stdout)
+                atomic_text(confined(self.work, "experiment.stderr.log"), exc.stderr or "")
             write_json(confined(self.work, "experiment-error.json"),
-                       {"type": type(exc).__name__, "message": str(exc)[:600]})
+                       error_record(exc, self.stage))
             return self._failed(case.case_id, specs, "failed")
 
     def _copy_figures(self, source_root, submission):

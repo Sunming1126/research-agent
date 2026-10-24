@@ -1,0 +1,316 @@
+import heapq
+from collections import OrderedDict
+
+
+def run_experiment(request):
+    data = {}
+    if isinstance(request, dict):
+        value = request.get("data")
+        if isinstance(value, dict):
+            data = value
+
+    jobs_in = data.get("jobs")
+    if not isinstance(jobs_in, list):
+        jobs_in = []
+    weights_in = data.get("flow_weights")
+    if not isinstance(weights_in, dict):
+        weights_in = {}
+
+    def to_number(value, default):
+        try:
+            number = float(value)
+        except (TypeError, ValueError):
+            return default
+        if number != number:
+            return default
+        if number == float("inf") or number == float("-inf"):
+            return default
+        return number
+
+    def id_key(value):
+        if isinstance(value, str):
+            return value
+        if isinstance(value, bool):
+            return str(value)
+        if isinstance(value, (int, float)):
+            return repr(value)
+        return str(value)
+
+    servers_raw = to_number(data.get("servers", 1), 1.0)
+    n_servers = int(servers_raw)
+    if n_servers < 1:
+        n_servers = 1
+
+    setup_ms = to_number(data.get("setup_ms", 0), 0.0)
+    if setup_ms < 0.0:
+        setup_ms = 0.0
+
+    horizon = to_number(data.get("horizon_ms", 0), 0.0)
+    if horizon < 0.0:
+        horizon = 0.0
+
+    flows = []
+    seen_flows = set()
+    for flow in weights_in.keys():
+        key = str(flow)
+        if key not in seen_flows:
+            seen_flows.add(key)
+            flows.append(key)
+
+    jobs = []
+    for job in jobs_in:
+        if not isinstance(job, dict):
+            continue
+        jid = job.get("id")
+        flow = str(job.get("flow"))
+        arrival = to_number(job.get("arrival_ms"), 0.0)
+        service = to_number(job.get("service_ms"), 0.0)
+        if service < 0.0:
+            service = 0.0
+        deadline = to_number(job.get("deadline_ms"), float("inf"))
+        if flow not in seen_flows:
+            seen_flows.add(flow)
+            flows.append(flow)
+        jobs.append({
+            "id": jid,
+            "flow": flow,
+            "arrival_ms": arrival,
+            "service_ms": service,
+            "deadline_ms": deadline,
+        })
+
+    weights = {}
+    for flow in flows:
+        w = to_number(weights_in.get(flow, 1), 1.0)
+        if not (w > 0.0):
+            w = 1.0
+        weights[flow] = w
+
+    def simulate(use_fair):
+        total = len(jobs)
+
+        order = sorted(
+            range(total),
+            key=lambda i: (jobs[i]["arrival_ms"], id_key(jobs[i]["id"]), i),
+        )
+        arrival_time = []
+        for index in order:
+            arrival_time.append(jobs[index]["arrival_ms"])
+        next_arrival = 0
+
+        server_last_flow = [None] * n_servers
+        server_busy_until = [None] * n_servers
+
+        pending = []
+        ready = []
+        queued = [False] * total
+
+        state = {"allocated": {}, "fair_seq": 0}
+        for flow in flows:
+            state["allocated"][flow] = 0.0
+
+        trace = []
+        dropped = []
+        active = []
+        run_seq = 0
+
+        def add_ready(index):
+            job = jobs[index]
+            queued[index] = True
+            if use_fair:
+                state["fair_seq"] += 1
+                key = (
+                    state["allocated"][job["flow"]] / weights[job["flow"]],
+                    job["arrival_ms"],
+                    id_key(job["id"]),
+                    state["fair_seq"],
+                )
+            else:
+                key = (
+                    job["arrival_ms"],
+                    id_key(job["id"]),
+                    index,
+                )
+            heapq.heappush(ready, (key, index))
+
+        def harvest(now):
+            completed = []
+            for entry in active:
+                if entry[0] <= now:
+                    completed.append(entry)
+            if not completed:
+                return
+            for entry in completed:
+                active.remove(entry)
+                end_ms, _, server, job, dispatch, used_setup, start = entry
+                if server_busy_until[server] is None or server_busy_until[server] < end_ms:
+                    server_busy_until[server] = end_ms
+                trace.append({
+                    "id": job["id"],
+                    "flow": job["flow"],
+                    "arrival_ms": job["arrival_ms"],
+                    "service_ms": job["service_ms"],
+                    "deadline_ms": job["deadline_ms"],
+                    "server": server,
+                    "dispatch_ms": dispatch,
+                    "setup_ms": used_setup,
+                    "start_ms": start,
+                    "end_ms": end_ms,
+                    "wait_ms": start - job["arrival_ms"],
+                })
+
+        def free_server(server, now):
+            if server_busy_until[server] is None:
+                return True
+            return server_busy_until[server] <= now
+
+        def try_dispatch(server, now):
+            popped = None
+            skipped = []
+            while ready:
+                entry = heapq.heappop(ready)
+                index = entry[1]
+                job = jobs[index]
+                if not queued[index]:
+                    continue
+                if job["arrival_ms"] > now:
+                    skipped.append(entry)
+                    continue
+                previous = server_last_flow[server]
+                if previous is None or previous == job["flow"]:
+                    used_setup = 0.0
+                else:
+                    used_setup = setup_ms
+                start = now + used_setup
+                if start >= job["deadline_ms"]:
+                    dropped.append({"id": job["id"], "reason": "deadline"})
+                    queued[index] = False
+                    continue
+                end = start + job["service_ms"]
+                if end > horizon:
+                    dropped.append({"id": job["id"], "reason": "horizon"})
+                    queued[index] = False
+                    continue
+                popped = (index, job, used_setup, start, end)
+                break
+            for entry in skipped:
+                heapq.heappush(ready, entry)
+            if popped is None:
+                return False
+            index, job, used_setup, start, end = popped
+            queued[index] = False
+            state["allocated"][job["flow"]] = (
+                state["allocated"][job["flow"]] + job["service_ms"]
+            )
+            server_last_flow[server] = job["flow"]
+            server_busy_until[server] = end
+            nonlocal_seq = run_seq
+            nonlocal_seq += 1
+            active.append((end, nonlocal_seq, server, job, now, used_setup, start))
+            active.sort()
+            return True
+
+        def next_time(now):
+            candidate = None
+            if next_arrival < total:
+                t = arrival_time[next_arrival]
+                if t > now and (candidate is None or t < candidate):
+                    candidate = t
+            for entry in active:
+                t = entry[0]
+                if t > now and (candidate is None or t < candidate):
+                    candidate = t
+            return candidate
+
+        now = 0.0
+        if total > 0:
+            first_arrival = arrival_time[0]
+            if first_arrival > now:
+                now = first_arrival
+        else:
+            now = 0.0
+
+        while True:
+            harvest(now)
+
+            while next_arrival < total and arrival_time[next_arrival] <= now:
+                pending.append(order[next_arrival])
+                next_arrival += 1
+
+            if now >= horizon:
+                for index in pending:
+                    if not queued[index]:
+                        dropped.append({"id": jobs[index]["id"], "reason": "horizon"})
+                        queued[index] = True
+                pending = []
+                break
+
+            kept = []
+            for index in pending:
+                if jobs[index]["deadline_ms"] <= now:
+                    dropped.append({"id": jobs[index]["id"], "reason": "deadline"})
+                else:
+                    kept.append(index)
+            pending = kept
+
+            for index in pending:
+                if not queued[index]:
+                    add_ready(index)
+            pending = []
+
+            dispatched = False
+            for server in range(n_servers):
+                if not free_server(server, now):
+                    continue
+                while ready:
+                    if try_dispatch(server, now):
+                        dispatched = True
+                        break
+                    else:
+                        break
+
+            if dispatched:
+                continue
+
+            future_time = next_time(now)
+            if future_time is None:
+                break
+            if future_time > horizon:
+                if next_arrival >= total and not active:
+                    break
+                if next_arrival < total and arrival_time[next_arrival] <= horizon:
+                    now = arrival_time[next_arrival]
+                else:
+                    for entry in active:
+                        harvest(entry[0])
+                    break
+                continue
+            now = future_time
+
+        for index in pending:
+            if not queued[index]:
+                dropped.append({"id": jobs[index]["id"], "reason": "horizon"})
+
+        served_ms = OrderedDict()
+        for flow in flows:
+            served_ms[flow] = 0.0
+        for record in trace:
+            served_ms[record["flow"]] = served_ms[record["flow"]] + record["service_ms"]
+
+        dropped.sort(key=lambda d: id_key(d["id"]))
+        trace.sort(key=lambda t: (t["dispatch_ms"], t["server"]))
+
+        return {
+            "trace": trace,
+            "served_ms": served_ms,
+            "dropped": dropped,
+        }
+
+    baseline = simulate(False)
+    candidate = simulate(True)
+
+    return {
+        "baseline": baseline,
+        "candidate": candidate,
+        "details": {},
+    }

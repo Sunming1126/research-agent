@@ -1,0 +1,295 @@
+import math
+from collections import defaultdict
+
+
+def _num(value, default):
+    if value is None:
+        return default
+    try:
+        v = float(value)
+    except (TypeError, ValueError):
+        return default
+    if math.isnan(v):
+        return default
+    return v
+
+
+def _normalize(request):
+    req = request if isinstance(request, dict) else {}
+    data = req.get("data", {})
+    if not isinstance(data, dict):
+        data = {}
+
+    raw_jobs = data.get("jobs", [])
+    if not isinstance(raw_jobs, list):
+        raw_jobs = []
+
+    raw_weights = data.get("flow_weights", {})
+    if not isinstance(raw_weights, dict):
+        raw_weights = {}
+
+    servers = data.get("servers", 1)
+    try:
+        servers = int(servers)
+    except (TypeError, ValueError):
+        servers = 1
+    if servers < 1:
+        servers = 1
+
+    setup_ms = _num(data.get("setup_ms", 0), 0.0)
+    if setup_ms < 0:
+        setup_ms = 0.0
+
+    horizon = _num(data.get("horizon_ms", None), float("inf"))
+
+    weights = {}
+    for k, v in raw_weights.items():
+        w = _num(v, 1.0)
+        if w <= 0:
+            w = 1.0
+        weights[k] = w
+
+    flows = set(weights.keys())
+
+    jobs = []
+    for idx, raw in enumerate(raw_jobs):
+        if not isinstance(raw, dict):
+            continue
+        jid = raw.get("id", idx)
+        flow = raw.get("flow")
+        arrival = _num(raw.get("arrival_ms", 0), 0.0)
+        service = _num(raw.get("service_ms", 0), 0.0)
+        deadline = _num(raw.get("deadline_ms", None), float("inf"))
+        flows.add(flow)
+        if flow not in weights:
+            weights[flow] = 1.0
+        jobs.append({
+            "id": jid,
+            "flow": flow,
+            "arrival_ms": arrival,
+            "service_ms": service,
+            "deadline_ms": deadline,
+            "raw": raw,
+            "order": idx,
+        })
+
+    jobs.sort(key=lambda x: (x["arrival_ms"], x["id"]))
+
+    return jobs, weights, servers, setup_ms, horizon, flows
+
+
+def _run(request, strategy):
+    jobs, weights, servers, setup_ms, horizon, flows = _normalize(request)
+    n = len(jobs)
+
+    served_ms = {}
+    for f in flows:
+        served_ms[f] = 0
+
+    trace = []
+    dropped = []
+    dropped_ids = set()
+
+    server_free = [0.0] * servers
+    server_last_flow = [None] * servers
+    flow_alloc = defaultdict(float)
+
+    waiting = []
+    pending = 0
+    now = 0.0
+
+    def add_arrivals(t):
+        nonlocal pending
+        while pending < n and jobs[pending]["arrival_ms"] <= t:
+            waiting.append(jobs[pending])
+            pending += 1
+
+    def drop_expired(t):
+        nonlocal waiting
+        keep = []
+        for task in waiting:
+            if task["deadline_ms"] <= t:
+                jid = task["id"]
+                if jid not in dropped_ids:
+                    dropped.append({"id": jid, "reason": "deadline"})
+                    dropped_ids.add(jid)
+            else:
+                keep.append(task)
+        waiting = keep
+
+    def select_task():
+        if not waiting:
+            return None
+        if strategy == "fifo":
+            best = None
+            best_key = None
+            for task in waiting:
+                key = (task["arrival_ms"], task["id"])
+                if best_key is None or key < best_key:
+                    best_key = key
+                    best = task
+            return best
+        best = None
+        best_key = None
+        for task in waiting:
+            w = weights.get(task["flow"], 1.0)
+            if w <= 0:
+                w = 1.0
+            alloc = flow_alloc.get(task["flow"], 0.0)
+            key = (alloc / w, task["arrival_ms"], task["id"])
+            if best_key is None or key < best_key:
+                best_key = key
+                best = task
+        return best
+
+    def next_event_time_local(t):
+        candidates = []
+        if pending < n:
+            candidates.append(jobs[pending]["arrival_ms"])
+        for s in range(servers):
+            if server_free[s] > t:
+                candidates.append(server_free[s])
+        if not candidates:
+            return None
+        nt = min(candidates)
+        if nt <= t:
+            return None
+        return nt
+
+    while True:
+        if now > horizon:
+            break
+
+        add_arrivals(now)
+        drop_expired(now)
+
+        dispatched_any = False
+        progress = True
+        while progress:
+            progress = False
+            for s in range(servers):
+                if server_free[s] > now:
+                    continue
+                if now > horizon:
+                    break
+                if not waiting:
+                    break
+
+                # Try tasks for this server; rejected tasks are removed one at a time.
+                while True:
+                    if now > horizon:
+                        break
+                    if not waiting:
+                        break
+                    best = select_task()
+                    if best is None:
+                        break
+
+                    last_flow = server_last_flow[s]
+                    if last_flow is None or last_flow != best["flow"]:
+                        setup = setup_ms
+                    else:
+                        setup = 0.0
+
+                    dispatch = now
+                    start = dispatch + setup
+                    end = start + best["service_ms"]
+
+                    if start >= best["deadline_ms"]:
+                        jid = best["id"]
+                        if jid not in dropped_ids:
+                            dropped.append({"id": jid, "reason": "deadline"})
+                            dropped_ids.add(jid)
+                        waiting.remove(best)
+                        progress = True
+                        continue
+
+                    if end > horizon:
+                        jid = best["id"]
+                        if jid not in dropped_ids:
+                            dropped.append({"id": jid, "reason": "horizon"})
+                            dropped_ids.add(jid)
+                        waiting.remove(best)
+                        progress = True
+                        continue
+
+                    waiting.remove(best)
+                    flow_alloc[best["flow"]] = flow_alloc.get(best["flow"], 0.0) + best["service_ms"]
+
+                    server_free[s] = end
+                    server_last_flow[s] = best["flow"]
+                    dispatched_any = True
+                    progress = True
+
+                    rec = dict(best["raw"])
+                    rec["id"] = best["id"]
+                    rec["flow"] = best["flow"]
+                    rec["arrival_ms"] = best["arrival_ms"]
+                    rec["service_ms"] = best["service_ms"]
+                    rec["deadline_ms"] = best["deadline_ms"]
+                    rec["server"] = s
+                    rec["dispatch_ms"] = dispatch
+                    rec["setup_ms"] = setup
+                    rec["start_ms"] = start
+                    rec["end_ms"] = end
+                    rec["wait_ms"] = start - best["arrival_ms"]
+                    trace.append(rec)
+                    break
+
+        if pending >= n and not waiting:
+            busy = False
+            for s in range(servers):
+                if server_free[s] > now:
+                    busy = True
+                    break
+            if not busy:
+                break
+
+        nt = next_event_time_local(now)
+        if nt is None:
+            now = now + 1.0 if now <= horizon else horizon + 1.0
+            if now > horizon:
+                break
+            # No event strictly after now except horizon; advance to horizon.
+            if nt is None:
+                break
+        else:
+            if nt > horizon:
+                now = horizon
+                break
+            now = nt
+
+    remaining = list(waiting)
+    while pending < n:
+        remaining.append(jobs[pending])
+        pending += 1
+
+    for task in remaining:
+        jid = task["id"]
+        if jid not in dropped_ids:
+            dropped.append({"id": jid, "reason": "horizon"})
+            dropped_ids.add(jid)
+
+    for rec in trace:
+        f = rec["flow"]
+        served_ms[f] = served_ms.get(f, 0) + rec["service_ms"]
+
+    trace.sort(key=lambda x: (x["dispatch_ms"], x["server"]))
+    dropped.sort(key=lambda x: x["id"])
+
+    return {
+        "trace": trace,
+        "served_ms": served_ms,
+        "dropped": dropped,
+    }
+
+
+def run_experiment(request):
+    req = request if isinstance(request, dict) else {}
+    baseline = _run(req, "fifo")
+    candidate = _run(req, "weighted")
+    return {
+        "baseline": baseline,
+        "candidate": candidate,
+        "details": {},
+    }

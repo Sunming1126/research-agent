@@ -1,0 +1,23 @@
+{
+  "status": "PREPARED_NOT_EXECUTED",
+  "archive": "native-contract-testkit-pending.zip",
+  "archive_sha256": "4f17baf0a19ed1c30bf6474ae9c77ee1cbaa6a32ff3cf52461d75d3049c341df",
+  "files": {
+    "镜像测试/native_main_contract_run.py": "5f478b06e4d58f2660fbe3e87471bfebe77f554533425b4ee9604f047e0d375b",
+    "镜像测试/main_contract_acceptance.py": "7a08cb7ce50dec4018711fba89e27b1ed1b7790f69a1ea6375f1e9ecb8a857ee",
+    "镜像测试/main_contract_paper_audit.py": "96e459ace9700a8245602798d7cf77d1659fa1642ebc85118ba4c6b4063b2e0c",
+    "镜像测试/main_contract_faults.py": "d282d631d452a5cb52fa98ad45ba880d007ebff574faf60c7b5ebf79b2137f79",
+    "镜像测试/main_contract_archive.py": "4fc9dabc9c645748abebb0c5ed48da8b6aebfd5c3b7139b7c6336d7932e51055",
+    ".session-audit/dispatch_main_contract_20261024.py": "ddac2b94cda7e453895517f23ffc77da00a8b61105f8a5a5a952f8fcd8fae7d0",
+    ".session-audit/check_047_syntax.py": "681fafe600d8279925d1c6b75563851d9f86e7ffc8b370fe227ae0fafcb1f0bc",
+    "镜像测试/审核/2026-10-24-main-64f5efd/contract-probes/test_official_contract_047.py": "f39e90ef0590d28ddc2d088e2e0b1eff0f84b7073a61e9d77f7f523d932c1244"
+  },
+  "execution_order": [
+    "baseline",
+    "regression",
+    "build",
+    "acceptance",
+    "archive"
+  ],
+  "note": "Review snapshot only. Extract at the existing workspace root and use the registered native conversation. Not a standalone headless runner."
+}

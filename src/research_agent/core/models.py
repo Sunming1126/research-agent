@@ -24,6 +24,8 @@ class CaseContext:
     def from_dict(cls, value: dict[str, Any]) -> "CaseContext":
         if not isinstance(value, dict):
             raise ValueError("case must be an object")
+        if set(value) != set(cls.__dataclass_fields__):
+            raise ValueError("case must contain exactly the eight research fields")
         for key in ("case_id", "function", "title", "input", "expected_output", "output_schema_ref"):
             if not isinstance(value.get(key), str) or not value[key].strip():
                 raise ValueError(f"case field {key} must be a nonempty string")

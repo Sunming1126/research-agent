@@ -3,6 +3,7 @@ import re
 import json
 from dataclasses import asdict
 from collections import defaultdict
+from contextlib import ExitStack
 from ..core.models import Evidence
 from ..contracts.validation import validate_report_limits, report_citations
 from ..core.utils import source_quote_matches
@@ -28,7 +29,12 @@ class ReportWorkflow:
             maximum = self.llm.output_capacity(stage, data, reserve=reserve, maximum=maximum)
             if maximum < minimum:
                 raise ModelError("insufficient reserved budget for " + stage)
-            with self.llm.reserve(reserve):
+            with ExitStack() as stack:
+                stack.enter_context(self.llm.reserve(reserve))
+                if hasattr(self.llm, "reserve_time"):
+                    # 请求超时由剩余时间减去后续阶段预留计算，不能等到180秒才开始写作。
+                    seconds = {"extract": 65, "extract_batch": 65, "report": 22, "repair": 18}.get(stage, 0)
+                    stack.enter_context(self.llm.reserve_time(seconds))
                 return self.llm.json(stage, data, max_tokens=maximum)
         return self.llm.json(stage, data, max_tokens=maximum)
 
@@ -40,19 +46,9 @@ class ReportWorkflow:
         grouped = defaultdict(list)
         for chunk in chunks:
             grouped[chunk.filename].append(chunk)
-        for position, (filename, group) in enumerate(grouped.items()):
-            # 均匀分配片段上下文，避免一个长章节挤掉实验、表格和局限。
-            # Survey 使用完整短片段，避免对已经切好的正文再次裁切，丢掉后半句定义与条件。
-            # Idea 保留紧凑证据上下文；长表格仍按连续窗口限制大小。
-            weights = [2 if c.page != 1 and own_method_score(c) >= 3 else 1 for c in group]
-            budgets = ([min(900, len(c.text)) for c in group] if getattr(case, "function", None) == "Survey" else
-                       [max(180, int(3800 * weight / sum(weights))) for weight in weights])
-            data = {"task": case.input, "filename": filename,
-                    "chunks": [{"chunk_id": c.chunk_id, "page": c.page,
-                                "heading": c.heading, "text": focused_excerpt(c, case.input, limit)} for c, limit in zip(group, budgets)]}
-            reserve = 17000 + max(0, len(grouped) - position - 1) * 1700
-            value = self._model_step("extract", data, 2000, reserve=reserve, minimum=900)
-            # 由当前论文片段提出补检问题，不依赖固定论文或评分事实清单。
+        for filename, group, value in self._extraction_responses(case, grouped):
+            # 批次内每条 claim 只能使用其所属论文的原始片段，不能跨论文借证据。
+            sources = {c.chunk_id: c for c in group}
             queries = value.get("missing_queries", [])
             if isinstance(queries, list):
                 pending = getattr(self, "evidence_queries", [])
@@ -73,14 +69,12 @@ class ReportWorkflow:
                 quote, claim = item.get("quote"), item.get("claim")
                 source = resolve_quote_source(chunk, quote, group)
                 if source is None:
-                    # 模型偶尔会改写摘录。丢弃该条，禁止未核验内容进入证据台账。
                     self.rejected_claims.append({"filename": filename, "chunk_id": item.get("chunk_id"),
                                                  "quote": str(quote)[:180],
                                                  "source_preview": chunk.text[:300] if chunk else None})
                     continue
                 if not isinstance(claim, str) or not claim.strip():
                     raise EvidenceError("empty claim")
-                # 原论文自己的 [14] 等文献编号不属于本题参考文献；保留其“文内所引”语义。
                 claim = re.sub(r"\[\d{1,2}\]", "文内所引", claim)
                 claim = re.sub(r"\s+", " ", claim).strip()
                 if source.chunk_id != chunk.chunk_id and all(c.chunk_id != source.chunk_id for c in self.selected_chunks):
@@ -90,6 +84,47 @@ class ReportWorkflow:
                 claims.append(Evidence(f"ev-{len(self.ledger)+len(claims)+1}", claim,
                                        source.filename, source.page, source.chunk_id, quote, facet=facet, role=role))
         return claims
+
+    def _extraction_responses(self, case, grouped):
+        prepared = []
+        for position, (filename, group) in enumerate(grouped.items()):
+            # 均匀分配片段上下文，避免一个长章节挤掉实验、表格和局限。
+            # Survey 使用完整短片段，避免对已经切好的正文再次裁切，丢掉后半句定义与条件。
+            # Idea 保留紧凑证据上下文；长表格仍按连续窗口限制大小。
+            weights = [2 if c.page != 1 and own_method_score(c) >= 3 else 1 for c in group]
+            batch = getattr(self.llm, "supports_batch_extraction", False)
+            budgets = ([max(120, min(900, int(4200 * weight / sum(weights)))) for weight in weights] if batch else
+                       [min(900, len(c.text)) for c in group] if getattr(case, "function", None) == "Survey" else
+                       [max(180, int(3800 * weight / sum(weights))) for weight in weights])
+            data = {"task": case.input, "filename": filename,
+                    "chunks": [{"chunk_id": c.chunk_id, "page": c.page,
+                                "heading": c.heading, "text": focused_excerpt(c, case.input, limit)} for c, limit in zip(group, budgets)]}
+            prepared.append((filename, group, data))
+            if not batch:
+                reserve = 17000 + max(0, len(grouped) - position - 1) * 1700
+                yield filename, group, self._model_step("extract", data, 2000, reserve=reserve, minimum=900)
+        if not getattr(self.llm, "supports_batch_extraction", False):
+            return
+        for offset in range(0, len(prepared), 3):
+            batch = prepared[offset:offset + 3]
+            data = {"task": case.input, "papers": [{"filename": name, "chunks": row["chunks"]} for name, _, row in batch]}
+            reserve = 17000 + max(0, len(prepared) - offset - len(batch)) * 1700
+            value = self._model_step("extract_batch", data, 3600 if len(batch) > 1 else 2000,
+                                     reserve=reserve, minimum=900)
+            papers = value.get("papers")
+            if not isinstance(papers, list):
+                raise EvidenceError("batch extraction must return a papers array")
+            mapped = {}
+            for paper in papers:
+                if not isinstance(paper, dict) or paper.get("filename") not in {name for name, _, _ in batch}:
+                    raise EvidenceError("batch extraction returned an unauthorized paper")
+                if paper["filename"] in mapped:
+                    raise EvidenceError("batch extraction repeated a paper")
+                mapped[paper["filename"]] = paper
+            if set(mapped) != {name for name, _, _ in batch}:
+                raise EvidenceError("batch extraction omitted a paper")
+            for name, group, _ in batch:
+                yield name, group, mapped[name]
 
 
     @tool(name="compose_and_check_report")
@@ -132,6 +167,12 @@ class ReportWorkflow:
         model_evidence = model_evidence_rows(evidence)
         core = survey_core_facts(self.ledger) if case.function == "Survey" else []
         anchor, anchor_ids = render_claim_ledger_section(core, refs) if core else ("", [])
+        if len(anchor) > 1800:
+            core = select_claims(core, maximum_per_paper=1, question=case.input)
+            anchor, anchor_ids = render_claim_ledger_section(core, refs)
+            if len(anchor) > 1800:
+                # 不截断事实或限定条件；过长时把完整证据留给模型综合写作。
+                anchor, anchor_ids = "", []
         feedback, history, previous_used, repair_targets = [], [], [], []
         for attempt in range(2):
             patches = []

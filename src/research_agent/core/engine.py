@@ -12,6 +12,8 @@ from pathlib import Path
 
 from .config import Settings
 from .dispatch import load_dispatch
+from .dispatch_plan import validate_current_assignment
+from .request_context import current_request
 from .models import CaseContext, Artifact
 from .session import CaseSession, checkpoint, current_session
 from .utils import confined, write_json, read_json, atomic_text, sha256_file
@@ -42,7 +44,8 @@ class ResearchAgentEngine:
     def solve_sync(self, payload, cancelled=None):
         # 实验共享单 CPU 资源；串行执行可避免并发请求覆盖产物。
         cancelled = cancelled or threading.Event()
-        received_at = time.monotonic()
+        request = current_request()
+        received_at = request.received_at if request else time.monotonic()
         dispatch = isinstance(payload, dict) and payload.get("dispatch") is True
         timeout = self._case_timeout(payload) if not dispatch else None
         while not self.lock.acquire(timeout=.1):
@@ -57,13 +60,18 @@ class ResearchAgentEngine:
 
     def _case_timeout(self, payload):
         limit = self.settings.case_timeout
+        request = current_request()
+        if request:
+            limit = min(limit, request.execution_deadline - request.received_at)
         if isinstance(payload, dict) and payload.get("function") == "Reproduction" and self.settings.experiment_mode == "platform":
             limit = min(limit, 180)
         return limit
 
     @tool(name="run_assigned_case")
     def _solve_one(self, payload, cancelled=None, received_at=None):
-        case = CaseContext.from_dict(payload)
+        # 本地离线 CLI 明确使用 local；参赛服务默认必须具备本次派题凭据。
+        case = (CaseContext.from_dict(payload) if os.environ.get("RESEARCH_RUNTIME") == "local"
+                else validate_current_assignment(self.settings, payload))
         session = CaseSession(case.case_id, self._case_timeout(payload),
                               cancelled=cancelled or threading.Event(),
                               started_at=received_at if received_at is not None else time.monotonic())

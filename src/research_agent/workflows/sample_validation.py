@@ -7,10 +7,21 @@ import os
 import subprocess
 import sys
 import re
+import time
+from copy import deepcopy
 from collections import Counter, defaultdict
 from pathlib import Path
 
 from ..core.session import checkpoint, current_session, remaining_timeout
+from .public_probes import public_probes
+
+
+class PublicSampleError(ValueError):
+    """可直接交回模型的公开反例；不包含凭据或平台隐藏数据。"""
+    def __init__(self, case_id, probe, request, error):
+        super().__init__(f"{case_id}/{probe}: {error}")
+        self.feedback = {"case_id": case_id, "probe": probe,
+                         "request": request, "error": str(error)[:1800]}
 
 
 def _finite(value):
@@ -19,6 +30,76 @@ def _finite(value):
     if isinstance(value, list):
         return all(_finite(v) for v in value)
     return not isinstance(value, float) or math.isfinite(value)
+
+
+def _d02_rankings(raw, queries, documents):
+    """规范允许多种排名表示；只核对公开输入，不重建检索算法。"""
+    if isinstance(raw, list):
+        if raw and isinstance(raw[0], dict) and "query_id" in raw[0]:
+            if len({row["query_id"] for row in raw}) != len(raw):
+                raise ValueError("D-02 duplicate query ranking")
+            raw = {row["query_id"]: row["rankings"] for row in raw}
+        elif len(raw) == len(queries):
+            raw = {query["id"]: rows for query, rows in zip(queries, raw)}
+    if not isinstance(raw, dict) or not {q["id"] for q in queries} <= set(raw):
+        raise ValueError("D-02 rankings must cover every supplied query")
+    normalized = {}
+    for query in queries:
+        rows = raw[query["id"]]
+        if not isinstance(rows, list):
+            raise ValueError("D-02 query ranking must be a list")
+        pairs = []
+        for row in rows:
+            if isinstance(row, dict) and set(row) == {"id", "score"}:
+                identifier, score = row["id"], row["score"]
+            elif isinstance(row, list) and len(row) == 2:
+                identifier, score = row
+            else:
+                raise ValueError("D-02 ranking items require id and score")
+            if type(score) not in {int, float} or not math.isfinite(score):
+                raise ValueError("D-02 ranking score must be finite numeric")
+            pairs.append((identifier, score))
+        if len(pairs) != len(documents) or {row[0] for row in pairs} != documents:
+            raise ValueError("D-02 ranking must contain every document exactly once")
+        if pairs != sorted(pairs, key=lambda row: (-row[1], row[0])):
+            raise ValueError("D-02 rankings must use descending scores and lexical ties")
+        normalized[query["id"]] = [row[0] for row in pairs]
+    return normalized
+
+
+def _d02_dev_metrics(row, data):
+    """从公开开发排名与公开相关标注核算，防止虚报或混淆两种均值。"""
+    queries = data["dev_queries"]
+    rankings = _d02_rankings(row.get("rankings"), queries, {d["id"] for d in data["documents"]})
+    values, groups = [], defaultdict(list)
+    for query in queries:
+        ids, relevant = rankings[query["id"]], set(query.get("relevant", []))
+        recall = 100 * len(set(ids[:5]) & relevant) / len(relevant) if relevant else 0
+        mrr = next((1 / (i + 1) for i, identifier in enumerate(ids[:10]) if identifier in relevant), 0)
+        values.append((recall, mrr)); groups[query.get("group", "default")].append((recall, mrr))
+    def means(items):
+        return tuple(sum(item[i] for item in items) / len(items) for i in (0, 1)) if items else (0, 0)
+    def check(actual, expected, name):
+        if type(actual) not in {int, float} or abs(actual - expected) > 1e-8 * max(1, abs(expected)):
+            raise ValueError(f"D-02 {name} inconsistent with public dev rankings: expected {expected}, got {actual}")
+    recall, mrr = means(values)
+    check(row.get("recall_at_5_percent"), recall, "ordinary dev Recall")
+    check(row.get("mrr_at_10"), mrr, "ordinary dev MRR")
+    metrics = row.get("group_metrics", {})
+    reported = metrics.get("groups")
+    if not isinstance(reported, dict) or set(reported) != set(groups):
+        raise ValueError("D-02 group metrics must cover exactly the public dev groups")
+    group_means = []
+    for group, items in groups.items():
+        if not isinstance(reported[group], dict):
+            raise ValueError("D-02 each group metric must be an object")
+        gr, gm = means(items); group_means.append((gr, gm))
+        check(reported[group].get("recall_at_5_percent"), gr, "group Recall")
+        check(reported[group].get("mrr_at_10"), gm, "group MRR")
+    macro_recall, macro_mrr = means(group_means)
+    for key, expected in [("worst_mrr_at_10", min((v[1] for v in group_means), default=0)),
+                          ("macro_mrr_at_10", macro_mrr), ("macro_recall_at_5_percent", macro_recall)]:
+        check(metrics.get(key), expected, key)
 
 
 def validate_sample_output(case_id, request, result):
@@ -70,18 +151,8 @@ def validate_sample_output(case_id, request, result):
                 if value != [majority] * len(data["texts"]):
                     raise ValueError("D-01 majority baseline violates lexical tie handling")
         elif case_id == "D-02":
-            queries = {q["id"] for q in data["test_queries"]}
             documents = {d["id"] for d in data["documents"]}
-            if not isinstance(value, dict) or set(value) != queries:
-                raise ValueError("D-02 rankings must cover every test query")
-            for ranking in value.values():
-                if (not isinstance(ranking, list) or any(not isinstance(row, dict) or set(row) != {"id", "score"}
-                    or type(row["score"]) not in {int, float} for row in ranking)):
-                    raise ValueError("D-02 ranking items require id and numeric score")
-                if len(ranking) != len(documents) or {row["id"] for row in ranking} != documents:
-                    raise ValueError("D-02 ranking must contain every document exactly once")
-                if ranking != sorted(ranking, key=lambda row: (-row["score"], row["id"])):
-                    raise ValueError("D-02 rankings must use descending scores and lexical ties")
+            _d02_rankings(value, data["test_queries"], documents)
             if name == "candidate":
                 details = result["details"]
                 if not isinstance(details.get("selected"), dict) or not isinstance(details.get("search"), list):
@@ -95,6 +166,7 @@ def validate_sample_output(case_id, request, result):
                 if expected_grid and canonical(configs) != canonical(expected_grid):
                     raise ValueError("D-02 search must cover each public grid configuration exactly once")
                 for row in search:
+                    _d02_dev_metrics(row, data)
                     metrics = row.get("group_metrics", {})
                     if not {"groups", "worst_mrr_at_10", "macro_mrr_at_10", "macro_recall_at_5_percent"} <= set(metrics):
                         raise ValueError("D-02 search group metrics are incomplete")
@@ -117,7 +189,14 @@ def validate_sample_output(case_id, request, result):
             flows = data["flow_weights"]
             if not isinstance(value["served_ms"], dict) or set(value["served_ms"]) != set(flows):
                 raise ValueError("D-05 served_ms must include every declared flow")
-            served, last_end = defaultdict(float), {}
+            if value["trace"] != sorted(value["trace"], key=lambda row: (row["dispatch_ms"], row["server"])):
+                raise ValueError("D-05 trace must be ordered by dispatch time and server")
+            if value["dropped"] != sorted(value["dropped"], key=lambda row: row["id"]):
+                raise ValueError("D-05 dropped jobs must be ordered by id")
+            if any(set(row) != {"id", "reason"} or row["reason"] not in {"deadline", "horizon"}
+                   for row in value["dropped"]):
+                raise ValueError("D-05 drop reasons must be deadline or horizon")
+            served, last_end, last_flow = defaultdict(float), {}, {}
             for job in value["trace"]:
                 if not {"server", "dispatch_ms", "setup_ms", "start_ms", "end_ms", "wait_ms"} <= set(job):
                     raise ValueError("D-05 trace timing fields missing")
@@ -129,8 +208,14 @@ def validate_sample_output(case_id, request, result):
                 server = job["server"]
                 if type(server) is not int or not 0 <= server < data["servers"]:
                     raise ValueError("D-05 server index is invalid")
-                if job["dispatch_ms"] < last_end.get(server, 0):
+                if job["dispatch_ms"] < max(last_end.get(server, 0), original["arrival_ms"]):
                     raise ValueError("D-05 overlapping jobs on the same server")
+                expected_setup = data["setup_ms"] if server in last_flow and last_flow[server] != original["flow"] else 0
+                if job["setup_ms"] != expected_setup:
+                    raise ValueError(f"D-05 {name} job={job['id']} server={server}: "
+                                     f"previous_flow={last_flow.get(server)!r}, next_flow={original['flow']!r}, "
+                                     f"expected_setup_ms={expected_setup}, observed_setup_ms={job['setup_ms']}; "
+                                     "the first assignment has zero setup; retain previous flow across idle intervals")
                 if (abs(job["end_ms"] - job["start_ms"] - original["service_ms"]) > 1e-8
                         or abs(job["wait_ms"] - (job["start_ms"] - original["arrival_ms"])) > 1e-8
                         or abs(job["start_ms"] - job["dispatch_ms"] - job["setup_ms"]) > 1e-8
@@ -138,26 +223,20 @@ def validate_sample_output(case_id, request, result):
                     raise ValueError("D-05 service/wait/setup/deadline/horizon invariants do not hold")
                 served[original["flow"]] += original["service_ms"]
                 last_end[server] = job["end_ms"]
+                last_flow[server] = original["flow"]
             if any(abs(value["served_ms"][flow] - served[flow]) > 1e-8 for flow in flows):
                 raise ValueError("D-05 served_ms differs from completed trace service")
     return {"status": "passed", "scope": "public_sample_structure_and_invariants",
             "candidate_present": result["candidate"] is not None}
 
 
-def run_public_sample(source: Path, materials, case_id, *, timeout=8):
-    protocol, request = json.loads(materials["protocol"]), json.loads(materials["sample"])
-    if request.get("case_id") != case_id or protocol.get("case_id") != case_id:
-        raise ValueError("public sample or protocol belongs to another case")
-    request = dict(request, protocol=protocol)
-    checkpoint("d_public_sample")
-    timeout = remaining_timeout(timeout, reserve=35)
+def _run_sample(source, request, timeout):
     message = {"source": source.read_text(encoding="utf-8"), "request": request, "seconds": max(1, int(timeout))}
     # 子进程不继承模型凭据、平台会话或用户 PYTHONPATH；-I/-S 禁止加载用户包。
     env = {key: os.environ[key] for key in ("SYSTEMROOT", "WINDIR", "PATH") if key in os.environ}
     command = [sys.executable, "-I", "-S", "-X", "utf8", str(Path(__file__).with_name("sample_worker.py"))]
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                text=True, encoding="utf-8", env=env, cwd=source.parent)
-    import time
     deadline = time.monotonic() + timeout
     payload = json.dumps(message, ensure_ascii=False)
     try:
@@ -176,14 +255,88 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8):
         raise
     if process.returncode:
         raise ValueError("public sample execution failed: " + (stdout.strip() or stderr.strip())[:1800])
-    body = json.loads(stdout)
-    report = validate_sample_output(case_id, request, body["result"])
-    if case_id == "D-02" and body["result"]["candidate"] is not None:
-        repeated = body.get("rank_result")
-        identity = lambda rankings: {qid: [row["id"] for row in ranking] for qid, ranking in rankings.items()}
-        if (not isinstance(repeated, dict) or set(repeated) != {"candidate"} or not _finite(repeated)
-                or identity(repeated["candidate"]) != identity(body["result"]["candidate"])):
-            raise ValueError("D-02 rank must reuse the selected configuration and reproduce run rankings")
-        report["rank_consistent"] = True
-    report["isolation"] = body["isolation"]
-    return report
+    return json.loads(stdout)
+
+
+def run_public_sample(source: Path, materials, case_id, *, timeout=8):
+    """整个公开自测共用额度；反例与源码交回模型，绝不就地改算法。"""
+    protocol, request = json.loads(materials["protocol"]), json.loads(materials["sample"])
+    if request.get("case_id") != case_id or protocol.get("case_id") != case_id:
+        raise ValueError("public sample or protocol belongs to another case")
+    request = dict(request, protocol=protocol)
+    checkpoint("d_public_sample")
+    deadline = time.monotonic() + remaining_timeout(timeout, reserve=35)
+    reports = []
+    for name, probe, expected_completed in public_probes(case_id, request):
+        budget = min(deadline - time.monotonic(), 2 if case_id == "D-05" else timeout)
+        if budget <= 0:
+            raise PublicSampleError(case_id, name, probe, "public test suite exhausted its shared time budget")
+        try:
+            body = _run_sample(source, probe, remaining_timeout(budget, reserve=35))
+            report = validate_sample_output(case_id, probe, body["result"])
+            if case_id == "D-02" and isinstance(expected_completed, dict):
+                for strategy in ("baseline", "candidate"):
+                    value = body["result"][strategy]
+                    if value is None:
+                        continue
+                    rankings = _d02_rankings(value, probe["data"]["test_queries"],
+                                             {d["id"] for d in probe["data"]["documents"]})
+                    for query, expected in expected_completed["d02_expected_top"].items():
+                        if rankings[query][0] != expected:
+                            raise ValueError(f"D-02 {strategy} query={query}: expected first document {expected}, "
+                                             f"observed {rankings[query][0]}; use query tokens and document term frequency, "
+                                             "not document tokens or document length as frequency")
+            elif isinstance(expected_completed, dict):
+                for strategy in ("baseline", "candidate"):
+                    result = body["result"][strategy]
+                    if result is not None:
+                        states = {row["id"]: "completed" for row in result["trace"]}
+                        states.update({row["id"]: row["reason"] for row in result["dropped"]})
+                        if states != expected_completed["states"]:
+                            raise ValueError(f"public protocol probe {name} has wrong completed/drop states; "
+                                             f"strategy={strategy}, expected_states={expected_completed['states']}, "
+                                             f"observed_states={states}; " + expected_completed.get("rule",
+                                             "check deadline priority and account for all jobs at the horizon"))
+                        expected_ids = expected_completed.get("trace_ids", {}).get(strategy)
+                        if expected_ids is not None and [row["id"] for row in result["trace"]] != expected_ids:
+                            raise ValueError(f"public protocol probe {name} strategy={strategy}: "
+                                             f"expected_trace_ids={expected_ids}, "
+                                             f"observed_trace_ids={[row['id'] for row in result['trace']]}; "
+                                             + expected_completed.get("rule", "count assigned service immediately "
+                                             "before choosing the next simultaneously idle server"))
+                        by_id = {row["id"]: row for row in result["trace"]}
+                        for identifier, timing in expected_completed.get("timings", {}).items():
+                            actual = {key: by_id[identifier][key] for key in timing}
+                            if actual != timing:
+                                raise ValueError(f"public protocol probe {name} strategy={strategy} job={identifier}: "
+                                                 f"expected_timing={timing}, observed_timing={actual}; "
+                                                 + expected_completed["rule"])
+            elif expected_completed is not None:
+                for strategy in ("baseline", "candidate"):
+                    result = body["result"][strategy]
+                    if result is not None and sorted(row["id"] for row in result["trace"]) != sorted(expected_completed):
+                        raise ValueError("ample-window probe must complete every supplied job")
+            if case_id == "D-02" and body["result"]["candidate"] is not None:
+                repeated = body.get("rank_result")
+                if not isinstance(repeated, dict) or set(repeated) != {"candidate"} or repeated["candidate"] != body["result"]["candidate"]:
+                    raise ValueError("D-02 rank must reuse the selected configuration and reproduce run rankings")
+                report["rank_consistent"] = True
+            if case_id == "D-01":
+                first, repeated = deepcopy(body["result"]), deepcopy(body.get("repeat_result"))
+                # 真实计时不是算法预测漂移；仅剥离已知 details 诊断，不忽略预测或模型字段。
+                volatile = []
+                for key in ("elapsed_seconds",):
+                    if key in first["details"] or (isinstance(repeated, dict) and key in repeated.get("details", {})):
+                        volatile.append(key)
+                        first["details"].pop(key, None)
+                        if isinstance(repeated, dict):
+                            repeated["details"].pop(key, None)
+                if first != repeated:
+                    raise ValueError("D-01 repeated predictions or model fields are not deterministic")
+                report.update(reproducible=True, volatile_detail_fields=volatile)
+            report.update(probe=name, isolation=body["isolation"])
+            reports.append(report)
+        except (ValueError, KeyError, TypeError, RuntimeError) as exc:
+            raise PublicSampleError(case_id, name, probe, str(exc)) from None
+    return {**reports[0], "probes": reports, "probe_count": len(reports),
+            "scope": "public_samples_and_protocol_boundary_invariants"}
