@@ -6,7 +6,8 @@ from pathlib import Path
 from typing import Any
 
 from .models import CaseContext
-from .utils import confined, read_json, sha256_file
+from .utils import confined, read_json, sha256_bytes
+import json
 
 
 FUNCTIONS = {
@@ -37,7 +38,7 @@ class DispatchPlan:
         return len(self.case_ids)
 
     @classmethod
-    def from_dict(cls, dispatch: dict[str, Any], settings) -> "DispatchPlan":
+    def from_dict(cls, dispatch: dict[str, Any], settings, *, current_case_id=None, assigned_root=None) -> "DispatchPlan":
         """校验 v3 正式派题，同时保留旧 v2/25 题历史联调格式。"""
         if not isinstance(dispatch, dict):
             raise ValueError("dispatch must be an object")
@@ -91,19 +92,24 @@ class DispatchPlan:
         if set(by_id) != set(ids):
             raise ValueError("dispatch entries and IDs differ")
 
+        if current_case_id is not None and current_case_id not in by_id:
+            raise ValueError("current case is not assigned to this submission")
+
         cases: list[dict[str, Any]] = []
         difficulties: dict[str, str] = {}
-        for case_id in ids:
+        # Single 只读取当前题正文；其他题只检查 dispatch 中的公开元数据。
+        for case_id in ([current_case_id] if current_case_id is not None else ids):
             row = by_id[case_id]
             expected = f"data/{settings.team}/assigned/{case_id}.json"
             if row.get("question_file") != expected:
                 raise ValueError("question must be in this team's assigned directory")
-            path = confined(settings.workspace, expected)
+            path = confined(assigned_root or settings.workspace, expected)
             if not path.is_file():
                 raise ValueError("assigned question file is missing")
-            if sha256_file(path) != row.get("question_sha256"):
+            raw = path.read_bytes()
+            if sha256_bytes(raw) != row.get("question_sha256"):
                 raise ValueError("question hash mismatch")
-            payload = read_json(path)
+            payload = json.loads(raw.decode("utf-8-sig"))
             case = CaseContext.from_dict(payload)
             if case.case_id != case_id or case.function != row.get("function") or case.title != row.get("title"):
                 raise ValueError("question/dispatch identity mismatch")
@@ -116,9 +122,29 @@ class DispatchPlan:
         return cls(settings.team, schema, rules, tuple(ids), dict(expected_counts), difficulties, tuple(cases))
 
 
-def load_dispatch_plan(settings) -> DispatchPlan:
+def _dispatch_root(settings):
+    """优先使用实际派题挂载；只检查本队精确路径，不扫描队伍目录。"""
+    relative = f"data/{settings.team}/dispatch.json"
+    candidates = list(dict.fromkeys([settings.output, settings.workspace]))
+    existing = [root for root in candidates if confined(root, relative).is_file()]
+    if len(existing) > 1:
+        raise ValueError("multiple team dispatch files found; ambiguous assignment root")
+    return existing[0] if existing else settings.output
+
+
+def load_dispatch_plan(settings, *, current_case_id=None) -> DispatchPlan:
     """从本队工作区读取并校验当前派题计划。"""
     relative = f"data/{settings.team}/dispatch.json"
-    dispatch = read_json(confined(settings.workspace, relative))
-    return DispatchPlan.from_dict(dispatch, settings)
+    root = _dispatch_root(settings)
+    dispatch = read_json(confined(root, relative))
+    return DispatchPlan.from_dict(dispatch, settings, current_case_id=current_case_id, assigned_root=root)
+
+
+def validate_current_assignment(settings, payload):
+    """在任何材料读取或模型调用前核对当前题的摘要、身份与完整八字段。"""
+    case = CaseContext.from_dict(payload)
+    plan = load_dispatch_plan(settings, current_case_id=case.case_id)
+    if plan.cases != (case.to_dict(),):
+        raise ValueError("request differs from the assigned question")
+    return case
 

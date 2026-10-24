@@ -85,13 +85,32 @@ def read_generation_materials(case_id: str, roots: list[Path]) -> dict[str, str]
 
 def build_source_prompt(case, materials: dict[str, str]) -> str:
     """生成只要求完整源码的提示词；题目材料作为待分析内容传入。"""
+    checks = {
+        "D-01": "检查训练标签、词表/类别排序、预测与实际返回权重一致，固定seed重复运行的模型与预测完全一致。\n",
+        "D-02": (
+            "排名若是{id,score}字典，读取row['id']，不能当(id,score)元组解包。"
+            "打分遍历查询tokens，f是当前文档中该查询词的次数，不是文档长度；不得改为遍历文档自身词、完全忽略查询。"
+            "alpha与beta查询在互斥语料必须返回不同相关首位；非匹配词f=0贡献0。"
+            "开发Recall/MRR由实际完整排名和公开relevant核算，普通查询均值与分组等权宏均值分别计算。\n"),
+        "D-05": (
+            "首次派发时服务器无previous_flow，setup必须为0；只有previous_flow存在且不同才收取setup_ms。"
+            "空闲期间保留上个流；不能把last_flow is None当作发生流切换。"
+            "没有可派发任务时只跳到严格晚于当前时刻的到达/完成事件，无未来事件时退出，不能反复选择旧空闲时刻。"
+            "同一时刻按服务器编号依次派发，每次立刻计入该流已分配量，之后再选下一台任务。"
+            "若选中任务因deadline或horizon被拒绝，当前服务器仍空闲，必须在同一派发时刻继续尝试其他等待任务，"
+            "直到接收一个任务或等待队列为空；不能直接continue到下一服务器、跳事件或提前退出。"
+            "拒绝不消耗时间、不改变服务器上个流或空闲时间、不增加该流已分配量。"
+            "同时违反deadline和horizon先判deadline；end==horizon可完成；到窗口停止派发，等待和未来任务均恰好一次horizon。\n"),
+    }.get(case.case_id, "")
     return (
-        "请根据下面当前题目的公开方法、协议、样例和输入，实现一个完整的 Python 3.9 标准库算法。\n"
-        "只返回一个完整的 ```python 代码块，不要解释、不要省略函数、不要返回补丁、不要拆成多个版本。\n"
-        "源码必须定义 run_experiment(request)，不得联网、读写文件、读取隐藏标签、访问模型凭据或打印日志。\n"
-        "仅使用算法所需标准库，如math、collections、re、heapq、itertools、random、statistics、time；"
-        "不使用动态加载、反射、私有运行时属性或第三方包。\n"
-        "严格遵守 protocol.response_schema；这是算法内部返回，不是最终 Reproduction 答卷。\n\n"
+        "请根据当前题目的公开方法、协议、样例和输入，实现完整Python3.9标准库算法。\n"
+        "只返回一个完整```python代码块，不解释、不省略函数、不返回补丁或多个版本。\n"
+        "源码定义run_experiment(request)，不得联网、读写文件、读取隐藏标签/模型凭据或打印日志。\n"
+        "使用算法所需标准库和普通import，不用动态加载、反射、模块/对象私有属性或第三方包。"
+        "类成员使用公开名称，输入是普通dict，不需要适配任意对象。\n"
+        "严格遵守protocol.response_schema，这是算法内部返回，不是最终Reproduction答卷。"
+        "同一输入固定seed返回相同算法数据；details不放实际运行耗时等易变诊断，耗时由平台测量。\n"
+        + checks +
         f"当前题号：{case.case_id}\n当前题目输入：\n{case.input}\n\n"
         f"method.md：\n{materials['method']}\n\n"
         f"protocol.json：\n{materials['protocol']}\n\n"

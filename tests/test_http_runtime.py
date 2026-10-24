@@ -66,7 +66,9 @@ def test_direct_question_returns_exact_case_schema_and_preserves_metadata_in_hea
     spans = exporter.get_finished_spans()
     assert {span.name for span in spans} == {"agent.session", "agent.task"}
     session = next(span for span in spans if span.name == "agent.session")
-    assert session.attributes["task_id"] == "A-05"
+    import uuid
+    assert str(uuid.UUID(session.attributes["task_id"])) == session.attributes["task_id"]
+    assert session.attributes["task_id"] != "A-05"
     assert session.attributes["task_type"] == "Chat"
     assert session.attributes["success"] is True
     assert (body.get("metadata") or json.loads(response.headers["x-agenthack-metadata"]))["trace_id"] == f"{session.context.trace_id:032x}"
@@ -104,7 +106,9 @@ def test_direct_timeout_uses_case_budget_instead_of_sdk_thirty_seconds(runtime):
         assert client.post("/solve", json=question()).status_code == 200
         engine.settings.case_timeout = 600
         assert client.post("/solve", json=question()).status_code == 200
-    assert timeouts == [75, 180]
+    # 180秒包含接收、执行、落盘与flush，不能把全部时间交给业务协程。
+    assert 67.9 <= timeouts[0] <= 68
+    assert 172.9 <= timeouts[1] <= 173
 
 
 def test_legacy_sdk_envelope_still_returns_metadata(runtime):
@@ -123,14 +127,14 @@ def test_business_failure_preserves_sdk_error_metadata_and_trace(runtime):
     client, engine, exporter = runtime
     engine.failure = FileNotFoundError("private filesystem details")
     response = client.post("/solve", json=question())
-    assert response.status_code == 200
+    assert response.status_code == 500
     body = response.json()
-    assert body["status"] == "error" and body["output"]["error"] == "FileNotFoundError"
+    assert body["error_type"] == "FileNotFoundError" and "output" not in body
     assert "private filesystem details" not in response.text
     session = next(span for span in exporter.get_finished_spans() if span.name == "agent.session")
     assert session.attributes["success"] is False
     assert session.attributes["final_error"] == "FileNotFoundError"
-    assert (body.get("metadata") or json.loads(response.headers["x-agenthack-metadata"]))["trace_id"] == f"{session.context.trace_id:032x}"
+    assert json.loads(response.headers["x-agenthack-metadata"])["trace_id"] == f"{session.context.trace_id:032x}"
 
 
 def test_invalid_question_is_rejected_before_running_agent(runtime):
@@ -146,9 +150,9 @@ def test_timeout_preserves_sdk_timeout_response_and_trace(runtime):
     client, engine, exporter = runtime
     engine.failure = TimeoutError("expired")
     response = client.post("/solve", json=question())
-    assert response.status_code == 200
-    assert response.json()["status"] == "timeout"
-    assert response.json()["metadata"]["trace_id"]
+    assert response.status_code == 504
+    assert response.json()["error_type"] == "timeout"
+    assert json.loads(response.headers["x-agenthack-metadata"])["trace_id"]
     session = next(span for span in exporter.get_finished_spans() if span.name == "agent.session")
     assert session.attributes["task_status"] == "timeout"
 

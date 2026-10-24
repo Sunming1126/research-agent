@@ -3,10 +3,12 @@ from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import replace
+from contextlib import ExitStack
 import re
 
 from ..integrations.llm import ModelError
 from ..core.utils import tokenize
+from ..core.session import current_session
 
 
 FACETS = {"method", "data", "metric", "result", "limitation", "unspecified"}
@@ -73,7 +75,13 @@ def verify_claims(llm, ledger, chunks):
     try:
         if maximum < 900:
             raise ModelError("evidence verification budget reserved for final report")
-        with llm.reserve(12000):
+        session = current_session()
+        if session and session.remaining() < 65:
+            raise ModelError("verification time reserved for report writing and audit")
+        with ExitStack() as stack:
+            stack.enter_context(llm.reserve(12000))
+            if hasattr(llm, "reserve_time"):
+                stack.enter_context(llm.reserve_time(55))
             result = llm.json("verify_claims", data, max_tokens=maximum)
         returned = result.get("claims")
         if not isinstance(returned, list):
