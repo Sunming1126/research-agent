@@ -96,3 +96,24 @@ def test_explicit_proposal_heading_allows_designed_numeric_parameters():
     body += "论文报告准确率达到99%。"
     with pytest.raises(EvidenceError, match="numeric"):
         validate_citations(body, evidence, ["e"])
+
+
+def test_soft_wrapped_source_fact_keeps_its_following_page_citation():
+    body = "证据范围和适用条件必须核验。" * 80 + "\n\nAccuracy was around 30-35% at L4/L5\nand remains near chance level. [1, p.3]"
+    validate_citations(body, [{"evidence_id": "e", "ref": 1, "page": 3}], ["e"])
+
+
+def test_designed_stopping_threshold_is_not_an_observed_paper_measurement():
+    body = "核实证据与适用条件。" * 90 + " [1, p.2]\n\n**停止规则**：若先导实验改善小于1%，停止该组合。"
+    evidence = [{"evidence_id": "e", "ref": 1, "page": 2}]
+    validate_citations(body, evidence, ["e"])
+    with pytest.raises(EvidenceError):
+        validate_citations(body + "论文报告准确率达到99%。", evidence, ["e"])
+
+
+def test_markdown_proposal_section_carries_scope_across_paragraphs():
+    evidence = [{"evidence_id": "e", "ref": 1, "page": 2}]
+    body = "核实证据条件。" * 150 + " [1, p.2]\n\n## 统计方案（建议/待验证）\n\n统计检验：报告95%置信区间。"
+    validate_citations(body, evidence, ["e"])
+    with pytest.raises(EvidenceError):
+        validate_citations(body + "\n\n## 论文事实\n\n准确率达到99%。", evidence, ["e"])

@@ -1,3 +1,7 @@
+# 正式队伍配置
+
+本队正式名称为 **最初一舞**。当前源码默认保存到 `/output/data/最初一舞/<case_id>.json`（`RESEARCH_RESULT_ROOT` 可指定平台挂载的结果根目录）。C/E 报告文件名和 D 图片目录也使用此队名。镜像已内置 `RESEARCH_WORKSPACE_TEAM=最初一舞`。覆盖优先级为 `RESEARCH_WORKSPACE_TEAM` > 配置文件 `team` > 非空 `TEAM_ID` > 已确认队名；显式覆盖仅用于平台规定的本队标识或隔离测试。旧镜像不随配置源码自动更新。
+
 # 科研助手 Agent
 
 基于官方 `agenthack/base:1.1.1` 的科研助手。正式路径支持 v3/11 题派题，兼容历史 25 题测试；包含 A/B/C/D/E 处理器、授权材料定位、页码切分、混合检索、证据台账、报告审查、layered-d-v3 实验执行和提交预检查。
@@ -9,6 +13,7 @@ agent.py                    # 官方 SDK 的 HTTP 入口
 src/research_agent/
   core/                     # 配置、派题、题目上下文、调度和安全文件操作
   rag/                      # 授权材料解析、页级切分、索引和检索
+  evidence/                 # 事实支持核验、覆盖矩阵、引用渲染和报告约束
   workflows/                # A/B/C/E 任务处理与 D 类实验执行
   integrations/             # 模型网关和平台工具调用适配
   contracts/                # 结果 Schema 与产物校验
@@ -25,12 +30,14 @@ paper_library/              # 本地百篇真实 PDF 与来源清单，不进入
 
 ## 快速使用
 
-2026-10-22 源码已更新到 `0.3.1`，完成三轮 11 题仿真及失败路径定向复测，见 [三轮测试报告](docs/2026-10-22-三轮仿真与逐轮优化.md)。当前本机 Docker 引擎未运行，`team_share/image/` 内已有的 `0.3.0-source-v1` tar 仍为上一版，不包含本次优化。
+2026-10-24 源码为 `0.4.5`：通过原生官方 `AgentRuntime` 启动，八字段题目进入原生 SDK 执行，成功的 HTTP 响应直接返回题型 JSON。SDK 真实追踪元数据放入响应头；原生 SDK 代码、路由和 OTLP 导出保持原样。修复 0.4.3 的最外层包装体与赛题输出 Schema 不一致的问题，并增加新公布的 C/E 正文上限及材料路径适配。旧 0.4.3 镜像不作为格式合格版继续使用。
+
+2026-10-23 的 `0.4.1` 修复了报告审查与修订预算分配，增加本篇方法定义优先召回、跨论文简称归因检查，以及拟议实验条件和数字的区分。修复与真实复测见 [0.4.1 修复记录](docs/2026-10-23-0.4.1失分修复与复测.md)。0.4.0 架构改动保留在 [升级与验证报告](docs/2026-10-22-0.4.0升级与验证报告.md)，原始 92.2044 分保留在 [完整仿真评分](docs/2026-10-23-0.4.0完整仿真评分.md)。历史 `0.3.0-source-v1` tar 不包含后续修复；旧 0.4.1 tar 不包含 0.4.2 的直接请求接入修复。
 
 建议使用 Docker，保持官方 SDK 和 Linux 运行环境。先导入组委会基础镜像，再执行：
 
 ```powershell
-docker build --platform linux/amd64 -t research-assistant:0.3.1-source-v1 .
+docker build --platform linux/amd64 -t research-assistant:0.4.6-team-20261024 .
 ```
 
 本地密钥位于 `.env.local`，通过 `--env-file` 注入。文件已从版本跟踪和 Docker 构建上下文排除。镜像中不包含密钥、论文、题目、测试答案或本地输出。服务器不会自动读取本机密钥文件。
@@ -38,31 +45,31 @@ docker build --platform linux/amd64 -t research-assistant:0.3.1-source-v1 .
 将论文放到 `local-workspace/papers`，将 `config.container.example.json` 中材料描述别名改为实际题目采用的描述，然后：
 
 ```powershell
-docker run --rm --name research-agent-local --cpus 1 --memory 1024m --env-file .env.local -e RESEARCH_CONFIG=/app/settings.json -e AGENTHACK_TELEMETRY_REQUIRED=false -p 127.0.0.1:18080:8080 -v "${PWD}/config.container.example.json:/app/settings.json:ro" -v "${PWD}/local-workspace:/workspace:ro" -v "${PWD}/output:/output" research-assistant:0.3.1-source-v1
+docker run --rm --name research-agent-local --cpus 1 --memory 1024m --env-file .env.local -e RESEARCH_WORKSPACE_ROOT=/workspace -e RESEARCH_CONFIG=/app/settings.json -e AGENTHACK_TELEMETRY_REQUIRED=false -p 127.0.0.1:18080:8080 -v "${PWD}/config.container.example.json:/app/settings.json:ro" -v "${PWD}/local-workspace:/workspace:ro" -v "${PWD}/output:/output" research-assistant:0.4.6-team-20261024
 ```
 
 正式平台不设置关闭遥测的开发选项。按平台公告提供配置和模型环境变量。
 
-HTTP 接口使用官方 SDK 信封：
+正式 HTTP 接口直接接收八字段题目 JSON：
 
 ```json
 {
-  "task_id": "my-test",
-  "constraints": {"timeout_ms": 300000},
-  "input": {
-    "case_id": "A-01",
-    "function": "Chat",
-    "title": "城市绿地科研对话",
-    "input": "解释城市绿地与地表温度的可能关系，并提出一个关键澄清问题。",
-    "materials": [],
-    "constraints": [],
-    "expected_output": "回答和澄清问题",
-    "output_schema_ref": "Chat"
-  }
+  "case_id": "A-01",
+  "function": "Chat",
+  "title": "城市绿地科研对话",
+  "input": "解释城市绿地与地表温度的可能关系，并提出一个关键澄清问题。",
+  "materials": [],
+  "constraints": [],
+  "expected_output": "回答和澄清问题",
+  "output_schema_ref": "Chat"
 }
 ```
 
-发送至 `POST /solve`。SDK 返回 `output.answer`，其值是可解析的完整题型 JSON 字符串；落盘的题型 JSON 没有 SDK 包装。这样避免 SDK 把普通字典隐式变成 Python repr。健康检查为 `GET /health`。
+发送至 `POST /solve` 后，成功响应直接返回当前题型 JSON，例如 Chat 仅含 `case_id`、`answer`、`clarifying_question`，与保存的 JSON 一致。`X-AgentHack-Trace-Id`、`X-AgentHack-Session-Id` 和 `X-AgentHack-Metadata` 响应头复制 SDK 实际生成的追踪元数据，不在答卷顶层增加字段。业务失败保留 SDK 的 `status=error/timeout` 和原始 metadata，不伪造成功答卷。健康检查 `GET /health` 的 `telemetry_configured` 只表示已配置导出；正式环境保留平台注入的 OTLP 地址、认证及追踪头。
+
+本地旧脚本的 `{"task_id":"my-test","input":<题目对象>}` 继续返回 SDK 包装格式。直接题目调用使用配置的单题时限，最多180秒。默认论文库只检查 `/data/论文库` 和结果根目录的 `data/论文库` 两个专用位置；两者同时存在需显式选择。授权根内的绝对材料路径可读，仍拒绝目录穿越、符号链接和其他队伍材料。指定子集的模糊文字不会自动扩展成整个论文库。
+
+C 正文最多4500字符、40次引用，E 最多6000字符；计数包含空格、标点、Markdown，参考文献节不计正文。E 写作失败会保留诊断并报告失败，不再拼接硬编码保底正文。D 额外授权当前题的公开实验目录，正式成功仍需要当前会话的模型生成、自测和平台来源凭证。
 
 整轮请求的 `input` 可使用 `{"dispatch": true}`。它读取配置工作区下 `data/<team>/dispatch.json`，按当前 schema 动态校验题目身份、类别、SHA-256 和本队 assigned 路径；v3 正式派题为 11 题，历史 v2/25 题仅用于兼容测试。整轮调用需要平台允许足够的请求超时；平台逐题调用时直接传题目对象。
 
@@ -75,11 +82,11 @@ HTTP 接口使用官方 SDK 信封：
 | workspace / RESEARCH_WORKSPACE_ROOT | 派题与题目工作区根目录 |
 | output / RESEARCH_RESULT_ROOT | 产物根目录 |
 | team / RESEARCH_WORKSPACE_TEAM | 平台分配的本队目录名，不能含路径分隔符 |
-| material_roots / RESEARCH_MATERIAL_ROOTS | 专用材料目录；不能将整个工作区、整个 data 或输出目录作为论文库 |
+| material_roots / RESEARCH_MATERIAL_ROOTS | 专用材料目录；默认定位标准 data/论文库，显式配置优先；不能将整个工作区、整个 data 或输出目录作为论文库 |
 | material_aliases | 题目材料描述到具体文件/目录的显式映射；无法定位时不会扩大检索范围 |
 | experiment_mode | `platform` 为默认正式模式；`local` 仅用于公开实验开发 |
 | local_experiment_root / local_python | 本地冻结实验包及可选解释器 |
-| llm_calls / llm_tokens / case_timeout | 每题模型调用、Token 和耗时预算，默认 30 / 40000 / 300 秒；按平台配额收紧 |
+| llm_calls / llm_tokens / case_timeout | 每题默认 30 次调用 / 40000 Token / 180 秒；D 正式模式最长 180 秒，包含生成、自测和正式实验；按平台配额收紧 |
 | ocr | 默认关闭；启用需预装 Tesseract 和 eng/chi_sim 语言包，否则扫描页明确报错 |
 
 模型配置为 `PLATFORM_LLM_URL`、`PLATFORM_API_KEY`、`AGENT_MODEL_NAME`。本地开发可选 `RESEARCH_LLM_THINKING=disabled`；它只在显式设置时发送供应商扩展参数，换赛事网关时应移除。参数依据：[火山方舟思考模式文档](https://docs.volcengine.com/docs/ark/deep-thinking?lang=zh)。
@@ -114,6 +121,8 @@ CLI 为显式本地开发模式，不生成平台可信遥测。正式 HTTP 使�
 ## 实验模式与输出
 
 正式 D 类 v3 调用 `/data/experiments/run_experiment.py --case <当前题> --implementation <本队源码>`，验证平台注入的当前 case。新版 `d-model-source-v1` 下，源码必须由当前题 Gateway 生成并原样保存；Agent 会保存完整模型响应，提取唯一完整的 `run_experiment(request)`，然后由当前平台客户端申请来源凭证。镜像内的 `d_algorithms/` 仅用于公开离线夹具，Docker 构建会排除它，不能冒充正式源码。缺少会话或模型来源时返回 `materials_missing/failed`，不会转而运行本地算法冒充正式结果。
+
+0.4.0 在正式锁源前增加公开样例子进程自测：检查预测与模型一致性、排名与分组选择、任务守恒和时间约束。失败时最多让模型重新生成一次完整源码，保存每次原始回复；正式请求发出后不再改源码。子进程不继承网关凭据；Linux 系统调用限制取决于 `libseccomp` 是否可用，隔离能力随自测记录保存。公开自测不能签发正式来源凭证或给出官方分数。
 
 本地 D 类须显式指定公开实验包，真实执行冻结 `experiment.py`，保存 stdout、stderr、metrics、CSV、PNG 和 command。对指标名称和单位逐项比对，不把别的指标数值换个名称提交。图表复制前后校验哈希，completed 必须有当前运行证据。
 

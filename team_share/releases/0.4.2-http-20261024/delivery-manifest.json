@@ -1,0 +1,29 @@
+{
+  "version": "0.4.2-http-20261024",
+  "image": "research-assistant:0.4.2-http-20261024",
+  "image_id": "sha256:7e36adcde15930439f7195fa045ca28548622993c4941d03b120f9388119cb70",
+  "platform": "linux/amd64",
+  "user": "agent",
+  "port": 8080,
+  "tar": {
+    "name": "research-assistant-0.4.2-http-20261024.tar",
+    "bytes": 295423488,
+    "sha256": "9ff9e15a4cf60884639e1ca1289ed1ed005b5d625c2e3c109ff7dc8613144bc1"
+  },
+  "source_matches_local": true,
+  "official_sdk_unchanged": true,
+  "dependencies_valid": true,
+  "direct_eight_field_accepted": true,
+  "local_otlp_http_export_verified": true,
+  "trace_parent_preserved": true,
+  "archive_reimport_verified": true,
+  "real_model_calls": 0,
+  "related_failed_evaluation": "eval-20261024-d031f009",
+  "known_limitations": [
+    "Authorized material directories must be configured from actual platform mounts.",
+    "Local OTLP receipt does not verify the remote official collection pipeline."
+  ],
+  "published": false,
+  "official_score_verified": false,
+  "formal_d_provenance_tested": false
+}

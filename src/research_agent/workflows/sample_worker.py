@@ -18,7 +18,9 @@ ALLOWED_MODULES = {"__future__", "math", "cmath", "collections", "heapq", "itert
                    "decimal", "fractions", "time", "copy", "enum", "string", "hashlib"}
 DENIED_NAMES = {"eval", "exec", "compile", "open", "input", "getattr", "setattr", "delattr",
                 "globals", "locals", "vars", "dir", "help", "breakpoint", "memoryview", "print"}
-DENIED_ATTRIBUTES = {"sys", "os", "io", "builtins", "importlib", "modules", "subprocess", "socket"}
+DENIED_ATTRIBUTES = {"sys", "os", "io", "builtins", "importlib", "modules", "subprocess", "socket", "codecs",
+                     "gi_frame", "cr_frame", "ag_frame", "f_back", "f_globals", "f_locals", "f_builtins",
+                     "tb_frame", "tb_next", "mro", "attrgetter", "methodcaller", "inspect", "currentframe"}
 
 
 def validate_source(source):

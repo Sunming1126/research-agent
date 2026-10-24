@@ -1,0 +1,33 @@
+{
+  "task_id": "share-b-01",
+  "status": "success",
+  "output": {
+    "answer": "{\"case_id\": \"B-01\", \"papers\": [{\"filename\": \"2310.11511-Self-RAG.pdf\", \"reason\": \"题目要求检索提出 Self-RAG 按需检索与反思机制的原始论文。该文标题明确提出 Self-RAG 的自我反思式检索生成；片段显示其动态决定何时检索，并对比无检索/无自我反思的指令微调基线，说明该文核心贡献正是按需检索与反思框架，符合纳入条件。\"}, {\"filename\": \"2005.11401-RAG.pdf\", \"reason\": \"题目要求提出 RAG-Sequence 与 RAG-Token 的原始论文。该文片段同时出现 RAG-Sequence 和 RAG-Token 的推理与结果对比，属于该方法的原始来源，符合纳入条件。\"}, {\"filename\": \"2007.01282-FiD.pdf\", \"reason\": \"题目要求提出 Fusion-in-Decoder 的原始论文。该文片段明确给出 Fusion-in-Decoder 的架构图说明、base 与 large 结果及开放域问答评测，核心对象即为 Fusion-in-Decoder，符合纳入条件。\"}]}"
+  },
+  "metadata": {
+    "llm_call_count": 3,
+    "max_depth": 4,
+    "retry_count_total": 0,
+    "total_input_tokens": 3413,
+    "total_output_tokens": 874,
+    "tool_call_count": 44,
+    "unique_tool_count": 9,
+    "parallel_tool_count": 4,
+    "session_id": "377c8b1273fe4180982a20761263db6f",
+    "trace_id": "e4a39a7c22a21ecc6531f457868b3703",
+    "llm_calls": 3,
+    "total_tokens": 4287,
+    "duration_ms": 48833.33311,
+    "tools_used": [
+      "build_authorized_index",
+      "chunk_pages",
+      "hybrid_retrieve",
+      "rank_papers_with_evidence",
+      "read_document_pages",
+      "resolve_authorized_materials",
+      "run_assigned_case",
+      "validate_case_artifacts",
+      "write_and_readback_submission"
+    ]
+  }
+}

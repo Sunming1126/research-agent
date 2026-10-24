@@ -1,0 +1,15 @@
+{
+  "sdk_http_tests_passed": 15,
+  "business_regression_tests_passed": 138,
+  "business_tests_skipped_missing_mounts_or_optional_dependencies": 4,
+  "test_environment": "Linux image with read-only test dependencies; no external network",
+  "native_entrypoint_http_requests": 13,
+  "schema_and_persistence_successes": 12,
+  "negative_material_failure_preserved": 1,
+  "formal_d_provenance_tested": false,
+  "official_gateway_model": "deepseek_v4",
+  "official_gateway_calls_in_final_smoke": 43,
+  "official_gateway_http_checks": 13,
+  "official_gateway_schema_and_files_successes": 12,
+  "official_gateway_expected_material_error": 1
+}

@@ -1,0 +1,130 @@
+{
+  "health": {
+    "status": "healthy",
+    "telemetry_configured": true
+  },
+  "checks": [
+    {
+      "case_id": "A-05",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 10,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 1,
+      "seconds": 0.044
+    },
+    {
+      "case_id": "B-01",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 23,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 2,
+      "seconds": 0.253
+    },
+    {
+      "case_id": "B-02",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 19,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 2,
+      "seconds": 0.078
+    },
+    {
+      "case_id": "B-03",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "expected_business_failure": true,
+      "otlp_spans_received": 4,
+      "span_names": [
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 0,
+      "seconds": 0.019
+    },
+    {
+      "case_id": "D-01",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 8,
+      "span_names": [
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 0,
+      "seconds": 0.024
+    },
+    {
+      "case_id": "A-06",
+      "input_form": "legacy_sdk",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 10,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 1,
+      "seconds": 0.017
+    }
+  ],
+  "otlp_http_export_verified": true,
+  "gateway_requests": [
+    "chat",
+    "query",
+    "retrieve",
+    "query",
+    "retrieve",
+    "chat"
+  ],
+  "real_model_calls": 0,
+  "materials_configuration": "Read-only standard /data/论文库 mount, no custom RESEARCH config",
+  "baseline": false,
+  "formal_d_provenance_tested": false,
+  "image": "research-assistant:0.4.3-runtime-20261024",
+  "image_id": "sha256:99cf3ecb5c244a26a6abf8d21212ff53bec7e5182fd8179b3be320141192129b",
+  "cpu": 1,
+  "memory_mib": 1024,
+  "oom_killed": false
+}

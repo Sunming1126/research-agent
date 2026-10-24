@@ -1,0 +1,16 @@
+{
+  "case_id": "D-02",
+  "function": "Reproduction",
+  "title": "检索质量、跨域稳健性与外部记忆",
+  "input": "运行授权公开小实验 D-02，固定 seed=42，逐项报告三个实测指标：name=Recall@5, unit=%; name=MRR@10, unit=分数; name=查询吞吐, unit=queries/s。提交真实图表。",
+  "materials": [
+    "D-02.json"
+  ],
+  "constraints": [
+    "仅使用本题授权材料",
+    "指标名称和单位必须逐项匹配",
+    "无法核验时不得猜测"
+  ],
+  "expected_output": "真实指标、图表和实验状态",
+  "output_schema_ref": "Reproduction"
+}

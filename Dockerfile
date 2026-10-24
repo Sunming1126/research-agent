@@ -6,9 +6,10 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY --chown=agent:agent src /app/src
 COPY --chown=agent:agent agent.py README.md /app/
 RUN mkdir -p /output && chown agent:agent /output
-ENV PYTHONPATH=/app/src RESEARCH_WORKSPACE_ROOT=/data RESEARCH_RESULT_ROOT=/output
-LABEL org.agenthack.team_id="research-assistant"
-LABEL org.agenthack.version="0.4.0-source-v1"
+ENV PYTHONPATH=/app/src RESEARCH_WORKSPACE_ROOT=/data RESEARCH_RESULT_ROOT=/output RESEARCH_WORKSPACE_TEAM="最初一舞" AGENT_VERSION=0.4.6-team-20261024
+LABEL org.agenthack.team_id="最初一舞"
+LABEL org.agenthack.version="0.4.6-team-20261024"
+LABEL org.agenthack.prompt_version="20261024-v16-c1-budget"
 LABEL org.agenthack.protocol="layered-d-v3-source-v1"
 USER agent
 EXPOSE 8080

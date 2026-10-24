@@ -1,0 +1,245 @@
+{
+  "case_id": "B-01",
+  "artifacts": [
+    {
+      "path": "data/workspace_team/B-01.json",
+      "kind": "json",
+      "bytes": 1014,
+      "sha256": "30cfaa65493e2855233eefb4f7cf47bc7ba7278c7a7b816e946b830ac33a8b2b"
+    }
+  ],
+  "filenames": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2104.08663-BEIR.pdf",
+    "2112.04426-RETRO.pdf",
+    "2203.02155-InstructGPT.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "specs": null,
+  "proof": null,
+  "usage": [
+    {
+      "stage": "query",
+      "tokens": 546,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 1800,
+      "estimated_input_tokens": 362,
+      "reserved_for_later": 0,
+      "seconds": 1.164
+    },
+    {
+      "stage": "retrieve",
+      "tokens": 2356,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 2800,
+      "estimated_input_tokens": 2730,
+      "reserved_for_later": 0,
+      "seconds": 2.184
+    },
+    {
+      "stage": "retrieve",
+      "tokens": 1385,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 2800,
+      "estimated_input_tokens": 1543,
+      "reserved_for_later": 0,
+      "seconds": 1.598
+    }
+  ],
+  "session": {
+    "case_id": "B-01",
+    "timeout_seconds": 300,
+    "elapsed_seconds": 48.777,
+    "stage": "persist_and_readback",
+    "stages": [
+      {
+        "stage": "material_resolution",
+        "elapsed_seconds": 0.049
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 0.456
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 0.649
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 2.309
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 2.336
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 2.447
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 3.978
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 4.008
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 4.079
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 5.088
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 5.118
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 5.201
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 7.621
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 7.668
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 7.857
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 9.661
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 9.696
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 9.888
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 11.342
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 11.38
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 11.536
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 15.344
+      },
+      {
+        "stage": "retrieval",
+        "elapsed_seconds": 16.565
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 16.577
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 16.643
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 18.977
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 19.014
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 19.145
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 21.496
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 21.546
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 21.603
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 22.604
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 22.644
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 22.818
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 44.683
+      },
+      {
+        "stage": "retrieval",
+        "elapsed_seconds": 44.754
+      },
+      {
+        "stage": "submission_validation",
+        "elapsed_seconds": 48.654
+      },
+      {
+        "stage": "persist_and_readback",
+        "elapsed_seconds": 48.655
+      }
+    ],
+    "cancelled": false
+  },
+  "source_case": {
+    "case_id": "B-01",
+    "function": "Literature_Retrieval",
+    "title": "检索增强生成原始论文检索",
+    "input": "只找提出 RAG-Sequence/RAG-Token、Fusion-in-Decoder 或 Self-RAG 按需检索与反思机制的原始论文。不要返回只做指令微调的论文，也不要把普通稠密检索、基准评测或 RETRO 当成这些方法。",
+    "materials": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "constraints": [
+      "只使用本题授权材料",
+      "返回真实存在的 PDF 文件名和匹配理由"
+    ],
+    "expected_output": "完整 PDF 文件名和理由",
+    "output_schema_ref": "Literature_Retrieval"
+  }
+}

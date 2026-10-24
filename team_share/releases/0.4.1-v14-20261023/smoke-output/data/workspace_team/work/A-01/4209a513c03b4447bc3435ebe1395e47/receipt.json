@@ -1,0 +1,56 @@
+{
+  "case_id": "A-01",
+  "artifacts": [
+    {
+      "path": "data/workspace_team/A-01.json",
+      "kind": "json",
+      "bytes": 615,
+      "sha256": "d306d2caf2a7307424b5c717d078784a7727cb33561de48a4672c27a8cbeec0f"
+    }
+  ],
+  "filenames": [],
+  "specs": null,
+  "proof": null,
+  "usage": [
+    {
+      "stage": "chat",
+      "tokens": 296,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 2200,
+      "estimated_input_tokens": 214,
+      "reserved_for_later": 0,
+      "seconds": 1.303
+    }
+  ],
+  "session": {
+    "case_id": "A-01",
+    "timeout_seconds": 300,
+    "elapsed_seconds": 1.421,
+    "stage": "persist_and_readback",
+    "stages": [
+      {
+        "stage": "submission_validation",
+        "elapsed_seconds": 1.316
+      },
+      {
+        "stage": "persist_and_readback",
+        "elapsed_seconds": 1.316
+      }
+    ],
+    "cancelled": false
+  },
+  "source_case": {
+    "case_id": "A-01",
+    "function": "Chat",
+    "title": "城市绿地科研对话",
+    "input": "解释城市绿地与地表温度的可能关系，并提出一个关键澄清问题。",
+    "materials": [],
+    "constraints": [],
+    "expected_output": "回答和澄清问题",
+    "output_schema_ref": "Chat"
+  }
+}

@@ -27,10 +27,12 @@ def main():
     engine = ResearchAgentEngine()
     if args.command == "serve":
         import agent
-        if agent.AgentRuntime:
-            agent.AgentRuntime(agent.ResearchAgent(engine)).run()
-        else:
-            agent.serve_local(engine).serve_forever()
+        if agent.AgentRuntime is None:
+            raise RuntimeError("Official AgentHack SDK is required to start the Agent service")
+        from .integrations.http_runtime import install_research_protocol
+        runtime = agent.AgentRuntime(agent.ResearchAgent(engine))
+        install_research_protocol(runtime)
+        runtime.run()
         return
     if args.command == "case":
         if not args.input:

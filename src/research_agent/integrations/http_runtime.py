@@ -1,0 +1,120 @@
+"""在官方运行时边界转换题目/答卷；执行和追踪仍由原生 SDK 完成。"""
+from __future__ import annotations
+
+import json
+import os
+
+from starlette.responses import JSONResponse
+
+from ..core.models import CaseContext
+from ..contracts.validation import validate_wire_fields
+
+
+class ResearchRequestAdapter:
+    """八字段请求走原生 SDK，成功答卷按赛题 Schema 返回，SDK 元数据放响应头。"""
+
+    def __init__(self, app, timeout_supplier):
+        self.app = app
+        self.timeout_supplier = timeout_supplier
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http" or scope.get("path") != "/solve" or scope.get("method") != "POST":
+            return await self.app(scope, receive, send)
+
+        body = bytearray()
+        while True:
+            message = await receive()
+            if message["type"] == "http.disconnect":
+                return
+            body.extend(message.get("body", b""))
+            if len(body) > 2_000_000:
+                return await JSONResponse({"detail": "request body too large"}, status_code=413)(scope, receive, send)
+            if not message.get("more_body", False):
+                break
+        raw = bytes(body)
+        try:
+            payload = json.loads(raw)
+        except (ValueError, UnicodeError):
+            payload = None  # 保留原始字节，由 SDK 自身报告 JSON 格式错误。
+
+        case = None
+        if isinstance(payload, dict) and ("case_id" in payload or "function" in payload):
+            try:
+                case = CaseContext.from_dict(payload)
+            except ValueError as exc:
+                return await JSONResponse({"detail": str(exc)}, status_code=422)(scope, receive, send)
+            headers = {key.decode("latin-1").lower(): value.decode("latin-1")
+                       for key, value in scope.get("headers", [])}
+            timeout = min(self.timeout_supplier(), 180)
+            envelope = {
+                "task_id": (headers.get("x-task-id") or headers.get("x-agenthack-task-id")
+                            or os.getenv("AGENTHACK_TASK_ID") or os.getenv("TASK_ID") or case.case_id),
+                "task_type": case.function,
+                "input": case.to_dict(),
+                "constraints": {"timeout_ms": max(1, int(timeout * 1000))},
+            }
+            session = (headers.get("x-session-id") or headers.get("x-agenthack-session-id")
+                       or os.getenv("AGENTHACK_SESSION_ID"))
+            if session:
+                envelope["session_id"] = session
+            raw = json.dumps(envelope, ensure_ascii=False).encode("utf-8")
+            scope = dict(scope, headers=[(key, value) for key, value in scope.get("headers", [])
+                                        if key.lower() != b"content-length"]
+                         + [(b"content-length", str(len(raw)).encode("ascii"))])
+
+        delivered = False
+
+        async def adapted_receive():
+            nonlocal delivered
+            if not delivered:
+                delivered = True
+                return {"type": "http.request", "body": raw, "more_body": False}
+            return await receive()
+
+        if case is None:
+            return await self.app(scope, adapted_receive, send)
+
+        # 原生路由完成业务、保存和 OTLP flush 后才产生响应。仅转换成功的答卷；
+        # 失败保留 SDK 原始状态和 metadata，不能伪造空结果充当成功。
+        start = None
+        chunks = bytearray()
+
+        async def adapted_send(message):
+            nonlocal start
+            if message["type"] == "http.response.start":
+                start = message
+                return
+            if message["type"] != "http.response.body":
+                return await send(message)
+            chunks.extend(message.get("body", b""))
+            if message.get("more_body", False):
+                return
+            body = bytes(chunks)
+            headers = list(start.get("headers", []))
+            try:
+                envelope = json.loads(body)
+                if start["status"] == 200 and envelope.get("status") == "success":
+                    result = json.loads(envelope["output"]["answer"])
+                    validate_wire_fields(case, result)
+                    body = json.dumps(result, ensure_ascii=False, allow_nan=False).encode("utf-8")
+                    metadata = envelope.get("metadata", {})
+                    # 只复制 SDK 实际给出的值，不生成/冒充追踪标识。
+                    for name in ("trace_id", "session_id"):
+                        value = metadata.get(name)
+                        if value:
+                            headers.append((f"x-agenthack-{name.replace('_', '-')}".encode(), str(value).encode("ascii")))
+                    headers.append((b"x-agenthack-metadata", json.dumps(metadata, ensure_ascii=True, separators=(",", ":")).encode("ascii")))
+            except (ValueError, KeyError, TypeError, UnicodeError):
+                # SDK 成功但无法转成合法答卷时显式失败，不能泄漏包装体作为成功输出。
+                return await JSONResponse({"detail": "invalid research answer from runtime"}, status_code=502)(scope, adapted_receive, send)
+            headers = [(key, value) for key, value in headers if key.lower() != b"content-length"]
+            await send(dict(start, headers=headers + [(b"content-length", str(len(body)).encode("ascii"))]))
+            await send({"type": "http.response.body", "body": body, "more_body": False})
+
+        return await self.app(scope, adapted_receive, adapted_send)
+
+
+def install_research_protocol(runtime):
+    """为原生 AgentRuntime 注册协议边界转换；实例及其 run()/路由保持原样。"""
+    runtime.app.add_middleware(ResearchRequestAdapter,
+                               timeout_supplier=lambda: runtime.agent.engine.settings.case_timeout)

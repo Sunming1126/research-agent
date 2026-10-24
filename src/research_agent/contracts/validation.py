@@ -21,11 +21,42 @@ def _number(value):
     return type(value) in {int, float} and math.isfinite(value)
 
 
+def validate_wire_fields(case, result):
+    """纯函数：检查最终 HTTP 答卷，不依赖已经结束的 SDK 工具上下文。"""
+    fields = {
+        "Chat": ("case_id", "answer", "clarifying_question"),
+        "Literature_Retrieval": ("case_id", "papers"),
+        "Survey": ("case_id", "path", "markdown"),
+        "Idea": ("case_id", "path", "markdown"),
+        "Reproduction": ("case_id", "status", "metrics", "figures"),
+    }
+    _only(result, fields[case.function])
+    if result["case_id"] != case.case_id:
+        raise ValueError("case_id mismatch")
+    return result
+
+
+def report_citations(body):
+    # [111] 等晶向不算文献；支持 [1,2]、[1, 2] 和内部证据页码标注。
+    citations = []
+    for match in re.finditer(r"\[(\d{1,2}(?:\s*,\s*\d{1,2})*)(?:,\s*p\.\s*\d+)?\]", body):
+        citations.extend(re.split(r"\s*,\s*", match.group(1)))
+    return citations
+
+
+def validate_report_limits(markdown, function):
+    body = markdown.split("## 参考文献", 1)[0]
+    limit = 4500 if function == "Survey" else 6000
+    if len(body) > limit:
+        raise ValueError(f"report body exceeds {limit} characters (including whitespace)")
+    if function == "Survey" and len(report_citations(body)) > 40:
+        raise ValueError("Survey body exceeds 40 citation instances")
+
+
 @tool(name="validate_case_artifacts")
 def validate_result(case, result, output_root=None, *, team="workspace_team", filenames=None, specs=None, proof=None, readback=False):
     """按题型核验字段、授权引用和产物；readback 时再核对磁盘内容。"""
-    if result.get("case_id") != case.case_id:
-        raise ValueError("case_id mismatch")
+    validate_wire_fields(case, result)
     if case.function == "Chat":
         _only(result, ["case_id", "answer", "clarifying_question"])
         if not all(_string(result[x]) for x in ("answer", "clarifying_question")):
@@ -53,6 +84,7 @@ def validate_result(case, result, output_root=None, *, team="workspace_team", fi
         if not isinstance(markdown, str) or markdown.count("## 参考文献") != 1:
             raise ValueError("report requires one references section")
         body, references = markdown.split("## 参考文献")
+        validate_report_limits(markdown, case.function)
         if len(re.sub(r"\s", "", body)) < 800:
             raise ValueError("report body shorter than 800 characters")
         rows = re.findall(r"^\[(\d+)\]\s+(.+\.pdf)\s*$", references, re.M)
@@ -64,7 +96,7 @@ def validate_result(case, result, output_root=None, *, team="workspace_team", fi
         if filenames is not None and not set(refmap.values()) <= set(filenames):
             raise ValueError("unauthorized reference")
         # 科学正文里的晶向 [111] 等三位方括号数字不属于论文编号。
-        citations = re.findall(r"\[(\d{1,2})(?:,\s*p\.\s*\d+)?\]", body)
+        citations = report_citations(body)
         if set(citations) != set(refmap):
             raise ValueError("body citations and references differ")
         if readback:

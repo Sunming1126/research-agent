@@ -9,6 +9,7 @@ import hashlib
 import json
 import sys
 import time
+import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +30,9 @@ def cases():
     cv = [p["filename"] for p in manifest["papers"] if p["selected_category"] == "cs.CV"]
     report_papers = ["2512.24971.pdf", "2512.24985.pdf", "2512.25067.pdf", "2601.00123.pdf", "2601.00139.pdf"]
     definitions = [
+        ("A-81", "Chat", [],
+         "研究中观察到处理组指标更高，但样本量小且没有随机分组。如何区分相关性、选择偏差和潜在因果效应？"
+         "请说明目前证据能支持什么、下一步怎样设计验证，并提出一个最关键的研究范围澄清问题。"),
         ("B-81", "Literature_Retrieval", cv,
          "寻找三篇原始研究，分别研究CNN压缩后的自然损坏鲁棒性、时间损坏下的骨架动作识别、"
          "以及SAR与不完整多光谱融合的洪水范围制图。不要纳入只提出低光视觉问答评测基准的论文。每个方向一篇，共三篇。"),
@@ -42,6 +46,18 @@ def cases():
          "明确分类、动作识别和视觉问答的任务差异，说明哪些机制仅作为待验证迁移假设。"
          "给出三篇文献的互补关系、模块输入输出、可获取数据及适配、对照与消融、指标、"
          "计算预算、重复实验和失败判据。至少800字，区分论文事实与新建议，引用实际指定论文。"),
+        ("B-82", "Literature_Retrieval", ["2512.24971.pdf", "2512.25067.pdf", "2601.00123.pdf",
+         "2512.18442.pdf", "2512.24427.pdf", "2512.24327.pdf", "2004.04906-DPR.pdf", "2601.00038.pdf",
+         "2512.24985.pdf", "2601.00139.pdf", "2512.24768.pdf", "2007.01282-FiD.pdf"],
+         "查找八个独立方向的原始研究，各一篇，共八篇：CNN压缩后的自然损坏鲁棒性；时间损坏下的骨架动作识别；"
+         "SAR与不完整多光谱融合的洪水制图；用马尔可夫启动子模型替代基因调控网络中的Hill函数；"
+         "表观遗传反馈重塑基因调控动力学景观；拓扑空间图粗化；开放域问答的双编码器稠密段落检索；"
+         "贝叶斯算子推断中参数微分系统降阶模型的主动学习。排除只做低光问答基准、地图先验、离线强化学习或生成解码融合的论文。"),
+        ("E-82", "Idea", ["2512.18442.pdf", "2512.24427.pdf", "2512.20887.pdf"],
+         "题目提供的模拟观察（不是论文结论）：短时控制后两个系统稳态均值接近，但切换率和驻留时间明显不同。"
+         "基于指定文献设计可证伪研究，区分隐藏启动子状态、表观遗传记忆和观测噪声的解释。"
+         "说明三篇论文的互补与适用边界、可辨识性、可测变量、基线与消融、模拟及数据获取步骤、预算和统计方案。"
+         "至少800字，把题目观察、论文事实和拟议机制分别标明来源，不把未完成实验写成已有结果。"),
     ]
     return [{"case_id": cid, "function": function, "title": "跨领域架构升级诊断", "input": question,
              "materials": files, "constraints": ["仅访问题目授权材料", "数字、归因和页码可核查"],
@@ -51,7 +67,7 @@ def cases():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--cases", nargs="+", default=["B-81", "C-81", "E-81", "D-01", "D-05"])
+    parser.add_argument("--cases", nargs="+", default=["B-81", "C-81", "E-81", "D-01", "D-02", "D-05"])
     parser.add_argument("--label", default="live-v1")
     args = parser.parse_args()
     out = ROOT / "output/architecture-upgrade-20261022" / args.label
@@ -63,6 +79,11 @@ def main():
     manifest = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                 for p in (ROOT / "src").rglob("*.py")}
     write_json(out / "source-manifest.json", manifest)
+    for relative in manifest:
+        dest = out / "source-snapshot" / relative
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / relative, dest)
+    shutil.copyfile(Path(__file__), out / "validation-runner.py")
     selected = [case for case in cases() if case["case_id"] in args.cases]
     write_json(out / "cases.json", selected)
     settings = Settings(ROOT, out, team, [ROOT / "paper_library/pdfs"], case_timeout=180)
@@ -81,7 +102,9 @@ def main():
                    "audit": evidence.get("audit"), "evidence_audit": evidence.get("evidence_audit"),
                    "retrieval_trace": evidence.get("retrieval_trace"), "coverage": evidence.get("coverage")}
             if case["function"] == "Literature_Retrieval":
-                expected = {"2512.24971.pdf", "2512.25067.pdf", "2601.00123.pdf"}
+                expected = ({"2512.24971.pdf", "2512.25067.pdf", "2601.00123.pdf"} if case["case_id"] == "B-81" else
+                            {"2512.24971.pdf", "2512.25067.pdf", "2601.00123.pdf", "2512.18442.pdf",
+                             "2512.24427.pdf", "2512.24327.pdf", "2004.04906-DPR.pdf", "2601.00038.pdf"})
                 actual = {p["filename"] for p in result["papers"]}
                 row.update(expected_files=sorted(expected), returned_files=sorted(actual),
                            exact_match=actual == expected, recall=len(actual & expected) / len(expected),

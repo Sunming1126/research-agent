@@ -1,0 +1,25 @@
+{
+  "version": "0.4.1-v14-20261023",
+  "prompt_version": "20261023-v14",
+  "image": "research-assistant:0.4.1-v14-20261023",
+  "image_id": "sha256:e0a0d36a8bfec77d3ed2a25f4fede7dbb155715b9dfbb3f757355346b78eab11",
+  "platform": "linux/amd64",
+  "user": "agent",
+  "port": 8080,
+  "tar": {
+    "name": "research-assistant-0.4.1-v14-20261023.tar",
+    "bytes": 295421952,
+    "sha256": "d8b16cbde0dd3c85a63f3aded6505fe5167866d068a1f43f8cc0fd84ef946946"
+  },
+  "source_fingerprint_sha256": "fe5789d80d24fa90f97580c4e49df3693f5f271b55a538b3ab2c098dd484c698",
+  "checks": {
+    "source_matches_local_build": true,
+    "dependencies_valid": true,
+    "health_and_solve_smoke_passed": true,
+    "credentials_excluded": true
+  },
+  "official_score_verified": false,
+  "formal_d_provenance_tested": false,
+  "delivery_scope": "image-only; no source archive, papers, questions or detailed test evidence",
+  "git_tag_scope": "repository baseline only; use the tar artifact, not auto-generated source archives"
+}

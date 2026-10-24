@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import asyncio
 import os
-from dataclasses import asdict
+import json
+import logging
+from dataclasses import asdict, replace
 import threading
 import time
 import uuid
@@ -70,6 +72,11 @@ class ResearchAgentEngine:
 
     def _execute_one(self, case):
         s = self.settings
+        if case.function == "Reproduction" and s.experiment_mode == "platform":
+            # 仅添加本题公开实验目录；其他 D 题和整个 experiments 均不授权。
+            prefix = "experiments" if s.workspace.name == "data" else "data/experiments"
+            case_root = confined(s.workspace, f"{prefix}/{case.case_id}")
+            s = replace(s, material_roots=list(dict.fromkeys([*s.material_roots, case_root])))
         session = current_session()
         work_relative = f"data/{s.team}/work/{case.case_id}/{uuid.uuid4().hex}"
         work = confined(s.output, work_relative)
@@ -117,6 +124,14 @@ class ResearchAgentEngine:
             self._persist(case, result, work, filenames, specs, proof, handler, llm)
             return result
         except Exception as exc:
+            # SDK 保留错误类型与 trace_id；运行日志补充不含凭据的材料定位信息。
+            diagnostic = {"event": "research_case_failed", "case_id": case.case_id,
+                          "error_type": type(exc).__name__, "team": s.team,
+                          "material_roots": [str(root) for root in s.material_roots],
+                          "diagnostic_path": work_relative + "/error.json"}
+            if isinstance(exc, (MaterialError, FileNotFoundError, PermissionError)):
+                diagnostic["material_error"] = str(exc)[:500]
+            logging.getLogger(__name__).error("%s", json.dumps(diagnostic, ensure_ascii=False))
             write_json(confined(work, "diagnostic-evidence.json"), {"claims": [asdict(e) for e in handler.ledger],
                                                                   "rejected_claims": handler.rejected_claims,
                                                                   "retrieval_trace": handler.retrieval_trace,

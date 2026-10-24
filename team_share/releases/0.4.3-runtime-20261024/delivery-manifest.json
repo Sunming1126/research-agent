@@ -1,0 +1,33 @@
+{
+  "version": "0.4.3-runtime-20261024",
+  "image": "research-assistant:0.4.3-runtime-20261024",
+  "image_id": "sha256:99cf3ecb5c244a26a6abf8d21212ff53bec7e5182fd8179b3be320141192129b",
+  "platform": "linux/amd64",
+  "user": "agent",
+  "port": 8080,
+  "tar": {
+    "name": "research-assistant-0.4.3-runtime-20261024.tar",
+    "bytes": 295424000,
+    "sha256": "88c238063cb01d3c4ed4a82b7f03ff2818cbea4dcd29d13030c58f37a4f6abaa"
+  },
+  "source_matches_local": true,
+  "official_sdk_unchanged": true,
+  "dependencies_valid": true,
+  "direct_eight_field_accepted": true,
+  "local_otlp_http_export_verified": true,
+  "trace_parent_preserved": true,
+  "archive_reimport_verified": true,
+  "real_model_calls": 0,
+  "native_runtime_and_routes": true,
+  "sdk_response_metadata_preserved": true,
+  "standard_library_without_custom_config_verified": true,
+  "failed_business_trace_export_verified": true,
+  "related_failed_evaluation": "eval-20261024-486e8a18",
+  "known_limitations": [
+    "Default library is the documented /data/论文库; other layouts or subset descriptions need explicit configuration.",
+    "Local OTLP receipt does not verify the remote official collection pipeline."
+  ],
+  "published": false,
+  "official_score_verified": false,
+  "formal_d_provenance_tested": false
+}

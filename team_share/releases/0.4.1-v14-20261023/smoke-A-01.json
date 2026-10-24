@@ -1,0 +1,29 @@
+{
+  "task_id": "share-a-01",
+  "status": "success",
+  "output": {
+    "answer": "{\"case_id\": \"A-01\", \"answer\": \"城市绿地与地表温度的关系通常被理解为绿地通过遮荫和蒸腾作用降低地表温度，同时绿地的规模、连通性、植被结构和水分条件可能影响降温效应的强弱与空间范围。不同城市、气候带和季节下这种关系的方向和幅度可能不同，也可能受到建筑密度、地表材质等背景因素干扰。\", \"clarifying_question\": \"您希望聚焦于哪种城市或气候背景（例如温带湿润城市、干旱城市），以及关注的是绿地斑块内部的降温还是对周边区域的降温影响？\"}"
+  },
+  "metadata": {
+    "llm_call_count": 1,
+    "max_depth": 3,
+    "retry_count_total": 0,
+    "total_input_tokens": 180,
+    "total_output_tokens": 116,
+    "tool_call_count": 6,
+    "unique_tool_count": 5,
+    "parallel_tool_count": 3,
+    "session_id": "cbfa2b4e35d749c7b95014b2b09669c0",
+    "trace_id": "f70a6e09342c73844bc7571591306314",
+    "llm_calls": 1,
+    "total_tokens": 296,
+    "duration_ms": 1494.80888,
+    "tools_used": [
+      "build_authorized_index",
+      "resolve_authorized_materials",
+      "run_assigned_case",
+      "validate_case_artifacts",
+      "write_and_readback_submission"
+    ]
+  }
+}
