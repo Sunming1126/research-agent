@@ -1,0 +1,2 @@
+# Preserve model-generated defect fixtures byte for byte on Windows checkouts.
+tests/fixtures/*.py-text -text

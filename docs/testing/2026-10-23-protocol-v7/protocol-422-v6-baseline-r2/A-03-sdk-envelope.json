@@ -1,0 +1,32 @@
+{
+  "http": 200,
+  "response": {
+    "task_id": "protocol-public-A-03",
+    "status": "success",
+    "output": {
+      "answer": "{\"case_id\": \"A-03\", \"answer\": \"这是确定性 HTTP 兼容测试夹具的回答。\", \"clarifying_question\": \"研究对象的空间尺度是什么？\"}"
+    },
+    "metadata": {
+      "llm_call_count": 1,
+      "max_depth": 3,
+      "retry_count_total": 0,
+      "total_input_tokens": 1,
+      "total_output_tokens": 1,
+      "tool_call_count": 6,
+      "unique_tool_count": 5,
+      "parallel_tool_count": 3,
+      "session_id": "4b91dc29072b4e8ea43916b28d71fa51",
+      "trace_id": "c8cca2106625709ad1950297d4f68aee",
+      "llm_calls": 1,
+      "total_tokens": 2,
+      "duration_ms": 239.622478,
+      "tools_used": [
+        "build_authorized_index",
+        "resolve_authorized_materials",
+        "run_assigned_case",
+        "validate_case_artifacts",
+        "write_and_readback_submission"
+      ]
+    }
+  }
+}

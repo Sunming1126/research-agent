@@ -6,6 +6,29 @@ from copy import deepcopy
 
 def public_probes(case_id, request):
     probes = [("provided_sample", request, None)]
+    if case_id == "D-02":
+        queries = request["data"].get("dev_queries", [])
+        if len({q.get("group", "default") for q in queries}) > 1:
+            probe = deepcopy(request)
+            duplicate = deepcopy(queries[0])
+            identifiers = {q["id"] for q in queries}
+            duplicate["id"] = str(duplicate["id"]) + "_public_duplicate"
+            while duplicate["id"] in identifiers:
+                duplicate["id"] += "_copy"
+            probe["data"]["dev_queries"].append(duplicate)
+            probes.append(("unequal_dev_group_sizes", probe, None))
+        # 单词互斥语料：只核对查询是否实际参与检索，不给完整BM25实现。
+        probe = deepcopy(request)
+        probe["data"] = {
+            "documents": [{"id": "doc_z", "title": "", "text": "alpha"},
+                          {"id": "doc_a", "title": "", "text": "beta"},
+                          {"id": "doc_m", "title": "", "text": "gamma"}],
+            "dev_queries": [{"id": "qa", "text": "alpha", "group": "a", "relevant": ["doc_z"]},
+                            {"id": "qb", "text": "beta", "group": "b", "relevant": ["doc_a"]}],
+            "test_queries": [{"id": "qa", "text": "alpha"}, {"id": "qb", "text": "beta"}],
+        }
+        probes.append(("query_changes_ranking", probe, {"d02_expected_top": {"qa": "doc_z", "qb": "doc_a"}}))
+        return probes
     if case_id != "D-05":
         return probes
     flows = list(request["data"]["flow_weights"])
@@ -25,10 +48,42 @@ def public_probes(case_id, request):
         ("future_first_arrival", [job("probe_future", first, 5, 1)], 2, 0, 12, ["probe_future"]),
         ("simultaneous_reservation", [job("probe_a", first, 0, 2), job("probe_b", first, 0, 2),
                                       job("probe_c", second, 0, 2)], 2, 0, 12,
-         ["probe_a", "probe_b", "probe_c"]),
+         {"states": {"probe_a": "completed", "probe_b": "completed", "probe_c": "completed"},
+          "trace_ids": {"baseline": ["probe_a", "probe_b", "probe_c"],
+                        "candidate": ["probe_a", "probe_c", "probe_b"] if len(flows) > 1 else
+                                     ["probe_a", "probe_b", "probe_c"]}}),
         ("deadline_setup_and_window", [job("probe_a", first, 0, 1), job("probe_b", second, 1, 1, 3),
                                         job("probe_c", first, 1, 3)], 1, 2, 4, None),
+        ("window_exact_and_pending", [job("probe_a", first, 0, 4), job("probe_b", second, 0, 5)],
+         1, 0, 4, {"states": {"probe_a": "completed", "probe_b": "horizon"}}),
+        ("window_future_arrivals", [job("probe_a", first, 0, 4), job("probe_b", second, 4, 1),
+                                     job("probe_c", first, 7, 1)],
+         1, 0, 4, {"states": {"probe_a": "completed", "probe_b": "horizon", "probe_c": "horizon"}}),
     ]
+    if len(flows) > 1:
+        # 单流没有切换开销，不能构造此双条件冲突；避免自测误拒有效单流算法。
+        cases.append(("deadline_before_horizon", [job("probe_a", first, 0, 2), job("probe_b", second, 1, 2, 3)],
+                      1, 3, 6, {"states": {"probe_a": "completed", "probe_b": "deadline"}}))
+        # 拒绝不占用服务器、不更新上个流/分配量，必须在同一时刻继续尝试。
+        # 既检查任务守恒，也检查及时派发，避免“最终补跑但已错过时间”蒙混过关。
+        for name, rejected in [
+            ("retry_after_deadline_rejection", [job("probe_b", second, 1, 1, 3)]),
+            ("retry_after_horizon_rejection", [job("probe_b", second, 1, 20)]),
+            ("retry_after_multiple_rejections", [job("probe_b", second, 1, 1, 3),
+                                                  job("probe_c", second, 1, 20)]),
+        ]:
+            states = {"probe_a": "completed", "probe_z": "completed"}
+            states.update({row["id"]: "deadline" if row["deadline_ms"] == 3 else "horizon"
+                           for row in rejected})
+            cases.append((name, [job("probe_a", first, 0, 2), *rejected,
+                                  job("probe_z", first, 1, 1, 12)], 1, 2, 12,
+                          {"states": states,
+                           "trace_ids": {"baseline": ["probe_a", "probe_z"],
+                                         "candidate": ["probe_a", "probe_z"]},
+                           "timings": {"probe_z": {"server": 0, "dispatch_ms": 2, "setup_ms": 0,
+                                                      "start_ms": 2, "end_ms": 3, "wait_ms": 1}},
+                           "rule": "after rejection retry the same idle server at the unchanged dispatch time; "
+                                   "rejection must not change previous flow, availability or assigned service"}))
     for name, jobs, servers, setup, horizon, completed in cases:
         probe = deepcopy(request)
         probe["data"].update(jobs=jobs, servers=servers, setup_ms=setup, horizon_ms=horizon)

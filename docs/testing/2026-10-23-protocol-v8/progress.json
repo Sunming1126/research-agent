@@ -1,0 +1,121 @@
+{
+  "status": "LOCAL_DIRECT_HTTP_ACCEPTANCE_COMPLETE_PENDING_OFFICIAL_PLATFORM",
+  "ready_for_recommended_contest_submission": true,
+  "official_platform_verified": false,
+  "build_commit": "831e45c0a3518dbbf27c833cceb3b2239cb2e28f",
+  "image_id": "sha256:0f9233b601522d83848ec72e940bf19f57408fb5298976cd595061e1f6d80683",
+  "results": {
+    "source_regression": {
+      "tests": 192,
+      "skipped": 1,
+      "failures": 0,
+      "errors": 0,
+      "passed": 191
+    },
+    "main": {
+      "PASS": 128,
+      "BLOCKED": 1
+    },
+    "repeat": {
+      "PASS": 21
+    },
+    "direct_case_http_requests": 14,
+    "direct_case_http_200": 14,
+    "direct_cases": [
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "A-01",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "B-01",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "B-02",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "B-03",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "C-01",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "C-02",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "E-01",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "E-02",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "D-01",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "D-02",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api",
+        "case_id": "D-05",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+        "case_id": "D-01",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+        "case_id": "D-02",
+        "http": 200
+      },
+      {
+        "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+        "case_id": "D-05",
+        "http": 200
+      }
+    ],
+    "public_algorithm_inputs": 26,
+    "public_algorithm_pass": 26,
+    "api_calls": 58,
+    "api_usage": {
+      "prompt_tokens": 120902,
+      "completion_tokens": 39107,
+      "total_tokens": 160009
+    },
+    "api_usage_excludes_native_orchestrator_overhead": true,
+    "baseline": {
+      "PASS": 4,
+      "FAIL": 0
+    },
+    "official_score": null,
+    "official_platform_result_after_fix": null,
+    "prior_v6_recommendation_withdrawn": true,
+    "prior_v6_local_wrapped_results_preserved": true,
+    "source_executed_pass_pct": 100.0,
+    "source_all_planned_pass_pct": 99.47916666666667,
+    "main_executed_pass_pct": 100.0,
+    "main_all_recorded_pass_pct": 99.2248062015504,
+    "repeat_executed_pass_pct": 100.0,
+    "repeat_all_recorded_pass_pct": 100.0
+  },
+  "previous_pending_approval_state": "Historical; completed in the same native Harness conversation"
+}

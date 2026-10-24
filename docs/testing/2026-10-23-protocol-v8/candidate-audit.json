@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "archive_checksums_verified": true,
+  "source_zip_crc_valid": true,
+  "owned_installed_source_byte_matches": 39,
+  "unchanged_inherited_base_example_files": {
+    "src/.___main__.py": "0d545cf8c88d829c9aa4ab88ef179be533fe3aa9baa2368195044861dbdf47c9",
+    "src/._my_agent.py": "0d545cf8c88d829c9aa4ab88ef179be533fe3aa9baa2368195044861dbdf47c9",
+    "src/Dockerfile": "e1c46ffc03803b590bfec8228ed31e624a200debda6b048890e80f697e5df2a2",
+    "src/__main__.py": "74bde54a74412ed5544d21c7002d658c99b97ccea091f35be166a9a703a26b48",
+    "src/my_agent.py": "57116a14018aad25f1efd75ef061439c7160e3022f2acdd5ed6464d37d3dbde1"
+  },
+  "frozen_readme_matches": true,
+  "reimport_same_image_id": true,
+  "fresh_readonly_health_http": 200,
+  "native_main_run": "hybrid-20261023-v042-v8-magic-native-api",
+  "native_repeat_run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+  "local_results": [
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api",
+      "counts": {
+        "PASS": 128,
+        "BLOCKED": 1
+      }
+    },
+    {
+      "run": "hybrid-20261023-v042-v8-magic-native-api-d-repeat",
+      "counts": {
+        "PASS": 21
+      }
+    }
+  ],
+  "official_gateway_admission_verified": false,
+  "official_score": null,
+  "uploaded_to_contest": false
+}

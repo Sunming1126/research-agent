@@ -1,0 +1,284 @@
+{
+  "date": "2026-10-23",
+  "new_model_calls_in_this_readonly_analysis": 0,
+  "new_tests_started_in_this_analysis": 0,
+  "latest_source_candidate": "0.4.2-hybrid-v6",
+  "latest_source_image_built": true,
+  "latest_full_end_to_end_pass_rate": null,
+  "all_known_defect_interception_rate": null,
+  "denominator_warning": "Recorded checks include dependent checks and BLOCKED placeholders; totals differ between runs. Not independent questions, planned full coverage, or comparable overall rates.",
+  "runs": {
+    "hybrid-20261023-v042": {
+      "image": "research-assistant:0.4.2-hybrid-v1",
+      "image_id": "sha256:fa10c952e718f197363b3c38ff00e3059caea70c2b9f5dbebf507853d56842fa",
+      "counts": {
+        "PASS": 122,
+        "BLOCKED": 1
+      },
+      "recorded_checks": 123,
+      "pass_over_all_recorded_pct": 99.19,
+      "pass_over_pass_and_fail_pct": 100.0
+    },
+    "hybrid-20261023-v042-d-repeat": {
+      "image": "research-assistant:0.4.2-hybrid-v1",
+      "image_id": "sha256:fa10c952e718f197363b3c38ff00e3059caea70c2b9f5dbebf507853d56842fa",
+      "counts": {
+        "PASS": 14,
+        "FAIL": 3,
+        "BLOCKED": 2
+      },
+      "recorded_checks": 19,
+      "pass_over_all_recorded_pct": 73.68,
+      "pass_over_pass_and_fail_pct": 82.35
+    },
+    "hybrid-20261023-v042-v2": {
+      "image": "research-assistant:0.4.2-hybrid-v2",
+      "image_id": "sha256:c16438fecb1afbb7b6d8412c3f7282a59929ec06aec293eec5874cae9439bf34",
+      "counts": {
+        "PASS": 101,
+        "FAIL": 7,
+        "BLOCKED": 7
+      },
+      "recorded_checks": 115,
+      "pass_over_all_recorded_pct": 87.83,
+      "pass_over_pass_and_fail_pct": 93.52
+    },
+    "hybrid-20261023-v042-v2-d-repeat": {
+      "image": "research-assistant:0.4.2-hybrid-v2",
+      "image_id": "sha256:c16438fecb1afbb7b6d8412c3f7282a59929ec06aec293eec5874cae9439bf34",
+      "counts": {
+        "PASS": 1,
+        "FAIL": 4,
+        "BLOCKED": 6
+      },
+      "recorded_checks": 11,
+      "pass_over_all_recorded_pct": 9.09,
+      "pass_over_pass_and_fail_pct": 20.0
+    },
+    "hybrid-20261023-v042-v4-magic-native-api-r3": {
+      "image": "research-assistant:0.4.2-hybrid-v4",
+      "image_id": "sha256:472bd79d96e2c2d56d6dd87709c554fcb134214e7c5e92b6600fc06b1e876e0e",
+      "counts": {
+        "PASS": 122,
+        "BLOCKED": 1
+      },
+      "recorded_checks": 123,
+      "pass_over_all_recorded_pct": 99.19,
+      "pass_over_pass_and_fail_pct": 100.0
+    },
+    "hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat": {
+      "image": "research-assistant:0.4.2-hybrid-v4",
+      "image_id": "sha256:472bd79d96e2c2d56d6dd87709c554fcb134214e7c5e92b6600fc06b1e876e0e",
+      "counts": {
+        "PASS": 19,
+        "FAIL": 2
+      },
+      "recorded_checks": 21,
+      "pass_over_all_recorded_pct": 90.48,
+      "pass_over_pass_and_fail_pct": 90.48
+    },
+    "hybrid-20261023-v042-v5-magic-native-api": {
+      "image": "research-assistant:0.4.2-hybrid-v5",
+      "image_id": "sha256:46656082485084f353e16295d5c0c091a28b64582c0cb71e22362105396274f7",
+      "counts": {
+        "PASS": 113,
+        "FAIL": 1,
+        "BLOCKED": 3
+      },
+      "recorded_checks": 117,
+      "pass_over_all_recorded_pct": 96.58,
+      "pass_over_pass_and_fail_pct": 99.12
+    },
+    "hybrid-20261023-v042-v5-magic-native-api-d-repeat": {
+      "image": "research-assistant:0.4.2-hybrid-v5",
+      "image_id": "sha256:46656082485084f353e16295d5c0c091a28b64582c0cb71e22362105396274f7",
+      "counts": {
+        "PASS": 18,
+        "FAIL": 3
+      },
+      "recorded_checks": 21,
+      "pass_over_all_recorded_pct": 85.71,
+      "pass_over_pass_and_fail_pct": 85.71
+    }
+  },
+  "offline_v6_regression": {
+    "tests": 167,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 166,
+    "executed_pass_pct": 100.0,
+    "all_planned_pass_pct": 99.4
+  },
+  "frozen_selected_protocol_defects": {
+    "intercepted": 6,
+    "fixtures": 6,
+    "pct": 100,
+    "scope": "Four D05 defects and two D02 defects; selected historical sample only"
+  },
+  "frozen_d05_defect_fixture_interception": {
+    "intercepted": 3,
+    "fixtures": 3,
+    "unchanged_historical_model_sources": 2,
+    "pct": 100.0,
+    "scope": "Three selected D05 protocol defects only, not all known defects"
+  },
+  "real_repair_observations": {
+    "comparison-20261023-v041-v14": {
+      "initial_failure_tasks": 3,
+      "eventually_internal_pass": 1,
+      "eventual_all_external_public_checks_pass": 1,
+      "internal_recovery_pct": 33.33,
+      "external_public_recovery_pct": 33.33
+    },
+    "hybrid-20261023-v042": {
+      "initial_failure_tasks": 2,
+      "eventually_internal_pass": 2,
+      "eventual_all_external_public_checks_pass": 1,
+      "internal_recovery_pct": 100.0,
+      "external_public_recovery_pct": 50.0
+    }
+  },
+  "cancel_fixture": {
+    "before_seconds": 3.167,
+    "after_seconds": 0.3561163240000269,
+    "reduction_pct": 88.76,
+    "scope": "One actual sleeping child-process fixture per version; not production latency or root-cause proof for historical D05 hang"
+  },
+  "evidence_sha256": {
+    "镜像测试/runs/hybrid-20261023-v042/summary.json": "251e626502fe623f73617cf71304e978f66d34d1890b55aa72f131d64cd5715a",
+    "镜像测试/runs/hybrid-20261023-v042/checks.json": "fbe4db36ed1b4785b9df3191e8ea148774b06a53dc8e62fb1b935bfcb470f38b",
+    "镜像测试/runs/hybrid-20261023-v042-d-repeat/summary.json": "40c4095c26ef26701faa17fd3a5c131719cde611bc2c101c3944af0e08e9a911",
+    "镜像测试/runs/hybrid-20261023-v042-d-repeat/checks.json": "cfe2121e4af2ef99f5b5c8fa99af96af4cb021c54a7298d4fbee20849f1d7de9",
+    "镜像测试/runs/hybrid-20261023-v042-v2/summary.json": "30d41c31a1179cfaf58e494e9c857ba72a69bdbd9d7c570af10c715e7ffc8bbd",
+    "镜像测试/runs/hybrid-20261023-v042-v2/checks.json": "e8704eade1188c55249d8d8ad913c68ab7eeaa9beabd64e713f67787dbfc2047",
+    "镜像测试/runs/hybrid-20261023-v042-v2-d-repeat/summary.json": "b72b4fda0e8587ccc2cc48bf19883dd60e64d66701682bde82fb05eee1da437c",
+    "镜像测试/runs/hybrid-20261023-v042-v2-d-repeat/checks.json": "cd68c43014f623858a37d465c1447bd9ac0dc25d6fc28593d409bc81accf6702",
+    "镜像测试/runs/hybrid-20261023-v042-v4-magic-native-api-r3/summary.json": "3720691d1ad4996d5dc67e69cd4958d0576d98e8b7de7692fea7dbf6299c2548",
+    "镜像测试/runs/hybrid-20261023-v042-v4-magic-native-api-r3/checks.json": "467c41c36adf2cffc5be84d6f8fc84f7960626be144b024412df9d3cbbc909be",
+    "镜像测试/runs/hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat/summary.json": "f0614f2323404205a1b06f16721edee86de700fd29feabb7bfd5ab0544f5a840",
+    "镜像测试/runs/hybrid-20261023-v042-v4-magic-native-api-r3-d-repeat/checks.json": "ed7a5bc7d878a19a232f59ab5841cf081dd12ca89248020e1fd1edf5acc3ce0f",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api/summary.json": "f49b2d543cef1b250e6ca314300cd324d6b3fbb57f6dd8d344f414d0f673ee4c",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api/checks.json": "d2ec5dff0d0342371c5ed5d9ef2c73edfbf7a94ade618516f08478b2a90c3fd4",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api-d-repeat/summary.json": "01bd72d256772da6924286b75d967543d6e6b188375f7078cec4674205f428b1",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api-d-repeat/checks.json": "ee6245fc5a748257a428a2be5c573ad972cefee0538667ae281718ecd4476c5d",
+    "协同开发/research-agent/docs/testing/2026-10-23-hybrid/regression-v6.xml": "7214df5362f0d7862b0f097b654aaad29be16b1df7a356f82982bd18f01b8015",
+    "镜像测试/runs/hybrid-20261023-v042/original-d05-priority-regression.json": "f6c59292f9872028ac6c881253b1628a47b8599cc3d906d44f238e9ca3108bb4",
+    "协同开发/research-agent/tests/fixtures/d05-hybrid-v1-repeat.py-text": "4037932ddde31ec7551e7e072dcf60d91a288e03fe28f112ab9653d8f8f41ea9",
+    "协同开发/research-agent/tests/fixtures/d02-hybrid-v4-repeat.py-text": "3dc07a20dd91dbf9eeba1dca46a09f9b254fe3ad86c357ed79456fb915bc8266",
+    "协同开发/research-agent/tests/fixtures/d02-hybrid-v5-ignored-query.py-text": "98f9c04d94b81d7b365d6b5d4fb7523b43cb1cf043fbdee396ecf75986de9095",
+    "协同开发/research-agent/tests/fixtures/d05-hybrid-v5-first-setup.py-text": "dd02172d09fdc2fda312231d71fc5b548e1528321cf019c5fa7702590001adc8",
+    "镜像测试/runs/comparison-20261023-v041-v14/checks.json": "4f85bbd5194e48f4ff074a76db5567410640d092e7f78b0fceed3ac39ba9f9cf",
+    "镜像测试/runs/comparison-20261023-v041-v14/live-D-05/output/data/workspace_team/work/D-05/eefdd599231741d08390c36fc2f07598/public-selftest.json": "b15ee0f04084d3f9e9d622a7f72f22682440bfd3097c9a4b0ab4d9e0f7b8b228",
+    "镜像测试/runs/comparison-20261023-v041-v14/live-D-02/output/data/workspace_team/work/D-02/b7dd5db1fca6404e9bab6baa85bfcb0a/public-selftest.json": "43da7ac95ba79fb437c193c01f68c74c458f44225065ff13e99da105ccf62f1e",
+    "镜像测试/runs/comparison-20261023-v041-v14/live-D-01/output/data/workspace_team/work/D-01/23b3797c91f043b2a25a168976176c9e/public-selftest.json": "68854453ac9050add722d04e226bc6a60863465c4e28db0d100b5f0e36ff56c1",
+    "镜像测试/runs/comparison-20261023-v041-v14-d-repeat/checks.json": "2bbf16ca009d9b9d158fb76cdac3ed25b136f9fd9f5dbf0af3293eb525a6631f",
+    "镜像测试/runs/comparison-20261023-v041-v14-d-repeat/live-D-05/output/data/workspace_team/work/D-05/08f7c36ba3674de89d85409b4916c026/public-selftest.json": "340a75645b7198db157a9593001379e0f05530ddcfbd280be20fb7a43817cde0",
+    "镜像测试/runs/comparison-20261023-v041-v14-d-repeat/live-D-02/output/data/workspace_team/work/D-02/87c38e2a73654ddea73c59c42cee8ce8/public-selftest.json": "fbc8db125b35648fd9149fb9c8c9f03bc5ae71e5cf1a4d00a70fdc51d68f3861",
+    "镜像测试/runs/comparison-20261023-v041-v14-d-repeat/live-D-01/output/data/workspace_team/work/D-01/1b882c01a5af4dff99d4bde51bd3d830/public-selftest.json": "7c8a704c707d65e5a452bbf606f06182054c04828808edcdaa087986939d6d1a",
+    "镜像测试/runs/hybrid-20261023-v042/live-D-05/output/data/workspace_team/work/D-05/7db6b4e8f8e54cb393479a08e0cc0dbe/public-selftest.json": "ba1b825a02b3a0b64648c6f7a5d09f85c2454e9d568da83fc5b3644627539273",
+    "镜像测试/runs/hybrid-20261023-v042/live-D-02/output/data/workspace_team/work/D-02/cd4a77d6517944e7b21783bd33fc1d18/public-selftest.json": "790e9a0d4ebf61a4259a581d2f7b2b2f9c2a1788d5c33dfde008905cb65052f7",
+    "镜像测试/runs/hybrid-20261023-v042/live-D-01/output/data/workspace_team/work/D-01/00d0d508e9574715a4e8893a6510ee7a/public-selftest.json": "c3eecf558b976bc8f3c2a36935188d2d6d62f5287fb8ee613ddb19e724b4abfc",
+    "镜像测试/runs/hybrid-20261023-v042-d-repeat/live-D-05/output/data/workspace_team/work/D-05/c64fd0270db145a282be00d74ad27465/public-selftest.json": "a79e8a64c429fa6f3aeaa537b4ce7c4669ba400dd78c155ac9e8918a3bfefd68",
+    "镜像测试/runs/hybrid-20261023-v042-d-repeat/live-D-02/output/data/workspace_team/work/D-02/22a01b2adbfa4e9cb480bf900ca5333c/public-selftest.json": "9d37713e8bb8727c267d74bcf35ae792133f1ad3f81d77ff336226438fcb8904",
+    "镜像测试/runs/hybrid-20261023-v042-d-repeat/live-D-01/output/data/workspace_team/work/D-01/360e17d4c75e4ba9887110ae82debaa3/public-selftest.json": "b6da9fdf750b4c1c4c2df4dbe16f2c3429b96795ee57242ba93244c2065b14bf",
+    "镜像测试/交付/0.4.2-hybrid-v6/delivery-manifest.json": "315ea2a174f810ca4c6f86661cdfed3ef0ed2834f3cee417b66e86417cad4de3",
+    "镜像测试/runs/native-magic-api-smoke-20261023/summary.json": "1893beeb5c1916e1185cdcd211788f7f6d0b7ebb53af8267228e7065fab8aa0c",
+    ".session-audit/native-v6-latest-run.json": "7f2f1919847bce3b680e0b7ca5fbb7e9a46f3e5096844c9663951a86734c4ad8",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api-r2/summary.json": "f7f2aa90bc5f933bd53ff8140592fc2d6db945c533fe5c3a92b34dbf069d4dd4",
+    "镜像测试/runs/hybrid-20261023-v042-v5-magic-native-api-r2/checks.json": "6c56848acfdf6ed27edcc8fd0fe934bacad74571514a294364f0d3ddf70e298a"
+  },
+  "candidate_manifest": {
+    "version": "0.4.2-hybrid-v6",
+    "image": "research-assistant:0.4.2-hybrid-v6",
+    "image_id": "sha256:fdb88f177b337dd68cf4720a9a26cca44820e04cdd5f324b57cc07534f7157ef",
+    "build_commit": "094d6222b799239eca9b4ff9c34a213f54cdaec4",
+    "status": "LOCAL_PUBLIC_ACCEPTANCE_PASSED_READY_FOR_FIRST_PLATFORM_VALIDATION",
+    "ready_for_recommended_contest_submission": true,
+    "uploaded_to_contest": false,
+    "official_score": null,
+    "platform": "linux/amd64",
+    "user": "agent",
+    "port": 8080,
+    "nonempty_credential_env": {
+      "PLATFORM_API_KEY": false
+    },
+    "source_snapshot_files": 42,
+    "files": [
+      {
+        "file": "research-assistant-0.4.2-hybrid-v6.tar",
+        "bytes": 295539200,
+        "sha256": "a920a93cf7418320e127692ce838c3f6f05727141a73accd73d7ee92059f00ea"
+      },
+      {
+        "file": "research-agent-0.4.2-hybrid-v6-build-source.zip",
+        "bytes": 104082,
+        "sha256": "cd2c2c362059b429dfb598bba43ae6c12df786fac7efe4eea3a78bf512690e49"
+      }
+    ],
+    "real_model_acceptance_complete": true,
+    "local_results": [
+      {
+        "run": "hybrid-20261023-v042-v5-magic-native-api-r2",
+        "counts": {
+          "PASS": 122,
+          "BLOCKED": 1
+        }
+      },
+      {
+        "run": "hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat",
+        "counts": {
+          "PASS": 21
+        }
+      }
+    ],
+    "official_gateway_admission_verified": false
+  },
+  "native_api_smoke": {
+    "status": "PASS",
+    "native_orchestration": {
+      "native_tool_execution_verified": true,
+      "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+      "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+      "tool_name": "pwsh",
+      "native_tool_call_sha256": "ea1260ca8b3de575edbfd0e7f86884ab0964b1e88de24c2223feca744c40ac31",
+      "profile_modified": false,
+      "plugin_installed": false,
+      "headless_model_process_used": false
+    },
+    "model": "deepseek-v4.1-flash",
+    "forwarded_max_tokens": 64,
+    "thinking": "disabled",
+    "actual_usage": {
+      "completion_tokens": 8,
+      "prompt_tokens": 14,
+      "total_tokens": 22,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    }
+  },
+  "latest_local_real_round": {
+    "run": "hybrid-20261023-v042-v5-magic-native-api-r2",
+    "complete": true,
+    "summary": {
+      "target": "research-assistant:0.4.2-hybrid-v6",
+      "image_id": "sha256:fdb88f177b337dd68cf4720a9a26cca44820e04cdd5f324b57cc07534f7157ef",
+      "counts": {
+        "PASS": 122,
+        "BLOCKED": 1
+      },
+      "official_score": null,
+      "official_admission_verified": false,
+      "run": "hybrid-20261023-v042-v5-magic-native-api-r2",
+      "mandatory_failures": [],
+      "quality_failures": [],
+      "note": "Actual Harness account calls and immutable installed-image execution; no algorithm hand edits"
+    },
+    "all_recorded_pass_pct": 99.19,
+    "executed_pass_pct": 100.0
+  }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "replay.D-01",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "source_sha256": "181e41dd1dcd999007b1ce18160af5639f4595e591913b9b52167e6be4debbe7",
+    "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api-r2-d-repeat\\public-workers\\D-01\\D-01-09be80\\result.json",
+    "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api-r2-d-repeat\\reproducibility\\D-01\\stdout.txt",
+    "python": "3.9",
+    "network": "none",
+    "official_provenance": false
+  },
+  {
+    "id": "replay.D-02",
+    "group": "D-reproducibility",
+    "status": "BLOCKED",
+    "error": "AssertionError: No accepted source available"
+  },
+  {
+    "id": "replay.D-05",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "source_sha256": "2df396ebcd0836e18c6f4d13f4b4e5d7f27086eb3cdad0d70fc0ac602f526b0c",
+    "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api-r2-d-repeat\\public-workers\\D-05\\D-05-3d986a\\result.json",
+    "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api-r2-d-repeat\\reproducibility\\D-05\\stdout.txt",
+    "python": "3.9",
+    "network": "none",
+    "official_provenance": false
+  }
+]

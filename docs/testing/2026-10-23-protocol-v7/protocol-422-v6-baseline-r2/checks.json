@@ -1,0 +1,54 @@
+[
+  {
+    "id": "baseline.direct.A-03",
+    "group": "known-platform-failure",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "http": 422,
+      "gateway_calls": 0,
+      "reproduced_known_failure": true
+    },
+    "error": null,
+    "seconds": 0.026
+  },
+  {
+    "id": "baseline.direct.B-01",
+    "group": "known-platform-failure",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "http": 422,
+      "gateway_calls": 0,
+      "reproduced_known_failure": true
+    },
+    "error": null,
+    "seconds": 0.008
+  },
+  {
+    "id": "baseline.direct.B-02",
+    "group": "known-platform-failure",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "http": 422,
+      "gateway_calls": 0,
+      "reproduced_known_failure": true
+    },
+    "error": null,
+    "seconds": 0.026
+  },
+  {
+    "id": "baseline.sdk_control",
+    "group": "control",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "http": 200,
+      "gateway_calls": 1,
+      "fixture_not_real_llm": true
+    },
+    "error": null,
+    "seconds": 0.27
+  }
+]

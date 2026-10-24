@@ -1,0 +1,261 @@
+def run_experiment(request):
+    data = request.get("data", {}) if isinstance(request, dict) else {}
+
+    raw_jobs = data.get("jobs", []) or []
+    flow_weights_in = data.get("flow_weights", {}) or {}
+    servers = int(data.get("servers", 1))
+    setup_ms = int(data.get("setup_ms", 0))
+    horizon = int(data.get("horizon_ms", 0))
+
+    if servers < 1:
+        servers = 1
+
+    flow_weights = {}
+    for f, w in flow_weights_in.items():
+        try:
+            wv = float(w)
+        except (TypeError, ValueError):
+            wv = 1.0
+        if wv <= 0:
+            wv = 1.0
+        flow_weights[f] = wv
+
+    jobs = []
+    for j in raw_jobs:
+        jid = j.get("id")
+        flow = j.get("flow")
+        arrival = int(j.get("arrival_ms", 0))
+        service = int(j.get("service_ms", 0))
+        deadline = int(j.get("deadline_ms", 0))
+        jobs.append({
+            "id": jid,
+            "flow": flow,
+            "arrival_ms": arrival,
+            "service_ms": service,
+            "deadline_ms": deadline,
+        })
+        if flow not in flow_weights:
+            flow_weights[flow] = 1.0
+
+    def job_sort_key(j):
+        return (j["arrival_ms"], str(j["id"]))
+
+    jobs_sorted = sorted(jobs, key=job_sort_key)
+
+    def run_scheduler(mode):
+        server_state = []
+        for s in range(servers):
+            server_state.append({
+                "busy_until": 0,
+                "last_flow": None,
+            })
+
+        flow_allocated = {}
+        for f in flow_weights:
+            flow_allocated[f] = 0
+
+        trace = []
+        dropped = []
+
+        pending = list(jobs_sorted)
+        pending_idx = 0
+        waiting = []
+
+        completed_service = {}
+        for f in flow_weights:
+            completed_service[f] = 0
+
+        def enqueue_arrivals(now):
+            nonlocal pending_idx
+            while pending_idx < len(pending) and pending[pending_idx]["arrival_ms"] <= now:
+                waiting.append(pending[pending_idx])
+                pending_idx += 1
+
+        def drop_expired(now):
+            survivors = []
+            for j in waiting:
+                if j["deadline_ms"] <= now:
+                    dropped.append({"id": j["id"], "reason": "deadline"})
+                else:
+                    survivors.append(j)
+            waiting[:] = survivors
+
+        def pick_job(mode_local):
+            if not waiting:
+                return None
+            if mode_local == "fifo":
+                best_idx = 0
+                for i in range(1, len(waiting)):
+                    if job_sort_key(waiting[i]) < job_sort_key(waiting[best_idx]):
+                        best_idx = i
+                return waiting.pop(best_idx)
+            else:
+                best_idx = 0
+                best_key = None
+                for i, j in enumerate(waiting):
+                    f = j["flow"]
+                    w = flow_weights.get(f, 1.0)
+                    key = (flow_allocated.get(f, 0) / w, j["arrival_ms"], str(j["id"]))
+                    if best_key is None or key < best_key:
+                        best_key = key
+                        best_idx = i
+                return waiting.pop(best_idx)
+
+        current_time = 0
+
+        while True:
+            if current_time > horizon:
+                break
+
+            if current_time >= 0:
+                enqueue_arrivals(current_time)
+                drop_expired(current_time)
+
+            progressed = False
+            for s in range(servers):
+                st = server_state[s]
+                if st["busy_until"] > current_time:
+                    continue
+                if current_time > horizon:
+                    break
+                if not waiting and pending_idx >= len(pending):
+                    break
+                enqueue_arrivals(current_time)
+                drop_expired(current_time)
+                if not waiting:
+                    continue
+
+                chosen = pick_job(mode)
+                if chosen is None:
+                    continue
+
+                f = chosen["flow"]
+                prev_flow = st["last_flow"]
+                if prev_flow is None:
+                    this_setup = 0
+                elif prev_flow != f:
+                    this_setup = setup_ms
+                else:
+                    this_setup = 0
+
+                dispatch_ms = current_time
+                start_ms = dispatch_ms + this_setup
+                end_ms = start_ms + chosen["service_ms"]
+
+                if start_ms >= chosen["deadline_ms"]:
+                    dropped.append({"id": chosen["id"], "reason": "deadline"})
+                    progressed = True
+                    continue
+
+                if end_ms > horizon:
+                    dropped.append({"id": chosen["id"], "reason": "horizon"})
+                    progressed = True
+                    continue
+
+                flow_allocated[f] = flow_allocated.get(f, 0) + chosen["service_ms"]
+                st["last_flow"] = f
+                st["busy_until"] = end_ms
+
+                trace.append({
+                    "id": chosen["id"],
+                    "flow": f,
+                    "arrival_ms": chosen["arrival_ms"],
+                    "service_ms": chosen["service_ms"],
+                    "deadline_ms": chosen["deadline_ms"],
+                    "server": s,
+                    "dispatch_ms": dispatch_ms,
+                    "setup_ms": this_setup,
+                    "start_ms": start_ms,
+                    "end_ms": end_ms,
+                    "wait_ms": start_ms - chosen["arrival_ms"],
+                })
+                progressed = True
+
+            future_times = []
+            for s in range(servers):
+                bu = server_state[s]["busy_until"]
+                if bu > current_time:
+                    future_times.append(bu)
+            if pending_idx < len(pending):
+                future_times.append(pending[pending_idx]["arrival_ms"])
+            for j in waiting:
+                if j["deadline_ms"] > current_time:
+                    future_times.append(j["deadline_ms"])
+
+            next_time = None
+            for t in future_times:
+                if t > current_time:
+                    if next_time is None or t < next_time:
+                        next_time = t
+
+            if next_time is None:
+                if not progressed and not waiting and pending_idx >= len(pending):
+                    break
+                if not waiting and pending_idx >= len(pending):
+                    all_idle = True
+                    for s in range(servers):
+                        if server_state[s]["busy_until"] > current_time:
+                            all_idle = False
+                            break
+                    if all_idle:
+                        break
+
+            if next_time is not None and next_time > horizon:
+                break
+
+            if not progressed and next_time is None:
+                break
+
+            if next_time is None:
+                break
+
+            if next_time <= current_time and not progressed:
+                break
+
+            current_time = next_time
+
+            if current_time > horizon:
+                break
+
+        while pending_idx < len(pending):
+            j = pending[pending_idx]
+            dropped.append({"id": j["id"], "reason": "horizon"})
+            pending_idx += 1
+
+        remaining_wait = []
+        for j in waiting:
+            if j["deadline_ms"] <= horizon:
+                dropped.append({"id": j["id"], "reason": "deadline"})
+            else:
+                dropped.append({"id": j["id"], "reason": "horizon"})
+        waiting[:] = []
+
+        for entry in trace:
+            f = entry["flow"]
+            completed_service[f] = completed_service.get(f, 0) + entry["service_ms"]
+
+        served_ms = {}
+        for f in flow_weights:
+            served_ms[f] = completed_service.get(f, 0)
+        for entry in trace:
+            f = entry["flow"]
+            if f not in served_ms:
+                served_ms[f] = completed_service.get(f, 0)
+
+        trace_sorted = sorted(trace, key=lambda e: (e["dispatch_ms"], e["server"]))
+        dropped_sorted = sorted(dropped, key=lambda d: str(d["id"]))
+
+        return {
+            "trace": trace_sorted,
+            "served_ms": served_ms,
+            "dropped": dropped_sorted,
+        }
+
+    baseline = run_scheduler("fifo")
+    candidate = run_scheduler("fair")
+
+    return {
+        "baseline": baseline,
+        "candidate": candidate,
+        "details": {},
+    }

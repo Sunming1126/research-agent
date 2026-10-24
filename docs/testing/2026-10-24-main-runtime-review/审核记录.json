@@ -1,0 +1,137 @@
+{
+  "reviewed_at": "2026-10-24T17:43:31.6246899+08:00",
+  "repository": "https://github.com/Sunming1126/research-agent",
+  "branch": "main",
+  "observed_remote_commit": "7ceaaa21956b9bb5b56758efa608cb1b2989b553",
+  "commit_authored_at": "2026-10-22T23:26:33+08:00",
+  "commit_committed_at": "2026-10-22T23:26:33+08:00",
+  "teammate_new_push_confirmed": false,
+  "scope": "READ_ONLY_SOURCE_REVIEW",
+  "application_code_changed": false,
+  "model_calls": 0,
+  "tests_run": 0,
+  "image_built": false,
+  "contest_upload": false,
+  "production_startup": "OFFICIAL_AGENT_RUNTIME_WHEN_SDK_PRESENT",
+  "recommendation": "DO_NOT_SUBMIT_THIS_COMMIT_WITHOUT_FIXES_AND_IMAGE_REVALIDATION",
+  "source_archive_sha256": "d94148ec47e0a0de25060a93b47b06bd17c366ef86f42f7e3dfc5ae2d3a68346",
+  "committee_document": {
+    "name": "赛题一组委会确认清单-逐项回复-20261015(3).md",
+    "sha256": "241270a9e8df6f5a4923bc411f7a983ff20cd1347b31d5ce54f89006b89599f7",
+    "stale_task_count_not_applied": true
+  },
+  "findings": [
+    {
+      "id": "R01",
+      "severity": "P1",
+      "status": "FAIL_STATIC",
+      "title": "Bare eight-field request lacks production HTTP adaptation",
+      "evidence": "agent.py:73; SDK reference runtime.py:27,64"
+    },
+    {
+      "id": "R02",
+      "severity": "P1",
+      "status": "FAIL_STATIC",
+      "title": "Production response remains TaskResponse/output.answer",
+      "evidence": "agent.py:25; SDK reference runtime.py:96"
+    },
+    {
+      "id": "R03",
+      "severity": "P1",
+      "status": "FAIL_STATIC",
+      "title": "Single bypasses assigned hash and request equality checks",
+      "evidence": "src/research_agent/core/engine.py:63"
+    },
+    {
+      "id": "R04",
+      "severity": "P1",
+      "status": "FAIL_STATIC",
+      "title": "Gateway X-Session-ID is not populated",
+      "evidence": "src/research_agent/integrations/llm.py:185,205; SDK reference network.py:45"
+    },
+    {
+      "id": "R05",
+      "severity": "P2",
+      "status": "CONDITIONAL_DEFAULT_CONFIG_GAP",
+      "title": "Material roots empty and dispatch root differs from committee default paths",
+      "evidence": "Dockerfile:9; core/config.py:51; core/dispatch_plan.py:122"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "Dockerfile",
+      "sha256": "fbd43f4e8d51fe23b2c0e2cc5bfecb622525ae9092de5ac3b3f7c32f0000b6ad"
+    },
+    {
+      "path": "agent.py",
+      "sha256": "911257cdd456118c3e5072ed1294130a8a14c906a6aecc4c7b86e81b72c4d0b4"
+    },
+    {
+      "path": "src/research_agent/core/engine.py",
+      "sha256": "e6e7048de3c53b83250e5afecad2acce05b08e1f6d43ab21e39b70b3c3d15396"
+    },
+    {
+      "path": "src/research_agent/core/models.py",
+      "sha256": "ba3d9d4e498cb8da661827912f9f41e6bd02bd0b67d5765bc3a064bc477e735b"
+    },
+    {
+      "path": "src/research_agent/core/config.py",
+      "sha256": "8f9f7aacbf279a7928b67899fb7ef03c897465b6459987ab787aa04bc6164639"
+    },
+    {
+      "path": "src/research_agent/core/dispatch_plan.py",
+      "sha256": "bc01119cbbf8cf3c6887b17cceefbb9e5d3e342c675de717be6de80fc2e0d673"
+    },
+    {
+      "path": "src/research_agent/integrations/llm.py",
+      "sha256": "13246ffd8efd84a467b132c15d6e454b7034a90a0fd753ef1dfb0c79cd2b6aa4"
+    },
+    {
+      "path": "src/research_agent/integrations/instrumentation.py",
+      "sha256": "6f14706265b8d0e493848bd4ab76e0d111d71d913a7092811000fe1c4331daaf"
+    },
+    {
+      "path": "src/research_agent/rag/materials.py",
+      "sha256": "482f00dfff8b4034c530c289cb0e8b7f43d4c04f1fd551b123b6f01c7761afd4"
+    },
+    {
+      "path": "src/research_agent/__main__.py",
+      "sha256": "2cf277f599a5100ea89bddcc3260110ad8ede2639199e27400a739f5b15324c1"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "66f72302b0d2e5ce9ff3d6154002152a63054050de817e532d0bbbbf7ba639b4"
+    }
+  ],
+  "sdk_reference": {
+    "origin": "Existing v8 archive; reference only, not a main-built image",
+    "declared_version": "1.1.1",
+    "active_module_hashes": [
+      {
+        "path": "__init__.py",
+        "sha256": "17eb578ed2bce710c7e59992befded351b31cb8af5fa164fbe8c94241cc9baba"
+      },
+      {
+        "path": "runtime.py",
+        "sha256": "9737fb4c1fc3ed0a2c46ac9467468ee1e75b37076c948f621d19700357a6729c"
+      },
+      {
+        "path": "interceptor.py",
+        "sha256": "2abd6ab87c594cc8b16cbd625643660d2019a1d22f816ec36fb6c8bd1d99240e"
+      },
+      {
+        "path": "network.py",
+        "sha256": "a1644d99c4406e068227fbb0ac11f64423223ec2343d6299fcc9c147c050536a"
+      },
+      {
+        "path": "telemetry.py",
+        "sha256": "d3f20d71db7b650854ccefdffcd01d5e79b9ef0b249dabee6a304364c96771e9"
+      }
+    ],
+    "traces_endpoint_supported": true,
+    "actual_collector_receipt": "NOT_VERIFIED"
+  },
+  "dynamic_validation": "NOT_RUN",
+  "github_sync": "RECORDED_SEPARATELY_AFTER_PUSH",
+  "d_backup": "RECORDED_SEPARATELY_AFTER_BACKUP"
+}

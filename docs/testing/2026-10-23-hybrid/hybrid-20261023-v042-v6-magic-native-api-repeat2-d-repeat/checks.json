@@ -1,0 +1,362 @@
+[
+  {
+    "id": "image.immutable_identity",
+    "group": "runtime",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "tag": "research-assistant:0.4.2-hybrid-v6",
+      "id": "sha256:fdb88f177b337dd68cf4720a9a26cca44820e04cdd5f324b57cc07534f7157ef",
+      "user": "agent",
+      "platform": "linux/amd64"
+    },
+    "error": null,
+    "seconds": 0.001
+  },
+  {
+    "id": "live.D-01.model_source_generation",
+    "group": "D-source-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "D-01",
+      "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\live-D-01\\output\\data\\workspace_team\\work\\D-01\\6d7186f1d4724392a4f58bdd37ca7a91\\implementation.py",
+      "sha256": "13f7863974eae093373b922c193e8f48440e16b75b2aa48ea6917ab2ee57de3a",
+      "seconds": 4.996499399974709,
+      "real_model_calls": 1,
+      "official_execution": "BLOCKED"
+    },
+    "error": null,
+    "seconds": 6.867
+  },
+  {
+    "id": "public_algorithm.D-01.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "training_rows": 18,
+      "test_rows": 4,
+      "vocabulary": 24,
+      "model_replay_verified": true,
+      "request": "D-01.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-01\\D-01-17b469"
+    },
+    "error": null,
+    "seconds": 0.689
+  },
+  {
+    "id": "public_algorithm.D-01/不均衡-重复词-标点.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "training_rows": 4,
+      "test_rows": 4,
+      "vocabulary": 4,
+      "model_replay_verified": true,
+      "request": "D-01/不均衡-重复词-标点.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-01\\不均衡-重复词-标点-8a2729"
+    },
+    "error": null,
+    "seconds": 0.576
+  },
+  {
+    "id": "public_algorithm.D-01/均衡-空文本-未知词.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "training_rows": 2,
+      "test_rows": 4,
+      "vocabulary": 4,
+      "model_replay_verified": true,
+      "request": "D-01/均衡-空文本-未知词.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-01\\均衡-空文本-未知词-dcae08"
+    },
+    "error": null,
+    "seconds": 0.592
+  },
+  {
+    "id": "live.D-02.model_source_generation",
+    "group": "D-source-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "D-02",
+      "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\live-D-02\\output\\data\\workspace_team\\work\\D-02\\c9a42a09e9bc4ec09734f8c6fc91e1c8\\implementation.py",
+      "sha256": "6951b1db52a2f1723c3fc3eaaad135be488cddd0001c48b84d58b19f4995b1fe",
+      "seconds": 6.895234199997503,
+      "real_model_calls": 1,
+      "official_execution": "BLOCKED"
+    },
+    "error": null,
+    "seconds": 9.1
+  },
+  {
+    "id": "public_algorithm.D-02.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "grid_checked": 27,
+      "groups": 2,
+      "selected": {
+        "b": 0.0,
+        "k1": 0.4,
+        "title_weight": 0.5
+      },
+      "request": "D-02.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-02\\D-02-dc90a5"
+    },
+    "error": null,
+    "seconds": 0.54
+  },
+  {
+    "id": "public_algorithm.D-02/rank-default.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rank_phase": true,
+      "queries": 3,
+      "request": "D-02/rank-default.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-02\\rank-default-d7462f"
+    },
+    "error": null,
+    "seconds": 0.538
+  },
+  {
+    "id": "public_algorithm.D-02/空字段-重复未知词-不等组.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "grid_checked": 27,
+      "groups": 2,
+      "selected": {
+        "b": 0.0,
+        "k1": 0.4,
+        "title_weight": 0.0
+      },
+      "request": "D-02/空字段-重复未知词-不等组.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-02\\空字段-重复未知词-不等组-384771"
+    },
+    "error": null,
+    "seconds": 0.586
+  },
+  {
+    "id": "live.D-05.model_source_generation",
+    "group": "D-source-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "D-05",
+      "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\live-D-05\\output\\data\\workspace_team\\work\\D-05\\f0530e6a2ca141f8807443a6ec8658f3\\implementation.py",
+      "sha256": "1e099bbae5a07707e9881720d26e4f4dbc514915e92deec334ba08cba22943be",
+      "seconds": 5.879963799990946,
+      "real_model_calls": 1,
+      "official_execution": "BLOCKED"
+    },
+    "error": null,
+    "seconds": 7.628
+  },
+  {
+    "id": "public_algorithm.D-05.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 2,
+      "servers": 1,
+      "fifo_and_fair_verified": true,
+      "request": "D-05.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-05\\D-05-273fbd"
+    },
+    "error": null,
+    "seconds": 0.54
+  },
+  {
+    "id": "public_algorithm.D-05/并发预留.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 3,
+      "servers": 2,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/并发预留.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-05\\并发预留-b9fade"
+    },
+    "error": null,
+    "seconds": 0.535
+  },
+  {
+    "id": "public_algorithm.D-05/拒绝后同服务器重试.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 3,
+      "servers": 1,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/拒绝后同服务器重试.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-05\\拒绝后同服务器重试-04ab73"
+    },
+    "error": null,
+    "seconds": 0.518
+  },
+  {
+    "id": "public_algorithm.D-05/空任务与零服务流.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 0,
+      "servers": 1,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/空任务与零服务流.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-05\\空任务与零服务流-9355b6"
+    },
+    "error": null,
+    "seconds": 0.539
+  },
+  {
+    "id": "public_algorithm.D-05/空闲间隔与流切换.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 2,
+      "servers": 1,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/空闲间隔与流切换.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-05\\空闲间隔与流切换-a0ab80"
+    },
+    "error": null,
+    "seconds": 0.613
+  },
+  {
+    "id": "public_algorithm.D-05/窗口恰好与超窗.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 2,
+      "servers": 1,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/窗口恰好与超窗.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-05\\窗口恰好与超窗-ca8417"
+    },
+    "error": null,
+    "seconds": 0.556
+  },
+  {
+    "id": "public_algorithm.D-05/过期与同时到达.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "jobs": 2,
+      "servers": 2,
+      "fifo_and_fair_verified": true,
+      "request": "D-05/过期与同时到达.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-05\\过期与同时到达-26df16"
+    },
+    "error": null,
+    "seconds": 0.56
+  },
+  {
+    "id": "replay.D-01",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "id": "replay.D-01",
+      "group": "D-reproducibility",
+      "status": "PASS",
+      "source_sha256": "13f7863974eae093373b922c193e8f48440e16b75b2aa48ea6917ab2ee57de3a",
+      "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-01\\D-01-17b469\\result.json",
+      "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\reproducibility\\D-01\\stdout.txt",
+      "python": "3.9",
+      "network": "none",
+      "official_provenance": false
+    },
+    "error": null
+  },
+  {
+    "id": "replay.D-02",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "id": "replay.D-02",
+      "group": "D-reproducibility",
+      "status": "PASS",
+      "source_sha256": "6951b1db52a2f1723c3fc3eaaad135be488cddd0001c48b84d58b19f4995b1fe",
+      "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-02\\D-02-dc90a5\\result.json",
+      "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\reproducibility\\D-02\\stdout.txt",
+      "python": "3.9",
+      "network": "none",
+      "official_provenance": false
+    },
+    "error": null
+  },
+  {
+    "id": "replay.D-05",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "id": "replay.D-05",
+      "group": "D-reproducibility",
+      "status": "PASS",
+      "source_sha256": "1e099bbae5a07707e9881720d26e4f4dbc514915e92deec334ba08cba22943be",
+      "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\public-workers\\D-05\\D-05-273fbd\\result.json",
+      "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\reproducibility\\D-05\\stdout.txt",
+      "python": "3.9",
+      "network": "none",
+      "official_provenance": false
+    },
+    "error": null
+  },
+  {
+    "id": "agent.harness_evidence_review",
+    "group": "LLM-orchestration",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "real_model": true,
+      "review_file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v6-magic-native-api-repeat2-d-repeat\\harness-review.json",
+      "seconds": 7.525
+    },
+    "error": null,
+    "seconds": 7.713
+  }
+]

@@ -6,6 +6,7 @@ from dataclasses import replace
 import re
 
 from ..integrations.llm import ModelError
+from ..core.utils import tokenize
 
 
 FACETS = {"method", "data", "metric", "result", "limitation", "unspecified"}
@@ -22,7 +23,7 @@ def coverage_matrix(ledger):
             "scope": "gaps mean missing verified evidence, not that the paper omitted the topic"}
 
 
-def select_claims(ledger, maximum_per_paper=5):
+def select_claims(ledger, maximum_per_paper=5, question=""):
     """每篇先覆盖不同维度，再填充其余事实，控制重复声明占用的预算。"""
     grouped = defaultdict(list)
     for evidence in ledger:
@@ -36,7 +37,15 @@ def select_claims(ledger, maximum_per_paper=5):
                 seen.add(evidence.facet)
         chosen = chosen[:maximum_per_paper]
         ids = {e.evidence_id for e in chosen}
-        for evidence in rows:
+        pending = [e for e in rows if e.evidence_id not in ids]
+        if question:
+            # 新补检事实必须有机会进入台账；不能始终被同维度的旧片段挤掉。
+            covered = set(tokenize(" ".join(e.claim + " " + e.quote for e in chosen)))
+            terms = set(tokenize(question))
+            pending.sort(key=lambda e: (len(set(tokenize(e.claim + " " + e.quote)) & terms),
+                                       len(set(tokenize(e.claim + " " + e.quote)) - covered)
+                                       / max(1, len(set(tokenize(e.claim + " " + e.quote))))), reverse=True)
+        for evidence in pending:
             if len(chosen) < maximum_per_paper and evidence.evidence_id not in ids:
                 chosen.append(evidence)
                 ids.add(evidence.evidence_id)
@@ -51,17 +60,20 @@ def verify_claims(llm, ledger, chunks):
     for evidence in ledger:
         chunk = sources.get(evidence.chunk_id)
         text = chunk.text if chunk else evidence.quote
-        offset = max(0, text.find(evidence.quote))
+        offset = text.find(evidence.quote)
+        # quote 单独发送；相邻语境不再重复整段摘录，避免核验阶段吞掉写作额度。
+        context = (text[max(0, offset-80):offset] + "〈摘录见quote〉" + text[offset+len(evidence.quote):offset+len(evidence.quote)+120]
+                   if offset >= 0 else "摘录已通过排版容差匹配，相邻位置未精确对齐；不据此补充语境。")
         rows.append({"evidence_id": evidence.evidence_id, "claim": evidence.claim,
-                     "quote": evidence.quote, "context": text[max(0, offset-160):offset+len(evidence.quote)+240],
+                     "quote": evidence.quote, "context": context,
                      "heading": chunk.heading if chunk else "", "role": evidence.role, "facet": evidence.facet})
     data = {"claims": rows}
-    maximum = llm.output_capacity("verify_claims", data, reserve=10500, maximum=2400)
+    maximum = llm.output_capacity("verify_claims", data, reserve=12000, maximum=2000)
     decisions, failure = {}, None
     try:
         if maximum < 900:
             raise ModelError("evidence verification budget reserved for final report")
-        with llm.reserve(10500):
+        with llm.reserve(12000):
             result = llm.json("verify_claims", data, max_tokens=maximum)
         returned = result.get("claims")
         if not isinstance(returned, list):
@@ -80,14 +92,15 @@ def verify_claims(llm, ledger, chunks):
     checked, audit = [], []
     for evidence in ledger:
         decision = decisions.get(evidence.evidence_id, {})
-        supported = decision.get("verdict") == "supported"
+        supported = (decision.get("verdict") == "supported"
+                     and not re.search(r"部分支持|不完全支持|未充分支持|仅支持.{0,10}(?:部分|一部分)", str(decision.get("reason", ""))))
         role = decision.get("role") if decision.get("role") in ROLES else evidence.role
         facet = decision.get("facet") if decision.get("facet") in FACETS else evidence.facet
         if supported:
             checked.append(replace(evidence, role=role, facet=facet, verification="semantic_supported"))
         else:
             # 原文连续摘录已在提取时校验；去掉不确定的模型解释，保留可回查原文。
-            excerpt = re.sub(r"\[\d{1,2}\]", "（原文所引）", evidence.quote)
+            excerpt = re.sub(r"\s+", " ", re.sub(r"\[\d{1,2}\]", "（原文所引）", evidence.quote)).strip()
             checked.append(replace(evidence, claim="原文摘录（文内参考编号另标）：" + excerpt,
                                    role="unknown", facet="unspecified", verification="verbatim_only"))
         audit.append({"evidence_id": evidence.evidence_id, "verdict": decision.get("verdict", "not_verified"),

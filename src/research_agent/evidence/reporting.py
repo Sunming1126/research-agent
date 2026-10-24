@@ -6,6 +6,8 @@ from ..core.models import Chunk, Evidence
 from ..core.utils import source_quote_matches
 from ..rag.retrieval import QueryPlan
 from . import EvidenceError
+from .attribution import validate_named_attribution
+from ..rag.report_selection import own_method_chunks
 
 
 def render_evidence_citations(markdown, evidence):
@@ -62,9 +64,13 @@ def report_requirements(function):
     """生成和审查共用研究要素，避免只检查引文而遗漏可执行实验设计。"""
     if function == "Idea":
         return ["分开标记论文事实、题目观察、新假设", "指定论文之间的具体互补接口和潜在冲突",
+                "列出与指定论文或实现直接相关的复现瓶颈，每个瓶颈同时给出可执行的处理对策",
                 "列出无新增机制、单机制和完整方案基线，说明公平的预算控制",
                 "从证据选择具体命名基准并引用；若无命名证据，明确待选及筛选标准",
-                "训练/验证/测试划分及防泄漏", "消融、主要指标、成本指标与失败判据",
+                "训练/验证/测试划分及防泄漏，写明比例或样本数和分组单位",
+                "明确固定随机种子（非随机研究说明不适用）、候选配置及选择规则、相同硬件和软件版本；标为拟议条件",
+                "对照与消融共用数据划分、种子和资源预算，说明仅改变哪个因素",
+                "消融、主要指标、成本指标与失败判据",
                 "给出拟议参数搜索范围、重复次数和统计检验；标注为待验证而非实测",
                 "置信区间含零只能说明证据不足，不可据此证实无效或否定因果"]
     return ["逐篇说明方法组成和证据支持的变体", "比较实验任务、数据、指标、结果和适用边界",
@@ -73,14 +79,19 @@ def report_requirements(function):
 
 def report_evidence_chunks(retriever, plan):
     """在主题召回之外补取方法、实验与局限；不依赖固定论文名称或领域。"""
-    selected = [c for c in retriever.per_document(plan, 5) if c.filename.lower().endswith(".pdf")]
+    selected = [c for c in retriever.per_document(plan, 2) if c.filename.lower().endswith(".pdf")]
     if not hasattr(retriever, "search"):
         return selected
     seen = {c.chunk_id for c in selected}
     facets = ("method mechanism approach architecture formulation 方法 机制 模型",
+              "we propose introduce two variants forms formulation parameter scale 方法 变体 定义 规模",
               "experiment dataset benchmark evaluation results baseline 实验 数据集 基准 评测 结果",
               "limitations discussion assumptions failure computational cost 局限 假设 失败 计算 成本")
     for filename in sorted({c.filename for c in retriever.chunks if c.filename.lower().endswith(".pdf")}):
+        for chunk in own_method_chunks(retriever.chunks, filename):
+            if chunk.chunk_id not in seen:
+                selected.append(chunk)
+                seen.add(chunk.chunk_id)
         for facet in facets:
             hits = retriever.search(QueryPlan(facet), top_k=12, filename=filename)
             candidate = next((h.chunk for h in hits if h.chunk.chunk_id not in seen
@@ -89,6 +100,24 @@ def report_evidence_chunks(retriever, plan):
                 selected.append(candidate)
                 seen.add(candidate.chunk_id)
     return selected
+
+
+def focused_excerpt(chunk, question, maximum):
+    """截取连续原文窗口，避免总是截去片段后半部的方法定义或比较条件。"""
+    from ..core.utils import tokenize
+
+    text = chunk.text
+    if len(text) <= maximum:
+        return text
+    terms = set(tokenize(question + " " + chunk.heading))
+    candidates = [*range(0, len(text) - maximum + 1, max(100, maximum // 2)), len(text) - maximum]
+    def score(start):
+        window = text[start:start + maximum]
+        overlap = len(terms & set(tokenize(window)))
+        definitions = len(re.findall(r"we (?:propose|introduce)|two (?:forms|variants)|defined as|相比|变体|定义", window, re.I))
+        return overlap + min(2, definitions), -start
+    start = max(candidates, key=score)
+    return text[start:start + maximum]
 
 
 def fallback_evidence_chunks(chunks, filename, maximum=32):
@@ -151,7 +180,7 @@ def correct_paper_ids(markdown, filenames):
 
 
 def _cited_fact(text, cite):
-    """PDF 换行不应拆断数字与页码；每个已绑定事实句各自带引用。"""
+    """PDF 换行不拆开数字与页码；每个已绑定事实句分别带引用。"""
     text = re.sub(r"\s+", " ", text.strip())
     return " ".join(part.strip() + " " + cite for part in
                     re.split(r"(?<=[。！？])\s*(?!\s*\[)", text) if part.strip())
@@ -170,6 +199,26 @@ def render_claim_ledger_section(ledger, refs):
             lines.append("- " + _cited_fact(item.claim, cite))
             used.append(item.evidence_id)
     return "\n".join(lines), used
+
+
+def survey_core_facts(ledger):
+    """保留逐篇方法组成与一条实验依据，防止综合写作遗漏已核验的关键事实。"""
+    grouped = defaultdict(list)
+    for item in ledger:
+        if item.role != "related_work" and item.verification != "verbatim_only":
+            grouped[item.filename].append(item)
+    chosen = []
+    for rows in grouped.values():
+        methods = [e for e in rows if e.facet == "method"][:3]
+        experiments = [e for e in rows if e.facet in {"result", "metric", "data"}]
+        chosen.extend(methods)
+        if experiments:
+            # 有比较条件的实验观察优先；不是预置某篇论文的数值或方法名。
+            ranked = sorted(experiments, key=lambda e: bool(re.search(r"相比|对比|优于|超过|随|增长|than|compar|versus", e.claim + " " + e.quote, re.I)), reverse=True)
+            chosen.append(ranked[0])
+        if not methods and not experiments and rows:
+            chosen.append(rows[0])
+    return chosen
 
 
 def deterministic_idea(topic, ledger):
@@ -226,7 +275,7 @@ def specific_idea_sections(ledger, refs):
         role = ("验证约束" if re.search(r"约束|证明|边界|不能|代价", claim.claim)
                 else "候选机制或模型")
         cite = f"[{refs[name]}, p.{claim.page}]" if claim.page is not None else f"[{refs[name]}]"
-        roles.append(f"- 论文 {refs[name]}（{name}）作为{role}：{_cited_fact(claim.claim, cite)} "
+        roles.append(f"- 论文 {refs[name]}（{name}）作为{role}：{claim.claim.strip()} {cite} "
                      "建议记录其输入条件、输出状态和可测量变量，再检验与其他模块连接是否有意义；连接本身尚未验证。")
     roles.append("建议接口顺序为：先由各候选机制输出状态或预测，再将输出送入验证约束，最后用共同指标比较；"
                  "若论文任务不同，先建立映射表并报告不能对齐的变量，不能直接声称模型能够无缝耦合。")
@@ -239,7 +288,7 @@ def specific_idea_sections(ledger, refs):
                 break
     for name, claim in selected[:3]:
         cite = f"[{refs[name]}, p.{claim.page}]" if claim.page is not None else f"[{refs[name]}]"
-        benchmarks.append(f"- 以论文 {refs[name]} 提及的对象作为候选：{_cited_fact(claim.claim, cite)} "
+        benchmarks.append(f"- 以论文 {refs[name]} 提及的对象作为候选：{claim.claim.strip()} {cite} "
                           "本方案仅建议据此寻找可授权的数据或脚本；实际可用性需逐项核验。")
     if not selected:
         benchmarks.append("当前证据没有明确命名的数据或实验系统；具体基准待取得授权材料后再确定。")
@@ -293,7 +342,7 @@ def deterministic_survey(topic, ledger):
     return body + "\n\n## 参考文献\n\n" + references, used
 
 
-def validate_citations(markdown, evidence, used_ids, minimum=1):
+def validate_citations(markdown, evidence, used_ids, minimum=1, *, function=None):
     if len(re.sub(r"\s", "", markdown)) < 800:
         raise EvidenceError("report body shorter than 800 characters")
     known_ids = {e["evidence_id"] for e in evidence}
@@ -314,17 +363,41 @@ def validate_citations(markdown, evidence, used_ids, minimum=1):
             raise EvidenceError(f"citation [{ref}, p.{page}] has no used evidence; "
                                 f"allowed pages: {sorted(p for p in supported.get(int(ref), set()) if p is not None)}",
                                 passages=passages[:2])
+    validate_named_attribution(markdown, evidence, used_ids)
     # 已发生的数值事实必须附页码；待验证方案交由语义审查区分。
+    section_scopes = {}
+    ambiguities = []
     for paragraph in markdown.split("\n\n"):
+        heading = re.match(r"^\s*(#{1,6})\s+([^\n]+)", paragraph)
+        if heading:
+            level, title = len(heading[1]), heading[2]
+            section_scopes = {depth: scope for depth, scope in section_scopes.items() if depth < level}
+            inherited = section_scopes[max(section_scopes)] if section_scopes else False
+            fact_section = re.search(r"论文事实|文献事实|已有结果|原文证据", title)
+            section_scopes[level] = False if fact_section else bool(re.search(r"建议|待验证|拟议", title) or inherited)
+        proposal_section = section_scopes[max(section_scopes)] if section_scopes else False
         plain_paragraph = re.sub(r"[*#>`]", "", paragraph.strip())
+        paragraph_proposal = re.match(r"^(?:[-*]\s*)?(?:建议|待验证|拟议|本方案建议|我们建议)", plain_paragraph)
+        table_proposal = re.match(r"^\s*\|[^\n]*(?:拟议|建议|待验证)[^\n]*\|", plain_paragraph)
         proposal_heading = re.match(r"^[^。！？]{0,36}[（(](?:建议|待验证|拟议)[^）)]{0,40}[）)][:：]", plain_paragraph)
-        sentences = re.split(r"(?<=[。！？])\s*(?!\s*\[)|\n", paragraph)
+        # Markdown 的单换行是软换行；不能把 PDF 自动折行拆成没有引用的独立事实。
+        sentences = re.split(r"(?<=[。！？])\s*(?!\s*\[)|\n(?=\s*(?:[-*]|\d+[.)])\s|\s*\|)", paragraph)
+        declared_proposal = bool(paragraph_proposal or table_proposal)
         for sentence in sentences:
+            # 段内可先引用论文事实，再明确声明后续为拟议步骤；声明只延续到本段结束。
+            if re.search(r"(?:拟议|建议|待验证)(?:获取|实验|设计|配置|方案|步骤|参数|设置|假设)[^。！？]{0,10}[:：]", sentence):
+                declared_proposal = True
             if not re.search(r"\d+(?:\.\d+)?\s*(?:%|ms|秒|分数|samples/s|queries/s)", sentence):
                 continue
             plain = re.sub(r"[*#>`]", "", sentence.strip())
-            proposed = re.match(r"^(?:[-*]\s*)?(?:建议|待验证|假设|目标|拟|作为待验证|我们建议|本方案建议)", plain)
+            proposed = re.match(r"^(?:[-*]\s*)?(?:建议|待验证|假设|目标|拟|作为待验证|我们建议|本方案建议|"
+                                r"停止规则[:：]|停止条件[:：]|失败判据[:：]|证伪条件[:：]|预注册阈值[:：])", plain)
             attributed = re.search(r"(?:论文|作者|文献|原文).{0,10}(?:报告|发现|使用|达到|提升|实测|表明)", plain)
-            proposed = (proposed or proposal_heading) and not attributed
+            proposed = (proposed or declared_proposal or proposal_heading or proposal_section) and not attributed
             if not re.search(r"\[\d+,\s*p\.\s*\d+\]", sentence) and not proposed:
+                if function == "Idea" and not attributed:
+                    # Idea 的未明示数值可能是设计参数；交给带原文的审查判定，不能先误判再让模型空修订。
+                    ambiguities.append(sentence)
+                    continue
                 raise EvidenceError("numeric claim has no page citation", passages=[sentence])
+    return ambiguities

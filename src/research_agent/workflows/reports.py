@@ -12,6 +12,10 @@ from ..core.session import checkpoint, current_session
 from ..evidence.ledger import FACETS, ROLES, coverage_matrix, select_claims, verify_claims
 from ..evidence.reporting import render_evidence_citations
 from ..rag.retrieval import QueryPlan
+from .report_context import audit_request, compact_claims, repair_context, repair_tail_budget
+from ..evidence.reporting import focused_excerpt
+from ..evidence.reporting import survey_core_facts
+from ..rag.report_selection import own_method_score
 from ..evidence.reporting import (repair_paragraphs, apply_report_patches, report_requirements, report_evidence_chunks, fallback_evidence_chunks, resolve_quote_source, model_evidence_rows, remove_unsupported_authors, correct_paper_ids, render_claim_ledger_section, deterministic_idea, specific_idea_sections, deterministic_survey, validate_citations)
 
 
@@ -37,12 +41,34 @@ class ReportWorkflow:
             grouped[chunk.filename].append(chunk)
         for position, (filename, group) in enumerate(grouped.items()):
             # 均匀分配片段上下文，避免一个长章节挤掉实验、表格和局限。
-            per_chunk = max(180, 4600 // max(1, len(group)))
+            # Survey 使用完整短片段，避免对已经切好的正文再次裁切，丢掉后半句定义与条件。
+            # Idea 保留紧凑证据上下文；长表格仍按连续窗口限制大小。
+            weights = [2 if c.page != 1 and own_method_score(c) >= 3 else 1 for c in group]
+            budgets = ([min(900, len(c.text)) for c in group] if getattr(case, "function", None) == "Survey" else
+                       [max(180, int(3800 * weight / sum(weights))) for weight in weights])
             data = {"task": case.input, "filename": filename,
                     "chunks": [{"chunk_id": c.chunk_id, "page": c.page,
-                                "heading": c.heading, "text": c.text[:per_chunk]} for c in group]}
-            reserve = 13000 + max(0, len(grouped) - position - 1) * 1700
+                                "heading": c.heading, "text": focused_excerpt(c, case.input, limit)} for c, limit in zip(group, budgets)]}
+            # 补检时已覆盖论文不应再次占用首轮额度，否则有证据、有余额也会整题中断。
+            represented = {e.filename for e in [*self.ledger, *claims]}
+            unseen = sum(name not in represented for name in list(grouped)[position + 1:])
+            reserve = 17000 + unseen * 1700
+            if (filename in represented and hasattr(self.llm, "output_capacity")
+                    and self.llm.output_capacity("extract", data, reserve=reserve, maximum=2000) < 900):
+                self.rejected_claims.append({"filename": filename, "reason": "optional_extraction_budget_reserved",
+                                             "scope": "existing verified evidence retained; no new claim invented"})
+                continue
             value = self._model_step("extract", data, 2000, reserve=reserve, minimum=900)
+            # 由当前论文片段提出补检问题，不依赖固定论文或评分事实清单。
+            queries = value.get("missing_queries", [])
+            if isinstance(queries, list):
+                pending = getattr(self, "evidence_queries", [])
+                for query in queries[:2]:
+                    if isinstance(query, str) and 3 <= len(query.strip()) <= 180:
+                        pair = (filename, query.strip())
+                        if pair not in pending:
+                            pending.append(pair)
+                self.evidence_queries = pending
             returned = value.get("claims", [])
             if not isinstance(returned, list):
                 raise EvidenceError("extract claims must be an array")
@@ -63,6 +89,7 @@ class ReportWorkflow:
                     raise EvidenceError("empty claim")
                 # 原论文自己的 [14] 等文献编号不属于本题参考文献；保留其“文内所引”语义。
                 claim = re.sub(r"\[\d{1,2}\]", "文内所引", claim)
+                claim = re.sub(r"\s+", " ", claim).strip()
                 if source.chunk_id != chunk.chunk_id and all(c.chunk_id != source.chunk_id for c in self.selected_chunks):
                     self.selected_chunks.append(source)
                 facet = item.get("facet") if item.get("facet") in FACETS else "unspecified"
@@ -92,20 +119,26 @@ class ReportWorkflow:
             if supplemental:
                 self.selected_chunks.extend(supplemental)
                 self.ledger.extend(self.extract(case, supplemental))
-        self.ledger = select_claims(self.ledger)
+        self.ledger = select_claims(self.ledger, maximum_per_paper=6 if case.function == "Survey" else 4, question=case.input)
         if getattr(self.llm, "supports_evidence_verification", False):
             checkpoint("evidence_semantic_verification")
             self.ledger, self.evidence_audit = verify_claims(self.llm, self.ledger, self.selected_chunks)
         self.coverage = coverage_matrix(self.ledger)
+        self.coverage["targeted_queries"] = [{"filename": name, "query": query}
+                                               for name, query in getattr(self, "evidence_queries", [])]
+        return self.compose_report(case)
+
+    @tool(name="write_evidence_backed_report")
+    def compose_report(self, case):
+        """写作阶段只消费本题已核验台账，可单独定向验证。"""
         filenames = sorted({e.filename for e in self.ledger})
         if not filenames or (case.function == "Survey" and len(filenames) < 5):
             raise EvidenceError("insufficient supported papers for report (Survey requires at least five)")
         refs = {name: i+1 for i, name in enumerate(filenames)}
         evidence = [{**asdict(e), "ref": refs[e.filename]} for e in self.ledger]
         model_evidence = model_evidence_rows(evidence)
-        # 正文只展示每篇少量核心事实，完整台账留在证据文件中。
-        anchor_ledger = select_claims(self.ledger, maximum_per_paper=2)
-        anchor, anchor_ids = render_claim_ledger_section(anchor_ledger, refs) if case.function == "Survey" else ("", [])
+        core = survey_core_facts(self.ledger) if case.function == "Survey" else []
+        anchor, anchor_ids = render_claim_ledger_section(core, refs) if core else ("", [])
         feedback, history, previous_used, repair_targets = [], [], [], []
         for attempt in range(2):
             patches = []
@@ -114,23 +147,40 @@ class ReportWorkflow:
                 if attempt and self.last_draft:
                     # 首稿已整篇审查过；只修正出错段，不重复生成和审查整篇事实。
                     paragraphs = repair_targets or repair_paragraphs(self.last_draft, feedback)
-                    refs_in_patch = {int(n) for n in re.findall(r"\[(\d{1,2})(?:,\s*p\.\s*\d+)?\]", "\n".join(paragraphs))}
-                    audit_evidence = [e for e in model_evidence if e["ref"] in refs_in_patch] or model_evidence
-                    repaired = self._model_step("repair", {"paragraphs": paragraphs, "issues": feedback,
-                        "claims": audit_evidence}, 2200, reserve=4200)
+                    repair_data = repair_context(self.last_draft, paragraphs, feedback, model_evidence)
+                    # 按预计替换范围与当前全文计算复审成本，不能再用固定 4200。
+                    planned_patches = [{"original": p, "replacement": p} for p in paragraphs]
+                    next_audit = audit_request(case, self.last_draft, model_evidence, self.ledger,
+                                              patches=planned_patches, feedback=feedback,
+                                              full_review=not any(h.get("stage") == "audit" for h in history))
+                    reserve = self.llm.input_tokens("audit", next_audit) + 1500 if hasattr(self.llm, "input_tokens") else 4200
+                    repaired = self._model_step("repair", repair_data, 1400, reserve=reserve)
                     patches = repaired.get("patches", [])
                     revised = apply_report_patches(self.last_draft, patches)
                     value = {"markdown": revised, "used_evidence_ids": previous_used}
                 else:
-                    data = {"task": case.to_dict(), "claims": model_evidence,
+                    data = {"task": {"function": case.function, "input": case.input, "constraints": getattr(case, "constraints", [])},
+                            "claims": compact_claims(model_evidence), "papers": refs,
+                            "facts_appended_by_program": anchor_ids,
                             "coverage_requirements": report_requirements(case.function), "repair_issues": feedback,
-                            "evidence_coverage": self.coverage}
+                            "evidence_coverage": {name: list(facets) for name, facets in self.coverage.get("papers", {}).items()}}
                     # 哈希、偏移等核验元数据留在磁盘；为审查和一次修订保留实际模型预算。
                     remaining = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
                     requested = min(4200, remaining - len(json.dumps(data, ensure_ascii=False)) // 2 - 2000)
                     if requested < 1600:
                         raise ModelError("insufficient model budget reserved for report")
-                    value = self._model_step("report", data, min(3600, requested), reserve=7500, minimum=1600)
+                    # 先用预计长度的正文计算一次审查和修订闭环的成本。
+                    preview = (anchor + "\n\n" if anchor else "") + "待核验正文。" * 260
+                    initial_audit = audit_request(case, preview, model_evidence, self.ledger)
+                    reserve = (self.llm.input_tokens("audit", initial_audit) + 1000
+                               + repair_tail_budget(self.llm, case, preview, model_evidence, self.ledger)
+                               if hasattr(self.llm, "input_tokens") else 7500)
+                    if hasattr(self.llm, "input_tokens"):
+                        # 当前写作和首次审查必须能执行；尚未发生的修订预估不能占满输出空间。
+                        available = max(0, self.llm.remaining_tokens - self.llm.input_tokens("report", data)
+                                        - (3000 if case.function == "Survey" else 4200))
+                        reserve = min(reserve, available)
+                    value = self._model_step("report", data, min(4200, requested), reserve=reserve, minimum=1600)
             except (ModelError, EvidenceError) as exc:
                 history.append({"attempt": attempt + 1, "stage": "report", "issues": [str(exc)]})
                 feedback = feedback + [str(exc)]
@@ -154,27 +204,35 @@ class ReportWorkflow:
             markdown = markdown.split("## 参考文献")[0].strip()
             # 只修正与唯一授权 arXiv 编号相差一位的排版笔误。
             markdown = correct_paper_ids(markdown, filenames)
-            if anchor and not markdown.startswith(anchor):
-                # 先列出可回查的逐篇事实，避免生成长文时遗失关键证据。
-                markdown = anchor + "\n\n" + markdown
-                used = list(dict.fromkeys(anchor_ids + used))
+            if case.function == "Survey":
+                if anchor and not attempt and not markdown.startswith(anchor):
+                    markdown = anchor + "\n\n" + markdown
+                    used = list(dict.fromkeys(anchor_ids + used))
+                # 只补正文尚未引用的论文；不重复整份事实摘要扩大复审输入。
+                cited_refs = {int(n) for n in re.findall(r"\[(\d{1,2})(?:,\s*p\.\s*\d+)?\]", markdown)}
+                missing_rows = [e for e in self.ledger if refs[e.filename] not in cited_refs]
+                if missing_rows:
+                    anchor, anchor_ids = render_claim_ledger_section(select_claims(missing_rows, maximum_per_paper=2), refs)
+                    markdown = anchor + "\n\n" + markdown
+                    used = list(dict.fromkeys(anchor_ids + used))
             # 作者姓名若不在已核验事实中，不把模型猜测写成论文归因。
             markdown = remove_unsupported_authors(markdown, evidence)
             self.last_draft = markdown
             previous_used = list(used)
             try:
-                validate_citations(markdown, evidence, used, minimum=5 if case.function == "Survey" else 1)
-                audit_text = "\n\n".join(p["replacement"] for p in patches) if patches else markdown
-                evidence_ids = {e["evidence_id"] for e in audit_evidence}
-                audit = self._model_step("audit", {"task": case.to_dict(), "markdown": audit_text,
-                                                "full_document": markdown if patches else None,
-                                                "previous_issues": feedback if patches else [],
-                                                "applied_patches": patches,
-                                                "scope": "核查变更及之前问题是否均解决；未改段落已在首轮整篇审查" if patches else "整篇审查",
-                                                "coverage_requirements": report_requirements(case.function),
-                                                "source_quotes": [{"evidence_id": e.evidence_id, "quote": e.quote}
-                                                                  for e in self.ledger if e.evidence_id in evidence_ids],
-                                                "claims": audit_evidence}, 1800, reserve=3200 if not patches else 0)
+                numeric_ambiguities = validate_citations(markdown, evidence, used,
+                                                        minimum=5 if case.function == "Survey" else 1, function=case.function)
+                audit_data = audit_request(case, markdown, model_evidence, self.ledger,
+                                           used=used, patches=patches, feedback=feedback,
+                                           full_review=bool(patches) and not any(h.get("stage") == "audit" for h in history))
+                audit_data["numeric_claims_to_classify"] = numeric_ambiguities
+                reserve = repair_tail_budget(self.llm, case, markdown, model_evidence, self.ledger) if not patches else 0
+                if not patches and hasattr(self.llm, "input_tokens"):
+                    # 优先完成当前真实审查。后续修订尚未发生，不能让其最坏估算挡住首审。
+                    # 修订请求发出前仍会按实际问题、替换范围重新核算完整复审成本。
+                    affordable = max(0, self.llm.remaining_tokens - self.llm.input_tokens("audit", audit_data) - 1000)
+                    reserve = min(reserve, affordable)
+                audit = self._model_step("audit", audit_data, 1000, reserve=reserve)
                 if (type(audit.get("ok")) is not bool or not isinstance(audit.get("issues"), list)
                         or any(not isinstance(issue, str) for issue in audit["issues"])):
                     raise EvidenceError("invalid semantic audit response")
@@ -187,7 +245,12 @@ class ReportWorkflow:
                 markdown += "\n\n## 参考文献\n\n" + "\n".join(f"[{refs[name]}] {name}" for name in filenames if refs[name] in selected_refs)
                 kind = "综述" if case.function == "Survey" else "灵感Idea报告"
                 return {"case_id": case.case_id, "path": f"data/expert/{case.case_id}-{kind}-{self.team}.md", "markdown": markdown}
-            except (EvidenceError, ModelError) as exc:
+            except ModelError as exc:
+                # 额度或网络问题不是正文错误，禁止把它当成修订意见再调用写作模型。
+                feedback = [str(exc)]
+                history.append({"attempt": attempt + 1, "stage": "audit_unavailable", "issues": list(feedback)})
+                break
+            except EvidenceError as exc:
                 feedback = [str(exc)]
                 repair_targets = getattr(exc, "passages", [])
                 history.append({"attempt": attempt + 1, "stage": "validation", "issues": list(feedback)})
@@ -210,13 +273,13 @@ class ReportWorkflow:
                 "path": f"data/expert/{case.case_id}-灵感Idea报告-{self.team}.md", "markdown": markdown}
 
     def _recover_evidence_gaps(self, case, retriever, plan):
-        """仅补检缺失维度；最多两篇、每篇两段，保持长文后续预算。"""
+        """优先补检模型从本题提出的具体问题，再补通用维度；有预算才执行。"""
         if not hasattr(retriever, "search"):
             return
         session = current_session()
         if session and session.remaining() < 65:
             return
-        if getattr(self.llm, "remaining_tokens", 40000) < 23000:
+        if getattr(self.llm, "remaining_tokens", 40000) < (30000 if case.function == "Survey" else 25000):
             return
         queries = {"method": "method mechanism approach 方法 机制",
                    "result": "experiment results evaluation 实验 结果",
@@ -224,19 +287,23 @@ class ReportWorkflow:
         gaps = coverage_matrix(self.ledger)["gaps"]
         seen = {c.chunk_id for c in self.selected_chunks}
         supplemental, documents = [], set()
-        for gap in gaps:
-            name, facet = gap["filename"], gap["facet"]
-            if facet not in queries or (name not in documents and len(documents) >= 2):
+        requests = list(getattr(self, "evidence_queries", []))
+        requests += [(gap["filename"], queries[gap["facet"]] + " " + plan.topic)
+                     for gap in gaps if gap["facet"] in queries]
+        for name, query in requests:
+            if name not in documents and len(documents) >= 3:
                 continue
             if sum(c.filename == name for c in supplemental) >= 2:
                 continue
-            hits = retriever.search(QueryPlan(queries[facet] + " " + plan.topic), filename=name, top_k=12)
+            hits = retriever.search(QueryPlan(query), filename=name, top_k=12)
             selected = next((h.chunk for h in hits if h.chunk.chunk_id not in seen
                              and h.chunk.kind != "references" and len(h.chunk.text.strip()) >= 80), None)
             if selected:
                 supplemental.append(selected)
                 seen.add(selected.chunk_id)
                 documents.add(name)
+            if len(supplemental) >= (4 if case.function == "Survey" else 2):
+                break
         if supplemental:
             self.selected_chunks.extend(supplemental)
             try:

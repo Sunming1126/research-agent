@@ -9,7 +9,7 @@ from collections import defaultdict
 from ..core.models import Chunk, Evidence
 from ..core.utils import source_quote_matches
 from ..integrations.instrumentation import tool
-from ..integrations.llm import ModelError
+from ..integrations.llm import ModelError, ModelQuotaError
 from ..rag.retrieval import QueryPlan, MAX_SUBQUERIES
 from ..rag.retrieval import HybridRetriever
 from ..core.session import checkpoint, current_session
@@ -48,6 +48,8 @@ class TaskHandlers(ReportWorkflow):
                 value = self.llm.json("query", data, max_tokens=maximum)
                 self.query_plan_status = "model" if attempt == 1 else "model_retry"
                 return QueryPlan.from_model(value, case.input)
+            except ModelQuotaError:
+                raise
             except ModelError:
                 # 一次截断或网关波动不应直接让整题失败；重试仍失败则用原题。
                 continue

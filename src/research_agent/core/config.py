@@ -44,12 +44,25 @@ class Settings:
         config = read_json(Path(os.environ["RESEARCH_CONFIG"])) if os.environ.get("RESEARCH_CONFIG") else {}
         workspace = Path(os.environ.get("RESEARCH_WORKSPACE_ROOT", config.get("workspace", "/data" if os.name != "nt" else ".")))
         roots = os.environ.get("RESEARCH_MATERIAL_ROOTS")
+        default_roots = roots is None and "material_roots" not in config
+        if default_roots:
+            # 上传镜像时不能依赖开发机额外挂载 settings.json。只发现专用
+            # 材料挂载目录，逐题文件权限仍由 materials 字段和 resolver 核验。
+            candidates = [workspace / "papers", workspace / "materials", workspace / "experiments",
+                          Path("/workspace/papers"), Path("/data/papers"), Path("/data/experiments")]
+            material_roots = list(dict.fromkeys(p.resolve() for p in candidates if p.is_dir()))
+        else:
+            # 显式空列表/空环境变量表示没有授权材料目录，不自动扩大范围。
+            material_roots = [Path(x) for x in roots.split(os.pathsep) if x] if roots is not None else [Path(x) for x in config["material_roots"]]
+        aliases = config.get("material_aliases", {})
+        if default_roots and "material_aliases" not in config and any(p.name == "papers" for p in material_roots):
+            aliases = {"本地论文文件夹内的 PDF": ["papers"]}
         return cls(
             workspace=workspace,
             output=Path(os.environ.get("RESEARCH_RESULT_ROOT", config.get("output", "output"))),
             team=os.environ.get("RESEARCH_WORKSPACE_TEAM", config.get("team", "workspace_team")),
-            material_roots=[Path(x) for x in (roots.split(os.pathsep) if roots else config.get("material_roots", []))],
-            material_aliases=config.get("material_aliases", {}),
+            material_roots=material_roots,
+            material_aliases=aliases,
             experiment_mode=os.environ.get("RESEARCH_EXPERIMENT_MODE", config.get("experiment_mode", "platform")),
             local_experiment_root=Path(config["local_experiment_root"]) if config.get("local_experiment_root") else None,
             local_python=config.get("local_python", ""),

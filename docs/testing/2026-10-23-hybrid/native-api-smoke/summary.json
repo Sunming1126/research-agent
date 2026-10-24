@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "native_orchestration": {
+    "native_tool_execution_verified": true,
+    "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+    "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+    "tool_name": "pwsh",
+    "native_tool_call_sha256": "ea1260ca8b3de575edbfd0e7f86884ab0964b1e88de24c2223feca744c40ac31",
+    "profile_modified": false,
+    "plugin_installed": false,
+    "headless_model_process_used": false
+  },
+  "model": "deepseek-v4.1-flash",
+  "forwarded_max_tokens": 64,
+  "thinking": "disabled",
+  "actual_usage": {
+    "completion_tokens": 8,
+    "prompt_tokens": 14,
+    "total_tokens": 22,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

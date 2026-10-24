@@ -1,0 +1,78 @@
+{
+  "request": {
+    "case_id": "B-02",
+    "function": "Literature_Retrieval",
+    "title": "稠密检索原始方法检索",
+    "input": "只找提出 Dense Passage Retrieval 双编码器方法的原始论文。排除 RAG、FiD、BEIR、RETRO、InstructGPT 和 Self-RAG；不要因为引用 DPR 就返回其他论文。",
+    "materials": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "constraints": [
+      "只使用本题授权材料",
+      "返回真实存在的 PDF 文件名和匹配理由"
+    ],
+    "expected_output": "完整 PDF 文件名和理由",
+    "output_schema_ref": "Literature_Retrieval"
+  },
+  "http": 422,
+  "response": {
+    "detail": [
+      {
+        "type": "missing",
+        "loc": [
+          "body",
+          "task_id"
+        ],
+        "msg": "Field required",
+        "input": {
+          "case_id": "B-02",
+          "function": "Literature_Retrieval",
+          "title": "稠密检索原始方法检索",
+          "input": "只找提出 Dense Passage Retrieval 双编码器方法的原始论文。排除 RAG、FiD、BEIR、RETRO、InstructGPT 和 Self-RAG；不要因为引用 DPR 就返回其他论文。",
+          "materials": [
+            "2004.04906-DPR.pdf",
+            "2005.11401-RAG.pdf",
+            "2007.01282-FiD.pdf",
+            "2104.08663-BEIR.pdf",
+            "2112.04426-RETRO.pdf",
+            "2203.02155-InstructGPT.pdf",
+            "2310.11511-Self-RAG.pdf"
+          ],
+          "constraints": [
+            "只使用本题授权材料",
+            "返回真实存在的 PDF 文件名和匹配理由"
+          ],
+          "expected_output": "完整 PDF 文件名和理由",
+          "output_schema_ref": "Literature_Retrieval"
+        }
+      },
+      {
+        "type": "dict_type",
+        "loc": [
+          "body",
+          "input"
+        ],
+        "msg": "Input should be a valid dictionary",
+        "input": "只找提出 Dense Passage Retrieval 双编码器方法的原始论文。排除 RAG、FiD、BEIR、RETRO、InstructGPT 和 Self-RAG；不要因为引用 DPR 就返回其他论文。"
+      },
+      {
+        "type": "model_attributes_type",
+        "loc": [
+          "body",
+          "constraints"
+        ],
+        "msg": "Input should be a valid dictionary or object to extract fields from",
+        "input": [
+          "只使用本题授权材料",
+          "返回真实存在的 PDF 文件名和匹配理由"
+        ]
+      }
+    ]
+  }
+}

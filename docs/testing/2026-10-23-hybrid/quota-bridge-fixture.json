@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "fixture_not_real_model": true,
+  "http": 429,
+  "provider_code": "AccountQuotaExceeded",
+  "native_mock_calls": 1,
+  "second_request_short_circuited": true
+}

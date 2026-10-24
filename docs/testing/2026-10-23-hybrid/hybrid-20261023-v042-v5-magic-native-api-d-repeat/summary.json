@@ -1,0 +1,18 @@
+{
+  "target": "research-assistant:0.4.2-hybrid-v5",
+  "image_id": "sha256:46656082485084f353e16295d5c0c091a28b64582c0cb71e22362105396274f7",
+  "counts": {
+    "PASS": 18,
+    "FAIL": 3
+  },
+  "official_score": null,
+  "official_admission_verified": false,
+  "run": "hybrid-20261023-v042-v5-magic-native-api-d-repeat",
+  "mandatory_failures": [
+    "public_algorithm.D-02.json",
+    "public_algorithm.D-02/rank-default.json",
+    "public_algorithm.D-02/空字段-重复未知词-不等组.json"
+  ],
+  "quality_failures": [],
+  "note": "Actual Harness account calls and immutable installed-image execution; no algorithm hand edits"
+}

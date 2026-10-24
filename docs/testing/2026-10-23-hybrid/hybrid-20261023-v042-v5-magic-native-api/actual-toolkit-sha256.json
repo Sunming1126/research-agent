@@ -1,0 +1,12 @@
+{
+  "native_magic_run.py": "d562e694a367da0a51608d60bdbba8432f99b1df7558bbb4d6bfec2cb81888ea",
+  "magic_api_bridge.py": "2428ba93a3f8723581a62a627932d3915fe482e402c282fd553f1a6dbad85c2d",
+  "read_magic_connection.cjs": "875c82f92c49b3f439b5cc550923132771b348732ba4f224e87339ccb4422e44",
+  "accept_hybrid.py": "eb952ac04cb6e1b1150fb15bd3a521ba472534dfa1d9eef054d13c83edb21879",
+  "compare_images.py": "04f0a65db4fbac20099971ff4021e5d645baaf43c6a3277b77e288a2eebc180c",
+  "comparison_d_repeat.py": "b9573db3af6d9df6b396193b52653c8339221fbed28131234d461c03b82e19ea",
+  "test_agent.py": "54b7f237197614f68ac497bb7a63a4467eaf554b1199cde94ab8399ef21c4942",
+  "public_oracles.py": "d22291e7bc8e7f3e1c89987ade5b5d403a1993bbaf55e5dd3575d78d3c47f1bb",
+  "validate_hybrid_v5_archive.py": "1221b4ea2df7023f3aff1f9ca1a2937a3e71013b14da351bf483f6657eaa5859",
+  "prepare_hybrid_v5.py": "ae96aa70ca24e555e31c1a9d5c2fe6fd5adddf0a5534d626bca8269098182b26"
+}

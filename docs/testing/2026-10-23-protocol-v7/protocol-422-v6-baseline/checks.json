@@ -1,0 +1,42 @@
+[
+  {
+    "id": "baseline.direct.A-03",
+    "group": "known-platform-failure",
+    "status": "FAIL",
+    "level": "required",
+    "evidence": null,
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\测试输入\\\\交付镜像\\\\team_share\\\\requests\\\\A-03.json'",
+    "seconds": 0.025
+  },
+  {
+    "id": "baseline.direct.B-01",
+    "group": "known-platform-failure",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "http": 422,
+      "gateway_calls": 0,
+      "reproduced_known_failure": true
+    },
+    "error": null,
+    "seconds": 0.008
+  },
+  {
+    "id": "baseline.direct.B-02",
+    "group": "known-platform-failure",
+    "status": "FAIL",
+    "level": "required",
+    "evidence": null,
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\测试输入\\\\交付镜像\\\\team_share\\\\requests\\\\B-02.json'",
+    "seconds": 0.005
+  },
+  {
+    "id": "baseline.sdk_control",
+    "group": "control",
+    "status": "FAIL",
+    "level": "required",
+    "evidence": null,
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\测试输入\\\\交付镜像\\\\team_share\\\\requests\\\\A-03.json'",
+    "seconds": 0.005
+  }
+]

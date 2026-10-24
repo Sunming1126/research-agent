@@ -1,0 +1,2001 @@
+[
+  {
+    "id": "image.immutable_identity",
+    "group": "runtime",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "tag": "research-assistant:0.4.2-hybrid-v5",
+      "id": "sha256:46656082485084f353e16295d5c0c091a28b64582c0cb71e22362105396274f7",
+      "user": "agent",
+      "platform": "linux/amd64"
+    },
+    "error": null,
+    "seconds": 0.001
+  },
+  {
+    "id": "image.installed_source_inventory",
+    "group": "runtime",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "installed_files": 44,
+      "python": "3.11.16 (main, Sep 19 2026, 01:04:43) [GCC 14.2.0]"
+    },
+    "error": null,
+    "seconds": 0.629
+  },
+  {
+    "id": "container.image.non_root",
+    "group": "runtime",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.image.python_runtime",
+    "group": "runtime",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.dependency.agenthack",
+    "group": "runtime",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.dependency.openai",
+    "group": "runtime",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.dependency.PIL",
+    "group": "runtime",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.dependency.fitz",
+    "group": "runtime",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.agent.syntax.source_generation.py",
+    "group": "compatibility",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "parsed": true,
+      "agent_python": "3.11.16",
+      "not_algorithm_python39_test": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.agent.syntax.layered_d_runner.py",
+    "group": "compatibility",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "parsed": true,
+      "agent_python": "3.11.16",
+      "not_algorithm_python39_test": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.agent.syntax.experiments.py",
+    "group": "compatibility",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "parsed": true,
+      "agent_python": "3.11.16",
+      "not_algorithm_python39_test": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.plain",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "accepted"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.fence",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "accepted"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.crlf",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "accepted"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.trailing_newlines",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "accepted"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.explanation_and_fence",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "accepted"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.truncated",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "rejected"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.no_entrypoint",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "rejected"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.invalid_syntax",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "rejected"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.two_versions",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "rejected"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.unrelated",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "rejected"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.oversize",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "rejected"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.wrong_role",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "rejected"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.empty_choices",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "rejected"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.official_parity.python310_syntax",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "official_and_target": "rejected"
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.reject.truncated",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.reject.no_entrypoint",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.reject.invalid_syntax",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.reject.two_versions",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.reject.unrelated",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.reject.oversize",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.reject.wrong_role",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.reject.empty_choices",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.reject.python310_syntax",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.source.byte_preservation",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "byte_identical": true,
+      "sha256": "081d6433774211fa9e4572b90cbd34e48e901810cdf83db87de62b2b759126de"
+    },
+    "error": null
+  },
+  {
+    "id": "container.paths.reject.../escape",
+    "group": "material-isolation",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.paths.reject./etc/passwd",
+    "group": "material-isolation",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.paths.reject.a/../../escape",
+    "group": "material-isolation",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.paths.reject.C:\\escape",
+    "group": "material-isolation",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.failure.three_null_metrics",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "D-01",
+      "status": "failed",
+      "metrics": [
+        {
+          "name": "Macro-F1",
+          "unit": "分数",
+          "reference": null,
+          "observed": null,
+          "relative_error": null
+        },
+        {
+          "name": "Accuracy",
+          "unit": "%",
+          "reference": null,
+          "observed": null,
+          "relative_error": null
+        },
+        {
+          "name": "运行时间",
+          "unit": "秒",
+          "reference": null,
+          "observed": null,
+          "relative_error": null
+        }
+      ],
+      "figures": []
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.reject.missing_metric",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.reject.nan_observed",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.reject.failed_has_observed",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.reject.extra_top_level",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.reject.completed_without_evidence",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.reject.wrong_case",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.reject.duplicate_metric",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.rpc_complete_preserves_failed",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.D.command.requires_implementation",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.D.metrics_no_implicit_defaults",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.A.valid_contract",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "A-01",
+      "answer": "有依据的回答",
+      "clarifying_question": "研究尺度是什么？"
+    },
+    "error": null
+  },
+  {
+    "id": "container.A.empty_question_rejected",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.B.empty_results_legal",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "B-01",
+      "papers": []
+    },
+    "error": null
+  },
+  {
+    "id": "container.B.hallucinated_filename_rejected",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.B.duplicate_rejected",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.C-01.short_report_rejected",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.E-01.short_report_rejected",
+    "group": "output-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.input.reject.prefix_function_mismatch",
+    "group": "input-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.input.reject.schema_mismatch",
+    "group": "input-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.input.reject.materials_not_array",
+    "group": "input-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.input.reject.invalid_case_id",
+    "group": "input-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rejected": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.generated_source_saved_unmodified",
+    "group": "source-provenance-format",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "fixture_not_real_llm": true,
+      "source_sha256": "c4c347d7db2c5d9d1556574b2fd49311218a68bf464bb1a9819d638bf66159f8"
+    },
+    "error": null
+  },
+  {
+    "id": "container.quality.model_source_repair",
+    "group": "recovery",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.D.cumulative_case_budget",
+    "group": "time-budget",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "fixture_not_real_llm": true,
+      "actual_sleeping_subprocess": true,
+      "seconds": 0.1516733649999651,
+      "case_timeout": 1,
+      "cancelled": false
+    },
+    "error": null
+  },
+  {
+    "id": "container.D.cancel_stops_child",
+    "group": "time-budget",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "fixture_not_real_llm": true,
+      "actual_sleeping_subprocess": true,
+      "seconds": 0.3584412620000421,
+      "case_timeout": 10,
+      "cancelled": true
+    },
+    "error": null
+  },
+  {
+    "id": "container.quality.platform_error_classification",
+    "group": "recovery",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "fixture_not_real_llm": true,
+      "diagnostic": {
+        "type": "ExperimentProcessError",
+        "message": "experiment client failed: D_SOURCE_AUDIT_UNAVAILABLE",
+        "stage": "formal_execution",
+        "code": "D_SOURCE_AUDIT_UNAVAILABLE",
+        "category": "platform_infrastructure",
+        "returncode": 1,
+        "retryable": null
+      }
+    },
+    "error": null
+  },
+  {
+    "id": "container.gateway.full_session_url_preserved",
+    "group": "gateway-compatibility",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.gateway.platform_model_alias",
+    "group": "gateway-compatibility",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null
+  },
+  {
+    "id": "container.suite_executed",
+    "group": "runtime",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "checks": 66
+    },
+    "error": null,
+    "seconds": 1.705
+  },
+  {
+    "id": "http.health",
+    "group": "http",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null,
+    "seconds": 0.004
+  },
+  {
+    "id": "http.unknown_route",
+    "group": "http",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null,
+    "seconds": 0.004
+  },
+  {
+    "id": "http.reject.empty",
+    "group": "input-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "http": 422,
+      "sdk_status": null
+    },
+    "error": null,
+    "seconds": 0.006
+  },
+  {
+    "id": "http.reject.array",
+    "group": "input-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "http": 422,
+      "sdk_status": null
+    },
+    "error": null,
+    "seconds": 0.006
+  },
+  {
+    "id": "http.reject.wrong_case_function",
+    "group": "input-contract",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "http": 200,
+      "sdk_status": "error"
+    },
+    "error": null,
+    "seconds": 0.008
+  },
+  {
+    "id": "http.reject.invalid_json",
+    "group": "http",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "http": 422
+    },
+    "error": null,
+    "seconds": 0.007
+  },
+  {
+    "id": "gateway.missing_credentials_honest_error",
+    "group": "gateway-compatibility",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "http": 200,
+      "sdk_status": "error"
+    },
+    "error": null,
+    "seconds": 0.149
+  },
+  {
+    "id": "http.health_after_errors",
+    "group": "http",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null,
+    "seconds": 0.004
+  },
+  {
+    "id": "gateway.http_fixture.auth",
+    "group": "gateway-compatibility",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "fixture_not_real_llm": true,
+      "gateway_calls": 1,
+      "sdk_status": "error"
+    },
+    "error": null,
+    "seconds": 2.289
+  },
+  {
+    "id": "gateway.http_fixture.invalid_json",
+    "group": "gateway-compatibility",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "fixture_not_real_llm": true,
+      "gateway_calls": 2,
+      "sdk_status": "error"
+    },
+    "error": null,
+    "seconds": 2.878
+  },
+  {
+    "id": "gateway.http_fixture.truncated",
+    "group": "gateway-compatibility",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "fixture_not_real_llm": true,
+      "gateway_calls": 2,
+      "sdk_status": "error"
+    },
+    "error": null,
+    "seconds": 2.896
+  },
+  {
+    "id": "gateway.http_fixture.rate_limit",
+    "group": "gateway-compatibility",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "fixture_not_real_llm": true,
+      "gateway_calls": 2,
+      "sdk_status": "success"
+    },
+    "error": null,
+    "seconds": 2.887
+  },
+  {
+    "id": "runtime.outer_timeout_and_no_late_submission",
+    "group": "time-budget",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "fixture_not_real_llm": true,
+      "seconds": 0.10409310000250116,
+      "no_late_submission": true
+    },
+    "error": null,
+    "seconds": 3.265
+  },
+  {
+    "id": "live.A-01",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "A-01",
+      "kind": "Chat",
+      "status": "answered",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\live-ABCE\\output\\data\\workspace_team\\A-01.json",
+      "seconds": 1.571488399989903,
+      "real_model_calls": 1
+    },
+    "error": null,
+    "seconds": 1.575
+  },
+  {
+    "id": "live.B-01",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "B-01",
+      "kind": "Literature_Retrieval",
+      "status": "answered",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\live-ABCE\\output\\data\\workspace_team\\B-01.json",
+      "seconds": 35.48650989998714,
+      "real_model_calls": 3
+    },
+    "error": null,
+    "seconds": 35.489
+  },
+  {
+    "id": "retrieval.exact.B-01",
+    "group": "retrieval-quality",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "matched": [
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "frozen_public_relevance_expectation": true
+    },
+    "error": null,
+    "seconds": 0.001
+  },
+  {
+    "id": "live.B-02",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "B-02",
+      "kind": "Literature_Retrieval",
+      "status": "answered",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\live-ABCE\\output\\data\\workspace_team\\B-02.json",
+      "seconds": 7.296017599990591,
+      "real_model_calls": 3
+    },
+    "error": null,
+    "seconds": 7.298
+  },
+  {
+    "id": "retrieval.exact.B-02",
+    "group": "retrieval-quality",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "matched": [
+        "2004.04906-DPR.pdf"
+      ],
+      "frozen_public_relevance_expectation": true
+    },
+    "error": null,
+    "seconds": 0.001
+  },
+  {
+    "id": "live.B-03",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "B-03",
+      "kind": "Literature_Retrieval",
+      "status": "answered",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\live-ABCE\\output\\data\\workspace_team\\B-03.json",
+      "seconds": 17.974632500001462,
+      "real_model_calls": 3
+    },
+    "error": null,
+    "seconds": 17.977
+  },
+  {
+    "id": "retrieval.exact.B-03",
+    "group": "retrieval-quality",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "matched": [
+        "2104.08663-BEIR.pdf"
+      ],
+      "frozen_public_relevance_expectation": true
+    },
+    "error": null,
+    "seconds": 0.002
+  },
+  {
+    "id": "live.C-01",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "C-01",
+      "kind": "Survey",
+      "status": "answered",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\live-ABCE\\output\\data\\workspace_team\\C-01.json",
+      "seconds": 34.42387830000371,
+      "real_model_calls": 10
+    },
+    "error": null,
+    "seconds": 34.432
+  },
+  {
+    "id": "live.C-02",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "C-02",
+      "kind": "Survey",
+      "status": "answered",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\live-ABCE\\output\\data\\workspace_team\\C-02.json",
+      "seconds": 30.687965199991595,
+      "real_model_calls": 10
+    },
+    "error": null,
+    "seconds": 30.692
+  },
+  {
+    "id": "live.E-01",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "E-01",
+      "kind": "Idea",
+      "status": "answered",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\live-ABCE\\output\\data\\workspace_team\\E-01.json",
+      "seconds": 73.10715799999889,
+      "real_model_calls": 10
+    },
+    "error": null,
+    "seconds": 73.112
+  },
+  {
+    "id": "live.E-02",
+    "group": "A-E-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "E-02",
+      "kind": "Idea",
+      "status": "answered",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\live-ABCE\\output\\data\\workspace_team\\E-02.json",
+      "seconds": 57.647209699993255,
+      "real_model_calls": 8
+    },
+    "error": null,
+    "seconds": 57.653
+  },
+  {
+    "id": "live.D-01.model_source_generation",
+    "group": "D-source-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "D-01",
+      "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\live-D-01\\output\\data\\workspace_team\\work\\D-01\\b5381a0290834455942a72872806ea68\\implementation.py",
+      "sha256": "29fa9925053491a0f090f1828abc92c1ef3547eaef79989f5053548d9d689a01",
+      "seconds": 4.7501773000112735,
+      "real_model_calls": 1,
+      "official_execution": "BLOCKED"
+    },
+    "error": null,
+    "seconds": 6.556
+  },
+  {
+    "id": "public_algorithm.D-01.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "training_rows": 18,
+      "test_rows": 4,
+      "vocabulary": 24,
+      "model_replay_verified": true,
+      "request": "D-01.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\public-workers\\D-01\\D-01-e2a754"
+    },
+    "error": null,
+    "seconds": 0.743
+  },
+  {
+    "id": "public_algorithm.D-01/不均衡-重复词-标点.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "training_rows": 4,
+      "test_rows": 4,
+      "vocabulary": 4,
+      "model_replay_verified": true,
+      "request": "D-01/不均衡-重复词-标点.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\public-workers\\D-01\\不均衡-重复词-标点-a5204d"
+    },
+    "error": null,
+    "seconds": 0.541
+  },
+  {
+    "id": "public_algorithm.D-01/均衡-空文本-未知词.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "training_rows": 2,
+      "test_rows": 4,
+      "vocabulary": 4,
+      "model_replay_verified": true,
+      "request": "D-01/均衡-空文本-未知词.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\public-workers\\D-01\\均衡-空文本-未知词-dec946"
+    },
+    "error": null,
+    "seconds": 0.58
+  },
+  {
+    "id": "live.D-02.model_source_generation",
+    "group": "D-source-live",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "case_id": "D-02",
+      "source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\live-D-02\\output\\data\\workspace_team\\work\\D-02\\8ff3b25e88cb406eb2f5a91b8d86ec7f\\implementation.py",
+      "sha256": "8dab5867a3b773ad0bccace5bb721d37800ae2217d8a91c54f7b520474ed5513",
+      "seconds": 8.068879800004652,
+      "real_model_calls": 1,
+      "official_execution": "BLOCKED"
+    },
+    "error": null,
+    "seconds": 9.855
+  },
+  {
+    "id": "public_algorithm.D-02.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "grid_checked": 27,
+      "groups": 2,
+      "selected": {
+        "b": 0.0,
+        "k1": 0.4,
+        "title_weight": 0.5
+      },
+      "request": "D-02.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\public-workers\\D-02\\D-02-f9d8ea"
+    },
+    "error": null,
+    "seconds": 0.594
+  },
+  {
+    "id": "public_algorithm.D-02/rank-default.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "rank_phase": true,
+      "queries": 3,
+      "request": "D-02/rank-default.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\public-workers\\D-02\\rank-default-46cfed"
+    },
+    "error": null,
+    "seconds": 0.537
+  },
+  {
+    "id": "public_algorithm.D-02/空字段-重复未知词-不等组.json",
+    "group": "D-public-algorithm",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "grid_checked": 27,
+      "groups": 2,
+      "selected": {
+        "b": 0.0,
+        "k1": 0.4,
+        "title_weight": 0.0
+      },
+      "request": "D-02/空字段-重复未知词-不等组.json",
+      "python": "3.9",
+      "network": "none",
+      "artifact": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\public-workers\\D-02\\空字段-重复未知词-不等组-5a8666"
+    },
+    "error": null,
+    "seconds": 0.551
+  },
+  {
+    "id": "live.D-05.model_source_generation",
+    "group": "D-source-live",
+    "status": "FAIL",
+    "level": "required",
+    "evidence": null,
+    "error": "AssertionError: Final internal self-test failed; source is rejected",
+    "seconds": 18.891
+  },
+  {
+    "id": "public_algorithm.D-05",
+    "group": "D-public-algorithm",
+    "status": "BLOCKED",
+    "level": "required",
+    "evidence": null,
+    "error": "No accepted source from this run"
+  },
+  {
+    "id": "official.source_admission_and_full_scoring",
+    "group": "official-platform",
+    "status": "BLOCKED",
+    "level": "required",
+    "evidence": null,
+    "error": "Official Gateway/source signature/private cases/trusted Unix-socket runner are not supplied; public tests cannot replace them"
+  },
+  {
+    "id": "quotes.C-01",
+    "group": "report-evidence",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "case_id": "C-01",
+      "status": "PASS",
+      "quotes_found": 30,
+      "quotes_checked": 30,
+      "checks": [
+        {
+          "evidence_id": "ev-1",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-3",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-5",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 8,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-6",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 8,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-4",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 8,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-2",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-7",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-10",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 5,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-12",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 18,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-11",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 5,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-9",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-8",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-13",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-16",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-18",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 4,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-17",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-14",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-15",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-19",
+          "filename": "2112.04426-RETRO.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-23",
+          "filename": "2112.04426-RETRO.pdf",
+          "page": 7,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-24",
+          "filename": "2112.04426-RETRO.pdf",
+          "page": 15,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-21",
+          "filename": "2112.04426-RETRO.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-20",
+          "filename": "2112.04426-RETRO.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-22",
+          "filename": "2112.04426-RETRO.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-25",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-27",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-30",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 8,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-29",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-26",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-28",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        }
+      ],
+      "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+    },
+    "error": null
+  },
+  {
+    "id": "quotes.C-02",
+    "group": "report-evidence",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "case_id": "C-02",
+      "status": "PASS",
+      "quotes_found": 30,
+      "quotes_checked": 30,
+      "checks": [
+        {
+          "evidence_id": "ev-1",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-3",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-5",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 8,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-2",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-6",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 8,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-4",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-7",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-11",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 5,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-12",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 18,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-8",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-9",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-10",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-13",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-16",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-17",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-18",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 4,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-14",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-15",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-19",
+          "filename": "2104.08663-BEIR.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-20",
+          "filename": "2104.08663-BEIR.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-21",
+          "filename": "2104.08663-BEIR.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-22",
+          "filename": "2104.08663-BEIR.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-24",
+          "filename": "2104.08663-BEIR.pdf",
+          "page": 5,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-23",
+          "filename": "2104.08663-BEIR.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-25",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-30",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 8,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-29",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-26",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-28",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-27",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        }
+      ],
+      "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+    },
+    "error": null
+  },
+  {
+    "id": "quotes.E-01",
+    "group": "report-evidence",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "case_id": "E-01",
+      "status": "PASS",
+      "quotes_found": 20,
+      "quotes_checked": 20,
+      "checks": [
+        {
+          "evidence_id": "ev-1",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-4",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-5",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 4,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-6",
+          "filename": "2004.04906-DPR.pdf",
+          "page": 8,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-7",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-11",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 5,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-12",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 5,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-10",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-13",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-17",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-14",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-16",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-19",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-20",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-24",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 8,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-22",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-31",
+          "filename": "2112.04426-RETRO.pdf",
+          "page": 1,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-34",
+          "filename": "2112.04426-RETRO.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-36",
+          "filename": "2112.04426-RETRO.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-33",
+          "filename": "2112.04426-RETRO.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        }
+      ],
+      "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+    },
+    "error": null
+  },
+  {
+    "id": "quotes.E-02",
+    "group": "report-evidence",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "case_id": "E-02",
+      "status": "PASS",
+      "quotes_found": 12,
+      "quotes_checked": 12,
+      "checks": [
+        {
+          "evidence_id": "ev-1",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-4",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 5,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-22",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 17,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-5",
+          "filename": "2005.11401-RAG.pdf",
+          "page": 5,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-7",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-11",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-12",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-10",
+          "filename": "2007.01282-FiD.pdf",
+          "page": 3,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-13",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-17",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 8,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-18",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 10,
+          "quote_found_on_cited_page": true
+        },
+        {
+          "evidence_id": "ev-14",
+          "filename": "2310.11511-Self-RAG.pdf",
+          "page": 2,
+          "quote_found_on_cited_page": true
+        }
+      ],
+      "scope": "Independent source/page/quote lookup only; not a full factual or originality score"
+    },
+    "error": null
+  },
+  {
+    "id": "reports.independent_quote_audit",
+    "group": "report-evidence",
+    "status": "PASS",
+    "level": "required",
+    "evidence": null,
+    "error": null,
+    "seconds": 7.996
+  },
+  {
+    "id": "authorized_reports.C-01",
+    "group": "report-authorization",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "authorized_pdfs": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2112.04426-RETRO.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "referenced": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2112.04426-RETRO.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ]
+    },
+    "error": null,
+    "seconds": 0.005
+  },
+  {
+    "id": "authorized_reports.C-02",
+    "group": "report-authorization",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "authorized_pdfs": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2104.08663-BEIR.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "referenced": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2104.08663-BEIR.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ]
+    },
+    "error": null,
+    "seconds": 0.007
+  },
+  {
+    "id": "authorized_reports.E-01",
+    "group": "report-authorization",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "authorized_pdfs": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2112.04426-RETRO.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "referenced": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2112.04426-RETRO.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ]
+    },
+    "error": null,
+    "seconds": 0.008
+  },
+  {
+    "id": "authorized_reports.E-02",
+    "group": "report-authorization",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "authorized_pdfs": [
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "referenced": [
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ]
+    },
+    "error": null,
+    "seconds": 0.005
+  },
+  {
+    "id": "replay.D-01",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "id": "replay.D-01",
+      "group": "D-reproducibility",
+      "status": "PASS",
+      "source_sha256": "29fa9925053491a0f090f1828abc92c1ef3547eaef79989f5053548d9d689a01",
+      "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\public-workers\\D-01\\D-01-e2a754\\result.json",
+      "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\reproducibility\\D-01\\stdout.txt",
+      "python": "3.9",
+      "network": "none",
+      "official_provenance": false
+    },
+    "error": null
+  },
+  {
+    "id": "replay.D-02",
+    "group": "D-reproducibility",
+    "status": "PASS",
+    "level": "quality",
+    "evidence": {
+      "id": "replay.D-02",
+      "group": "D-reproducibility",
+      "status": "PASS",
+      "source_sha256": "8dab5867a3b773ad0bccace5bb721d37800ae2217d8a91c54f7b520474ed5513",
+      "first_result": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\public-workers\\D-02\\D-02-f9d8ea\\result.json",
+      "replay": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\reproducibility\\D-02\\stdout.txt",
+      "python": "3.9",
+      "network": "none",
+      "official_provenance": false
+    },
+    "error": null
+  },
+  {
+    "id": "replay.D-05",
+    "group": "D-reproducibility",
+    "status": "BLOCKED",
+    "level": "quality",
+    "evidence": {
+      "id": "replay.D-05",
+      "group": "D-reproducibility",
+      "status": "BLOCKED",
+      "error": "AssertionError: No accepted source available"
+    },
+    "error": "AssertionError: No accepted source available"
+  },
+  {
+    "id": "agent.harness_evidence_review",
+    "group": "LLM-orchestration",
+    "status": "PASS",
+    "level": "required",
+    "evidence": {
+      "real_model": true,
+      "review_file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\hybrid-20261023-v042-v5-magic-native-api\\harness-review.json",
+      "seconds": 4.673
+    },
+    "error": null,
+    "seconds": 4.844
+  }
+]

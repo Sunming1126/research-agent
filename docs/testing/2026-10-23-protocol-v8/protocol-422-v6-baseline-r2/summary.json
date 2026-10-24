@@ -1,0 +1,10 @@
+{
+  "image": "research-assistant:0.4.2-hybrid-v6",
+  "counts": {
+    "PASS": 4,
+    "FAIL": 0
+  },
+  "meaning": "PASS means the old defect was reproduced, not that v6 is acceptable",
+  "fixture_not_real_llm": true,
+  "input_scope": "Public frozen cases; A-01 renamed A-03 for protocol identity only, not the private platform question"
+}
