@@ -15,6 +15,5 @@ paper_library/pdfs-300/
 .venv*/
 *.egg-info/
 
-# 本地构建交付物；源码、构建说明和交付清单仍纳入版本控制。
+# �?地构建交付物；源码、构建�?�明和交付清单仍纳入版本控制�?
 /team_share.zip
-/team_share/image/*.tar
