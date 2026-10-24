@@ -1,0 +1,7 @@
+{
+  "commit": "64f5efd881d41b24354d6e82f02b450c799e48ff",
+  "archive_sha256": "b144808749e9c95299fc57d7a07e58584ca089c1df0305b17ac2441507bd4204",
+  "frozen_probes_sha256": "f39e90ef0590d28ddc2d088e2e0b1eff0f84b7073a61e9d77f7f523d932c1244",
+  "contract_probes": 7,
+  "probes_executed": false
+}
