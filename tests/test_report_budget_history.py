@@ -1,11 +1,13 @@
 """长文修订失败时保留首个审查原因，历史记录必须能序列化。"""
 import json
+import pytest
 from types import SimpleNamespace
 
 from research_agent.core.models import Chunk
 from research_agent.integrations.llm import ModelError
 from research_agent.rag.retrieval import QueryPlan
 from research_agent.workflows.tasks import TaskHandlers
+from research_agent.evidence import EvidenceError
 
 
 def test_audit_history_preserves_initial_rejection_before_budget_fallback():
@@ -40,7 +42,8 @@ def test_audit_history_preserves_initial_rejection_before_budget_fallback():
     case = SimpleNamespace(case_id="E-99", function="Idea", input="设计可证伪的研究",
                            to_dict=lambda: {"case_id": "E-99"})
     handler = TaskHandlers(LLM(), "test")
-    handler.report(case, Retriever(), QueryPlan("promoter"))
+    with pytest.raises(EvidenceError, match="Idea model report failed"):
+        handler.report(case, Retriever(), QueryPlan("promoter"))
     serialized = json.dumps(handler.audit, ensure_ascii=False)
     assert "缺少具体实验协议" in serialized
     assert "insufficient model budget" in serialized

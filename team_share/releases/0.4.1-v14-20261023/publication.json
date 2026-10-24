@@ -1,0 +1,31 @@
+{
+  "published": true,
+  "release_url": "https://github.com/Sunming1126/research-agent/releases/tag/v0.4.1-v14-20261023",
+  "assets": [
+    {
+      "name": "research-assistant-0.4.1-v14-20261023.tar",
+      "sha256": "d8b16cbde0dd3c85a63f3aded6505fe5167866d068a1f43f8cc0fd84ef946946",
+      "bytes": 295421952,
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-8d48a93c888e4983b825/research-assistant-0.4.1-v14-20261023.tar"
+    },
+    {
+      "name": "USAGE.md",
+      "sha256": "11dbaa06674963a50662420ca704c01b85b8193f5a090ec8d87868029a429119",
+      "bytes": 2611,
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-8d48a93c888e4983b825/USAGE.md"
+    },
+    {
+      "name": "delivery-manifest.json",
+      "sha256": "e1dd640b8c378a3666b94d714e8117a78b8c1471de5219eac59fa2ea2d57cadb",
+      "bytes": 1024,
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-8d48a93c888e4983b825/delivery-manifest.json"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "sha256": "3792a1d3761543bfa5a0b44dc460aaa76bb5a3e475e983c87ccdc1b706160df0",
+      "bytes": 275,
+      "url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-8d48a93c888e4983b825/SHA256SUMS.txt"
+    }
+  ],
+  "delivery_scope": "image-only"
+}

@@ -1,0 +1,139 @@
+{
+  "claims": [],
+  "rejected_claims": [],
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "RAG-Sequence/RAG-Token、Fusion-in-Decoder 与 Self-RAG 按需检索和反思机制的原始论文",
+      "methods": "RAG-Sequence、RAG-Token、Fusion-in-Decoder、Self-RAG 按需检索与自我反思",
+      "focus": "定位提出这些方法的原始论文，并区分于仅做指令微调、普通稠密检索、基准评测及 RETRO 的工作",
+      "exclusions": [
+        "只做指令微调的论文",
+        "普通稠密检索",
+        "基准评测",
+        "RETRO"
+      ],
+      "variants": [
+        "RAG-Sequence",
+        "RAG-Token",
+        "Fusion-in-Decoder",
+        "Self-RAG",
+        "retrieval-augmented generation",
+        "adaptive retrieval and self-reflection"
+      ],
+      "subqueries": [
+        "RAG-Sequence RAG-Token original paper",
+        "Fusion-in-Decoder original paper",
+        "Self-RAG adaptive retrieval self-reflection"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2104.08663-BEIR.pdf"
+    ],
+    "components": [
+      {
+        "query": "RAG-Sequence RAG-Token original paper",
+        "filenames": [
+          "2005.11401-RAG.pdf",
+          "2004.04906-DPR.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "Fusion-in-Decoder original paper",
+        "filenames": [
+          "2007.01282-FiD.pdf",
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      },
+      {
+        "query": "Self-RAG adaptive retrieval self-reflection",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      }
+    ],
+    "candidates": [
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2104.08663-BEIR.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.6481
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.5997
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.5255
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.4776
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.4172
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.2889
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.2795
+      }
+    ],
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "chunks": [],
+  "audit": {},
+  "coverage": {},
+  "evidence_audit": {},
+  "report_trace": [],
+  "last_model_draft": ""
+}

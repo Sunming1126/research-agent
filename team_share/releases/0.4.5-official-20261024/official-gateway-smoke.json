@@ -1,0 +1,269 @@
+{
+  "health": {
+    "status": "healthy",
+    "telemetry_configured": true
+  },
+  "checks": [
+    {
+      "case_id": "A-03",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 10,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 1,
+      "seconds": 3.323
+    },
+    {
+      "case_id": "B-01",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 52,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 3,
+      "seconds": 26.501
+    },
+    {
+      "case_id": "B-02",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 27,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 2,
+      "seconds": 10.562
+    },
+    {
+      "case_id": "B-03",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 25,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 2,
+      "seconds": 9.429
+    },
+    {
+      "case_id": "B-99",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": false,
+      "persisted_matches_http": false,
+      "expected_business_failure": true,
+      "otlp_spans_received": 4,
+      "span_names": [
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 0,
+      "seconds": 0.012
+    },
+    {
+      "case_id": "D-01",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 8,
+      "span_names": [
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 0,
+      "seconds": 0.036
+    },
+    {
+      "case_id": "C-01",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 58,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 9,
+      "seconds": 122.045
+    },
+    {
+      "case_id": "C-03",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 56,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 10,
+      "seconds": 134.426
+    },
+    {
+      "case_id": "E-01",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 38,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 7,
+      "seconds": 70.954
+    },
+    {
+      "case_id": "E-02",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 40,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 8,
+      "seconds": 83.8
+    },
+    {
+      "case_id": "D-02",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 11,
+      "span_names": [
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 0,
+      "seconds": 0.083
+    },
+    {
+      "case_id": "D-05",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 8,
+      "span_names": [
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 0,
+      "seconds": 0.038
+    },
+    {
+      "case_id": "A-06",
+      "input_form": "legacy_sdk",
+      "http_status": 200,
+      "sdk_metadata_preserved": true,
+      "wire_schema_valid": true,
+      "persisted_matches_http": true,
+      "expected_business_failure": false,
+      "otlp_spans_received": 10,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 1,
+      "seconds": 4.545
+    }
+  ],
+  "otlp_http_export_verified": true,
+  "gateway_requests": [],
+  "real_model_calls": 43,
+  "materials_configuration": "Read-only standard /data/论文库 mount, no custom RESEARCH config",
+  "baseline": false,
+  "formal_d_provenance_tested": false,
+  "official_gateway": true,
+  "model": "deepseek_v4",
+  "mock_gateway_unused": true
+}

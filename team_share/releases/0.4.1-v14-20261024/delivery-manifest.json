@@ -1,0 +1,27 @@
+{
+  "version": "0.4.1-v14-20261024",
+  "image": "research-assistant:0.4.1-v14-20261024",
+  "image_id": "sha256:1d67580c7e2dc2b206e8752964b3ecacbd220badfb3614022d8fcdd3030020f1",
+  "platform": "linux/amd64",
+  "user": "agent",
+  "port": 8080,
+  "tar": {
+    "name": "research-assistant-0.4.1-v14-20261024.tar",
+    "bytes": 295421952,
+    "sha256": "eddf0981df9ccee3a6a5f67cc359d3f44517198a0131e55f00397f87521a08ed"
+  },
+  "source_fingerprint_sha256": "c3d1c27a354d0f0bb9d054aa0f3b6b989cfda4fad43d6c4c40a7ae57c1021fb7",
+  "source_matches_local": true,
+  "dependencies_valid": true,
+  "offline_sdk_smoke_passed": true,
+  "direct_eight_field_accepted": false,
+  "known_limitations": [
+    "The current SDK entry rejects a direct eight-field request; the SDK envelope is required.",
+    "Authorized material roots must be configured at runtime; defaults are empty."
+  ],
+  "business_code_modified": false,
+  "published": false,
+  "official_score_verified": false,
+  "formal_d_provenance_tested": false,
+  "archive_reimport_verified": true
+}

@@ -1,0 +1,30 @@
+{
+  "image": "research-assistant:0.4.1-v14-20261023",
+  "cpu": 1,
+  "memory_mib": 1024,
+  "health": {
+    "status": "healthy",
+    "telemetry_configured": false
+  },
+  "checks": [
+    {
+      "case_id": "A-01",
+      "passed": true,
+      "seconds": 1.515
+    },
+    {
+      "case_id": "B-01",
+      "passed": true,
+      "seconds": 48.844
+    },
+    {
+      "case_id": "C-01",
+      "passed": true,
+      "seconds": 62.781
+    }
+  ],
+  "oom_killed": false,
+  "formal_d_provenance_tested": false,
+  "configured_case_timeout_seconds": 300,
+  "all_observed_requests_under_180_seconds": true
+}

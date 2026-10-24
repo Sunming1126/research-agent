@@ -1,0 +1,65 @@
+{
+  "case_id": "C-01",
+  "timeout_seconds": 180,
+  "elapsed_seconds": 180.074,
+  "stage": "report_repair",
+  "stages": [
+    {
+      "stage": "material_resolution",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.161
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.188
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.221
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.222
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.262
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.291
+    },
+    {
+      "stage": "retrieval",
+      "elapsed_seconds": 3.949
+    },
+    {
+      "stage": "report_extract",
+      "elapsed_seconds": 3.953
+    },
+    {
+      "stage": "retrieval",
+      "elapsed_seconds": 57.961
+    },
+    {
+      "stage": "report_extract",
+      "elapsed_seconds": 57.962
+    },
+    {
+      "stage": "evidence_semantic_verification",
+      "elapsed_seconds": 78.891
+    },
+    {
+      "stage": "report_report",
+      "elapsed_seconds": 93.758
+    },
+    {
+      "stage": "report_repair",
+      "elapsed_seconds": 138.258
+    }
+  ],
+  "cancelled": true
+}

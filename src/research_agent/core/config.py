@@ -4,7 +4,10 @@ import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .utils import read_json, safe_relative_path
+from .utils import confined, read_json, safe_relative_path
+
+
+OFFICIAL_TEAM = "最初一舞"
 
 
 @dataclass
@@ -12,7 +15,7 @@ class Settings:
     """运行配置；材料根目录必须是独立授权目录。"""
     workspace: Path
     output: Path
-    team: str = "workspace_team"
+    team: str = OFFICIAL_TEAM
     material_roots: list[Path] = field(default_factory=list)
     material_aliases: dict[str, list[str]] = field(default_factory=dict)
     experiment_mode: str = "platform"
@@ -43,13 +46,32 @@ class Settings:
     def from_env(cls):
         config = read_json(Path(os.environ["RESEARCH_CONFIG"])) if os.environ.get("RESEARCH_CONFIG") else {}
         workspace = Path(os.environ.get("RESEARCH_WORKSPACE_ROOT", config.get("workspace", "/data" if os.name != "nt" else ".")))
+        output = Path(os.environ.get("RESEARCH_RESULT_ROOT", config.get("output", "output")))
         roots = os.environ.get("RESEARCH_MATERIAL_ROOTS")
+        if roots is not None:
+            material_roots = [Path(x) for x in roots.split(os.pathsep) if x]
+        elif "material_roots" in config:
+            material_roots = [Path(x) for x in config["material_roots"]]
+        else:
+            # 只检查约定的专用论文库位置；不遍历队伍目录或整个文件系统。
+            library = "论文库" if workspace.resolve().name == "data" else "data/论文库"
+            canonical = confined(workspace, library)
+            candidates = [canonical, confined(output, "data/论文库")]
+            existing = list(dict.fromkeys(path for path in candidates if path.is_dir()))
+            if len(existing) > 1:
+                raise ValueError("multiple paper libraries found; configure RESEARCH_MATERIAL_ROOTS explicitly")
+            material_roots = existing or [canonical]
+        aliases = {}
+        if len(material_roots) == 1 and material_roots[0].name == "论文库":
+            aliases["本地论文文件夹内的 PDF"] = ["论文库"]
+        aliases.update(config.get("material_aliases", {}))
         return cls(
             workspace=workspace,
-            output=Path(os.environ.get("RESEARCH_RESULT_ROOT", config.get("output", "output"))),
-            team=os.environ.get("RESEARCH_WORKSPACE_TEAM", config.get("team", "workspace_team")),
-            material_roots=[Path(x) for x in (roots.split(os.pathsep) if roots else config.get("material_roots", []))],
-            material_aliases=config.get("material_aliases", {}),
+            output=output,
+            team=(os.environ.get("RESEARCH_WORKSPACE_TEAM") or config.get("team")
+                  or os.environ.get("TEAM_ID") or OFFICIAL_TEAM),
+            material_roots=material_roots,
+            material_aliases=aliases,
             experiment_mode=os.environ.get("RESEARCH_EXPERIMENT_MODE", config.get("experiment_mode", "platform")),
             local_experiment_root=Path(config["local_experiment_root"]) if config.get("local_experiment_root") else None,
             local_python=config.get("local_python", ""),

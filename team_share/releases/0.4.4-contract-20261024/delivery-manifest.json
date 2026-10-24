@@ -1,0 +1,36 @@
+{
+  "version": "0.4.4-contract-20261024",
+  "image": "research-assistant:0.4.4-contract-20261024",
+  "image_id": "sha256:7d9b3e7de034982e673fddbbe47fb970d2b906b3fff0933cf5fff542cff0d58a",
+  "platform": "linux/amd64",
+  "user": "agent",
+  "port": 8080,
+  "tar": {
+    "name": "research-assistant-0.4.4-contract-20261024.tar",
+    "bytes": 295426048,
+    "sha256": "16b277d4ba2fcfb6fd97e09a688e7ac888e34ae52a139f5104a8f5f0ac6cfd55"
+  },
+  "source_matches_local": true,
+  "official_sdk_unchanged": true,
+  "dependencies_valid": true,
+  "direct_eight_field_accepted": true,
+  "local_otlp_http_export_verified": true,
+  "trace_parent_preserved": true,
+  "archive_reimport_verified": true,
+  "real_model_calls": 0,
+  "native_runtime_and_routes": true,
+  "sdk_metadata_preserved_in_headers_on_direct_success": true,
+  "final_http_case_schema_verified": true,
+  "standard_library_without_custom_config_verified": true,
+  "failed_business_trace_export_verified": true,
+  "related_report": "2026-10-24 14:47 completed eleven cases, all error, zero score",
+  "known_limitations": [
+    "Only canonical /data/论文库 and output/data/论文库 are discovered; ambiguous subset descriptions still require explicit configuration.",
+    "Local OTLP receipt does not verify the remote official collection pipeline.",
+    "D smoke cases honestly return materials_missing; formal source credentials and successful remote experiments are not verified.",
+    "Synthetic local model responses verify protocol and artifacts, not answer quality or official scores."
+  ],
+  "published": false,
+  "official_score_verified": false,
+  "formal_d_provenance_tested": false
+}

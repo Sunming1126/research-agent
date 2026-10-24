@@ -67,7 +67,8 @@ def read_generation_materials(case_id: str, roots: list[Path]) -> dict[str, str]
     """只从当前题授权的实验材料根目录读取公开方法、协议和样例。"""
     candidates = []
     for root in roots:
-        candidates.append(Path(root) / case_id)
+        root = Path(root)
+        candidates.append(root if root.name == case_id else root / case_id)
     candidates.extend([Path("/data/experiments") / case_id, Path("/experiment")])
     for directory in candidates:
         if not directory.is_dir():

@@ -1,0 +1,1246 @@
+{
+  "claims": [
+    {
+      "evidence_id": "ev-1",
+      "claim": "DPR使用稠密编码器EP(·)将任意文本段落映射为d维实值向量，并为所有M个段落建立索引用于检索。",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 2,
+      "chunk_id": "d3b6937e3725efffc4e6",
+      "quote": "Our dense passage retriever (DPR) uses a dense\nencoder EP (·) which maps any text passage to a d-\ndimensional real-valued vectors and builds an index\nfor all the M passages that we will use for retrieval.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-3",
+      "claim": "在广泛开放域问答数据集上，DPR的top-20段落检索准确率比强Lucene-BM25系统绝对提升9%至19%。",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 1,
+      "chunk_id": "e8362eff8fa0d326ae6c",
+      "quote": "our\ndense retriever outperforms a strong Lucene-\nBM25 system greatly by 9%-19% absolute in\nterms of top-20 passage retrieval accuracy",
+      "kind": "paper_claim",
+      "facet": "metric",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-4",
+      "claim": "DPR帮助端到端问答系统在多个开放域问答基准上建立新的state-of-the-art。",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 1,
+      "chunk_id": "e8362eff8fa0d326ae6c",
+      "quote": "helps our end-to-end QA system establish new\nstate-of-the-art on multiple open-domain QA\nbenchmarks.",
+      "kind": "paper_claim",
+      "facet": "result",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-5",
+      "claim": "在Natural Questions上，分别训练强检索器和阅读器的流水线方法取得39.8 EM，优于可比的联合训练方法且设计更简单。",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 8,
+      "chunk_id": "c338b4ba8f59e58d4ada",
+      "quote": "This approach\nobtains a score of 39.8 EM, which suggests that our\nstrategy of training a strong retriever and reader in\nisolation can leverage effectively available supervi-\nsion, while outperforming a comparable joint train-\ning approach with a simpler design",
+      "kind": "paper_claim",
+      "facet": "result",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-2",
+      "claim": "检索器通过简单双编码器框架从小规模问题和段落中学习嵌入，可仅用稠密表示实际实现检索。",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 1,
+      "chunk_id": "e8362eff8fa0d326ae6c",
+      "quote": "retrieval can be practically implemented us-\ning dense representations alone, where em-\nbeddings are learned from a small number\nof questions and passages by a simple dual-\nencoder framework.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-6",
+      "claim": "原文摘录（文内参考编号另标）：While DPR processes up to 100 passages for each question, the reader is able to ﬁt all of them into one batch on a sin- gle 32GB GPU, thus the latency remains almost identical to the single passage case (around 20ms).",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 8,
+      "chunk_id": "c338b4ba8f59e58d4ada",
+      "quote": "While DPR processes up to 100 passages for each question, the reader\nis able to ﬁt all of them into one batch on a sin-\ngle 32GB GPU, thus the latency remains almost\nidentical to the single passage case (around 20ms).",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unknown",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-7",
+      "claim": "RAG将检索到的文档视为潜在变量，以便端到端训练检索器与生成器。",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 3,
+      "chunk_id": "680d89abb1558d182bd0",
+      "quote": "To train the retriever and generator end-to-end, we treat the retrieved document as a latent variable.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-9",
+      "claim": "原文摘录（文内参考编号另标）：To evaluate RAG’s generation abilities in a non-QA setting, we study open-domain question generation.",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 5,
+      "chunk_id": "91dcf7c3b6a4ba7176d7",
+      "quote": "To evaluate RAG’s generation abilities in a non-QA setting, we study open-domain question generation.",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unknown",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-11",
+      "claim": "论文声称单一基于检索的架构可经微调在多种任务上取得强性能。",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 9,
+      "chunk_id": "35e7e29c4788f745a7ed",
+      "quote": "we show that a single retrieval-based architecture can be ﬁne-tuned for strong performance on a variety of tasks",
+      "kind": "paper_claim",
+      "facet": "result",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-8",
+      "claim": "论文提出两种边缘化方式不同的模型：RAG-Sequence对每个目标词使用同一文档，RAG-Token可对每个目标词使用不同文档。",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 3,
+      "chunk_id": "680d89abb1558d182bd0",
+      "quote": "In one approach, RAG-Sequence, the model uses the same document to predict each target token. The second approach, RAG-Token, can predict each target token based on a different document.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-10",
+      "claim": "原文摘录（文内参考编号另标）：we do not use supervision on retrieved evidence",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 5,
+      "chunk_id": "71dea847c53dd25a4f2a",
+      "quote": "we do not use supervision on retrieved evidence",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unknown",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-12",
+      "claim": "TriviaQA上论文同时报告官方Wiki测试集与常规开放域测试集的结果，并称官方Wiki测试集性能更高。",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 18,
+      "chunk_id": "f1e8b7a2f528cfad5360",
+      "quote": "We report results on both test sets to enable fair comparison to both approaches. We ﬁnd that our performance is much higher using the ofﬁcial Wiki test set, rather than the more conventional open-domain test set",
+      "kind": "paper_claim",
+      "facet": "result",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-13",
+      "claim": "该方法采用两步流程：先检索支持性段落，再用序列到序列模型处理这些段落。",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 2,
+      "chunk_id": "d397ca25e16b6c8b0e76",
+      "quote": "It proceeds in two steps, ﬁrst retrieving support passages before processing them with a sequence to sequence model.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-16",
+      "claim": "开放域版本的NaturalQuestions数据集通过丢弃超过5个token的答案得到。",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 3,
+      "chunk_id": "f20f1e111cab3eb1189c",
+      "quote": "The open-domain version of this dataset is obtained by discarding answers with more than 5 tokens.",
+      "kind": "paper_claim",
+      "facet": "data",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-17",
+      "claim": "原文摘录（文内参考编号另标）：the closed book T5 model obtains 36.6% accuracy with 11B parame- ters, while our approach obtains 44.1% with 770M parameters plus Wikipe",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 4,
+      "chunk_id": "9a0c9c16374a4d2c489f",
+      "quote": "the closed book T5 model obtains 36.6% accuracy with 11B parame- ters, while our approach obtains 44.1% with 770M parameters plus Wikipe",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unknown",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-14",
+      "claim": "该模型仅在解码器中进行证据融合，因此被称为Fusion-in-Decoder。",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 3,
+      "chunk_id": "5abd537beef634a1552a",
+      "quote": "The model thus performs evidence fusion in the decoder only, and we refer to it as Fusion-in-Decoder.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-15",
+      "claim": "原文摘录（文内参考编号另标）：the computation time of the model grows linearly with the number of passages, instead of quadratically",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 3,
+      "chunk_id": "5abd537beef634a1552a",
+      "quote": "the computation time of the model grows linearly with the number of passages, instead of quadratically",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unknown",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-18",
+      "claim": "原文摘录（文内参考编号另标）：the performance of our method signiﬁcantly improves when the number of retrieved passages increases",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 2,
+      "chunk_id": "964d1aaf2961c5d2be46",
+      "quote": "the performance of our method signiﬁcantly improves when the number of retrieved passages increases",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unknown",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-19",
+      "claim": "原文摘录（文内参考编号另标）：Retro combines a frozen Bert retriever, a diﬀerentiable encoder and a chunked cross-attention mechanism to predict tokens",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 1,
+      "chunk_id": "15563cf21f9afc474ee7",
+      "quote": "Retro combines a frozen Bert retriever, a diﬀerentiable encoder and a chunked cross-attention mechanism to predict tokens",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unknown",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-23",
+      "claim": "在2万亿token数据库下，Retro在Pile上与GPT-3和Jurassic-1性能相当，但参数少25倍。",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 1,
+      "chunk_id": "15563cf21f9afc474ee7",
+      "quote": "With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters.",
+      "kind": "paper_claim",
+      "facet": "result",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-21",
+      "claim": "基于预训练冻结BERT的检索在大规模下可行，无需训练和更新检索网络。",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 2,
+      "chunk_id": "0dc69faaaaef76243e87",
+      "quote": "We show that retrieving based on a pre-trained frozen Bert model (§2.3) works at scale, removing the need for training and updating a retriever network.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-22",
+      "claim": "检索以连续token块而非单个token为单位，可大幅线性降低存储与计算需求。",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 2,
+      "chunk_id": "102925d3f3a5e43875b3",
+      "quote": "we retrieve at the level of contiguous token chunks instead of individual tokens which reduces storage and computation requirements by a large linear factor",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-20",
+      "claim": "分块交叉注意力模块引入检索文本，其时间复杂度随检索数据量线性增长。",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 2,
+      "chunk_id": "0dc69faaaaef76243e87",
+      "quote": "We use a chunked cross-attention module to incorporate the retrieved text (§2.4), with time complexity linear in the amount of retrieved data.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-24",
+      "claim": "原文摘录（文内参考编号另标）：Retro outperforms baseline models at all leakage levels, down to 𝛼= 12.5%.",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 15,
+      "chunk_id": "19549354c0a89883e36d",
+      "quote": "Retro outperforms baseline models at all leakage levels, down to 𝛼= 12.5%.",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unknown",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-25",
+      "claim": "SELF-RAG训练一个单一任意LM按需自适应检索段落，并对检索段落及自身生成进行反思。",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 1,
+      "chunk_id": "dc0d90c9ba5d4372a133",
+      "quote": "Our framework trains a single arbitrary LM that adaptively retrieves passages on-demand, and generates and reflects on retrieved passages and its ow",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-28",
+      "claim": "critic模型部分在通过提示GPT-4收集的输入、输出及对应反思标记数据集上接受监督。",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 2,
+      "chunk_id": "c81b6e598e78f5a6f73a",
+      "quote": "The critic model, in part, is supervised on a dataset of input, output, and corresponding reflection tokens collected by prompting a propriety LM (i.e., GPT-4; OpenAI 2023).",
+      "kind": "paper_claim",
+      "facet": "data",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-29",
+      "claim": "与RLHF相比，SELF-RAG在离线用反思标记增强的任务示例上训练目标LM，训练成本远低。",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 3,
+      "chunk_id": "9c5178754de2d5f17725",
+      "quote": "we train our target LM on task examples augmented with reflection tokens from a critic model offline, with a far lower training cost compared to RLHF.",
+      "kind": "paper_claim",
+      "facet": "result",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-30",
+      "claim": "原文摘录（文内参考编号另标）：Our SELF-RAG (bottom two rows) demonstrates a substantial performance advantage over supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE).",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 8,
+      "chunk_id": "4051243e5ce61debd7f2",
+      "quote": "Our SELF-RAG (bottom two rows) demonstrates a substantial performance advantage over supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE).",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unknown",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-26",
+      "claim": "SELF-RAG将反思标记统一为扩展模型词表上的下一词预测，从而训练LM生成带反思标记的文本。",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 2,
+      "chunk_id": "c81b6e598e78f5a6f73a",
+      "quote": "SELF-RAG trains an arbitrary LM to generate text with reflection tokens by unifying them as the next token prediction from the expanded model vocabulary.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-27",
+      "claim": "反思标记由训练好的critic模型离线插入原始语料，因此训练时无需托管critic模型，降低开销。",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 2,
+      "chunk_id": "c81b6e598e78f5a6f73a",
+      "quote": "Reflection tokens, inspired by reward models used in reinforcement learning (Ziegler et al., 2019; Ouyang et al., 2022), are inserted offline into the original corpus by a trained critic model. This eliminates the need to host a critic model during training, reducing overhead.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    }
+  ],
+  "rejected_claims": [],
+  "retrieval_trace": {},
+  "query_plan_status": "model",
+  "chunks": [
+    {
+      "chunk_id": "e47ed7471f81825ff683",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 1,
+      "heading": "Abstract",
+      "text": "Retrieval in open-domain QA is usually imple-\nmented using TF-IDF or BM25 (Robertson and\nZaragoza, 2009), which matches keywords efﬁ-\nciently with an inverted index and can be seen\nas representing the question and context in high-\ndimensional, sparse vectors (with weighting). Con-\nversely, the dense, latent semantic encoding is com-\nplementary to sparse representations by design. For\nexample, synonyms or paraphrases that consist of\ncompletely different tokens may still be mapped to\nvectors close to each other. Consider the question\n“Who is the bad guy in lord of the rings?”, which can\nbe answered from the context “Sala Baker is best\nknown for portraying the villain Sauron in the Lord\nof the Rings trilogy.” A term-based system would\nhave difﬁculty retrieving such a context, while\na dense retrieval system would be able to better\nmatch “bad guy” with “villain” and fetch the cor-\nrect context. Dense encodings are also learnable\nby adjusting the embedding functions, which pro-\nvides additional ﬂexibility to have a task-speciﬁc\nrepresentation. With special in-memory data struc-\ntures and indexing schemes, retrieval can be done\nefﬁciently using maximum inner product search\n(MIPS) algorithms (e.g., Shrivastava and Li (2014);\nGuo et al. (2016)).\nHowever, it is generally believed that learn-\ning a good dense vector representation needs a\nlarge number of labeled pairs of question and con-\ntexts. Dense retrieval methods have thus never\nbe shown to outperform TF-IDF/BM25 for open-\ndomain QA before ORQA (Lee et al., 2019), which\nproposes a sophisticated inverse cloze task (ICT)\nobjective, predicting the blocks that contain the\nmasked sentence, for additional pretraining. The\nquestion encoder and the reader model are then ﬁne-\ntuned using pairs of questions and answers jointly.",
+      "kind": "text",
+      "sha256": "e47ed7471f81825ff6831cfbf87750004e424750e5edac1c50b2ca253e30c767",
+      "start": 351,
+      "end": 2145,
+      "document_sha256": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f"
+    },
+    {
+      "chunk_id": "e8362eff8fa0d326ae6c",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 1,
+      "heading": "Abstract",
+      "text": "Open-domain question answering relies on ef-\nﬁcient passage retrieval to select candidate\ncontexts, where traditional sparse vector space\nmodels, such as TF-IDF or BM25, are the de\nfacto method.\nIn this work, we show that\nretrieval can be practically implemented us-\ning dense representations alone, where em-\nbeddings are learned from a small number\nof questions and passages by a simple dual-\nencoder framework.\nWhen evaluated on a\nwide range of open-domain QA datasets, our\ndense retriever outperforms a strong Lucene-\nBM25 system greatly by 9%-19% absolute in\nterms of top-20 passage retrieval accuracy, and\nhelps our end-to-end QA system establish new\nstate-of-the-art on multiple open-domain QA\nbenchmarks.1",
+      "kind": "text",
+      "sha256": "e8362eff8fa0d326ae6cd57f9ad0ca6ef816c90a4ce8ce361cce3ca553bb63c5",
+      "start": 2289,
+      "end": 3002,
+      "document_sha256": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f"
+    },
+    {
+      "chunk_id": "50d43c79ff04cc8e2285",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 1,
+      "heading": "Abstract",
+      "text": "Large pre-trained language models have been shown to store factual knowledge\nin their parameters, and achieve state-of-the-art results when ﬁne-tuned on down-\nstream NLP tasks. However, their ability to access and precisely manipulate knowl-\nedge is still limited, and hence on knowledge-intensive tasks, their performance\nlags behind task-speciﬁc architectures. Additionally, providing provenance for their\ndecisions and updating their world knowledge remain open research problems. Pre-\ntrained models with a differentiable access mechanism to explicit non-parametric\nmemory have so far been only investigated for extractive downstream tasks. We\nexplore a general-purpose ﬁne-tuning recipe for retrieval-augmented generation\n(RAG) — models which combine pre-trained parametric and non-parametric mem-\nory for language generation. We introduce RAG models where the parametric\nmemory is a pre-trained seq2seq model and the non-parametric memory is a dense\nvector index of Wikipedia, accessed with a pre-trained neural retriever. We com-\npare two RAG formulations, one which conditions on the same retrieved passages\nacross the whole generated sequence, and another which can use different passages\nper token. We ﬁne-tune and evaluate our models on a wide range of knowledge-\nintensive NLP tasks and set the state of the art on three open domain QA tasks,\noutperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract\narchitectures. For language generation tasks, we ﬁnd that RAG models generate\nmore speciﬁc, diverse and factual language than a state-of-the-art parametric-only\nseq2seq baseline.",
+      "kind": "text",
+      "sha256": "50d43c79ff04cc8e228573f05c7f079b20f8ea062f1e6fad87341dea96a77f2f",
+      "start": 409,
+      "end": 2020,
+      "document_sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233"
+    },
+    {
+      "chunk_id": "352228950f028e2d63b8",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 1,
+      "heading": "Abstract",
+      "text": "Pre-trained neural language models have been shown to learn a substantial amount of in-depth knowl-\nedge from data [47]. They can do so without any access to an external memory, as a parameterized\nimplicit knowledge base [51, 52]. While this development is exciting, such models do have down-\nsides: They cannot easily expand or revise their memory, can’t straightforwardly provide insight into\ntheir predictions, and may produce “hallucinations” [38]. Hybrid models that combine parametric\nmemory with non-parametric (i.e., retrieval-based) memories [20, 26, 48] can address some of these\nissues because knowledge can be directly revised and expanded, and accessed knowledge can be\ninspected and interpreted. REALM [20] and ORQA [31], two recently introduced models that\ncombine masked language models [8] with a differentiable retriever, have shown promising results,",
+      "kind": "text",
+      "sha256": "352228950f028e2d63b8a179599e9d4cb7d3da9da7560e01eea03505cd3c691f",
+      "start": 2038,
+      "end": 2907,
+      "document_sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233"
+    },
+    {
+      "chunk_id": "1b86294f1e2c94646b6a",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 1,
+      "heading": "Abstract",
+      "text": "Generative models for open domain question\nanswering have proven to be competitive, with-\nout resorting to external knowledge.\nWhile\npromising, this approach requires to use mod-\nels with billions of parameters, which are ex-\npensive to train and query. In this paper, we\ninvestigate how much these models can ben-\neﬁt from retrieving text passages, potentially\ncontaining evidence. We obtain state-of-the-\nart results on the Natural Questions and Triv-\niaQA open benchmarks. Interestingly, we ob-\nserve that the performance of this method sig-\nniﬁcantly improves when increasing the num-\nber of retrieved passages. This is evidence that\nsequence-to-sequence models offers a ﬂexible\nframework to efﬁciently aggregate and com-\nbine evidence from multiple passages.",
+      "kind": "text",
+      "sha256": "1b86294f1e2c94646b6ac3423e49009443340c860bb5eb749bff88e89d6ab5da",
+      "start": 263,
+      "end": 1026,
+      "document_sha256": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953"
+    },
+    {
+      "chunk_id": "9dc2834fa16570391034",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 1,
+      "heading": "Abstract",
+      "text": "Recently, several works have shown that factual\ninformation can be extracted from large scale\nlanguage models trained on vast quantities of\ndata (Radford et al., 2019; Petroni et al., 2019;\nJiang et al., 2019; Talmor et al., 2019). Building\non that observation and the advances in pretrain-\ning of natural language processing models, Roberts\net al. (2020) introduced a generative model for open\ndomain question answering. Without relying on\nexternal knowledge, this method obtained compet-\nitive results on several benchmarks. However, it\nrequires models containing billions of parameters,\nsince all the information needs to be stored in the\nweights. This makes models expensive to query\nand train. In this paper, we investigate how much\nthis method could beneﬁt from having access to an\nexternal source of knowledge, such as Wikipedia.\nRetrieval based approaches were previously con-\nsidered in the context of open domain question\nanswering with extractive models (Chen et al.,\n2017). In that case, systems start by retrieving",
+      "kind": "text",
+      "sha256": "9dc2834fa1657039103425d47c218b9340f4487c9e76f94159996e2f235434dc",
+      "start": 1639,
+      "end": 2666,
+      "document_sha256": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953"
+    },
+    {
+      "chunk_id": "15563cf21f9afc474ee7",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 1,
+      "heading": "2112.04426-RETRO.pdf",
+      "text": "We enhance auto-regressive language models by conditioning on document chunks retrieved from a\nlarge corpus, based on local similarity with preceding tokens. With a 2 trillion token database, our\nRetrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1\non the Pile, despite using 25× fewer parameters. After ﬁne-tuning, Retro performance translates to\ndownstream knowledge-intensive tasks such as question answering. Retro combines a frozen Bert\nretriever, a diﬀerentiable encoder and a chunked cross-attention mechanism to predict tokens based on\nan order of magnitude more data than what is typically consumed during training. We typically train\nRetro from scratch, yet can also rapidly Retroﬁt pre-trained transformers with retrieval and still\nachieve good performance. Our work opens up new avenues for improving language models through\nexplicit memory at unprecedented scale.",
+      "kind": "text",
+      "sha256": "15563cf21f9afc474ee743d02637c8b74b1840c7cd8fe1c0c05104d3759df1af",
+      "start": 591,
+      "end": 1508,
+      "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4"
+    },
+    {
+      "chunk_id": "9a63c13689c09d5c104e",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 1,
+      "heading": "2112.04426-RETRO.pdf",
+      "text": "Language modelling (LM) is an unsupervised task that consists of modelling the probability of text,\nusually by factorising it into conditional next-token predictions 𝑝(𝑥1, . . . , 𝑥𝑛) = Î\n𝑖𝑝(𝑥𝑖|𝑥<𝑖). Neural\nnetworks have proven to be powerful language models, ﬁrst in the form of recurrent architectures\n(Graves, 2013; Jozefowicz et al., 2016; Mikolov et al., 2010) and more recently in the form of\nTransformers (Vaswani et al., 2017), that use attention to contextualise the past. Large performance\nimprovements have come from increasing the amount of data, training compute, or model parameters.\nTransformers have been scaled from 100 million parameter models in seminal work to over hundred\nbillion parameters (Brown et al., 2020; Radford et al., 2019) in the last two years which has led to\nmodels that do very well on a wide array of tasks in a zero or few-shot formulation. Increasing model\nsize predictably improves performance on a wide range of downstream tasks (Kaplan et al., 2020).\nThe beneﬁts of increasing the number of parameters come from two factors: additional computations\nat training and inference time, and increased memorization of the training data.",
+      "kind": "text",
+      "sha256": "9a63c13689c09d5c104e7fc0ef4185fc48b779e508dd6ef5ae6b8a53a2b4a9fd",
+      "start": 1568,
+      "end": 2740,
+      "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4"
+    },
+    {
+      "chunk_id": "dc0d90c9ba5d4372a133",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 1,
+      "heading": "ABSTRACT",
+      "text": "Despite their remarkable capabilities, large language models (LLMs) often produce\nresponses containing factual inaccuracies due to their sole reliance on the paramet-\nric knowledge they encapsulate. Retrieval-Augmented Generation (RAG), an ad\nhoc approach that augments LMs with retrieval of relevant knowledge, decreases\nsuch issues. However, indiscriminately retrieving and incorporating a fixed number\nof retrieved passages, regardless of whether retrieval is necessary, or passages are\nrelevant, diminishes LM versatility or can lead to unhelpful response generation.\nWe introduce a new framework called Self-Reflective Retrieval-Augmented Gen-\neration (SELF-RAG) that enhances an LM’s quality and factuality through retrieval\nand self-reflection. Our framework trains a single arbitrary LM that adaptively\nretrieves passages on-demand, and generates and reflects on retrieved passages\nand its own generations using special tokens, called reflection tokens. Generating\nreflection tokens makes the LM controllable during the inference phase, enabling it\nto tailor its behavior to diverse task requirements. Experiments show that SELF-\nRAG (7B and 13B parameters) significantly outperforms state-of-the-art LLMs\nand retrieval-augmented models on a diverse set of tasks. Specifically, SELF-RAG\noutperforms ChatGPT and retrieval-augmented Llama2-chat on Open-domain QA,\nreasoning and fact verification tasks, and it shows significant gains in improving\nfactuality and citation accuracy for long-form generations relative to these models.1",
+      "kind": "text",
+      "sha256": "dc0d90c9ba5d4372a1333b2faed0974689469c8a999406c5182e63d7b40fe0d7",
+      "start": 345,
+      "end": 1883,
+      "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+    },
+    {
+      "chunk_id": "1fa0596a2bb63bd8428d",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 1,
+      "heading": "ABSTRACT",
+      "text": "State-of-the-art LLMs continue to struggle with factual errors (Mallen et al., 2023; Min et al., 2023)\ndespite their increased model and data scale (Ouyang et al., 2022). Retrieval-Augmented Generation\n(RAG) methods (Figure 1 left; Lewis et al. 2020; Guu et al. 2020) augment the input of LLMs\nwith relevant retrieved passages, reducing factual errors in knowledge-intensive tasks (Ram et al.,\n2023; Asai et al., 2023a). However, these methods may hinder the versatility of LLMs or introduce\nunnecessary or off-topic passages that lead to low-quality generations (Shi et al., 2023) since they\nretrieve passages indiscriminately regardless of whether the factual grounding is helpful. Moreover,\nthe output is not guaranteed to be consistent with retrieved relevant passages (Gao et al., 2023) since\nthe models are not explicitly trained to leverage and follow facts from provided passages. This\nwork introduces Self-Reflective Retrieval-augmented Generation (SELF-RAG) to improve an\nLLM’s generation quality, including its factual accuracy without hurting its versatility, via on-demand\nretrieval and self-reflection. We train an arbitrary LM in an end-to-end manner to learn to reflect on\nits own generation process given a task input by generating both task output and intermittent special\ntokens (i.e., reflection tokens). Reflection tokens are categorized into retrieval and critique tokens to\nindicate the need for retrieval and its generation quality respectively (Figure 1 right). In particular,\ngiven an input prompt and preceding generations, SELF-RAG first determines if augmenting the\ncontinued generation with retrieved passages would be helpful. If so, it outputs a retrieval token that\ncalls a retriever model on demand (Step 1). Subsequently, SELF-RAG concurrently processes multiple",
+      "kind": "text",
+      "sha256": "1fa0596a2bb63bd8428d199613513438b28e91bd7acc905d556ff1f15447d718",
+      "start": 1901,
+      "end": 3699,
+      "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+    },
+    {
+      "chunk_id": "d3b6937e3725efffc4e6",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 2,
+      "heading": "Abstract",
+      "text": "Our dense passage retriever (DPR) uses a dense\nencoder EP (·) which maps any text passage to a d-\ndimensional real-valued vectors and builds an index\nfor all the M passages that we will use for retrieval.",
+      "kind": "text",
+      "sha256": "d3b6937e3725efffc4e6063438891279aab5fb96d3c97627759e9054bcabb4d1",
+      "start": 3941,
+      "end": 4145,
+      "document_sha256": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f"
+    },
+    {
+      "chunk_id": "f9cf3d0cf8ecaf526041",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 3,
+      "heading": "Abstract",
+      "text": "larity) than the irrelevant ones, by learning a better\nembedding function.\nLet D = {⟨qi, p+\ni , p−\ni,1, · · · , p−\ni,n⟩}m\ni=1 be the\ntraining data that consists of m instances. Each\ninstance contains one question qi and one relevant\n(positive) passage p+\ni , along with n irrelevant (neg-\native) passages p−\ni,j. We optimize the loss function\nas the negative log likelihood of the positive pas-\nsage:",
+      "kind": "text",
+      "sha256": "f9cf3d0cf8ecaf526041cc171049ebdf2228b82f5246d77fb827fd736898238e",
+      "start": 291,
+      "end": 691,
+      "document_sha256": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f"
+    },
+    {
+      "chunk_id": "df9fecb2e74db9e1cf29",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 8,
+      "heading": "Abstract",
+      "text": "To compare our pipeline training approach with\njoint learning, we run an ablation on Natural Ques-\ntions where the retriever and reader are jointly",
+      "kind": "text",
+      "sha256": "df9fecb2e74db9e1cf296cfcb7a95305180e0344d7e97633c6f4555a1cabc3f0",
+      "start": 3851,
+      "end": 3998,
+      "document_sha256": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f"
+    },
+    {
+      "chunk_id": "782b44a34956bd507335",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 4,
+      "heading": "Abstract",
+      "text": "5However, Wang et al. (2019) also propose splitting docu-\nments into overlapping passages, which we do not ﬁnd advan-\ntageous compared to the non-overlapping version.",
+      "kind": "text",
+      "sha256": "782b44a34956bd507335aec41abfa154e8cee08a04b13b4fe47926636a7f02df",
+      "start": 4273,
+      "end": 4439,
+      "document_sha256": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f"
+    },
+    {
+      "chunk_id": "bc6d82c820f91652af86",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 4,
+      "heading": "Abstract",
+      "text": "as well as various Web sources and is intended for\nopen-domain QA from unstructured corpora.\nSQuAD v1.1 (Rajpurkar et al., 2016) is a popu-\nlar benchmark dataset for reading comprehension.\nAnnotators were presented with a Wikipedia para-\ngraph, and asked to write questions that could be\nanswered from the given text. Although SQuAD\nhas been used previously for open-domain QA re-\nsearch, it is not ideal because many questions lack\ncontext in absence of the provided paragraph. We\nstill include it in our experiments for providing\na fair comparison to previous work and we will\ndiscuss more in Section 5.1.",
+      "kind": "text",
+      "sha256": "bc6d82c820f91652af8693f7cac30402ea0c9462c1d0ff592a009da2d2df5e6c",
+      "start": 866,
+      "end": 1473,
+      "document_sha256": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f"
+    },
+    {
+      "chunk_id": "c338b4ba8f59e58d4ada",
+      "filename": "2004.04906-DPR.pdf",
+      "page": 8,
+      "heading": "Abstract",
+      "text": "trained, following Lee et al. (2019). This approach\nobtains a score of 39.8 EM, which suggests that our\nstrategy of training a strong retriever and reader in\nisolation can leverage effectively available supervi-\nsion, while outperforming a comparable joint train-\ning approach with a simpler design (Appendix D).\nOne thing worth noticing is that our reader does\nconsider more passages compared to ORQA, al-\nthough it is not completely clear how much more\ntime it takes for inference. While DPR processes\nup to 100 passages for each question, the reader\nis able to ﬁt all of them into one batch on a sin-\ngle 32GB GPU, thus the latency remains almost\nidentical to the single passage case (around 20ms).\nThe exact impact on throughput is harder to mea-\nsure: ORQA uses 2-3x longer passages compared\nto DPR (288 word pieces compared to our 100\ntokens) and the computational complexity is super-\nlinear in passage length. We also note that we\nfound k = 50 to be optimal for NQ, and k = 10\nleads to only marginal loss in exact match accu-\nracy (40.8 vs. 41.5 EM on NQ), which should be\nroughly comparable to ORQA’s 5-passage setup.",
+      "kind": "text",
+      "sha256": "c338b4ba8f59e58d4ada54ec1bb4fed8f8d87f57c540795d5bcfa112b3ae1702",
+      "start": 2415,
+      "end": 3541,
+      "document_sha256": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f"
+    },
+    {
+      "chunk_id": "680d89abb1558d182bd0",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 3,
+      "heading": "Abstract",
+      "text": "To train the retriever and generator end-to-end, we treat the retrieved document as a latent variable.\nWe propose two models that marginalize over the latent documents in different ways to produce a\ndistribution over generated text. In one approach, RAG-Sequence, the model uses the same document\nto predict each target token. The second approach, RAG-Token, can predict each target token based\non a different document. In the following, we formally introduce both models and then describe the\npη and pθ components, as well as the training and decoding procedure.",
+      "kind": "text",
+      "sha256": "680d89abb1558d182bd04f3df13fe3089ab1fc702ce671167243e8166a1d3284",
+      "start": 140,
+      "end": 703,
+      "document_sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233"
+    },
+    {
+      "chunk_id": "91dcf7c3b6a4ba7176d7",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 5,
+      "heading": "Abstract",
+      "text": "To evaluate RAG’s generation abilities in a non-QA setting, we study open-domain question gen-\neration. Rather than use questions from standard open-domain QA tasks, which typically consist\nof short, simple questions, we propose the more demanding task of generating Jeopardy questions.\nJeopardy is an unusual format that consists of trying to guess an entity from a fact about that entity.\nFor example, “The World Cup” is the answer to the question “In 1986 Mexico scored as the ﬁrst\ncountry to host this international sports competition twice.” As Jeopardy questions are precise,\nfactual statements, generating Jeopardy questions conditioned on their answer entities constitutes a\nchallenging knowledge-intensive generation task.",
+      "kind": "text",
+      "sha256": "91dcf7c3b6a4ba7176d7160cf07196a2d1bd74594f5b53b70d416786a61fe902",
+      "start": 477,
+      "end": 1208,
+      "document_sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233"
+    },
+    {
+      "chunk_id": "35e7e29c4788f745a7ed",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 9,
+      "heading": "Abstract",
+      "text": "Learned Retrieval\nThere is signiﬁcant work on learning to retrieve documents in information\nretrieval, more recently with pre-trained, neural language models [44, 26] similar to ours. Some\nwork optimizes the retrieval module to aid in a speciﬁc, downstream task such as question answering,\nusing search [46], reinforcement learning [6, 63, 62], or a latent variable approach [31, 20] as in our\nwork. These successes leverage different retrieval-based architectures and optimization techniques to\nachieve strong performance on a single task, while we show that a single retrieval-based architecture\ncan be ﬁne-tuned for strong performance on a variety of tasks.",
+      "kind": "text",
+      "sha256": "35e7e29c4788f745a7ed0b05310f869246aa5019353fbf7a43b0f20a6a5a140c",
+      "start": 873,
+      "end": 1533,
+      "document_sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233"
+    },
+    {
+      "chunk_id": "71dea847c53dd25a4f2a",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 5,
+      "heading": "Abstract",
+      "text": "FEVER [56] requires classifying whether a natural language claim is supported or refuted by\nWikipedia, or whether there is not enough information to decide. The task requires retrieving\nevidence from Wikipedia relating to the claim and then reasoning over this evidence to classify\nwhether the claim is true, false, or unveriﬁable from Wikipedia alone. FEVER is a retrieval problem\ncoupled with an challenging entailment reasoning task. It also provides an appropriate testbed for\nexploring the RAG models’ ability to handle classiﬁcation rather than generation. We map FEVER\nclass labels (supports, refutes, or not enough info) to single output tokens and directly train with\nclaim-class pairs. Crucially, unlike most other approaches to FEVER, we do not use supervision on\nretrieved evidence. In many real-world applications, retrieval supervision signals aren’t available, and\nmodels that do not require such supervision will be applicable to a wider range of tasks. We explore\ntwo variants: the standard 3-way classiﬁcation task (supports/refutes/not enough info) and the 2-way\n(supports/refutes) task studied in Thorne and Vlachos [57]. In both cases we report label accuracy.",
+      "kind": "text",
+      "sha256": "71dea847c53dd25a4f2ab01c134289f478d72d9a00f9b02a4b04bf105a92e97e",
+      "start": 2176,
+      "end": 3357,
+      "document_sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233"
+    },
+    {
+      "chunk_id": "f1e8b7a2f528cfad5360",
+      "filename": "2005.11401-RAG.pdf",
+      "page": 18,
+      "heading": "Appendices for Retrieval-Augmented Generation for",
+      "text": "TriviaQA Evaluation setups\nThe open-domain QA community customarily uses public develop-\nment datasets as test datasets, as test data for QA datasets is often restricted and dedicated to reading\ncompehension purposes. We report our results using the datasets splits used in DPR [26], which are\nconsistent with common practice in Open-domain QA. For TriviaQA, this test dataset is the public\nTriviaQA Web Development split. Roberts et al. [52] used the TriviaQA ofﬁcial Wikipedia test set\ninstead. Févry et al. [14] follow this convention in order to compare with Roberts et al. [52] (See\nappendix of [14]). We report results on both test sets to enable fair comparison to both approaches.\nWe ﬁnd that our performance is much higher using the ofﬁcial Wiki test set, rather than the more\nconventional open-domain test set, which we attribute to the ofﬁcial Wiki test set questions being\nsimpler to answer from Wikipedia.",
+      "kind": "text",
+      "sha256": "f1e8b7a2f528cfad5360f68e8f5bcc83c69894bd1fcdb1070dbe6b18f90e69c5",
+      "start": 1364,
+      "end": 2282,
+      "document_sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233"
+    },
+    {
+      "chunk_id": "5abd537beef634a1552a",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 3,
+      "heading": "Abstract",
+      "text": "tion over the concatenation of the resulting repre-\nsentations of all the retrieved passages. The model\nthus performs evidence fusion in the decoder only,\nand we refer to it as Fusion-in-Decoder.\nBy processing passages independently in the en-\ncoder, but jointly in the decoder, this method dif-\nfers from Min et al. (2020) and Lewis et al. (2020).\nProcessing passages independently in the encoder\nallows to scale to large number of contexts, as it\nonly performs self attention over one context at a\ntime. This means that the computation time of the\nmodel grows linearly with the number of passages,\ninstead of quadratically. On the other hand, pro-\ncessing passages jointly in the decoder allows to\nbetter aggregate evidence from multiple passages.",
+      "kind": "text",
+      "sha256": "5abd537beef634a1552a514f45eb3df6aa235174ea1ff68d607632d82862c187",
+      "start": 1577,
+      "end": 2326,
+      "document_sha256": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953"
+    },
+    {
+      "chunk_id": "964d1aaf2961c5d2be46",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 2,
+      "heading": "Abstract",
+      "text": "representations.\nThen, a sequence-to-sequence\nmodel generates the answer, taking as input the re-\ntrieved passages in addition to the question. While\nconceptually simple, this method sets new state-of-\nthe-art results on the TriviaQA and NaturalQues-\ntions benchmarks. In particular, we show that the\nperformance of our method signiﬁcantly improves\nwhen the number of retrieved passages increases.\nWe believe that this is evidence that generative mod-\nels are good at combining evidence from multiple\npassages, compared to extractive ones.",
+      "kind": "text",
+      "sha256": "964d1aaf2961c5d2be462c265d81d29d73063087540308dd6b3a3d87400cc110",
+      "start": 181,
+      "end": 720,
+      "document_sha256": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953"
+    },
+    {
+      "chunk_id": "9a0c9c16374a4d2c489f",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 4,
+      "heading": "5   ",
+      "text": "Comparison to state-of-the-art.\nIn table 1, we\ncompare the results obtained by Fusion-in-Decoder\nwith existing approaches for open domain ques-\ntion answering. We observe that while conceptu-\nally simple, this method outperforms existing work\non the NaturalQuestion and TriviaQA benchmarks.\nIn particular, generative models seem to perform\nwell when evidence from multiple passages need to\nbe aggregated, compared to extractive approaches.\nOur method also performs better than other genera-\ntive models, showing that scaling to large number\nof passages and processing them jointly leads to\nimprovement in accuracy. Second, we observe that\nusing additional knowledge in generative models\nby using retrieval lead to important performance\ngains. On NaturalQuestions, the closed book T5\nmodel obtains 36.6% accuracy with 11B parame-\nters, while our approach obtains 44.1% with 770M\nparameters plus Wikipedia with BM25 retrieval.\nBoth methods use roughly the same amount of\nmemory to store information, indicating that text\nbased explicit memories are competitive for knowl-\nedge retrieval tasks.",
+      "kind": "text",
+      "sha256": "9a0c9c16374a4d2c489f5b82a0717a453e0842cdab2ba479a07851988d7e2b30",
+      "start": 1618,
+      "end": 2709,
+      "document_sha256": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953"
+    },
+    {
+      "chunk_id": "d397ca25e16b6c8b0e76",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 2,
+      "heading": "Abstract",
+      "text": "In this section, we describe our approach to open\ndomain question answering. It proceeds in two\nsteps, ﬁrst retrieving support passages before pro-\ncessing them with a sequence to sequence model.",
+      "kind": "text",
+      "sha256": "d397ca25e16b6c8b0e76d4755ccaf2cba477fe8935ca4c8528b2c2595a1ab8fb",
+      "start": 3924,
+      "end": 4119,
+      "document_sha256": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953"
+    },
+    {
+      "chunk_id": "f20f1e111cab3eb1189c",
+      "filename": "2007.01282-FiD.pdf",
+      "page": 3,
+      "heading": "Abstract",
+      "text": "• NaturalQuestions (Kwiatkowski et al., 2019)\ncontains questions corresponding to Google\nsearch queries. The open-domain version of\nthis dataset is obtained by discarding answers\nwith more than 5 tokens.",
+      "kind": "text",
+      "sha256": "f20f1e111cab3eb1189c7f70c735c03178fba2d9edaf468b395273d0cadae1eb",
+      "start": 3113,
+      "end": 3316,
+      "document_sha256": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953"
+    },
+    {
+      "chunk_id": "0dc69faaaaef76243e87",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 2,
+      "heading": "200 400 800 1600",
+      "text": "• We introduce Retro, a retrieval-enhanced autoregressive language model (§2.2). We use a\nchunked cross-attention module to incorporate the retrieved text (§2.4), with time complexity\nlinear in the amount of retrieved data. We show that retrieving based on a pre-trained frozen\nBert model (§2.3) works at scale, removing the need for training and updating a retriever\nnetwork.",
+      "kind": "text",
+      "sha256": "0dc69faaaaef76243e87a1371684dd20196d4a2b4b36767ef25c1faed118aeed",
+      "start": 908,
+      "end": 1284,
+      "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4"
+    },
+    {
+      "chunk_id": "9159a86f91847b3816d6",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 2,
+      "heading": "200 400 800 1600",
+      "text": "• We propose an evaluation aware of proximity of test documents with the training set (§2.6),\naddressing the problem of test set leakage (Lee et al., 2021). This is relevant for all language\nmodels, and especially for retrieval-enhanced models since they have direct access to the training\ndataset during evaluation. Using this methodology, we show that the performance of Retro\ncomes from both explicit neighbour copying and general knowledge extraction (§4.4).",
+      "kind": "text",
+      "sha256": "9159a86f91847b3816d614699766ed1096a542c0037c113bb837d71ca7c50655",
+      "start": 1870,
+      "end": 2332,
+      "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4"
+    },
+    {
+      "chunk_id": "102925d3f3a5e43875b3",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 2,
+      "heading": "200 400 800 1600",
+      "text": "We design our retrieval-enhanced architecture to be capable of retrieving from a database with trillions\nof tokens. For this purpose, we retrieve at the level of contiguous token chunks instead of individual\ntokens which reduces storage and computation requirements by a large linear factor. Our method ﬁrst\nconstructs a key-value database, where values store raw chunks of text tokens and keys are frozen\nBert embedddings (Devlin et al., 2019). We use a frozen model to avoid having to periodically\nre-compute embeddings over the entire database during training. Each training sequence is then split\ninto chunks, which are augmented with their 𝑘-nearest neighbour retrieved from the database. An\nencoder-decoder architecture integrates retrieval chunks into the model’s predictions. We summarize\nthe Retro architecture in Fig. 2, and detail it in this section. We end the section by introducing",
+      "kind": "text",
+      "sha256": "102925d3f3a5e43875b31a194b6d44a72f69def243f51fc86c5bfb9846b47235",
+      "start": 2345,
+      "end": 3240,
+      "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4"
+    },
+    {
+      "chunk_id": "ce0d770e4112e44f0feb",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 16,
+      "heading": "200 400 800 1600",
+      "text": "Overall, our work demonstrates at an unprecedented scale that semi-parametric approaches can\nprovide an orthogonal, more eﬃcient approach than raw parameter scaling as we seek to build more\npowerful language models.",
+      "kind": "text",
+      "sha256": "ce0d770e4112e44f0feb1097042031d5fae8843136dcb3cc264a31e39ae5f1ff",
+      "start": 945,
+      "end": 1160,
+      "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4"
+    },
+    {
+      "chunk_id": "19549354c0a89883e36d",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 15,
+      "heading": "200 400 800 1600",
+      "text": "On the other hand, Retro outperforms baseline models at all leakage levels, down to 𝛼= 12.5%.\nAt this level, the loss is computed on chunks with less than 8 contiguous tokens shared with the\nclosest matching chunk in the training dataset—this is a reasonable level of overlap at which we\nconsider that there is no local leakage. Retrieval thus improves predictions on both chunks that are\nsyntactically similar to chunks in the training set, and on chunks that are syntactically diﬀerent from\nall training chunks. This points toward a non trivial Retro capacity of generalizing based on both\nmodel parameters and retrieval database. Similar results are found on the Pile dataset (see Fig. 12,\n§F.3).",
+      "kind": "text",
+      "sha256": "19549354c0a89883e36daa471fede3743ef11082dbb451950b04c040fcbfea8f",
+      "start": 831,
+      "end": 1530,
+      "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4"
+    },
+    {
+      "chunk_id": "065ec77610a3a952cdef",
+      "filename": "2112.04426-RETRO.pdf",
+      "page": 7,
+      "heading": "200 400 800 1600",
+      "text": "Sampling.\nWhen sampling, at the end of a chunk 𝐶𝑢, we use SCaNN to retrieve neighbours Ret(𝐶𝑢),\nbased on the embedding Bert(𝐶𝑢). The encoded neighbours 𝐸𝑢= Encoder(Ret(𝐶𝑢)) are then\nused to condition the generation of the next chunk 𝐶𝑢+1, which we do incrementally: overall the\ncost of sampling is thus quadratic in the size of the sampled sequence, as when sampling from\nregular Transformers; the added cost of retrieval is linear in the number of chunks 𝑙, and is negligible\ncompared to the token sampling cost in practice.",
+      "kind": "text",
+      "sha256": "065ec77610a3a952cdef7bf5804740b4c6cc7fe0553e8f98a347f1eeaf9e3efb",
+      "start": 1,
+      "end": 526,
+      "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4"
+    },
+    {
+      "chunk_id": "c81b6e598e78f5a6f73a",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 2,
+      "heading": "11 of 50 state names",
+      "text": "SELF-RAG trains an arbitrary LM to generate text with reflection tokens by unifying them as the\nnext token prediction from the expanded model vocabulary. We train our generator LM on a diverse\ncollection of text interleaved with reflection tokens and retrieved passages. Reflection tokens, inspired\nby reward models used in reinforcement learning (Ziegler et al., 2019; Ouyang et al., 2022), are\ninserted offline into the original corpus by a trained critic model. This eliminates the need to host a\ncritic model during training, reducing overhead. The critic model, in part, is supervised on a dataset\nof input, output, and corresponding reflection tokens collected by prompting a propriety LM (i.e.,\nGPT-4; OpenAI 2023). While we draw inspiration from studies that use control tokens to start and\nguide text generation (Lu et al., 2022; Keskar et al., 2019), our trained LM uses critique tokens to\nassess its own predictions after each generated segment as an integral part of the generation output.",
+      "kind": "text",
+      "sha256": "c81b6e598e78f5a6f73a0f1774b7877386c353041d88d4873c343f9a5107a776",
+      "start": 2204,
+      "end": 3205,
+      "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+    },
+    {
+      "chunk_id": "9c5178754de2d5f17725",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 3,
+      "heading": "11 of 50 state names",
+      "text": "Training and generating with critics. Training LLMs with reinforcement learning (e.g., Proximal\nPolicy Optimization or PPO; Schulman et al. 2017) from human feedback (RLHF) has proven\neffective in aligning LLMs with human preferences (Ouyang et al., 2022). Wu et al. (2023) introduce\nfine-grained RLHF with multiple reward models. Though our work also studies fine-grained critique\non retrieval and generation, we train our target LM on task examples augmented with reflection\ntokens from a critic model offline, with a far lower training cost compared to RLHF. In addition,\nreflection tokens in SELF-RAG enable controllable generation at inference, while RLHF focuses on\nhuman preference alignment during training. Other works use general control tokens to guide LM\ngeneration (Lu et al., 2022; Korbak et al., 2023), while SELF-RAG uses reflection tokens to decide the\nneed for retrieval and to self-evaluate generation quality. Xie et al. (2023) propose a self-evaluation-\nguided decoding framework, but they focus only on reasoning tasks with one evaluation dimension\n(reasoning path consistency) and without retrieval. Recent work on LLM refinement (Dhuliawala\net al., 2023; Madaan et al., 2023; Paul et al., 2023) prompts a model to generate task output, natural\nlanguage feedback and refined task output iteratively, but at the cost of inference efficiency.",
+      "kind": "text",
+      "sha256": "9c5178754de2d5f177251292cc4ee30eee91ac32f7d2c928ab84bd502e8f8632",
+      "start": 2239,
+      "end": 3602,
+      "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+    },
+    {
+      "chunk_id": "4051243e5ce61debd7f2",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 8,
+      "heading": "11 of 50 states’ names come from person. ",
+      "text": "Comparison against baselines without retrieval.\nTable 2 (top) presents the baselines without\nretrieval. Our SELF-RAG (bottom two rows) demonstrates a substantial performance advantage\nover supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA,\nbiography generations, and ASQA (Rouge and MAUVE). Our approach also significantly outperforms\na concurrent method that employs sophisticated prompt engineering; specifically, on the bio generation\ntask, our 7B and 13B models outperform the concurrent CoVE (Dhuliawala et al., 2023), which\niteratively prompts Llama265B to refine output.",
+      "kind": "text",
+      "sha256": "4051243e5ce61debd7f26bc32c81d2604dfecab8a2ef8234e00381cf6c831f9d",
+      "start": 1863,
+      "end": 2479,
+      "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+    },
+    {
+      "chunk_id": "27505fb66f37e8cdb362",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 3,
+      "heading": "11 of 50 state names",
+      "text": "of retrieved passages prepended to input, or pre-train a retriever and LM jointly, followed by few-\nshot fine-tuning on task datasets (Izacard et al., 2022b).\nWhile prior work often retrieves only\nonce at the beginning, Jiang et al. (2023) propose to adaptively retrieve passages for generation\non top of a proprietary LLM or Schick et al. (2023) train an LM to generate API calls for named\nentities. Yet, the improved task performance of such approaches often comes at the expense of\nruntime efficiency (Mallen et al., 2023), robustness to irrelevant context (Shi et al., 2023), and lack of\nattributions (Liu et al., 2023a; Gao et al., 2023). We introduce a method to train an arbitrary LM to\nlearn to use retrieval on-demand for diverse instruction-following queries and introduce controlled\ngeneration guided by reflections tokens to further improve generation quality and attributions.",
+      "kind": "text",
+      "sha256": "27505fb66f37e8cdb362c06f2b104ac8860987cb25cb5a91b46bc240140b66e5",
+      "start": 1,
+      "end": 890,
+      "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+    },
+    {
+      "chunk_id": "26e559f456346b685b1f",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 16,
+      "heading": "APPENDIX",
+      "text": "C.2\nHuman Evaluation Examples . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\n21",
+      "kind": "text",
+      "sha256": "26e559f456346b685b1f81965aba643cf13c70752b3bc7b96bb2fcfb1f277b89",
+      "start": 643,
+      "end": 733,
+      "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+    }
+  ],
+  "audit": {
+    "ok": true,
+    "issues": [],
+    "history": [
+      {
+        "attempt": 1,
+        "stage": "validation",
+        "issues": [
+          "numeric claim has no page citation"
+        ]
+      },
+      {
+        "attempt": 2,
+        "stage": "audit",
+        "audit": {
+          "ok": true,
+          "issues": []
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "papers": {
+      "2004.04906-DPR.pdf": {
+        "method": [
+          "ev-1",
+          "ev-2"
+        ],
+        "metric": [
+          "ev-3"
+        ],
+        "result": [
+          "ev-4",
+          "ev-5"
+        ],
+        "unspecified": [
+          "ev-6"
+        ]
+      },
+      "2005.11401-RAG.pdf": {
+        "method": [
+          "ev-7",
+          "ev-8"
+        ],
+        "unspecified": [
+          "ev-9",
+          "ev-10"
+        ],
+        "result": [
+          "ev-11",
+          "ev-12"
+        ]
+      },
+      "2007.01282-FiD.pdf": {
+        "method": [
+          "ev-13",
+          "ev-14"
+        ],
+        "data": [
+          "ev-16"
+        ],
+        "unspecified": [
+          "ev-17",
+          "ev-15",
+          "ev-18"
+        ]
+      },
+      "2112.04426-RETRO.pdf": {
+        "unspecified": [
+          "ev-19",
+          "ev-24"
+        ],
+        "result": [
+          "ev-23"
+        ],
+        "method": [
+          "ev-21",
+          "ev-22",
+          "ev-20"
+        ]
+      },
+      "2310.11511-Self-RAG.pdf": {
+        "method": [
+          "ev-25",
+          "ev-26",
+          "ev-27"
+        ],
+        "data": [
+          "ev-28"
+        ],
+        "result": [
+          "ev-29"
+        ],
+        "unspecified": [
+          "ev-30"
+        ]
+      }
+    },
+    "gaps": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "facet": "limitation"
+      }
+    ],
+    "scope": "gaps mean missing verified evidence, not that the paper omitted the topic",
+    "targeted_queries": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "query": "DPR reader retriever evidence fusion generation stage"
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "query": "DPR computational cost inference throughput compared ORQA"
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "query": "RAG-Sequence RAG-Token marginalization likelihood equations"
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "query": "RAG open-domain QA TriviaQA exact match baseline comparison"
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "query": "Fusion-in-Decoder encoder passage processing self-attention computation"
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "query": "Fusion-in-Decoder open domain question answering evaluation TriviaQA NaturalQuestions"
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "query": "Retro open-domain question answering evaluation results"
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "query": "Retro compute cost compared to GPT-3 parameter scaling"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "query": "SELF-RAG reflection token types retrieval and critique definitions"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "query": "SELF-RAG inference time retrieval frequency computational cost"
+      }
+    ]
+  },
+  "evidence_audit": {
+    "decisions": [
+      {
+        "evidence_id": "ev-1",
+        "verdict": "supported",
+        "reason": "原文明确支持"
+      },
+      {
+        "evidence_id": "ev-3",
+        "verdict": "supported",
+        "reason": "数值与比较对象一致"
+      },
+      {
+        "evidence_id": "ev-4",
+        "verdict": "supported",
+        "reason": "原文直接表述"
+      },
+      {
+        "evidence_id": "ev-5",
+        "verdict": "supported",
+        "reason": "39.8EM及比较吻合"
+      },
+      {
+        "evidence_id": "ev-2",
+        "verdict": "supported",
+        "reason": "与原文措辞一致"
+      },
+      {
+        "evidence_id": "ev-6",
+        "verdict": "uncertain",
+        "reason": "语境对齐未确认"
+      },
+      {
+        "evidence_id": "ev-7",
+        "verdict": "supported",
+        "reason": "原文明确表述"
+      },
+      {
+        "evidence_id": "ev-9",
+        "verdict": "uncertain",
+        "reason": "未摘到Jeopardy表述"
+      },
+      {
+        "evidence_id": "ev-11",
+        "verdict": "supported",
+        "reason": "原文直接表述"
+      },
+      {
+        "evidence_id": "ev-8",
+        "verdict": "supported",
+        "reason": "两模型表述一致"
+      },
+      {
+        "evidence_id": "ev-10",
+        "verdict": "uncertain",
+        "reason": "仅支持无监督部分"
+      },
+      {
+        "evidence_id": "ev-12",
+        "verdict": "supported",
+        "reason": "两测试集与结论一致"
+      },
+      {
+        "evidence_id": "ev-13",
+        "verdict": "supported",
+        "reason": "两步流程原文支持"
+      },
+      {
+        "evidence_id": "ev-16",
+        "verdict": "supported",
+        "reason": "丢弃超5token一致"
+      },
+      {
+        "evidence_id": "ev-17",
+        "verdict": "uncertain",
+        "reason": "文本截断，Wiki缺失"
+      },
+      {
+        "evidence_id": "ev-14",
+        "verdict": "supported",
+        "reason": "解码器融合一致"
+      },
+      {
+        "evidence_id": "ev-15",
+        "verdict": "uncertain",
+        "reason": "仅支持线性增长"
+      },
+      {
+        "evidence_id": "ev-18",
+        "verdict": "uncertain",
+        "reason": "未明确指段落数"
+      },
+      {
+        "evidence_id": "ev-19",
+        "verdict": "uncertain",
+        "reason": "拼写Bert但或可"
+      },
+      {
+        "evidence_id": "ev-23",
+        "verdict": "supported",
+        "reason": "数值比较一致"
+      },
+      {
+        "evidence_id": "ev-21",
+        "verdict": "supported",
+        "reason": "原文直接表述"
+      },
+      {
+        "evidence_id": "ev-22",
+        "verdict": "supported",
+        "reason": "分块与线性降低一致"
+      },
+      {
+        "evidence_id": "ev-20",
+        "verdict": "supported",
+        "reason": "线性复杂度一致"
+      },
+      {
+        "evidence_id": "ev-24",
+        "verdict": "unsupported",
+        "reason": "原文为down to即至12.5%"
+      },
+      {
+        "evidence_id": "ev-25",
+        "verdict": "supported",
+        "reason": "按需检索反思一致"
+      },
+      {
+        "evidence_id": "ev-28",
+        "verdict": "supported",
+        "reason": "GPT-4收集数据一致"
+      },
+      {
+        "evidence_id": "ev-29",
+        "verdict": "supported",
+        "reason": "离线训练成本更低一致"
+      },
+      {
+        "evidence_id": "ev-30",
+        "verdict": "uncertain",
+        "reason": "全部任务表述需核"
+      },
+      {
+        "evidence_id": "ev-26",
+        "verdict": "supported",
+        "reason": "反思标记统一一致"
+      },
+      {
+        "evidence_id": "ev-27",
+        "verdict": "supported",
+        "reason": "离线插入与降开销一致"
+      }
+    ],
+    "error": null,
+    "supported": 21,
+    "verbatim_only": 9
+  },
+  "report_trace": [
+    {
+      "attempt": 1,
+      "raw_markdown": "## 研究问题与比较框架\n\n本综述围绕五个问题组织：检索发生在生成流程的哪一位置；生成阶段以何种方式融合检索证据；开放域问答及其他生成任务的评测设置是否可比；参数规模与计算代价如何随检索量变化；以及各方法可核验的适用边界与局限。需要先说明，五篇工作分属不同年份、不同评测体系和不同模型规模，把它们放在同一张“性能排行榜”上并不成立。以下先陈述各方法可核验的结论，再给出受证据约束的跨论文推断。\n\n## 检索位置：前置检索、联合训练与自适应检索\n\nDPR把检索完全前置：用稠密编码器把任意文本段落映射为d维实值向量，并为全部M个段落建立索引[E:ev-1]，检索器通过双编码器框架从小规模问题—段落对中学习嵌入，可在仅用稠密表示的情况下实际完成检索[E:ev-2]。这一设计使开放域问答的检索阶段与阅读阶段可以分别训练。\n\nRAG将检索到的文档视为潜在变量，使检索器与生成器可以端到端训练[E:ev-7]，检索不再是冻结的外部步骤，而是与生成目标耦合。FiD则维持两步流程：先检索支持性段落，再由序列到序列模型处理这些段落[E:ev-13]，其创新集中在生成端如何吸收多段证据，而非检索器训练。Retro采用冻结的BERT检索器、可微编码器和分块交叉注意力共同预测词元[E:ev-19]，并明确论证基于预训练冻结BERT的检索在大规模下可行，无需训练和更新检索网络[E:ev-21]。SELF-RAG让单一任意语言模型按需自适应检索段落，并对检索段落及自身生成进行反思[E:ev-25]，检索从固定前置步骤变为由模型决策触发的行为。\n\n据此可作受限推断：五者构成“固定前置检索（DPR、FiD）—可训练潜在检索（RAG）—冻结大规模检索（Retro）—按需触发检索（SELF-RAG）”的谱系；但这一排序是分析性归纳，并非任何单篇论文给出的实验结论。\n\n## 生成阶段的证据融合方式\n\nRAG内部存在两个必须区分的变体：RAG-Sequence对每个目标词使用同一文档，RAG-Token可对每个目标词使用不同文档[E:ev-8]，二者差异在于边缘化粒度，而非训练目标。FiD仅在解码器中进行证据融合，因此得名Fusion-in-Decoder[E:ev-14]；其编码器逐段独立编码，解码器跨段注意，这解释了其计算随段落数线性而非二次增长[E:ev-15]。Retro以连续词元块而非单个词元为单位进行检索，可大幅线性降低存储与计算需求[E:ev-22]，并以分块交叉注意力引入检索文本，时间复杂度随检索数据量线性增长[E:ev-20]。SELF-RAG把反思标记统一为扩展词表上的下一词预测[E:ev-26]，其critic模型在通过提示GPT-4收集的输入、输出及对应反思标记数据集上接受监督[E:ev-28]，反思标记由训练好的critic离线插入原始语料，训练时无需托管critic，从而降低开销[E:ev-27]。\n\n需要指出，RAG的两个变体、FiD的解码器侧融合、Retro的分块交叉注意力与SELF-RAG的反思词元，属于四种不同机制，不能仅凭“都融合了检索证据”就认为其计算或效果可以互换。\n\n## 开放域问答评测与结果条件\n\nDPR报告在广泛开放域问答数据集上，top-20段落检索准确率比强Lucene-BM25系统绝对提升9%至19%[E:ev-3]，并称其端到端系统在多个开放域问答基准上建立新的state-of-the-art[E:ev-4]。在Natural Questions上，分别训练强检索器和阅读器的流水线取得39.8 EM，优于可比的联合训练方法且设计更简单[E:ev-5]，这是有明确数据集与指标的条件性结论。\n\nRAG的评测不止问答：原文明确研究开放域问题生成以评估非问答设定下的生成能力[E:ev-9]，并在TriviaQA上同时报告官方Wiki测试集与常规开放域测试集结果，称官方Wiki测试集性能更高[E:ev-12]。这说明同一模型在不同测试划分上的数字不可直接并列。RAG还声称单一基于检索的架构可经微调在多种任务上取得强性能[E:ev-11]，但这是论文自述，跨任务可比性仍受各任务度量差异限制。\n\nFiD的开放域NaturalQuestions通过丢弃超过5个词元的答案得到[E:ev-16]，这一数据构造会改变可回答样本的分布，与其他工作在原始NQ上的结果不能直接相减比较。原文还报告闭卷T5以11B参数取得36.6%准确率，而该方法以770M参数加维基百科取得44.1%[E:ev-17]；这是一个保留参数与外部资源条件的对照。FiD还称检索段落数增加时性能显著提升[E:ev-18]，但该结论只在其测试的段落数范围内成立。\n\nRetro在2万亿词元数据库下于Pile上与GPT-3和Jurassic-1性能相当，而参数少25倍[E:ev-23]；其泄漏水平实验显示在所有泄漏水平直至α=12.5%均优于基线[E:ev-24]。这些数字依赖特定语料规模与评测协议。SELF-RAG自称在全部任务上显著优于监督微调的大模型，并在PubHealth、PopQA、传记生成和ASQA（Rouge与MAUVE）上超过ChatGPT[E:ev-30]，但该摘录未给出全部任务的具体数值，不能据此推算差距幅度。\n\n## 参数、计算代价与效率约束\n\n可核验的代价证据集中在三处。第一，DPR处理最多100个段落时，阅读器可在单张32GB GPU上把全部段落放入一个批次，延迟与单段落情形几乎相同，约20ms[E:ev-6]；该数字绑定于所述硬件与批处理条件。第二，FiD的计算时间随段落数线性增长而非二次增长[E:ev-15]，Retro的分块交叉注意力同样随检索数据量线性增长[E:ev-20]，二者均以线性复杂度缓解多段证据的代价，但线性系数与常数项未在授权证据中给出。第三，SELF-RAG强调与RLHF相比，其在离线用反思标记增强的任务示例上训练目标模型，训练成本远低[E:ev-29]；这是相对成本陈述，缺少绝对数值。\n\n因此，“哪个方法更省算力”在现有证据下无法给出统一答案：DPR的20ms是推理延迟，FiD与Retro的线性是复杂度阶数，SELF-RAG的低成本是相对RLHF的训练开销，三者度量对象不同。\n\n## 共识、分歧与证据不足\n\n可归纳的共识是：多段检索证据对生成有益，且几种方法都通过结构设计把融合代价控制在随段落数线性增长的范围内[E:ev-15,ev-20]；同时，冻结或离线构建的检索组件可在大规模下使用[E:ev-21,ev-27]。分歧在于检索是否应被训练、是否应由模型按需触发：RAG选择端到端训练潜在检索[E:ev-7]，Retro选择冻结检索器[E:ev-19,ev-21]，SELF-RAG选择自适应触发[E:ev-25]。这些选择对应不同的训练复杂度和监督信号，现有证据不足以判定何者普遍更优。\n\n证据不足之处需明示：五篇论文所用的问答数据集划分、答案过滤规则和评价脚本并不一致，尤其FiD的NQ过滤规则[E:ev-16]与RAG的TriviaQA双测试集设置[E:ev-12]表明同一基准名下的数字可能不可比；SELF-RAG的跨任务优势缺少逐项数值[E:ev-30]；DPR的9%至19%提升是检索准确率而非端到端答案质量[E:ev-3]；Retro的“参数少25倍”对照绑定于Pile与特定基线[E:ev-23]。此外，授权材料未覆盖各方法的失败案例分布、长尾问题表现与推理成本随语料规模扩展的实测曲线，这些缺口只能标注为待核实，不能推断相关论文未做此类分析。\n\n综上，若以检索位置与融合机制为轴，五篇工作呈现清晰的设计谱系；若以性能排名为轴，则因任务、数据构造、指标与计算条件不同而不具备直接横向比较的基础。",
+      "used_evidence_ids": [
+        "ev-1",
+        "ev-2",
+        "ev-3",
+        "ev-4",
+        "ev-5",
+        "ev-6",
+        "ev-7",
+        "ev-8",
+        "ev-9",
+        "ev-11",
+        "ev-12",
+        "ev-13",
+        "ev-14",
+        "ev-15",
+        "ev-16",
+        "ev-17",
+        "ev-18",
+        "ev-19",
+        "ev-20",
+        "ev-21",
+        "ev-22",
+        "ev-23",
+        "ev-24",
+        "ev-25",
+        "ev-26",
+        "ev-27",
+        "ev-28",
+        "ev-29",
+        "ev-30"
+      ],
+      "patches": []
+    },
+    {
+      "attempt": 2,
+      "raw_markdown": "## 逐篇可回查事实\n### 论文 1：2004.04906-DPR.pdf\n- DPR使用稠密编码器EP(·)将任意文本段落映射为d维实值向量，并为所有M个段落建立索引用于检索。 [1, p.2]\n- 检索器通过简单双编码器框架从小规模问题和段落中学习嵌入，可仅用稠密表示实际实现检索。 [1, p.1]\n- 在Natural Questions上，分别训练强检索器和阅读器的流水线方法取得39.8 EM，优于可比的联合训练方法且设计更简单。 [1, p.8]\n### 论文 2：2005.11401-RAG.pdf\n- RAG将检索到的文档视为潜在变量，以便端到端训练检索器与生成器。 [2, p.3]\n- 论文提出两种边缘化方式不同的模型：RAG-Sequence对每个目标词使用同一文档，RAG-Token可对每个目标词使用不同文档。 [2, p.3]\n- TriviaQA上论文同时报告官方Wiki测试集与常规开放域测试集的结果，并称官方Wiki测试集性能更高。 [2, p.18]\n### 论文 3：2007.01282-FiD.pdf\n- 该方法采用两步流程：先检索支持性段落，再用序列到序列模型处理这些段落。 [3, p.2]\n- 该模型仅在解码器中进行证据融合，因此被称为Fusion-in-Decoder。 [3, p.3]\n- 开放域版本的NaturalQuestions数据集通过丢弃超过5个token的答案得到。 [3, p.3]\n### 论文 4：2112.04426-RETRO.pdf\n- 基于预训练冻结BERT的检索在大规模下可行，无需训练和更新检索网络。 [4, p.2]\n- 检索以连续token块而非单个token为单位，可大幅线性降低存储与计算需求。 [4, p.2]\n- 分块交叉注意力模块引入检索文本，其时间复杂度随检索数据量线性增长。 [4, p.2]\n- 在2万亿token数据库下，Retro在Pile上与GPT-3和Jurassic-1性能相当，但参数少25倍。 [4, p.1]\n### 论文 5：2310.11511-Self-RAG.pdf\n- SELF-RAG训练一个单一任意LM按需自适应检索段落，并对检索段落及自身生成进行反思。 [5, p.1]\n- SELF-RAG将反思标记统一为扩展模型词表上的下一词预测，从而训练LM生成带反思标记的文本。 [5, p.2]\n- 反思标记由训练好的critic模型离线插入原始语料，因此训练时无需托管critic模型，降低开销。 [5, p.2]\n- 与RLHF相比，SELF-RAG在离线用反思标记增强的任务示例上训练目标LM，训练成本远低。 [5, p.3]\n\n## 研究问题与比较框架\n\n本综述围绕五个问题组织：检索发生在生成流程的哪一位置；生成阶段以何种方式融合检索证据；开放域问答及其他生成任务的评测设置是否可比；参数规模与计算代价如何随检索量变化；以及各方法可核验的适用边界与局限。需要先说明，五篇工作分属不同年份、不同评测体系和不同模型规模，把它们放在同一张“性能排行榜”上并不成立。以下先陈述各方法可核验的结论，再给出受证据约束的跨论文推断。\n\n## 检索位置：前置检索、联合训练与自适应检索\n\nDPR把检索完全前置：用稠密编码器把任意文本段落映射为d维实值向量，并为全部M个段落建立索引[1, p.2]，检索器通过双编码器框架从小规模问题—段落对中学习嵌入，可在仅用稠密表示的情况下实际完成检索[1, p.1]。这一设计使开放域问答的检索阶段与阅读阶段可以分别训练。\n\nRAG将检索到的文档视为潜在变量，使检索器与生成器可以端到端训练[2, p.3]，检索不再是冻结的外部步骤，而是与生成目标耦合。FiD则维持两步流程：先检索支持性段落，再由序列到序列模型处理这些段落[3, p.2]，其创新集中在生成端如何吸收多段证据，而非检索器训练。Retro采用冻结的BERT检索器、可微编码器和分块交叉注意力共同预测词元[4, p.1]，并明确论证基于预训练冻结BERT的检索在大规模下可行，无需训练和更新检索网络[4, p.2]。SELF-RAG让单一任意语言模型按需自适应检索段落，并对检索段落及自身生成进行反思[5, p.1]，检索从固定前置步骤变为由模型决策触发的行为。\n\n据此可作受限推断：五者构成“固定前置检索（DPR、FiD）—可训练潜在检索（RAG）—冻结大规模检索（Retro）—按需触发检索（SELF-RAG）”的谱系；但这一排序是分析性归纳，并非任何单篇论文给出的实验结论。\n\n## 生成阶段的证据融合方式\n\nRAG内部存在两个必须区分的变体：RAG-Sequence对每个目标词使用同一文档，RAG-Token可对每个目标词使用不同文档[2, p.3]，二者差异在于边缘化粒度，而非训练目标。FiD仅在解码器中进行证据融合，因此得名Fusion-in-Decoder[3, p.3]；其编码器逐段独立编码，解码器跨段注意，这解释了其计算随段落数线性而非二次增长[3, p.3]。Retro以连续词元块而非单个词元为单位进行检索，可大幅线性降低存储与计算需求[4, p.2]，并以分块交叉注意力引入检索文本，时间复杂度随检索数据量线性增长[4, p.2]。SELF-RAG把反思标记统一为扩展词表上的下一词预测[5, p.2]，其critic模型在通过提示GPT-4收集的输入、输出及对应反思标记数据集上接受监督[5, p.2]，反思标记由训练好的critic离线插入原始语料，训练时无需托管critic，从而降低开销[5, p.2]。\n\n需要指出，RAG的两个变体、FiD的解码器侧融合、Retro的分块交叉注意力与SELF-RAG的反思词元，属于四种不同机制，不能仅凭“都融合了检索证据”就认为其计算或效果可以互换。\n\n## 开放域问答评测与结果条件\n\nDPR报告在广泛开放域问答数据集上，top-20段落检索准确率比强Lucene-BM25系统绝对提升9%至19%[1, p.1]，并称其端到端系统在多个开放域问答基准上建立新的state-of-the-art[1, p.1]。在Natural Questions上，分别训练强检索器和阅读器的流水线取得39.8 EM，优于可比的联合训练方法且设计更简单[1, p.8]，这是有明确数据集与指标的条件性结论。\n\nRAG的评测不止问答：原文明确研究开放域问题生成以评估非问答设定下的生成能力[2, p.5]，并在TriviaQA上同时报告官方Wiki测试集与常规开放域测试集结果，称官方Wiki测试集性能更高[2, p.18]。这说明同一模型在不同测试划分上的数字不可直接并列。RAG还声称单一基于检索的架构可经微调在多种任务上取得强性能[2, p.9]，但这是论文自述，跨任务可比性仍受各任务度量差异限制。\n\nFiD的开放域NaturalQuestions通过丢弃超过5个词元的答案得到[3, p.3]，这一数据构造会改变可回答样本的分布，与其他工作在原始NQ上的结果不能直接相减比较。原文还报告闭卷T5以11B参数取得36.6%准确率，而该方法以770M参数加维基百科取得44.1%[3, p.4]；这是一个保留参数与外部资源条件的对照。FiD还称检索段落数增加时性能显著提升[3, p.2]，但该结论只在其测试的段落数范围内成立。\n\nRetro在2万亿词元数据库下于Pile上与GPT-3和Jurassic-1性能相当，而参数少25倍[4, p.1]；其泄漏水平实验显示在所有泄漏水平直至α=12.5%均优于基线[4, p.15]。这些数字依赖特定语料规模与评测协议。SELF-RAG自称在全部任务上显著优于监督微调的大模型，并在PubHealth、PopQA、传记生成和ASQA（Rouge与MAUVE）上超过ChatGPT[5, p.8]，但该摘录未给出全部任务的具体数值，不能据此推算差距幅度。\n\n## 参数、计算代价与效率约束\n\n可核验的代价证据集中在三处。第一，DPR处理最多100个段落时，阅读器可在单张32GB GPU上把全部段落放入一个批次，延迟与单段落情形几乎相同，约20ms[1, p.8]；该数字绑定于所述硬件与批处理条件。第二，FiD的计算时间随段落数线性增长而非二次增长[3, p.3]，Retro的分块交叉注意力同样随检索数据量线性增长[4, p.2]，二者均以线性复杂度缓解多段证据的代价，但线性系数与常数项未在授权证据中给出。第三，SELF-RAG强调与RLHF相比，其在离线用反思标记增强的任务示例上训练目标模型，训练成本远低[5, p.3]；这是相对成本陈述，缺少绝对数值。\n\n因此，“哪个方法更省算力”在现有证据下无法给出统一答案：DPR的20ms是推理延迟[E:ev-6]，FiD与Retro的线性是复杂度阶数[E:ev-15][E:ev-20]，SELF-RAG的低成本是相对RLHF的训练开销[E:ev-29]，三者度量对象不同。\n\n## 共识、分歧与证据不足\n\n可归纳的共识是：多段检索证据对生成有益，且几种方法都通过结构设计把融合代价控制在随段落数线性增长的范围内[3, p.3][4, p.2]；同时，冻结或离线构建的检索组件可在大规模下使用[4, p.2][5, p.2]。分歧在于检索是否应被训练、是否应由模型按需触发：RAG选择端到端训练潜在检索[2, p.3]，Retro选择冻结检索器[4, p.1][4, p.2]，SELF-RAG选择自适应触发[5, p.1]。这些选择对应不同的训练复杂度和监督信号，现有证据不足以判定何者普遍更优。\n\n证据不足之处需明示：五篇论文所用的问答数据集划分、答案过滤规则和评价脚本并不一致，尤其FiD的NQ过滤规则[3, p.3]与RAG的TriviaQA双测试集设置[2, p.18]表明同一基准名下的数字可能不可比；SELF-RAG的跨任务优势缺少逐项数值[5, p.8]；DPR的9%至19%提升是检索准确率而非端到端答案质量[1, p.1]；Retro的“参数少25倍”对照绑定于Pile与特定基线[4, p.1]。此外，授权材料未覆盖各方法的失败案例分布、长尾问题表现与推理成本随语料规模扩展的实测曲线，这些缺口只能标注为待核实，不能推断相关论文未做此类分析。\n\n综上，若以检索位置与融合机制为轴，五篇工作呈现清晰的设计谱系；若以性能排名为轴，则因任务、数据构造、指标与计算条件不同而不具备直接横向比较的基础。",
+      "used_evidence_ids": [
+        "ev-1",
+        "ev-2",
+        "ev-5",
+        "ev-7",
+        "ev-8",
+        "ev-12",
+        "ev-13",
+        "ev-14",
+        "ev-16",
+        "ev-21",
+        "ev-22",
+        "ev-20",
+        "ev-23",
+        "ev-25",
+        "ev-26",
+        "ev-27",
+        "ev-29",
+        "ev-19",
+        "ev-15",
+        "ev-28",
+        "ev-3",
+        "ev-4",
+        "ev-9",
+        "ev-11",
+        "ev-17",
+        "ev-18",
+        "ev-24",
+        "ev-30",
+        "ev-6"
+      ],
+      "patches": [
+        {
+          "original": "因此，“哪个方法更省算力”在现有证据下无法给出统一答案：DPR的20ms是推理延迟，FiD与Retro的线性是复杂度阶数，SELF-RAG的低成本是相对RLHF的训练开销，三者度量对象不同。",
+          "replacement": "因此，“哪个方法更省算力”在现有证据下无法给出统一答案：DPR的20ms是推理延迟[E:ev-6]，FiD与Retro的线性是复杂度阶数[E:ev-15][E:ev-20]，SELF-RAG的低成本是相对RLHF的训练开销[E:ev-29]，三者度量对象不同。"
+        }
+      ]
+    }
+  ],
+  "last_model_draft": "## 逐篇可回查事实\n### 论文 1：2004.04906-DPR.pdf\n- DPR使用稠密编码器EP(·)将任意文本段落映射为d维实值向量，并为所有M个段落建立索引用于检索。 [1, p.2]\n- 检索器通过简单双编码器框架从小规模问题和段落中学习嵌入，可仅用稠密表示实际实现检索。 [1, p.1]\n- 在Natural Questions上，分别训练强检索器和阅读器的流水线方法取得39.8 EM，优于可比的联合训练方法且设计更简单。 [1, p.8]\n### 论文 2：2005.11401-RAG.pdf\n- RAG将检索到的文档视为潜在变量，以便端到端训练检索器与生成器。 [2, p.3]\n- 论文提出两种边缘化方式不同的模型：RAG-Sequence对每个目标词使用同一文档，RAG-Token可对每个目标词使用不同文档。 [2, p.3]\n- TriviaQA上论文同时报告官方Wiki测试集与常规开放域测试集的结果，并称官方Wiki测试集性能更高。 [2, p.18]\n### 论文 3：2007.01282-FiD.pdf\n- 该方法采用两步流程：先检索支持性段落，再用序列到序列模型处理这些段落。 [3, p.2]\n- 该模型仅在解码器中进行证据融合，因此被称为Fusion-in-Decoder。 [3, p.3]\n- 开放域版本的NaturalQuestions数据集通过丢弃超过5个token的答案得到。 [3, p.3]\n### 论文 4：2112.04426-RETRO.pdf\n- 基于预训练冻结BERT的检索在大规模下可行，无需训练和更新检索网络。 [4, p.2]\n- 检索以连续token块而非单个token为单位，可大幅线性降低存储与计算需求。 [4, p.2]\n- 分块交叉注意力模块引入检索文本，其时间复杂度随检索数据量线性增长。 [4, p.2]\n- 在2万亿token数据库下，Retro在Pile上与GPT-3和Jurassic-1性能相当，但参数少25倍。 [4, p.1]\n### 论文 5：2310.11511-Self-RAG.pdf\n- SELF-RAG训练一个单一任意LM按需自适应检索段落，并对检索段落及自身生成进行反思。 [5, p.1]\n- SELF-RAG将反思标记统一为扩展模型词表上的下一词预测，从而训练LM生成带反思标记的文本。 [5, p.2]\n- 反思标记由训练好的critic模型离线插入原始语料，因此训练时无需托管critic模型，降低开销。 [5, p.2]\n- 与RLHF相比，SELF-RAG在离线用反思标记增强的任务示例上训练目标LM，训练成本远低。 [5, p.3]\n\n## 研究问题与比较框架\n\n本综述围绕五个问题组织：检索发生在生成流程的哪一位置；生成阶段以何种方式融合检索证据；开放域问答及其他生成任务的评测设置是否可比；参数规模与计算代价如何随检索量变化；以及各方法可核验的适用边界与局限。需要先说明，五篇工作分属不同年份、不同评测体系和不同模型规模，把它们放在同一张“性能排行榜”上并不成立。以下先陈述各方法可核验的结论，再给出受证据约束的跨论文推断。\n\n## 检索位置：前置检索、联合训练与自适应检索\n\nDPR把检索完全前置：用稠密编码器把任意文本段落映射为d维实值向量，并为全部M个段落建立索引[1, p.2]，检索器通过双编码器框架从小规模问题—段落对中学习嵌入，可在仅用稠密表示的情况下实际完成检索[1, p.1]。这一设计使开放域问答的检索阶段与阅读阶段可以分别训练。\n\nRAG将检索到的文档视为潜在变量，使检索器与生成器可以端到端训练[2, p.3]，检索不再是冻结的外部步骤，而是与生成目标耦合。FiD则维持两步流程：先检索支持性段落，再由序列到序列模型处理这些段落[3, p.2]，其创新集中在生成端如何吸收多段证据，而非检索器训练。Retro采用冻结的BERT检索器、可微编码器和分块交叉注意力共同预测词元[4, p.1]，并明确论证基于预训练冻结BERT的检索在大规模下可行，无需训练和更新检索网络[4, p.2]。SELF-RAG让单一任意语言模型按需自适应检索段落，并对检索段落及自身生成进行反思[5, p.1]，检索从固定前置步骤变为由模型决策触发的行为。\n\n据此可作受限推断：五者构成“固定前置检索（DPR、FiD）—可训练潜在检索（RAG）—冻结大规模检索（Retro）—按需触发检索（SELF-RAG）”的谱系；但这一排序是分析性归纳，并非任何单篇论文给出的实验结论。\n\n## 生成阶段的证据融合方式\n\nRAG内部存在两个必须区分的变体：RAG-Sequence对每个目标词使用同一文档，RAG-Token可对每个目标词使用不同文档[2, p.3]，二者差异在于边缘化粒度，而非训练目标。FiD仅在解码器中进行证据融合，因此得名Fusion-in-Decoder[3, p.3]；其编码器逐段独立编码，解码器跨段注意，这解释了其计算随段落数线性而非二次增长[3, p.3]。Retro以连续词元块而非单个词元为单位进行检索，可大幅线性降低存储与计算需求[4, p.2]，并以分块交叉注意力引入检索文本，时间复杂度随检索数据量线性增长[4, p.2]。SELF-RAG把反思标记统一为扩展词表上的下一词预测[5, p.2]，其critic模型在通过提示GPT-4收集的输入、输出及对应反思标记数据集上接受监督[5, p.2]，反思标记由训练好的critic离线插入原始语料，训练时无需托管critic，从而降低开销[5, p.2]。\n\n需要指出，RAG的两个变体、FiD的解码器侧融合、Retro的分块交叉注意力与SELF-RAG的反思词元，属于四种不同机制，不能仅凭“都融合了检索证据”就认为其计算或效果可以互换。\n\n## 开放域问答评测与结果条件\n\nDPR报告在广泛开放域问答数据集上，top-20段落检索准确率比强Lucene-BM25系统绝对提升9%至19%[1, p.1]，并称其端到端系统在多个开放域问答基准上建立新的state-of-the-art[1, p.1]。在Natural Questions上，分别训练强检索器和阅读器的流水线取得39.8 EM，优于可比的联合训练方法且设计更简单[1, p.8]，这是有明确数据集与指标的条件性结论。\n\nRAG的评测不止问答：原文明确研究开放域问题生成以评估非问答设定下的生成能力[2, p.5]，并在TriviaQA上同时报告官方Wiki测试集与常规开放域测试集结果，称官方Wiki测试集性能更高[2, p.18]。这说明同一模型在不同测试划分上的数字不可直接并列。RAG还声称单一基于检索的架构可经微调在多种任务上取得强性能[2, p.9]，但这是论文自述，跨任务可比性仍受各任务度量差异限制。\n\nFiD的开放域NaturalQuestions通过丢弃超过5个词元的答案得到[3, p.3]，这一数据构造会改变可回答样本的分布，与其他工作在原始NQ上的结果不能直接相减比较。原文还报告闭卷T5以11B参数取得36.6%准确率，而该方法以770M参数加维基百科取得44.1%[3, p.4]；这是一个保留参数与外部资源条件的对照。FiD还称检索段落数增加时性能显著提升[3, p.2]，但该结论只在其测试的段落数范围内成立。\n\nRetro在2万亿词元数据库下于Pile上与GPT-3和Jurassic-1性能相当，而参数少25倍[4, p.1]；其泄漏水平实验显示在所有泄漏水平直至α=12.5%均优于基线[4, p.15]。这些数字依赖特定语料规模与评测协议。SELF-RAG自称在全部任务上显著优于监督微调的大模型，并在PubHealth、PopQA、传记生成和ASQA（Rouge与MAUVE）上超过ChatGPT[5, p.8]，但该摘录未给出全部任务的具体数值，不能据此推算差距幅度。\n\n## 参数、计算代价与效率约束\n\n可核验的代价证据集中在三处。第一，DPR处理最多100个段落时，阅读器可在单张32GB GPU上把全部段落放入一个批次，延迟与单段落情形几乎相同，约20ms[1, p.8]；该数字绑定于所述硬件与批处理条件。第二，FiD的计算时间随段落数线性增长而非二次增长[3, p.3]，Retro的分块交叉注意力同样随检索数据量线性增长[4, p.2]，二者均以线性复杂度缓解多段证据的代价，但线性系数与常数项未在授权证据中给出。第三，SELF-RAG强调与RLHF相比，其在离线用反思标记增强的任务示例上训练目标模型，训练成本远低[5, p.3]；这是相对成本陈述，缺少绝对数值。\n\n因此，“哪个方法更省算力”在现有证据下无法给出统一答案：DPR的20ms是推理延迟[1, p.8]，FiD与Retro的线性是复杂度阶数[3, p.3][4, p.2]，SELF-RAG的低成本是相对RLHF的训练开销[5, p.3]，三者度量对象不同。\n\n## 共识、分歧与证据不足\n\n可归纳的共识是：多段检索证据对生成有益，且几种方法都通过结构设计把融合代价控制在随段落数线性增长的范围内[3, p.3][4, p.2]；同时，冻结或离线构建的检索组件可在大规模下使用[4, p.2][5, p.2]。分歧在于检索是否应被训练、是否应由模型按需触发：RAG选择端到端训练潜在检索[2, p.3]，Retro选择冻结检索器[4, p.1][4, p.2]，SELF-RAG选择自适应触发[5, p.1]。这些选择对应不同的训练复杂度和监督信号，现有证据不足以判定何者普遍更优。\n\n证据不足之处需明示：五篇论文所用的问答数据集划分、答案过滤规则和评价脚本并不一致，尤其FiD的NQ过滤规则[3, p.3]与RAG的TriviaQA双测试集设置[2, p.18]表明同一基准名下的数字可能不可比；SELF-RAG的跨任务优势缺少逐项数值[5, p.8]；DPR的9%至19%提升是检索准确率而非端到端答案质量[1, p.1]；Retro的“参数少25倍”对照绑定于Pile与特定基线[4, p.1]。此外，授权材料未覆盖各方法的失败案例分布、长尾问题表现与推理成本随语料规模扩展的实测曲线，这些缺口只能标注为待核实，不能推断相关论文未做此类分析。\n\n综上，若以检索位置与融合机制为轴，五篇工作呈现清晰的设计谱系；若以性能排名为轴，则因任务、数据构造、指标与计算条件不同而不具备直接横向比较的基础。"
+}

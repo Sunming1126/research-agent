@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "rejected_claims": [],
+  "retrieval_trace": {},
+  "query_plan_status": "pending",
+  "chunks": [],
+  "audit": {},
+  "coverage": {},
+  "evidence_audit": {},
+  "report_trace": [],
+  "last_model_draft": ""
+}

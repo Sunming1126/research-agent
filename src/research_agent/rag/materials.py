@@ -4,6 +4,7 @@ import json
 import re
 import shutil
 import subprocess
+import unicodedata
 from collections import Counter
 from dataclasses import asdict
 from pathlib import Path
@@ -34,17 +35,39 @@ class MaterialResolver:
         self.settings = settings
 
     def _path(self, item: str) -> Path:
-        if not item or "\\" in item or ":" in item or item.startswith("/"):
+        if not item or "\\" in item or ":" in item:
             raise MaterialError("materials must use relative paths or configured aliases")
+        if item.startswith("/"):
+            # 平台可传挂载后的绝对路径，但只能落在已经授权的专用根目录内。
+            target = Path(item)
+            for root in self.settings.material_roots:
+                if root in target.parents:
+                    checked = confined(root, target.relative_to(root).as_posix())
+                    if checked.exists():
+                        return checked
+                elif target == root and root.exists():
+                    return root
+            raise MaterialError("absolute material path is outside authorized roots or missing")
         matches = []
         for root in self.settings.material_roots:
             # 明确路径可以相对于工作区或已配置的材料根目录。
             options = [confined(root, item)]
             if item == root.name:
                 options.append(root)
+            # 约定的 data/论文库 与 data/experiments/<当前题号> 在不同挂载点下
+            # 都只映射至已配置根目录，不能借此扩大授权范围。
+            for prefix in (f"data/{root.name}/", f"{root.name}/",
+                           f"data/{root.parent.name}/{root.name}/", f"{root.parent.name}/{root.name}/"):
+                if item.startswith(prefix):
+                    options.append(confined(root, item[len(prefix):]))
             workspace_path = confined(self.settings.workspace, item)
             if workspace_path == root or root in workspace_path.parents:
                 options.append(workspace_path)
+            if self.settings.workspace.name == "data" and item.startswith("data/"):
+                # 平台挂载根为 /data 时，仍接受题面相对项目根的 data/论文库/...。
+                data_path = confined(self.settings.workspace, item[5:])
+                if data_path == root or root in data_path.parents:
+                    options.append(data_path)
             for candidate in options:
                 if candidate.exists() and candidate not in matches:
                     matches.append(candidate)
@@ -65,7 +88,10 @@ class MaterialResolver:
         selected = {}
         for description in materials:
             checkpoint("material_resolution")
-            items = self.settings.material_aliases.get(description, [description])
+            normalized = "".join(unicodedata.normalize("NFKC", description).split()).casefold()
+            aliases = {"".join(unicodedata.normalize("NFKC", name).split()).casefold(): value
+                       for name, value in self.settings.material_aliases.items()}
+            items = aliases.get(normalized, [description])
             if not isinstance(items, list) or not items:
                 raise MaterialError("material alias must map to a nonempty list")
             for item in items:

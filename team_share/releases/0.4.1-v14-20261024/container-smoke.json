@@ -1,0 +1,17 @@
+{
+  "image": "research-assistant:0.4.1-v14-20261024",
+  "cpu": 1,
+  "memory_mib": 1024,
+  "oom_killed": false,
+  "health": {
+    "status": "healthy",
+    "telemetry_configured": false
+  },
+  "a_sdk_http_status": 200,
+  "a_sdk_answer_valid": true,
+  "d_missing_materials_schema_valid": true,
+  "direct_eight_field_http_status": 422,
+  "direct_eight_field_accepted": false,
+  "real_model_calls": 0,
+  "mock_gateway_only": true
+}

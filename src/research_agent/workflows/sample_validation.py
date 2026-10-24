@@ -180,7 +180,9 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8):
     report = validate_sample_output(case_id, request, body["result"])
     if case_id == "D-02" and body["result"]["candidate"] is not None:
         repeated = body.get("rank_result")
-        if not isinstance(repeated, dict) or set(repeated) != {"candidate"} or repeated["candidate"] != body["result"]["candidate"]:
+        identity = lambda rankings: {qid: [row["id"] for row in ranking] for qid, ranking in rankings.items()}
+        if (not isinstance(repeated, dict) or set(repeated) != {"candidate"} or not _finite(repeated)
+                or identity(repeated["candidate"]) != identity(body["result"]["candidate"])):
             raise ValueError("D-02 rank must reuse the selected configuration and reproduce run rankings")
         report["rank_consistent"] = True
     report["isolation"] = body["isolation"]

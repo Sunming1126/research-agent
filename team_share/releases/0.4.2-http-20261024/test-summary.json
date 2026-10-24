@@ -1,0 +1,6 @@
+{
+  "sdk_http_tests_passed": 7,
+  "core_architecture_gateway_tests_passed": 38,
+  "core_tests_skipped_missing_experiment_mounts": 3,
+  "test_environment": "Linux image with read-only test dependencies; no external network"
+}

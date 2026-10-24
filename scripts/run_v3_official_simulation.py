@@ -119,7 +119,7 @@ def write_dispatch(cases: list[dict[str, Any]]) -> dict[str, Any]:
     return dispatch
 
 
-def run_agent(dispatch: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | None]:
+def run_agent(dispatch: dict[str, Any], case_timeout: int = 180) -> tuple[dict[str, Any], dict[str, Any] | None]:
     """执行逐题路由并运行本地 precheck。"""
     sys.path.insert(0, str(ROOT / "src"))
     from research_agent.core.config import Settings
@@ -129,7 +129,7 @@ def run_agent(dispatch: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] 
                         material_roots=[PAPERS, EXPERIMENTS / "publicdata"],
                         experiment_mode="local", local_experiment_root=EXPERIMENTS,
                         local_python=sys.executable, llm_calls=30, llm_tokens=40000,
-                        case_timeout=480)
+                        case_timeout=case_timeout)
     engine = ResearchAgentEngine(settings)
     started = time.monotonic()
     summary = engine.solve_sync({"dispatch": True})
@@ -260,7 +260,10 @@ def main() -> None:
     parser.add_argument("--prepare-only", action="store_true", help="只生成 v3 dispatch，不运行模型")
     parser.add_argument("--run-id", help="独立轮次标识；每轮分离输入、结果和证据")
     parser.add_argument("--score-only", action="store_true", help="用当前裁判复核已存在结果，不覆盖原始评分")
+    parser.add_argument("--case-timeout", type=int, default=180, help="单题时间预算（秒），默认与当前 Agent 配置一致")
     args = parser.parse_args()
+    if args.case_timeout <= 0:
+        parser.error("--case-timeout must be positive")
     load_local_credentials()
     sys.path.insert(0, str(ROOT / "src"))
     if args.run_id:
@@ -291,7 +294,13 @@ def main() -> None:
     if args.prepare_only:
         print(json.dumps({"team": TEAM, "cases": dispatch["case_ids"]}, ensure_ascii=False))
         return
-    run_summary, precheck = run_agent(dispatch)
+    # 记录实测预算，避免将历史宽松计时与当前限制混为一谈。
+    (OUT / "run-settings.json").write_text(json.dumps({
+        "case_timeout_seconds": args.case_timeout, "llm_calls_per_case": 30,
+        "llm_tokens_per_case": 40000, "experiment_mode": "local",
+        "python_version": sys.version, "experiment_root": str(EXPERIMENTS),
+    }, ensure_ascii=False, indent=2), encoding="utf-8")
+    run_summary, precheck = run_agent(dispatch, args.case_timeout)
     print(json.dumps({"event": "agent_finished", "complete": run_summary.get("complete"), "precheck": precheck}, ensure_ascii=False), flush=True)
     report = score_round(dispatch, run_summary, precheck)
     print(json.dumps({"complete": run_summary.get("complete"), "precheck": precheck,

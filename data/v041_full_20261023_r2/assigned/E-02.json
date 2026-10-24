@@ -1,0 +1,19 @@
+{
+  "case_id": "E-02",
+  "function": "Idea",
+  "title": "检索质量、跨域稳健性与外部记忆",
+  "input": "模拟观察：本团队把问答语料换到医学领域后，检索 recall 降低，但尚无因果对照。结合指定论文提出跨域检索诊断和自适应生成方案，明确数据泄漏防护、复现瓶颈、基线、消融和失败边界。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2112.04426-RETRO.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "constraints": [
+    "仅使用本题授权材料",
+    "事实与模拟观察分开"
+  ],
+  "expected_output": "至少 800 字的可验证 Idea 报告",
+  "output_schema_ref": "Idea"
+}

@@ -1,4 +1,4 @@
-"""模型报告请求失败时，处理器只用已核验论文事实生成合规保底文本。"""
+"""报告失败保留证据；E 类不能再用程序拼接模板伪装成功。"""
 
 import unittest
 from types import SimpleNamespace
@@ -7,6 +7,7 @@ from research_agent.core.models import Chunk
 from research_agent.integrations.llm import ModelError
 from research_agent.rag.retrieval import QueryPlan
 from research_agent.workflows.tasks import TaskHandlers
+from research_agent.evidence import EvidenceError
 
 
 class ReportResilienceTests(unittest.TestCase):
@@ -28,10 +29,11 @@ class ReportResilienceTests(unittest.TestCase):
 
         case = SimpleNamespace(case_id="E-99", function="Idea", input="研究启动子反馈的模拟观察",
                                to_dict=lambda: {"case_id": "E-99"})
-        result = TaskHandlers(LLM(), "demo").report(case, Retriever(), QueryPlan("promoter"))
-        self.assertIn("论文提出启动子动力学模型。 [1, p.1]", result["markdown"])
-        self.assertIn("## 参考文献", result["markdown"])
-        self.assertEqual(result["path"], "data/expert/E-99-灵感Idea报告-demo.md")
+        handler = TaskHandlers(LLM(), "demo")
+        with self.assertRaisesRegex(EvidenceError, "Idea model report failed"):
+            handler.report(case, Retriever(), QueryPlan("promoter"))
+        self.assertEqual(handler.ledger[0].claim, "论文提出启动子动力学模型。")
+        self.assertEqual(handler.audit["mode"], "model_report_failed")
 
     def test_survey_recovers_one_missing_paper_before_fallback(self):
         quote = "We propose a mechanistic framework for this system."

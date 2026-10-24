@@ -1,0 +1,10 @@
+{
+  "sdk_http_tests_passed": 15,
+  "business_regression_tests_passed": 136,
+  "business_tests_skipped_missing_mounts_or_optional_dependencies": 4,
+  "test_environment": "Linux image with read-only test dependencies; no external network",
+  "native_entrypoint_http_requests": 13,
+  "schema_and_persistence_successes": 12,
+  "negative_material_failure_preserved": 1,
+  "formal_d_provenance_tested": false
+}

@@ -1,0 +1,696 @@
+{
+  "claims": [
+    {
+      "evidence_id": "ev-1",
+      "claim": "Matched urban districts are compared using a fixed observation window.",
+      "filename": "Study_1.pdf",
+      "page": 1,
+      "chunk_id": "7bf219730c1c9642b7c7",
+      "quote": "Matched urban districts are compared using a fixed observation window.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-2",
+      "claim": "Shade and water availability are possible confounding variables.",
+      "filename": "Study_1.pdf",
+      "page": 1,
+      "chunk_id": "7bf219730c1c9642b7c7",
+      "quote": "Shade and water availability are possible confounding variables.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-3",
+      "claim": "Remote sensing observations compare urban vegetation and surface temperature.",
+      "filename": "Study_1.pdf",
+      "page": 2,
+      "chunk_id": "017cdee165668f634bd6",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature.",
+      "kind": "paper_claim",
+      "facet": "data",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-27",
+      "claim": "Remote sensing observations compare urban vegetation and surface temperature.",
+      "filename": "Study_1.pdf",
+      "page": 1,
+      "chunk_id": "72232755c0c469e4357a",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-29",
+      "claim": "Matched urban districts are compared using a fixed observation window.",
+      "filename": "Study_1.pdf",
+      "page": 2,
+      "chunk_id": "f2cc35840f2eef3c751e",
+      "quote": "Matched urban districts are compared using a fixed observation window.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-6",
+      "claim": "Future studies should compare seasons and report uncertainty.",
+      "filename": "Study_1.pdf",
+      "page": 1,
+      "chunk_id": "f1a7d0cd119e6bd1046c",
+      "quote": "Future studies should compare seasons and report uncertainty.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-7",
+      "claim": "Matched urban districts are compared using a fixed observation window.",
+      "filename": "Study_2.pdf",
+      "page": 1,
+      "chunk_id": "2b0305f8b6e361e64a5d",
+      "quote": "Matched urban districts are compared using a fixed observation window.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-8",
+      "claim": "Shade and water availability are possible confounding variables.",
+      "filename": "Study_2.pdf",
+      "page": 1,
+      "chunk_id": "2b0305f8b6e361e64a5d",
+      "quote": "Shade and water availability are possible confounding variables.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-9",
+      "claim": "Remote sensing observations compare urban vegetation and surface temperature.",
+      "filename": "Study_2.pdf",
+      "page": 2,
+      "chunk_id": "4bd7c18a0e2fda0fe954",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature.",
+      "kind": "paper_claim",
+      "facet": "data",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-31",
+      "claim": "Remote sensing observations compare urban vegetation and surface temperature.",
+      "filename": "Study_2.pdf",
+      "page": 1,
+      "chunk_id": "887db69f3678e4578b6b",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-32",
+      "claim": "The association observed between urban vegetation and surface temperature is not causal.",
+      "filename": "Study_2.pdf",
+      "page": 1,
+      "chunk_id": "887db69f3678e4578b6b",
+      "quote": "This synthetic fixture describes association, not causation.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-33",
+      "claim": "Matched urban districts are compared using a fixed observation window.",
+      "filename": "Study_2.pdf",
+      "page": 2,
+      "chunk_id": "2048607bdcb34b251319",
+      "quote": "Matched urban districts are compared using a fixed observation window.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-13",
+      "claim": "Methods: Matched urban districts are compared using a fixed observation window.",
+      "filename": "Study_3.pdf",
+      "page": 1,
+      "chunk_id": "5b921360eb28915b30e7",
+      "quote": "Matched urban districts are compared using a fixed observation window.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-15",
+      "claim": "Remote sensing observations compare urban vegetation and surface temperature, but this synthetic fixture describes association, not causation.",
+      "filename": "Study_3.pdf",
+      "page": 2,
+      "chunk_id": "9a867cad412df81bae41",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature. This synthetic fixture describes association, not causation.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-17",
+      "claim": "Future studies should compare seasons and report uncertainty.",
+      "filename": "Study_3.pdf",
+      "page": 1,
+      "chunk_id": "ffc4c782b836e77dea82",
+      "quote": "Future studies should compare seasons and report uncertainty.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-14",
+      "claim": "Shade and water availability are possible confounding variables in the comparison.",
+      "filename": "Study_3.pdf",
+      "page": 1,
+      "chunk_id": "5b921360eb28915b30e7",
+      "quote": "Shade and water availability are possible confounding variables.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-16",
+      "claim": "The test data do not establish a causal effect.",
+      "filename": "Study_3.pdf",
+      "page": 1,
+      "chunk_id": "ffc4c782b836e77dea82",
+      "quote": "The test data do not establish a causal effect.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-18",
+      "claim": "Matched urban districts are compared using a fixed observation window.",
+      "filename": "Study_4.pdf",
+      "page": 1,
+      "chunk_id": "c8cc8ae8a93bc61fb8d0",
+      "quote": "Matched urban districts are compared using a fixed observation window.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-19",
+      "claim": "Shade and water availability are possible confounding variables.",
+      "filename": "Study_4.pdf",
+      "page": 1,
+      "chunk_id": "c8cc8ae8a93bc61fb8d0",
+      "quote": "Shade and water availability are possible confounding variables.",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-21",
+      "claim": "This synthetic fixture describes association, not causation.",
+      "filename": "Study_4.pdf",
+      "page": 2,
+      "chunk_id": "c8f824586178cdec1605",
+      "quote": "This synthetic fixture describes association, not causation.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-20",
+      "claim": "Remote sensing observations compare urban vegetation and surface temperature.",
+      "filename": "Study_4.pdf",
+      "page": 2,
+      "chunk_id": "c8f824586178cdec1605",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-23",
+      "claim": "Future studies should compare seasons and report uncertainty.",
+      "filename": "Study_4.pdf",
+      "page": 1,
+      "chunk_id": "8e9e48d965e952501eeb",
+      "quote": "Future studies should compare seasons and report uncertainty.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "related_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-22",
+      "claim": "The test data do not establish a causal effect.",
+      "filename": "Study_4.pdf",
+      "page": 1,
+      "chunk_id": "8e9e48d965e952501eeb",
+      "quote": "The test data do not establish a causal effect.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-24",
+      "claim": "Matched urban districts are compared using a fixed observation window; shade and water availability are possible confounding variables.",
+      "filename": "Study_5.pdf",
+      "page": 1,
+      "chunk_id": "f6faed054c92163b2ca5",
+      "quote": "Matched urban districts are compared using a fixed observation window. Shade and water availability are possible confounding variables.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-26",
+      "claim": "The test data do not establish a causal effect; future studies should compare seasons and report uncertainty.",
+      "filename": "Study_5.pdf",
+      "page": 1,
+      "chunk_id": "bce5a8464302bb8fea5e",
+      "quote": "The test data do not establish a causal effect. Future studies should compare seasons and report uncertainty.",
+      "kind": "paper_claim",
+      "facet": "limitation",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    },
+    {
+      "evidence_id": "ev-25",
+      "claim": "Remote sensing observations compare urban vegetation and surface temperature; this synthetic fixture describes association, not causation.",
+      "filename": "Study_5.pdf",
+      "page": 2,
+      "chunk_id": "c7232647815312f158a1",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature. This synthetic fixture describes association, not causation.",
+      "kind": "paper_claim",
+      "facet": "method",
+      "role": "own_work",
+      "verification": "semantic_supported"
+    }
+  ],
+  "rejected_claims": [],
+  "retrieval_trace": {},
+  "query_plan_status": "model",
+  "audit": {
+    "ok": null,
+    "mode": "deterministic_fallback",
+    "local_validation": true,
+    "model_issues": [
+      "Survey body exceeds 40 citation instances",
+      "model transport failure (APITimeoutError) after retries"
+    ],
+    "history": [
+      {
+        "attempt": 1,
+        "stage": "validation",
+        "issues": [
+          "Survey body exceeds 40 citation instances"
+        ]
+      },
+      {
+        "attempt": 2,
+        "stage": "report",
+        "issues": [
+          "model transport failure (APITimeoutError) after retries"
+        ]
+      }
+    ]
+  },
+  "coverage": {
+    "papers": {
+      "Study_1.pdf": {
+        "method": [
+          "ev-1",
+          "ev-27",
+          "ev-29"
+        ],
+        "limitation": [
+          "ev-2",
+          "ev-6"
+        ],
+        "data": [
+          "ev-3"
+        ]
+      },
+      "Study_2.pdf": {
+        "method": [
+          "ev-7",
+          "ev-31",
+          "ev-33"
+        ],
+        "limitation": [
+          "ev-8",
+          "ev-32"
+        ],
+        "data": [
+          "ev-9"
+        ]
+      },
+      "Study_3.pdf": {
+        "method": [
+          "ev-13",
+          "ev-14"
+        ],
+        "limitation": [
+          "ev-15",
+          "ev-17",
+          "ev-16"
+        ]
+      },
+      "Study_4.pdf": {
+        "method": [
+          "ev-18",
+          "ev-20"
+        ],
+        "unspecified": [
+          "ev-19"
+        ],
+        "limitation": [
+          "ev-21",
+          "ev-23",
+          "ev-22"
+        ]
+      },
+      "Study_5.pdf": {
+        "method": [
+          "ev-24",
+          "ev-25"
+        ],
+        "limitation": [
+          "ev-26"
+        ]
+      }
+    },
+    "gaps": [
+      {
+        "filename": "Study_1.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "result"
+      }
+    ],
+    "scope": "gaps mean missing verified evidence, not that the paper omitted the topic",
+    "targeted_queries": [
+      {
+        "filename": "Study_1.pdf",
+        "query": "fixed observation window definition urban vegetation temperature comparison"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "query": "matched urban districts method remote sensing vegetation temperature"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "query": "variants of matched urban district comparison method in remote sensing vegetation-temperature study"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "query": "definition of fixed observation window for urban vegetation and surface temperature comparison"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "query": "urban vegetation surface temperature comparison remote sensing method variant"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "query": "fixed observation window matched urban districts remote sensing"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "query": "\"urban vegetation\" and \"surface temperature\" comparison \"fixed observation window\" method"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "query": "\"shade\" and \"water availability\" confounding variables urban vegetation surface temperature"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "query": "urban vegetation remote sensing surface temperature comparison method fixed observation window confounding variables"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "query": "urban vegetation surface temperature association causation limitation remote sensing"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "query": "variant of fixed observation window for matched urban district comparison"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "query": "definition of urban vegetation surface temperature association remote sensing"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "query": "urban vegetation surface temperature comparison methods remote sensing"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "query": "confounding variables urban vegetation surface temperature study"
+      }
+    ]
+  },
+  "evidence_audit": {
+    "decisions": [
+      {
+        "evidence_id": "ev-1",
+        "verdict": "supported",
+        "reason": "Quote matches claim context supports."
+      },
+      {
+        "evidence_id": "ev-2",
+        "verdict": "supported",
+        "reason": "Quote exactly matches claim."
+      },
+      {
+        "evidence_id": "ev-3",
+        "verdict": "supported",
+        "reason": "Quote matches claim."
+      },
+      {
+        "evidence_id": "ev-27",
+        "verdict": "supported",
+        "reason": "Quote matches claim."
+      },
+      {
+        "evidence_id": "ev-29",
+        "verdict": "supported",
+        "reason": "Quote matches claim context supports."
+      },
+      {
+        "evidence_id": "ev-6",
+        "verdict": "supported",
+        "reason": "Quote exactly matches claim."
+      },
+      {
+        "evidence_id": "ev-7",
+        "verdict": "supported",
+        "reason": "Quote matches claim context supports."
+      },
+      {
+        "evidence_id": "ev-8",
+        "verdict": "supported",
+        "reason": "Quote exactly matches claim."
+      },
+      {
+        "evidence_id": "ev-9",
+        "verdict": "supported",
+        "reason": "Quote matches claim."
+      },
+      {
+        "evidence_id": "ev-31",
+        "verdict": "supported",
+        "reason": "Quote matches claim."
+      },
+      {
+        "evidence_id": "ev-32",
+        "verdict": "supported",
+        "reason": "Quote matches claim."
+      },
+      {
+        "evidence_id": "ev-33",
+        "verdict": "supported",
+        "reason": "Quote matches claim context supports."
+      },
+      {
+        "evidence_id": "ev-13",
+        "verdict": "supported",
+        "reason": "Quote matches claim."
+      },
+      {
+        "evidence_id": "ev-15",
+        "verdict": "supported",
+        "reason": "Combined quote matches claim."
+      },
+      {
+        "evidence_id": "ev-17",
+        "verdict": "supported",
+        "reason": "Quote exactly matches claim."
+      },
+      {
+        "evidence_id": "ev-14",
+        "verdict": "supported",
+        "reason": "Quote matches claim."
+      },
+      {
+        "evidence_id": "ev-16",
+        "verdict": "supported",
+        "reason": "Quote matches claim context clarifies."
+      },
+      {
+        "evidence_id": "ev-18",
+        "verdict": "supported",
+        "reason": "Quote matches claim context supports."
+      },
+      {
+        "evidence_id": "ev-19",
+        "verdict": "supported",
+        "reason": "Quote exactly matches claim."
+      },
+      {
+        "evidence_id": "ev-21",
+        "verdict": "supported",
+        "reason": "Quote matches claim."
+      },
+      {
+        "evidence_id": "ev-20",
+        "verdict": "supported",
+        "reason": "Quote matches claim."
+      },
+      {
+        "evidence_id": "ev-23",
+        "verdict": "supported",
+        "reason": "Quote exactly matches claim."
+      },
+      {
+        "evidence_id": "ev-22",
+        "verdict": "supported",
+        "reason": "Quote matches claim context clarifies."
+      },
+      {
+        "evidence_id": "ev-24",
+        "verdict": "supported",
+        "reason": "Combined quote matches claim."
+      },
+      {
+        "evidence_id": "ev-26",
+        "verdict": "supported",
+        "reason": "Combined quote matches claim."
+      },
+      {
+        "evidence_id": "ev-25",
+        "verdict": "supported",
+        "reason": "Combined quote matches claim."
+      }
+    ],
+    "error": null,
+    "supported": 26,
+    "verbatim_only": 0
+  },
+  "report_trace": [
+    {
+      "attempt": 1,
+      "raw_markdown": "## 城市植被与地表温度遥感对比研究综述\n\n### 研究问题\n\n本综述旨在回答：基于遥感观测，城市植被与地表温度之间存在何种关联？已有研究在方法、数据、结果和边界条件上如何比较？存在哪些共识、分歧与证据不足？\n\n### 研究对象与方法比较\n\n多篇研究均采用固定观测窗口，对匹配的城市区域进行对比[E:ev-1,ev-7,ev-13,ev-18,ev-24]。该方法通过限定相同范围的遥感像素，控制空间异质性对比较的影响。例如，研究1、2、4、5均明确指出使用“matched urban districts”和“fixed observation window”[E:ev-29,ev-33,ev-18,ev-24]。研究3也采用相同方法，但强调该合成固定观测描述的是关联而非因果[E:ev-15,ev-16]。研究2进一步指出，观测到的关联“is not causal”[E:ev-32]。研究4和研究5同样声明“test data do not establish a causal effect”[E:ev-22,ev-26]。\n\n在比较维度上，所有研究均通过遥感观测比较城市植被与地表温度[E:ev-3,ev-9,ev-15,ev-20,ev-25]。然而，具体植被指标（如NDVI）或温度反演算法在不同研究中可能不同，但给定证据未提供具体数值，因此无法直接横向比较。研究3的遥感观测被描述为“synthetic fixture”，暗示其可能基于模拟或标准数据集，而非实时观测[E:ev-15]。研究5也使用了类似“synthetic fixture”的描述[E:ev-25]。\n\n### 混淆变量与边界条件\n\n所有研究均识别出阴凉和水文条件（shade and water availability）作为可能的混淆变量[E:ev-2,ev-8,ev-14,ev-19,ev-24]。这意味着观测到的植被-温度关联可能部分由这些未控制的因子驱动。研究1、2、3、4均指出这些变量是“possible confounding”[E:ev-2,ev-8,ev-14,ev-19]。研究5将两者合并为单一声明[E:ev-24]。因此，任何基于上述证据的比较都需明确：这些研究仅报告统计关联，而非因果效应。\n\n### 结果与不确定性\n\n由于缺乏具体的效应量（如降温幅度、相关性系数），仅能就关联的存在性和解释边界达成共识：多篇文献一致认为存在负向关联（植被越多、温度越低），但该关联不具因果性。例如，研究1、2、3、4均描述“association, not causation”[E:ev-15,ev-21,ev-25,ev-32]。研究4的该声明属于related_work角色，表明是引述背景，而非本篇原创[E:ev-23]。\n\n在适用边界上，所有研究均使用匹配城市区域和固定窗口，因此结论主要适用于同质化城市单元内的对比，不适用于跨景观或非匹配区域。未来方向方面，研究1、3、4建议“compare seasons and report uncertainty”[E:ev-6,ev-17,ev-23]。目前证据未包含任何季节性比较或不确定性量化数值，这构成了明确的证据缺口。\n\n### 共识、分歧与证据不足\n\n**共识：**\n1. 城市植被与地表温度存在统计上的负向关联，该关联基于固定窗口匹配城市区域的遥感观测。\n2. 阴凉和水文条件是普遍承认的可能混淆变量。\n3. 现有数据不能建立因果效应，研究结论被明确限定为“关联而非因果”。\n\n**分歧：**\n由于每篇论文的方法描述高度一致（均使用匹配窗口、固定观测），且缺乏具体度量（如植被指数类型、温度反演算法、样本量、季节），给定证据无法显示任何实质性分歧。仅有的区别在于部分研究（如研究3、4、5）明确声明因果性缺失，而研究1、2仅暗示。此外，研究4的“未来应比较季节”声明属于related_work，表明该建议来自被引文献而非本篇实验。\n\n**证据不足：**\n1. **度量缺失**：无任何研究提供植被指数（如NDVI、EVI）或温度的具体数值、统计检验量或置信区间，无法进行定量比较。\n2. **方法变体未报告**：虽然所有研究均使用固定窗口，但窗口大小、分辨率、是否采用缓冲或多尺度分析均未提及。阴凉和水文变量的具体测量方式（如是否使用阴影强度指数、近地表水分）也未说明。\n3. **纵向与空间分析缺失**：无研究涉及季节变化（尽管多篇建议未来研究[E:ev-6,ev-17]），也无证据说明是否在多个城市或景观类型中验证。研究3的“synthetic fixture”暗示模拟数据，但其真实性与复杂城市环境的可比性未知。\n4. **因果推断空白**：所有研究明确排除因果解释，但未提供任何控制混淆变量或使用准实验设计（如断点回归）的努力，留下方法学空白。\n\n### 综合评述\n\n当前文献在方法范式（匹配窗口+遥感对比）和基本结论（统计负关联、非因果）上高度一致，但受限于缺乏具体实验数值和策略性操作方法细节，无法进行横向排名或效率比较。例如，A研究比B研究降温幅度大0.5℃之类的定量结论需要补充。证据缺口主要集中在三方面：一是具体度量缺失；二是季节性和空间转移验证缺失；三是因果混淆变量控制的尝试缺失。每一篇研究论文中可能还包含更多细节（如特定窗口大小、植被指数公式、误差条），但给定证据中没有提供，因此不能推断整篇论文未做这些分析。未来研究应首先填补这些底层的度量和设计信息，然后方可进行跨研究比较。",
+      "used_evidence_ids": [
+        "ev-1",
+        "ev-2",
+        "ev-3",
+        "ev-6",
+        "ev-7",
+        "ev-8",
+        "ev-9",
+        "ev-13",
+        "ev-14",
+        "ev-15",
+        "ev-16",
+        "ev-17",
+        "ev-18",
+        "ev-19",
+        "ev-20",
+        "ev-21",
+        "ev-22",
+        "ev-23",
+        "ev-24",
+        "ev-25",
+        "ev-26",
+        "ev-27",
+        "ev-29",
+        "ev-31",
+        "ev-32",
+        "ev-33"
+      ],
+      "patches": []
+    }
+  ],
+  "draft": "## 逐篇可回查事实\n### 论文 1：Study_1.pdf\n- Matched urban districts are compared using a fixed observation window. [1, p.1]\n- Remote sensing observations compare urban vegetation and surface temperature. [1, p.1]\n- Matched urban districts are compared using a fixed observation window. [1, p.2]\n- Remote sensing observations compare urban vegetation and surface temperature. [1, p.2]\n### 论文 2：Study_2.pdf\n- Matched urban districts are compared using a fixed observation window. [2, p.1]\n- Remote sensing observations compare urban vegetation and surface temperature. [2, p.1]\n- Matched urban districts are compared using a fixed observation window. [2, p.2]\n- Remote sensing observations compare urban vegetation and surface temperature. [2, p.2]\n### 论文 3：Study_3.pdf\n- Methods: Matched urban districts are compared using a fixed observation window. [3, p.1]\n- Shade and water availability are possible confounding variables in the comparison. [3, p.1]\n### 论文 4：Study_4.pdf\n- Matched urban districts are compared using a fixed observation window. [4, p.1]\n- Remote sensing observations compare urban vegetation and surface temperature. [4, p.2]\n### 论文 5：Study_5.pdf\n- Matched urban districts are compared using a fixed observation window; shade and water availability are possible confounding variables. [5, p.1]\n- Remote sensing observations compare urban vegetation and surface temperature; this synthetic fixture describes association, not causation. [5, p.2]\n\n## 城市植被与地表温度遥感对比研究综述\n\n### 研究问题\n\n本综述旨在回答：基于遥感观测，城市植被与地表温度之间存在何种关联？已有研究在方法、数据、结果和边界条件上如何比较？存在哪些共识、分歧与证据不足？\n\n### 研究对象与方法比较\n\n多篇研究均采用固定观测窗口，对匹配的城市区域进行对比[1, p.1][2, p.1][3, p.1][4, p.1][5, p.1]。该方法通过限定相同范围的遥感像素，控制空间异质性对比较的影响。例如，研究1、2、4、5均明确指出使用“matched urban districts”和“fixed observation window”[1, p.2][2, p.2][4, p.1][5, p.1]。研究3也采用相同方法，但强调该合成固定观测描述的是关联而非因果[3, p.2][3, p.1]。研究2进一步指出，观测到的关联“is not causal”[2, p.1]。研究4和研究5同样声明“test data do not establish a causal effect”[4, p.1][5, p.1]。\n\n在比较维度上，所有研究均通过遥感观测比较城市植被与地表温度[1, p.2][2, p.2][3, p.2][4, p.2][5, p.2]。然而，具体植被指标（如NDVI）或温度反演算法在不同研究中可能不同，但给定证据未提供具体数值，因此无法直接横向比较。研究3的遥感观测被描述为“synthetic fixture”，暗示其可能基于模拟或标准数据集，而非实时观测[3, p.2]。研究5也使用了类似“synthetic fixture”的描述[5, p.2]。\n\n### 混淆变量与边界条件\n\n所有研究均识别出阴凉和水文条件（shade and water availability）作为可能的混淆变量[1, p.1][2, p.1][3, p.1][4, p.1][5, p.1]。这意味着观测到的植被-温度关联可能部分由这些未控制的因子驱动。研究1、2、3、4均指出这些变量是“possible confounding”[1, p.1][2, p.1][3, p.1][4, p.1]。研究5将两者合并为单一声明[5, p.1]。因此，任何基于上述证据的比较都需明确：这些研究仅报告统计关联，而非因果效应。\n\n### 结果与不确定性\n\n由于缺乏具体的效应量（如降温幅度、相关性系数），仅能就关联的存在性和解释边界达成共识：多篇文献一致认为存在负向关联（植被越多、温度越低），但该关联不具因果性。例如，研究1、2、3、4均描述“association, not causation”[3, p.2][4, p.2][5, p.2][2, p.1]。研究4的该声明属于related_work角色，表明是引述背景，而非本篇原创[4, p.1]。\n\n在适用边界上，所有研究均使用匹配城市区域和固定窗口，因此结论主要适用于同质化城市单元内的对比，不适用于跨景观或非匹配区域。未来方向方面，研究1、3、4建议“compare seasons and report uncertainty”[1, p.1][3, p.1][4, p.1]。目前证据未包含任何季节性比较或不确定性量化数值，这构成了明确的证据缺口。\n\n### 共识、分歧与证据不足\n\n**共识：**\n1. 城市植被与地表温度存在统计上的负向关联，该关联基于固定窗口匹配城市区域的遥感观测。\n2. 阴凉和水文条件是普遍承认的可能混淆变量。\n3. 现有数据不能建立因果效应，研究结论被明确限定为“关联而非因果”。\n\n**分歧：**\n由于每篇论文的方法描述高度一致（均使用匹配窗口、固定观测），且缺乏具体度量（如植被指数类型、温度反演算法、样本量、季节），给定证据无法显示任何实质性分歧。仅有的区别在于部分研究（如研究3、4、5）明确声明因果性缺失，而研究1、2仅暗示。此外，研究4的“未来应比较季节”声明属于related_work，表明该建议来自被引文献而非本篇实验。\n\n**证据不足：**\n1. **度量缺失**：无任何研究提供植被指数（如NDVI、EVI）或温度的具体数值、统计检验量或置信区间，无法进行定量比较。\n2. **方法变体未报告**：虽然所有研究均使用固定窗口，但窗口大小、分辨率、是否采用缓冲或多尺度分析均未提及。阴凉和水文变量的具体测量方式（如是否使用阴影强度指数、近地表水分）也未说明。\n3. **纵向与空间分析缺失**：无研究涉及季节变化（尽管多篇建议未来研究[1, p.1][3, p.1]），也无证据说明是否在多个城市或景观类型中验证。研究3的“synthetic fixture”暗示模拟数据，但其真实性与复杂城市环境的可比性未知。\n4. **因果推断空白**：所有研究明确排除因果解释，但未提供任何控制混淆变量或使用准实验设计（如断点回归）的努力，留下方法学空白。\n\n### 综合评述\n\n当前文献在方法范式（匹配窗口+遥感对比）和基本结论（统计负关联、非因果）上高度一致，但受限于缺乏具体实验数值和策略性操作方法细节，无法进行横向排名或效率比较。例如，A研究比B研究降温幅度大0.5℃之类的定量结论需要补充。证据缺口主要集中在三方面：一是具体度量缺失；二是季节性和空间转移验证缺失；三是因果混淆变量控制的尝试缺失。每一篇研究论文中可能还包含更多细节（如特定窗口大小、植被指数公式、误差条），但给定证据中没有提供，因此不能推断整篇论文未做这些分析。未来研究应首先填补这些底层的度量和设计信息，然后方可进行跨研究比较。"
+}

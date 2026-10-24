@@ -1,0 +1,238 @@
+{
+  "case_id": "C-01",
+  "artifacts": [
+    {
+      "path": "data/workspace_team/C-01.json",
+      "kind": "json",
+      "bytes": 10416,
+      "sha256": "2560f16a251058e7b8e98b2155d54ba25a4c39e6d9c0106e3b9b57d73e0d859b"
+    },
+    {
+      "path": "data/expert/C-01-综述-workspace_team.md",
+      "kind": "md",
+      "bytes": 10247,
+      "sha256": "5385b4f5dfaaaf9afb56908f529bdfdb6332ab628bdd0d0c8d5a521b65031855"
+    }
+  ],
+  "filenames": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2112.04426-RETRO.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "specs": null,
+  "proof": null,
+  "usage": [
+    {
+      "stage": "query",
+      "tokens": 497,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 1800,
+      "estimated_input_tokens": 330,
+      "reserved_for_later": 0,
+      "seconds": 1.266
+    },
+    {
+      "stage": "extract",
+      "tokens": 2421,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 2000,
+      "estimated_input_tokens": 2719,
+      "reserved_for_later": 23800,
+      "seconds": 15.861
+    },
+    {
+      "stage": "extract",
+      "tokens": 2351,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 2000,
+      "estimated_input_tokens": 3426,
+      "reserved_for_later": 22100,
+      "seconds": 2.475
+    },
+    {
+      "stage": "extract",
+      "tokens": 2036,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 2000,
+      "estimated_input_tokens": 2780,
+      "reserved_for_later": 20400,
+      "seconds": 2.213
+    },
+    {
+      "stage": "extract",
+      "tokens": 2370,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 2000,
+      "estimated_input_tokens": 3206,
+      "reserved_for_later": 18700,
+      "seconds": 2.64
+    },
+    {
+      "stage": "extract",
+      "tokens": 2476,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 2000,
+      "estimated_input_tokens": 3278,
+      "reserved_for_later": 17000,
+      "seconds": 2.673
+    },
+    {
+      "stage": "verify_claims",
+      "tokens": 4709,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 2000,
+      "estimated_input_tokens": 5976,
+      "reserved_for_later": 12000,
+      "seconds": 2.623
+    },
+    {
+      "stage": "report",
+      "tokens": 5161,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 4200,
+      "estimated_input_tokens": 3762,
+      "reserved_for_later": 12075,
+      "seconds": 10.669
+    },
+    {
+      "stage": "repair",
+      "tokens": 2677,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 1400,
+      "estimated_input_tokens": 3210,
+      "reserved_for_later": 9618,
+      "seconds": 1.095
+    },
+    {
+      "stage": "audit",
+      "tokens": 6606,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261023-v14",
+      "requested_output_tokens": 1000,
+      "estimated_input_tokens": 8151,
+      "reserved_for_later": 0,
+      "seconds": 1.03
+    }
+  ],
+  "session": {
+    "case_id": "C-01",
+    "timeout_seconds": 300,
+    "elapsed_seconds": 62.606,
+    "stage": "persist_and_readback",
+    "stages": [
+      {
+        "stage": "material_resolution",
+        "elapsed_seconds": 0.052
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 0.26
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 0.529
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 19.56
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 19.628
+      },
+      {
+        "stage": "retrieval",
+        "elapsed_seconds": 20.959
+      },
+      {
+        "stage": "report_extract",
+        "elapsed_seconds": 21.021
+      },
+      {
+        "stage": "evidence_semantic_verification",
+        "elapsed_seconds": 46.891
+      },
+      {
+        "stage": "report_report",
+        "elapsed_seconds": 49.517
+      },
+      {
+        "stage": "report_repair",
+        "elapsed_seconds": 60.19
+      },
+      {
+        "stage": "report_audit",
+        "elapsed_seconds": 61.286
+      },
+      {
+        "stage": "submission_validation",
+        "elapsed_seconds": 62.375
+      },
+      {
+        "stage": "persist_and_readback",
+        "elapsed_seconds": 62.376
+      }
+    ],
+    "cancelled": false
+  },
+  "source_case": {
+    "case_id": "C-01",
+    "function": "Survey",
+    "title": "检索增强生成路线综述",
+    "input": "比较指定五篇论文的检索位置、生成阶段的证据融合方式、开放域问答评测、参数或计算代价与可核验的局限。请明确区分论文结论和基于证据提出的推断。",
+    "materials": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "constraints": [
+      "只使用本题授权材料",
+      "正文至少 800 字并带页码引用"
+    ],
+    "expected_output": "至少 800 字的证据综述",
+    "output_schema_ref": "Survey"
+  }
+}

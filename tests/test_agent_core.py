@@ -223,7 +223,8 @@ class CoreTests(unittest.TestCase):
         self.assertEqual(result["status"],"failed")
 
     def test_http_health_solve_and_sdk_adapter(self):
-        from agent import serve_local, ResearchAgent
+        from agent import ResearchAgent
+        from http_fixture import serve_local
         server = serve_local(self.engine, port=0)
         thread = threading.Thread(target=server.serve_forever, daemon=True)
         thread.start()

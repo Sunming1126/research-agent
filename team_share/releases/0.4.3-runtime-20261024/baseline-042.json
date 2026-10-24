@@ -1,0 +1,50 @@
+{
+  "health": {
+    "status": "healthy",
+    "telemetry_configured": true
+  },
+  "checks": [
+    {
+      "case_id": "A-05",
+      "input_form": "direct_eight_fields",
+      "http_status": 200,
+      "sdk_metadata_preserved": false,
+      "expected_business_failure": false,
+      "otlp_spans_received": 10,
+      "span_names": [
+        "agent.http",
+        "agent.llm",
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 1,
+      "seconds": 0.034
+    },
+    {
+      "case_id": "B-01",
+      "input_form": "direct_eight_fields",
+      "http_status": 500,
+      "sdk_metadata_preserved": false,
+      "expected_business_failure": true,
+      "otlp_spans_received": 4,
+      "span_names": [
+        "agent.session",
+        "agent.task",
+        "agent.tool"
+      ],
+      "trace_parent_preserved": true,
+      "llm_calls": 0,
+      "seconds": 0.004
+    }
+  ],
+  "otlp_http_export_verified": true,
+  "gateway_requests": [
+    "chat"
+  ],
+  "real_model_calls": 0,
+  "materials_configuration": "Read-only standard /data/论文库 mount, no custom RESEARCH config",
+  "baseline": true,
+  "formal_d_provenance_tested": false
+}

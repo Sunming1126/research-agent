@@ -1,0 +1,1 @@
+{"event": "research_case_failed", "case_id": "B-99", "error_type": "MaterialError", "team": "http_smoke", "material_roots": ["/data/论文库"], "diagnostic_path": "data/http_smoke/work/B-99/1313cd82aa734f3e8dbd49381f771f45/error.json", "material_error": "authorized material not found: not-present.pdf"}

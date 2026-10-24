@@ -1,0 +1,51 @@
+{
+  "reports": [
+    {
+      "case_id": "C-01",
+      "body_characters": 2107,
+      "citation_instances": 39,
+      "audit_ok": true,
+      "audit_mode": null,
+      "audit_issues": [],
+      "json_markdown_readback": true
+    },
+    {
+      "case_id": "C-03",
+      "body_characters": 4001,
+      "citation_instances": 27,
+      "audit_ok": null,
+      "audit_mode": "deterministic_fallback",
+      "audit_issues": [
+        "正文“研究中普遍识别出阴影（shade）和水体可用性（water availability）是可能的混淆变量[1, p.1][2, p.1][3, p.1][4, p.1][5, p.1]”中，直接证据仅支持论文4[p.1]和论文5[p.1]识别阴影和水体可用性为混淆变量；论文1的quote未提混淆变量，论文2的quote未提混淆变量，论文3的quote未提混淆变量，因此该句的引用覆盖[1,2,3]缺少原文支持。; 正文“在局限性基础上，五篇研究在建议方向上高度一致，均提议未来研究应比较不同季节（compare seasons）并报告不确定性（report uncertainty）[1, p.1][2, p.1][3, p.1][4, p.1][5, p.1]”中，论文4的source_quotes（ev-22）claim为“Future studies should compare seasons and report uncertainty.”，且quote支持；但论文2的source_quotes（ev-11）claim未明确提及“report uncertainty”，仅说“Future studies should compare seasons and report uncertainty.”需检查：ev-11的claim为“Future studies should compare seasons and report uncertainty.”，但quote为“Future studies should compare seasons and report uncertainty.”，支持；论文1、3、5均有支持。此条无问题，撤回。; 正文“所有研究均基于其测试数据明确指出，观测结果不能建立植被与地表温度之间的因果效应[1, p.1][2, p.1][3, p.1][4, p.1][5, p.1]”中，“观测结果”一词可能误导读者认为所有研究使用相同观测；但实际各研究使用各自测试数据，且不能建立因果效应是基于各自数据。此条字面依据充分，无矛盾。",
+        "report repair made no change"
+      ],
+      "json_markdown_readback": true
+    },
+    {
+      "case_id": "E-01",
+      "body_characters": 1857,
+      "citation_instances": 11,
+      "audit_ok": true,
+      "audit_mode": null,
+      "audit_issues": [],
+      "json_markdown_readback": true
+    },
+    {
+      "case_id": "E-02",
+      "body_characters": 2121,
+      "citation_instances": 11,
+      "audit_ok": true,
+      "audit_mode": null,
+      "audit_issues": [],
+      "json_markdown_readback": true
+    }
+  ],
+  "d_statuses": {
+    "D-01": "materials_missing",
+    "D-02": "materials_missing",
+    "D-05": "materials_missing"
+  },
+  "image": "research-assistant:0.4.5-official-20261024",
+  "image_id": "sha256:e6bd975f5baac116398b73cfa8a750e3c6534487179b4e040d865831ba9a08fa",
+  "oom_killed": false
+}
