@@ -21,7 +21,7 @@ def test_standard_library_and_public_description_work_without_custom_config(tmp_
     library.mkdir(parents=True)
     (library / "allowed.pdf").write_bytes(b"%PDF synthetic locator fixture")
     (tmp_path / "private.pdf").write_bytes(b"do not read")
-    settings = load(tmp_path / "data" if data_root else tmp_path, TEAM_ID="platform-team")
+    settings = load(tmp_path / "data" if data_root else tmp_path, TEAM_ID="telemetry-id", TEAM_NAME="platform-team")
     assert settings.team == "platform-team"
     assert settings.material_roots == [library]
     resolver = MaterialResolver(settings)

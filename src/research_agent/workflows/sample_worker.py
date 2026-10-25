@@ -11,29 +11,38 @@ import math
 import os
 import sys
 import types
+from copy import deepcopy
 
 
 ALLOWED_MODULES = {"__future__", "math", "cmath", "collections", "heapq", "itertools", "functools", "random",
                    "statistics", "re", "json", "bisect", "array", "operator", "typing", "dataclasses",
                    "decimal", "fractions", "time", "copy", "enum", "string", "hashlib"}
-DENIED_NAMES = {"eval", "exec", "compile", "open", "input", "getattr", "setattr", "delattr",
+DENIED_NAMES = {"eval", "exec", "compile", "open", "input", "setattr", "delattr",
                 "globals", "locals", "vars", "dir", "help", "breakpoint", "memoryview", "print"}
-DENIED_ATTRIBUTES = {"sys", "os", "io", "builtins", "importlib", "modules", "subprocess", "socket", "codecs",
-                     "gi_frame", "cr_frame", "ag_frame", "f_back", "f_globals", "f_locals", "f_builtins",
-                     "tb_frame", "tb_next", "mro", "attrgetter", "methodcaller", "inspect", "currentframe"}
+DENIED_ATTRIBUTES = {"sys", "os", "io", "builtins", "importlib", "modules", "subprocess", "socket"}
 
 
 def validate_source(source):
     tree = ast.parse(source, feature_version=(3, 9))
+    parents = {child: parent for parent in ast.walk(tree) for child in ast.iter_child_nodes(parent)}
     for node in ast.walk(tree):
         if isinstance(node, (ast.Import, ast.ImportFrom)):
             names = [a.name for a in node.names] if isinstance(node, ast.Import) else [node.module or ""]
             if getattr(node, "level", 0) or any(name.split(".")[0] not in ALLOWED_MODULES for name in names):
                 raise ValueError("sample self-test permits algorithm standard-library imports only")
+            if isinstance(node, ast.ImportFrom) and any(a.name.startswith("_") for a in node.names):
+                raise ValueError("sample self-test forbids private module imports")
+        if isinstance(node, ast.Name) and node.id == "__import__":
+            call = parents.get(node)
+            if (isinstance(call, ast.Call) and call.func is node and len(call.args) == 1 and not call.keywords
+                    and isinstance(call.args[0], ast.Constant) and type(call.args[0].value) is str
+                    and call.args[0].value in ALLOWED_MODULES):
+                continue
+            raise ValueError(f"line {node.lineno}: use ordinary import or a literal authorized module")
         if isinstance(node, ast.Name) and (node.id in DENIED_NAMES or node.id.startswith("__")):
-            raise ValueError("sample self-test forbids dynamic loading, I/O and introspection")
+            raise ValueError(f"line {node.lineno}: self-test forbids builtin {node.id}; use plain data operations")
         if isinstance(node, ast.Attribute) and (node.attr.startswith("_") or node.attr in DENIED_ATTRIBUTES):
-            raise ValueError("sample self-test forbids private or runtime attributes")
+            raise ValueError(f"line {node.lineno}: self-test forbids attribute {node.attr}; use public member names")
     return tree
 
 
@@ -91,28 +100,49 @@ def main():
         "iter", "len", "list", "map", "max", "min", "next", "object", "ord", "pow", "property", "range",
         "repr", "reversed", "round", "set", "slice", "sorted", "staticmethod", "str", "sum", "super",
         "tuple", "type", "zip", "Exception", "ValueError", "TypeError", "RuntimeError", "KeyError",
-        "IndexError", "StopIteration", "AssertionError", "ZeroDivisionError", "NotImplementedError",
+        "IndexError", "AttributeError", "StopIteration", "AssertionError", "ZeroDivisionError", "NotImplementedError",
         "__build_class__")}
 
     def safe_import(name, globals=None, locals=None, fromlist=(), level=0):
-        if level or name.split(".")[0] not in ALLOWED_MODULES:
+        if (type(name) is not str or level or name.split(".")[0] not in ALLOWED_MODULES
+                or any(part.startswith("_") for part in name.split(".") if part != "__future__")
+                or any(part.startswith("_") for part in (fromlist or ()))):
             raise ImportError("module unavailable in algorithm self-test")
         return builtins.__import__(name, globals, locals, fromlist, level)
 
+    def public_getattr(value, name, *default):
+        # 普通数据对象的公开字段可读；模块运行时、双下划线与私有能力仍不可反射访问。
+        if type(name) is not str or name.startswith("_") or name in DENIED_ATTRIBUTES:
+            raise ValueError("self-test getattr permits public data attributes only")
+        return builtins.getattr(value, name, *default)
+
+    def public_hasattr(value, name):
+        try:
+            public_getattr(value, name)
+            return True
+        except AttributeError:
+            return False
+
     safe["__import__"] = safe_import
+    safe["getattr"], safe["hasattr"] = public_getattr, public_hasattr
     module = types.ModuleType("current_case_algorithm")
     module.__dict__["__builtins__"] = safe
     sys.modules[module.__name__] = module
     isolation = restrict_process(int(message.get("seconds", 8)))
     exec(code, module.__dict__)
-    result = module.run_experiment(request)
+    result = module.run_experiment(deepcopy(request))
+    repeat_result = None
+    if request.get("case_id") == "D-01":
+        importlib.import_module("random").seed(request.get("protocol", {}).get("seed", 42))
+        repeat_result = module.run_experiment(deepcopy(request))
     rank_result = None
     if request.get("case_id") == "D-02" and isinstance(result, dict) and result.get("candidate") is not None:
         selected = result.get("details", {}).get("selected")
         rank_request = dict(request, phase="rank", data=dict(request["data"], selected=selected))
         rank_result = module.run_experiment(rank_request)
     # 标准 JSON 禁止 NaN/Infinity，限制输出避免不正常结果耗尽父进程内存。
-    encoded = json.dumps({"result": result, "rank_result": rank_result, "isolation": isolation}, ensure_ascii=False, allow_nan=False)
+    encoded = json.dumps({"result": result, "rank_result": rank_result,
+                          "repeat_result": repeat_result, "isolation": isolation}, ensure_ascii=False, allow_nan=False)
     if len(encoded.encode("utf-8")) > 1024 * 1024:
         raise ValueError("sample result exceeds one MiB")
     print(encoded)

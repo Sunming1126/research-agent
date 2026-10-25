@@ -11,7 +11,7 @@ from research_agent.workflows.sample_validation import run_public_sample
 from research_agent.workflows.sample_worker import validate_source
 
 
-ROOT = Path("科研助手赛题材料/x新/research-experiments-20261020-source-v1")
+ROOT = Path("科研助手赛题材料/research-experiments-20261020-source-v1")
 
 
 @pytest.mark.parametrize("case_id", ["D-01", "D-02", "D-05"])
@@ -22,6 +22,9 @@ def test_public_samples_run_in_separate_process(tmp_path, case_id):
                  for key, name in (("protocol", "protocol.json"), ("sample", "sample.json"))}
     report = run_public_sample(path, materials, case_id)
     assert report["status"] == "passed" and report["candidate_present"]
+    if case_id == "D-05":
+        assert {"retry_after_deadline_rejection", "retry_after_horizon_rejection",
+                "retry_after_multiple_rejections"} <= {row["probe"] for row in report["probes"]}
 
 
 @pytest.mark.parametrize("source", ["import socket", "import os", "x = open('secret')",

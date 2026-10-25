@@ -1,0 +1,15 @@
+{
+  "source_hashes": {
+    "native_main_contract_run.py": "5f478b06e4d58f2660fbe3e87471bfebe77f554533425b4ee9604f047e0d375b",
+    "main_contract_acceptance.py": "7a08cb7ce50dec4018711fba89e27b1ed1b7790f69a1ea6375f1e9ecb8a857ee",
+    "main_contract_paper_audit.py": "96e459ace9700a8245602798d7cf77d1659fa1642ebc85118ba4c6b4063b2e0c",
+    "main_contract_faults.py": "d282d631d452a5cb52fa98ad45ba880d007ebff574faf60c7b5ebf79b2137f79",
+    "main_contract_archive.py": "4fc9dabc9c645748abebb0c5ed48da8b6aebfd5c3b7139b7c6336d7932e51055",
+    "test_agent.py": "6a328a61142775ba644963fda0f191c5f638f293ae82830645bc6f5a6a4da341",
+    "compare_images.py": "38b74195f4d5658aac9d1c2d885a6cf0e9b08f8b59e7f4c7e65b9a16fea71e59",
+    "magic_api_bridge.py": "829542f5fac3be59d8f7492a3aeb845145c17522fde341a43cfc14479601ffa8",
+    "read_magic_connection.cjs": "875c82f92c49b3f439b5cc550923132771b348732ba4f224e87339ccb4422e44",
+    "public_oracles.py": "d22291e7bc8e7f3e1c89987ade5b5d403a1993bbaf55e5dd3575d78d3c47f1bb"
+  },
+  "sdk_reference_image_id": "sha256:0f9233b601522d83848ec72e940bf19f57408fb5298976cd595061e1f6d80683"
+}

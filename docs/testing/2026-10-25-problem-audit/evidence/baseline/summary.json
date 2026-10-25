@@ -1,0 +1,8 @@
+{
+  "stage": "baseline",
+  "returncode": 1,
+  "tests_passed": false,
+  "source_fingerprint": "1f9691cc631ae15ff47963437260dd8bcd73c98ebb919859ac8c2069ef4254a7",
+  "real_model_calls": 0,
+  "note": "Baseline failures are retained; no outcome is reclassified."
+}

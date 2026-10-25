@@ -32,6 +32,9 @@ class Settings:
             raise ValueError("team must be one safe directory name")
         self.workspace = self.workspace.resolve()
         self.output = self.output.resolve()
+        for root in self.material_roots:
+            if root.is_symlink() or (hasattr(root, "is_junction") and root.is_junction()):
+                raise ValueError("material root symlinks/junctions are forbidden")
         self.material_roots = [root.resolve() for root in self.material_roots]
         if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
             raise ValueError("configure dedicated material directories, not workspace/data/output")
@@ -54,22 +57,25 @@ class Settings:
             material_roots = [Path(x) for x in config["material_roots"]]
         else:
             # 只检查约定的专用论文库位置；不遍历队伍目录或整个文件系统。
-            library = "论文库" if workspace.resolve().name == "data" else "data/论文库"
-            canonical = confined(workspace, library)
-            candidates = [canonical, confined(output, "data/论文库")]
+            prefix = "" if workspace.resolve().name == "data" else "data/"
+            canonical = confined(workspace, prefix + "论文库")
+            explicit_papers = os.environ.get("PAPERS_PATH")
+            candidates = ([Path(explicit_papers)] if explicit_papers else
+                          [canonical, confined(workspace, prefix + "papers"),
+                           confined(output, "data/论文库"), confined(output, "data/papers")])
             existing = list(dict.fromkeys(path for path in candidates if path.is_dir()))
             if len(existing) > 1:
                 raise ValueError("multiple paper libraries found; configure RESEARCH_MATERIAL_ROOTS explicitly")
-            material_roots = existing or [canonical]
+            material_roots = existing or ([Path(explicit_papers)] if explicit_papers else [canonical])
         aliases = {}
-        if len(material_roots) == 1 and material_roots[0].name == "论文库":
-            aliases["本地论文文件夹内的 PDF"] = ["论文库"]
+        if len(material_roots) == 1 and material_roots[0].name in {"论文库", "papers"}:
+            aliases["本地论文文件夹内的 PDF"] = [material_roots[0].name]
         aliases.update(config.get("material_aliases", {}))
         return cls(
             workspace=workspace,
             output=output,
             team=(os.environ.get("RESEARCH_WORKSPACE_TEAM") or config.get("team")
-                  or os.environ.get("TEAM_ID") or OFFICIAL_TEAM),
+                  or os.environ.get("TEAM_NAME") or OFFICIAL_TEAM),
             material_roots=material_roots,
             material_aliases=aliases,
             experiment_mode=os.environ.get("RESEARCH_EXPERIMENT_MODE", config.get("experiment_mode", "platform")),

@@ -1,0 +1,490 @@
+{
+  "checked_at_utc": "2026-10-25T09:31:18.151267+00:00",
+  "repository": "Sunming1126/research-agent",
+  "mutations": 0,
+  "main": {
+    "sha": "64f5efd881d41b24354d6e82f02b450c799e48ff",
+    "tree": "d3415d276fbd1b3063b82f500fa62e905440f050",
+    "date": "2026-10-24T10:09:36Z",
+    "message": "Merge pull request #3 from Sunming1126/test1",
+    "url": "https://github.com/Sunming1126/research-agent/commit/64f5efd881d41b24354d6e82f02b450c799e48ff",
+    "image_directory": [
+      {
+        "name": "research-assistant-0.4.1-v14-20261023.tar.sha256",
+        "bytes": 108,
+        "git_blob": "f55e8951473b4218f5c80d702f585d9b4164925f"
+      },
+      {
+        "name": "research-assistant-0.4.1-v14-20261024.tar.sha256",
+        "bytes": 108,
+        "git_blob": "ff73bd0422d505561a4bf3b7e8e179392cfd9027"
+      },
+      {
+        "name": "research-assistant-0.4.2-http-20261024.tar.sha256",
+        "bytes": 109,
+        "git_blob": "8624ae261cd9b0d06e5d3534ba5a78c8d7fe534b"
+      },
+      {
+        "name": "research-assistant-0.4.3-runtime-20261024.tar.sha256",
+        "bytes": 112,
+        "git_blob": "fda5750890e182dc439003cf177fc2c4b478d763"
+      },
+      {
+        "name": "research-assistant-0.4.4-contract-20261024.tar.sha256",
+        "bytes": 113,
+        "git_blob": "da4844d3e6d3c79db0af4abda8f5edf80be9106c"
+      },
+      {
+        "name": "research-assistant-0.4.5-official-20261024.tar.sha256",
+        "bytes": 113,
+        "git_blob": "e87b6f4425da57e1948ec6df2cbebb5b0b17f004"
+      },
+      {
+        "name": "research-assistant-0.4.6-team-20261024.tar.sha256",
+        "bytes": 109,
+        "git_blob": "7317bf6780bb1940edff9aa6fdc740cf7310552a"
+      }
+    ]
+  },
+  "test1": {
+    "sha": "80dd81d5a89c3a0a3dd3e0e565ad0ce6fd772c72",
+    "tree": "d3415d276fbd1b3063b82f500fa62e905440f050",
+    "date": "2026-10-24T09:42:03Z",
+    "message": "存在输出和保存错误问题",
+    "url": "https://github.com/Sunming1126/research-agent/commit/80dd81d5a89c3a0a3dd3e0e565ad0ce6fd772c72",
+    "image_directory": [
+      {
+        "name": "research-assistant-0.4.1-v14-20261023.tar.sha256",
+        "bytes": 108,
+        "git_blob": "f55e8951473b4218f5c80d702f585d9b4164925f"
+      },
+      {
+        "name": "research-assistant-0.4.1-v14-20261024.tar.sha256",
+        "bytes": 108,
+        "git_blob": "ff73bd0422d505561a4bf3b7e8e179392cfd9027"
+      },
+      {
+        "name": "research-assistant-0.4.2-http-20261024.tar.sha256",
+        "bytes": 109,
+        "git_blob": "8624ae261cd9b0d06e5d3534ba5a78c8d7fe534b"
+      },
+      {
+        "name": "research-assistant-0.4.3-runtime-20261024.tar.sha256",
+        "bytes": 112,
+        "git_blob": "fda5750890e182dc439003cf177fc2c4b478d763"
+      },
+      {
+        "name": "research-assistant-0.4.4-contract-20261024.tar.sha256",
+        "bytes": 113,
+        "git_blob": "da4844d3e6d3c79db0af4abda8f5edf80be9106c"
+      },
+      {
+        "name": "research-assistant-0.4.5-official-20261024.tar.sha256",
+        "bytes": 113,
+        "git_blob": "e87b6f4425da57e1948ec6df2cbebb5b0b17f004"
+      },
+      {
+        "name": "research-assistant-0.4.6-team-20261024.tar.sha256",
+        "bytes": 109,
+        "git_blob": "7317bf6780bb1940edff9aa6fdc740cf7310552a"
+      }
+    ]
+  },
+  "pulls": [
+    {
+      "number": 4,
+      "title": "适配官方运行时与派题边界：0.4.7候选，待Docker恢复后复测",
+      "state": "open",
+      "url": "https://github.com/Sunming1126/research-agent/pull/4",
+      "updated": "2026-10-24T11:59:45Z",
+      "comments": null,
+      "draft": true,
+      "head": "3a7fdaf43257aab4adda654da3d2598e60b5a7e7",
+      "base": "64f5efd881d41b24354d6e82f02b450c799e48ff",
+      "merged_at": null
+    },
+    {
+      "number": 3,
+      "title": "存在输出和保存错误问题",
+      "state": "closed",
+      "url": "https://github.com/Sunming1126/research-agent/pull/3",
+      "updated": "2026-10-24T10:09:37Z",
+      "comments": null,
+      "draft": false,
+      "head": "80dd81d5a89c3a0a3dd3e0e565ad0ce6fd772c72",
+      "base": "7ceaaa21956b9bb5b56758efa608cb1b2989b553",
+      "merged_at": "2026-10-24T10:09:37Z"
+    },
+    {
+      "number": 2,
+      "title": "修复直接派题422与D05拒绝后即时重试，完成v8镜像验收",
+      "state": "open",
+      "url": "https://github.com/Sunming1126/research-agent/pull/2",
+      "updated": "2026-10-24T09:45:23Z",
+      "comments": null,
+      "draft": true,
+      "head": "930c49ca479e3a6976806e2c21374bb724cb8ebe",
+      "base": "0b48c4e44668ea6a9893e7a7e9013ceea8d4a296",
+      "merged_at": null
+    },
+    {
+      "number": 1,
+      "title": "Improve D source self-testing and repair; fix report citation binding",
+      "state": "open",
+      "url": "https://github.com/Sunming1126/research-agent/pull/1",
+      "updated": "2026-10-23T05:51:14Z",
+      "comments": null,
+      "draft": false,
+      "head": "0b48c4e44668ea6a9893e7a7e9013ceea8d4a296",
+      "base": "7ceaaa21956b9bb5b56758efa608cb1b2989b553",
+      "merged_at": null
+    }
+  ],
+  "issues": [
+    {
+      "number": 4,
+      "title": "适配官方运行时与派题边界：0.4.7候选，待Docker恢复后复测",
+      "state": "open",
+      "url": "https://github.com/Sunming1126/research-agent/pull/4",
+      "updated": "2026-10-24T11:59:45Z",
+      "comments": 0,
+      "draft": true,
+      "head": null,
+      "base": null,
+      "merged_at": null
+    },
+    {
+      "number": 3,
+      "title": "存在输出和保存错误问题",
+      "state": "closed",
+      "url": "https://github.com/Sunming1126/research-agent/pull/3",
+      "updated": "2026-10-24T10:09:37Z",
+      "comments": 0,
+      "draft": false,
+      "head": null,
+      "base": null,
+      "merged_at": null
+    },
+    {
+      "number": 2,
+      "title": "修复直接派题422与D05拒绝后即时重试，完成v8镜像验收",
+      "state": "open",
+      "url": "https://github.com/Sunming1126/research-agent/pull/2",
+      "updated": "2026-10-24T09:45:23Z",
+      "comments": 0,
+      "draft": true,
+      "head": null,
+      "base": null,
+      "merged_at": null
+    },
+    {
+      "number": 1,
+      "title": "Improve D source self-testing and repair; fix report citation binding",
+      "state": "open",
+      "url": "https://github.com/Sunming1126/research-agent/pull/1",
+      "updated": "2026-10-23T05:51:14Z",
+      "comments": 0,
+      "draft": false,
+      "head": null,
+      "base": null,
+      "merged_at": null
+    }
+  ],
+  "releases": [
+    {
+      "tag": "untagged-ba67b8ec27ec6c95b04a",
+      "title": "0.4.2-hybrid-v5 科研助手镜像与验收证据",
+      "draft": true,
+      "published": null,
+      "assets": [
+        {
+          "name": "research-agent-0.4.2-hybrid-v5-build-source.zip",
+          "bytes": 103497,
+          "digest": "sha256:bee060fe3992c2188c7eb6c590b8fc39d99bc3ad342017a652dd8dcec3463370"
+        },
+        {
+          "name": "research-assistant-0.4.2-hybrid-v5.tar",
+          "bytes": 295538688,
+          "digest": "sha256:51246fca1c056a358980bd0770090611fcd897ef46530f023c341b1c5774cfcc"
+        }
+      ]
+    },
+    {
+      "tag": "untagged-7862bb3d82f55cb5df90",
+      "title": "v7 验收失败 / D05拒绝后未重试，请勿提交",
+      "draft": true,
+      "published": null,
+      "assets": [
+        {
+          "name": "research-agent-0.4.2-hybrid-v7-build-source.zip",
+          "bytes": 105120,
+          "digest": "sha256:2a26c9d0eb0a6c9d116b8c6b845ab0d64befca81c4af6510f421e961ec1ac6ac"
+        },
+        {
+          "name": "research-assistant-0.4.2-hybrid-v7.tar",
+          "bytes": 295541248,
+          "digest": "sha256:5719b2195b09aaa43c06587fa69f5c528f01f334471ca9dfed59c8772e8f4c41"
+        }
+      ]
+    },
+    {
+      "tag": "untagged-775075a58cb28ba0e55a",
+      "title": "0.4.2-hybrid-v4 科研助手镜像与验收证据",
+      "draft": true,
+      "published": null,
+      "assets": [
+        {
+          "name": "research-agent-0.4.2-hybrid-v4-build-source.zip",
+          "bytes": 101971,
+          "digest": "sha256:32cf67ea171fee9a21bf8f187b72877df38fb1b1d44d0483feea30d46c66a433"
+        },
+        {
+          "name": "research-assistant-0.4.2-hybrid-v4.tar",
+          "bytes": 295537152,
+          "digest": "sha256:57a8dfa8df2899261f724f48777c0225fbc2a5320b36f4e0355da724f764388f"
+        }
+      ]
+    },
+    {
+      "tag": "v0.4.2-hybrid-v8-20261023",
+      "title": "v8 科研助手：直接派题与D05可靠性修复及验收材料",
+      "draft": false,
+      "published": "2026-10-23T14:48:12Z",
+      "assets": [
+        {
+          "name": "acceptance-report.md",
+          "bytes": 4700,
+          "digest": "sha256:9cf7e2e67b4064822c69229865b6427e5828ef1adc432e9e3cff98e249ae667b"
+        },
+        {
+          "name": "candidate-audit.json",
+          "bytes": 1318,
+          "digest": "sha256:85b76a9e6d4397dacf8db7411a594a58c3015435d52f3934e42184da4d590ccc"
+        },
+        {
+          "name": "delivery-manifest.json",
+          "bytes": 1388,
+          "digest": "sha256:c888afe4c9174f2a2df78efeef641d51a9f2f11de7d0f4cd095e09815136d154"
+        },
+        {
+          "name": "evidence-package-manifest.json",
+          "bytes": 351,
+          "digest": "sha256:36eea5792e08d896b9fc00dbb9a3547f0bc48bad334432e75ccf550d74e70865"
+        },
+        {
+          "name": "hybrid-v8-native-public-evidence-20261023.zip",
+          "bytes": 3489088,
+          "digest": "sha256:bdfdc8f035b2cfebea2a64112ad121c6b642bca16ad821983a1aa4c733321de9"
+        },
+        {
+          "name": "quantitative-results.json",
+          "bytes": 6985,
+          "digest": "sha256:d5b53394488a781aaa220539aff3574d3431cfee6adbf91ccda7f6950f81f95d"
+        },
+        {
+          "name": "research-agent-0.4.2-hybrid-v8-build-source.zip",
+          "bytes": 105892,
+          "digest": "sha256:28d74e5353002fbae1d1046317c1b6ce5744d9b8280ce30e6784c47732f6e2ae"
+        },
+        {
+          "name": "research-assistant-0.4.2-hybrid-v8.tar",
+          "bytes": 295542272,
+          "digest": "sha256:4ab5b6ed72269ef9dbde601360773e9042f1ff109a0bd098d96800b5d33202ca"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 221,
+          "digest": "sha256:57332b655a10b0964c71de665a193525cec6136451ea7d1233272849c94ab862"
+        },
+        {
+          "name": "submission-guide.md",
+          "bytes": 1137,
+          "digest": "sha256:614cefd51c905bad777a3bc44da74de792f6b4a40acc37f775ab0ba5c2fd108d"
+        }
+      ]
+    },
+    {
+      "tag": "v0.4.2-hybrid-v6-20261023",
+      "title": "暂停提交 / HTTP422 — research-assistant 0.4.2-hybrid-v6",
+      "draft": false,
+      "published": "2026-10-23T11:36:20Z",
+      "assets": [
+        {
+          "name": "acceptance-report.md",
+          "bytes": 6982,
+          "digest": "sha256:5fbc124f6d2a76f0d84b0202b7f986f486d710ffbd6d280bc1b6381e1a698ab4"
+        },
+        {
+          "name": "candidate-audit.json",
+          "bytes": 1340,
+          "digest": "sha256:d293b6aa6928b252aa0e6d2a5c740a38407a8810e69e02e6cd910b575434bfb7"
+        },
+        {
+          "name": "delivery-manifest.json",
+          "bytes": 1399,
+          "digest": "sha256:315ea2a174f810ca4c6f86661cdfed3ef0ed2834f3cee417b66e86417cad4de3"
+        },
+        {
+          "name": "evidence-package-manifest.json",
+          "bytes": 354,
+          "digest": "sha256:a564a67a8b2aa43513f8db093db0f98d9d1aa4c31387f8fc4d3d227a23901b82"
+        },
+        {
+          "name": "hybrid-v6-native-public-evidence-20261023.zip",
+          "bytes": 5144848,
+          "digest": "sha256:d97feef776b19d56d2d5a581a0130e2031f538c4ba9be06281ea196c8fb045d5"
+        },
+        {
+          "name": "research-agent-0.4.2-hybrid-v6-build-source.zip",
+          "bytes": 104082,
+          "digest": "sha256:cd2c2c362059b429dfb598bba43ae6c12df786fac7efe4eea3a78bf512690e49"
+        },
+        {
+          "name": "research-assistant-0.4.2-hybrid-v6.tar",
+          "bytes": 295539200,
+          "digest": "sha256:a920a93cf7418320e127692ce838c3f6f05727141a73accd73d7ee92059f00ea"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 221,
+          "digest": "sha256:bd33d8142f40c7a6fcb6dfdb48bc2905b05acf80e29533ec5ab8d350ca19d220"
+        },
+        {
+          "name": "submission-guide.md",
+          "bytes": 1249,
+          "digest": "sha256:5cd8ff9032798b4f0e0b850c66dc440035398e8dbef04a664db889be6f06b6ef"
+        }
+      ]
+    },
+    {
+      "tag": "v0.4.1-source-v1",
+      "title": "0.4.1 本地验收镜像与复测材料",
+      "draft": false,
+      "published": "2026-10-23T03:29:44Z",
+      "assets": [
+        {
+          "name": "acceptance-evidence-20261023.zip",
+          "bytes": 40949,
+          "digest": "sha256:c2edd026d67dbfb2ecaf7d2983deaaf4debf905a22f76fd286246c0a1763c56e"
+        },
+        {
+          "name": "acceptance-summary.json",
+          "bytes": 12779,
+          "digest": "sha256:6fed81c3a4f1d6e196e87e31a341997ad667a3e9994ff473364bda8f5335ceab"
+        },
+        {
+          "name": "delivery-manifest.json",
+          "bytes": 1391,
+          "digest": "sha256:c49da14f632333e3ebe57f5b43e72f9eb040d33802f8089b8a79fb2ce40912d5"
+        },
+        {
+          "name": "image-source-audit.json",
+          "bytes": 4647,
+          "digest": "sha256:2ab082045988e50b197b8e8cdfd60503b3fa5e866736b917ee2bb197513fa18e"
+        },
+        {
+          "name": "regression.xml",
+          "bytes": 18087,
+          "digest": "sha256:6e20aa949509fa14e54c14c218576cf39fe35a8eb2a6405a0313a4f9f73b2dd0"
+        },
+        {
+          "name": "RELEASE-SHA256SUMS.txt",
+          "bytes": 1014,
+          "digest": "sha256:6042d5fb18ad23da0cee23cd4d41c0a5e474d3c1f23822adbd14e7828c8d623b"
+        },
+        {
+          "name": "report-evidence.json",
+          "bytes": 8106,
+          "digest": "sha256:8ff9894dec757cb8e479eed341895fd7a0db2a6d033320f509fa44a4b14344e5"
+        },
+        {
+          "name": "research-agent-0.4.1-source.zip",
+          "bytes": 184255033,
+          "digest": "sha256:c268076e12fc44a12b1802e1ce4b7b185c0c4aa964ebd8285561d871c23be5ee"
+        },
+        {
+          "name": "research-agent-0.4.1.patch",
+          "bytes": 51767,
+          "digest": "sha256:230267e5f6c6faa24d0b3ba26dded4500d428b5568b9386648e1a7a026436f03"
+        },
+        {
+          "name": "research-assistant-0.4.1-source-v1.tar",
+          "bytes": 295470080,
+          "digest": "sha256:530aa3d5468622db16d9dc6e69807e999d422800c841b9cdaae59a03a40152eb"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 742,
+          "digest": "sha256:c34ffb9822b087ee519e9b382c764824da55a09b39f7f48dac1ee230658b8cd1"
+        },
+        {
+          "name": "usage-and-acceptance.md",
+          "bytes": 5459,
+          "digest": "sha256:b7f808962837752b936d47836c2be8611859115ae8c37ebdd85a96f81477278b"
+        }
+      ]
+    },
+    {
+      "tag": "test-comparison-v041-20261023",
+      "title": "0.4.1 source-v1 与 v14 双镜像对照测试",
+      "draft": false,
+      "published": "2026-10-23T05:51:16Z",
+      "assets": [
+        {
+          "name": "comparison-delivery-manifest.json",
+          "bytes": 457,
+          "digest": "sha256:dfdf59ba9e8b71b2f1f1f7a7ca53c1b180c340d4091454efd658735d8757f120"
+        },
+        {
+          "name": "comparison-report.md",
+          "bytes": 7661,
+          "digest": "sha256:c6f1b0dfea54580993d280cb7dd9792c9c4cc5222a76dd25326addfb4868f4aa"
+        },
+        {
+          "name": "comparison-summary.json",
+          "bytes": 191617,
+          "digest": "sha256:771a6f1751d83fe46229392c06be7e35256c18863945240095119b335389b3e3"
+        },
+        {
+          "name": "paired-comparison-v041-20261023.zip",
+          "bytes": 11503182,
+          "digest": "sha256:cdafb04a6f8fe7d0051e81a445fcf340ea36a61967070f326b4979b895d2c080"
+        }
+      ]
+    },
+    {
+      "tag": "v0.4.1-v14-20261023",
+      "title": "当前 Agent 完整镜像 0.4.1-v14-20261023",
+      "draft": false,
+      "published": "2026-10-23T04:57:12Z",
+      "assets": [
+        {
+          "name": "delivery-manifest.json",
+          "bytes": 1024,
+          "digest": "sha256:e1dd640b8c378a3666b94d714e8117a78b8c1471de5219eac59fa2ea2d57cadb"
+        },
+        {
+          "name": "research-assistant-0.4.1-v14-20261023.tar",
+          "bytes": 295421952,
+          "digest": "sha256:d8b16cbde0dd3c85a63f3aded6505fe5167866d068a1f43f8cc0fd84ef946946"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 275,
+          "digest": "sha256:3792a1d3761543bfa5a0b44dc460aaa76bb5a3e475e983c87ccdc1b706160df0"
+        },
+        {
+          "name": "USAGE.md",
+          "bytes": 2611,
+          "digest": "sha256:11dbaa06674963a50662420ca704c01b85b8193f5a090ec8d87868029a429119"
+        }
+      ]
+    }
+  ],
+  "pr4_comments": [],
+  "pr4_reviews": [],
+  "actions": {
+    "total_count": 0,
+    "runs": []
+  }
+}

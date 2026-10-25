@@ -1,0 +1,2 @@
+# Preserve raw failure evidence byte for byte, including intentional pytest spacing.
+evidence/** -text -whitespace

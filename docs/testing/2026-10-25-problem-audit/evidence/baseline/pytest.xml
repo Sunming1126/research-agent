@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="7" skipped="0" tests="7" time="1.982" timestamp="2026-10-25T09:56:34.821292+00:00" hostname="da1130adf81d"><testcase classname="test_official_contract_047" name="test_single_checks_current_assigned_hash_and_exact_request_before_execution" time="0.009"><failure message="Failed: DID NOT RAISE &lt;class 'ValueError'&gt;">/contract-probes/test_official_contract_047.py:50: in test_single_checks_current_assigned_hash_and_exact_request_before_execution
+    with pytest.raises(ValueError):
+E   Failed: DID NOT RAISE &lt;class 'ValueError'&gt;</failure></testcase><testcase classname="test_official_contract_047" name="test_recommended_gateway_environment_works_without_legacy_variables" time="0.000"><failure message="assert False&#10; +  where False = &lt;research_agent.integrations.llm.GatewayLLM object at 0x71209a8a3d90&gt;.available">/contract-probes/test_official_contract_047.py:64: in test_recommended_gateway_environment_works_without_legacy_variables
+    assert gateway.available
+E   assert False
+E    +  where False = &lt;research_agent.integrations.llm.GatewayLLM object at 0x71209a8a3d90&gt;.available</failure></testcase><testcase classname="test_official_contract_047" name="test_gateway_model_request_sends_challenge_session_header" time="0.538"><failure message="AssertionError: assert None == 'challenge-session'&#10; +  where None = &lt;built-in method get of dict object at 0x712098a29800&gt;('X-Session-ID')&#10; +    where &lt;built-in method get of dict object at 0x712098a29800&gt; = {}.get&#10; +      where {} = &lt;built-in method get of dict object at 0x712098a31500&gt;('default_headers', {})&#10; +        where &lt;built-in method get of dict object at 0x712098a31500&gt; = {'api_key': 'fixture-placeholder', 'base_url': 'http://gateway.example/api/v1', 'max_retries': 0, 'timeout': 10}.get&#10; +          where {'api_key': 'fixture-placeholder', 'base_url': 'http://gateway.example/api/v1', 'max_retries': 0, 'timeout': 10} = call(base_url='http://gateway.example/api/v1', api_key='fixture-placeholder', timeout=10, max_retries=0).kwargs&#10; +            where call(base_url='http://gateway.example/api/v1', api_key='fixture-placeholder', timeout=10, max_retries=0) = &lt;MagicMock name='OpenAI' id='124384813618896'&gt;.call_args">/contract-probes/test_official_contract_047.py:75: in test_gateway_model_request_sends_challenge_session_header
+    assert client.call_args.kwargs.get("default_headers", {}).get("X-Session-ID") == "challenge-session"
+E   AssertionError: assert None == 'challenge-session'
+E    +  where None = &lt;built-in method get of dict object at 0x712098a29800&gt;('X-Session-ID')
+E    +    where &lt;built-in method get of dict object at 0x712098a29800&gt; = {}.get
+E    +      where {} = &lt;built-in method get of dict object at 0x712098a31500&gt;('default_headers', {})
+E    +        where &lt;built-in method get of dict object at 0x712098a31500&gt; = {'api_key': 'fixture-placeholder', 'base_url': 'http://gateway.example/api/v1', 'max_retries': 0, 'timeout': 10}.get
+E    +          where {'api_key': 'fixture-placeholder', 'base_url': 'http://gateway.example/api/v1', 'max_retries': 0, 'timeout': 10} = call(base_url='http://gateway.example/api/v1', api_key='fixture-placeholder', timeout=10, max_retries=0).kwargs
+E    +            where call(base_url='http://gateway.example/api/v1', api_key='fixture-placeholder', timeout=10, max_retries=0) = &lt;MagicMock name='OpenAI' id='124384813618896'&gt;.call_args</failure></testcase><testcase classname="test_official_contract_047" name="test_bounded_survey_fallback_keeps_whole_verified_facts_and_all_papers" time="0.000"><failure message="ValueError: report body exceeds 4500 characters (including whitespace)">/contract-probes/test_official_contract_047.py:84: in test_bounded_survey_fallback_keeps_whole_verified_facts_and_all_papers
+    validate_report_limits(markdown, "Survey")
+src/research_agent/contracts/validation.py:51: in validate_report_limits
+    raise ValueError(f"report body exceeds {limit} characters (including whitespace)")
+E   ValueError: report body exceeds 4500 characters (including whitespace)</failure></testcase><testcase classname="test_official_contract_047" name="test_platform_transport_uuid_and_model_session_are_distinct" time="0.611"><failure message="AssertionError: assert 'A-01' == 'a3b8f0f8-1a7...-99420856537c'&#10;  &#10;  - a3b8f0f8-1a72-4537-bf6b-99420856537c&#10;  + A-01">/contract-probes/test_official_contract_047.py:130: in test_platform_transport_uuid_and_model_session_are_distinct
+    assert session.attributes["task_id"] == task_id
+E   AssertionError: assert 'A-01' == 'a3b8f0f8-1a7...-99420856537c'
+E     
+E     - a3b8f0f8-1a72-4537-bf6b-99420856537c
+E     + A-01</failure></testcase><testcase classname="test_official_contract_047" name="test_failed_business_call_is_not_a_successful_200_wrapper" time="0.007"><failure message="assert 200 == 500&#10; +  where 200 = &lt;Response [200 OK]&gt;.status_code">/contract-probes/test_official_contract_047.py:139: in test_failed_business_call_is_not_a_successful_200_wrapper
+    assert response.status_code == 500
+E   assert 200 == 500
+E    +  where 200 = &lt;Response [200 OK]&gt;.status_code</failure></testcase><testcase classname="test_official_contract_047" name="test_papers_mount_and_team_name_fallback_do_not_use_telemetry_team_id" time="0.001"><failure message="AssertionError: assert 'telemetry-only-id' == 'workspace-team'&#10;  &#10;  - workspace-team&#10;  + telemetry-only-id">/contract-probes/test_official_contract_047.py:151: in test_papers_mount_and_team_name_fallback_do_not_use_telemetry_team_id
+    assert settings.team == "workspace-team"
+E   AssertionError: assert 'telemetry-only-id' == 'workspace-team'
+E     
+E     - workspace-team
+E     + telemetry-only-id</failure></testcase></testsuite></testsuites>

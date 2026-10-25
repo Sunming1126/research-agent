@@ -1,0 +1,15 @@
+{
+  "baseline_commit": "64f5efd881d41b24354d6e82f02b450c799e48ff",
+  "implementation_commit": "e3ab597ed4bc6529552e4582b6c467fc1487394b",
+  "status": "BLOCKED_DOCKER_STARTUP",
+  "source_syntax_files": 115,
+  "source_syntax_errors": [],
+  "functional_tests_executed": 0,
+  "target_real_model_calls": 0,
+  "full_case_pass_rate": null,
+  "known_defect_interception_rate": null,
+  "official_score": null,
+  "image_built": false,
+  "ready_to_submit": false,
+  "note": "Native magic orchestration was invoked, but target test cases did not execute. None is an unavailable rate, not a 0% measured rate."
+}
