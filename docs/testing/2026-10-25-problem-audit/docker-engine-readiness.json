@@ -1,0 +1,11 @@
+{
+  "checked_at": "2026-10-25T18:15:34.2781051+08:00",
+  "engine_responding": true,
+  "desktop": "Docker Desktop 4.84.0 (234817)",
+  "engine_version": "29.6.2",
+  "os": "linux",
+  "architecture": "amd64",
+  "operation": "read-only docker version",
+  "containers_started": 0,
+  "model_requests_started": 0
+}

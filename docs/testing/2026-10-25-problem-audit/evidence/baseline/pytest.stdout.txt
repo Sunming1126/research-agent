@@ -1,0 +1,62 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+_ test_single_checks_current_assigned_hash_and_exact_request_before_execution __
+/contract-probes/test_official_contract_047.py:50: in test_single_checks_current_assigned_hash_and_exact_request_before_execution
+    with pytest.raises(ValueError):
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_____ test_recommended_gateway_environment_works_without_legacy_variables ______
+/contract-probes/test_official_contract_047.py:64: in test_recommended_gateway_environment_works_without_legacy_variables
+    assert gateway.available
+E   assert False
+E    +  where False = <research_agent.integrations.llm.GatewayLLM object at 0x71209a8a3d90>.available
+__________ test_gateway_model_request_sends_challenge_session_header ___________
+/contract-probes/test_official_contract_047.py:75: in test_gateway_model_request_sends_challenge_session_header
+    assert client.call_args.kwargs.get("default_headers", {}).get("X-Session-ID") == "challenge-session"
+E   AssertionError: assert None == 'challenge-session'
+E    +  where None = <built-in method get of dict object at 0x712098a29800>('X-Session-ID')
+E    +    where <built-in method get of dict object at 0x712098a29800> = {}.get
+E    +      where {} = <built-in method get of dict object at 0x712098a31500>('default_headers', {})
+E    +        where <built-in method get of dict object at 0x712098a31500> = {'api_key': 'fixture-placeholder', 'base_url': 'http://gateway.example/api/v1', 'max_retries': 0, 'timeout': 10}.get
+E    +          where {'api_key': 'fixture-placeholder', 'base_url': 'http://gateway.example/api/v1', 'max_retries': 0, 'timeout': 10} = call(base_url='http://gateway.example/api/v1', api_key='fixture-placeholder', timeout=10, max_retries=0).kwargs
+E    +            where call(base_url='http://gateway.example/api/v1', api_key='fixture-placeholder', timeout=10, max_retries=0) = <MagicMock name='OpenAI' id='124384813618896'>.call_args
+____ test_bounded_survey_fallback_keeps_whole_verified_facts_and_all_papers ____
+/contract-probes/test_official_contract_047.py:84: in test_bounded_survey_fallback_keeps_whole_verified_facts_and_all_papers
+    validate_report_limits(markdown, "Survey")
+src/research_agent/contracts/validation.py:51: in validate_report_limits
+    raise ValueError(f"report body exceeds {limit} characters (including whitespace)")
+E   ValueError: report body exceeds 4500 characters (including whitespace)
+_________ test_platform_transport_uuid_and_model_session_are_distinct __________
+/contract-probes/test_official_contract_047.py:130: in test_platform_transport_uuid_and_model_session_are_distinct
+    assert session.attributes["task_id"] == task_id
+E   AssertionError: assert 'A-01' == 'a3b8f0f8-1a7...-99420856537c'
+E     
+E     - a3b8f0f8-1a72-4537-bf6b-99420856537c
+E     + A-01
+__________ test_failed_business_call_is_not_a_successful_200_wrapper ___________
+/contract-probes/test_official_contract_047.py:139: in test_failed_business_call_is_not_a_successful_200_wrapper
+    assert response.status_code == 500
+E   assert 200 == 500
+E    +  where 200 = <Response [200 OK]>.status_code
+____ test_papers_mount_and_team_name_fallback_do_not_use_telemetry_team_id _____
+/contract-probes/test_official_contract_047.py:151: in test_papers_mount_and_team_name_fallback_do_not_use_telemetry_team_id
+    assert settings.team == "workspace-team"
+E   AssertionError: assert 'telemetry-only-id' == 'workspace-team'
+E     
+E     - workspace-team
+E     + telemetry-only-id
+=============================== warnings summary ===============================
+test_official_contract_047.py::test_platform_transport_uuid_and_model_session_are_distinct
+  /usr/local/lib/python3.11/site-packages/starlette/testclient.py:41: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    [], typing.ContextManager[anyio.abc.BlockingPortal]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+------------------- generated xml file: /results/pytest.xml --------------------
+=========================== short test summary info ============================
+FAILED ../contract-probes/test_official_contract_047.py::test_single_checks_current_assigned_hash_and_exact_request_before_execution
+FAILED ../contract-probes/test_official_contract_047.py::test_recommended_gateway_environment_works_without_legacy_variables
+FAILED ../contract-probes/test_official_contract_047.py::test_gateway_model_request_sends_challenge_session_header
+FAILED ../contract-probes/test_official_contract_047.py::test_bounded_survey_fallback_keeps_whole_verified_facts_and_all_papers
+FAILED ../contract-probes/test_official_contract_047.py::test_platform_transport_uuid_and_model_session_are_distinct
+FAILED ../contract-probes/test_official_contract_047.py::test_failed_business_call_is_not_a_successful_200_wrapper
+FAILED ../contract-probes/test_official_contract_047.py::test_papers_mount_and_team_name_fallback_do_not_use_telemetry_team_id
+7 failed, 1 warning in 1.98s

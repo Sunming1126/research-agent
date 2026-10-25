@@ -1,0 +1,289 @@
+{
+  "audit_date": "2026-10-25",
+  "generated_at_utc": "2026-10-25T10:15:37.638128+00:00",
+  "candidate_revision_tested": "3a7fdaf43257aab4adda654da3d2598e60b5a7e7",
+  "baseline_revision": "64f5efd881d41b24354d6e82f02b450c799e48ff",
+  "mode": "DIAGNOSIS_ONLY_NO_IMPLEMENTATION_CHANGES",
+  "native_workspace": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+  "native_session": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+  "target_real_model_calls": 0,
+  "source_tests": {
+    "baseline": {
+      "counts": {
+        "FAIL": 7
+      },
+      "collected": 7,
+      "pass_fraction_collected": "0/7",
+      "pass_percentage_collected": 0.0,
+      "denominator_note": "Source unit/evaluation cases, including skipped cases; not eleven live-model contest questions.",
+      "contract_cases": [
+        {
+          "name": "test_single_checks_current_assigned_hash_and_exact_request_before_execution",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.009,
+          "message": "Failed: DID NOT RAISE <class 'ValueError'>"
+        },
+        {
+          "name": "test_recommended_gateway_environment_works_without_legacy_variables",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.0,
+          "message": "assert False\n +  where False = <research_agent.integrations.llm.GatewayLLM object at 0x71209a8a3d90>.available"
+        },
+        {
+          "name": "test_gateway_model_request_sends_challenge_session_header",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.538,
+          "message": "AssertionError: assert None == 'challenge-session'\n +  where None = <built-in method get of dict object at 0x712098a29800>('X-Session-ID')\n +    where <built-in method get of dict object at 0x712098a29800> = {}.get\n +      where {} = <built-in method get of dict object at 0x712098a31500>('default_headers', {})\n +        where <built-in method get of dict object at 0x712098a31500> = {'api_key': 'fixture-placeholder', 'base_url': 'http://gateway.example/api/v1', 'max_retries': 0, 'timeout': 10}.get\n +          where {'api_key': 'fixture-placeholder', 'base_url': 'http://gateway.example/api/v1', 'max_retries': 0, 'timeout': 10} = call(base_url='http://gateway.example/api/v1', api_key='fixture-placeholder', timeout=10, max_retries=0).kwargs\n +            where call(base_url='http://gateway.example/api/v1', api_key='fixture-placeholder', timeout=10, max_retries=0) = <MagicMock name='OpenAI' id='124384813618896'>.call_args"
+        },
+        {
+          "name": "test_bounded_survey_fallback_keeps_whole_verified_facts_and_all_papers",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.0,
+          "message": "ValueError: report body exceeds 4500 characters (including whitespace)"
+        },
+        {
+          "name": "test_platform_transport_uuid_and_model_session_are_distinct",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.611,
+          "message": "AssertionError: assert 'A-01' == 'a3b8f0f8-1a7...-99420856537c'\n  \n  - a3b8f0f8-1a72-4537-bf6b-99420856537c\n  + A-01"
+        },
+        {
+          "name": "test_failed_business_call_is_not_a_successful_200_wrapper",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.007,
+          "message": "assert 200 == 500\n +  where 200 = <Response [200 OK]>.status_code"
+        },
+        {
+          "name": "test_papers_mount_and_team_name_fallback_do_not_use_telemetry_team_id",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.001,
+          "message": "AssertionError: assert 'telemetry-only-id' == 'workspace-team'\n  \n  - workspace-team\n  + telemetry-only-id"
+        }
+      ],
+      "failures": [
+        {
+          "name": "test_single_checks_current_assigned_hash_and_exact_request_before_execution",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.009,
+          "message": "Failed: DID NOT RAISE <class 'ValueError'>"
+        },
+        {
+          "name": "test_recommended_gateway_environment_works_without_legacy_variables",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.0,
+          "message": "assert False\n +  where False = <research_agent.integrations.llm.GatewayLLM object at 0x71209a8a3d90>.available"
+        },
+        {
+          "name": "test_gateway_model_request_sends_challenge_session_header",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.538,
+          "message": "AssertionError: assert None == 'challenge-session'\n +  where None = <built-in method get of dict object at 0x712098a29800>('X-Session-ID')\n +    where <built-in method get of dict object at 0x712098a29800> = {}.get\n +      where {} = <built-in method get of dict object at 0x712098a31500>('default_headers', {})\n +        where <built-in method get of dict object at 0x712098a31500> = {'api_key': 'fixture-placeholder', 'base_url': 'http://gateway.example/api/v1', 'max_retries': 0, 'timeout': 10}.get\n +          where {'api_key': 'fixture-placeholder', 'base_url': 'http://gateway.example/api/v1', 'max_retries': 0, 'timeout': 10} = call(base_url='http://gateway.example/api/v1', api_key='fixture-placeholder', timeout=10, max_retries=0).kwargs\n +            where call(base_url='http://gateway.example/api/v1', api_key='fixture-placeholder', timeout=10, max_retries=0) = <MagicMock name='OpenAI' id='124384813618896'>.call_args"
+        },
+        {
+          "name": "test_bounded_survey_fallback_keeps_whole_verified_facts_and_all_papers",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.0,
+          "message": "ValueError: report body exceeds 4500 characters (including whitespace)"
+        },
+        {
+          "name": "test_platform_transport_uuid_and_model_session_are_distinct",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.611,
+          "message": "AssertionError: assert 'A-01' == 'a3b8f0f8-1a7...-99420856537c'\n  \n  - a3b8f0f8-1a72-4537-bf6b-99420856537c\n  + A-01"
+        },
+        {
+          "name": "test_failed_business_call_is_not_a_successful_200_wrapper",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.007,
+          "message": "assert 200 == 500\n +  where 200 = <Response [200 OK]>.status_code"
+        },
+        {
+          "name": "test_papers_mount_and_team_name_fallback_do_not_use_telemetry_team_id",
+          "classname": "test_official_contract_047",
+          "status": "FAIL",
+          "seconds": 0.001,
+          "message": "AssertionError: assert 'telemetry-only-id' == 'workspace-team'\n  \n  - workspace-team\n  + telemetry-only-id"
+        }
+      ],
+      "skipped": []
+    },
+    "candidate": {
+      "counts": {
+        "PASS": 222,
+        "FAIL": 8,
+        "SKIP": 1
+      },
+      "collected": 231,
+      "pass_fraction_collected": "222/231",
+      "pass_percentage_collected": 96.1039,
+      "denominator_note": "Source unit/evaluation cases, including skipped cases; not eleven live-model contest questions.",
+      "contract_cases": [
+        {
+          "name": "test_single_checks_current_assigned_hash_and_exact_request_before_execution",
+          "classname": "tests.test_official_contract_047",
+          "status": "PASS",
+          "seconds": 0.002,
+          "message": ""
+        },
+        {
+          "name": "test_recommended_gateway_environment_works_without_legacy_variables",
+          "classname": "tests.test_official_contract_047",
+          "status": "PASS",
+          "seconds": 0.0,
+          "message": ""
+        },
+        {
+          "name": "test_gateway_model_request_sends_challenge_session_header",
+          "classname": "tests.test_official_contract_047",
+          "status": "PASS",
+          "seconds": 0.001,
+          "message": ""
+        },
+        {
+          "name": "test_bounded_survey_fallback_keeps_whole_verified_facts_and_all_papers",
+          "classname": "tests.test_official_contract_047",
+          "status": "PASS",
+          "seconds": 0.001,
+          "message": ""
+        },
+        {
+          "name": "test_platform_transport_uuid_and_model_session_are_distinct",
+          "classname": "tests.test_official_contract_047",
+          "status": "PASS",
+          "seconds": 0.005,
+          "message": ""
+        },
+        {
+          "name": "test_failed_business_call_is_not_a_successful_200_wrapper",
+          "classname": "tests.test_official_contract_047",
+          "status": "PASS",
+          "seconds": 0.004,
+          "message": ""
+        },
+        {
+          "name": "test_papers_mount_and_team_name_fallback_do_not_use_telemetry_team_id",
+          "classname": "tests.test_official_contract_047",
+          "status": "PASS",
+          "seconds": 0.001,
+          "message": ""
+        }
+      ],
+      "failures": [
+        {
+          "name": "test_full_25_case_batch_with_real_d",
+          "classname": "tests.test_agent_core.CoreTests",
+          "status": "FAIL",
+          "seconds": 0.255,
+          "message": "AssertionError: 'materials_missing' != 'completed'\n- materials_missing\n+ completed\n : {'case_id': 'D-01', 'status': 'materials_missing', 'metrics': [{'name': 'Macro-F1', 'unit': '分数', 'reference': None, 'observed': None, 'relative_error': None}, {'name': 'Accuracy', 'unit': '%', 'reference': None, 'observed': None, 'relative_error': None}, {'name': '运行时间', 'unit': '秒', 'reference': None, 'observed': None, 'relative_error': None}], 'figures': []}"
+        },
+        {
+          "name": "test_metric_identity_not_relabelled",
+          "classname": "tests.test_agent_core.CoreTests",
+          "status": "FAIL",
+          "seconds": 0.014,
+          "message": "AssertionError: 'materials_missing' != 'failed'\n- materials_missing\n+ failed"
+        },
+        {
+          "name": "test_timeout_maps_to_failed",
+          "classname": "tests.test_agent_core.CoreTests",
+          "status": "FAIL",
+          "seconds": 0.016,
+          "message": "AssertionError: 'materials_missing' != 'failed'\n- materials_missing\n+ failed"
+        },
+        {
+          "name": "test_optional_extraction_reuses_existing_coverage_and_stops_without_losing_claims",
+          "classname": "tests.test_hybrid_reliability",
+          "status": "FAIL",
+          "seconds": 0.0,
+          "message": "research_agent.integrations.llm.ModelError: insufficient reserved budget for extract"
+        },
+        {
+          "name": "test_d01_returns_reproducible_baseline_candidate_and_model_details",
+          "classname": "tests.test_layered_d_algorithms",
+          "status": "FAIL",
+          "seconds": 0.001,
+          "message": "FileNotFoundError: [Errno 2] No such file or directory: '科研助手赛题材料/x新/research-experiments/D-01/sample.json'"
+        },
+        {
+          "name": "test_d02_run_selects_config_and_rank_reuses_it",
+          "classname": "tests.test_layered_d_algorithms",
+          "status": "FAIL",
+          "seconds": 0.001,
+          "message": "FileNotFoundError: [Errno 2] No such file or directory: '科研助手赛题材料/x新/research-experiments/D-02/sample.json'"
+        },
+        {
+          "name": "test_survey_recovers_one_missing_paper_before_fallback",
+          "classname": "tests.test_report_resilience.ReportResilienceTests",
+          "status": "FAIL",
+          "seconds": 0.032,
+          "message": "research_agent.evidence.EvidenceError: insufficient complete evidence for a bounded Survey fallback"
+        },
+        {
+          "name": "test_five_papers_and_800_characters",
+          "classname": "evaluation.test_fallback.FallbackTests",
+          "status": "FAIL",
+          "seconds": 0.0,
+          "message": "research_agent.evidence.EvidenceError: insufficient complete evidence for a bounded Survey fallback"
+        }
+      ],
+      "skipped": [
+        {
+          "name": "test_scanned_page_does_not_hide_text_pages",
+          "classname": "tests.test_mixed_text_pdf.MixedTextPdfTests",
+          "status": "SKIP",
+          "seconds": 0.004,
+          "message": "300-paper local benchmark not installed"
+        }
+      ]
+    }
+  },
+  "evidence": {
+    "baseline": {
+      "original_directory": "镜像测试/runs/main-contract-047-baseline-20261025T175623",
+      "sha256": {
+        "pytest.xml": "6a656c1d9aef6138dc6485d19b6696706d9b8235095239e3e52e1ab38347a1ae",
+        "pytest.stdout.txt": "a83ef2182440fee857b4dbf88694a1b3dd9e124adac3fad614ef4eebfc156472",
+        "pytest.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "pytest.result.json": "4e4eb993419b64064e9a9f7d995eca13fc845de5ff2c7e165db3ed544d756158",
+        "summary.json": "74e0d93999758761d4ec6d089d94f82b412e268897fcab59a9809f6c04c44457",
+        "native-orchestration-proof.json": "fbafc67eff8b66733e86a666c0ea2a3d8b14efa50f9534d41caaa156476637d3",
+        "source-files.json": "6e14ee046bba93fd314880f8b934f65258e9bd15cc37db4f391b67b387eb876d",
+        "toolkit.json": "7780b2a6f9386861f299f3289a34350e18c57b5df5ac7c2fb0af172fe8117943"
+      }
+    },
+    "candidate": {
+      "original_directory": "镜像测试/runs/main-contract-047-regression-20261025T180031",
+      "sha256": {
+        "pytest.xml": "bec8e477556512f506dda0e6c2f81e09d43351395e0fdae1357cff961a7e258f",
+        "pytest.stdout.txt": "8dca7f37d58d27174f1cb689cce9445dfe8cf88bc940c5d2b8c7118e16bfe88b",
+        "pytest.stderr.txt": "04e808c2851fcdfba8a6ae00f62fcec61948c59eeb9075e884ee43d6cb646be4",
+        "pytest.result.json": "44a99bf2afb5599022780ee55343333890b98296d78c9afbf1b298b31f9e782f",
+        "summary.json": "4fb90c4fb0f457418dce1aeab9ae193f5405650a3c5b3e46aa9d0fee050e53f7",
+        "native-orchestration-proof.json": "b636f2ecc48084e98f3b91c1e9ae55c07992cb5adfa7cac96e395715c0faf689",
+        "source-files.json": "b6766ec0c10b2c733630c08c028ab67ca01922da9e703e4c628b9305a75fff46",
+        "toolkit.json": "7780b2a6f9386861f299f3289a34350e18c57b5df5ac7c2fb0af172fe8117943"
+      }
+    }
+  },
+  "workspace_team_rule": "Platform-assigned directory identifier from RESEARCH_WORKSPACE_TEAM; never the signup name",
+  "team_rule_source": "User-provided committee-contact screenshot received 2026-10-25",
+  "frozen_team_fallback_test_covers_latest_rule": false,
+  "screenshot_sha256": "04b3994d746fac1ba759a9f8f5f1681e5dcdb656e05380c12348d15807697b05",
+  "private_screenshot_published": false,
+  "installed_candidate_image_built": false,
+  "live_eleven_case_result": null,
+  "official_score": null
+}

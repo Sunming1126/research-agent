@@ -1,0 +1,112 @@
+.........F...F..........F............................................... [ 31%]
+....................................................F.................FF [ 62%]
+.......s.......................................................F........ [ 93%]
+..........F....                                                          [100%]
+=================================== FAILURES ===================================
+________________ CoreTests.test_full_25_case_batch_with_real_d _________________
+tests/test_agent_core.py:280: in test_full_25_case_batch_with_real_d
+    self.assertEqual(result["status"],"completed",result)
+E   AssertionError: 'materials_missing' != 'completed'
+E   - materials_missing
+E   + completed
+E    : {'case_id': 'D-01', 'status': 'materials_missing', 'metrics': [{'name': 'Macro-F1', 'unit': '分数', 'reference': None, 'observed': None, 'relative_error': None}, {'name': 'Accuracy', 'unit': '%', 'reference': None, 'observed': None, 'relative_error': None}, {'name': '运行时间', 'unit': '秒', 'reference': None, 'observed': None, 'relative_error': None}], 'figures': []}
+________________ CoreTests.test_metric_identity_not_relabelled _________________
+tests/test_agent_core.py:97: in test_metric_identity_not_relabelled
+    self.assertEqual(result["status"], "failed")
+E   AssertionError: 'materials_missing' != 'failed'
+E   - materials_missing
+E   + failed
+____________________ CoreTests.test_timeout_maps_to_failed _____________________
+tests/test_agent_core.py:223: in test_timeout_maps_to_failed
+    self.assertEqual(result["status"],"failed")
+E   AssertionError: 'materials_missing' != 'failed'
+E   - materials_missing
+E   + failed
+_ test_optional_extraction_reuses_existing_coverage_and_stops_without_losing_claims _
+tests/test_hybrid_reliability.py:147: in test_optional_extraction_reuses_existing_coverage_and_stops_without_losing_claims
+    claims = handler.extract(SimpleNamespace(input='补取方法证据', function='Survey'), chunks)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/research_agent/workflows/reports.py:49: in extract
+    for filename, group, value in self._extraction_responses(case, grouped):
+src/research_agent/workflows/reports.py:105: in _extraction_responses
+    yield filename, group, self._model_step("extract", data, 2000, reserve=reserve, minimum=900)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/research_agent/workflows/reports.py:31: in _model_step
+    raise ModelError("insufficient reserved budget for " + stage)
+E   research_agent.integrations.llm.ModelError: insufficient reserved budget for extract
+______ test_d01_returns_reproducible_baseline_candidate_and_model_details ______
+tests/test_layered_d_algorithms.py:17: in test_d01_returns_reproducible_baseline_candidate_and_model_details
+    result = run_d01(_sample("D-01"))
+                     ^^^^^^^^^^^^^^^
+tests/test_layered_d_algorithms.py:13: in _sample
+    return json.loads((ROOT / name / "sample.json").read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1044: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '科研助手赛题材料/x新/research-experiments/D-01/sample.json'
+________________ test_d02_run_selects_config_and_rank_reuses_it ________________
+tests/test_layered_d_algorithms.py:26: in test_d02_run_selects_config_and_rank_reuses_it
+    request = _sample("D-02")
+              ^^^^^^^^^^^^^^^
+tests/test_layered_d_algorithms.py:13: in _sample
+    return json.loads((ROOT / name / "sample.json").read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1044: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '科研助手赛题材料/x新/research-experiments/D-02/sample.json'
+_ ReportResilienceTests.test_survey_recovers_one_missing_paper_before_fallback _
+tests/test_report_resilience.py:67: in test_survey_recovers_one_missing_paper_before_fallback
+    result = TaskHandlers(LLM(), "demo").report(case, Retriever(), QueryPlan("framework"))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/research_agent/workflows/reports.py:157: in report
+    return self.compose_report(case)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/research_agent/workflows/reports.py:304: in compose_report
+    markdown, used = deterministic_survey(case.input, self.ledger)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/research_agent/evidence/reporting.py:343: in deterministic_survey
+    raise EvidenceError("insufficient complete evidence for a bounded Survey fallback")
+E   research_agent.evidence.EvidenceError: insufficient complete evidence for a bounded Survey fallback
+______________ FallbackTests.test_five_papers_and_800_characters _______________
+evaluation/test_fallback.py:15: in test_five_papers_and_800_characters
+    markdown, used = deterministic_survey("比较检索与生成方法", ledger)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/research_agent/evidence/reporting.py:343: in deterministic_survey
+    raise EvidenceError("insufficient complete evidence for a bounded Survey fallback")
+E   research_agent.evidence.EvidenceError: insufficient complete evidence for a bounded Survey fallback
+=============================== warnings summary ===============================
+<frozen importlib._bootstrap>:241
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:241
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+../usr/local/lib/python3.11/site-packages/starlette/testclient.py:41
+  /usr/local/lib/python3.11/site-packages/starlette/testclient.py:41: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    [], typing.ContextManager[anyio.abc.BlockingPortal]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+------------------- generated xml file: /results/pytest.xml --------------------
+=========================== short test summary info ============================
+FAILED tests/test_agent_core.py::CoreTests::test_full_25_case_batch_with_real_d
+FAILED tests/test_agent_core.py::CoreTests::test_metric_identity_not_relabelled
+FAILED tests/test_agent_core.py::CoreTests::test_timeout_maps_to_failed - Ass...
+FAILED tests/test_hybrid_reliability.py::test_optional_extraction_reuses_existing_coverage_and_stops_without_losing_claims
+FAILED tests/test_layered_d_algorithms.py::test_d01_returns_reproducible_baseline_candidate_and_model_details
+FAILED tests/test_layered_d_algorithms.py::test_d02_run_selects_config_and_rank_reuses_it
+FAILED tests/test_report_resilience.py::ReportResilienceTests::test_survey_recovers_one_missing_paper_before_fallback
+FAILED evaluation/test_fallback.py::FallbackTests::test_five_papers_and_800_characters
+8 failed, 222 passed, 1 skipped, 6 warnings in 21.29s

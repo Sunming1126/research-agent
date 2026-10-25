@@ -1,0 +1,8 @@
+{
+  "stage": "regression",
+  "returncode": 1,
+  "tests_passed": false,
+  "source_fingerprint": "211c4abfbfef0d324d1e075fcfd952a76a43525755a51f0a93896b8b23ec2a30",
+  "real_model_calls": 0,
+  "note": "Baseline failures are retained; no outcome is reclassified."
+}
