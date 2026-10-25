@@ -14,12 +14,47 @@ from ..core.session import checkpoint, remaining_timeout
 
 
 def parse_metric_specs(text, case_id=None):
-    """从题目原文读取恰好三个指标及单位，不按题号猜测。"""
-    pairs = re.findall(r"name\s*[=:]\s*(.+?)\s*[,，]\s*unit\s*[=:]\s*([^;；。\n]+)", text, flags=re.I)
-    specs = [(name.strip(), unit.strip().rstrip(".")) for name, unit in pairs]
+    """读取明确名称/单位，兼容标记、括号和Markdown表格，不按题号猜测。"""
+    pairs = re.findall(r'''["']?name["']?\s*[=:：]\s*["']?(.+?)["']?\s*[,，]\s*["']?unit["']?\s*[=:：]\s*["']?([^;；。\n}"']+)''', text, flags=re.I)
+    if not pairs:
+        pairs = re.findall(r'([^\n；，。、|:：()（）]+?)\s*[（(]\s*(?:单位\s*[:：]?\s*)?([^()（）]+)[)）]', text)
+    if not pairs:
+        pairs = [(cells[0], cells[1]) for line in text.splitlines()
+                 if line.strip().startswith('|')
+                 for cells in [[c.strip() for c in line.strip().strip('|').split('|')]]
+                 if len(cells) >= 2 and cells[0] not in {'指标', '名称', 'name'}
+                 and not set(cells[0]) <= set('-: ')]
+    specs = [(name.strip().strip('"\''), unit.strip().rstrip('.').strip('"\'')) for name, unit in pairs]
     if len(specs) != 3 or len(set(name for name, unit in specs)) != 3:
         raise ValueError("input must identify exactly three name/unit pairs; no implicit case-id defaults")
     return specs
+
+
+def resolve_metric_specs(case, settings):
+    """当前挂载protocol是D指标顺序依据，和题面明确字段交叉核对。"""
+    try:
+        from_input = parse_metric_specs(case.input, case.case_id)
+    except ValueError:
+        from_input = None
+    prefix = 'experiments' if settings.workspace.name == 'data' else 'data/experiments'
+    path = confined(settings.workspace, f'{prefix}/{case.case_id}/protocol.json')
+    if settings.experiment_mode == 'platform' and path.is_file():
+        protocol = read_json(path)
+        rows = protocol.get('metrics')
+        if protocol.get('case_id') != case.case_id or not isinstance(rows, list) or len(rows) != 3:
+            raise ValueError('invalid current-case metric protocol')
+        specs = [(row.get('name'), row.get('unit')) for row in rows if isinstance(row, dict)]
+        if len(specs) != 3 or any(not isinstance(x, str) or not x.strip() for pair in specs for x in pair) or len({n for n,u in specs}) != 3:
+            raise ValueError('invalid current-case metric names/units')
+        if from_input is not None:
+            if set(from_input) != set(specs):
+                raise ValueError('input metric names/units conflict with current protocol')
+        elif not all(name.casefold() in case.input.casefold() for name, _ in specs) and 'protocol' not in case.input.casefold():
+            raise ValueError('input does not identify the current protocol metrics')
+        return specs
+    if from_input is None:
+        raise ValueError('no explicit metric contract in input or current mounted protocol')
+    return from_input
 
 
 def failed_result(case_id, specs, status):

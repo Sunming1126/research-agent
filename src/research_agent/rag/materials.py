@@ -37,6 +37,21 @@ class MaterialResolver:
     def _path(self, item: str) -> Path:
         if not item or "\\" in item or ":" in item:
             raise MaterialError("materials must use relative paths or configured aliases")
+        # 题面使用逻辑目录 data/论文库，平台实际挂载 /data/papers。
+        # 只映射已授权的唯一专用库，保留指定文件子路径；不搜索其他目录。
+        roots = self.settings.material_roots
+        if len(roots) == 1 and roots[0].name in {"papers", "论文库"}:
+            root = roots[0]
+            for alias in ("data/论文库", "/data/论文库", "论文库", "data/papers", "/data/papers", "papers"):
+                if item.rstrip("/") == alias:
+                    if root.is_dir():
+                        return root
+                    raise MaterialError("authorized paper library is missing")
+                if item.startswith(alias + "/"):
+                    target = confined(root, item[len(alias) + 1:])
+                    if target.is_file() or target.is_dir():
+                        return target
+                    raise MaterialError(f"authorized material not found: {item}")
         if item.startswith("/"):
             # 平台可传挂载后的绝对路径，但只能落在已经授权的专用根目录内。
             target = Path(item)
@@ -84,7 +99,8 @@ class MaterialResolver:
         return matches[0]
 
     @tool(name="resolve_authorized_materials")
-    def resolve(self, materials: list[str]) -> list[MaterialRef]:
+    def resolve(self, materials: list[str], *, pdf_only=False, diagnostics=None) -> list[MaterialRef]:
+        diagnostics = diagnostics if diagnostics is not None else []
         selected = {}
         for description in materials:
             checkpoint("material_resolution")
@@ -95,27 +111,70 @@ class MaterialResolver:
             if not isinstance(items, list) or not items:
                 raise MaterialError("material alias must map to a nonempty list")
             for item in items:
-                target = self._path(item)
-                candidates = [target] if target.is_file() else list(target.rglob("*"))
+                scoped = self._pdf_scope(item) if pdf_only else None
+                if scoped is not None:
+                    candidates = scoped
+                else:
+                    target = self._path(item)
+                    candidates = [target] if target.is_file() else list(target.rglob("*"))
                 for path in candidates:
+                    if pdf_only and path.suffix.lower() != '.pdf':
+                        continue
                     if path.is_file() and path.suffix.lower() in EXTENSIONS:
                         root = next(root for root in self.settings.material_roots if root in path.parents)
                         path = confined(root, path.relative_to(root).as_posix())
-                        selected[path] = MaterialRef(path, path.name, path.suffix.lower()[1:], sha256_file(path))
+                        try:
+                            selected[path] = MaterialRef(path, path.name, path.suffix.lower()[1:], sha256_file(path))
+                        except OSError as exc:
+                            if not pdf_only:
+                                raise
+                            diagnostics.append({'filename': path.name, 'error_type': type(exc).__name__, 'stage': 'read'})
         refs = sorted(selected.values(), key=lambda ref: ref.filename)
         names = [ref.filename.casefold() for ref in refs]
         if len(names) != len(set(names)):
-            raise MaterialError("non-unique case-insensitive filenames in authorized materials")
+            if not pdf_only:
+                raise MaterialError("non-unique case-insensitive filenames in authorized materials")
+            grouped = {}
+            for ref in refs:
+                grouped.setdefault(ref.filename.casefold(), []).append(ref)
+            refs = []
+            for group in grouped.values():
+                if len({ref.sha256 for ref in group}) == 1:
+                    refs.append(group[0])
+                    if len(group) > 1:
+                        diagnostics.append({'filename': group[0].filename, 'reason': 'duplicate_identical_copy'})
+                else:
+                    diagnostics.append({'filename': group[0].filename, 'error_type': 'AmbiguousFilename', 'stage': 'resolve'})
         return refs
+
+    def _pdf_scope(self, description):
+        """只解释明确整库/明确PDF通配符，不把主题限定的未知描述扩成整库。"""
+        normalized = ''.join(unicodedata.normalize('NFKC', description).split()).casefold()
+        whole = re.fullmatch(r'(?:本地|本题提供的|提供的)?(?:论文|文献)(?:库|文件夹|目录)(?:中|内|下)?的?(?:所有|全部)?(?:pdf(?:文件|论文)?|论文pdf)?', normalized)
+        if whole or description in {'*.pdf', '**/*.pdf'}:
+            if len(self.settings.material_roots) != 1:
+                raise MaterialError('PDF scope requires one explicitly authorized library')
+            target = self.settings.material_roots[0]
+            if not target.is_dir():
+                raise MaterialError('authorized paper library is missing')
+            return list(target.rglob('*')) if description != '*.pdf' else list(target.iterdir())
+        for suffix in ('/**/*.pdf', '/*.pdf'):
+            if description.endswith(suffix):
+                target = self._path(description[:-len(suffix)])
+                if not target.is_dir():
+                    raise MaterialError('PDF scope must refer to an authorized directory')
+                return list(target.rglob('*')) if suffix.startswith('/**') else list(target.iterdir())
+        return None
 
 
 class DocumentParser:
     """逐页读取文档，保留用于引用的 PDF 物理页码。"""
-    VERSION = "page-block-tables-v7-appendix-short-pages"
+    VERSION = "page-block-tables-v8-caption-gated"
 
     def __init__(self, ocr=False, work: Path | None = None):
         self.ocr = ocr
         self.work = work
+        self.extract_tables = True
 
     @tool(name="read_document_pages")
     def pages(self, material: MaterialRef, page_limit: int | None = None) -> list[tuple[int | None, str, str]]:
@@ -145,7 +204,12 @@ class DocumentParser:
                 blocks = page.get_text("blocks", sort=True)
                 tables = []
                 try:
-                    for table in page.find_tables().tables:
+                    # 真实1CPU实测，逐页表格检测会占用大量答题时间。
+                    # 仅有明确表格标题时重建表格；其他页仍完整保留原文本块及数值。
+                    page_text = "\n".join(b[4] for b in blocks if len(b) > 6 and b[6] == 0)
+                    caption = re.search(r"(?im)^\s*(?:table\s+\d+|table\s+[ivx]+|表\s*\d+)\s*[:.：]", page_text)
+                    detected = page.find_tables().tables if caption and self.extract_tables else []
+                    for table in detected:
                         cells = table.extract()
                         rows = ["| " + " | ".join((cell or "").replace("\n", " ") for cell in row) + " |" for row in cells]
                         if rows:
@@ -256,30 +320,50 @@ class DocumentIndex:
         self.cache = cache
         self.materials = []
         self.chunks = []
+        self.errors = []
+        self.tolerate_pdf_errors = False
 
     @tool(name="build_authorized_index")
-    def build(self, descriptions: list[str], page_limit: int | None = None, *, resolved=None) -> list[Chunk]:
+    def build(self, descriptions: list[str], page_limit: int | None = None, *, resolved=None, tolerate_pdf_errors=False) -> list[Chunk]:
         if page_limit is not None and page_limit < 1:
             raise ValueError("page_limit must be positive")
         self.materials = resolved if resolved is not None else self.resolver.resolve(descriptions)
+        self.tolerate_pdf_errors = tolerate_pdf_errors
         self.chunks = []
         for material in self.materials:
             checkpoint("document_index")
             identity = f"{material.filename}|{material.sha256}|{self.parser.VERSION}|850|110|{self.parser.ocr}"
+            if not self.parser.extract_tables:
+                identity += '|text-blocks-only'
             if page_limit is not None:
                 identity += f"|first-{page_limit}-pages"
             key = sha256_bytes(identity.encode())
             cache_path = confined(self.cache, key + ".json")
+            chunks = None
             if cache_path.is_file():
-                rows = read_json(cache_path)["chunks"]
-                chunks = [Chunk(**row) for row in rows]
-                if any(c.document_sha256 != material.sha256 or c.filename != material.filename for c in chunks):
-                    raise MaterialError("cache identity mismatch")
-                if any(c.sha256 != sha256_bytes(f"{material.sha256}|{c.page}|{c.start}|{c.text}".encode()) for c in chunks):
-                    raise MaterialError("cache content hash mismatch")
-            else:
+                try:
+                    rows = read_json(cache_path)["chunks"]
+                    chunks = [Chunk(**row) for row in rows]
+                    if any(c.document_sha256 != material.sha256 or c.filename != material.filename for c in chunks):
+                        raise MaterialError("cache identity mismatch")
+                    if any(c.sha256 != sha256_bytes(f"{material.sha256}|{c.page}|{c.start}|{c.text}".encode()) for c in chunks):
+                        raise MaterialError("cache content hash mismatch")
+                except (OSError, ValueError, KeyError, TypeError) as exc:
+                    if not tolerate_pdf_errors:
+                        raise
+                    self.errors.append({'filename': material.filename, 'error_type': type(exc).__name__,
+                                        'stage': 'cache_rebuild'})
+                    chunks = None
+            if chunks is None:
                 # B 类候选库先读取前页；缓存键含页数，避免与全文证据混用。
-                chunks = self.chunker.chunk(material, self.parser.pages(material, page_limit))
+                try:
+                    chunks = self.chunker.chunk(material, self.parser.pages(material, page_limit))
+                except (MaterialError, OSError, ValueError) as exc:
+                    if not tolerate_pdf_errors:
+                        raise
+                    self.errors.append({'filename': material.filename, 'error_type': type(exc).__name__,
+                                        'message': str(exc)[:300], 'stage': 'parse'})
+                    continue
                 write_json(cache_path, {"chunks": [asdict(c) for c in chunks]})
             self.chunks.extend(chunks)
         return self.chunks
@@ -288,13 +372,14 @@ class DocumentIndex:
         """仅深入当前题已经授权的候选论文，补齐前页索引以外的正文。"""
         selected = [m for m in self.materials if m.filename in set(filenames)]
         original_materials, original_chunks = self.materials, self.chunks
+        tolerate_pdf_errors = self.tolerate_pdf_errors
         try:
             deeper = []
             for material in selected:
                 session = current_session()
                 if session and session.remaining() < 55:
                     break
-                deeper.extend(self.build([], resolved=[material]))
+                deeper.extend(self.build([], resolved=[material], tolerate_pdf_errors=tolerate_pdf_errors))
             return deeper
         finally:
             # 候选补读不能缩小本题最终核验的授权文件集合。

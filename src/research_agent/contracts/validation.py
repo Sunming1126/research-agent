@@ -33,6 +33,25 @@ def validate_wire_fields(case, result):
     _only(result, fields[case.function])
     if result["case_id"] != case.case_id:
         raise ValueError("case_id mismatch")
+    if case.function == 'Literature_Retrieval':
+        validate_b_fields(case, result)
+    return result
+
+
+def validate_b_fields(case, result, filenames=None):
+    _only(result, ['case_id', 'papers'])
+    if result['case_id'] != case.case_id or not isinstance(result['papers'], list):
+        raise ValueError('invalid B case_id/papers')
+    seen = set()
+    for paper in result['papers']:
+        _only(paper, ['filename', 'reason'])
+        name = paper['filename']
+        if (not _string(name) or not name.lower().endswith('.pdf') or not _string(paper['reason'])
+                or any(char in name for char in ('/', '\\', ':', '\x00'))):
+            raise ValueError('invalid B filename/reason')
+        if name.casefold() in seen or filenames is not None and name not in filenames:
+            raise ValueError('duplicate/unauthorized B filename')
+        seen.add(name.casefold())
     return result
 
 
@@ -62,18 +81,7 @@ def validate_result(case, result, output_root=None, *, team="workspace_team", fi
         if not all(_string(result[x]) for x in ("answer", "clarifying_question")):
             raise ValueError("empty Chat fields")
     elif case.function == "Literature_Retrieval":
-        _only(result, ["case_id", "papers"])
-        if not isinstance(result["papers"], list):
-            raise ValueError("papers must be an array")
-        seen = set()
-        for paper in result["papers"]:
-            _only(paper, ["filename", "reason"])
-            name = paper["filename"]
-            if not _string(name) or not name.lower().endswith(".pdf") or not _string(paper["reason"]):
-                raise ValueError("invalid paper")
-            if name.casefold() in seen or filenames is not None and name not in filenames:
-                raise ValueError("duplicate/unauthorized paper filename")
-            seen.add(name.casefold())
+        validate_b_fields(case, result, filenames)
     elif case.function in {"Survey", "Idea"}:
         _only(result, ["case_id", "path", "markdown"])
         kind = "综述" if case.function == "Survey" else "灵感Idea报告"
@@ -121,7 +129,8 @@ def validate_result(case, result, output_root=None, *, team="workspace_team", fi
             if result["status"] == "completed" and metric["observed"] is None:
                 raise ValueError("completed experiment has unknown observations")
             if result["status"] != "completed" and metric["observed"] is not None:
-                raise ValueError("failed experiment must not claim measurements")
+                if result["status"] != "failed" or not proof or proof.get('submission') != result or proof.get('case_id') != case.case_id:
+                    raise ValueError("failed experiment measurements require current-run proof")
             if (metric["reference"] is None or metric["observed"] is None) and metric["relative_error"] is not None:
                 raise ValueError("unverifiable relative error")
         if len({m["name"] for m in metrics}) != 3:

@@ -140,6 +140,7 @@ class LayeredDRunner:
             return self._failed(case.case_id, specs, "materials_missing")
         source_root = confined(self.work, "experiment")
         self.work.mkdir(parents=True, exist_ok=True)
+        submission = None
         try:
             # 新版正式路径必须由当前题 Gateway 生成完整源码，禁止回退到镜像内算法。
             implementation = self.prepare_checked_implementation(case)
@@ -150,7 +151,6 @@ class LayeredDRunner:
             checkpoint("d_formal_execution")
             completed = subprocess.run(command, capture_output=True, encoding="utf-8", errors="replace",
                                        timeout=remaining_timeout(min(175, self.settings.case_timeout), reserve=5), env=env, check=False)
-            checkpoint("d_formal_artifacts")
             atomic_text(confined(self.work, "experiment.stdout.jsonl"), completed.stdout)
             atomic_text(confined(self.work, "experiment.stderr.log"), completed.stderr)
             if completed.returncode:
@@ -159,6 +159,8 @@ class LayeredDRunner:
             if not lines:
                 raise ValueError("layered runner returned empty output")
             submission = normalize_layered_submission(json.loads(lines[-1]), case.case_id)
+            # 保存客户端真实回执；后处理失败也不得用占位答卷覆盖这份结果。
+            write_json(confined(self.work, "platform-submission.json"), submission)
             if [(item["name"], item["unit"]) for item in submission.get("metrics", [])] != specs:
                 raise ValueError("runner metric names/units differ from input")
             hashes = self._copy_figures(source_root, submission)
@@ -171,10 +173,14 @@ class LayeredDRunner:
         except FileNotFoundError as exc:
             write_json(confined(self.work, "experiment-error.json"),
                        {"type": type(exc).__name__, "message": str(exc)[:600]})
+            if submission is not None:
+                raise RuntimeError('received platform result could not be saved; see platform-submission.json') from exc
             return self._failed(case.case_id, specs, "materials_missing")
-        except (ValueError, KeyError, OSError, RuntimeError, subprocess.TimeoutExpired, json.JSONDecodeError) as exc:
+        except (ValueError, TypeError, KeyError, OSError, RuntimeError, subprocess.TimeoutExpired) as exc:
             write_json(confined(self.work, "experiment-error.json"),
                        {"type": type(exc).__name__, "message": str(exc)[:600]})
+            if submission is not None:
+                raise RuntimeError('received platform result failed postprocessing; see platform-submission.json') from exc
             return self._failed(case.case_id, specs, "failed")
 
     def _copy_figures(self, source_root, submission):

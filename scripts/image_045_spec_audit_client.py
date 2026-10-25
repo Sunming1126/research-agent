@@ -18,6 +18,7 @@ from opentelemetry.proto.collector.trace.v1.trace_service_pb2 import ExportTrace
 ROOT = Path('/audit')
 OUTPUT = Path('/output')
 TEAM = 'spec_audit_045'
+PAPER_LIBRARY = Path('/data/论文库')
 SPANS = []
 LOCK = threading.Lock()
 EXPECTED = {
@@ -123,7 +124,7 @@ def check(specimen, body, raw, status):
             if isinstance(papers, list):
                 require('paper只含filename/reason', all(isinstance(p, dict) and set(p) == {'filename', 'reason'} for p in papers))
                 valid = all(isinstance(p, dict) and text(p.get('filename')) and text(p.get('reason'))
-                            and p['filename'].lower().endswith('.pdf') and (Path('/data/论文库') / p['filename']).is_file()
+                            and p['filename'].lower().endswith('.pdf') and (PAPER_LIBRARY / p['filename']).is_file()
                             for p in papers)
                 require('文件名真实且理由非空', valid)
                 names = [p.get('filename', '').casefold() for p in papers if isinstance(p, dict)]
@@ -145,7 +146,7 @@ def check(specimen, body, raw, status):
                     require('引用实例不超过40', len(citations(main)) <= 40)
                 referenced = re.findall(r'^\[(\d+)\]\s+(.+\.pdf)\s*$', refs, re.M)
                 require('足量真实PDF参考文献', len({name for _, name in referenced}) >= (5 if fn == 'Survey' else 1)
-                        and all((Path('/data/论文库') / name).is_file() for _, name in referenced))
+                        and all((PAPER_LIBRARY / name).is_file() for _, name in referenced))
                 require('引用编号与参考文献匹配', set(citations(main)) == {number for number, _ in referenced})
                 report_file = OUTPUT / expected_path
                 require('Markdown实际存在且逐字一致', report_file.is_file() and report_file.read_text(encoding='utf-8') == markdown)

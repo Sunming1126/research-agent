@@ -214,7 +214,7 @@ def test_explicit_account_quota_rejection_is_not_retried_or_charged_as_unknown_i
     gateway.base_url, gateway.api_key, gateway.model = "https://example.invalid", "test", "test"
     with patch.object(gateway, "_request_once", side_effect=ModelQuotaError("quota exhausted")):
         with pytest.raises(ModelQuotaError):
-            TaskHandlers(gateway, "test")._plan(SimpleNamespace(function="Survey", input="比较机制", constraints=[]))
+            TaskHandlers(gateway, "test")._plan(SimpleNamespace(function="Literature_Retrieval", input="比较机制", constraints=[]))
     assert gateway.calls == 1 and gateway.total_tokens == 0
     assert gateway.usage[0]["usage_source"] == "gateway_rejected"
 

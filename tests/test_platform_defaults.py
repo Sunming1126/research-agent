@@ -21,7 +21,7 @@ def test_standard_library_and_public_description_work_without_custom_config(tmp_
     library.mkdir(parents=True)
     (library / "allowed.pdf").write_bytes(b"%PDF synthetic locator fixture")
     (tmp_path / "private.pdf").write_bytes(b"do not read")
-    settings = load(tmp_path / "data" if data_root else tmp_path, TEAM_ID="platform-team")
+    settings = load(tmp_path / "data" if data_root else tmp_path, TEAM_ID="telemetry-only", RESEARCH_WORKSPACE_TEAM="platform-team")
     assert settings.team == "platform-team"
     assert settings.material_roots == [library]
     resolver = MaterialResolver(settings)
@@ -66,10 +66,13 @@ def test_missing_material_is_an_error_instead_of_an_empty_result(tmp_path):
         MaterialResolver(load(tmp_path)).resolve(["missing.pdf"])
 
 
-def test_empty_base_image_team_id_uses_confirmed_official_team(tmp_path):
-    assert load(tmp_path, TEAM_ID="").team == "最初一舞"
-    assert load(tmp_path, RESEARCH_WORKSPACE_TEAM="").team == "最初一舞"
-    assert load(tmp_path).team == "最初一舞"
+def test_workspace_team_is_not_a_real_team_name_or_telemetry_id(tmp_path):
+    assert load(tmp_path, TEAM_ID="telemetry-uuid").team == "workspace_team"
+    assert load(tmp_path, RESEARCH_WORKSPACE_TEAM="", TEAM_NAME="local-dir").team == "local-dir"
+    assert load(tmp_path).team == "workspace_team"
+    settings = load(tmp_path, RESEARCH_WORKSPACE_TEAM="platform-dir", TEAM_NAME="local-dir", TEAM_ID="telemetry-uuid")
+    assert settings.team == "platform-dir" and settings.verify_assigned
+
 
 
 def test_default_library_rejects_symlink_escape(tmp_path):

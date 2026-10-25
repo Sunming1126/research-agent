@@ -1,7 +1,7 @@
 {
   "workspace": "/workspace",
   "output": "/output",
-  "team": "最初一舞",
+  "team": "local-workspace-team",
   "material_roots": ["/workspace/papers", "/experiments"],
   "material_aliases": {
     "D-01.json": ["publicdata/D-01.json"],
