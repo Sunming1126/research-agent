@@ -1,0 +1,274 @@
+{
+  "version": "0.4.11-e-20261026",
+  "image": "research-assistant:0.4.11-e-20261026",
+  "image_id": "sha256:cf344455bdfa45b27d43877fa48751724e5117cd38b4d89afcf0949b7f127a71",
+  "tar": "team_share/image/research-assistant-0.4.11-e-20261026.tar",
+  "tar_bytes": 295437312,
+  "tar_sha256": "14f4098b98cb82389cbf546d270c9404ddfb4111af3dcd130aedee035088d4e9",
+  "tar_readback_verified": true,
+  "official_sdk_unchanged": true,
+  "source_matches_local": true,
+  "credentials_excluded": true,
+  "offline_tests": {
+    "passed": 221,
+    "skipped": 4
+  },
+  "official_api_http_rows": [
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "numeric bracket token '[0,1]': reference 0 has no used evidence at this page; allowed pages: []. If these are parameter values, use braces; if these are mathematical closed intervals, use full-width brackets ［a,b］ to preserve meaning. Replace each offending token in the supplied passages; do not change valid citations or invent references."
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": []
+              }
+            }
+          ]
+        }
+      ],
+      "body_characters": 2196,
+      "citation_instances": 9,
+      "label": "E-01-two-real-papers",
+      "case_id": "E-01",
+      "function": "Idea",
+      "http_status": 200,
+      "seconds": 108.778,
+      "transport_error": null,
+      "llm_calls": 5,
+      "total_tokens": 12022,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 5,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 9350,
+        "total_output_tokens": 2672,
+        "tool_call_count": 23,
+        "unique_tool_count": 11,
+        "parallel_tool_count": 3,
+        "session_id": "993bdbcb3ebb4c369880e67c0a5d3576",
+        "trace_id": "00000000000000000000000048000001",
+        "llm_calls": 5,
+        "total_tokens": 12022,
+        "duration_ms": 108773.812765,
+        "tools_used": [
+          "build_authorized_index",
+          "build_claim_ledger",
+          "chunk_pages",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "numeric bracket token '[0,1]': reference 0 has no used evidence at this page; allowed pages: []. If these are parameter values, use braces; if these are mathematical closed intervals, use full-width brackets ［a,b］ to preserve meaning. Replace each offending token in the supplied passages; do not change valid citations or invent references."
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "原验证集随机抽取20%作为测试集。",
+                  "1. **主要指标**：答案精确匹配（EM，Exact Match）和F1分数，公式为标准EM=匹配答案样本数/总样本数；F1=2*(精确率*召回率)/(精确率+召回率)，其中精确率=预测正确部分数/预测总部分数，召回率=预测正确部分数/真实总部分数。"
+                ]
+              }
+            },
+            {
+              "attempt": 2,
+              "stage": "validation",
+              "issues": [
+                "原验证集随机抽取20%作为测试集。; 1. **主要指标**：答案精确匹配（EM，Exact Match）和F1分数，公式为标准EM=匹配答案样本数/总样本数；F1=2*(精确率*召回率)/(精确率+召回率)，其中精确率=预测正确部分数/预测总部分数，召回率=预测正确部分数/真实总部分数。"
+              ]
+            },
+            {
+              "attempt": 3,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": []
+              }
+            }
+          ]
+        }
+      ],
+      "body_characters": 2391,
+      "citation_instances": 5,
+      "label": "E-02-two-real-papers",
+      "case_id": "E-02",
+      "function": "Idea",
+      "http_status": 200,
+      "seconds": 123.929,
+      "transport_error": null,
+      "llm_calls": 7,
+      "total_tokens": 17475,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 7,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 14318,
+        "total_output_tokens": 3157,
+        "tool_call_count": 23,
+        "unique_tool_count": 11,
+        "parallel_tool_count": 3,
+        "session_id": "8ad247839e9b453486d9add896e56ebd",
+        "trace_id": "00000000000000000000000048000002",
+        "llm_calls": 7,
+        "total_tokens": 17475,
+        "duration_ms": 123924.540137,
+        "tools_used": [
+          "build_authorized_index",
+          "build_claim_ledger",
+          "chunk_pages",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    }
+  ],
+  "provenance": {
+    "image": "research-assistant:0.4.11-e-20261026",
+    "image_id": "sha256:cf344455bdfa45b27d43877fa48751724e5117cd38b4d89afcf0949b7f127a71",
+    "real_pdf_hashes": {
+      "2004.04906-DPR.pdf": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f",
+      "2005.11401-RAG.pdf": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "2007.01282-FiD.pdf": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953",
+      "2112.04426-RETRO.pdf": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+      "2310.11511-Self-RAG.pdf": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+    },
+    "model": "deepseek_v4",
+    "official_api": true,
+    "platform_workspace_simulated": "workspace-live-audit",
+    "official_hidden_questions": false,
+    "cpu": 1,
+    "memory_mib": 1024,
+    "b_fault_fixtures": false,
+    "client_exit_code": 0,
+    "oom_killed": false
+  },
+  "manual_content_review": {
+    "run": "official-live-0411-e-v8-20261026",
+    "scope": "人工抽查模型报告与本次提取台账，不是官方评分或全部PDF事实核验",
+    "E-01": {
+      "content_fully_verified": false,
+      "needs_improvement": true,
+      "issues": [
+        "报告称RAG默认生成器为T5-base；本次台账未提供该默认架构的依据。",
+        "报告称FEVER任务K=10；所引ev-3原文只说明任务定义，没有K值。",
+        "报告由SELF-RAG摘要推断其未覆盖引用粒度，属于将当前摘录未提到的内容扩大为整个方法没有做。",
+        "开头最小效应量的证伪描述与后文证据不足/统计区间需更严谨协调。"
+      ]
+    },
+    "E-02": {
+      "content_fully_verified": false,
+      "needs_improvement": true,
+      "issues": [
+        "模型修订删除了EM/F1的具体公式，只保留指标名；其他指标虽有口径，这一项仍不足。",
+        "报告把768维写成与DPR原文一致；需要进一步核验当前引用是否确实支持该具体维数。",
+        "余弦相似度较低不等于事实冲突，检测机制的有效性论证与对照设计仍需加强。",
+        "假设、失败判据及配对统计的表述仍有不够严谨之处。"
+      ]
+    }
+  },
+  "inherited_release": "0.4.10-cd-20261025",
+  "official_hidden_questions": false,
+  "platform_accepted": false,
+  "online_exception_confirmed": false,
+  "limitations": [
+    "本地自拟题/真实PDF并非平台隐藏题；模型自审不能替代专家复核。",
+    "本轮未重跑正式D会话；保留上一版B/C/D修复及已记录测试。"
+  ]
+}

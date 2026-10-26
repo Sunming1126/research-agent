@@ -1,6 +1,7 @@
 """Official model + published samples; does not claim formal RPC/provenance admission."""
 import json
 import time
+import os
 from pathlib import Path
 from research_agent.core.config import Settings
 from research_agent.core.models import CaseContext
@@ -23,13 +24,17 @@ for case_id in ('D-01','D-02','D-05'):
     work = output/case_id
     runner = LayeredDRunner(settings,work,llm)
     started = time.monotonic()
-    row = dict(case_id=case_id,official_model_api=True,formal_platform_session=False)
+    row = dict(case_id=case_id,official_model_api=True,formal_platform_session=False,
+               image_id=os.environ.get('TEST_IMAGE_ID'))
     try:
         with CaseSession(case_id,170).activate():
             source = runner.prepare_checked_implementation(case)
         response = json.loads((work/'generation-response.json').read_text())
         assert source.read_text() == extract_source(response)
-        row.update(status='passed_public_sample',source_sha256=sha256_file(source),source_matches_current_response=True)
+        local_check = json.loads((work/'public-selftest.json').read_text())
+        passed = local_check.get('public_selftest_passed', local_check['attempts'][-1].get('status') == 'passed')
+        row.update(status='passed_public_sample' if passed else 'ready_for_formal_with_public_failure',
+                   public_selftest=local_check, source_sha256=sha256_file(source),source_matches_current_response=True)
     except Exception as exc:
         row.update(status='failed',error_type=type(exc).__name__,message=str(exc)[:600])
     row.update(seconds=round(time.monotonic()-started,3),usage=llm.usage)

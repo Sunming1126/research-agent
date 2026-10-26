@@ -20,6 +20,7 @@ def validate_named_attribution(markdown, evidence, used_ids=None):
         names[key] = (alias, row["ref"])
     for key in ambiguous:
         names.pop(key, None)
+    issues, passages = [], []
     for paragraph in markdown.split("\n\n"):
         for sentence in re.split(r"(?<=[。！？])\s*(?!\s*\[)", paragraph):
             plain = re.sub(r"[*#>`]", "", sentence.strip())
@@ -39,5 +40,11 @@ def validate_named_attribution(markdown, evidence, used_ids=None):
                                      for row in evidence if ((row["ref"], row["page"]) in pairs or (row["ref"], None) in pairs)
                                      and (used_ids is None or row["evidence_id"] in used_ids))
                 if not re.search(named, supported, re.I):
-                    raise EvidenceError(f"named method {alias} is attributed to another paper without supporting evidence",
-                                        passages=[sentence])
+                    issue = f"named method {alias} is attributed to another paper without supporting evidence"
+                    if issue not in issues:
+                        issues.append(issue)
+                    if sentence not in passages:
+                        passages.append(sentence)
+    if issues:
+        # 一轮反馈全部可定位的归因错误，不能逐个耗尽报告的修订机会。
+        raise EvidenceError('; '.join(issues), passages=passages)

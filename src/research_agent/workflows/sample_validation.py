@@ -68,7 +68,9 @@ def validate_sample_output(case_id, request, result):
                 counts = Counter(row["label"] for row in data["train"])
                 majority = min(labels, key=lambda label: (-counts[label], label))
                 if value != [majority] * len(data["texts"]):
-                    raise ValueError("D-01 majority baseline violates lexical tie handling")
+                    raise ValueError('D-01 majority baseline violates lexical tie handling: public train counts='
+                                     + json.dumps(dict(counts), sort_keys=True) + '; expected constant label='
+                                     + repr(majority) + '; actual public predictions=' + repr(value[:6]))
         elif case_id == "D-02":
             queries = {q["id"] for q in data["test_queries"]}
             documents = {d["id"] for d in data["documents"]}
@@ -144,7 +146,7 @@ def validate_sample_output(case_id, request, result):
             "candidate_present": result["candidate"] is not None}
 
 
-def run_public_sample(source: Path, materials, case_id, *, timeout=8):
+def run_public_sample(source: Path, materials, case_id, *, timeout=8, _edge_check=True):
     protocol, request = json.loads(materials["protocol"]), json.loads(materials["sample"])
     if request.get("case_id") != case_id or protocol.get("case_id") != case_id:
         raise ValueError("public sample or protocol belongs to another case")
@@ -186,4 +188,20 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8):
             raise ValueError("D-02 rank must reuse the selected configuration and reproduce run rankings")
         report["rank_consistent"] = True
     report["isolation"] = body["isolation"]
+    if case_id == 'D-05' and _edge_check:
+        # 由当前公开样例派生，不使用隐藏实例或参考答案。首个样例不含
+        # 同时到达时，heap(time, kind, dict)的比较错误过去会漏过自检。
+        import copy
+        simultaneous = copy.deepcopy(request)
+        for job in simultaneous['data']['jobs']:
+            job['arrival_ms'] = 0
+        empty = copy.deepcopy(request)
+        empty['data']['jobs'] = []
+        for name, edge in (('simultaneous_public_arrivals', simultaneous), ('empty_public_jobs', empty)):
+            try:
+                run_public_sample(source, {**materials, 'sample': json.dumps(edge)}, case_id,
+                                  timeout=timeout, _edge_check=False)
+            except (ValueError, RuntimeError) as exc:
+                raise ValueError(name + ': ' + str(exc)) from exc
+        report['derived_public_checks'] = ['simultaneous_public_arrivals', 'empty_public_jobs']
     return report

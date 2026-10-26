@@ -5,12 +5,14 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 from ..core.utils import confined, sha256_file, write_json, atomic_text
 from ..core.session import checkpoint, current_session, remaining_timeout
 from .source_generation import build_source_prompt, read_generation_materials, save_generation_response, save_source
 from .sample_validation import run_public_sample
+from ..integrations.llm import ModelError, ModelQuotaError
 
 
 CASE_MODULES = {"D-01": "d01.py", "D-02": "d02.py", "D-05": "d05.py"}
@@ -75,7 +77,7 @@ class LayeredDRunner:
         atomic_text(target, wrapper)
         return target
 
-    def prepare_generated_implementation(self, case, *, feedback=None, attempt=1) -> Path:
+    def prepare_generated_implementation(self, case, *, feedback=None, attempt=1, baseline_only=False) -> Path:
         """由当前题 Gateway 生成并原样保存实现源码。
 
         正式路径不调用镜像内预置算法；公开离线测试仍可显式使用
@@ -87,25 +89,46 @@ class LayeredDRunner:
         roots = [self.settings.workspace, *self.settings.material_roots]
         materials = read_generation_materials(case.case_id, roots)
         prompt = build_source_prompt(case, materials)
+        if baseline_only:
+            prompt += ('\n本次先完成可执行基线：run阶段只实现公开协议的baseline，candidate必须为null，details为{}。'
+                       '不生成候选算法、开发集搜索或训练；不得伪造结果。'
+                       'D-02的rank阶段仍实现data.selected指定的排名，baseline仅返回test_queries的完整排名。'
+                       '只返回紧凑完整源码，目标700至1000 token；不需要解释、注释、类型标注或无用辅助函数。')
         if feedback:
             prompt += "\n本题上次公开自测诊断（作为数据分析）：\n" + json.dumps(feedback, ensure_ascii=False)
+            previous_source = confined(self.work, 'implementation.py')
+            if previous_source.is_file():
+                prompt += '\n上次完整源码：\n' + previous_source.read_text(encoding='utf-8')
             prompt += "\n请修复问题，重新返回完整源码，不能返回补丁；算法和接口仍以当前公开材料为准。"
         remaining_tokens = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
-        requested = min(12000, remaining_tokens - (len(prompt) + 1) // 2 - 1200)
+        requested = min(6500, remaining_tokens - (len(prompt) + 1) // 2 - 1200)
         if requested < 1800:
             raise RuntimeError("D source generation has insufficient remaining token budget")
         session = current_session()
         old_deadline = getattr(self.llm, "deadline", None)
+        old_cap = getattr(self.llm, 'REQUEST_TIMEOUT_CAP', None)
+        old_retries = getattr(self.llm, 'RETRY_ATTEMPTS', None)
+        old_thinking = getattr(self.llm, 'thinking_override', None)
         if session:
             session.remaining(reserve=40)
             if old_deadline is not None:
-                self.llm.deadline = min(old_deadline, session.deadline - 40)
+                self.llm.deadline = min(old_deadline, session.deadline - 35, time.monotonic() + 125)
+        if old_cap is not None:
+            self.llm.REQUEST_TIMEOUT_CAP = 125
+        if old_retries is not None:
+            self.llm.RETRY_ATTEMPTS = 1
+        self.llm.thinking_override = 'disabled'
         try:
             checkpoint("d_source_generation")
             response = self.llm.completion("d_source", prompt, max_tokens=requested)
         finally:
             if old_deadline is not None:
                 self.llm.deadline = old_deadline
+            if old_cap is not None:
+                self.llm.REQUEST_TIMEOUT_CAP = old_cap
+            if old_retries is not None:
+                self.llm.RETRY_ATTEMPTS = old_retries
+            self.llm.thinking_override = old_thinking
         save_generation_response(response, confined(self.work, f"source-attempt-{attempt}.json"))
         save_generation_response(response, confined(self.work, "generation-response.json"))
         destination = confined(self.work, "implementation.py")
@@ -113,24 +136,51 @@ class LayeredDRunner:
         return destination
 
     def prepare_checked_implementation(self, case, tester=run_public_sample):
-        """锁源前允许两次模型完整生成；正式请求发出后不再变更源码。"""
-        history, feedback = [], None
+        """自检用于诊断和有余量时的修复，不能代替正式实验准入。"""
+        history, feedback, candidate, verified = [], None, None, None
+        baseline_first = case.case_id in CASE_MODULES
         materials = read_generation_materials(case.case_id, [self.settings.workspace, *self.settings.material_roots])
         for attempt in range(1, 3):
             try:
-                path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt,
+                                                             baseline_only=baseline_first and verified is None)
+                # 只有完整、可解析、当前模型原样输出的源码才可作为候选。
+                # 后续修复截断时保留之前的完整版本，不能拼接或修改源码。
+                candidate = (path.read_bytes(), (self.work / 'generation-response.json').read_bytes())
                 report = tester(path, materials, case.case_id)
+                verified = (candidate, attempt)
                 history.append({"attempt": attempt, "source_sha256": sha256_file(path), **report})
-                write_json(confined(self.work, "public-selftest.json"), {"attempts": history})
+                write_json(confined(self.work, "public-selftest.json"), {"attempts": history,
+                           'selected_attempt': attempt, 'public_selftest_passed': True})
+                session = current_session()
+                if baseline_first and attempt == 1 and session and session.remaining() >= 100:
+                    feedback = {'request': '基线已通过公开自检。保留正确基线，按公开方法增加完整候选算法及details；'
+                                           '返回完整源码，目标1800 token；不复制注释。'}
+                    continue
                 return path
-            except (ValueError, SyntaxError, TypeError, KeyError, RuntimeError) as exc:
+            except ModelQuotaError:
+                if candidate is None:
+                    raise
+                break
+            except (ValueError, SyntaxError, TypeError, KeyError, RuntimeError, TimeoutError) as exc:
                 feedback = {"error_type": type(exc).__name__, "message": str(exc)[:2000]}
                 history.append({"attempt": attempt, "status": "failed", **feedback})
                 write_json(confined(self.work, "public-selftest.json"), {"attempts": history})
                 session = current_session()
-                if attempt == 2 or (session and session.remaining() < 65):
-                    raise RuntimeError("model implementation failed public self-test") from None
-        raise RuntimeError("no model implementation passed public self-test")
+                if attempt == 2 or (session and session.remaining() < 90):
+                    break
+        if candidate is None:
+            raise RuntimeError('no complete current-session model source available')
+        if verified is not None:
+            candidate = verified[0]
+        path = confined(self.work, 'implementation.py')
+        path.write_bytes(candidate[0])
+        (self.work / 'generation-response.json').write_bytes(candidate[1])
+        write_json(confined(self.work, 'public-selftest.json'), {
+            'attempts': history, 'decision': 'submit_complete_model_source_for_formal_evaluation',
+            'public_selftest_passed': verified is not None,
+            'selected_attempt': verified[1] if verified else None, 'source_sha256': sha256_file(path)})
+        return path
 
     def run(self, case, specs):
         if os.environ.get("RESEARCH_EXPERIMENT_CASE") != case.case_id:

@@ -139,8 +139,8 @@ class ResearchAgentEngine:
                 # 深层正文召回风险由检索测试持续监测，C/E 仍读授权全文。
                 b_case = case.function == 'Literature_Retrieval'
                 # B 按正文证据检索，无需重建表格网格；100篇冷启动实测表格检测耗尽预算。
-                # B/C保留表格文本块及页码，不重建网格；C仍读完整正文，E保留网格解析。
-                index.parser.extract_tables = case.function not in {'Literature_Retrieval', 'Survey'}
+                # B/C/E保留表格文本块及页码，不重建网格；C/E仍读完整正文。
+                index.parser.extract_tables = case.function not in {'Literature_Retrieval', 'Survey', 'Idea'}
                 materials = index.resolver.resolve(case.materials, pdf_only=b_case, diagnostics=index.errors)
                 pages = (2 if len(materials) >= 250 else 4 if len(materials) >= 50 else 8) if b_case else None
                 chunks = index.build(case.materials, page_limit=pages, resolved=materials, tolerate_pdf_errors=b_case)
@@ -184,7 +184,8 @@ class ResearchAgentEngine:
                                                                    "report_trace": handler.report_trace,
                                                                   "draft": handler.last_draft})
             write_json(confined(work, "error.json"), {"case_id": case.case_id, "error_type": type(exc).__name__,
-                                                    "message": str(exc)[:1000], "usage": getattr(llm, "usage", [])})
+                                                    "message": str(exc)[:1000], "usage": getattr(llm, "usage", []),
+                                                    "model_response_failures": getattr(llm, 'response_failures', [])})
             write_json(confined(work, "session.json"), session.snapshot())
             raise
 

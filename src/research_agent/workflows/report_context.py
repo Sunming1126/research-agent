@@ -41,17 +41,19 @@ def audit_request(case, markdown, rows, ledger, *, used=(), patches=(), feedback
 
     changed = "\n\n".join(p["replacement"] for p in patches)
     partial = bool(patches) and not full_review
+    context, view = revision_view(markdown, patches) if partial else (None, "complete_document")
     if partial:
-        relevant = "\n".join([changed, *feedback, *(p["original"] for p in patches)])
+        # 审查能看到相邻原文，相邻段落的引用也必须提供证据；不能只给替换句证据。
+        relevant = "\n".join([changed, context or '', *feedback, *(p["original"] for p in patches)])
         selected = cited_evidence(relevant, rows) or rows
     else:
         # used 必须包含正文真正引用的证据；同时按正文引用回查，避免模型漏报。
         selected_ids = set(used) | {e["evidence_id"] for e in cited_evidence(markdown, rows)}
         selected = [e for e in rows if e["evidence_id"] in selected_ids] or rows
     known = {e["evidence_id"] for e in selected}
-    context, view = revision_view(markdown, patches) if partial else (None, "complete_document")
     return {
-        "task": {"function": case.function, "input": case.input},
+        "task": {"function": case.function, "input": case.input,
+                 "constraints": list(getattr(case, 'constraints', []))},
         "markdown": changed if partial else markdown,
         "full_document": context, "document_view": view,
         "previous_issues": list(feedback) if partial else [], "applied_patches": list(patches) if partial else [],
@@ -64,11 +66,15 @@ def audit_request(case, markdown, rows, ledger, *, used=(), patches=(), feedback
     }
 
 
-def repair_context(markdown, paragraphs, feedback, rows):
+def repair_context(markdown, paragraphs, feedback, rows, *, case=None):
     """复审需要的证据依据原句和问题定位，不能只看替换段落的关键词。"""
     selected = cited_evidence("\n".join([*paragraphs, *feedback]), rows) or rows
-    return {"paragraphs": paragraphs, "issues": list(feedback), "claims": compact_claims(selected),
-            "papers": {str(e["ref"]): e["filename"] for e in selected}}
+    result = {"paragraphs": paragraphs, "issues": list(feedback), "claims": compact_claims(selected),
+              "papers": {str(e["ref"]): e["filename"] for e in selected}}
+    if case is not None and case.function == 'Idea':
+        result['task'] = {'function': case.function, 'input': case.input,
+                          'constraints': list(getattr(case, 'constraints', []))}
+    return result
 
 
 def repair_tail_budget(llm, case, markdown, rows, ledger):
@@ -82,7 +88,7 @@ def repair_tail_budget(llm, case, markdown, rows, ledger):
         paragraphs = ["待修订事实及条件。" * 25 + f" [{e['ref']}, p.{e['page']}]" for e in rows[:1]]
         markdown += "\n\n" + "\n\n".join(paragraphs)
     issues = ["待修订问题：" + "证据条件或实验配置不完整。" * 18]
-    repair = repair_context(markdown, paragraphs, issues, rows)
+    repair = repair_context(markdown, paragraphs, issues, rows, case=case)
     patches = [{"original": p, "replacement": p} for p in paragraphs]
     followup = audit_request(case, markdown, rows, ledger, patches=patches, feedback=issues)
     return llm.input_tokens("repair", repair) + 1400 + llm.input_tokens("audit", followup) + 1000

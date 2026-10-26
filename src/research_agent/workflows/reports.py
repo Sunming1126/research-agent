@@ -27,18 +27,43 @@ class ReportWorkflow:
     @contextmanager
     def _stage_time(self, stage):
         previous = getattr(self.llm, 'deadline', None)
+        previous_request_cap = getattr(self.llm, 'REQUEST_TIMEOUT_CAP', None)
+        previous_thinking = getattr(self.llm, 'thinking_override', None)
+        previous_retries = getattr(self.llm, 'RETRY_ATTEMPTS', None)
         limits = {'extract_batch': (55, 70), 'extract': (35, 70),
                   'verify_claims': (22, 55), 'report': (50, 25),
                   'repair': (22, 15), 'audit': (20, 5)}
+        function = getattr(self, '_report_function', None)
+        if function == 'Idea':
+            # E必须留下模型正文及事实复核时间，不能用程序模板补成成功报告。
+            limits = {'extract_batch': (40, 90), 'extract': (30, 90),
+                      'verify_claims': (20, 70), 'report': (85, 35),
+                      'repair': (25, 10), 'audit': (20, 5)}
+        direct = getattr(self, '_source_report', False)
+        if direct:
+            # 首次在线调用就写正文，避免55秒提取超时后没有任何答卷。
+            limits.update(report=(135, 25), repair=(32, 10), audit=(22, 8))
         session = current_session()
-        if previous is not None and session and getattr(self, '_report_function', None) == 'Survey':
+        if previous is not None and session and function in {'Survey', 'Idea'}:
             cap, reserve = limits.get(stage, (40, 10))
             self.llm.deadline = min(previous, time.monotonic() + cap, session.deadline - reserve)
+            if (direct or (function == 'Idea' and stage == 'report')) and previous_request_cap is not None:
+                # 否则传输层60秒会提前取消长写作，再用剩余25秒重发整份请求。
+                self.llm.REQUEST_TIMEOUT_CAP = cap
+        if direct:
+            self.llm.thinking_override = 'disabled'
+            if previous_retries is not None:
+                self.llm.RETRY_ATTEMPTS = 1
         try:
             yield
         finally:
             if previous is not None:
                 self.llm.deadline = previous
+            if previous_request_cap is not None:
+                self.llm.REQUEST_TIMEOUT_CAP = previous_request_cap
+            self.llm.thinking_override = previous_thinking
+            if previous_retries is not None:
+                self.llm.RETRY_ATTEMPTS = previous_retries
 
     def _model_step(self, stage, data, maximum, *, reserve=0, minimum=500):
         checkpoint("report_" + stage)
@@ -155,6 +180,14 @@ class ReportWorkflow:
         if not chunks:
             raise EvidenceError("no readable authorized PDFs for report")
         self.selected_chunks = chunks
+        if getattr(self.llm, 'supports_source_reports', False):
+            from .source_reports import source_ledger
+            self._source_report = True
+            self.ledger = source_ledger(case, chunks, retriever.chunks)
+            self.coverage = coverage_matrix(self.ledger)
+            self.evidence_audit = {'mode': 'authorized_source_context',
+                                   'semantic_claims_verified': False}
+            return self.compose_report(case)
         self.ledger = self.extract(case, chunks)
         compact = getattr(self.llm, "supports_batched_extraction", False)
         if getattr(self.llm, "supports_evidence_verification", False) and not compact:
@@ -182,25 +215,35 @@ class ReportWorkflow:
     @tool(name="write_evidence_backed_report")
     def compose_report(self, case):
         """写作阶段只消费本题已核验台账，可单独定向验证。"""
+        self._report_function = case.function
         filenames = sorted({e.filename for e in self.ledger})
         if not filenames or (case.function == "Survey" and len(filenames) < 5):
             raise EvidenceError("insufficient supported papers for report (Survey requires at least five)")
         refs = {name: i+1 for i, name in enumerate(filenames)}
         evidence = [{**asdict(e), "ref": refs[e.filename]} for e in self.ledger]
         model_evidence = model_evidence_rows(evidence)
-        core = survey_core_facts(self.ledger) if case.function == "Survey" else []
+        direct = getattr(self, '_source_report', False)
+        core = survey_core_facts(self.ledger) if case.function == "Survey" and not direct else []
         anchor, anchor_ids = render_claim_ledger_section(core, refs) if core else ("", [])
         feedback, history, previous_used, repair_targets = [], [], [], []
-        for attempt in range(2):
+        deliverable = None
+        deliverable_attempt = None
+        # E可先修一次格式，再修一次语义；两次语义审查仍不通过就结束。
+        # 全流程继续受本题时间和Token预算约束，不能靠重复重试超时。
+        for attempt in range(3 if case.function == 'Idea' else 2):
+            if sum(item.get('stage') == 'audit' for item in history) >= 2:
+                break
             patches = []
             audit_evidence = model_evidence
             try:
                 global_limit = any("exceeds" in issue and ("characters" in issue or "citation instances" in issue)
                                    for issue in feedback)
+                if direct and any('citation instances' in issue for issue in feedback):
+                    global_limit = False
                 if attempt and self.last_draft and not global_limit:
                     # 首稿已整篇审查过；只修正出错段，不重复生成和审查整篇事实。
                     paragraphs = repair_targets or repair_paragraphs(self.last_draft, feedback)
-                    repair_data = repair_context(self.last_draft, paragraphs, feedback, model_evidence)
+                    repair_data = repair_context(self.last_draft, paragraphs, feedback, model_evidence, case=case)
                     # 按预计替换范围与当前全文计算复审成本，不能再用固定 4200。
                     planned_patches = [{"original": p, "replacement": p} for p in paragraphs]
                     next_audit = audit_request(case, self.last_draft, model_evidence, self.ledger,
@@ -208,6 +251,8 @@ class ReportWorkflow:
                                               full_review=not any(h.get("stage") == "audit" for h in history))
                     reserve = self.llm.input_tokens("audit", next_audit) + 1500 if hasattr(self.llm, "input_tokens") else 4200
                     repaired = self._model_step("repair", repair_data, 1400, reserve=reserve)
+                    if self.report_trace:
+                        self.report_trace[-1].setdefault('repair_responses', []).append(repaired)
                     patches = repaired.get("patches", [])
                     revised = apply_report_patches(self.last_draft, patches)
                     value = {"markdown": revised, "used_evidence_ids": previous_used}
@@ -221,6 +266,12 @@ class ReportWorkflow:
                                               if case.function == "Survey" else {"model_body_characters": 6000}),
                             "coverage_requirements": report_requirements(case.function), "repair_issues": feedback,
                             "evidence_coverage": {name: list(facets) for name, facets in self.coverage.get("papers", {}).items()}}
+                    if case.function == 'Idea' or direct:
+                        data['output_limits']['target_body_characters'] = 2200
+                        data['response_fields'] = {'markdown': '完整报告正文字符串，不能省略或嵌套',
+                                                   'used_evidence_ids': '实际使用的证据ID数组'}
+                    if direct and case.function == 'Survey':
+                        data['output_limits'].update(target_body_characters=1600, model_citation_instances=25)
                     # 哈希、偏移等核验元数据留在磁盘；为审查和一次修订保留实际模型预算。
                     remaining = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
                     requested = min(4200, remaining - len(json.dumps(data, ensure_ascii=False)) // 2 - 2000)
@@ -232,6 +283,9 @@ class ReportWorkflow:
                     reserve = (self.llm.input_tokens("audit", initial_audit) + 1000
                                + repair_tail_budget(self.llm, case, preview, model_evidence, self.ledger)
                                if hasattr(self.llm, "input_tokens") else 7500)
+                    if direct:
+                        # 原文上下文只发一次；可选自审不能挤掉完整正文预算。
+                        reserve = 3500
                     if hasattr(self.llm, "input_tokens"):
                         # 当前写作和首次审查必须能执行；尚未发生的修订预估不能占满输出空间。
                         available = max(0, self.llm.remaining_tokens - self.llm.input_tokens("report", data)
@@ -239,7 +293,7 @@ class ReportWorkflow:
                         reserve = min(reserve, available)
                     value = self._model_step("report", data, min(3000 if case.function == "Survey" else 4200, requested),
                                              reserve=reserve, minimum=1600)
-            except (ModelError, EvidenceError) as exc:
+            except (ModelError, EvidenceError, TimeoutError) as exc:
                 history.append({"attempt": attempt + 1, "stage": "report", "issues": [str(exc)]})
                 feedback = feedback + [str(exc)]
                 break
@@ -247,7 +301,7 @@ class ReportWorkflow:
             used = value.get("used_evidence_ids", [])
             if not isinstance(markdown, str) or not isinstance(used, list):
                 raise EvidenceError("invalid report response")
-            self.report_trace.append({"attempt": attempt + 1, "raw_markdown": markdown,
+            self.report_trace.append({"attempt": attempt + 1, "raw_markdown": markdown, "raw_response": value,
                                       "used_evidence_ids": list(used), "patches": patches})
             try:
                 markdown, bound_ids = render_evidence_citations(markdown, evidence)
@@ -269,7 +323,7 @@ class ReportWorkflow:
                 # 只补正文尚未引用的论文；不重复整份事实摘要扩大复审输入。
                 cited_refs = {int(n) for n in re.findall(r"\[(\d{1,2})(?:,\s*p\.\s*\d+)?\]", markdown)}
                 missing_rows = [e for e in self.ledger if refs[e.filename] not in cited_refs]
-                if missing_rows:
+                if missing_rows and not direct:
                     anchor, anchor_ids = render_claim_ledger_section(select_claims(missing_rows, maximum_per_paper=2), refs)
                     markdown = anchor + "\n\n" + markdown
                     used = list(dict.fromkeys(anchor_ids + used))
@@ -281,9 +335,22 @@ class ReportWorkflow:
                 try:
                     validate_report_limits(markdown + "\n\n", case.function)
                 except ValueError as exc:
-                    raise EvidenceError(str(exc)) from exc
+                    passages = []
+                    if direct and 'citation instances' in str(exc):
+                        passages = sorted(markdown.split('\n\n'), key=lambda p: len(report_citations(p)), reverse=True)[:2]
+                    raise EvidenceError(str(exc), passages=passages) from exc
                 numeric_ambiguities = validate_citations(markdown, evidence, used,
-                                                        minimum=5 if case.function == "Survey" else 1, function=case.function)
+                                                        minimum=5 if case.function == "Survey" else 1, function=case.function,
+                                                        strict_facts=not direct)
+                # 语义自审属于质量控制。先记录确已通过硬检查的完整模型稿，
+                # 不能把自审疑虑或局部修订失败误报成没有可交付的答卷。
+                if case.function == 'Idea' or direct:
+                    deliverable = markdown
+                    deliverable_attempt = attempt + 1
+                session = current_session()
+                if direct and session and session.remaining() < 30:
+                    feedback = ['semantic review skipped: preserving submission deadline']
+                    break
                 audit_data = audit_request(case, markdown, model_evidence, self.ledger,
                                            used=used, patches=patches, feedback=feedback,
                                            full_review=bool(patches) and not any(h.get("stage") == "audit" for h in history))
@@ -299,15 +366,16 @@ class ReportWorkflow:
                         or any(not isinstance(issue, str) for issue in audit["issues"])):
                     raise EvidenceError("invalid semantic audit response")
                 history.append({"attempt": attempt + 1, "stage": "audit", "audit": dict(audit)})
+                if audit["ok"] and audit["issues"]:
+                    # 保留模型原始结论，但不能把仍有问题的正文当成通过。
+                    audit = {**audit, "reported_ok": True, "ok": False}
                 audit["history"] = list(history)
                 self.audit = audit
                 if audit.get("ok") is not True:
-                    raise EvidenceError("; ".join(str(x) for x in audit.get("issues", ["audit rejected"])))
-                selected_refs = {int(x) for x in re.findall(r"\[(\d{1,2})(?:,\s*p\.\s*\d+)?\]", markdown)}
-                markdown += "\n\n## 参考文献\n\n" + "\n".join(f"[{refs[name]}] {name}" for name in filenames if refs[name] in selected_refs)
-                kind = "综述" if case.function == "Survey" else "灵感Idea报告"
-                return {"case_id": case.case_id, "path": f"data/expert/{case.case_id}-{kind}-{self.team}.md", "markdown": markdown}
-            except ModelError as exc:
+                    issues = audit["issues"] or ["semantic audit rejected without details"]
+                    raise EvidenceError("; ".join(issues), passages=repair_paragraphs(markdown, issues))
+                return self._report_result(case, markdown, filenames, refs)
+            except (ModelError, TimeoutError) as exc:
                 # 额度或网络问题不是正文错误，禁止把它当成修订意见再调用写作模型。
                 feedback = [str(exc)]
                 history.append({"attempt": attempt + 1, "stage": "audit_unavailable", "issues": list(feedback)})
@@ -316,7 +384,7 @@ class ReportWorkflow:
                 feedback = [str(exc)]
                 repair_targets = getattr(exc, "passages", [])
                 history.append({"attempt": attempt + 1, "stage": "validation", "issues": list(feedback)})
-        if case.function == "Survey":
+        if case.function == "Survey" and not direct:
             # 自由长文多次审查失败时，只拼接已经进入证据台账的事实。
             markdown, used = deterministic_survey(case.input, self.ledger)
             body = markdown.split("## 参考文献", 1)[0]
@@ -326,10 +394,21 @@ class ReportWorkflow:
                           "model_issues": feedback, "history": history}
             return {"case_id": case.case_id,
                     "path": f"data/expert/{case.case_id}-综述-{self.team}.md", "markdown": markdown}
-        # c1-output-limits-v1 禁止 E 类程序拼接/硬编码扩写；保留失败证据，
-        # 没有通过审查的模型正文时不得用模板伪装成功报告。
+        if deliverable is not None:
+            # 不改正文、不伪造审查通过；供平台实际判内容分，全部疑虑留存证据档案。
+            self.audit = {"ok": False, "mode": "model_report_needs_review", "local_validation": True,
+                          "delivered_attempt": deliverable_attempt, "model_issues": feedback, "history": history}
+            return self._report_result(case, deliverable, filenames, refs)
+        # c1-output-limits-v1 禁止用程序模板替代未生成或格式不合格的 E 报告。
         self.audit = {"ok": False, "mode": "model_report_failed", "model_issues": feedback, "history": history}
-        raise EvidenceError("Idea model report failed validation: " + "; ".join(feedback))
+        raise EvidenceError(case.function + " model report failed validation: " + "; ".join(feedback))
+
+    def _report_result(self, case, markdown, filenames, refs):
+        selected_refs = {int(x) for x in report_citations(markdown)}
+        markdown += "\n\n## 参考文献\n\n" + "\n".join(
+            f"[{refs[name]}] {name}" for name in filenames if refs[name] in selected_refs)
+        kind = "综述" if case.function == "Survey" else "灵感Idea报告"
+        return {"case_id": case.case_id, "path": f"data/expert/{case.case_id}-{kind}-{self.team}.md", "markdown": markdown}
 
     def _recover_evidence_gaps(self, case, retriever, plan):
         """优先补检模型从本题提出的具体问题，再补通用维度；有预算才执行。"""

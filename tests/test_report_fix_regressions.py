@@ -109,10 +109,10 @@ def test_unavailable_audit_is_not_sent_as_a_text_repair_instruction():
             raise ModelError("insufficient reserved budget for audit")
     handler = TaskHandlers(LLM(), "test")
     handler.ledger = [Evidence("ev-1", "当前材料提供了一项有条件的结果。", "p.pdf", 1, "c", "The result is conditional.")]
-    with pytest.raises(EvidenceError, match="Idea model report failed"):
-        handler.compose_report(SimpleNamespace(case_id="E-99", function="Idea", input="设计实验"))
+    result = handler.compose_report(SimpleNamespace(case_id="E-99", function="Idea", input="设计实验"))
+    assert result['markdown'].startswith("建议待验证设计，固定实验条件与控制变量。" * 60 + " [1, p.1]")
     assert stages == ["report", "audit"]
-    assert handler.audit["mode"] == "model_report_failed"
+    assert handler.audit["ok"] is False and handler.audit["mode"] == "model_report_needs_review"
 
 
 def test_proposed_hypothesis_keeps_confidence_interval_in_the_same_paragraph_scope():

@@ -3,11 +3,16 @@ import hashlib
 import json
 import subprocess
 import shutil
+import argparse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser()
+parser.add_argument('--audit', default='output/official-live-0410-d-source-20261025')
+parser.add_argument('--verified-materials', default='build/official-materials-0410-verified')
+args = parser.parse_args()
 original = ROOT/'科研助手赛题材料/research-experiments-20261020-source-v1'
-package = ROOT/'build/official-materials-0410-verified'
+package = ROOT/args.verified_materials
 assert not package.exists(), 'Do not overwrite verified materials'
 shutil.copytree(original,package)
 restored = []
@@ -20,7 +25,7 @@ for name,row in manifest['files'].items():
         assert hashlib.sha256(raw).hexdigest() == row['sha256'], ('material differs beyond line endings',name)
         path.write_bytes(raw)
         restored.append(name)
-audit = ROOT/'output/official-live-0410-d-source-20261025'
+audit = ROOT/args.audit
 out = audit/'official-worker'
 out.mkdir(exist_ok=True)
 (out/'material-verification.json').write_text(json.dumps(dict(official_hashes_match=True,restored_crlf_files=restored,original_unchanged=True),ensure_ascii=False,indent=2),encoding='utf-8')

@@ -42,8 +42,9 @@ def test_audit_history_preserves_initial_rejection_before_budget_fallback():
     case = SimpleNamespace(case_id="E-99", function="Idea", input="设计可证伪的研究",
                            to_dict=lambda: {"case_id": "E-99"})
     handler = TaskHandlers(LLM(), "test")
-    with pytest.raises(EvidenceError, match="Idea model report failed"):
-        handler.report(case, Retriever(), QueryPlan("promoter"))
+    result = handler.report(case, Retriever(), QueryPlan("promoter"))
+    assert result['markdown'].startswith(("建议待验证设计，先比较单模块与组合模块的效果。" * 60) + " [1, p.1]")
+    assert handler.audit['ok'] is False and handler.audit['mode'] == 'model_report_needs_review'
     serialized = json.dumps(handler.audit, ensure_ascii=False)
     assert "缺少具体实验协议" in serialized
     assert "insufficient model budget" in serialized
