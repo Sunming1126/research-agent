@@ -24,7 +24,7 @@ def question(case_id, text, materials):
     fn = {'A': 'Chat', 'B': 'Literature_Retrieval', 'C': 'Survey', 'D': 'Reproduction', 'E': 'Idea'}[case_id[0]]
     return dict(case_id=case_id, function=fn, title='真实论文与官方API接入检查', input=text,
         materials=materials, constraints=['只使用本题授权材料，遵守官方输出规范，不编造论文或实验结果。'],
-        expected_output=fn, output_schema_ref=fn)
+        expected_output=('返回 case_id、path 和完整 Markdown 综述。' if fn == 'Survey' else fn), output_schema_ref=fn)
 
 
 def specimens():
@@ -79,6 +79,18 @@ def main():
         if len(seen) != args.library_size:
             raise RuntimeError('Not enough distinct real PDFs for requested library size')
     all_cases = specimens()
+    # C-03把要求分散在官方允许的不同字段，并使用挂载路径形式的材料。
+    # 不把自拟测试题称为平台真实题目，也不将含糊的指定材料扩大为整库。
+    for specimen in all_cases:
+        case = specimen['payload']
+        if case['case_id'] == 'C-03':
+            case['title'] = '开放域问答中的检索噪声：五篇指定论文的方法、实验条件与局限'
+            case['input'] = '阅读本题指定论文，按标题范围和输出要求完成综述。'
+            case['materials'] = ['/data/papers/' + name for name in PDFS]
+            case['constraints'] += ['只依据指定论文，正文事实标注文献编号及可核查的物理页码；不得跨论文转移事实。']
+            case['expected_output'] = ('返回 case_id、path 和完整 Markdown 综述。正文至少800字、至多4500字符，'
+                                       '引用不超过40次；包含“## 实验条件与局限”；结尾“## 参考文献”列出至少5篇'
+                                       '实际引用的指定PDF完整文件名。将全文另存Markdown，与JSON的markdown完全一致。')
     if args.d_materials:
         source = ROOT/'科研助手赛题材料/research-experiments-20261020-source-v1'
         for specimen in all_cases:

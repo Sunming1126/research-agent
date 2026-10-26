@@ -44,7 +44,7 @@ class TaskHandlers(ReportWorkflow):
         if case.function in {"Survey", "Idea"} and getattr(self.llm, "supports_batched_extraction", False):
             # 指定材料已确定：把有限在线时间留给原文提取、写作和审查。
             self.query_plan_status = "original_for_report_budget"
-            return QueryPlan(case.input)
+            return QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]))
         data = {"function": case.function, "input": case.input,
                 "constraints": case.constraints}
         for attempt, maximum in enumerate((1800, 2800), start=1):

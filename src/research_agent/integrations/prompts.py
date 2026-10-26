@@ -1,6 +1,6 @@
 """分阶段模型提示词；版本写入模型调用记录。"""
 
-PROMPT_VERSION = "20261026-v19-source-first"
+PROMPT_VERSION = "20261026-v20-complete-survey-task"
 
 instructions = {
     "chat": "回答科研问题，输出 answer 和一个 clarifying_question。",
@@ -163,6 +163,9 @@ def instructions_for(stage, data):
         function = task.get("function") if isinstance(task, dict) else None
         if function in {'Survey', 'Idea'}:
             instruction = SURVEY_INSTRUCTION if function == 'Survey' else IDEA_INSTRUCTION
+            instruction += ('task保留官方完整八字段题目。必须同时遵守title、input、constraints和expected_output中的具体要求。'
+                            'expected_output描述最终交付格式；本次写作调用仍按response_fields返回markdown和used_evidence_ids，'
+                            '由运行时添加case_id、正确path、参考文献并保存JSON及Markdown文件，不要自行改写外部路径。')
             if any(row.get('role') == 'source_context' for row in data.get('claims', [])):
                 instruction += ('本次claims中的source_context条目是可逐字核对的授权原文，不是已核验的中文结论。'
                                 '请直接阅读原文完成本题，区分本篇方法、实验和相关工作；摘录没有覆盖的细节不得补写。'

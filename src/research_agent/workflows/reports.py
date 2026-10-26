@@ -15,7 +15,7 @@ from ..core.session import checkpoint, current_session
 from ..evidence.ledger import FACETS, ROLES, coverage_matrix, select_claims, verify_claims
 from ..evidence.reporting import render_evidence_citations
 from ..rag.retrieval import QueryPlan
-from .report_context import audit_request, compact_claims, repair_context, repair_tail_budget
+from .report_context import audit_request, compact_claims, repair_context, repair_tail_budget, report_task
 from ..evidence.reporting import focused_excerpt
 from ..evidence.reporting import survey_core_facts
 from ..rag.report_selection import own_method_score
@@ -257,7 +257,7 @@ class ReportWorkflow:
                     revised = apply_report_patches(self.last_draft, patches)
                     value = {"markdown": revised, "used_evidence_ids": previous_used}
                 else:
-                    data = {"task": {"function": case.function, "input": case.input, "constraints": getattr(case, "constraints", [])},
+                    data = {"task": report_task(case),
                             "claims": compact_claims(model_evidence), "papers": refs,
                             "facts_appended_by_program": anchor_ids,
                             "output_limits": ({"model_body_characters": max(800, 4500 - len(anchor) - 4),
@@ -296,13 +296,28 @@ class ReportWorkflow:
             except (ModelError, EvidenceError, TimeoutError) as exc:
                 history.append({"attempt": attempt + 1, "stage": "report", "issues": [str(exc)]})
                 feedback = feedback + [str(exc)]
+                session = current_session()
+                # 首次正文JSON截断/格式错误可在原有两次写作上限内重新生成。
+                # 网络超时、额度拒绝不重试；不得用占位正文伪装成功。
+                retry_format = isinstance(exc, ModelError) and any(message in str(exc) for message in
+                    ('model returned invalid JSON', 'model response incomplete'))
+                if (direct and case.function == 'Survey' and attempt == 0 and deliverable is None
+                        and retry_format and (session is None or session.remaining() >= 45)):
+                    self.last_draft = ''
+                    continue
                 break
             markdown = value.get("markdown", "")
             used = value.get("used_evidence_ids", [])
-            if not isinstance(markdown, str) or not isinstance(used, list):
-                raise EvidenceError("invalid report response")
             self.report_trace.append({"attempt": attempt + 1, "raw_markdown": markdown, "raw_response": value,
-                                      "used_evidence_ids": list(used), "patches": patches})
+                                      "used_evidence_ids": used, "patches": patches,
+                                      "source_task": report_task(case)})
+            if (not isinstance(markdown, str) or not markdown.strip() or not isinstance(used, list)
+                    or any(not isinstance(identifier, str) for identifier in used)):
+                feedback = ['invalid report response: markdown must be a nonempty string; '
+                            'used_evidence_ids must be an array of evidence ID strings']
+                history.append({"attempt": attempt + 1, "stage": "response_schema", "issues": list(feedback)})
+                self.last_draft = ''
+                continue
             try:
                 markdown, bound_ids = render_evidence_citations(markdown, evidence)
             except EvidenceError as exc:

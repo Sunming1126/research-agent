@@ -5,6 +5,7 @@ import threading
 import time
 import urllib.request
 import urllib.error
+import uuid
 from http.server import ThreadingHTTPServer
 from pathlib import Path
 
@@ -32,9 +33,11 @@ def main():
             directory = audit.ROOT / 'cases' / specimen['label']
             audit.save(directory / 'input.json', payload)
             trace_id = f'{0x48000000 + number:032x}'
+            request_id = str(uuid.uuid4())
             headers = {'Content-Type': 'application/json', 'traceparent': f'00-{trace_id}-1234567890abcdef-01',
-                       'X-Research-Task-ID': 'live-' + specimen['label'],
-                       'Idempotency-Key': 'live-' + specimen['label'], 'X-Challenge-Protocol': 'research-assistant.v1'}
+                       'X-Research-Task-ID': request_id,
+                       'Idempotency-Key': request_id, 'X-Challenge-Protocol': 'research-assistant.v1'}
+            audit.save(directory / 'request.headers.json', headers)
             started, status, raw, response_headers, transport = time.monotonic(), None, b'', {}, None
             request = urllib.request.Request('http://127.0.0.1:8080/solve',
                 json.dumps(payload, ensure_ascii=False).encode('utf-8'), headers)

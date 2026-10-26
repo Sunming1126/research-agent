@@ -4,6 +4,13 @@ from __future__ import annotations
 import re
 
 
+def report_task(case):
+    """保留官方八字段题目，写作、审查和修订不能丢失题面要求。"""
+    return {name: getattr(case, name, [] if name in {'materials', 'constraints'} else '')
+            for name in ('case_id', 'function', 'title', 'input', 'materials',
+                         'constraints', 'expected_output', 'output_schema_ref')}
+
+
 def compact_claims(rows):
     """文件名在单独映射中传递，事实行不重复核验元数据。"""
     keys = ("evidence_id", "claim", "ref", "page", "role", "verification")
@@ -52,8 +59,7 @@ def audit_request(case, markdown, rows, ledger, *, used=(), patches=(), feedback
         selected = [e for e in rows if e["evidence_id"] in selected_ids] or rows
     known = {e["evidence_id"] for e in selected}
     return {
-        "task": {"function": case.function, "input": case.input,
-                 "constraints": list(getattr(case, 'constraints', []))},
+        "task": report_task(case),
         "markdown": changed if partial else markdown,
         "full_document": context, "document_view": view,
         "previous_issues": list(feedback) if partial else [], "applied_patches": list(patches) if partial else [],
@@ -71,9 +77,8 @@ def repair_context(markdown, paragraphs, feedback, rows, *, case=None):
     selected = cited_evidence("\n".join([*paragraphs, *feedback]), rows) or rows
     result = {"paragraphs": paragraphs, "issues": list(feedback), "claims": compact_claims(selected),
               "papers": {str(e["ref"]): e["filename"] for e in selected}}
-    if case is not None and case.function == 'Idea':
-        result['task'] = {'function': case.function, 'input': case.input,
-                          'constraints': list(getattr(case, 'constraints', []))}
+    if case is not None:
+        result['task'] = report_task(case)
     return result
 
 

@@ -1,0 +1,38 @@
+{
+  "image_id": "sha256:5ea291f6d446e179f29dccad1786d53ef06c8fc766a6ef7fde8394391d59eeba",
+  "rows": [
+    {
+      "case_id": "C-01",
+      "seconds": 108.067,
+      "http_status": 200,
+      "llm_calls": 2,
+      "total_tokens": 8093,
+      "body_characters": 2301,
+      "citation_instances": 28,
+      "format_and_files_passed": true
+    },
+    {
+      "case_id": "C-03",
+      "seconds": 98.253,
+      "http_status": 200,
+      "llm_calls": 2,
+      "total_tokens": 19123,
+      "body_characters": 2486,
+      "citation_instances": 36,
+      "format_and_files_passed": true,
+      "expected_output_heading_text_present": true,
+      "expected_output_heading_exact_level": false
+    }
+  ],
+  "request_task_preserved": true,
+  "response_and_saved_files_identical": true,
+  "official_hidden_questions": false,
+  "image": "research-assistant:0.4.13-c-20261026",
+  "tar": "team_share\\image\\research-assistant-0.4.13-c-20261026.tar",
+  "bytes": 295442432,
+  "sha256": "3cd86ada7c1dd3782dac1c56e7c05e4bd7ca23e54d3d57faaaec0ddb9e92ff36",
+  "docker_load_verified": true,
+  "regression_tests_passed": 98,
+  "evidence_directory": "output\\official-live-0413-c-final-20261026",
+  "scope": "C input propagation and bounded format recovery; platform hidden evaluation not verified"
+}
