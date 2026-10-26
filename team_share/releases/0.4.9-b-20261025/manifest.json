@@ -1,0 +1,290 @@
+{
+  "version": "0.4.9-b-20261025",
+  "image": "research-assistant:0.4.9-b-20261025",
+  "image_id": "sha256:3c0c687bff0ae391eb21f24f5415dfa7254ae4d56a1542e543cd7510fdeea356",
+  "tar": "team_share/image/research-assistant-0.4.9-b-20261025.tar",
+  "tar_bytes": 295432704,
+  "tar_sha256": "b6b619a1e13853b2168512e0786f53ef1acf28c5e262b35fc9742d2963271cfc",
+  "tar_readback_verified": true,
+  "official_sdk_unchanged": true,
+  "source_matches_local": true,
+  "credential_files_excluded": true,
+  "offline_tests": {
+    "passed": 186,
+    "skipped": 4
+  },
+  "live_rows": [
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "papers为数组": true,
+        "paper只含filename/reason": true,
+        "文件名真实且理由非空": true,
+        "论文去重": true,
+        "相关题必须有真实匹配论文": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "papers"
+      ],
+      "actual_fields": [
+        "case_id",
+        "papers"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "papers_count": 5,
+      "label": "B-01-canonical",
+      "case_id": "B-01",
+      "function": "Literature_Retrieval",
+      "http_status": 200,
+      "seconds": 23.034,
+      "transport_error": null,
+      "llm_calls": 2,
+      "total_tokens": 4171,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 2,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 3405,
+        "total_output_tokens": 766,
+        "tool_call_count": 45,
+        "unique_tool_count": 9,
+        "parallel_tool_count": 4,
+        "session_id": "acc35767d4d64f61bdf4121e986ec5a9",
+        "trace_id": "00000000000000000000000048000001",
+        "llm_calls": 2,
+        "total_tokens": 4171,
+        "duration_ms": 23030.675923,
+        "tools_used": [
+          "build_authorized_index",
+          "chunk_pages",
+          "hybrid_retrieve",
+          "rank_papers_with_evidence",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      },
+      "evidence_directory": "output/official-live-049-b-faults-release-20261025",
+      "paper_count": 5
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "papers为数组": true,
+        "paper只含filename/reason": true,
+        "文件名真实且理由非空": true,
+        "论文去重": true,
+        "相关题必须有真实匹配论文": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "papers"
+      ],
+      "actual_fields": [
+        "case_id",
+        "papers"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "papers_count": 5,
+      "label": "B-02-whole-library-description",
+      "case_id": "B-02",
+      "function": "Literature_Retrieval",
+      "http_status": 200,
+      "seconds": 19.41,
+      "transport_error": null,
+      "llm_calls": 2,
+      "total_tokens": 3938,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 2,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 3197,
+        "total_output_tokens": 741,
+        "tool_call_count": 23,
+        "unique_tool_count": 8,
+        "parallel_tool_count": 4,
+        "session_id": "facab2981f344ef996bcde3ba6370de9",
+        "trace_id": "00000000000000000000000048000002",
+        "llm_calls": 2,
+        "total_tokens": 3938,
+        "duration_ms": 19405.001749,
+        "tools_used": [
+          "build_authorized_index",
+          "hybrid_retrieve",
+          "rank_papers_with_evidence",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      },
+      "evidence_directory": "output/official-live-049-b-faults-release-20261025",
+      "paper_count": 5
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "papers为数组": true,
+        "paper只含filename/reason": true,
+        "文件名真实且理由非空": true,
+        "论文去重": true,
+        "相关题必须有真实匹配论文": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "papers"
+      ],
+      "actual_fields": [
+        "case_id",
+        "papers"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "papers_count": 3,
+      "label": "B-03-library-directory",
+      "case_id": "B-03",
+      "function": "Literature_Retrieval",
+      "http_status": 200,
+      "seconds": 22.755,
+      "transport_error": null,
+      "llm_calls": 2,
+      "total_tokens": 3959,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 2,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 3033,
+        "total_output_tokens": 926,
+        "tool_call_count": 29,
+        "unique_tool_count": 8,
+        "parallel_tool_count": 4,
+        "session_id": "2f0422eece764a5dbf5cb31abd1c672c",
+        "trace_id": "00000000000000000000000048000003",
+        "llm_calls": 2,
+        "total_tokens": 3959,
+        "duration_ms": 22751.79345,
+        "tools_used": [
+          "build_authorized_index",
+          "hybrid_retrieve",
+          "rank_papers_with_evidence",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      },
+      "evidence_directory": "output/official-live-049-b-faults-release-20261025",
+      "paper_count": 3
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "papers为数组": true,
+        "paper只含filename/reason": true,
+        "文件名真实且理由非空": true,
+        "论文去重": true,
+        "相关题必须有真实匹配论文": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "papers"
+      ],
+      "actual_fields": [
+        "case_id",
+        "papers"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "papers_count": 5,
+      "label": "B-01-canonical",
+      "case_id": "B-01",
+      "function": "Literature_Retrieval",
+      "http_status": 200,
+      "seconds": 77.421,
+      "transport_error": null,
+      "llm_calls": 5,
+      "total_tokens": 11276,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 5,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 9712,
+        "total_output_tokens": 1564,
+        "tool_call_count": 233,
+        "unique_tool_count": 9,
+        "parallel_tool_count": 4,
+        "session_id": "3314aa0331c1434784ebcb5c42c022bc",
+        "trace_id": "00000000000000000000000048000001",
+        "llm_calls": 5,
+        "total_tokens": 11276,
+        "duration_ms": 77416.197109,
+        "tools_used": [
+          "build_authorized_index",
+          "chunk_pages",
+          "hybrid_retrieve",
+          "rank_papers_with_evidence",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      },
+      "evidence_directory": "output/official-live-049-b-100papers-release-20261025",
+      "paper_count": 5
+    }
+  ],
+  "official_model_api": true,
+  "official_hidden_questions": false,
+  "platform_accepted": false,
+  "source_eval": "eval-20261024-fee4379f",
+  "online_exception_confirmed": false,
+  "scope": "B only; C/D/E have not been retested or declared fixed"
+}

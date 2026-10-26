@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
@@ -119,6 +120,50 @@ class DispatchPlan:
 def load_dispatch_plan(settings) -> DispatchPlan:
     """从本队工作区读取并校验当前派题计划。"""
     relative = f"data/{settings.team}/dispatch.json"
-    dispatch = read_json(confined(settings.workspace, relative))
-    return DispatchPlan.from_dict(dispatch, settings)
+    # 平台把派题与 assigned 挂载在 /output；旧本地工作区保持兼容。
+    root = settings.output if confined(settings.output, relative).is_file() else settings.workspace
+    dispatch = read_json(confined(root, relative))
+    return DispatchPlan.from_dict(dispatch, replace(settings, workspace=root))
+
+
+def verify_current_assignment(settings, case):
+    """Single 模式只读本队派题记录和当前 assigned，不遍历其他题目。"""
+    dispatch = read_json(confined(settings.output, f"data/{settings.team}/dispatch.json"))
+    if dispatch.get("team") != settings.team or dispatch.get("example_only"):
+        raise ValueError("invalid current team dispatch")
+    schema = dispatch.get("schema_version")
+    expected = V3_COUNTS if schema == 3 else {letter: 5 for letter in "ABCDE"}
+    rule = f"research-assistant-objective-v{schema}"
+    counts = expected if schema == 3 else 5
+    if schema not in {2, 3} or dispatch.get("rules_version") != rule or dispatch.get("cases_per_category") != counts:
+        raise ValueError("unsupported dispatch metadata")
+    ids, rows = dispatch.get("case_ids"), dispatch.get("cases")
+    if not isinstance(ids, list) or not all(isinstance(value, str) for value in ids):
+        raise ValueError("invalid dispatch IDs")
+    if len(ids) != sum(expected.values()) or len(set(ids)) != len(ids):
+        raise ValueError("invalid dispatch case count")
+    for letter, count in expected.items():
+        if sum(value.startswith(letter + "-") for value in ids) != count:
+            raise ValueError("invalid dispatch category count")
+    if any(not CASE_ID_RE.fullmatch(value) or not 1 <= int(value.split("-")[1]) <= 100 for value in ids):
+        raise ValueError("invalid dispatch case ID")
+    if not isinstance(rows, list) or len(rows) != len(ids) or not all(isinstance(row, dict) for row in rows):
+        raise ValueError("invalid dispatch entries")
+    entry_ids = [row.get("case_id") for row in rows]
+    if any(not isinstance(value, str) for value in entry_ids) or set(entry_ids) != set(ids):
+        raise ValueError("dispatch entries and IDs differ")
+    current = [row for row in rows if row.get("case_id") == case.case_id]
+    if case.case_id not in ids or len(current) != 1:
+        raise ValueError("question was not assigned to this team")
+    row = current[0]
+    relative = f"data/{settings.team}/assigned/{case.case_id}.json"
+    if row.get("question_file") != relative:
+        raise ValueError("assigned path is outside current team")
+    path = confined(settings.output, relative)
+    if sha256_file(path) != row.get("question_sha256"):
+        raise ValueError("assigned question hash mismatch")
+    assigned = CaseContext.from_dict(read_json(path))
+    if (assigned.to_dict() != case.to_dict() or row.get("function") != case.function
+            or row.get("title") != case.title):
+        raise ValueError("HTTP question differs from assigned question")
 

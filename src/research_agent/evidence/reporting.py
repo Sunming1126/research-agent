@@ -29,7 +29,7 @@ def render_evidence_citations(markdown, evidence):
                 used.append(value)
         return "".join(citations)
 
-    rendered = re.sub(r"\[E:(ev-\d+(?:\s*,\s*ev-\d+)*)\]", replace, markdown)
+    rendered = re.sub(r"\[E:\s*(ev-\d+(?:\s*,\s*ev-\d+)*)\s*\]", replace, markdown)
     if "[E:" in rendered:
         raise EvidenceError("malformed internal evidence citation")
     return rendered, used
@@ -37,9 +37,17 @@ def render_evidence_citations(markdown, evidence):
 def repair_paragraphs(markdown, issues):
     """优先定位审查给出的原句；定位失败时交付正文，不猜测待替换位置。"""
     paragraphs = markdown.split("\n\n")
-    fragments = re.findall(r"[“「\"]([^”」\"]{8,})[”」\"]", "\n".join(issues))
-    selected = [p for p in paragraphs if any(fragment in p for fragment in fragments)]
-    return selected or paragraphs
+    normalize = lambda value: re.sub(r'[\s*#>`]', '', value)
+    selected = set()
+    for issue in issues:
+        fragments = re.findall(r"[“「\"]([^”」\"]{8,})[”」\"]", issue)
+        matches = {i for i, p in enumerate(paragraphs)
+                   if any(normalize(fragment) in normalize(p) for fragment in fragments)}
+        if not matches:
+            # 不能只修定位成功的问题而静默丢掉其余问题。
+            return paragraphs
+        selected.update(matches)
+    return [p for i, p in enumerate(paragraphs) if i in selected] or paragraphs
 
 
 def apply_report_patches(markdown, patches):
@@ -70,7 +78,9 @@ def report_requirements(function):
                 "训练/验证/测试划分及防泄漏，写明比例或样本数和分组单位",
                 "明确固定随机种子（非随机研究说明不适用）、候选配置及选择规则、相同硬件和软件版本；标为拟议条件",
                 "对照与消融共用数据划分、种子和资源预算，说明仅改变哪个因素",
-                "消融、主要指标、成本指标与失败判据",
+                "消融、主要指标、成本指标与失败判据；每项指标给出公式、分子分母或测量口径，不能只列名称",
+                "每项核心设计说明本题论文/题面依据、具体设计和验证办法；跨论文接口冲突须有检测条件与具体回退",
+                "相对给定材料明确新增的可验证设计，不凭证据不足宣称全球创新",
                 "给出拟议参数搜索范围、重复次数和统计检验；标注为待验证而非实测",
                 "置信区间含零只能说明证据不足，不可据此证实无效或否定因果",
                 "正文含空格、标点和 Markdown 不超过6000字符，建议1800～3200字符；不得用通用段落凑字数"]
@@ -337,7 +347,7 @@ def deterministic_survey(topic, ledger):
     return body + "\n\n## 参考文献\n\n" + references, used
 
 
-def validate_citations(markdown, evidence, used_ids, minimum=1, *, function=None):
+def validate_citations(markdown, evidence, used_ids, minimum=1, *, function=None, strict_facts=True):
     if len(re.sub(r"\s", "", markdown)) < 800:
         raise EvidenceError("report body shorter than 800 characters")
     known_ids = {e["evidence_id"] for e in evidence}
@@ -347,21 +357,41 @@ def validate_citations(markdown, evidence, used_ids, minimum=1, *, function=None
     for e in evidence:
         if e["evidence_id"] in used_ids:
             supported[e["ref"]].add(e["page"])
-    # 晶向 [111]、区间 [0,1] 等学科记号不是参考文献编号。
-    citations = re.findall(r"\[(\d{1,2})(?:,\s*p\.\s*(\d+))?\]", markdown)
+    # 与最终答卷校验一致：数字组[1,2]也作为引用；参数集合应用其他括号。
+    # 否则写作检查漏过[2,5,8]，直到提交时才失败，错过模型修订机会。
+    matches = list(re.finditer(r"\[(\d{1,2}(?:\s*,\s*\d{1,2})*)(?:,\s*p\.\s*(\d+))?\]", markdown))
+    citations = [(ref, match.group(2) or '') for match in matches
+                 for ref in re.split(r'\s*,\s*', match.group(1))]
     if len({int(ref) for ref, _ in citations}) < minimum:
         raise EvidenceError("too few cited papers")
-    for ref, page in citations:
-        if int(ref) not in supported or (page and int(page) not in supported[int(ref)]):
-            token = f"[{ref}" + (f", p.{page}]" if page else "]")
-            passages = [p for p in markdown.split("\n\n") if token in p]
-            raise EvidenceError(f"citation [{ref}, p.{page}] has no used evidence; "
-                                f"allowed pages: {sorted(p for p in supported.get(int(ref), set()) if p is not None)}",
-                                passages=passages[:2])
-    validate_named_attribution(markdown, evidence, used_ids)
+    invalid, passages = [], []
+    for match in matches:
+        page = match.group(2)
+        for ref in map(int, re.split(r'\s*,\s*', match.group(1))):
+            if ref not in supported or (page and int(page) not in supported[ref]):
+                # 给出真实标记和精确所在行，不能用不存在的[0,p.]让模型猜位置。
+                line_start = markdown.rfind('\n', 0, match.start()) + 1
+                line_end = markdown.find('\n', match.end())
+                passage = markdown[line_start:line_end if line_end >= 0 else len(markdown)]
+                if passage not in passages:
+                    passages.append(passage)
+                invalid.append(f"numeric bracket token {match.group()!r}: reference {ref} has no used evidence "
+                               f"at this page; allowed pages: {sorted(p for p in supported.get(ref, set()) if p is not None)}")
+    if invalid:
+        raise EvidenceError('; '.join(invalid) + '. If these are parameter values, use braces; '
+                            'if these are mathematical closed intervals, use full-width brackets ［a,b］ to preserve meaning. '
+                            'Replace each offending token in the supplied passages; do not change valid citations or invent references.',
+                            passages=passages)
+    semantic_issues = []
+    try:
+        validate_named_attribution(markdown, evidence, used_ids)
+    except EvidenceError as exc:
+        if strict_facts:
+            raise
+        semantic_issues.append(str(exc))
     # 已发生的数值事实必须附页码；待验证方案交由语义审查区分。
     section_scopes = {}
-    ambiguities = []
+    ambiguities = semantic_issues
     for paragraph in markdown.split("\n\n"):
         heading = re.match(r"^\s*(#{1,6})\s+([^\n]+)", paragraph)
         if heading:
@@ -394,5 +424,7 @@ def validate_citations(markdown, evidence, used_ids, minimum=1, *, function=None
                     # Idea 的未明示数值可能是设计参数；交给带原文的审查判定，不能先误判再让模型空修订。
                     ambiguities.append(sentence)
                     continue
-                raise EvidenceError("numeric claim has no page citation", passages=[sentence])
+                if strict_facts:
+                    raise EvidenceError("numeric claim has no page citation", passages=[sentence])
+                ambiguities.append('numeric claim needs source review: ' + sentence)
     return ambiguities

@@ -1,8 +1,20 @@
-# 正式队伍配置
+# 平台工作目录配置
 
-本队正式名称为 **最初一舞**。当前源码默认保存到 `/output/data/最初一舞/<case_id>.json`（`RESEARCH_RESULT_ROOT` 可指定平台挂载的结果根目录）。C/E 报告文件名和 D 图片目录也使用此队名。镜像已内置 `RESEARCH_WORKSPACE_TEAM=最初一舞`。覆盖优先级为 `RESEARCH_WORKSPACE_TEAM` > 配置文件 `team` > 非空 `TEAM_ID` > 已确认队名；显式覆盖仅用于平台规定的本队标识或隔离测试。旧镜像不随配置源码自动更新。
+`<team>` 是平台分配的工作目录标识，正式运行必须使用注入的 `RESEARCH_WORKSPACE_TEAM`，不能写报名队名“最初一舞”，也不能使用遥测身份 `TEAM_ID`。本地可用 `TEAM_NAME` 或配置的 `team`；无配置时使用测试兜底 `workspace_team`。镜像不预设工作目录标识。
+
+答案写入 `/output/data/<workspace_team>/<case_id>.json`，C/E 报告命名和 D 图片目录使用同一个标识。论文默认挂载 `/data/papers`，可显式设置 `PAPERS_PATH` 或 `RESEARCH_MATERIAL_ROOTS`。平台派题和当前 assigned 位于 `/output/data/<workspace_team>/`，正式 Single 请求会检查本题哈希与请求一致性，不读取其他 assigned。
+
+0.4.6-team-20261024 是写死真实队名的旧版本，已确认不能据此视为正式接入正确。
 
 # 科研助手 Agent
+
+0.4.11 保留B/C/D修复，补齐E的阶段/传输时间预留与完整文本免网格解析；统一组合引用检查，精确定位错误并合并修订；修订保留题目观察、约束及邻段引用证据。审查即使返回ok=true，只要仍列出问题也会修订。E完整模型稿通过格式、引用编号等硬检查后，语义自审未通过会如实记录model_report_needs_review并交付原模型稿给平台评分，不再误报为接口失败；未生成完整稿或硬检查失败仍报错，禁止模板补写。自审与内容分不同，真实实测与限制见发布记录，不保证隐藏题得分。
+
+0.4.10 保留0.4.9的B类修复；C类读取完整文本但不重建表格网格，各模型阶段为写作、审查、保存预留时间，未知引用编号仅在本篇连续原文唯一匹配时恢复。D类识别指标的多种明确写法，与当前挂载protocol交叉核对，实验目录不进入论文解析；有当前运行证据的失败部分结果予以保留，客户端原始结果另存供核查。正式平台是否恢复须以新评测及具体异常信息为准。
+
+0.4.9 专项修复 B 类候选库的故障隔离、明确 PDF 范围解析、缓存重建与失败答卷保存。B 的失败原因保留在本队工作目录、响应头和真实 SDK 失败追踪中，JSON 仍只有 `case_id,papers`；空答卷不表示检索成功。材料重名冲突不猜测选择，不能保存或派题核验失败时仍返回错误。
+
+0.4.8修复整体论文库材料同义描述，以及题面逻辑目录`data/论文库`与挂载`/data/papers`的有界映射。报告合并多篇授权证据提取，仍逐条核验原文、禁止跨论文绑定、进行事实与写作审查；无表格标题的页面直接保留文本块，减少解析耗时。内部时限保留落盘与SDK导出的余量。官方API实测和限制见本版release记录。
 
 基于官方 `agenthack/base:1.1.1` 的科研助手。正式路径支持 v3/11 题派题，兼容历史 25 题测试；包含 A/B/C/D/E 处理器、授权材料定位、页码切分、混合检索、证据台账、报告审查、layered-d-v3 实验执行和提交预检查。
 
@@ -30,14 +42,14 @@ paper_library/              # 本地百篇真实 PDF 与来源清单，不进入
 
 ## 快速使用
 
-2026-10-24 源码为 `0.4.5`：通过原生官方 `AgentRuntime` 启动，八字段题目进入原生 SDK 执行，成功的 HTTP 响应直接返回题型 JSON。SDK 真实追踪元数据放入响应头；原生 SDK 代码、路由和 OTLP 导出保持原样。修复 0.4.3 的最外层包装体与赛题输出 Schema 不一致的问题，并增加新公布的 C/E 正文上限及材料路径适配。旧 0.4.3 镜像不作为格式合格版继续使用。
+2026-10-24 源码为 `0.4.8`：通过原生官方 `AgentRuntime` 启动，八字段题目进入原生 SDK 执行，成功的 HTTP 响应直接返回题型 JSON。SDK 真实追踪元数据放入响应头；原生 SDK 代码、路由和 OTLP 导出保持原样。修复 0.4.3 的最外层包装体与赛题输出 Schema 不一致的问题，并增加新公布的 C/E 正文上限及材料路径适配。旧 0.4.3 镜像不作为格式合格版继续使用。
 
 2026-10-23 的 `0.4.1` 修复了报告审查与修订预算分配，增加本篇方法定义优先召回、跨论文简称归因检查，以及拟议实验条件和数字的区分。修复与真实复测见 [0.4.1 修复记录](docs/2026-10-23-0.4.1失分修复与复测.md)。0.4.0 架构改动保留在 [升级与验证报告](docs/2026-10-22-0.4.0升级与验证报告.md)，原始 92.2044 分保留在 [完整仿真评分](docs/2026-10-23-0.4.0完整仿真评分.md)。历史 `0.3.0-source-v1` tar 不包含后续修复；旧 0.4.1 tar 不包含 0.4.2 的直接请求接入修复。
 
 建议使用 Docker，保持官方 SDK 和 Linux 运行环境。先导入组委会基础镜像，再执行：
 
 ```powershell
-docker build --platform linux/amd64 -t research-assistant:0.4.6-team-20261024 .
+docker build --platform linux/amd64 -t research-assistant:0.4.8-api-20261024 .
 ```
 
 本地密钥位于 `.env.local`，通过 `--env-file` 注入。文件已从版本跟踪和 Docker 构建上下文排除。镜像中不包含密钥、论文、题目、测试答案或本地输出。服务器不会自动读取本机密钥文件。
@@ -45,7 +57,7 @@ docker build --platform linux/amd64 -t research-assistant:0.4.6-team-20261024 .
 将论文放到 `local-workspace/papers`，将 `config.container.example.json` 中材料描述别名改为实际题目采用的描述，然后：
 
 ```powershell
-docker run --rm --name research-agent-local --cpus 1 --memory 1024m --env-file .env.local -e RESEARCH_WORKSPACE_ROOT=/workspace -e RESEARCH_CONFIG=/app/settings.json -e AGENTHACK_TELEMETRY_REQUIRED=false -p 127.0.0.1:18080:8080 -v "${PWD}/config.container.example.json:/app/settings.json:ro" -v "${PWD}/local-workspace:/workspace:ro" -v "${PWD}/output:/output" research-assistant:0.4.6-team-20261024
+docker run --rm --name research-agent-local --cpus 1 --memory 1024m --env-file .env.local -e RESEARCH_WORKSPACE_ROOT=/workspace -e RESEARCH_CONFIG=/app/settings.json -e AGENTHACK_TELEMETRY_REQUIRED=false -p 127.0.0.1:18080:8080 -v "${PWD}/config.container.example.json:/app/settings.json:ro" -v "${PWD}/local-workspace:/workspace:ro" -v "${PWD}/output:/output" research-assistant:0.4.8-api-20261024
 ```
 
 正式平台不设置关闭遥测的开发选项。按平台公告提供配置和模型环境变量。
@@ -65,9 +77,9 @@ docker run --rm --name research-agent-local --cpus 1 --memory 1024m --env-file .
 }
 ```
 
-发送至 `POST /solve` 后，成功响应直接返回当前题型 JSON，例如 Chat 仅含 `case_id`、`answer`、`clarifying_question`，与保存的 JSON 一致。`X-AgentHack-Trace-Id`、`X-AgentHack-Session-Id` 和 `X-AgentHack-Metadata` 响应头复制 SDK 实际生成的追踪元数据，不在答卷顶层增加字段。业务失败保留 SDK 的 `status=error/timeout` 和原始 metadata，不伪造成功答卷。健康检查 `GET /health` 的 `telemetry_configured` 只表示已配置导出；正式环境保留平台注入的 OTLP 地址、认证及追踪头。
+发送至 `POST /solve` 后，成功响应直接返回当前题型 JSON，例如 Chat 仅含 `case_id`、`answer`、`clarifying_question`，与保存的 JSON 一致。`X-AgentHack-Trace-Id`、`X-AgentHack-Session-Id` 和 `X-AgentHack-Metadata` 响应头复制 SDK 实际生成的追踪元数据，不在答卷顶层增加字段。业务失败使用 HTTP 500，超时使用 HTTP 504；SDK 真实 metadata 保留在响应头，不把 SDK 错误包装当作 HTTP 200 答卷。健康检查 `GET /health` 的 `telemetry_configured` 只表示已配置导出；正式环境保留平台注入的 OTLP 地址、认证及追踪头。
 
-本地旧脚本的 `{"task_id":"my-test","input":<题目对象>}` 继续返回 SDK 包装格式。直接题目调用使用配置的单题时限，最多180秒。默认论文库只检查 `/data/论文库` 和结果根目录的 `data/论文库` 两个专用位置；两者同时存在需显式选择。授权根内的绝对材料路径可读，仍拒绝目录穿越、符号链接和其他队伍材料。指定子集的模糊文字不会自动扩展成整个论文库。
+本地旧脚本的 `{"task_id":"my-test","input":<题目对象>}` 继续返回 SDK 包装格式。直接题目调用使用配置的单题时限，最多180秒。默认优先采用 `/data/papers`；未找到时兼容本地中文专用库，仍拒绝不明确的多库选择。授权根内的绝对材料路径可读，仍拒绝目录穿越、符号链接和其他队伍材料。指定子集的模糊文字不会自动扩展成整个论文库。
 
 C 正文最多4500字符、40次引用，E 最多6000字符；计数包含空格、标点、Markdown，参考文献节不计正文。E 写作失败会保留诊断并报告失败，不再拼接硬编码保底正文。D 额外授权当前题的公开实验目录，正式成功仍需要当前会话的模型生成、自测和平台来源凭证。
 
@@ -81,15 +93,15 @@ C 正文最多4500字符、40次引用，E 最多6000字符；计数包含空格
 | --- | --- |
 | workspace / RESEARCH_WORKSPACE_ROOT | 派题与题目工作区根目录 |
 | output / RESEARCH_RESULT_ROOT | 产物根目录 |
-| team / RESEARCH_WORKSPACE_TEAM | 平台分配的本队目录名，不能含路径分隔符 |
-| material_roots / RESEARCH_MATERIAL_ROOTS | 专用材料目录；默认定位标准 data/论文库，显式配置优先；不能将整个工作区、整个 data 或输出目录作为论文库 |
+| team / RESEARCH_WORKSPACE_TEAM | 平台注入优先，其次本地 TEAM_NAME/config.team；不使用真实队名或 TEAM_ID，不能含路径分隔符 |
+| material_roots / RESEARCH_MATERIAL_ROOTS | 专用材料目录；RESEARCH_MATERIAL_ROOTS > PAPERS_PATH > 配置 > /data/papers；不能将整个工作区、整个 data 或输出目录作为论文库 |
 | material_aliases | 题目材料描述到具体文件/目录的显式映射；无法定位时不会扩大检索范围 |
 | experiment_mode | `platform` 为默认正式模式；`local` 仅用于公开实验开发 |
 | local_experiment_root / local_python | 本地冻结实验包及可选解释器 |
 | llm_calls / llm_tokens / case_timeout | 每题默认 30 次调用 / 40000 Token / 180 秒；D 正式模式最长 180 秒，包含生成、自测和正式实验；按平台配额收紧 |
 | ocr | 默认关闭；启用需预装 Tesseract 和 eng/chi_sim 语言包，否则扫描页明确报错 |
 
-模型配置为 `PLATFORM_LLM_URL`、`PLATFORM_API_KEY`、`AGENT_MODEL_NAME`。本地开发可选 `RESEARCH_LLM_THINKING=disabled`；它只在显式设置时发送供应商扩展参数，换赛事网关时应移除。参数依据：[火山方舟思考模式文档](https://docs.volcengine.com/docs/ark/deep-thinking?lang=zh)。
+模型配置优先读取 `CHALLENGE_LLM_BASE_URL`、`CHALLENGE_LLM_API_KEY`、`CHALLENGE_LLM_MODEL`，兼容 `PLATFORM_LLM_URL`、`PLATFORM_API_KEY`、`PLATFORM_LLM_MODEL`、`AGENT_MODEL_NAME`。使用 `CHALLENGE_SESSION_ID` 发送 `X-Session-ID`，不改写带会话路由的 Base URL。本地开发可选 `RESEARCH_LLM_THINKING=disabled`；它只在显式设置时发送供应商扩展参数，换赛事网关时应移除。参数依据：[火山方舟思考模式文档](https://docs.volcengine.com/docs/ark/deep-thinking?lang=zh)。
 
 本机 CLI 先安装依赖与本项目包（建议在虚拟环境中执行）：
 

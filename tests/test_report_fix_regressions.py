@@ -109,10 +109,10 @@ def test_unavailable_audit_is_not_sent_as_a_text_repair_instruction():
             raise ModelError("insufficient reserved budget for audit")
     handler = TaskHandlers(LLM(), "test")
     handler.ledger = [Evidence("ev-1", "当前材料提供了一项有条件的结果。", "p.pdf", 1, "c", "The result is conditional.")]
-    with pytest.raises(EvidenceError, match="Idea model report failed"):
-        handler.compose_report(SimpleNamespace(case_id="E-99", function="Idea", input="设计实验"))
+    result = handler.compose_report(SimpleNamespace(case_id="E-99", function="Idea", input="设计实验"))
+    assert result['markdown'].startswith("建议待验证设计，固定实验条件与控制变量。" * 60 + " [1, p.1]")
     assert stages == ["report", "audit"]
-    assert handler.audit["mode"] == "model_report_failed"
+    assert handler.audit["ok"] is False and handler.audit["mode"] == "model_report_needs_review"
 
 
 def test_proposed_hypothesis_keeps_confidence_interval_in_the_same_paragraph_scope():
@@ -214,7 +214,7 @@ def test_explicit_account_quota_rejection_is_not_retried_or_charged_as_unknown_i
     gateway.base_url, gateway.api_key, gateway.model = "https://example.invalid", "test", "test"
     with patch.object(gateway, "_request_once", side_effect=ModelQuotaError("quota exhausted")):
         with pytest.raises(ModelQuotaError):
-            TaskHandlers(gateway, "test")._plan(SimpleNamespace(function="Survey", input="比较机制", constraints=[]))
+            TaskHandlers(gateway, "test")._plan(SimpleNamespace(function="Literature_Retrieval", input="比较机制", constraints=[]))
     assert gateway.calls == 1 and gateway.total_tokens == 0
     assert gateway.usage[0]["usage_source"] == "gateway_rejected"
 

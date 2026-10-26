@@ -12,15 +12,17 @@ from pathlib import Path
 
 from .config import Settings
 from .dispatch import load_dispatch
+from .dispatch_plan import verify_current_assignment
 from .models import CaseContext, Artifact
 from .session import CaseSession, checkpoint, current_session
+from .b_submission import publish_b, failure_submission
 from .utils import confined, write_json, read_json, atomic_text, sha256_file
 from ..contracts.validation import validate_result
 from ..integrations.instrumentation import tool
 from ..integrations.llm import GatewayLLM
 from ..rag.materials import DocumentIndex, MaterialError
 from ..rag.retrieval import HybridRetriever
-from ..workflows.experiments import ExperimentRunner, parse_metric_specs, failed_result
+from ..workflows.experiments import ExperimentRunner, parse_metric_specs, resolve_metric_specs, failed_result
 from ..workflows.tasks import TaskHandlers
 
 
@@ -37,6 +39,8 @@ class ResearchAgentEngine:
             return await asyncio.to_thread(self.solve_sync, payload, cancelled)
         except asyncio.CancelledError:
             cancelled.set()
+            if isinstance(payload, dict) and payload.get('function') == 'Literature_Retrieval':
+                failure_submission(self.settings, CaseContext.from_dict(payload), 'TimeoutError')
             raise
 
     def solve_sync(self, payload, cancelled=None):
@@ -51,19 +55,42 @@ class ResearchAgentEngine:
         try:
             if isinstance(payload, dict) and payload.get("dispatch") is True:
                 return self.run_dispatch(cancelled)
-            return self._solve_one(payload, cancelled, received_at)
+            try:
+                return self._solve_one(payload, cancelled, received_at)
+            except Exception as exc:
+                # 派题核验、实验目录等前置失败也必须留下本队诊断，不能只剩SDK错误类。
+                case = CaseContext.from_dict(payload)
+                diagnostic = {"event": "research_request_failed", "case_id": case.case_id,
+                              "error_type": type(exc).__name__, "message": str(exc)[:500]}
+                logging.getLogger(__name__).error("%s", json.dumps(diagnostic, ensure_ascii=False))
+                try:
+                    write_json(confined(self.settings.output,
+                        f"data/{self.settings.team}/work/{case.case_id}/preflight-{uuid.uuid4().hex}/request-error.json"), diagnostic)
+                except (OSError, ValueError):
+                    logging.getLogger(__name__).error("could not save request failure diagnostic")
+                if case.function == 'Literature_Retrieval':
+                    self._save_b_failure(case, type(exc).__name__)
+                raise
         finally:
             self.lock.release()
+
+    @tool(name='save_b_failure_and_readback')
+    def _save_b_failure(self, case, error_type):
+        return failure_submission(self.settings, case, error_type)
 
     def _case_timeout(self, payload):
         limit = self.settings.case_timeout
         if isinstance(payload, dict) and payload.get("function") == "Reproduction" and self.settings.experiment_mode == "platform":
             limit = min(limit, 180)
-        return limit
+        # 最后保留10秒用于产物落盘与原生SDK导出，避免答卷卡在外层180秒边界。
+        wire = min(limit, 180)
+        return wire - min(10, wire * .1)
 
     @tool(name="run_assigned_case")
     def _solve_one(self, payload, cancelled=None, received_at=None):
         case = CaseContext.from_dict(payload)
+        if self.settings.verify_assigned:
+            verify_current_assignment(self.settings, case)
         session = CaseSession(case.case_id, self._case_timeout(payload),
                               cancelled=cancelled or threading.Event(),
                               started_at=received_at if received_at is not None else time.monotonic())
@@ -94,24 +121,31 @@ class ResearchAgentEngine:
         proof, specs = None, None
         try:
             if case.function == "Reproduction":
-                specs = parse_metric_specs(case.input, case.case_id)
+                specs = resolve_metric_specs(case, s)
                 runner = ExperimentRunner(s, work, llm=llm)
                 try:
                     # 先核验题目授权材料；公开实验模式只能由配置显式启用。
-                    index.build(case.materials)
+                    # D读取自身方法/协议/样例，不把实验目录当论文全文库解析。
+                    index.materials = index.resolver.resolve(case.materials)
                     result = runner.run(case, specs)
                     proof = runner.proof
                 except (MaterialError, FileNotFoundError) as exc:
                     result = failed_result(case.case_id, specs, "materials_missing")
                     write_json(confined(work, "material-error.json"), {"message": str(exc)})
             else:
-                # 大型 B 类候选库先看每篇前 8 页，避免单题冷启动耗尽预算。
+                # B 类按库规模读取前页候选，再深入匹配文献，给模型和落盘保留预算。
                 # C/E 保留全文切分，供具体事实与页码引用。
-                # 大库冷启动必须落在逐题预算内；三百篇以上先读首页与摘要附近。
+                # 大库冷启动必须落在逐题预算内；250篇以上先读首页与摘要附近。
                 # 深层正文召回风险由检索测试持续监测，C/E 仍读授权全文。
-                materials = index.resolver.resolve(case.materials)
-                pages = (4 if len(materials) >= 250 else 8) if case.function == "Literature_Retrieval" else None
-                chunks = index.build(case.materials, page_limit=pages, resolved=materials)
+                b_case = case.function == 'Literature_Retrieval'
+                # B 按正文证据检索，无需重建表格网格；100篇冷启动实测表格检测耗尽预算。
+                # B/C/E保留表格文本块及页码，不重建网格；C/E仍读完整正文。
+                index.parser.extract_tables = case.function not in {'Literature_Retrieval', 'Survey', 'Idea'}
+                materials = index.resolver.resolve(case.materials, pdf_only=b_case, diagnostics=index.errors)
+                pages = (2 if len(materials) >= 250 else 4 if len(materials) >= 50 else 8) if b_case else None
+                chunks = index.build(case.materials, page_limit=pages, resolved=materials, tolerate_pdf_errors=b_case)
+                if b_case and not chunks and any(row.get('error_type') for row in index.errors):
+                    raise MaterialError('no readable unambiguous PDF remains in the authorized scope')
                 retriever = HybridRetriever(chunks)
                 handler.document_expander = index.expand_documents if pages else None
                 result = handler.handle(case, retriever)
@@ -122,6 +156,13 @@ class ResearchAgentEngine:
             checkpoint("submission_validation")
             validate_result(case, result, s.output, team=s.team, filenames=filenames, specs=specs, proof=proof)
             self._persist(case, result, work, filenames, specs, proof, handler, llm)
+            if case.function == 'Literature_Retrieval':
+                outcome = {'case_id': case.case_id, 'result': result, 'result_saved': True,
+                           'outcome': 'partial' if index.errors else ('matched' if result['papers'] else 'no_matches'),
+                           'material_diagnostics': index.errors, 'authorized_pdf_count': len(index.materials),
+                           'path': f'data/{s.team}/{case.case_id}.json', 'diagnostic_path': work_relative + '/b-outcome.json'}
+                write_json(confined(work, 'b-outcome.json'), outcome)
+                publish_b(outcome)
             return result
         except Exception as exc:
             # SDK 保留错误类型与 trace_id；运行日志补充不含凭据的材料定位信息。
@@ -133,6 +174,7 @@ class ResearchAgentEngine:
                 diagnostic["material_error"] = str(exc)[:500]
             logging.getLogger(__name__).error("%s", json.dumps(diagnostic, ensure_ascii=False))
             write_json(confined(work, "diagnostic-evidence.json"), {"claims": [asdict(e) for e in handler.ledger],
+                                                                  "material_diagnostics": index.errors,
                                                                   "rejected_claims": handler.rejected_claims,
                                                                   "retrieval_trace": handler.retrieval_trace,
                                                                   "query_plan_status": handler.query_plan_status,
@@ -142,7 +184,8 @@ class ResearchAgentEngine:
                                                                    "report_trace": handler.report_trace,
                                                                   "draft": handler.last_draft})
             write_json(confined(work, "error.json"), {"case_id": case.case_id, "error_type": type(exc).__name__,
-                                                    "message": str(exc)[:1000], "usage": getattr(llm, "usage", [])})
+                                                    "message": str(exc)[:1000], "usage": getattr(llm, "usage", []),
+                                                    "model_response_failures": getattr(llm, 'response_failures', [])})
             write_json(confined(work, "session.json"), session.snapshot())
             raise
 

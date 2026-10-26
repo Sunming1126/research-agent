@@ -1,5 +1,6 @@
 """本次零分的边界回归：真正的外层答卷、新正文限制和材料授权。"""
 import os
+import json
 from unittest.mock import patch
 
 import pytest
@@ -72,7 +73,9 @@ def test_d_current_case_directory_reaches_runner_without_authorizing_other_cases
     for case_id in ("D-01", "D-02"):
         directory = tmp_path / "data/experiments" / case_id
         directory.mkdir(parents=True)
-        for name, text in (("method.md", "Current case public method"), ("protocol.json", "{}"), ("sample.json", "{}")):
+        from research_agent.workflows.experiments import parse_metric_specs
+        protocol = json.dumps({'case_id': case_id, 'metrics': [dict(name=n,unit=u) for n,u in parse_metric_specs(case(case_id)['input'])]})
+        for name, text in (("method.md", "Current case public method"), ("protocol.json", protocol), ("sample.json", "{}")):
             (directory / name).write_text(text, encoding="utf-8")
     settings = Settings(tmp_path / "data", tmp_path / "out", material_roots=[])
     engine = ResearchAgentEngine(settings, FakeLLM)

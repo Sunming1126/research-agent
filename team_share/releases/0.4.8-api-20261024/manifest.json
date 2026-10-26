@@ -1,0 +1,896 @@
+{
+  "version": "0.4.8-api-20261024",
+  "image": "research-assistant:0.4.8-api-20261024",
+  "image_id": "sha256:5d0536c02c69c90d938608cd12698ba9959daa1e6f9b68b64d53ffbbf5f694ee",
+  "tar": "team_share/image/research-assistant-0.4.8-api-20261024.tar",
+  "tar_bytes": 295429632,
+  "tar_sha256": "1ccaa8193ae04a2086b0c19bed5e0314a4ee41f21ba0771b9a4040729e62bd8f",
+  "tar_readback_verified": true,
+  "source_matches_local": true,
+  "official_sdk_unchanged": true,
+  "credential_files_excluded": true,
+  "different_offline_tests_passed": 169,
+  "offline_skipped": 4,
+  "live_checks_completed": 11,
+  "live_format_and_file_checks_passed": 11,
+  "official_model_api": true,
+  "official_hidden_questions": false,
+  "platform_accepted": false,
+  "formal_d_experiments_verified": false,
+  "d_statuses": {
+    "D-01": "materials_missing",
+    "D-02": "materials_missing",
+    "D-05": "materials_missing"
+  },
+  "live_model_calls": 26,
+  "live_rows": [
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "answer和clarifying_question非空": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "answer",
+        "case_id",
+        "clarifying_question"
+      ],
+      "actual_fields": [
+        "answer",
+        "case_id",
+        "clarifying_question"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "label": "A-05-chat",
+      "case_id": "A-05",
+      "function": "Chat",
+      "http_status": 200,
+      "seconds": 5.152,
+      "transport_error": null,
+      "llm_calls": 1,
+      "total_tokens": 289,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 1,
+        "max_depth": 3,
+        "retry_count_total": 0,
+        "total_input_tokens": 202,
+        "total_output_tokens": 87,
+        "tool_call_count": 6,
+        "unique_tool_count": 5,
+        "parallel_tool_count": 3,
+        "session_id": "b5eb77bfec4e4184b0ec54c8ec3fa2ad",
+        "trace_id": "00000000000000000000000048000001",
+        "llm_calls": 1,
+        "total_tokens": 289,
+        "duration_ms": 5142.790672,
+        "tools_used": [
+          "build_authorized_index",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "papers为数组": true,
+        "paper只含filename/reason": true,
+        "文件名真实且理由非空": true,
+        "论文去重": true,
+        "相关题必须有真实匹配论文": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "papers"
+      ],
+      "actual_fields": [
+        "case_id",
+        "papers"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "papers_count": 5,
+      "label": "B-01-canonical",
+      "case_id": "B-01",
+      "function": "Literature_Retrieval",
+      "http_status": 200,
+      "seconds": 60.13,
+      "transport_error": null,
+      "llm_calls": 2,
+      "total_tokens": 4647,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 2,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 3634,
+        "total_output_tokens": 1013,
+        "tool_call_count": 48,
+        "unique_tool_count": 9,
+        "parallel_tool_count": 4,
+        "session_id": "fef77f9b2ab246faacba3962a45f32b4",
+        "trace_id": "00000000000000000000000048000002",
+        "llm_calls": 2,
+        "total_tokens": 4647,
+        "duration_ms": 60126.062359,
+        "tools_used": [
+          "build_authorized_index",
+          "chunk_pages",
+          "hybrid_retrieve",
+          "rank_papers_with_evidence",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "papers为数组": true,
+        "paper只含filename/reason": true,
+        "文件名真实且理由非空": true,
+        "论文去重": true,
+        "相关题必须有真实匹配论文": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "papers"
+      ],
+      "actual_fields": [
+        "case_id",
+        "papers"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "papers_count": 4,
+      "label": "B-02-whole-library-description",
+      "case_id": "B-02",
+      "function": "Literature_Retrieval",
+      "http_status": 200,
+      "seconds": 32.459,
+      "transport_error": null,
+      "llm_calls": 2,
+      "total_tokens": 4126,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 2,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 3140,
+        "total_output_tokens": 986,
+        "tool_call_count": 35,
+        "unique_tool_count": 9,
+        "parallel_tool_count": 4,
+        "session_id": "bb39bd2d7e414b889eed2a228c8d9ee4",
+        "trace_id": "00000000000000000000000048000003",
+        "llm_calls": 2,
+        "total_tokens": 4126,
+        "duration_ms": 32456.126942,
+        "tools_used": [
+          "build_authorized_index",
+          "chunk_pages",
+          "hybrid_retrieve",
+          "rank_papers_with_evidence",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "papers为数组": true,
+        "paper只含filename/reason": true,
+        "文件名真实且理由非空": true,
+        "论文去重": true,
+        "相关题必须有真实匹配论文": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "papers"
+      ],
+      "actual_fields": [
+        "case_id",
+        "papers"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "papers_count": 3,
+      "label": "B-03-library-directory",
+      "case_id": "B-03",
+      "function": "Literature_Retrieval",
+      "http_status": 200,
+      "seconds": 22.558,
+      "transport_error": null,
+      "llm_calls": 2,
+      "total_tokens": 3931,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 2,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 3286,
+        "total_output_tokens": 645,
+        "tool_call_count": 28,
+        "unique_tool_count": 7,
+        "parallel_tool_count": 4,
+        "session_id": "c3b325acc66d407a92b401258dd4470e",
+        "trace_id": "00000000000000000000000048000004",
+        "llm_calls": 2,
+        "total_tokens": 3931,
+        "duration_ms": 22555.304332,
+        "tools_used": [
+          "build_authorized_index",
+          "hybrid_retrieve",
+          "rank_papers_with_evidence",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "引用实例不超过40": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": []
+              }
+            }
+          ]
+        }
+      ],
+      "body_characters": 2473,
+      "citation_instances": 21,
+      "label": "C-01-five-real-papers",
+      "case_id": "C-01",
+      "function": "Survey",
+      "http_status": 200,
+      "seconds": 111.786,
+      "transport_error": null,
+      "llm_calls": 5,
+      "total_tokens": 16326,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 5,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 12844,
+        "total_output_tokens": 3482,
+        "tool_call_count": 34,
+        "unique_tool_count": 9,
+        "parallel_tool_count": 3,
+        "session_id": "2bf553f18d474bcf8e6a535302f16b23",
+        "trace_id": "00000000000000000000000048000005",
+        "llm_calls": 5,
+        "total_tokens": 16326,
+        "duration_ms": 111781.025067,
+        "tools_used": [
+          "build_authorized_index",
+          "build_claim_ledger",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "引用实例不超过40": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "正文中“在 TriviaQA 和 NaturalQuestions 上，FiD 取得了当时最优结果，且性能随检索段落数量增加而提升 [3, p.2]”使用了页码 [3, p.2]，但对应证据来源 ev-8 中该陈述的起止页码为 page 2，与事实相符。然而该句中的“TriviaQA 和 NaturalQuestions”为两处基准，但 ev-8 的原文 quote 中并未明确提及 TriviaQA 和 NaturalQuestions 这两个基准名称，而是靠外部知识推断；因检索噪声主题仅需原论文内容，该处引用笔误，建议删除或引用更准确的数字和名单。",
+                  "正文中“在泄漏水平 α=12.5% 下评估，RETRO 对与训练块句法相似及不同的块均能改善预测 [4, p.15]”所引的 ev-12 中明确提及了“leakage level α=12.5%”，但该来源quote中并未出现“12.5%”这一数值；原文中该数值出现在句末，而该句引用时附上了页码，但数值本身缺乏原文直接证据支持。",
+                  "正文中“在标准设置下，DPR 采用独立训练的检索器与阅读器，在 NaturalQuestions 上取得 39.8 EM，性能优于同类联合训练方案，且设计更简洁 [1, p.8]”中“性能优于同类联合训练方案，且设计更简洁”的表述关联了ev-3原文中的“outperforming a comparable joint training approach with a simpler design”，但原文中并未指定“NaturalQuestions”数据集。该句引入了该数据集名称，缺乏对应证据，建议删除或补充明确引用。"
+                ]
+              }
+            },
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "正文中“在 TriviaQA 和 NaturalQuestions 上，FiD 取得了当时最优结果，且性能随检索段落数量增加而提升 [3, p.2]”使用了页码 [3, p.2]，但对应证据来源 ev-8 中该陈述的起止页码为 page 2，与事实相符。然而该句中的“TriviaQA 和 NaturalQuestions”为两处基准，但 ev-8 的原文 quote 中并未明确提及 TriviaQA 和 NaturalQuestions 这两个基准名称，而是靠外部知识推断；因检索噪声主题仅需原论文内容，该处引用笔误，建议删除或引用更准确的数字和名单。; 正文中“在泄漏水平 α=12.5% 下评估，RETRO 对与训练块句法相似及不同的块均能改善预测 [4, p.15]”所引的 ev-12 中明确提及了“leakage level α=12.5%”，但该来源quote中并未出现“12.5%”这一数值；原文中该数值出现在句末，而该句引用时附上了页码，但数值本身缺乏原文直接证据支持。; 正文中“在标准设置下，DPR 采用独立训练的检索器与阅读器，在 NaturalQuestions 上取得 39.8 EM，性能优于同类联合训练方案，且设计更简洁 [1, p.8]”中“性能优于同类联合训练方案，且设计更简洁”的表述关联了ev-3原文中的“outperforming a comparable joint training approach with a simpler design”，但原文中并未指定“NaturalQuestions”数据集。该句引入了该数据集名称，缺乏对应证据，建议删除或补充明确引用。"
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": []
+              }
+            }
+          ]
+        }
+      ],
+      "body_characters": 2987,
+      "citation_instances": 27,
+      "label": "C-03-five-real-papers",
+      "case_id": "C-03",
+      "function": "Survey",
+      "http_status": 200,
+      "seconds": 132.159,
+      "transport_error": null,
+      "llm_calls": 6,
+      "total_tokens": 21639,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 6,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 17559,
+        "total_output_tokens": 4080,
+        "tool_call_count": 34,
+        "unique_tool_count": 9,
+        "parallel_tool_count": 3,
+        "session_id": "1a96adfb9fb04d7b8fb74a13c0ae0bed",
+        "trace_id": "00000000000000000000000048000006",
+        "llm_calls": 6,
+        "total_tokens": 21639,
+        "duration_ms": 132156.481259,
+        "tools_used": [
+          "build_authorized_index",
+          "build_claim_ledger",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "D状态合法": true,
+        "恰好三个核心指标": true,
+        "指标字段正确": true,
+        "指标名称单位与输入一致": true,
+        "数值为有限数字或null": true,
+        "未完成不声称实测值": true,
+        "figures为数组": true,
+        "图表字段路径及文件存在": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "actual_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "experiment_status": "materials_missing",
+      "label": "D-01-no-platform-session",
+      "case_id": "D-01",
+      "function": "Reproduction",
+      "http_status": 200,
+      "seconds": 0.146,
+      "transport_error": null,
+      "llm_calls": 0,
+      "total_tokens": 0,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 0,
+        "max_depth": 3,
+        "retry_count_total": 0,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "tool_call_count": 7,
+        "unique_tool_count": 6,
+        "parallel_tool_count": 3,
+        "session_id": "f35a890c448440a4bab2648c5215cd0c",
+        "trace_id": "00000000000000000000000048000007",
+        "llm_calls": 0,
+        "total_tokens": 0,
+        "duration_ms": 142.684918,
+        "tools_used": [
+          "build_authorized_index",
+          "execute_authorized_experiment",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "D状态合法": true,
+        "恰好三个核心指标": true,
+        "指标字段正确": true,
+        "指标名称单位与输入一致": true,
+        "数值为有限数字或null": true,
+        "未完成不声称实测值": true,
+        "figures为数组": true,
+        "图表字段路径及文件存在": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "actual_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "experiment_status": "materials_missing",
+      "label": "D-02-no-platform-session",
+      "case_id": "D-02",
+      "function": "Reproduction",
+      "http_status": 200,
+      "seconds": 0.101,
+      "transport_error": null,
+      "llm_calls": 0,
+      "total_tokens": 0,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 0,
+        "max_depth": 3,
+        "retry_count_total": 0,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "tool_call_count": 7,
+        "unique_tool_count": 6,
+        "parallel_tool_count": 3,
+        "session_id": "34dcc9e42e424dc9bb0980848073d6e1",
+        "trace_id": "00000000000000000000000048000008",
+        "llm_calls": 0,
+        "total_tokens": 0,
+        "duration_ms": 97.770218,
+        "tools_used": [
+          "build_authorized_index",
+          "execute_authorized_experiment",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "D状态合法": true,
+        "恰好三个核心指标": true,
+        "指标字段正确": true,
+        "指标名称单位与输入一致": true,
+        "数值为有限数字或null": true,
+        "未完成不声称实测值": true,
+        "figures为数组": true,
+        "图表字段路径及文件存在": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "actual_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "experiment_status": "materials_missing",
+      "label": "D-05-no-platform-session",
+      "case_id": "D-05",
+      "function": "Reproduction",
+      "http_status": 200,
+      "seconds": 0.144,
+      "transport_error": null,
+      "llm_calls": 0,
+      "total_tokens": 0,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 0,
+        "max_depth": 3,
+        "retry_count_total": 0,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "tool_call_count": 7,
+        "unique_tool_count": 6,
+        "parallel_tool_count": 3,
+        "session_id": "629ab35767a54211b5f3a6dfb6658ac0",
+        "trace_id": "00000000000000000000000048000009",
+        "llm_calls": 0,
+        "total_tokens": 0,
+        "duration_ms": 140.373654,
+        "tools_used": [
+          "build_authorized_index",
+          "execute_authorized_experiment",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": []
+              }
+            }
+          ]
+        }
+      ],
+      "body_characters": 2396,
+      "citation_instances": 19,
+      "label": "E-01-two-real-papers",
+      "case_id": "E-01",
+      "function": "Idea",
+      "http_status": 200,
+      "seconds": 94.83,
+      "transport_error": null,
+      "llm_calls": 4,
+      "total_tokens": 10673,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 4,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 7964,
+        "total_output_tokens": 2709,
+        "tool_call_count": 19,
+        "unique_tool_count": 9,
+        "parallel_tool_count": 3,
+        "session_id": "b639da6fad424cf1b9294044971a93c4",
+        "trace_id": "0000000000000000000000004800000a",
+        "llm_calls": 4,
+        "total_tokens": 10673,
+        "duration_ms": 94827.276465,
+        "tools_used": [
+          "build_authorized_index",
+          "build_claim_ledger",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": []
+              }
+            }
+          ]
+        }
+      ],
+      "body_characters": 2298,
+      "citation_instances": 5,
+      "label": "E-02-two-real-papers",
+      "case_id": "E-02",
+      "function": "Idea",
+      "http_status": 200,
+      "seconds": 89.669,
+      "transport_error": null,
+      "llm_calls": 4,
+      "total_tokens": 10473,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 4,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 7972,
+        "total_output_tokens": 2501,
+        "tool_call_count": 19,
+        "unique_tool_count": 9,
+        "parallel_tool_count": 3,
+        "session_id": "8fdf0ebbb32e40f4939a6b8015a16961",
+        "trace_id": "0000000000000000000000004800000b",
+        "llm_calls": 4,
+        "total_tokens": 10473,
+        "duration_ms": 89665.888758,
+        "tools_used": [
+          "build_authorized_index",
+          "build_claim_ledger",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    }
+  ],
+  "source_hashes": {
+    "agent.py": "bd0be854dc9ea00cd8f4cecfd43589f72869889a62cba9ad301820ebcc0857db",
+    "README.md": "4d9e1a6f4de274ceef14a21add9fc9c414b55b5a348c633eb57ad1a2231d38eb",
+    "requirements.txt": "b40e2ae10014abd359b46e1f0ffc48fc0fcbf8dfcde2b31350cf457b33b89ccc",
+    "src/research_agent/__init__.py": "588666ee4be3d0be1f9e3a21b83d512177ae1c1283d2f827aad415705368ec25",
+    "src/research_agent/__main__.py": "9a3cf72f632eb36445b835d6e09371e64ae01971f5faba67ba5c18f5f45a0050",
+    "src/research_agent/contracts/__init__.py": "a147dfe20ecd32a059d8a8e309dc8e30d0d7d9bba9c44cac58e54e803b1839f3",
+    "src/research_agent/contracts/validation.py": "9216260788b8789b478ca75177efdb382ce0f22cf3291969da0fc3c7b9278e6d",
+    "src/research_agent/core/__init__.py": "16f569a245e8b441c6adcac5015b5b6edf39c1d6ed68e739a06322525a30c5c2",
+    "src/research_agent/core/config.py": "ff7d23235da8d36a42d935bd6335d633929e512bdd2dd6e8e0bf4f3c0c447266",
+    "src/research_agent/core/dispatch.py": "a9be84eee065065b3bf38083fc0ed44a652a66b0869786955d21b61106dac26a",
+    "src/research_agent/core/dispatch_plan.py": "6b4a1474dd42495b0facd35700300bbbd1133e03e166f0f9ee783d6c0f76c74b",
+    "src/research_agent/core/engine.py": "350f1180e918e77fe0d15fc4249f95829095d61df052a075153e955d92cc3087",
+    "src/research_agent/core/models.py": "6538401652a806f7f1dd2dfbe63d0904aa23685bee870ef8511e6383e5eecba0",
+    "src/research_agent/core/session.py": "596edd19c2f68d5610637344b473c372dac361317f45868a3c2425511c15a4f3",
+    "src/research_agent/core/utils.py": "7be66bd173b3da9524019477df61f6481137e981270a1294469869156365e324",
+    "src/research_agent/evidence/__init__.py": "979dd63615e748d9495a63bd2aa6cdd3fd99dec79eeccf654a6b4363a1758e90",
+    "src/research_agent/evidence/attribution.py": "ac0c8a2fd97c959e9b48717a5a83992ef5040452715bda5cd2f7be7c8d5498db",
+    "src/research_agent/evidence/ledger.py": "12a1d30f5bc843596141102382a76c034438283047a242697256d8d23cda3807",
+    "src/research_agent/evidence/reporting.py": "e03ecc5650e15fc4e4c311c5b84f4194155f1527132de1bced1c048003a2f468",
+    "src/research_agent/integrations/__init__.py": "f39c40883d7611778fba7d45c9b2a1091b708c9085659baacfcdebcb4ed18f96",
+    "src/research_agent/integrations/http_runtime.py": "5e0cee06f30baafd2eda9f8fe407cbe49222295a3cc8d62dc0e30f43bfd61486",
+    "src/research_agent/integrations/instrumentation.py": "2e911c75fabd5b58e4e73e0355b90e53ea41dad567cb8ebd281be15e3da528ee",
+    "src/research_agent/integrations/llm.py": "24a9de1297ab79ef71cb5fe0aad1fc4d6271fac33705df72adca2b4c613d5ed0",
+    "src/research_agent/integrations/prompts.py": "967c007d5a2548aaac07dd21e737382a2a5679415d17060e7ea31969dea2090c",
+    "src/research_agent/rag/__init__.py": "994c276fecccb44d1d2bb06cb3f37ad03c499b3428437732690f2d1c36230da1",
+    "src/research_agent/rag/materials.py": "e0e15bae389981056f804b18dc0a85fef4b3f7b241588438e8c9b2d8fc6b620c",
+    "src/research_agent/rag/paper_selection.py": "854793ab338afa39aa2ba35325a386da8a2710f35595ee5435928cf2b1d0fa5b",
+    "src/research_agent/rag/report_selection.py": "d56d880587cca46fcc32294c77d95690598768d29160364a2bc97f3da88ac35d",
+    "src/research_agent/rag/retrieval.py": "39608c8ef525c89e155636345a7398b7ed0649ba868e856dda27cafd8887e8ed",
+    "src/research_agent/workflows/__init__.py": "2a6c64ea005eab56cc527735907519892bad3256ad8807b7f16a9a8c3f1b5430",
+    "src/research_agent/workflows/experiments.py": "40e6cf219dd3b2361c71341ff8c2fbefc5f4408efd068750f9ccf7df475a3d75",
+    "src/research_agent/workflows/layered_d_runner.py": "f6c9ee48cde8da6783680e79a1c3cdead39f117954bd9371c2e34e8c2c5db4c8",
+    "src/research_agent/workflows/report_context.py": "edb03ea7019dce2e76f008fbd25814f3b7f64b85be4133681aad333190f15e1b",
+    "src/research_agent/workflows/reports.py": "7119147b0284db8b2bc01f964c77b3ee926a3d309c80c9aae2bc5cebbf3c6e06",
+    "src/research_agent/workflows/sample_validation.py": "430141a7f12fec29f0bdeccaa7abc7da27c10a0e02ebaf4b6d99496693c8b5e7",
+    "src/research_agent/workflows/sample_worker.py": "c9b06dfa9cbab6572f81c6cfb56a5ee57fa205c7fcb0b87602260299bd07932f",
+    "src/research_agent/workflows/source_generation.py": "51c53a0d73a2695e890d55f6d644196a21fa29331a355367af0cdb6d4a245914",
+    "src/research_agent/workflows/tasks.py": "06b25ed79e21a1261b18473f245e3f25312ece41740f61167d8c2aedf5edfda9"
+  },
+  "sdk_hashes": {
+    "runtime.py": "9737fb4c1fc3ed0a2c46ac9467468ee1e75b37076c948f621d19700357a6729c",
+    "interceptor.py": "2abd6ab87c594cc8b16cbd625643660d2019a1d22f816ec36fb6c8bd1d99240e",
+    "__init__.py": "17eb578ed2bce710c7e59992befded351b31cb8af5fa164fbe8c94241cc9baba",
+    "base_agent.py": "dd9d66c1d2e43bb541877efab8861aa806e00de444506f025b625e3d3e4f1922",
+    "recorder.py": "dcf0bc83273a02880589a5f94aee8c5b50bf6b13bf35e9a2f0babe2ccb17e3f6",
+    "network.py": "a1644d99c4406e068227fbb0ac11f64423223ec2343d6299fcc9c147c050536a",
+    "telemetry.py": "d3f20d71db7b650854ccefdffcd01d5e79b9ef0b249dabee6a304364c96771e9",
+    "serve.py": "9ac2c253802fa723f918938f32c8e92f8cc04ac1abec0ac9f2e7c84d2dfeae76",
+    "call_recorder.py": "f2189836dbe22358bcd945b143a776ee4c0869aa4ab3c8da06a7c4c86899f7ab",
+    "otel_telemetry.py": "d7c9d396a058da02dce9064bbc4835dc6f50968a30866c30c08e71ed95f0f7ba",
+    "interceptors.py": "92a35adf174ee06b2fbf6fc1b30c2c426db9406b7fafd1a43ec8036e0de1f486"
+  }
+}

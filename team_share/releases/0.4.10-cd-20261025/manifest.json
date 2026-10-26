@@ -1,0 +1,495 @@
+{
+  "version": "0.4.10-cd-20261025",
+  "image": "research-assistant:0.4.10-cd-20261025",
+  "image_id": "sha256:fa10f5c12bb5f3303ef195d07cdaf8baa3d9316ab414c35144e8a926f62710d4",
+  "tar": "team_share/image/research-assistant-0.4.10-cd-20261025.tar",
+  "tar_bytes": 295433728,
+  "tar_sha256": "3e5c6ff2d68eb34540927f481760b0bff296297c767ba181c63e4161b0e3df8f",
+  "tar_readback_verified": true,
+  "official_sdk_unchanged": true,
+  "source_matches_local": true,
+  "credentials_excluded": true,
+  "offline_tests": {
+    "passed": 202,
+    "skipped": 4
+  },
+  "official_api_http_rows": [
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "引用实例不超过40": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": []
+              }
+            }
+          ]
+        }
+      ],
+      "body_characters": 4079,
+      "citation_instances": 31,
+      "label": "C-01-five-real-papers",
+      "case_id": "C-01",
+      "function": "Survey",
+      "http_status": 200,
+      "seconds": 82.256,
+      "transport_error": null,
+      "llm_calls": 4,
+      "total_tokens": 18055,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 4,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 14302,
+        "total_output_tokens": 3753,
+        "tool_call_count": 44,
+        "unique_tool_count": 11,
+        "parallel_tool_count": 3,
+        "session_id": "d5d6507ad8ae45be92bb1a2920de134a",
+        "trace_id": "00000000000000000000000048000001",
+        "llm_calls": 4,
+        "total_tokens": 18055,
+        "duration_ms": 82252.166172,
+        "tools_used": [
+          "build_authorized_index",
+          "build_claim_ledger",
+          "chunk_pages",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "引用实例不超过40": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [
+            "正文“DPR未提供具体的开放域问答测试结果[1, p.2]”与证据ev-1（仅描述DPR检索器设计）事实相符，但该陈述暗示DPR论文未报告ODQA结果，而source_quotes中无直接否定证据；根据规则，证据缺失不等于论文没做，且该句以明确归因方式陈述，构成事实矛盾——DPR论文第2页实际包含开放域问答评估结果（如Natural Questions实验），故该句为错误表述。",
+            "正文“RETRO通过大规模预训练展示出检索对预测的改善，不仅在句法相似的数据块上有效，在句法不同的情形下也有提升[4, p.15]”引用ev-11，但ev-11引文为截断，未完整呈现原文主张，且ev-11的claim标记为“unknown”和“verbatim_only”，不构成对“句法不同的情形下也有提升”的语义支持；该句将部分引文误用于支持完整主张，属于事实引用错误。",
+            "正文“Self-RAG在多项任务上显著优于标准的监督微调大语言模型，甚至超越了ChatGPT[5, p.8]”引用ev-13，ev-13明确限定“in PubHealth, PopQA, biography generations, and ASQA”，且原文为“even outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，正文省略了任务范围限定，构成事实归因不全和夸大。"
+          ],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": [
+                  "正文“DPR未提供具体的开放域问答测试结果[1, p.2]”与证据ev-1（仅描述DPR检索器设计）事实相符，但该陈述暗示DPR论文未报告ODQA结果，而source_quotes中无直接否定证据；根据规则，证据缺失不等于论文没做，且该句以明确归因方式陈述，构成事实矛盾——DPR论文第2页实际包含开放域问答评估结果（如Natural Questions实验），故该句为错误表述。",
+                  "正文“RETRO通过大规模预训练展示出检索对预测的改善，不仅在句法相似的数据块上有效，在句法不同的情形下也有提升[4, p.15]”引用ev-11，但ev-11引文为截断，未完整呈现原文主张，且ev-11的claim标记为“unknown”和“verbatim_only”，不构成对“句法不同的情形下也有提升”的语义支持；该句将部分引文误用于支持完整主张，属于事实引用错误。",
+                  "正文“Self-RAG在多项任务上显著优于标准的监督微调大语言模型，甚至超越了ChatGPT[5, p.8]”引用ev-13，ev-13明确限定“in PubHealth, PopQA, biography generations, and ASQA”，且原文为“even outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，正文省略了任务范围限定，构成事实归因不全和夸大。"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "body_characters": 2984,
+      "citation_instances": 22,
+      "label": "C-03-five-real-papers",
+      "case_id": "C-03",
+      "function": "Survey",
+      "http_status": 200,
+      "seconds": 73.331,
+      "transport_error": null,
+      "llm_calls": 4,
+      "total_tokens": 15534,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 4,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 12140,
+        "total_output_tokens": 3394,
+        "tool_call_count": 34,
+        "unique_tool_count": 9,
+        "parallel_tool_count": 3,
+        "session_id": "852f990aac79413ebd69f157946ae3af",
+        "trace_id": "00000000000000000000000048000002",
+        "llm_calls": 4,
+        "total_tokens": 15534,
+        "duration_ms": 73328.445473,
+        "tools_used": [
+          "build_authorized_index",
+          "build_claim_ledger",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "D状态合法": true,
+        "恰好三个核心指标": true,
+        "指标字段正确": true,
+        "指标名称单位与输入一致": true,
+        "数值为有限数字或null": true,
+        "未完成不声称实测值": true,
+        "figures为数组": true,
+        "图表字段路径及文件存在": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "actual_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "experiment_status": "materials_missing",
+      "label": "D-01-no-platform-session",
+      "case_id": "D-01",
+      "function": "Reproduction",
+      "http_status": 200,
+      "seconds": 0.299,
+      "transport_error": null,
+      "llm_calls": 0,
+      "total_tokens": 0,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 0,
+        "max_depth": 3,
+        "retry_count_total": 0,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "tool_call_count": 6,
+        "unique_tool_count": 5,
+        "parallel_tool_count": 3,
+        "session_id": "ae554a18cb0f4cdc9fe8e727b13ae60b",
+        "trace_id": "00000000000000000000000048000003",
+        "llm_calls": 0,
+        "total_tokens": 0,
+        "duration_ms": 295.887682,
+        "tools_used": [
+          "execute_authorized_experiment",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "D状态合法": true,
+        "恰好三个核心指标": true,
+        "指标字段正确": true,
+        "指标名称单位与输入一致": true,
+        "数值为有限数字或null": true,
+        "未完成不声称实测值": true,
+        "figures为数组": true,
+        "图表字段路径及文件存在": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "actual_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "experiment_status": "materials_missing",
+      "label": "D-02-no-platform-session",
+      "case_id": "D-02",
+      "function": "Reproduction",
+      "http_status": 200,
+      "seconds": 0.202,
+      "transport_error": null,
+      "llm_calls": 0,
+      "total_tokens": 0,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 0,
+        "max_depth": 3,
+        "retry_count_total": 0,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "tool_call_count": 6,
+        "unique_tool_count": 5,
+        "parallel_tool_count": 3,
+        "session_id": "0b2016dfe6634264a52da7a74afdc19f",
+        "trace_id": "00000000000000000000000048000004",
+        "llm_calls": 0,
+        "total_tokens": 0,
+        "duration_ms": 198.855164,
+        "tools_used": [
+          "execute_authorized_experiment",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "D状态合法": true,
+        "恰好三个核心指标": true,
+        "指标字段正确": true,
+        "指标名称单位与输入一致": true,
+        "数值为有限数字或null": true,
+        "未完成不声称实测值": true,
+        "figures为数组": true,
+        "图表字段路径及文件存在": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "actual_fields": [
+        "case_id",
+        "figures",
+        "metrics",
+        "status"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {}
+      ],
+      "experiment_status": "materials_missing",
+      "label": "D-05-no-platform-session",
+      "case_id": "D-05",
+      "function": "Reproduction",
+      "http_status": 200,
+      "seconds": 0.196,
+      "transport_error": null,
+      "llm_calls": 0,
+      "total_tokens": 0,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 0,
+        "max_depth": 3,
+        "retry_count_total": 0,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0,
+        "tool_call_count": 6,
+        "unique_tool_count": 5,
+        "parallel_tool_count": 3,
+        "session_id": "73adc5770f3f411cb2bcfa3a01e68d51",
+        "trace_id": "00000000000000000000000048000005",
+        "llm_calls": 0,
+        "total_tokens": 0,
+        "duration_ms": 192.840768,
+        "tools_used": [
+          "execute_authorized_experiment",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission"
+        ]
+      }
+    }
+  ],
+  "d_public_source_runs": [
+    {
+      "case_id": "D-01",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "status": "passed_public_sample",
+      "source_sha256": "919ad98cfb61e1d47a94b261af19b089ec30079dce5866428c58f6b1032faf04",
+      "source_matches_current_response": true,
+      "seconds": 32.998,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 3636,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261024-v17-batch-scope",
+          "requested_output_tokens": 12000,
+          "estimated_input_tokens": 3510,
+          "reserved_for_later": 0,
+          "seconds": 32.794
+        }
+      ]
+    },
+    {
+      "case_id": "D-02",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "status": "passed_public_sample",
+      "source_sha256": "01adcb73343536d8ceaee3adffabd2a4c0534464ae6d4ce25a3cba56cb026587",
+      "source_matches_current_response": true,
+      "seconds": 101.553,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 6271,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261024-v17-batch-scope",
+          "requested_output_tokens": 12000,
+          "estimated_input_tokens": 5412,
+          "reserved_for_later": 0,
+          "seconds": 52.693
+        },
+        {
+          "stage": "d_source",
+          "tokens": 6028,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261024-v17-batch-scope",
+          "requested_output_tokens": 12000,
+          "estimated_input_tokens": 5484,
+          "reserved_for_later": 0,
+          "seconds": 48.586
+        }
+      ]
+    },
+    {
+      "case_id": "D-05",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "status": "passed_public_sample",
+      "source_sha256": "0f64fd7dc859719cbbbe3e12466bd476f2cff5103bf2a234a94475fee97ade78",
+      "source_matches_current_response": true,
+      "seconds": 51.425,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 4511,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261024-v17-batch-scope",
+          "requested_output_tokens": 12000,
+          "estimated_input_tokens": 2828,
+          "reserved_for_later": 0,
+          "seconds": 51.298
+        }
+      ]
+    }
+  ],
+  "official_worker_public_inputs": 13,
+  "official_hidden_questions": false,
+  "formal_d_provenance_admission_tested": false,
+  "platform_accepted": false,
+  "source_eval": "eval-20261024-fee4379f",
+  "online_exception_confirmed": false
+}

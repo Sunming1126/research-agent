@@ -41,6 +41,10 @@ class TaskHandlers(ReportWorkflow):
         self.report_trace = []
 
     def _plan(self, case):
+        if case.function in {"Survey", "Idea"} and getattr(self.llm, "supports_batched_extraction", False):
+            # 指定材料已确定：把有限在线时间留给原文提取、写作和审查。
+            self.query_plan_status = "original_for_report_budget"
+            return QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]))
         data = {"function": case.function, "input": case.input,
                 "constraints": case.constraints}
         for attempt, maximum in enumerate((1800, 2800), start=1):
@@ -61,6 +65,9 @@ class TaskHandlers(ReportWorkflow):
             evidence = [asdict(c) for c in retriever.per_document(QueryPlan(case.input), 3)] if case.materials else []
             value = self.llm.json("chat", {"task": case.to_dict(), "evidence": evidence}, max_tokens=2200)
             return {"case_id": case.case_id, "answer": value.get("answer"), "clarifying_question": value.get("clarifying_question")}
+        if case.function == "Literature_Retrieval" and not retriever.chunks:
+            self.retrieval_trace = {"candidates": [], "reason": "empty_authorized_library"}
+            return {"case_id": case.case_id, "papers": []}
         plan = self._plan(case)
         if case.function == "Literature_Retrieval":
             return self.retrieval(case, retriever, plan)

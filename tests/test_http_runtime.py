@@ -89,6 +89,19 @@ def test_platform_trace_parent_task_and_session_headers_are_preserved(runtime):
     assert response.headers["x-agenthack-trace-id"] == trace_id
 
 
+def test_official_transport_id_and_challenge_session_are_distinct_from_case_and_team(runtime):
+    client, _, exporter = runtime
+    with patch.dict("os.environ", {"CHALLENGE_SESSION_ID": "gateway-session", "TEAM_ID": "telemetry-team"}):
+        response = client.post("/solve", json=question(), headers={
+            "X-Research-Task-ID": "transport-uuid", "Idempotency-Key": "transport-uuid",
+            "X-Task-ID": "obsolete", "X-Challenge-Protocol": "research-assistant.v1"})
+    assert response.status_code == 200
+    assert response.json()["case_id"] == "A-05"
+    session = next(span for span in exporter.get_finished_spans() if span.name == "agent.session")
+    assert session.attributes["task_id"] == "transport-uuid"
+    assert session.attributes["session_id"] == "gateway-session"
+
+
 def test_direct_timeout_uses_case_budget_instead_of_sdk_thirty_seconds(runtime):
     import asyncio
     client, engine, _ = runtime
@@ -123,9 +136,9 @@ def test_business_failure_preserves_sdk_error_metadata_and_trace(runtime):
     client, engine, exporter = runtime
     engine.failure = FileNotFoundError("private filesystem details")
     response = client.post("/solve", json=question())
-    assert response.status_code == 200
+    assert response.status_code == 500
     body = response.json()
-    assert body["status"] == "error" and body["output"]["error"] == "FileNotFoundError"
+    assert body["error_type"] == "FileNotFoundError"
     assert "private filesystem details" not in response.text
     session = next(span for span in exporter.get_finished_spans() if span.name == "agent.session")
     assert session.attributes["success"] is False
@@ -146,9 +159,9 @@ def test_timeout_preserves_sdk_timeout_response_and_trace(runtime):
     client, engine, exporter = runtime
     engine.failure = TimeoutError("expired")
     response = client.post("/solve", json=question())
-    assert response.status_code == 200
-    assert response.json()["status"] == "timeout"
-    assert response.json()["metadata"]["trace_id"]
+    assert response.status_code == 504
+    assert response.json()["detail"] == "research task timeout"
+    assert response.headers["x-agenthack-trace-id"]
     session = next(span for span in exporter.get_finished_spans() if span.name == "agent.session")
     assert session.attributes["task_status"] == "timeout"
 
@@ -203,3 +216,50 @@ def test_invalid_success_wrapper_cannot_be_returned_as_a_valid_case(runtime):
     engine.solve = solve
     response = client.post("/solve", json=question())
     assert response.status_code == 502
+
+
+def test_real_b_workflow_writes_platform_directory_and_matches_http(tmp_path):
+    """使用真实引擎/SDK和合成 PDF，模型夹具只检查接入及路径，不代表比赛得分。"""
+    import hashlib
+    from fixtures import FakeLLM, case, papers
+    from test_dispatch_v3 import _write_v3_dispatch
+    from research_agent.core.config import Settings
+    from research_agent.core.engine import ResearchAgentEngine
+
+    output = tmp_path / "output"
+    _write_v3_dispatch(output)
+    names = papers(tmp_path / "data/papers")
+    payload = case("B-01", names)
+    assigned = output / "data/team/assigned/B-01.json"
+    assigned.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    dispatch_path = output / "data/team/dispatch.json"
+    dispatch = json.loads(dispatch_path.read_text())
+    row = next(row for row in dispatch["cases"] if row["case_id"] == "B-01")
+    row.update(title=payload["title"], question_sha256=hashlib.sha256(assigned.read_bytes()).hexdigest())
+    dispatch_path.write_text(json.dumps(dispatch), encoding="utf-8")
+
+    exporter = InMemorySpanExporter()
+    provider = TracerProvider()
+    provider.add_span_processor(SimpleSpanProcessor(exporter))
+    env = {"RESEARCH_WORKSPACE_ROOT": str(tmp_path / "data"), "RESEARCH_RESULT_ROOT": str(output),
+           "RESEARCH_WORKSPACE_TEAM": "team", "TEAM_ID": "telemetry-uuid", "TEAM_NAME": "最初一舞",
+           "CHALLENGE_SESSION_ID": "gateway-session"}
+    try:
+        with patch.dict("os.environ", env, clear=True):
+            engine = ResearchAgentEngine(Settings.from_env(), FakeLLM)
+            instance = AgentRuntime(ResearchAgent(engine), telemetry=Telemetry(provider))
+            install_research_protocol(instance)
+            with TestClient(instance.app) as client:
+                response = client.post("/solve", json=payload, headers={"X-Research-Task-ID": "transport-uuid"})
+        assert response.status_code == 200, response.text
+        body = response.json()
+        assert set(body) == {"case_id", "papers"} and body["papers"]
+        assert all(set(paper) == {"filename", "reason"} and paper["filename"] in names for paper in body["papers"])
+        assert json.loads((output / "data/team/B-01.json").read_text(encoding="utf-8")) == body
+        assert not (output / "data/最初一舞").exists()
+        assert not (output / "data/telemetry-uuid").exists()
+        session = next(span for span in exporter.get_finished_spans() if span.name == "agent.session")
+        assert session.attributes["task_id"] == "transport-uuid"
+        assert session.attributes["session_id"] == "gateway-session"
+    finally:
+        provider.shutdown()

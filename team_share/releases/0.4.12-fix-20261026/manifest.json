@@ -1,0 +1,1224 @@
+{
+  "version": "0.4.12-fix-20261026",
+  "image": "research-assistant:0.4.12-fix-20261026",
+  "image_id": "sha256:7a1d15d40f4e244e1d329102174f787fe8f18cf36914f7b423a9710d35f4bb7a",
+  "tar": "research-assistant-0.4.12-fix-20261026.tar",
+  "bytes": 295441920,
+  "sha256": "85053f3fd1b58b43030bb2c49e7d0673c4794472ec4fd9d184b3be94bf7eda63",
+  "regressions": [
+    {
+      "file": "core-release.xml",
+      "tests": 207,
+      "skipped": 4
+    },
+    {
+      "file": "sdk-release.xml",
+      "tests": 35,
+      "skipped": 0
+    }
+  ],
+  "ce_provenance": {
+    "image": "research-assistant:0.4.12-fix-20261026",
+    "image_id": "sha256:056e27622c678bb8337bd27c0296e4eaf924cb05a6de76138082e6694e0f4a5d",
+    "real_pdf_hashes": {
+      "2004.04906-DPR.pdf": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f",
+      "2005.11401-RAG.pdf": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "2007.01282-FiD.pdf": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953",
+      "2112.04426-RETRO.pdf": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+      "2310.11511-Self-RAG.pdf": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+    },
+    "model": "deepseek_v4",
+    "official_api": true,
+    "platform_workspace_simulated": "workspace-live-audit",
+    "official_hidden_questions": false,
+    "cpu": 1,
+    "memory_mib": 1024,
+    "b_fault_fixtures": false,
+    "client_exit_code": 0,
+    "oom_killed": false
+  },
+  "ce_cases": [
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "引用实例不超过40": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "正文称“DPR [1, p.1] 采用密集向量检索，通过双编码器将问题和段落映射到低维向量空间，利用内积计算相似度，并构建所有段落的索引进行检索。”但证据ev-1和ev-2仅说明密集向量检索和双编码器框架，未提及“构建所有段落的索引”这一具体操作，该陈述缺乏原文支持。",
+                  "正文称“FiD [3, p.2] 沿用DPR的检索步骤”，但证据ev-20仅描述FiD的两步流程（先检索后生成），未明确说明其检索步骤“沿用DPR”，该归因无原文依据。",
+                  "正文称“Self-RAG [5, p.1][5, p.3] 引入自适应检索，模型通过自反思令牌决定何时需要检索”，但证据ev-31和ev-35仅提及“adaptive retrieval”和“on-demand retrieval”，未具体说明“自反思令牌决定何时需要检索”这一机制，该细节缺乏直接引用支持。"
+                ]
+              }
+            },
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "正文称“DPR [1, p.1] 采用密集向量检索，通过双编码器将问题和段落映射到低维向量空间，利用内积计算相似度，并构建所有段落的索引进行检索。”但证据ev-1和ev-2仅说明密集向量检索和双编码器框架，未提及“构建所有段落的索引”这一具体操作，该陈述缺乏原文支持。; 正文称“FiD [3, p.2] 沿用DPR的检索步骤”，但证据ev-20仅描述FiD的两步流程（先检索后生成），未明确说明其检索步骤“沿用DPR”，该归因无原文依据。; 正文称“Self-RAG [5, p.1][5, p.3] 引入自适应检索，模型通过自反思令牌决定何时需要检索”，但证据ev-31和ev-35仅提及“adaptive retrieval”和“on-demand retrieval”，未具体说明“自反思令牌决定何时需要检索”这一机制，该细节缺乏直接引用支持。"
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": []
+              }
+            }
+          ]
+        }
+      ],
+      "body_characters": 2104,
+      "citation_instances": 30,
+      "label": "C-01-five-real-papers",
+      "case_id": "C-01",
+      "function": "Survey",
+      "http_status": 200,
+      "seconds": 105.21,
+      "transport_error": null,
+      "llm_calls": 4,
+      "total_tokens": 27171,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 4,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 25235,
+        "total_output_tokens": 1936,
+        "tool_call_count": 43,
+        "unique_tool_count": 10,
+        "parallel_tool_count": 3,
+        "session_id": "fe90eddd9d3d4d4782d349e331de67dc",
+        "trace_id": "00000000000000000000000048000001",
+        "llm_calls": 4,
+        "total_tokens": 27171,
+        "duration_ms": 105206.547746,
+        "tools_used": [
+          "build_authorized_index",
+          "chunk_pages",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "引用实例不超过40": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "local_validation": true,
+          "delivered_attempt": 2,
+          "model_issues": [
+            "正文称“DPR [1, p.1] 采用稠密表示进行检索，通过双编码器框架将问题和段落映射到稠密向量空间，其稠密表示可替代传统稀疏向量（如TF-IDF或BM25）[E:ev-1][E:ev-2]。”但ev-1和ev-2仅说明稠密表示可替代稀疏方法，未明确断言DPR“采用稠密表示进行检索”或“通过双编码器框架将问题和段落映射到稠密向量空间”这一具体方法描述，且未提供DPR论文中明确声称“采用稠密表示进行检索”的原文。该陈述缺乏直接证据支持。; 正文称“DPR未发现重叠段落切分相比非重叠版本的优势[E:ev-4]。”但ev-4仅提到“we do not find advantageous compared to the non-overlapping version”，未明确说明DPR“未发现重叠段落切分相比非重叠版本的优势”这一具体表述，且未提供DPR论文中明确声称“未发现重叠段落切分相比非重叠版本的优势”的原文。该陈述缺乏直接证据支持。; 正文称“RAG [2, p.1] 模型包含参数化记忆（预训练的seq2seq模型）和非参数化记忆（维基百科的稠密向量索引）[E:ev-9]”，但ev-9仅提到“parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia”，未明确说明RAG“模型包含参数化记忆（预训练的seq2seq模型）和非参数化记忆（维基百科的稠密向量索引）”这一具体表述，且未提供RAG论文中明确声称“模型包含”的原文。该陈述缺乏直接证据支持。"
+          ],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "正文称“DPR [1, p.1] 采用稠密段落检索（Dense Passage Retrieval），通过双编码器框架将问题和段落映射到稠密向量空间，以语义相似度替代传统稀疏向量（如TF-IDF或BM25）的关键词匹配。”但source_quotes中ev-1和ev-2仅说明稠密表示可替代稀疏方法，未明确断言DPR“以语义相似度替代传统稀疏向量（如TF-IDF或BM25）的关键词匹配”这一具体表述，且未提供DPR论文中明确声称“替代”的原文。该陈述缺乏直接证据支持。",
+                  "正文称“DPR使用非重叠段落切分，未发现重叠版本的优势[1, p.4]。”但source_quotes中ev-4仅提到“we do not find advantageous compared to the non-overlapping version”，未明确说明DPR“使用非重叠段落切分”作为其方法的一部分，且未提供DPR论文中明确采用非重叠切分的原文。该陈述缺乏直接证据支持。",
+                  "正文称“RAG [2, p.1] 将预训练的seq2seq模型（参数化记忆）与稠密向量索引（非参数化记忆）结合”，但source_quotes中ev-9仅提到“parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia”，未明确说明RAG“将预训练的seq2seq模型（参数化记忆）与稠密向量索引（非参数化记忆）结合”这一具体表述，且未提供RAG论文中明确声称“结合”的原文。该陈述缺乏直接证据支持。"
+                ]
+              }
+            },
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "正文称“DPR [1, p.1] 采用稠密段落检索（Dense Passage Retrieval），通过双编码器框架将问题和段落映射到稠密向量空间，以语义相似度替代传统稀疏向量（如TF-IDF或BM25）的关键词匹配。”但source_quotes中ev-1和ev-2仅说明稠密表示可替代稀疏方法，未明确断言DPR“以语义相似度替代传统稀疏向量（如TF-IDF或BM25）的关键词匹配”这一具体表述，且未提供DPR论文中明确声称“替代”的原文。该陈述缺乏直接证据支持。; 正文称“DPR使用非重叠段落切分，未发现重叠版本的优势[1, p.4]。”但source_quotes中ev-4仅提到“we do not find advantageous compared to the non-overlapping version”，未明确说明DPR“使用非重叠段落切分”作为其方法的一部分，且未提供DPR论文中明确采用非重叠切分的原文。该陈述缺乏直接证据支持。; 正文称“RAG [2, p.1] 将预训练的seq2seq模型（参数化记忆）与稠密向量索引（非参数化记忆）结合”，但source_quotes中ev-9仅提到“parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia”，未明确说明RAG“将预训练的seq2seq模型（参数化记忆）与稠密向量索引（非参数化记忆）结合”这一具体表述，且未提供RAG论文中明确声称“结合”的原文。该陈述缺乏直接证据支持。"
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "正文称“DPR [1, p.1] 采用稠密表示进行检索，通过双编码器框架将问题和段落映射到稠密向量空间，其稠密表示可替代传统稀疏向量（如TF-IDF或BM25）[E:ev-1][E:ev-2]。”但ev-1和ev-2仅说明稠密表示可替代稀疏方法，未明确断言DPR“采用稠密表示进行检索”或“通过双编码器框架将问题和段落映射到稠密向量空间”这一具体方法描述，且未提供DPR论文中明确声称“采用稠密表示进行检索”的原文。该陈述缺乏直接证据支持。",
+                  "正文称“DPR未发现重叠段落切分相比非重叠版本的优势[E:ev-4]。”但ev-4仅提到“we do not find advantageous compared to the non-overlapping version”，未明确说明DPR“未发现重叠段落切分相比非重叠版本的优势”这一具体表述，且未提供DPR论文中明确声称“未发现重叠段落切分相比非重叠版本的优势”的原文。该陈述缺乏直接证据支持。",
+                  "正文称“RAG [2, p.1] 模型包含参数化记忆（预训练的seq2seq模型）和非参数化记忆（维基百科的稠密向量索引）[E:ev-9]”，但ev-9仅提到“parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia”，未明确说明RAG“模型包含参数化记忆（预训练的seq2seq模型）和非参数化记忆（维基百科的稠密向量索引）”这一具体表述，且未提供RAG论文中明确声称“模型包含”的原文。该陈述缺乏直接证据支持。"
+                ]
+              }
+            },
+            {
+              "attempt": 2,
+              "stage": "validation",
+              "issues": [
+                "正文称“DPR [1, p.1] 采用稠密表示进行检索，通过双编码器框架将问题和段落映射到稠密向量空间，其稠密表示可替代传统稀疏向量（如TF-IDF或BM25）[E:ev-1][E:ev-2]。”但ev-1和ev-2仅说明稠密表示可替代稀疏方法，未明确断言DPR“采用稠密表示进行检索”或“通过双编码器框架将问题和段落映射到稠密向量空间”这一具体方法描述，且未提供DPR论文中明确声称“采用稠密表示进行检索”的原文。该陈述缺乏直接证据支持。; 正文称“DPR未发现重叠段落切分相比非重叠版本的优势[E:ev-4]。”但ev-4仅提到“we do not find advantageous compared to the non-overlapping version”，未明确说明DPR“未发现重叠段落切分相比非重叠版本的优势”这一具体表述，且未提供DPR论文中明确声称“未发现重叠段落切分相比非重叠版本的优势”的原文。该陈述缺乏直接证据支持。; 正文称“RAG [2, p.1] 模型包含参数化记忆（预训练的seq2seq模型）和非参数化记忆（维基百科的稠密向量索引）[E:ev-9]”，但ev-9仅提到“parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia”，未明确说明RAG“模型包含参数化记忆（预训练的seq2seq模型）和非参数化记忆（维基百科的稠密向量索引）”这一具体表述，且未提供RAG论文中明确声称“模型包含”的原文。该陈述缺乏直接证据支持。"
+              ]
+            }
+          ]
+        }
+      ],
+      "body_characters": 2217,
+      "citation_instances": 28,
+      "label": "C-03-five-real-papers",
+      "case_id": "C-03",
+      "function": "Survey",
+      "http_status": 200,
+      "seconds": 132.448,
+      "transport_error": null,
+      "llm_calls": 4,
+      "total_tokens": 26243,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 4,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 23472,
+        "total_output_tokens": 2771,
+        "tool_call_count": 33,
+        "unique_tool_count": 8,
+        "parallel_tool_count": 3,
+        "session_id": "ba5c295830e2489aa626c2875feb3cfe",
+        "trace_id": "00000000000000000000000048000002",
+        "llm_calls": 4,
+        "total_tokens": 26243,
+        "duration_ms": 132444.482838,
+        "tools_used": [
+          "build_authorized_index",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "local_validation": true,
+          "delivered_attempt": 2,
+          "model_issues": [
+            "原文“RAG-Sequence使用同一文档预测每个目标token[1, p.3]”中，证据[1, p.3]原文为“the model uses the same document to predict each target token”，但未说明该文档是否来自检索结果，且正文未区分“同一文档”与“同一检索文档”的差异，属于事实陈述不精确。; 原文“TriviaQA（DPR使用的Web Development split[1, p.18]）”中，证据[1, p.18]仅说明该split是DPR使用的测试集，但未提供该split的具体样本数或标注属性，且正文未明确该split的规模或划分单位，属于事实陈述不完整。; 原文“训练/验证/测试 = 80%/10%/10%，按问题ID分组（防泄漏）”中，该划分比例和分组单位属于本方案拟议实验条件，但正文未明确标注为“拟议”或“待验证”，可能被误读为论文实测值，属于事实陈述不明确。"
+          ],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "原文“RAG-Sequence使用同一文档预测所有token[1, p.3]”中，证据[1, p.3]仅说明RAG-Sequence使用同一文档预测每个目标token，未提及“所有token”，且原文未区分“所有token”与“每个目标token”的差异，属于事实陈述不精确。",
+                  "原文“Self-RAG的反思令牌仅评估整体检索必要性[2, p.2]”中，证据[2, p.2]描述反思令牌用于控制检索与生成质量，但未明确限定为“仅评估整体检索必要性”，该陈述缺乏直接证据支持。",
+                  "原文“TriviaQA（Web Development split[1, p.18]）”中，证据[1, p.18]说明TriviaQA Web Development split是DPR使用的测试集，但未明确该split为“Web Development split”的完整名称或规模，且原文未提供该split的具体样本数或标注属性，属于事实陈述不完整。"
+                ]
+              }
+            },
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "原文“RAG-Sequence使用同一文档预测所有token[1, p.3]”中，证据[1, p.3]仅说明RAG-Sequence使用同一文档预测每个目标token，未提及“所有token”，且原文未区分“所有token”与“每个目标token”的差异，属于事实陈述不精确。; 原文“Self-RAG的反思令牌仅评估整体检索必要性[2, p.2]”中，证据[2, p.2]描述反思令牌用于控制检索与生成质量，但未明确限定为“仅评估整体检索必要性”，该陈述缺乏直接证据支持。; 原文“TriviaQA（Web Development split[1, p.18]）”中，证据[1, p.18]说明TriviaQA Web Development split是DPR使用的测试集，但未明确该split为“Web Development split”的完整名称或规模，且原文未提供该split的具体样本数或标注属性，属于事实陈述不完整。"
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "原文“RAG-Sequence使用同一文档预测每个目标token[1, p.3]”中，证据[1, p.3]原文为“the model uses the same document to predict each target token”，但未说明该文档是否来自检索结果，且正文未区分“同一文档”与“同一检索文档”的差异，属于事实陈述不精确。",
+                  "原文“TriviaQA（DPR使用的Web Development split[1, p.18]）”中，证据[1, p.18]仅说明该split是DPR使用的测试集，但未提供该split的具体样本数或标注属性，且正文未明确该split的规模或划分单位，属于事实陈述不完整。",
+                  "原文“训练/验证/测试 = 80%/10%/10%，按问题ID分组（防泄漏）”中，该划分比例和分组单位属于本方案拟议实验条件，但正文未明确标注为“拟议”或“待验证”，可能被误读为论文实测值，属于事实陈述不明确。"
+                ]
+              }
+            },
+            {
+              "attempt": 2,
+              "stage": "validation",
+              "issues": [
+                "原文“RAG-Sequence使用同一文档预测每个目标token[1, p.3]”中，证据[1, p.3]原文为“the model uses the same document to predict each target token”，但未说明该文档是否来自检索结果，且正文未区分“同一文档”与“同一检索文档”的差异，属于事实陈述不精确。; 原文“TriviaQA（DPR使用的Web Development split[1, p.18]）”中，证据[1, p.18]仅说明该split是DPR使用的测试集，但未提供该split的具体样本数或标注属性，且正文未明确该split的规模或划分单位，属于事实陈述不完整。; 原文“训练/验证/测试 = 80%/10%/10%，按问题ID分组（防泄漏）”中，该划分比例和分组单位属于本方案拟议实验条件，但正文未明确标注为“拟议”或“待验证”，可能被误读为论文实测值，属于事实陈述不明确。"
+              ]
+            }
+          ]
+        }
+      ],
+      "body_characters": 2359,
+      "citation_instances": 15,
+      "label": "E-01-two-real-papers",
+      "case_id": "E-01",
+      "function": "Idea",
+      "http_status": 200,
+      "seconds": 111.958,
+      "transport_error": null,
+      "llm_calls": 4,
+      "total_tokens": 18700,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 4,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 16375,
+        "total_output_tokens": 2325,
+        "tool_call_count": 18,
+        "unique_tool_count": 8,
+        "parallel_tool_count": 3,
+        "session_id": "c0979fcc940444219d3b1b75e2c2efec",
+        "trace_id": "00000000000000000000000048000003",
+        "llm_calls": 4,
+        "total_tokens": 18700,
+        "duration_ms": 111955.662693,
+        "tools_used": [
+          "build_authorized_index",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "local_validation": true,
+          "delivered_attempt": 2,
+          "model_issues": [
+            "原文“DPR使用密集编码器将段落映射为稠密向量[1, p.2]”中，证据ev-7仅说明DPR使用密集编码器将段落映射为向量，未提及“稠密向量”一词，且引用页码p.2与证据内容不完全匹配。; 原文“NaturalQuestions[2, p.3]的开放域版本和TriviaQA”中，TriviaQA未提供任何引用证据支持其数据集名称或版本，证据ev-12仅提及TriviaQA基准，未描述其开放域版本或获取方式。; 原文“NaturalQuestions和TriviaQA的官方划分”中，未提供任何证据支持NaturalQuestions和TriviaQA的官方划分方式或具体数字，属于无证据的断言。"
+          ],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "原文“NaturalQuestions[2, p.3]和TriviaQA[2, p.4]的开放域版本”中，TriviaQA的引用[2, p.4]在证据中对应的是FiD论文第4页的“Comparison to state-of-the-art”段落，该处并未描述TriviaQA的开放域版本或数据集细节；FiD论文第3页（ev-14）仅描述了NaturalQuestions的开放域版本获取方式，未提及TriviaQA的开放域版本。因此，该句对TriviaQA开放域版本的引用缺乏证据支持。",
+                  "原文“NaturalQuestions：约307K/8K/8K；TriviaQA：约78K/8K/11K”中的具体样本数字（307K、8K、8K、78K、11K）在提供的证据中没有任何来源支持，属于无证据的数值断言。",
+                  "原文“DPR使用双编码器将问题和段落映射到稠密向量[1, p.2]”中，证据ev-7（DPR第2页）仅说明DPR使用密集编码器将段落映射为向量，未明确提及“双编码器”结构或问题编码；证据ev-1和ev-2（DPR第1页）虽提及“dual-encoder framework”，但未指定页码为p.2。因此，该句的引用[1, p.2]与证据内容不完全匹配。"
+                ]
+              }
+            },
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "原文“NaturalQuestions[2, p.3]和TriviaQA[2, p.4]的开放域版本”中，TriviaQA的引用[2, p.4]在证据中对应的是FiD论文第4页的“Comparison to state-of-the-art”段落，该处并未描述TriviaQA的开放域版本或数据集细节；FiD论文第3页（ev-14）仅描述了NaturalQuestions的开放域版本获取方式，未提及TriviaQA的开放域版本。因此，该句对TriviaQA开放域版本的引用缺乏证据支持。; 原文“NaturalQuestions：约307K/8K/8K；TriviaQA：约78K/8K/11K”中的具体样本数字（307K、8K、8K、78K、11K）在提供的证据中没有任何来源支持，属于无证据的数值断言。; 原文“DPR使用双编码器将问题和段落映射到稠密向量[1, p.2]”中，证据ev-7（DPR第2页）仅说明DPR使用密集编码器将段落映射为向量，未明确提及“双编码器”结构或问题编码；证据ev-1和ev-2（DPR第1页）虽提及“dual-encoder framework”，但未指定页码为p.2。因此，该句的引用[1, p.2]与证据内容不完全匹配。"
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "原文“DPR使用密集编码器将段落映射为稠密向量[1, p.2]”中，证据ev-7仅说明DPR使用密集编码器将段落映射为向量，未提及“稠密向量”一词，且引用页码p.2与证据内容不完全匹配。",
+                  "原文“NaturalQuestions[2, p.3]的开放域版本和TriviaQA”中，TriviaQA未提供任何引用证据支持其数据集名称或版本，证据ev-12仅提及TriviaQA基准，未描述其开放域版本或获取方式。",
+                  "原文“NaturalQuestions和TriviaQA的官方划分”中，未提供任何证据支持NaturalQuestions和TriviaQA的官方划分方式或具体数字，属于无证据的断言。"
+                ]
+              }
+            },
+            {
+              "attempt": 2,
+              "stage": "validation",
+              "issues": [
+                "原文“DPR使用密集编码器将段落映射为稠密向量[1, p.2]”中，证据ev-7仅说明DPR使用密集编码器将段落映射为向量，未提及“稠密向量”一词，且引用页码p.2与证据内容不完全匹配。; 原文“NaturalQuestions[2, p.3]的开放域版本和TriviaQA”中，TriviaQA未提供任何引用证据支持其数据集名称或版本，证据ev-12仅提及TriviaQA基准，未描述其开放域版本或获取方式。; 原文“NaturalQuestions和TriviaQA的官方划分”中，未提供任何证据支持NaturalQuestions和TriviaQA的官方划分方式或具体数字，属于无证据的断言。"
+              ]
+            }
+          ]
+        }
+      ],
+      "body_characters": 2985,
+      "citation_instances": 16,
+      "label": "E-02-two-real-papers",
+      "case_id": "E-02",
+      "function": "Idea",
+      "http_status": 200,
+      "seconds": 130.718,
+      "transport_error": null,
+      "llm_calls": 4,
+      "total_tokens": 19732,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 4,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 17059,
+        "total_output_tokens": 2673,
+        "tool_call_count": 18,
+        "unique_tool_count": 8,
+        "parallel_tool_count": 3,
+        "session_id": "dcf14a951d7b484388d33ad89333083d",
+        "trace_id": "00000000000000000000000048000004",
+        "llm_calls": 4,
+        "total_tokens": 19732,
+        "duration_ms": 130715.177482,
+        "tools_used": [
+          "build_authorized_index",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    }
+  ],
+  "d_source_cases": [
+    {
+      "case_id": "D-01",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:7a1d15d40f4e244e1d329102174f787fe8f18cf36914f7b423a9710d35f4bb7a",
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "20390ca80c755e4c3e87e15b340f48981cf3de92f276e31a31a57b9322c6df58",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": false,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            }
+          },
+          {
+            "attempt": 2,
+            "source_sha256": "e43a3dfa603664f168daa187c03f94f546ab8bb1e6e01ff061ab9c15e541af52",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            }
+          }
+        ],
+        "selected_attempt": 2,
+        "public_selftest_passed": true
+      },
+      "source_sha256": "e43a3dfa603664f168daa187c03f94f546ab8bb1e6e01ff061ab9c15e541af52",
+      "source_matches_current_response": true,
+      "seconds": 48.292,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 2266,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v19-source-first",
+          "requested_output_tokens": 6500,
+          "estimated_input_tokens": 3719,
+          "reserved_for_later": 0,
+          "seconds": 7.201
+        },
+        {
+          "stage": "d_source",
+          "tokens": 3282,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v19-source-first",
+          "requested_output_tokens": 6500,
+          "estimated_input_tokens": 3942,
+          "reserved_for_later": 0,
+          "seconds": 40.774
+        }
+      ]
+    },
+    {
+      "case_id": "D-02",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:7a1d15d40f4e244e1d329102174f787fe8f18cf36914f7b423a9710d35f4bb7a",
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "6c1c18c1c7bf7521ea1ae673e435c37a3995fbe0c670dab1695123531f22066e",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": false,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            }
+          },
+          {
+            "attempt": 2,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "D-02 selected config does not follow the public group-robust selection rule"
+          }
+        ],
+        "decision": "submit_complete_model_source_for_formal_evaluation",
+        "public_selftest_passed": true,
+        "selected_attempt": 1,
+        "source_sha256": "6c1c18c1c7bf7521ea1ae673e435c37a3995fbe0c670dab1695123531f22066e"
+      },
+      "source_sha256": "6c1c18c1c7bf7521ea1ae673e435c37a3995fbe0c670dab1695123531f22066e",
+      "source_matches_current_response": true,
+      "seconds": 109.467,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 4380,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v19-source-first",
+          "requested_output_tokens": 6500,
+          "estimated_input_tokens": 5664,
+          "reserved_for_later": 0,
+          "seconds": 36.746
+        },
+        {
+          "stage": "d_source",
+          "tokens": 6096,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v19-source-first",
+          "requested_output_tokens": 6500,
+          "estimated_input_tokens": 6935,
+          "reserved_for_later": 0,
+          "seconds": 72.343
+        }
+      ]
+    },
+    {
+      "case_id": "D-05",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:7a1d15d40f4e244e1d329102174f787fe8f18cf36914f7b423a9710d35f4bb7a",
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "1fae8ffb0942ad6a92031cf29bdc91fd2167ab5f291987e49f52ff4ed3bbed6d",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": false,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "simultaneous_public_arrivals",
+              "empty_public_jobs"
+            ]
+          },
+          {
+            "attempt": 2,
+            "source_sha256": "864f359c839e788d77764580b8d319e346d9fbc5cb4f772e7b48aabf4653e274",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "simultaneous_public_arrivals",
+              "empty_public_jobs"
+            ]
+          }
+        ],
+        "selected_attempt": 2,
+        "public_selftest_passed": true
+      },
+      "source_sha256": "864f359c839e788d77764580b8d319e346d9fbc5cb4f772e7b48aabf4653e274",
+      "source_matches_current_response": true,
+      "seconds": 115.902,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 3632,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v19-source-first",
+          "requested_output_tokens": 6500,
+          "estimated_input_tokens": 3084,
+          "reserved_for_later": 0,
+          "seconds": 60.483
+        },
+        {
+          "stage": "d_source",
+          "tokens": 4976,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v19-source-first",
+          "requested_output_tokens": 6500,
+          "estimated_input_tokens": 6152,
+          "reserved_for_later": 0,
+          "seconds": 54.86
+        }
+      ]
+    }
+  ],
+  "public_worker_checks": [
+    {
+      "case_id": "D-01",
+      "request": "公开样例请求/D-01.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": true
+      }
+    },
+    {
+      "case_id": "D-01",
+      "request": "公开样例请求/D-01/不均衡-重复词-标点.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": true
+      }
+    },
+    {
+      "case_id": "D-01",
+      "request": "公开样例请求/D-01/均衡-空文本-未知词.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": true
+      }
+    },
+    {
+      "case_id": "D-02",
+      "request": "公开样例请求/D-02.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": false
+      }
+    },
+    {
+      "case_id": "D-02",
+      "request": "公开样例请求/D-02/rank-default.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": "default rank completeness and ordering"
+    },
+    {
+      "case_id": "D-02",
+      "request": "公开样例请求/D-02/空字段-重复未知词-不等组.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": false
+      }
+    },
+    {
+      "case_id": "D-05",
+      "request": "公开样例请求/D-05.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": true
+      }
+    },
+    {
+      "case_id": "D-05",
+      "request": "公开样例请求/D-05/并发预留.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": true
+      }
+    },
+    {
+      "case_id": "D-05",
+      "request": "公开样例请求/D-05/拒绝后同服务器重试.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": true
+      }
+    },
+    {
+      "case_id": "D-05",
+      "request": "公开样例请求/D-05/空任务与零服务流.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": true
+      }
+    },
+    {
+      "case_id": "D-05",
+      "request": "公开样例请求/D-05/空闲间隔与流切换.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": true
+      }
+    },
+    {
+      "case_id": "D-05",
+      "request": "公开样例请求/D-05/窗口恰好与超窗.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": true
+      }
+    },
+    {
+      "case_id": "D-05",
+      "request": "公开样例请求/D-05/过期与同时到达.json",
+      "returncode": 0,
+      "python": "3.9",
+      "public_worker_only": true,
+      "valid_internal_envelope": true,
+      "invariants": {
+        "status": "passed",
+        "scope": "public_sample_structure_and_invariants",
+        "candidate_present": true
+      }
+    }
+  ],
+  "material_comparison": {
+    "old": "科研助手赛题材料\\research-experiments-20261020-source-v1",
+    "new": "科研助手赛题材料\\research-experiments-20261020-source-v1-local(新）",
+    "counts": {
+      "line_endings_only": 12,
+      "identical": 37,
+      "changed": 6
+    },
+    "files": [
+      {
+        "file": "Agent适配与源码来源要求.md",
+        "status": "line_endings_only",
+        "old_sha256": "fff7bf2497e8a8d9a9d154f2eba55dc35bd12c3e6b8544774137d861c543fc4c",
+        "new_sha256": "b194560463419a01bf1fe5b89e060adf89ac9376e19bec38edd453c5858af450"
+      },
+      {
+        "file": "D-01/artifacts.py",
+        "status": "identical",
+        "old_sha256": "a1356f56b78f67dec74f052770b2dea56ee2a92b995988170363ba55db90c9b3",
+        "new_sha256": "a1356f56b78f67dec74f052770b2dea56ee2a92b995988170363ba55db90c9b3"
+      },
+      {
+        "file": "D-01/experiment.agent.json",
+        "status": "line_endings_only",
+        "old_sha256": "86166de7acb1e8c812ca028841115a076d514622f63278d65dd173b63bf678b4",
+        "new_sha256": "44b4dfa69d6555b9521e70a29188df4582320bb7311e468dbd660a8a60c245fe"
+      },
+      {
+        "file": "D-01/experiment.py",
+        "status": "line_endings_only",
+        "old_sha256": "8d31d6c4d099c054b17c9599d5cbad6b5fa4f1cd9091123a79f8b0059f0495a5",
+        "new_sha256": "6e3830ac54923873541111d8328563c008bb8344ea83845a5b6b597e38c94dca"
+      },
+      {
+        "file": "D-01/font.py",
+        "status": "identical",
+        "old_sha256": "667c81973c1ebf2f96d14b30423bb764518341c23f19efe34215bc10b4611782",
+        "new_sha256": "667c81973c1ebf2f96d14b30423bb764518341c23f19efe34215bc10b4611782"
+      },
+      {
+        "file": "D-01/implementation.py",
+        "status": "identical",
+        "old_sha256": "3b2188faa77c4fbdbf0346dfe7757c013cd62dec11bcd2a0dd3994457e071537",
+        "new_sha256": "3b2188faa77c4fbdbf0346dfe7757c013cd62dec11bcd2a0dd3994457e071537"
+      },
+      {
+        "file": "D-01/manifest.json",
+        "status": "identical",
+        "old_sha256": "a7059f6e5feb4de921b7d94109b44b0fe46d581c64101b30b3061d6b1d75dd90",
+        "new_sha256": "a7059f6e5feb4de921b7d94109b44b0fe46d581c64101b30b3061d6b1d75dd90"
+      },
+      {
+        "file": "D-01/method.md",
+        "status": "identical",
+        "old_sha256": "ec0fb4012c7cf450ac3c4f887a3759d61b407875d2a57c9669dbd4690e85e369",
+        "new_sha256": "ec0fb4012c7cf450ac3c4f887a3759d61b407875d2a57c9669dbd4690e85e369"
+      },
+      {
+        "file": "D-01/protocol.json",
+        "status": "identical",
+        "old_sha256": "db47f63e721d1d8afcc94696cf3f55dc1effc46ee010a20b4acab5380721a27f",
+        "new_sha256": "db47f63e721d1d8afcc94696cf3f55dc1effc46ee010a20b4acab5380721a27f"
+      },
+      {
+        "file": "D-01/sample.json",
+        "status": "line_endings_only",
+        "old_sha256": "14399045230359a0a76172e9e6628e69f3cd3abd3064bb63ade8c345a620e954",
+        "new_sha256": "785095de78b08c5899a2ea77e639e5697abbfcbf2b75fd7f6d9d204985ee1d71"
+      },
+      {
+        "file": "D-01/worker.py",
+        "status": "identical",
+        "old_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "new_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403"
+      },
+      {
+        "file": "D-02/artifacts.py",
+        "status": "identical",
+        "old_sha256": "a1356f56b78f67dec74f052770b2dea56ee2a92b995988170363ba55db90c9b3",
+        "new_sha256": "a1356f56b78f67dec74f052770b2dea56ee2a92b995988170363ba55db90c9b3"
+      },
+      {
+        "file": "D-02/experiment.agent.json",
+        "status": "line_endings_only",
+        "old_sha256": "f8ee5b1d544957fbeab2b0dc54860bccc4bb6fe7b70b9f151de10b99f3523491",
+        "new_sha256": "f9f21f2dd9f21098c5dc95d03971345d2ea5726527becc2d9bc22f1a8589fea3"
+      },
+      {
+        "file": "D-02/experiment.py",
+        "status": "line_endings_only",
+        "old_sha256": "5c9ad658e98e489115888a1e3c0db625f0a8c1fdf98fc8e58540ee7e1f0e37ee",
+        "new_sha256": "fb903c9da32e4e81623a1d05fbf7fccebf6dcb1f105daeb2887b8ac61ee05bf1"
+      },
+      {
+        "file": "D-02/font.py",
+        "status": "identical",
+        "old_sha256": "667c81973c1ebf2f96d14b30423bb764518341c23f19efe34215bc10b4611782",
+        "new_sha256": "667c81973c1ebf2f96d14b30423bb764518341c23f19efe34215bc10b4611782"
+      },
+      {
+        "file": "D-02/implementation.py",
+        "status": "identical",
+        "old_sha256": "3b2188faa77c4fbdbf0346dfe7757c013cd62dec11bcd2a0dd3994457e071537",
+        "new_sha256": "3b2188faa77c4fbdbf0346dfe7757c013cd62dec11bcd2a0dd3994457e071537"
+      },
+      {
+        "file": "D-02/manifest.json",
+        "status": "identical",
+        "old_sha256": "6707672d669e43d7994aeb04a778e5ff346e2e3068d6d904c9240a35bc7d8dfa",
+        "new_sha256": "6707672d669e43d7994aeb04a778e5ff346e2e3068d6d904c9240a35bc7d8dfa"
+      },
+      {
+        "file": "D-02/method.md",
+        "status": "identical",
+        "old_sha256": "86d56abd424be51cddbe43a1cd8ebddf05b2621622669e23c573cdb3afbf06ef",
+        "new_sha256": "86d56abd424be51cddbe43a1cd8ebddf05b2621622669e23c573cdb3afbf06ef"
+      },
+      {
+        "file": "D-02/protocol.json",
+        "status": "identical",
+        "old_sha256": "a2d34db5bc7f4be1d67383d7ea9c485489f3f3d4819a4976c11908713acc9cfe",
+        "new_sha256": "a2d34db5bc7f4be1d67383d7ea9c485489f3f3d4819a4976c11908713acc9cfe"
+      },
+      {
+        "file": "D-02/sample.json",
+        "status": "identical",
+        "old_sha256": "77d6816b8c434b3fe3dec60d486bdb2a7b284b3b60cb7fdf0e6423d2a9982cde",
+        "new_sha256": "77d6816b8c434b3fe3dec60d486bdb2a7b284b3b60cb7fdf0e6423d2a9982cde"
+      },
+      {
+        "file": "D-02/worker.py",
+        "status": "identical",
+        "old_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "new_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403"
+      },
+      {
+        "file": "D-05/artifacts.py",
+        "status": "identical",
+        "old_sha256": "a1356f56b78f67dec74f052770b2dea56ee2a92b995988170363ba55db90c9b3",
+        "new_sha256": "a1356f56b78f67dec74f052770b2dea56ee2a92b995988170363ba55db90c9b3"
+      },
+      {
+        "file": "D-05/experiment.agent.json",
+        "status": "line_endings_only",
+        "old_sha256": "0688898d6dc38f8ca0fb000b48349f196fd3a25ae22710eb2bfd0229a5950e04",
+        "new_sha256": "410ed514ca3a5340c9f384392cff19a1f896b74bc20b86199c0f80b2cbcd84a4"
+      },
+      {
+        "file": "D-05/experiment.py",
+        "status": "line_endings_only",
+        "old_sha256": "1f7429acbc50d4c21806582947188c46fc7d95d9bb37aafa8e6f9d968e732a0a",
+        "new_sha256": "3770e1276bcffc294cfdb23a9d539fc97600196d359721ea2ecfdfac9161af7c"
+      },
+      {
+        "file": "D-05/font.py",
+        "status": "identical",
+        "old_sha256": "667c81973c1ebf2f96d14b30423bb764518341c23f19efe34215bc10b4611782",
+        "new_sha256": "667c81973c1ebf2f96d14b30423bb764518341c23f19efe34215bc10b4611782"
+      },
+      {
+        "file": "D-05/implementation.py",
+        "status": "identical",
+        "old_sha256": "3b2188faa77c4fbdbf0346dfe7757c013cd62dec11bcd2a0dd3994457e071537",
+        "new_sha256": "3b2188faa77c4fbdbf0346dfe7757c013cd62dec11bcd2a0dd3994457e071537"
+      },
+      {
+        "file": "D-05/manifest.json",
+        "status": "identical",
+        "old_sha256": "44c211b2dab0c1c03dd2ec6e4527694ed3276d90cd9e794626b6fef88f5a38ce",
+        "new_sha256": "44c211b2dab0c1c03dd2ec6e4527694ed3276d90cd9e794626b6fef88f5a38ce"
+      },
+      {
+        "file": "D-05/method.md",
+        "status": "identical",
+        "old_sha256": "2f65b4e6377f5931b35ad513f2cd2fd1e26120efee2a1c3f65ed1482b1f7f7cf",
+        "new_sha256": "2f65b4e6377f5931b35ad513f2cd2fd1e26120efee2a1c3f65ed1482b1f7f7cf"
+      },
+      {
+        "file": "D-05/protocol.json",
+        "status": "identical",
+        "old_sha256": "be9e991e5c950613fa0a566ce38bef00354c76d7a7419d4eb4a8a502ba990af5",
+        "new_sha256": "be9e991e5c950613fa0a566ce38bef00354c76d7a7419d4eb4a8a502ba990af5"
+      },
+      {
+        "file": "D-05/sample.json",
+        "status": "line_endings_only",
+        "old_sha256": "f4aa19a2d29ae87ab8152fb53eb3592bfddcebdc46085c84748e58b4515e6045",
+        "new_sha256": "334547c62b8fe63e498596af0b37d7358bf55e40bba11692f6513dc93b622395"
+      },
+      {
+        "file": "D-05/worker.py",
+        "status": "identical",
+        "old_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "new_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403"
+      },
+      {
+        "file": "D类实验要求.md",
+        "status": "line_endings_only",
+        "old_sha256": "5027cfd71ad989f47f931f0c6bfb4810a6fe61ea16dcc0d009e64ea32f4c5d5c",
+        "new_sha256": "ef1c1258bad1ee94bbcd8b163996616f0f68efc3344f5ac71fa95056224b4fe0"
+      },
+      {
+        "file": "D类数据与图表判分规则.md",
+        "status": "line_endings_only",
+        "old_sha256": "e170bef0aa72cb388168742d620c8ec5b77a7041aa9322a9ec912cdca32a0941",
+        "new_sha256": "ca7ff70a69cad4f6b0f2aa6a5f2337b2e01f42dc43ba33db06c9064d45aac498"
+      },
+      {
+        "file": "model_source.py",
+        "status": "line_endings_only",
+        "old_sha256": "70ce47c78b3664946035f87e8e4f8aaf31d1dafbde3c60c878475fd6d8df1f2d",
+        "new_sha256": "99a75084042ceea3a5fecef9411be2bad5b07756a80bc69ec3bb4d3ee0a6781c"
+      },
+      {
+        "file": "PACKAGE_MANIFEST.json",
+        "status": "changed",
+        "old_sha256": "ca366262873c0aa812e53c2a594dfabff1299e65db4ea1bd3d62fad49fe31e4c",
+        "new_sha256": "823d8783ef285bc6dc1d2f1a1754d68ca7eb839249e7c4d0bbb9eb092a10e6d1"
+      },
+      {
+        "file": "README.md",
+        "status": "changed",
+        "old_sha256": "29b351698db2952d871792c02afafa6d195417d91460133bc5a734eb6100de12",
+        "new_sha256": "38a48eb84a4b3b611a43e42a8befa8705c56de1b612420c5787a768fb4a0c0bf"
+      },
+      {
+        "file": "run_experiment.py",
+        "status": "identical",
+        "old_sha256": "309aa2a34dadcb628997cab5580e9744d878d0665fb5cb8ae909b684d753d57d",
+        "new_sha256": "309aa2a34dadcb628997cab5580e9744d878d0665fb5cb8ae909b684d753d57d"
+      },
+      {
+        "file": "公开样例请求/D-01/不均衡-重复词-标点.json",
+        "status": "identical",
+        "old_sha256": "e0d35396ea2190d39f244f38aa65d9eaf5eda4284d936aaa4b233df3d4dc952f",
+        "new_sha256": "e0d35396ea2190d39f244f38aa65d9eaf5eda4284d936aaa4b233df3d4dc952f"
+      },
+      {
+        "file": "公开样例请求/D-01/均衡-空文本-未知词.json",
+        "status": "identical",
+        "old_sha256": "903c29a3b0aaff99e1c67d4c0918ae402ef7a676917c042d2bab90ab20388d89",
+        "new_sha256": "903c29a3b0aaff99e1c67d4c0918ae402ef7a676917c042d2bab90ab20388d89"
+      },
+      {
+        "file": "公开样例请求/D-01.json",
+        "status": "identical",
+        "old_sha256": "03279d9c3c3aa19493a8ced4e4a24a1f5b56ec87bb6a348cb36c0402310381c2",
+        "new_sha256": "03279d9c3c3aa19493a8ced4e4a24a1f5b56ec87bb6a348cb36c0402310381c2"
+      },
+      {
+        "file": "公开样例请求/D-02/rank-default.json",
+        "status": "identical",
+        "old_sha256": "69acb87696fddef7bbeb72588161448d31bcbe9948f54362e57c87d6c0c9d93d",
+        "new_sha256": "69acb87696fddef7bbeb72588161448d31bcbe9948f54362e57c87d6c0c9d93d"
+      },
+      {
+        "file": "公开样例请求/D-02/空字段-重复未知词-不等组.json",
+        "status": "identical",
+        "old_sha256": "9abeac8825dd27e4efa12b324e1be9051ffa718ec0843af94cf7829d137ee67d",
+        "new_sha256": "9abeac8825dd27e4efa12b324e1be9051ffa718ec0843af94cf7829d137ee67d"
+      },
+      {
+        "file": "公开样例请求/D-02.json",
+        "status": "identical",
+        "old_sha256": "4bdd498e693039dd35c3b6233db0f77edd03d0ec4fda22c5348092ef62c76b80",
+        "new_sha256": "4bdd498e693039dd35c3b6233db0f77edd03d0ec4fda22c5348092ef62c76b80"
+      },
+      {
+        "file": "公开样例请求/D-05/并发预留.json",
+        "status": "identical",
+        "old_sha256": "6ed49c6f8d77bda405d33ffb0f6231af998e8a7bcdc950bc654c9115d22e02cd",
+        "new_sha256": "6ed49c6f8d77bda405d33ffb0f6231af998e8a7bcdc950bc654c9115d22e02cd"
+      },
+      {
+        "file": "公开样例请求/D-05/拒绝后同服务器重试.json",
+        "status": "identical",
+        "old_sha256": "237689ce42290f395439da172e8caa7f654ff4cbea64d5a3e7a0a90240845351",
+        "new_sha256": "237689ce42290f395439da172e8caa7f654ff4cbea64d5a3e7a0a90240845351"
+      },
+      {
+        "file": "公开样例请求/D-05/空任务与零服务流.json",
+        "status": "identical",
+        "old_sha256": "727be93a8ab074b516a0d4a4f5ec4b47cbb46ef456c077734bbbce1f5f662792",
+        "new_sha256": "727be93a8ab074b516a0d4a4f5ec4b47cbb46ef456c077734bbbce1f5f662792"
+      },
+      {
+        "file": "公开样例请求/D-05/空闲间隔与流切换.json",
+        "status": "identical",
+        "old_sha256": "2d06603f38ccc0f8e79c67ffa110c033d88ae666c731894abd634e99779e5233",
+        "new_sha256": "2d06603f38ccc0f8e79c67ffa110c033d88ae666c731894abd634e99779e5233"
+      },
+      {
+        "file": "公开样例请求/D-05/窗口恰好与超窗.json",
+        "status": "identical",
+        "old_sha256": "d8afd5a39752f3a5be93a88bacb2fe435584315b6e770e0968d59ec0f4da85d3",
+        "new_sha256": "d8afd5a39752f3a5be93a88bacb2fe435584315b6e770e0968d59ec0f4da85d3"
+      },
+      {
+        "file": "公开样例请求/D-05/过期与同时到达.json",
+        "status": "identical",
+        "old_sha256": "cc31b0f2144284875065a43b8355169c1ae81099ee355277e54cf7ab0a819bc1",
+        "new_sha256": "cc31b0f2144284875065a43b8355169c1ae81099ee355277e54cf7ab0a819bc1"
+      },
+      {
+        "file": "公开样例请求/D-05.json",
+        "status": "identical",
+        "old_sha256": "a662823f75f929582675ec7d77e6aad50a1aeba738ca5ed9ccd19fae36f8c49d",
+        "new_sha256": "a662823f75f929582675ec7d77e6aad50a1aeba738ca5ed9ccd19fae36f8c49d"
+      },
+      {
+        "file": "公开样例请求/README.md",
+        "status": "identical",
+        "old_sha256": "0300bbae86c6849378dc3ecc0eafd2368efb9b3bb4af72697b6c2d728be114a2",
+        "new_sha256": "0300bbae86c6849378dc3ecc0eafd2368efb9b3bb4af72697b6c2d728be114a2"
+      },
+      {
+        "file": "参赛流程与文档导航.md",
+        "status": "changed",
+        "old_sha256": "e3b388c1a83cd6891a600e99c5d0ff70f4d8a6b05b62804a36894bc43bdd3662",
+        "new_sha256": "65bafbf23cd29ba679118288e86729a2586fbe8b5d3fcc127c8b2adb7243efba"
+      },
+      {
+        "file": "报错对照与测试清单.md",
+        "status": "changed",
+        "old_sha256": "0f92331d6b12d01c543602d48bb025c0381fe404edd2b7e88146991f66cd0275",
+        "new_sha256": "d4e13eeabdad618d2929b274064c324448f41725f4f14a9d55fdcb6ba6c26770"
+      },
+      {
+        "file": "版本说明.md",
+        "status": "changed",
+        "old_sha256": "d80ddcb2e47485353237b55b790548b45923f0b9722f1997cd24bbb679289a7b",
+        "new_sha256": "be4bd72085b8875cc347638ec6c213c065e8690d58745e364fae9a60aedef037"
+      },
+      {
+        "file": "离线自测与平台运行指南.md",
+        "status": "changed",
+        "old_sha256": "098be09eedb9fdf2b33c677b6befcda026984e93cbe1360657a1b4e779575df2",
+        "new_sha256": "322a3fd6010cb91dd5719738b3c6c7a9933ee9034c3c084410f075508390ede5"
+      }
+    ],
+    "removed": []
+  },
+  "official_sdk_unchanged": true,
+  "official_hidden_questions": false,
+  "platform_admission_verified": false,
+  "limitations": [
+    "C/E格式和文件通过不代表事实或内容满分；语义自审意见保留在每题证据中。",
+    "D已验证公开输入及官方客户端调用流程；平台正式来源签发及隐藏题需重新评测。",
+    "D类候选生成失败或时间不足时使用本轮已验证真实基线，可能只获部分分。"
+  ]
+}
