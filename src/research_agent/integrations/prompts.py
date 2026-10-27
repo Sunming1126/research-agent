@@ -1,6 +1,6 @@
 """分阶段模型提示词；版本写入模型调用记录。"""
 
-PROMPT_VERSION = "20261026-v20-complete-survey-task"
+PROMPT_VERSION = "20261027-v21-b-retrieval"
 
 instructions = {
     "chat": "回答科研问题，输出 answer 和一个 clarifying_question。",
@@ -20,6 +20,11 @@ INSTRUCTIONS = instructions
 INSTRUCTIONS["retrieve"] += (
     "每项给decision=include/exclude/uncertain；include必须有当前chunk_ids支持。"
     "明确不相关项用exclude，证据不足用uncertain，不能写include再在理由中否定。")
+INSTRUCTIONS["retrieve"] += (
+    "先区分同一个目标的并列必需条件和多个独立目标：同一目标的必需条件须由本篇给定证据共同支持，"
+    "多个独立目标则逐个匹配，不要求每篇同时满足互斥方向。"
+    "理由指出本篇自己的方法或实验怎样满足关键条件，背景提及和相关工作不能冒充本篇贡献。"
+    "证据缺失只说明当前片段不足，不得推断整篇论文没有做；不得用文件名或词法高分代替正文判断。")
 INSTRUCTIONS["extract"] += (
     "每条额外给facet=method/data/metric/result/limitation/unspecified之一，"
     "role=own_work/related_work/unknown之一。claim保留quote中的限定范围、比较对象和不确定性，"

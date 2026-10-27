@@ -101,7 +101,13 @@ class ResearchRequestAdapter:
             status = start["status"]
             try:
                 envelope = json.loads(body)
-                metadata = envelope.get("metadata", {})
+                if not isinstance(envelope, dict):
+                    raise ValueError("runtime response must be a JSON object")
+                metadata = envelope.get("metadata") or {}
+                if not isinstance(metadata, dict):
+                    raise ValueError("runtime metadata must be a JSON object")
+                if status == 200 and envelope.get("status") in {"success", "error", "timeout"} and not isinstance(envelope.get("output"), dict):
+                    raise ValueError("runtime output must be a JSON object")
                 if status == 200 and envelope.get("status") in {"success", "error", "timeout"}:
                     # 只复制 SDK 实际给出的值，不生成/冒充追踪标识。
                     for name in ("trace_id", "session_id"):

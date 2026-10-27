@@ -15,7 +15,7 @@ from .dispatch import load_dispatch
 from .dispatch_plan import verify_current_assignment
 from .models import CaseContext, Artifact
 from .session import CaseSession, checkpoint, current_session
-from .b_submission import publish_b, failure_submission
+from .b_submission import B_REQUEST, publish_b, failure_submission
 from .utils import confined, write_json, read_json, atomic_text, sha256_file
 from ..contracts.validation import validate_result
 from ..integrations.instrumentation import tool
@@ -35,20 +35,36 @@ class ResearchAgentEngine:
 
     async def solve(self, payload):
         cancelled = threading.Event()
+        request = None
+        if not (isinstance(payload, dict) and payload.get("dispatch") is True):
+            case = CaseContext.from_dict(payload)
+            # 入口时计时，线程池排队时间也属于本题；线程与外层取消共享同一生命周期。
+            request = CaseSession(case.case_id, self._case_timeout(payload), cancelled=cancelled)
+            slot = B_REQUEST.get()
+            if slot is not None:
+                slot["lifecycle"] = request
         try:
-            return await asyncio.to_thread(self.solve_sync, payload, cancelled)
+            return await asyncio.to_thread(self.solve_sync, payload, cancelled, request)
         except asyncio.CancelledError:
-            cancelled.set()
-            if isinstance(payload, dict) and payload.get('function') == 'Literature_Retrieval':
-                failure_submission(self.settings, CaseContext.from_dict(payload), 'TimeoutError')
+            if request:
+                request.cancel()
+            else:
+                cancelled.set()
+            # 不能在执行锁之外发布失败答卷：排队中的取消没有当前题产物所有权。
             raise
 
-    def solve_sync(self, payload, cancelled=None):
+    def solve_sync(self, payload, cancelled=None, request=None):
         # 实验共享单 CPU 资源；串行执行可避免并发请求覆盖产物。
         cancelled = cancelled or threading.Event()
-        received_at = time.monotonic()
+        received_at = request.started_at if request else time.monotonic()
         dispatch = isinstance(payload, dict) and payload.get("dispatch") is True
         timeout = self._case_timeout(payload) if not dispatch else None
+        if not dispatch and request is None:
+            request = CaseSession(CaseContext.from_dict(payload).case_id, timeout,
+                                  cancelled=cancelled, started_at=received_at)
+            slot = B_REQUEST.get()
+            if slot is not None:
+                slot["lifecycle"] = request
         while not self.lock.acquire(timeout=.1):
             if cancelled.is_set() or (timeout and time.monotonic() - received_at >= timeout):
                 raise TimeoutError("case cancelled or expired while queued")
@@ -56,7 +72,7 @@ class ResearchAgentEngine:
             if isinstance(payload, dict) and payload.get("dispatch") is True:
                 return self.run_dispatch(cancelled)
             try:
-                return self._solve_one(payload, cancelled, received_at)
+                return self._solve_one(payload, cancelled, received_at, request)
             except Exception as exc:
                 # 派题核验、实验目录等前置失败也必须留下本队诊断，不能只剩SDK错误类。
                 case = CaseContext.from_dict(payload)
@@ -69,14 +85,14 @@ class ResearchAgentEngine:
                 except (OSError, ValueError):
                     logging.getLogger(__name__).error("could not save request failure diagnostic")
                 if case.function == 'Literature_Retrieval':
-                    self._save_b_failure(case, type(exc).__name__)
+                    self._save_b_failure(case, type(exc).__name__, request)
                 raise
         finally:
             self.lock.release()
 
     @tool(name='save_b_failure_and_readback')
-    def _save_b_failure(self, case, error_type):
-        return failure_submission(self.settings, case, error_type)
+    def _save_b_failure(self, case, error_type, request=None):
+        return failure_submission(self.settings, case, error_type, session=request)
 
     def _case_timeout(self, payload):
         limit = self.settings.case_timeout
@@ -87,11 +103,11 @@ class ResearchAgentEngine:
         return wire - min(10, wire * .1)
 
     @tool(name="run_assigned_case")
-    def _solve_one(self, payload, cancelled=None, received_at=None):
+    def _solve_one(self, payload, cancelled=None, received_at=None, request=None):
         case = CaseContext.from_dict(payload)
         if self.settings.verify_assigned:
             verify_current_assignment(self.settings, case)
-        session = CaseSession(case.case_id, self._case_timeout(payload),
+        session = request or CaseSession(case.case_id, self._case_timeout(payload),
                               cancelled=cancelled or threading.Event(),
                               started_at=received_at if received_at is not None else time.monotonic())
         with session.activate():
@@ -109,9 +125,16 @@ class ResearchAgentEngine:
         work = confined(s.output, work_relative)
         # 重试前归档旧结果，避免本次失败后仍留下上次的成功提交。
         previous = confined(s.output, f"data/{s.team}/{case.case_id}.json")
-        if previous.is_file():
-            work.mkdir(parents=True, exist_ok=True)
-            os.replace(previous, confined(work, "previous-result.json"))
+        previous_files = [(previous, "previous-result.json"),
+                          (confined(s.output, f"data/{s.team}/work/receipts/{case.case_id}.json"), "previous-receipt-pointer.json")]
+        if case.function in {"Survey", "Idea"}:
+            kind = "综述" if case.function == "Survey" else "灵感Idea报告"
+            previous_files.append((confined(s.output, f"data/expert/{case.case_id}-{kind}-{s.team}.md"), "previous-report.md"))
+        for previous, archived_name in previous_files:
+            if previous.is_file():
+                checkpoint("archive_previous_submission")
+                work.mkdir(parents=True, exist_ok=True)
+                os.replace(previous, confined(work, archived_name))
         cache = confined(s.output, f"data/{s.team}/work/document-cache")
         llm = self.llm_factory()
         if hasattr(llm, "deadline"):
@@ -158,11 +181,16 @@ class ResearchAgentEngine:
             self._persist(case, result, work, filenames, specs, proof, handler, llm)
             if case.function == 'Literature_Retrieval':
                 outcome = {'case_id': case.case_id, 'result': result, 'result_saved': True,
-                           'outcome': 'partial' if index.errors else ('matched' if result['papers'] else 'no_matches'),
+                           'outcome': 'partial' if index.errors or handler.retrieval_trace.get('partial_error') else ('matched' if result['papers'] else 'no_matches'),
                            'material_diagnostics': index.errors, 'authorized_pdf_count': len(index.materials),
+                           'retrieval_partial_error': handler.retrieval_trace.get('partial_error'),
                            'path': f'data/{s.team}/{case.case_id}.json', 'diagnostic_path': work_relative + '/b-outcome.json'}
-                write_json(confined(work, 'b-outcome.json'), outcome)
                 publish_b(outcome)
+                try:
+                    write_json(confined(work, 'b-outcome.json'), outcome)
+                except OSError:
+                    # 提交已提交且回读成功，附属诊断失败不能将真实论文覆盖为空数组。
+                    logging.getLogger(__name__).error("B auxiliary outcome diagnostic could not be saved")
             return result
         except Exception as exc:
             # SDK 保留错误类型与 trace_id；运行日志补充不含凭据的材料定位信息。
@@ -191,22 +219,32 @@ class ResearchAgentEngine:
 
     @tool(name="write_and_readback_submission")
     def _persist(self, case, result, work, filenames, specs, proof, handler, llm):
-        # 先写附属文件，再写 JSON；最后从磁盘回读，确认提交内容与产物一致。
+        # 所有可失败的序列化/证据/收据准备先在本次 work 内完成；最后短临界区发布。
         s = self.settings
         checkpoint("persist_and_readback")
+        stage_root = confined(work, "submission-stage")
+        updates = []
         if "markdown" in result:
-            atomic_text(confined(s.output, result["path"]), result["markdown"])
+            staged_markdown = confined(stage_root, result["path"])
+            atomic_text(staged_markdown, result["markdown"])
+            updates.append((staged_markdown, confined(s.output, result["path"])))
+            checkpoint()
         target = confined(s.output, f"data/{s.team}/{case.case_id}.json")
-        write_json(target, result)
-        readback = read_json(target)
+        staged_target = confined(stage_root, f"data/{s.team}/{case.case_id}.json")
+        write_json(staged_target, result)
+        checkpoint()
+        readback = read_json(staged_target)
         if readback != result:
             raise ValueError("JSON readback mismatch")
-        validate_result(case, readback, s.output, team=s.team, filenames=filenames, specs=specs, proof=proof, readback=True)
-        artifacts = [target]
+        validate_result(case, readback, stage_root if "markdown" in result else s.output,
+                        team=s.team, filenames=filenames, specs=specs, proof=proof, readback=True)
+        updates.append((staged_target, target))
+        artifacts = [(target, staged_target)]
         if "path" in result:
-            artifacts.append(confined(s.output, result["path"]))
-        artifacts += [confined(s.output, f["path"]) for f in result.get("figures", [])]
-        rows = [asdict(Artifact(p.relative_to(s.output).as_posix(), p.suffix[1:], p.stat().st_size, sha256_file(p))) for p in artifacts]
+            artifacts.append((confined(s.output, result["path"]), staged_markdown))
+        artifacts += [(confined(s.output, f["path"]), confined(s.output, f["path"])) for f in result.get("figures", [])]
+        rows = [asdict(Artifact(public.relative_to(s.output).as_posix(), public.suffix[1:], stored.stat().st_size, sha256_file(stored)))
+                for public, stored in artifacts]
         write_json(confined(work, "evidence.json"), {"claims": [asdict(e) for e in handler.ledger],
                                                    "rejected_claims": handler.rejected_claims,
                                                    "retrieval_trace": handler.retrieval_trace,
@@ -222,8 +260,39 @@ class ResearchAgentEngine:
                                                   "usage": getattr(llm, "usage", []),
                                                   "session": current_session().snapshot() if current_session() else None,
                                                   "source_case": case.to_dict()})
-        write_json(confined(s.output, f"data/{s.team}/work/receipts/{case.case_id}.json"),
+        staged_pointer = confined(stage_root, "receipt-pointer.json")
+        write_json(staged_pointer,
                    {"receipt": (work / "receipt.json").relative_to(s.output).as_posix()})
+        updates.append((staged_pointer, confined(s.output, f"data/{s.team}/work/receipts/{case.case_id}.json")))
+        session = current_session()
+        if session is None:
+            raise RuntimeError("submission publication requires an active case session")
+        installed = []
+        try:
+            with session.publication():
+                for index, (staged, public) in enumerate(updates):
+                    checkpoint()
+                    public.parent.mkdir(parents=True, exist_ok=True)
+                    entry = {"staged": staged, "public": public, "backup": None, "installed": False}
+                    installed.append(entry)
+                    if public.exists():
+                        backup = confined(stage_root, f"backup-{index}")
+                        os.replace(public, backup)
+                        entry["backup"] = backup
+                    os.replace(staged, public)
+                    entry["installed"] = True
+                    checkpoint()
+                if read_json(target) != result:
+                    raise ValueError("published JSON readback mismatch")
+                validate_result(case, result, s.output, team=s.team, filenames=filenames, specs=specs, proof=proof, readback=True)
+        except BaseException:
+            # 只撤回本次已发布的文件，原样保留到 work；单文件 rename 不等于多文件事务。
+            for entry in reversed(installed):
+                if entry["installed"] and entry["public"].exists():
+                    os.replace(entry["public"], entry["staged"])
+                if entry["backup"] is not None and entry["backup"].exists():
+                    os.replace(entry["backup"], entry["public"])
+            raise
 
     def run_dispatch(self, cancelled=None):
         cases = load_dispatch(self.settings)

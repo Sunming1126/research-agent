@@ -11,7 +11,7 @@ from ..core.utils import source_quote_matches
 from ..integrations.instrumentation import tool
 from ..integrations.llm import ModelError, ModelQuotaError
 from ..rag.retrieval import QueryPlan, MAX_SUBQUERIES
-from ..rag.retrieval import HybridRetriever
+from ..rag.retrieval import HybridRetriever, fuse_document_rankings, bounded_document_candidates
 from ..core.session import checkpoint, current_session
 
 
@@ -45,8 +45,7 @@ class TaskHandlers(ReportWorkflow):
             # 指定材料已确定：把有限在线时间留给原文提取、写作和审查。
             self.query_plan_status = "original_for_report_budget"
             return QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]))
-        data = {"function": case.function, "input": case.input,
-                "constraints": case.constraints}
+        data = case.to_dict()
         for attempt, maximum in enumerate((1800, 2800), start=1):
             try:
                 value = self.llm.json("query", data, max_tokens=maximum)
@@ -58,7 +57,7 @@ class TaskHandlers(ReportWorkflow):
                 # 一次截断或网关波动不应直接让整题失败；重试仍失败则用原题。
                 continue
         self.query_plan_status = "original_fallback"
-        return QueryPlan(case.input)
+        return QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]))
 
     def handle(self, case, retriever):
         if case.function == "Chat":
@@ -79,7 +78,7 @@ class TaskHandlers(ReportWorkflow):
     def retrieval(self, case, retriever, plan):
         # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
         rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
-        original = retriever.top_documents(QueryPlan(case.input, exclusions=plan.exclusions,
+        original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
                                                      variants=plan.variants),
                                            limit=18, excerpts=3)
         merged = {}
@@ -92,6 +91,7 @@ class TaskHandlers(ReportWorkflow):
 
         keep_best(rewritten)
         keep_best(original)
+        rankings = [rewritten, original]
         component_hits = []
         component_top = []
         strong_components = []
@@ -100,12 +100,13 @@ class TaskHandlers(ReportWorkflow):
             hits = retriever.top_documents(QueryPlan(topic, exclusions=plan.exclusions),
                                            limit=3, excerpts=3)
             component_hits.append({"query": topic, "filenames": [name for name, _, _ in hits]})
+            rankings.append(hits)
             if hits:
                 component_top.append(hits[0])
             if hits and hits[0][1] >= .75 and (len(hits) == 1 or hits[0][1] - hits[1][1] >= .22):
                 strong_components.append((topic, hits[0]))
             keep_best(hits)
-        grouped = sorted(merged.values(), key=lambda row: (-row[1], row[0]))
+        grouped, fusion_scores = fuse_document_rankings(rankings)
         if self.document_expander is not None:
             session = current_session()
             if session is None or session.remaining() > 65:
@@ -123,10 +124,17 @@ class TaskHandlers(ReportWorkflow):
                                 "query_plan_status": self.query_plan_status,
                                 "rewritten": [name for name, _, _ in rewritten],
                                 "original": [name for name, _, _ in original],
-                                "components": component_hits}
+                                "components": component_hits, "fusion": "document_rrf_k60",
+                                "fusion_scores": fusion_scores}
+        requested = requested_paper_count(case.input)
+        candidate_limit = min(18, max(12, (requested or 0) * 2))
+        eligible = [row for row in grouped if row[0].lower().endswith('.pdf') and row[1] >= .13]
+        shortlist = bounded_document_candidates(eligible, [name for name, _, _ in component_top], candidate_limit)
         candidates = [{"filename": name, "score": score,
                        "chunks": [compact_retrieval_chunk(h.chunk) for h in group[:3]]}
-                      for name, score, group in grouped if name.lower().endswith(".pdf") and score >= .13]
+                      for name, score, group in shortlist]
+        self.retrieval_trace["candidate_limit"] = candidate_limit
+        self.retrieval_trace["eligible_before_limit"] = len(eligible)
         self.retrieval_trace["candidates"] = [row["filename"] for row in candidates]
         # 保留候选分数，便于逐轮检查阈值与上下文开销；不改变模型实际收到的证据。
         self.retrieval_trace["candidate_scores"] = [
@@ -136,6 +144,7 @@ class TaskHandlers(ReportWorkflow):
         if not candidates:
             return {"case_id": case.case_id, "papers": []}
         approved = []
+        partial_error = None
         rejected_approvals = []
         repair_attempts = 0
         explicitly_rejected = set()
@@ -143,13 +152,29 @@ class TaskHandlers(ReportWorkflow):
         # 当前批次候选已携带授权片段；重复发送数百个文件名会诱发跨批次误选。
         task_brief.pop("materials", None)
         # 分批交给模型核查，限制上下文长度，同时保留足够的候选论文。
-        for start in range(0, len(candidates), 5):
-            batch = candidates[start:start+5]
-            value = self.llm.json("retrieve", {"task": task_brief, "candidates": batch}, max_tokens=2800)
+        batch_size = 6
+        for start in range(0, len(candidates), batch_size):
+            batch = candidates[start:start+batch_size]
+            try:
+                session = current_session()
+                if approved and session and session.remaining() < 35:
+                    partial_error = {"error_type": "TimeReservedForPublication", "failed_batch": start // batch_size,
+                                     "unprocessed_candidates": len(candidates) - start}
+                    break
+                value = self.llm.json("retrieve", {"task": task_brief, "candidates": batch}, max_tokens=2800)
+                if not isinstance(value, dict) or not isinstance(value.get("papers"), list):
+                    raise ModelError("retrieval response requires a papers array")
+            except (ModelError, TimeoutError) as exc:
+                # 后续批次暂不可用时保留前批次已获明确证据批准的论文，不猜补其余候选。
+                if not approved:
+                    raise
+                partial_error = {"error_type": type(exc).__name__, "failed_batch": start // batch_size,
+                                 "unprocessed_candidates": len(candidates) - start}
+                break
             by_name = {row["filename"]: row for row in batch}
             for item in value.get("papers", []):
                 if not isinstance(item, dict) or item.get("filename") not in by_name:
-                    rejected_approvals.append({"batch": start//5, "reason": "filename_not_in_batch"})
+                    rejected_approvals.append({"batch": start//batch_size, "reason": "filename_not_in_batch"})
                     continue
                 source = by_name[item["filename"]]
                 if item.get("decision") in {"exclude", "uncertain"} or item.get("relevant") is False:
@@ -157,10 +182,11 @@ class TaskHandlers(ReportWorkflow):
                     continue
                 allowed = {c["chunk_id"] for c in source["chunks"]}
                 if not valid_paper_approval(item, allowed):
-                    rejected_approvals.append({"batch": start//5, "filename": source["filename"],
+                    rejected_approvals.append({"batch": start//batch_size, "filename": source["filename"],
                                                "reason": "missing_or_wrong_evidence"})
                     # 高位候选有时只写错片段编号；允许最多两次单篇重审，仍须通过编号核验。
-                    if source["score"] >= .5 and repair_attempts < 2:
+                    remaining = current_session().remaining() if current_session() else 180
+                    if source["score"] >= .5 and repair_attempts < 2 and remaining > 75:
                         repair_attempts += 1
                         try:
                             repaired = self.llm.json("retrieve", {"task": task_brief,
@@ -173,22 +199,32 @@ class TaskHandlers(ReportWorkflow):
                                 approved.append((source["score"], {"filename": source["filename"],
                                                                    "reason": replacement["reason"]}))
                                 rejected_approvals[-1]["recovered"] = True
+                        except ModelQuotaError:
+                            partial_error = {"error_type": "ModelQuotaError", "stage": "evidence_repair",
+                                             "failed_batch": start // batch_size}
+                            break
                         except ModelError:
                             rejected_approvals[-1]["recovered"] = False
                     continue
                 approved.append((source["score"], {"filename": item["filename"], "reason": item["reason"]}))
+            if partial_error:
+                break
         unique = {}
         for score, paper in sorted(approved, key=lambda row: -row[0]):
             unique.setdefault(paper["filename"].casefold(), paper)
         rule_added = []
         rechecks = 0
         for topic, (name, score, hits) in strong_components:
+            if partial_error:
+                break
             if name.casefold() in unique or name.casefold() in explicitly_rejected or not hits or hits[0].chunk.page != 1:
                 continue
             if any(phrase.casefold() in hits[0].chunk.heading.casefold()
                    for phrase in plan.exclusions):
                 continue
             if rechecks >= 2:
+                break
+            if current_session() and current_session().remaining() <= 75:
                 break
             source = next((row for row in candidates if row["filename"] == name), None)
             if source is None:
@@ -204,9 +240,11 @@ class TaskHandlers(ReportWorkflow):
                 if paper:
                     unique[name.casefold()] = {"filename": name, "reason": paper["reason"]}
                     rule_added.append(name)
+            except ModelQuotaError:
+                partial_error = {"error_type": "ModelQuotaError", "stage": "component_recheck"}
+                break
             except ModelError:
                 continue
-        requested = requested_paper_count(case.input)
         strong_names = {row[0].casefold() for _, row in strong_components}
         count_constrained = (requested is not None and len(plan.subqueries) == requested
                              and len(strong_components) == requested and len(strong_names) == requested)
@@ -242,4 +280,8 @@ class TaskHandlers(ReportWorkflow):
             else:
                 accepted.append(paper)
         self.retrieval_trace["explicitly_excluded"] = excluded
+        if partial_error:
+            self.retrieval_trace["partial_error"] = partial_error
+        fused_order = {name: index for index, (name, _, _) in enumerate(grouped)}
+        accepted.sort(key=lambda paper: fused_order.get(paper['filename'], len(grouped)))
         return {"case_id": case.case_id, "papers": accepted[:limit]}

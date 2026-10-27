@@ -12,6 +12,43 @@ from ..core.session import checkpoint
 
 MAX_SUBQUERIES = 8
 
+
+def fuse_document_rankings(rankings, *, k=60, excerpts=4):
+    """文档级 RRF；原词法分只作门限，跨通道排名和证据分别合并，不修改输入命中。"""
+    totals, rows, evidence = defaultdict(float), {}, defaultdict(dict)
+    for ranking in rankings:
+        seen = set()
+        for rank, (name, score, hits) in enumerate(ranking, start=1):
+            if name in seen:
+                continue
+            seen.add(name)
+            totals[name] += 1.0 / (k + rank)
+            if name not in rows or score > rows[name]:
+                rows[name] = score
+            for hit in hits:
+                old = evidence[name].get(hit.chunk.chunk_id)
+                if old is None or hit.score > old.score:
+                    evidence[name][hit.chunk.chunk_id] = hit
+    ordered = sorted(rows, key=lambda name: (-totals[name], -rows[name], name))
+    merged = [(name, rows[name], sorted(evidence[name].values(), key=lambda h: (-h.score, h.chunk.start))[:excerpts])
+              for name in ordered]
+    return merged, dict(totals)
+
+
+def bounded_document_candidates(rows, mandatory, limit):
+    """控制模型批次数，同时给每个独立子题的最佳候选保留位置。"""
+    if limit <= 0:
+        return []
+    available = {row[0] for row in rows}
+    reserved = set(list(dict.fromkeys(name for name in mandatory if name in available))[:limit])
+    selected = set(row[0] for row in rows[:limit]) | reserved
+    for row in reversed(rows):
+        if len(selected) <= limit:
+            break
+        if row[0] not in reserved:
+            selected.discard(row[0])
+    return [row for row in rows if row[0] in selected]
+
 SYNONYMS = {
     "检索": "retrieval search", "综述": "survey review", "缓存": "cache caching",
     "延迟": "latency delay", "吞吐": "throughput", "调度": "scheduling",

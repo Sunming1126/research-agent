@@ -1,5 +1,6 @@
 """B类故障隔离与失败答卷；真实PDF、原生SDK，模型夹具只用于确定前置故障。"""
 import json
+import os
 import shutil
 from pathlib import Path
 
@@ -24,7 +25,7 @@ from research_agent.integrations.http_runtime import install_research_protocol
 def b_runtime(tmp_path):
     library = tmp_path / 'papers'
     library.mkdir()
-    shutil.copyfile('/real-papers/2004.04906-DPR.pdf', library / 'valid.pdf')
+    shutil.copyfile(Path(os.environ.get('RESEARCH_TEST_PAPERS', '/real-papers')) / '2004.04906-DPR.pdf', library / 'valid.pdf')
     settings = Settings(tmp_path, tmp_path / 'output', 'platform-workspace', [library])
     settings.material_aliases = {'本地论文文件夹内的 PDF': ['papers']}
     exporter = InMemorySpanExporter()
