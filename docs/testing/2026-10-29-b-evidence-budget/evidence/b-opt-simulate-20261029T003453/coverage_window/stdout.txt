@@ -1,0 +1,45 @@
+..................FF....                                                 [100%]
+================================== FAILURES ===================================
+________ test_short_evidence_does_not_require_an_extra_small_batch[7] _________
+
+count = 7
+
+    @pytest.mark.parametrize('count', [5, 6, 7, 8])
+    def test_short_evidence_does_not_require_an_extra_small_batch(count):
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [(f'paper-{i}.pdf', .7, [hit(str(i), 'An independently measured temperature effect.', name=f'paper-{i}.pdf')])
+                        for i in range(count)]
+        reader = Reader(['temperature'])
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find temperature experiments'), Retriever(), QueryPlan('temperature'))
+        assert len(result['papers']) == count
+>       assert len(reader.requests) == 1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len([{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-6.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}])
+E        +    where [{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-6.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}] = <test_b_evidence_counterexamples.Reader object at 0x000002637F7D9EE0>.requests
+
+tests\test_b_evidence_counterexamples.py:81: AssertionError
+________ test_short_evidence_does_not_require_an_extra_small_batch[8] _________
+
+count = 8
+
+    @pytest.mark.parametrize('count', [5, 6, 7, 8])
+    def test_short_evidence_does_not_require_an_extra_small_batch(count):
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [(f'paper-{i}.pdf', .7, [hit(str(i), 'An independently measured temperature effect.', name=f'paper-{i}.pdf')])
+                        for i in range(count)]
+        reader = Reader(['temperature'])
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find temperature experiments'), Retriever(), QueryPlan('temperature'))
+        assert len(result['papers']) == count
+>       assert len(reader.requests) == 1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len([{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-7.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}])
+E        +    where [{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-7.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}] = <test_b_evidence_counterexamples.Reader object at 0x000002637F868E60>.requests
+
+tests\test_b_evidence_counterexamples.py:81: AssertionError
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\b-opt-simulate-20261029T003453\coverage_window\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_b_evidence_counterexamples.py::test_short_evidence_does_not_require_an_extra_small_batch[7]
+FAILED tests/test_b_evidence_counterexamples.py::test_short_evidence_does_not_require_an_extra_small_batch[8]
+2 failed, 22 passed in 0.23s

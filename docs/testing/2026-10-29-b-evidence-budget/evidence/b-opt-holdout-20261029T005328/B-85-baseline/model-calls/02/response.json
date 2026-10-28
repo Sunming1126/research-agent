@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2203.02155-InstructGPT.pdf\",\"reason\":\"该论文的核心贡献正是题目所要求的原始方法：先收集标注者撰写的人类示范，用监督学习微调GPT-3，再收集模型输出的排序（偏好比较）数据，用基于人类反馈的强化学习进一步微调，使语言模型遵循用户意图/指令。摘要明确描述了示范、排序与RLHF三个关键环节，且研究对象是语言模型指令跟随，不涉及独立检索器或外部文本检索生成。\",\"chunk_ids\":[\"2a1729104781e3c5b91d\",\"9aacc62a7729374d7fab\",\"9a64ebe90805adec0447\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206413,
+  "id": "0217932064124712f58812a10f9c6b8f25a472cef1ad3e5a721fe",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 164,
+    "prompt_tokens": 3656,
+    "total_tokens": 3820,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-83",
+    "papers": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "reason": "该论文提出 SELF-RAG 框架，训练单一语言模型按需自适应检索，并生成称为 reflection tokens 的特殊标记，用于评价检索片段的相关性、生成内容是否被片段支持以及整体效用，从而在推理阶段控制检索与生成。这正好对应题目要求的“用自我反思机制决定何时检索，并通过反思标记评价检索片段及生成内容”的原始方法，且明确区别于固定检索流程。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 4.875,
+  "target_real_model_calls": 3,
+  "total_tokens": 5714,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

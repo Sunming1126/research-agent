@@ -1,0 +1,230 @@
+{
+  "results": [
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-85",
+        "papers": [
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "reason": "该论文的核心贡献正是题目所要求的原始方法：先收集标注者撰写的人类示范，用监督学习微调GPT-3，再收集模型输出的排序（偏好比较）数据，用基于人类反馈的强化学习进一步微调，使语言模型遵循用户意图/指令。摘要明确描述了示范、排序与RLHF三个关键环节，且研究对象是语言模型指令跟随，不涉及独立检索器或外部文本检索生成。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 4.937,
+      "target_real_model_calls": 3,
+      "total_tokens": 5383,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-85",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-85",
+        "papers": [
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "reason": "该论文明确以人类反馈强化学习（RLHF）微调GPT-3以遵循广泛书面指令为核心方法：先收集人类撰写的期望输出示范训练监督基线，再收集模型输出间的人类偏好比较训练奖励模型，最后用PPO以该奖励模型微调监督基线。这同时满足人类示范、偏好比较和强化学习三个必需条件，且研究对象是语言模型指令跟随，不属于排除项。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 4.016,
+      "target_real_model_calls": 2,
+      "total_tokens": 5557,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-85",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-86",
+        "papers": [
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "reason": "该论文提出BEIR——一个跨18个数据集、面向零样本信息检索评测的异构基准，并在其上系统比较词法、稀疏、稠密、late interaction与重排序等多种检索方法，分析域内性能与域外泛化之间的关系，明确指出BM25在零样本检索中仍是强基线。其核心贡献正是跨领域、多数据集、零样本检索评测基准及稀疏与稠密检索比较与域外泛化分析，符合题目要求，且不是仅提出单个检索或生成模型的新方法。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.969,
+      "target_real_model_calls": 2,
+      "total_tokens": 5891,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-86",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-86",
+        "papers": [
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "reason": "该论文提出BEIR，一个面向信息检索模型零样本评测的异构基准，覆盖18个来自不同文本检索任务与领域的数据集，并评测了包括词法、稀疏、稠密、late-interaction与重排序在内的10个检索系统，报告BM25作为稳健基线、稠密与稀疏检索在零样本下泛化不足等域外泛化分析。这同时满足跨领域、多数据集、零样本IR评测基准，以及比较稀疏与稠密检索并分析域外泛化的关键条件，且其核心贡献正是评测基准而非单一检索或生成模型新方法。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 7.781,
+      "target_real_model_calls": 3,
+      "total_tokens": 6458,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-86",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-87",
+        "papers": [
+          {
+            "filename": "2007.01282-FiD.pdf",
+            "reason": "该论文提出 Fusion-in-Decoder：先用编码器分别编码每个检索到的段落，再由生成式解码器融合这些独立编码的段落来回答开放域问题，摘要还报告了随检索段落数增加性能提升，符合“解码器融合分别编码的检索段落”这一核心方法条件。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 6.953,
+      "target_real_model_calls": 3,
+      "total_tokens": 6156,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-87",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-87",
+        "papers": [
+          {
+            "filename": "2007.01282-FiD.pdf",
+            "reason": "该论文提出 Fusion-in-Decoder：每个检索到的段落连同标题与问题拼接后由编码器独立编码，解码器再对所有段落表示做注意力并融合证据来生成答案，属于开放域问答中解码器融合分别编码段落的原创方法。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 3.891,
+      "target_real_model_calls": 2,
+      "total_tokens": 5207,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-87",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-88",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文提出稠密段落检索器（DPR），采用双编码器架构，用问题-段落对训练稠密嵌入，并以批内内积比较作为训练目标，直接对应“稠密双编码段落检索器”这一方向。"
+          },
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "reason": "该论文提出BEIR，一个面向多样检索任务与领域的异构零样本评测基准，包含18个公开数据集并评测多种检索系统，直接对应“跨域零样本检索评测基准”方向。"
+          },
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "reason": "该论文标题即为用人类反馈训练语言模型遵循指令，正文说明基于人类反馈的强化学习（RLHF）来对齐模型与人类意图，并以人类偏好评分评估，对应“基于人类反馈训练指令跟随语言模型的原始工作”方向。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.031,
+      "target_real_model_calls": 2,
+      "total_tokens": 5951,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-88",
+      "variant": "candidate",
+      "hits": 3,
+      "missed": [],
+      "false_positives": [],
+      "expected": 3,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-88",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文提出稠密段落检索器DPR，用双编码器框架从问题和段落对学习稠密表示，并在开放域QA上评估top-20段落检索准确率，直接满足“稠密双编码段落检索器”这一目标。"
+          },
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "reason": "该论文提出BEIR异构基准，用于零样本评测信息检索模型，并开源标准化数据格式以统一评估检索系统的零样本能力，直接满足“跨域零样本检索评测基准”这一目标。"
+          },
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "reason": "该论文以人类反馈微调语言模型以遵循指令，先收集示范做监督微调，再收集输出排序用强化学习从人类反馈训练，得到InstructGPT，直接满足“基于人类反馈训练指令跟随语言模型的原始工作”这一目标。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.922,
+      "target_real_model_calls": 3,
+      "total_tokens": 5882,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-88",
+      "variant": "baseline",
+      "hits": 3,
+      "missed": [],
+      "false_positives": [],
+      "expected": 3,
+      "exact": true
+    }
+  ],
+  "complete": true,
+  "image_acceptance": false
+}

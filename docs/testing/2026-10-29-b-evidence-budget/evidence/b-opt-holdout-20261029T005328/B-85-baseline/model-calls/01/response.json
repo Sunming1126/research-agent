@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"使用人类示范、偏好比较和强化学习从人类反馈微调语言模型以遵循指令的原始方法\", \"methods\": \"人类示范监督微调、偏好比较奖励建模、强化学习从人类反馈（RLHF）\", \"focus\": \"定位提出该原始方法的论文，而非依赖外部文本检索的生成方法或检索器训练工作\", \"exclusions\": [\"训练独立检索器\", \"跨域检索基准\", \"依赖外部文本检索的生成方法\"], \"variants\": [\"instruction following\", \"supervised fine-tuning from human demonstrations\", \"human preference comparisons\", \"reinforcement learning from human feedback\", \"RLHF\", \"InstructGPT\"], \"subqueries\": [\"human feedback instruction following language models\", \"supervised fine-tuning human demonstrations\", \"preference comparison reward modeling\", \"reinforcement learning from human feedback\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206411,
+  "id": "02179320641041929636d5ecc874239c049517281a31e01dfc188",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 178,
+    "prompt_tokens": 501,
+    "total_tokens": 679,
+    "prompt_tokens_details": {
+      "cached_tokens": 256
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

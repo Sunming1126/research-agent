@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"该文提出SELF-RAG框架，训练单一语言模型按需自适应检索段落，并用反思标记（reflection tokens）生成并评价自身输出，直接对应目标3（用反思标记按需检索、生成并评价自身输出）。\",\"chunk_ids\":[\"dc0d90c9ba5d4372a133\",\"1fa0596a2bb63bd8428d\",\"3cb8f602c01a41045cde\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2112.04426-RETRO.pdf\",\"reason\":\"该文提出Retrieval-Enhanced Transformer，基于大规模语料（2万亿token数据库）检索文档块，结合分块交叉注意力（chunked cross-attention）机制预测token，直接对应目标2（利用检索文本块、分块交叉注意力和大规模近邻库训练语言模型）。\",\"chunk_ids\":[\"15563cf21f9afc474ee7\",\"d848cb645a1428cbeeb5\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2005.11401-RAG.pdf\",\"reason\":\"该文提出RAG模型，将参数记忆（预训练seq2seq生成器）与非参数记忆（Wikipedia稠密向量索引）结合，端到端联合学习检索器与生成器，用于知识密集生成，直接对应目标1（联合优化检索器与生成器、结合参数和非参数记忆完成知识密集生成）。\",\"chunk_ids\":[\"c756a51d51f0008a43af\",\"352228950f028e2d63b8\",\"2d78c9bf97cbebce6d96\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793205655,
+  "id": "0217932056534827f7defdca68741f744da3a9cb51804c498eb12",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 384,
+    "prompt_tokens": 4264,
+    "total_tokens": 4648,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

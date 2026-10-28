@@ -1,0 +1,20 @@
+{
+  "case_id": "B-85",
+  "function": "Literature_Retrieval",
+  "title": "人类反馈训练指令跟随",
+  "input": "找使用人类示范、偏好比较和强化学习，从人类反馈微调语言模型以遵循指令的原始方法论文。排除训练独立检索器、跨域检索基准和依赖外部文本检索的生成方法。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2104.08663-BEIR.pdf",
+    "2112.04426-RETRO.pdf",
+    "2203.02155-InstructGPT.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "constraints": [
+    "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+  ],
+  "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+  "output_schema_ref": "Literature_Retrieval"
+}

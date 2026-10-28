@@ -12,6 +12,7 @@ from ..integrations.instrumentation import tool
 from ..integrations.llm import ModelError, ModelQuotaError
 from ..rag.retrieval import QueryPlan, MAX_SUBQUERIES
 from ..rag.retrieval import HybridRetriever, fuse_document_rankings, bounded_document_candidates
+from ..rag.evidence_selection import select_evidence, evidence_batches
 from ..core.session import checkpoint, current_session
 
 
@@ -121,7 +122,8 @@ class TaskHandlers(ReportWorkflow):
             if hits and hits[0][1] >= .75 and (len(hits) == 1 or hits[0][1] - hits[1][1] >= .22):
                 strong_components.append((topic, hits[0]))
             keep_best(hits)
-        grouped, fusion_scores = fuse_document_rankings(rankings)
+        # 文档RRF保持原定义；证据选择使用全部通道，而不是提前按原始分截掉条件片段。
+        grouped, fusion_scores = fuse_document_rankings(rankings, excerpts=32)
         if self.document_expander is not None:
             session = current_session()
             if session is None or session.remaining() > 65:
@@ -145,8 +147,10 @@ class TaskHandlers(ReportWorkflow):
         candidate_limit = min(18, max(12, (requested or 0) * 2))
         eligible = [row for row in grouped if row[0].lower().endswith('.pdf') and row[1] >= .13]
         shortlist = bounded_document_candidates(eligible, [name for name, _, _ in component_top], candidate_limit)
+        evidence_queries = [self._question_text(case), plan.topic, plan.methods, plan.focus, *plan.subqueries]
         candidates = [{"filename": name, "score": score,
-                       "chunks": [compact_retrieval_chunk(h.chunk) for h in group[:3]]}
+                       "chunks": [compact_retrieval_chunk(h.chunk, evidence_queries)
+                                  for h in select_evidence(group, evidence_queries, limit=3)]}
                       for name, score, group in shortlist]
         self.retrieval_trace["candidate_limit"] = candidate_limit
         self.retrieval_trace["eligible_before_limit"] = len(eligible)
@@ -167,13 +171,15 @@ class TaskHandlers(ReportWorkflow):
         # 当前批次候选已携带授权片段；重复发送数百个文件名会诱发跨批次误选。
         task_brief.pop("materials", None)
         # 分批交给模型核查，限制上下文长度，同时保留足够的候选论文。
-        batch_size = 6
-        for start in range(0, len(candidates), batch_size):
-            batch = candidates[start:start+batch_size]
+        batches = list(evidence_batches(candidates, task_brief, self.llm))
+        self.retrieval_trace['batch_sizes'] = [len(batch) for batch in batches]
+        self.retrieval_trace['evidence_policy'] = 'condition_coverage_contiguous_window'
+        start = 0
+        for batch_index, batch in enumerate(batches):
             try:
                 session = current_session()
                 if approved and session and session.remaining() < 35:
-                    partial_error = {"error_type": "TimeReservedForPublication", "failed_batch": start // batch_size,
+                    partial_error = {"error_type": "TimeReservedForPublication", "failed_batch": batch_index,
                                      "unprocessed_candidates": len(candidates) - start}
                     break
                 value = self.llm.json("retrieve", {"task": task_brief, "candidates": batch}, max_tokens=2800)
@@ -183,13 +189,13 @@ class TaskHandlers(ReportWorkflow):
                 # 后续批次暂不可用时保留前批次已获明确证据批准的论文，不猜补其余候选。
                 if not approved:
                     raise
-                partial_error = {"error_type": type(exc).__name__, "failed_batch": start // batch_size,
+                partial_error = {"error_type": type(exc).__name__, "failed_batch": batch_index,
                                  "unprocessed_candidates": len(candidates) - start}
                 break
             by_name = {row["filename"]: row for row in batch}
             for item in value.get("papers", []):
                 if not isinstance(item, dict) or item.get("filename") not in by_name:
-                    rejected_approvals.append({"batch": start//batch_size, "reason": "filename_not_in_batch"})
+                    rejected_approvals.append({"batch": batch_index, "reason": "filename_not_in_batch"})
                     continue
                 source = by_name[item["filename"]]
                 if item.get("decision") in {"exclude", "uncertain"} or item.get("relevant") is False:
@@ -197,7 +203,7 @@ class TaskHandlers(ReportWorkflow):
                     continue
                 allowed = {c["chunk_id"] for c in source["chunks"]}
                 if not valid_paper_approval(item, allowed):
-                    rejected_approvals.append({"batch": start//batch_size, "filename": source["filename"],
+                    rejected_approvals.append({"batch": batch_index, "filename": source["filename"],
                                                "reason": "missing_or_wrong_evidence"})
                     # 高位候选有时只写错片段编号；允许最多两次单篇重审，仍须通过编号核验。
                     remaining = current_session().remaining() if current_session() else 180
@@ -216,7 +222,7 @@ class TaskHandlers(ReportWorkflow):
                                 rejected_approvals[-1]["recovered"] = True
                         except ModelQuotaError:
                             partial_error = {"error_type": "ModelQuotaError", "stage": "evidence_repair",
-                                             "failed_batch": start // batch_size}
+                                             "failed_batch": batch_index}
                             break
                         except ModelError:
                             rejected_approvals[-1]["recovered"] = False
@@ -224,6 +230,7 @@ class TaskHandlers(ReportWorkflow):
                 approved.append((source["score"], {"filename": item["filename"], "reason": item["reason"]}))
             if partial_error:
                 break
+            start += len(batch)
         unique = {}
         for score, paper in sorted(approved, key=lambda row: -row[0]):
             unique.setdefault(paper["filename"].casefold(), paper)

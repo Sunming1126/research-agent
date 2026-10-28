@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2005.11401-RAG.pdf\",\"reason\":\"该论文提出RAG模型，将预训练seq2seq生成器（参数记忆）与Wikipedia稠密向量索引（非参数记忆）结合，并通过端到端训练联合学习检索器与生成器，直接满足目标1（联合优化检索器与生成器、结合参数与非参数记忆完成知识密集生成）。\",\"chunk_ids\":[\"c756a51d51f0008a43af\",\"50d43c79ff04cc8e2285\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2112.04426-RETRO.pdf\",\"reason\":\"该论文提出Retro，基于大规模文本数据库检索文档块，使用分块交叉注意力机制，并将检索库扩展到2万亿token，直接满足目标2（利用检索到的文本块、分块交叉注意力和大规模近邻库训练语言模型）。\",\"chunk_ids\":[\"15563cf21f9afc474ee7\",\"49df69863e1fbe5c34da\",\"815f25b4937004a5a7a1\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"该论文提出Self-RAG，训练语言模型生成反思标记（reflection tokens），按需决定是否检索、生成并评价自身输出，直接满足目标3（用反思标记按需检索、生成并评价自身输出）。\",\"chunk_ids\":[\"1fa0596a2bb63bd8428d\",\"dc0d90c9ba5d4372a133\",\"7cd049bc90b6c462027e\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206289,
+  "id": "021793206287486746abb8ea69ccb3d7a75bd7d82f8063f4ad384",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 369,
+    "prompt_tokens": 5518,
+    "total_tokens": 5887,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

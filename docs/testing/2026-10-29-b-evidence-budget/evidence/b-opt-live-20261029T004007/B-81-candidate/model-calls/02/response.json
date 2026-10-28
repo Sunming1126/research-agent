@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文以开放域问答为主要任务，提出并训练稠密双编码器检索器DPR，用问题-段落对训练双编码器以最大化内积，并在开放Natural Questions设置下报告端到端QA结果，摘要还提到在TriviaQA上使用检索监督；其核心贡献正是原始稠密双编码检索方法，而非将已有检索器当组件或做检索基准评测。\",\"chunk_ids\":[\"55088e0ebf2a71a06e47\",\"3ccd81c82b95403c63da\",\"470e5a332b84dff914bd\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793205642,
+  "id": "0217932056355387f7defdca68741f744da3a9cb51804c4dfb4e6",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 160,
+    "prompt_tokens": 4475,
+    "total_tokens": 4635,
+    "prompt_tokens_details": {
+      "cached_tokens": 512
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

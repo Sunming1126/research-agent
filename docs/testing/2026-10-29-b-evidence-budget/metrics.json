@@ -1,0 +1,519 @@
+{
+  "date": "2026-10-29",
+  "baseline_commit": "f42a9f73b1d60dc5dde3afe9b39ed4e5353a40e5",
+  "candidate_version": "0.4.15-evidence-b-20261029",
+  "final_regression_run": "b-opt-regression-20261029T004901",
+  "final_live_run": "b-opt-live-20261029T005112",
+  "new_questions_run": "b-opt-holdout-20261029T005328",
+  "first_live_run_before_count_fix": "b-opt-live-20261029T004007",
+  "source_python_files_verified": 186,
+  "source_fingerprint": "642b0fd0068df860215f7ba50a5bfda35e7d9c6d363769dfa418c9152a67b45c",
+  "final_regression": {
+    "returncode": 0,
+    "collected": 335,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 6,
+    "passed": 329,
+    "seconds": 40.658,
+    "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+    "target_real_model_calls": 0
+  },
+  "first_live_four_cases": {
+    "baseline": {
+      "cases": 4,
+      "exact": 3,
+      "completed": 4,
+      "hits": 3,
+      "expected": 5,
+      "false_positives": 0,
+      "calls": 12,
+      "tokens": 22367,
+      "seconds": 37.61
+    },
+    "candidate": {
+      "cases": 4,
+      "exact": 3,
+      "completed": 4,
+      "hits": 3,
+      "expected": 5,
+      "false_positives": 0,
+      "calls": 8,
+      "tokens": 21523,
+      "seconds": 26.329
+    }
+  },
+  "final_eight_cases": {
+    "baseline": {
+      "cases": 8,
+      "exact": 7,
+      "completed": 8,
+      "hits": 9,
+      "expected": 11,
+      "false_positives": 0,
+      "calls": 24,
+      "tokens": 47115,
+      "seconds": 46.36
+    },
+    "candidate": {
+      "cases": 8,
+      "exact": 8,
+      "completed": 8,
+      "hits": 11,
+      "expected": 11,
+      "false_positives": 0,
+      "calls": 16,
+      "tokens": 44055,
+      "seconds": 37.563
+    }
+  },
+  "per_case": [
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-81",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文以开放域问答为主要任务，提出用稠密表示实现段落检索，并采用简单的双编码器框架从少量问题-段落对学习嵌入；摘要报告在多个开放域QA数据集上评估，且片段明确提到在Natural Questions和TriviaQA上使用检索监督。其核心贡献正是训练稠密双编码检索器的原始方法，符合题目要求。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 4.703,
+      "target_real_model_calls": 3,
+      "total_tokens": 5744,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-81",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-81",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文以开放域问答为主要任务，提出并训练稠密双编码器检索器（Dense Passage Retriever），在Natural Questions开放域设置上评估，并报告Top-5准确率及端到端QA准确率，属于原始方法论文而非将已有检索器当组件的生成模型或检索基准评测。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 3.718,
+      "target_real_model_calls": 2,
+      "total_tokens": 5307,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-81",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-82",
+        "papers": [
+          {
+            "filename": "2005.11401-RAG.pdf",
+            "reason": "该论文提出RAG模型，将预训练seq2seq生成器（参数记忆）与Wikipedia稠密向量索引（非参数记忆）结合，并通过端到端训练联合学习检索器与生成器，直接满足目标1（联合优化检索器与生成器、结合参数与非参数记忆完成知识密集生成）。"
+          },
+          {
+            "filename": "2112.04426-RETRO.pdf",
+            "reason": "该论文提出Retro，基于大规模文本数据库检索文档块，使用分块交叉注意力机制，并将检索库扩展到2万亿token，直接满足目标2（利用检索到的文本块、分块交叉注意力和大规模近邻库训练语言模型）。"
+          },
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出Self-RAG，训练语言模型生成反思标记（reflection tokens），按需决定是否检索、生成并评价自身输出，直接满足目标3（用反思标记按需检索、生成并评价自身输出）。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 6.657,
+      "target_real_model_calls": 2,
+      "total_tokens": 6674,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-82",
+      "variant": "candidate",
+      "hits": 3,
+      "missed": [],
+      "false_positives": [],
+      "expected": 3,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-82",
+        "papers": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出 SELF-RAG 框架，训练单一语言模型按需自适应检索段落，并利用称为 reflection tokens 的特殊标记生成并反思检索内容与自身生成，从而在推理阶段控制检索与生成行为。这直接对应目标3：用反思标记按需检索、生成并评价自身输出。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 6.735,
+      "target_real_model_calls": 3,
+      "total_tokens": 7355,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-82",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [
+        "2005.11401-RAG.pdf",
+        "2112.04426-RETRO.pdf"
+      ],
+      "false_positives": [],
+      "expected": 3,
+      "exact": false
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-83",
+        "papers": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出 SELF-RAG 框架，训练单一语言模型按需自适应检索，并生成称为 reflection tokens 的特殊标记，用于评价检索片段的相关性、生成内容是否被片段支持以及整体效用，从而在推理阶段控制检索与生成。这正好对应题目要求的“用自我反思机制决定何时检索，并通过反思标记评价检索片段及生成内容”的原始方法，且明确区别于固定检索流程。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 4.875,
+      "target_real_model_calls": 3,
+      "total_tokens": 5714,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-83",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-83",
+        "papers": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出 SELF-RAG 框架，通过训练语言模型生成特殊反思标记（reflection tokens）来决定是否需要检索，并用反思标记评价检索片段的相关性、生成内容是否被片段支持以及整体效用，属于用自我反思机制控制检索并评价检索片段与生成内容的原始方法论文，而非固定检索流程。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 4.5,
+      "target_real_model_calls": 2,
+      "total_tokens": 5361,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-83",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-84",
+        "papers": []
+      },
+      "disk_matches": true,
+      "seconds": 3.781,
+      "target_real_model_calls": 2,
+      "total_tokens": 4107,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-84",
+      "variant": "candidate",
+      "hits": 0,
+      "missed": [],
+      "false_positives": [],
+      "expected": 0,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-84",
+        "papers": []
+      },
+      "disk_matches": true,
+      "seconds": 4.454,
+      "target_real_model_calls": 3,
+      "total_tokens": 4423,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-84",
+      "variant": "baseline",
+      "hits": 0,
+      "missed": [],
+      "false_positives": [],
+      "expected": 0,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-85",
+        "papers": [
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "reason": "该论文的核心贡献正是题目所要求的原始方法：先收集标注者撰写的人类示范，用监督学习微调GPT-3，再收集模型输出的排序（偏好比较）数据，用基于人类反馈的强化学习进一步微调，使语言模型遵循用户意图/指令。摘要明确描述了示范、排序与RLHF三个关键环节，且研究对象是语言模型指令跟随，不涉及独立检索器或外部文本检索生成。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 4.937,
+      "target_real_model_calls": 3,
+      "total_tokens": 5383,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-85",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-85",
+        "papers": [
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "reason": "该论文明确以人类反馈强化学习（RLHF）微调GPT-3以遵循广泛书面指令为核心方法：先收集人类撰写的期望输出示范训练监督基线，再收集模型输出间的人类偏好比较训练奖励模型，最后用PPO以该奖励模型微调监督基线。这同时满足人类示范、偏好比较和强化学习三个必需条件，且研究对象是语言模型指令跟随，不属于排除项。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 4.016,
+      "target_real_model_calls": 2,
+      "total_tokens": 5557,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-85",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-86",
+        "papers": [
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "reason": "该论文提出BEIR——一个跨18个数据集、面向零样本信息检索评测的异构基准，并在其上系统比较词法、稀疏、稠密、late interaction与重排序等多种检索方法，分析域内性能与域外泛化之间的关系，明确指出BM25在零样本检索中仍是强基线。其核心贡献正是跨领域、多数据集、零样本检索评测基准及稀疏与稠密检索比较与域外泛化分析，符合题目要求，且不是仅提出单个检索或生成模型的新方法。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.969,
+      "target_real_model_calls": 2,
+      "total_tokens": 5891,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-86",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-86",
+        "papers": [
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "reason": "该论文提出BEIR，一个面向信息检索模型零样本评测的异构基准，覆盖18个来自不同文本检索任务与领域的数据集，并评测了包括词法、稀疏、稠密、late-interaction与重排序在内的10个检索系统，报告BM25作为稳健基线、稠密与稀疏检索在零样本下泛化不足等域外泛化分析。这同时满足跨领域、多数据集、零样本IR评测基准，以及比较稀疏与稠密检索并分析域外泛化的关键条件，且其核心贡献正是评测基准而非单一检索或生成模型新方法。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 7.781,
+      "target_real_model_calls": 3,
+      "total_tokens": 6458,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-86",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-87",
+        "papers": [
+          {
+            "filename": "2007.01282-FiD.pdf",
+            "reason": "该论文提出 Fusion-in-Decoder：先用编码器分别编码每个检索到的段落，再由生成式解码器融合这些独立编码的段落来回答开放域问题，摘要还报告了随检索段落数增加性能提升，符合“解码器融合分别编码的检索段落”这一核心方法条件。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 6.953,
+      "target_real_model_calls": 3,
+      "total_tokens": 6156,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-87",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-87",
+        "papers": [
+          {
+            "filename": "2007.01282-FiD.pdf",
+            "reason": "该论文提出 Fusion-in-Decoder：每个检索到的段落连同标题与问题拼接后由编码器独立编码，解码器再对所有段落表示做注意力并融合证据来生成答案，属于开放域问答中解码器融合分别编码段落的原创方法。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 3.891,
+      "target_real_model_calls": 2,
+      "total_tokens": 5207,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-87",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-88",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文提出稠密段落检索器（DPR），采用双编码器架构，用问题-段落对训练稠密嵌入，并以批内内积比较作为训练目标，直接对应“稠密双编码段落检索器”这一方向。"
+          },
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "reason": "该论文提出BEIR，一个面向多样检索任务与领域的异构零样本评测基准，包含18个公开数据集并评测多种检索系统，直接对应“跨域零样本检索评测基准”方向。"
+          },
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "reason": "该论文标题即为用人类反馈训练语言模型遵循指令，正文说明基于人类反馈的强化学习（RLHF）来对齐模型与人类意图，并以人类偏好评分评估，对应“基于人类反馈训练指令跟随语言模型的原始工作”方向。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.031,
+      "target_real_model_calls": 2,
+      "total_tokens": 5951,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-88",
+      "variant": "candidate",
+      "hits": 3,
+      "missed": [],
+      "false_positives": [],
+      "expected": 3,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-88",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文提出稠密段落检索器DPR，用双编码器框架从问题和段落对学习稠密表示，并在开放域QA上评估top-20段落检索准确率，直接满足“稠密双编码段落检索器”这一目标。"
+          },
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "reason": "该论文提出BEIR异构基准，用于零样本评测信息检索模型，并开源标准化数据格式以统一评估检索系统的零样本能力，直接满足“跨域零样本检索评测基准”这一目标。"
+          },
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "reason": "该论文以人类反馈微调语言模型以遵循指令，先收集示范做监督微调，再收集输出排序用强化学习从人类反馈训练，得到InstructGPT，直接满足“基于人类反馈训练指令跟随语言模型的原始工作”这一目标。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.922,
+      "target_real_model_calls": 3,
+      "total_tokens": 5882,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-88",
+      "variant": "baseline",
+      "hits": 3,
+      "missed": [],
+      "false_positives": [],
+      "expected": 3,
+      "exact": true
+    }
+  ],
+  "all_target_real_calls_including_initial_failures": 60,
+  "all_target_tokens_including_initial_failures": 135060,
+  "reductions_observed_percent": {
+    "calls": 33.333,
+    "tokens": 6.495,
+    "seconds": 18.975
+  },
+  "limits": [
+    "same seven-paper corpus, locally specified diagnostic labels, not official gold",
+    "four development questions and four previously untested questions, not domain-held-out",
+    "temperature zero and thinking disabled in test transport; single observation per final case/variant",
+    "Windows source engine, no Linux 1CPU/1GiB image or official HTTP/OTLP acceptance",
+    "full request bodies and PDF caches remain local/D only; public evidence includes hashes and responses"
+  ]
+}

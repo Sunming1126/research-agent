@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文提出稠密段落检索器DPR，用双编码器框架从问题和段落对学习稠密表示，并在开放域QA上评估top-20段落检索准确率，直接满足“稠密双编码段落检索器”这一目标。\",\"chunk_ids\":[\"e8362eff8fa0d326ae6c\",\"55088e0ebf2a71a06e47\",\"cfccf2338d4729715928\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2104.08663-BEIR.pdf\",\"reason\":\"该论文提出BEIR异构基准，用于零样本评测信息检索模型，并开源标准化数据格式以统一评估检索系统的零样本能力，直接满足“跨域零样本检索评测基准”这一目标。\",\"chunk_ids\":[\"18d389f3d6d356f946e3\",\"ce9a1f499d9a941ed46f\",\"3bb4b9770902b46987b1\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2203.02155-InstructGPT.pdf\",\"reason\":\"该论文以人类反馈微调语言模型以遵循指令，先收集示范做监督微调，再收集输出排序用强化学习从人类反馈训练，得到InstructGPT，直接满足“基于人类反馈训练指令跟随语言模型的原始工作”这一目标。\",\"chunk_ids\":[\"9aacc62a7729374d7fab\",\"2a1729104781e3c5b91d\",\"52eb6fb7968fd93a72cf\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206456,
+  "id": "021793206454392f3d3e58bfdffea9769710a7767b276c376a4b7",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 364,
+    "prompt_tokens": 3838,
+    "total_tokens": 4202,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

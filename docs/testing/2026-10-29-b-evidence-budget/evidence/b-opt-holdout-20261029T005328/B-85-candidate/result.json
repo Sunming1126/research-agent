@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-85",
+    "papers": [
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "reason": "该论文明确以人类反馈强化学习（RLHF）微调GPT-3以遵循广泛书面指令为核心方法：先收集人类撰写的期望输出示范训练监督基线，再收集模型输出间的人类偏好比较训练奖励模型，最后用PPO以该奖励模型微调监督基线。这同时满足人类示范、偏好比较和强化学习三个必需条件，且研究对象是语言模型指令跟随，不属于排除项。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 4.016,
+  "target_real_model_calls": 2,
+  "total_tokens": 5557,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

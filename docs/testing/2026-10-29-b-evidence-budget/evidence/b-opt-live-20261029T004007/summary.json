@@ -1,0 +1,210 @@
+{
+  "results": [
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-81",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文以开放域问答为主要任务，提出用稠密表示实现段落检索，并采用简单的双编码器框架从少量问题-段落对学习嵌入，属于训练稠密双编码检索器的原始方法论文；摘要还说明在多个开放域QA数据集上评估，其稠密检索器显著优于BM25并帮助端到端QA系统取得新SOTA，符合题目关键条件。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 22.516,
+      "target_real_model_calls": 3,
+      "total_tokens": 5611,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-81",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-81",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文以开放域问答为主要任务，提出并训练稠密双编码器检索器DPR，用问题-段落对训练双编码器以最大化内积，并在开放Natural Questions设置下报告端到端QA结果，摘要还提到在TriviaQA上使用检索监督；其核心贡献正是原始稠密双编码检索方法，而非将已有检索器当组件或做检索基准评测。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 12.047,
+      "target_real_model_calls": 2,
+      "total_tokens": 5323,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-81",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-82",
+        "papers": [
+          {
+            "filename": "2112.04426-RETRO.pdf",
+            "reason": "该论文提出Retrieval-Enhanced Transformer，将输入分块并从大规模文本库检索相似块，通过分块交叉注意力（chunked cross-attention）结合检索到的文本块进行生成，且将检索库扩展到万亿token规模，直接对应目标2（利用检索文本块、分块交叉注意力和大规模近邻库训练语言模型）。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 6.766,
+      "target_real_model_calls": 2,
+      "total_tokens": 7163,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-82",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [
+        "2005.11401-RAG.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "false_positives": [],
+      "expected": 3,
+      "exact": false
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-82",
+        "papers": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该文提出SELF-RAG框架，训练单一语言模型按需自适应检索段落，并用反思标记（reflection tokens）生成并评价自身输出，直接对应目标3（用反思标记按需检索、生成并评价自身输出）。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.719,
+      "target_real_model_calls": 3,
+      "total_tokens": 6547,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-82",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [
+        "2005.11401-RAG.pdf",
+        "2112.04426-RETRO.pdf"
+      ],
+      "false_positives": [],
+      "expected": 3,
+      "exact": false
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-83",
+        "papers": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出 SELF-RAG 框架，训练单一 LM 通过特殊 reflection token 实现按需检索：先解码 retrieval token 判断是否需要检索，再生成 critique token 评价检索片段相关性（ISREL）以及生成内容是否被片段支持（ISSUP），并用这些反思标记在推理阶段施加软/硬控制。这正好对应题目要求的“用自我反思机制决定何时检索，并通过反思标记评价检索片段及生成内容”的原始方法贡献，而非仅在相关工作提及。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.015,
+      "target_real_model_calls": 3,
+      "total_tokens": 5742,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-83",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-83",
+        "papers": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出 SELF-RAG 框架，通过端到端训练让语言模型生成特殊反思标记（reflection tokens），据此动态决定何时检索，并用反思标记评价检索片段的相关性、生成内容是否被片段支持以及整体效用，属于以自我反思机制控制检索并评价检索片段与生成内容的原始方法论文，符合题目要求。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 4.297,
+      "target_real_model_calls": 2,
+      "total_tokens": 4959,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-83",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-84",
+        "papers": []
+      },
+      "disk_matches": true,
+      "seconds": 3.219,
+      "target_real_model_calls": 2,
+      "total_tokens": 4078,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-84",
+      "variant": "candidate",
+      "hits": 0,
+      "missed": [],
+      "false_positives": [],
+      "expected": 0,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-84",
+        "papers": []
+      },
+      "disk_matches": true,
+      "seconds": 4.36,
+      "target_real_model_calls": 3,
+      "total_tokens": 4467,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-84",
+      "variant": "baseline",
+      "hits": 0,
+      "missed": [],
+      "false_positives": [],
+      "expected": 0,
+      "exact": true
+    }
+  ],
+  "complete": true,
+  "image_acceptance": false
+}

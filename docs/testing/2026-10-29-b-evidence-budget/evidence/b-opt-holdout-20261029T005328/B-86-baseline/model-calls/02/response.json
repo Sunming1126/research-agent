@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2104.08663-BEIR.pdf\",\"reason\":\"该论文提出BEIR，一个面向信息检索模型零样本评测的异构基准，覆盖18个来自不同文本检索任务与领域的数据集，并评测了包括词法、稀疏、稠密、late-interaction与重排序在内的10个检索系统，报告BM25作为稳健基线、稠密与稀疏检索在零样本下泛化不足等域外泛化分析。这同时满足跨领域、多数据集、零样本IR评测基准，以及比较稀疏与稠密检索并分析域外泛化的关键条件，且其核心贡献正是评测基准而非单一检索或生成模型新方法。\",\"chunk_ids\":[\"18d389f3d6d356f946e3\",\"c5d112e9475598e79e81\",\"ce9a1f499d9a941ed46f\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文提出稠密段落检索（DPR）这一新的双编码器检索方法，并在开放域问答数据集上将其与BM25比较。其核心贡献是单个稠密检索模型的新方法，而非跨领域多数据集零样本IR评测基准，属于题目明确排除的“仅提出单个检索模型的新方法”，因此不相关。\",\"chunk_ids\":[\"e8362eff8fa0d326ae6c\",\"e47ed7471f81825ff683\",\"3ccd81c82b95403c63da\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2112.04426-RETRO.pdf\",\"reason\":\"当前片段显示RETRO是结合检索的生成式语言模型，涉及检索数据库、隐私与在Natural Questions上微调检索路径等内容，未体现其提出跨领域多数据集零样本IR评测基准或系统比较稀疏与稠密检索的域外泛化。证据不足以支持其满足本题关键条件。\",\"chunk_ids\":[\"84de898ece272d11b18a\",\"bf4da75633d3c4940d7f\",\"02c826309babdb6f7775\"],\"relevant\":false,\"decision\":\"uncertain\"},{\"filename\":\"2007.01282-FiD.pdf\",\"reason\":\"该论文提出FiD生成式开放域问答方法，片段中BM25与DPR仅作为其检索支持段落的可选组件被使用，属于背景与实验设置，而非提出跨领域多数据集零样本IR评测基准或分析稀疏与稠密检索的域外泛化。其核心贡献是单个生成式QA新方法，属于排除项。\",\"chunk_ids\":[\"c8e1aba37eda77cdd36c\",\"0621ccb868e006e2fc04\",\"1871abe7aa419571b900\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2005.11401-RAG.pdf\",\"reason\":\"当前片段显示RAG是结合检索与生成的模型，使用DPR作为检索组件并在FEVER等任务上做检索消融，未体现其提出跨领域多数据集零样本IR评测基准或系统比较稀疏与稠密检索的域外泛化。证据不足以支持其满足本题关键条件。\",\"chunk_ids\":[\"8156c5690f57c378c236\",\"71dea847c53dd25a4f2a\",\"4bfae7d67680eab7d4e0\"],\"relevant\":false,\"decision\":\"uncertain\"},{\"filename\":\"2203.02155-InstructGPT.pdf\",\"reason\":\"该论文研究指令微调语言模型，片段涉及跨任务泛化与TruthfulQA等，与信息检索评测基准、稀疏与稠密检索比较及检索域外泛化无关，不满足本题任何关键条件。\",\"chunk_ids\":[\"661a1b0f6c08dc82627c\",\"e125d1e4b61fc412c80a\",\"4cfb8ca9ee3a8411bf67\"],\"relevant\":false,\"decision\":\"exclude\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206432,
+  "id": "021793206428722fe278ef4a49fd99537752324bd80717a9eb1a2",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 874,
+    "prompt_tokens": 3916,
+    "total_tokens": 4790,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

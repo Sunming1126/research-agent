@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"该论文提出 SELF-RAG 框架，训练单一 LM 通过特殊 reflection token 实现按需检索：先解码 retrieval token 判断是否需要检索，再生成 critique token 评价检索片段相关性（ISREL）以及生成内容是否被片段支持（ISSUP），并用这些反思标记在推理阶段施加软/硬控制。这正好对应题目要求的“用自我反思机制决定何时检索，并通过反思标记评价检索片段及生成内容”的原始方法贡献，而非仅在相关工作提及。\",\"chunk_ids\":[\"1fa0596a2bb63bd8428d\",\"96fb697d063ee874e59d\",\"dc0d90c9ba5d4372a133\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793205660,
+  "id": "0217932056595353dcd3c0a2d24a55cb96c7787eab35382da5073",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 180,
+    "prompt_tokens": 4002,
+    "total_tokens": 4182,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

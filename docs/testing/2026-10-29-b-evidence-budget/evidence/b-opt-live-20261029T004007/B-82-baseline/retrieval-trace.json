@@ -1,0 +1,145 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "联合检索与生成、分块交叉注意力近邻检索、自反思按需检索的原始方法论文",
+      "methods": "联合优化检索器与生成器；参数与非参数记忆结合；分块交叉注意力与大规模近邻库训练；反思标记驱动的按需检索与自评",
+      "focus": "识别分别满足三个独立目标的原始方法论文，而非纯检索器、基准评测或固定检索阅读器",
+      "exclusions": [
+        "纯检索器",
+        "仅检索基准评测",
+        "仅固定检索后的多段阅读器",
+        "仅靠人类反馈对齐而不含外部检索的方法"
+      ],
+      "variants": [
+        "jointly optimize retriever and generator",
+        "parametric and non-parametric memory",
+        "chunked cross-attention",
+        "large-scale nearest neighbor retrieval",
+        "reflection tokens",
+        "self-reflective retrieval and generation"
+      ],
+      "subqueries": [
+        "joint retriever generator parametric nonparametric memory",
+        "chunked cross-attention large nearest neighbor retrieval",
+        "reflection tokens self-reflective retrieval generation"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "components": [
+      {
+        "query": "joint retriever generator parametric nonparametric memory",
+        "filenames": [
+          "2005.11401-RAG.pdf",
+          "2004.04906-DPR.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "chunked cross-attention large nearest neighbor retrieval",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2104.08663-BEIR.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "reflection tokens self-reflective retrieval generation",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2112.04426-RETRO.pdf": 0.06478893337698204,
+      "2005.11401-RAG.pdf": 0.06478893337698204,
+      "2310.11511-Self-RAG.pdf": 0.08014152250006296,
+      "2004.04906-DPR.pdf": 0.047379032258064516,
+      "2007.01282-FiD.pdf": 0.030309988518943745,
+      "2104.08663-BEIR.pdf": 0.04666516279419505,
+      "2203.02155-InstructGPT.pdf": 0.03007688828584351
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2007.01282-FiD.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.7724
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.6593
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.5932
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.4745
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.5045
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3104
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.3494
+      }
+    ],
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "requested_limit": 1,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "fc5353932eaeaf454e49ed821a48a5e327e42eb698f28fad87890a097a53a6f8",
+  "raw_evidence_relative_path": "B-82-baseline/output/data/b_comparison/work/B-82/93c31504499d46b4ac227309e444d86f/evidence.json"
+}

@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-88",
+    "papers": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "reason": "该论文提出稠密段落检索器DPR，用双编码器框架从问题和段落对学习稠密表示，并在开放域QA上评估top-20段落检索准确率，直接满足“稠密双编码段落检索器”这一目标。"
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "reason": "该论文提出BEIR异构基准，用于零样本评测信息检索模型，并开源标准化数据格式以统一评估检索系统的零样本能力，直接满足“跨域零样本检索评测基准”这一目标。"
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "reason": "该论文以人类反馈微调语言模型以遵循指令，先收集示范做监督微调，再收集输出排序用强化学习从人类反馈训练，得到InstructGPT，直接满足“基于人类反馈训练指令跟随语言模型的原始工作”这一目标。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 5.922,
+  "target_real_model_calls": 3,
+  "total_tokens": 5882,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

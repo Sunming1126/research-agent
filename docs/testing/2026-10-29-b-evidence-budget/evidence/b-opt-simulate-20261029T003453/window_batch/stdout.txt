@@ -1,0 +1,197 @@
+FFFFFFFF................                                                 [100%]
+================================== FAILURES ===================================
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[0] ____
+
+index = 0
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[1] ____
+
+index = 1
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[2] ____
+
+index = 2
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[3] ____
+
+index = 3
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[4] ____
+
+index = 4
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[5] ____
+
+index = 5
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[6] ____
+
+index = 6
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[7] ____
+
+index = 7
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:52: AssertionError
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\b-opt-simulate-20261029T003453\window_batch\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[0]
+FAILED tests/test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[1]
+FAILED tests/test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[2]
+FAILED tests/test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[3]
+FAILED tests/test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[4]
+FAILED tests/test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[5]
+FAILED tests/test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[6]
+FAILED tests/test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[7]
+8 failed, 16 passed in 0.23s

@@ -1,0 +1,104 @@
+{
+  "baseline": {
+    "returncode": 1,
+    "collected": 24,
+    "failures": 18,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 6,
+    "seconds": 0.865,
+    "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+    "target_real_model_calls": 0
+  },
+  "ablations": {
+    "coverage_only": {
+      "returncode": 1,
+      "collected": 24,
+      "failures": 10,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 14,
+      "seconds": 0.853,
+      "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+      "target_real_model_calls": 0
+    },
+    "window_only": {
+      "returncode": 1,
+      "collected": 24,
+      "failures": 10,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 14,
+      "seconds": 0.84,
+      "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+      "target_real_model_calls": 0
+    },
+    "batch_only": {
+      "returncode": 1,
+      "collected": 24,
+      "failures": 16,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 8,
+      "seconds": 0.84,
+      "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+      "target_real_model_calls": 0
+    },
+    "coverage_window": {
+      "returncode": 1,
+      "collected": 24,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 22,
+      "seconds": 0.811,
+      "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+      "target_real_model_calls": 0
+    },
+    "coverage_batch": {
+      "returncode": 1,
+      "collected": 24,
+      "failures": 8,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 16,
+      "seconds": 0.855,
+      "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+      "target_real_model_calls": 0
+    },
+    "window_batch": {
+      "returncode": 1,
+      "collected": 24,
+      "failures": 8,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 16,
+      "seconds": 0.823,
+      "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+      "target_real_model_calls": 0
+    },
+    "candidate": {
+      "returncode": 0,
+      "collected": 24,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 24,
+      "seconds": 0.727,
+      "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+      "target_real_model_calls": 0
+    }
+  },
+  "candidate": {
+    "returncode": 0,
+    "collected": 24,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 24,
+    "seconds": 0.727,
+    "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+    "target_real_model_calls": 0
+  },
+  "mock_reader_not_semantic_benchmark": true
+}

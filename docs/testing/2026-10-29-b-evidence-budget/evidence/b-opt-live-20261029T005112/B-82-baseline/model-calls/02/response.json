@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"该论文提出 SELF-RAG 框架，训练单一语言模型按需自适应检索段落，并利用称为 reflection tokens 的特殊标记生成并反思检索内容与自身生成，从而在推理阶段控制检索与生成行为。这直接对应目标3：用反思标记按需检索、生成并评价自身输出。\",\"chunk_ids\":[\"dc0d90c9ba5d4372a133\",\"1fa0596a2bb63bd8428d\",\"4d004b2647683abbde5d\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2112.04426-RETRO.pdf\",\"reason\":\"该论文提出 Retro，一种检索增强的自回归语言模型，使用分块交叉注意力模块整合检索到的文本，并基于大规模语料（2 万亿 token 数据库）进行检索，结合冻结的 BERT 检索器、可微编码器和分块交叉注意力预测 token。这直接对应目标2：利用检索到的文本块、分块交叉注意力和大规模近邻库训练语言模型。\",\"chunk_ids\":[\"0dc69faaaaef76243e87\",\"15563cf21f9afc474ee7\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2005.11401-RAG.pdf\",\"reason\":\"该论文提出 RAG 模型，将预训练 seq2seq 生成器（参数记忆）与维基百科稠密向量索引（非参数记忆）结合，通过端到端训练联合学习检索器与生成器，用于知识密集的语言生成。这直接对应目标1：联合优化检索器与生成器、结合参数和非参数记忆完成知识密集生成。\",\"chunk_ids\":[\"50d43c79ff04cc8e2285\",\"c756a51d51f0008a43af\",\"352228950f028e2d63b8\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206294,
+  "id": "021793206292903ef74dd90a5750f77dc784a69dff0f3ad2ba2c1",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 426,
+    "prompt_tokens": 4728,
+    "total_tokens": 5154,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

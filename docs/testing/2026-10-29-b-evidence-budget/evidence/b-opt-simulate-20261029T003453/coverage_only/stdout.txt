@@ -1,0 +1,221 @@
+........FFFFFFFF..FF....                                                 [100%]
+================================== FAILURES ===================================
+__________ test_query_match_after_prefix_is_visible_to_the_reader[0] __________
+
+index = 0
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[1] __________
+
+index = 1
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[2] __________
+
+index = 2
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[3] __________
+
+index = 3
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[4] __________
+
+index = 4
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[5] __________
+
+index = 5
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[6] __________
+
+index = 6
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[7] __________
+
+index = 7
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+tests\test_b_evidence_counterexamples.py:67: AssertionError
+________ test_short_evidence_does_not_require_an_extra_small_batch[7] _________
+
+count = 7
+
+    @pytest.mark.parametrize('count', [5, 6, 7, 8])
+    def test_short_evidence_does_not_require_an_extra_small_batch(count):
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [(f'paper-{i}.pdf', .7, [hit(str(i), 'An independently measured temperature effect.', name=f'paper-{i}.pdf')])
+                        for i in range(count)]
+        reader = Reader(['temperature'])
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find temperature experiments'), Retriever(), QueryPlan('temperature'))
+        assert len(result['papers']) == count
+>       assert len(reader.requests) == 1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len([{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-6.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}])
+E        +    where [{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-6.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}] = <test_b_evidence_counterexamples.Reader object at 0x0000018A1A22EE40>.requests
+
+tests\test_b_evidence_counterexamples.py:81: AssertionError
+________ test_short_evidence_does_not_require_an_extra_small_batch[8] _________
+
+count = 8
+
+    @pytest.mark.parametrize('count', [5, 6, 7, 8])
+    def test_short_evidence_does_not_require_an_extra_small_batch(count):
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [(f'paper-{i}.pdf', .7, [hit(str(i), 'An independently measured temperature effect.', name=f'paper-{i}.pdf')])
+                        for i in range(count)]
+        reader = Reader(['temperature'])
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find temperature experiments'), Retriever(), QueryPlan('temperature'))
+        assert len(result['papers']) == count
+>       assert len(reader.requests) == 1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len([{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-7.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}])
+E        +    where [{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-7.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}] = <test_b_evidence_counterexamples.Reader object at 0x0000018A1A22D850>.requests
+
+tests\test_b_evidence_counterexamples.py:81: AssertionError
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\b-opt-simulate-20261029T003453\coverage_only\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[0]
+FAILED tests/test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[1]
+FAILED tests/test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[2]
+FAILED tests/test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[3]
+FAILED tests/test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[4]
+FAILED tests/test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[5]
+FAILED tests/test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[6]
+FAILED tests/test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[7]
+FAILED tests/test_b_evidence_counterexamples.py::test_short_evidence_does_not_require_an_extra_small_batch[7]
+FAILED tests/test_b_evidence_counterexamples.py::test_short_evidence_does_not_require_an_extra_small_batch[8]
+10 failed, 14 passed in 0.26s
