@@ -1,0 +1,13 @@
+{
+  "stage": "host-baseline",
+  "returncode": 1,
+  "collected": 6,
+  "failed": 6,
+  "skipped": 0,
+  "passed": 0,
+  "seconds": 2.822,
+  "real_model_calls": 0,
+  "environment": "Windows Python 3.12.14, isolated test dependencies; no Docker resource limit",
+  "image_acceptance": false,
+  "source_fingerprint": "29651f86ece5fd0c568af6c74d63923e678fca19344ec1258b7d6e31067328bf"
+}

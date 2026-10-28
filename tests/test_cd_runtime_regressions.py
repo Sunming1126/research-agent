@@ -149,7 +149,7 @@ def test_d_postprocessing_error_keeps_platform_result(tmp_path, monkeypatch):
     runner = LayeredDRunner(Settings(tmp_path/'data',tmp_path/'output'),tmp_path/'work')
     monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE','D-01')
     real = Path.is_file
-    monkeypatch.setattr(Path,'is_file',lambda p: True if str(p)=='/data/experiments/run_experiment.py' else real(p))
+    monkeypatch.setattr(Path,'is_file',lambda p: True if p.as_posix()=='/data/experiments/run_experiment.py' else real(p))
     monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: tmp_path/'source.py')
     original = failed_result('D-01',METRICS,'failed')
     original['metrics'][0]['name'] = 'Wrong metric'

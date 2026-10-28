@@ -40,12 +40,27 @@ class TaskHandlers(ReportWorkflow):
         self.document_expander = None
         self.report_trace = []
 
+    @staticmethod
+    def _task_dict(case):
+        method = getattr(case, 'to_dict', None)
+        if callable(method):
+            return method()
+        # 内部工作流也支持原有的轻量题目对象；HTTP入口仍严格校验完整CaseContext。
+        return {key: getattr(case, key) for key in ('case_id', 'function', 'title', 'input', 'materials',
+                'constraints', 'expected_output', 'output_schema_ref') if hasattr(case, key)}
+
+    @staticmethod
+    def _question_text(case):
+        values = [getattr(case, 'title', ''), case.input, *getattr(case, 'constraints', []),
+                  getattr(case, 'expected_output', '')]
+        return '\n'.join(value for value in values if isinstance(value, str) and value.strip())
+
     def _plan(self, case):
         if case.function in {"Survey", "Idea"} and getattr(self.llm, "supports_batched_extraction", False):
             # 指定材料已确定：把有限在线时间留给原文提取、写作和审查。
             self.query_plan_status = "original_for_report_budget"
             return QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]))
-        data = case.to_dict()
+        data = self._task_dict(case)
         for attempt, maximum in enumerate((1800, 2800), start=1):
             try:
                 value = self.llm.json("query", data, max_tokens=maximum)
@@ -57,7 +72,7 @@ class TaskHandlers(ReportWorkflow):
                 # 一次截断或网关波动不应直接让整题失败；重试仍失败则用原题。
                 continue
         self.query_plan_status = "original_fallback"
-        return QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]))
+        return QueryPlan(self._question_text(case))
 
     def handle(self, case, retriever):
         if case.function == "Chat":
@@ -78,7 +93,7 @@ class TaskHandlers(ReportWorkflow):
     def retrieval(self, case, retriever, plan):
         # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
         rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
-        original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+        original = retriever.top_documents(QueryPlan(self._question_text(case), exclusions=plan.exclusions,
                                                      variants=plan.variants),
                                            limit=18, excerpts=3)
         merged = {}
@@ -148,7 +163,7 @@ class TaskHandlers(ReportWorkflow):
         rejected_approvals = []
         repair_attempts = 0
         explicitly_rejected = set()
-        task_brief = case.to_dict()
+        task_brief = self._task_dict(case)
         # 当前批次候选已携带授权片段；重复发送数百个文件名会诱发跨批次误选。
         task_brief.pop("materials", None)
         # 分批交给模型核查，限制上下文长度，同时保留足够的候选论文。

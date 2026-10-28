@@ -1,0 +1,114 @@
+{
+  "audit_date": "2026-10-29",
+  "audit_type": "existing evidence and source hash verification; no tests executed by this script",
+  "final_run": "stability-0414-host-regression-20261027T212154",
+  "candidate_source_matches_final_run": true,
+  "source_files_verified": 182,
+  "final_source_fingerprint": "4b3625883279c7b6bb4b2259dbd3e896d2cc68704e7dd5a0ffe918b842b8b311",
+  "counterexample_file_sha256": "fb390dbeb2d12cb11bc82db165f08fe0a10cfd2363f53b0ecc3564357e032b27",
+  "same_six_fault_scenarios": {
+    "baseline_failed": 6,
+    "candidate_passed": 6,
+    "candidate_failed": 0
+  },
+  "skipped": [
+    {
+      "class": "",
+      "name": "tests.test_d_official_client_flow",
+      "status": "skipped",
+      "reason": "collection skipped"
+    },
+    {
+      "class": "tests.test_agent_core.CoreTests",
+      "name": "test_case_insensitive_duplicate_selection",
+      "status": "skipped",
+      "reason": "case-insensitive filesystem cannot hold both filenames"
+    },
+    {
+      "class": "tests.test_agent_core.CoreTests",
+      "name": "test_symlink_escape",
+      "status": "skipped",
+      "reason": "Windows symlink privilege is unavailable"
+    },
+    {
+      "class": "tests.test_contract_044",
+      "name": "test_absolute_authorized_file_still_rejects_symlinks_and_traversal",
+      "status": "skipped",
+      "reason": "symlink unavailable"
+    },
+    {
+      "class": "tests.test_mixed_text_pdf.MixedTextPdfTests",
+      "name": "test_scanned_page_does_not_hide_text_pages",
+      "status": "skipped",
+      "reason": "300-paper local benchmark not installed"
+    },
+    {
+      "class": "tests.test_platform_defaults",
+      "name": "test_default_library_rejects_symlink_escape",
+      "status": "skipped",
+      "reason": "symlink creation unavailable"
+    }
+  ],
+  "final_junit_counts": {
+    "passed": 282,
+    "failure": 0,
+    "error": 0,
+    "skipped": 6
+  },
+  "target_real_model_calls": 0,
+  "linux_image_acceptance": false,
+  "runs": {
+    "stability-0414-host-baseline-20261027T205642": {
+      "stage": "host-baseline",
+      "returncode": 1,
+      "collected": 6,
+      "failed": 6,
+      "skipped": 0,
+      "passed": 0,
+      "seconds": 2.822,
+      "real_model_calls": 0,
+      "environment": "Windows Python 3.12.14, isolated test dependencies; no Docker resource limit",
+      "image_acceptance": false,
+      "source_fingerprint": "29651f86ece5fd0c568af6c74d63923e678fca19344ec1258b7d6e31067328bf"
+    },
+    "stability-0414-host-regression-20261027T210100": {
+      "stage": "host-regression",
+      "returncode": 1,
+      "collected": 254,
+      "failed": 29,
+      "skipped": 9,
+      "passed": 216,
+      "seconds": 26.197,
+      "real_model_calls": 0,
+      "environment": "Windows Python 3.12.14, isolated test dependencies; no Docker resource limit",
+      "image_acceptance": false,
+      "source_fingerprint": "c2d69fed566982d17b9bf1b58b436be92a31f17d200df77b59deae09ee898a90"
+    },
+    "stability-0414-host-regression-20261027T211107": {
+      "stage": "host-regression",
+      "returncode": 1,
+      "collected": 288,
+      "failed": 1,
+      "skipped": 6,
+      "passed": 281,
+      "seconds": 31.431,
+      "real_model_calls": 0,
+      "environment": "Windows Python 3.12.14, isolated test dependencies; no Docker resource limit",
+      "image_acceptance": false,
+      "source_fingerprint": "4b3625883279c7b6bb4b2259dbd3e896d2cc68704e7dd5a0ffe918b842b8b311"
+    },
+    "stability-0414-host-regression-20261027T212154": {
+      "stage": "host-regression",
+      "returncode": 0,
+      "collected": 288,
+      "failed": 0,
+      "skipped": 6,
+      "passed": 282,
+      "seconds": 67.689,
+      "real_model_calls": 0,
+      "environment": "Windows Python 3.12.14, isolated test dependencies; no Docker resource limit",
+      "image_acceptance": false,
+      "source_fingerprint": "4b3625883279c7b6bb4b2259dbd3e896d2cc68704e7dd5a0ffe918b842b8b311"
+    }
+  }
+}

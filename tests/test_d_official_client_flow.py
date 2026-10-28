@@ -3,10 +3,14 @@ import json
 import os
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
-from socketserver import UnixStreamServer
+import socketserver
 from threading import Thread
 
 import pytest
+
+if not hasattr(socketserver, 'UnixStreamServer'):
+    pytest.skip('Unix domain RPC fixture requires Linux; not covered by Windows source regression', allow_module_level=True)
+UnixStreamServer = socketserver.UnixStreamServer
 
 from fixtures import case
 from research_agent.core.config import Settings

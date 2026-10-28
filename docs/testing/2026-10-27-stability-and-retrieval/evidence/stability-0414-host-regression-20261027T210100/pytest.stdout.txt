@@ -1,0 +1,1151 @@
+...s.....F.F..........s.........................F...F.F....F.s.........F [ 28%]
+F...............................FF..........F..........sF.FFFFF.FFF..FFF [ 57%]
+F.......s......................sFFF..........................F.......... [ 86%]
+...........................F.......                                      [100%]
+================================== FAILURES ===================================
+________________ CoreTests.test_full_25_case_batch_with_real_d ________________
+
+self = <test_agent_core.CoreTests testMethod=test_full_25_case_batch_with_real_d>
+
+    def test_full_25_case_batch_with_real_d(self):
+        exp = Path(os.environ.get("PUBLIC_EXPERIMENT_ROOT","/materials"))
+        if not exp.is_dir():
+            self.skipTest("public experiment mount not configured")
+        self.make_dispatch()
+        self.s.experiment_mode="local"
+        self.s.local_experiment_root=exp
+        summary=self.engine.solve_sync({"dispatch":True})
+        self.assertTrue(summary["complete"],summary)
+        self.assertEqual(self.engine.precheck(),{"cases":25,"valid":True})
+        for number in range(1,6):
+            result=read_json(self.s.output/f"data/test/D-{number:02d}.json")
+>           self.assertEqual(result["status"],"completed",result)
+E           AssertionError: 'failed' != 'completed'
+E           - failed
+E           + completed
+E            : {'case_id': 'D-01', 'status': 'failed', 'metrics': [{'name': 'Macro-F1', 'unit': '分数', 'reference': None, 'observed': None, 'relative_error': None}, {'name': 'Accuracy', 'unit': '%', 'reference': None, 'observed': None, 'relative_error': None}, {'name': '运行时间', 'unit': '秒', 'reference': None, 'observed': None, 'relative_error': None}], 'figures': []}
+
+tests\test_agent_core.py:280: AssertionError
+______________ CoreTests.test_http_health_solve_and_sdk_adapter _______________
+
+self = <test_agent_core.CoreTests testMethod=test_http_health_solve_and_sdk_adapter>
+
+    def test_http_health_solve_and_sdk_adapter(self):
+>       from agent import ResearchAgent
+
+tests\test_agent_core.py:226: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+agent.py:8: in <module>
+    from agenthack import AgentRuntime, BaseAgent
+..\..\镜像测试\runtime\py312-windows\agenthack\__init__.py:3: in <module>
+    from .runtime import AgentRuntime
+..\..\镜像测试\runtime\py312-windows\agenthack\runtime.py:14: in <module>
+    import uvicorn
+..\..\镜像测试\runtime\py312-windows\uvicorn\__init__.py:2: in <module>
+    from uvicorn.main import Server, main, run
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    from __future__ import annotations
+    
+    import asyncio
+    import logging
+    import os
+    import platform
+    import ssl
+    import sys
+    import warnings
+    from collections.abc import Callable
+    from configparser import RawConfigParser
+    from typing import IO, Any, get_args
+    
+>   import click
+E   ModuleNotFoundError: No module named 'click'
+
+..\..\镜像测试\runtime\py312-windows\uvicorn\main.py:14: ModuleNotFoundError
+____________ test_d_natural_input_can_save_honest_missing_session _____________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_d_natural_input_can_save_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C2088B91C0>
+
+    def test_d_natural_input_can_save_honest_missing_session(tmp_path, monkeypatch):
+        monkeypatch.delenv('RESEARCH_EXPERIMENT_CASE', raising=False)
+        settings = Settings(tmp_path, tmp_path / 'output', 'platform-id')
+        payload = case('D-01')
+        payload['input'] = '核心指标：Macro-F1（分数）、Accuracy（%）、运行时间（秒）。'
+        result = ResearchAgentEngine(settings, FakeLLM).solve_sync(payload)
+        assert result['status'] == 'materials_missing'
+        assert [(row['name'],row['unit']) for row in result['metrics']] == METRICS
+        assert all(row['observed'] is None for row in result['metrics'])
+>       assert json.loads((settings.output/'data/platform-id/D-01.json').read_text()) == result
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_cd_runtime_regressions.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_d_natural_input_can_save_0/output/data/platform-id/D-01.json')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0xa1 in position 373: illegal multibyte sequence
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1028: UnicodeDecodeError
+__________________ test_d_client_partial_result_is_preserved __________________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_d_client_partial_result_i0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C2088BA540>
+
+    def test_d_client_partial_result_is_preserved(tmp_path, monkeypatch):
+        import subprocess
+        from research_agent.workflows.layered_d_runner import LayeredDRunner
+        from research_agent.workflows.experiments import failed_result
+        from research_agent.contracts.validation import validate_result
+        from PIL import Image
+        settings = Settings(tmp_path/'data', tmp_path/'out', 'platform-id')
+        runner = LayeredDRunner(settings, tmp_path/'work')
+        script = Path('/data/experiments/run_experiment.py')
+        original_exists = Path.is_file
+        monkeypatch.setattr(Path, 'is_file', lambda p: True if p == script else original_exists(p))
+        monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE','D-01')
+        source = tmp_path/'generated.py'
+        source.write_text('def run_experiment(request): return {}')
+        monkeypatch.setattr(runner, 'prepare_checked_implementation', lambda c: source)
+        relative = 'data/figure/platform-id/D-01-partial.png'
+        figure = runner.work/'experiment'/relative
+        figure.parent.mkdir(parents=True)
+        Image.new('RGB', (4,4)).save(figure)
+        result = failed_result('D-01', METRICS, 'failed')
+        result['metrics'][0]['observed'] = .4
+        result['figures'] = [dict(path=relative, caption='fixture partial', x_label='x', y_label='y', legend='baseline')]
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.subprocess.run', lambda *a,**kw: subprocess.CompletedProcess([],0,json.dumps(result),''))
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.sha256_file', lambda p: 'fixture-hash')
+        got = runner.run(CaseContext.from_dict(case('D-01')),METRICS)
+        assert got == result and (settings.output/relative).is_file()
+>       assert json.loads((runner.work/'platform-submission.json').read_text()) == result
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_cd_runtime_regressions.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_d_client_partial_result_i0/work/platform-submission.json')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0xa1 in position 361: illegal multibyte sequence
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1028: UnicodeDecodeError
+______________ test_d_postprocessing_error_keeps_platform_result ______________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_d_postprocessing_error_ke0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C2088BBAD0>
+
+    def test_d_postprocessing_error_keeps_platform_result(tmp_path, monkeypatch):
+        import subprocess
+        from research_agent.workflows.layered_d_runner import LayeredDRunner
+        from research_agent.workflows.experiments import failed_result
+        runner = LayeredDRunner(Settings(tmp_path/'data',tmp_path/'output'),tmp_path/'work')
+        monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE','D-01')
+        real = Path.is_file
+        monkeypatch.setattr(Path,'is_file',lambda p: True if str(p)=='/data/experiments/run_experiment.py' else real(p))
+        monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: tmp_path/'source.py')
+        original = failed_result('D-01',METRICS,'failed')
+        original['metrics'][0]['name'] = 'Wrong metric'
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.subprocess.run',lambda *a,**kw: subprocess.CompletedProcess([],0,json.dumps(original),''))
+>       with pytest.raises(RuntimeError,match='postprocessing'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'RuntimeError'>
+
+tests\test_cd_runtime_regressions.py:157: Failed
+_ test_output_mounted_library_is_selected_without_searching_team_directories __
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_output_mounted_library_is0')
+
+    def test_output_mounted_library_is_selected_without_searching_team_directories(tmp_path):
+        library = tmp_path / "out/data/论文库"
+        library.mkdir(parents=True)
+        (library / "selected.pdf").write_bytes(b"%PDF locator fixture")
+        with patch.dict(os.environ, {"RESEARCH_WORKSPACE_ROOT": str(tmp_path / "data"),
+                                   "RESEARCH_RESULT_ROOT": str(tmp_path / "out")}, clear=True):
+            settings = Settings.from_env()
+        assert settings.material_roots == [library]
+        resolver = MaterialResolver(settings)
+        assert resolver.resolve(["data/论文库/selected.pdf"])[0].path == library / "selected.pdf"
+>       assert resolver.resolve([str(library / "selected.pdf")])[0].filename == "selected.pdf"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_contract_044.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\research_agent\rag\materials.py:118: in resolve
+    target = self._path(item)
+             ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.rag.materials.MaterialResolver object at 0x000001C2088B9A90>
+item = 'C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\stability-0414-host-regression-20261027T210100\\temp\\pytest\\test_output_mounted_library_is0\\out\\data\\论文库\\selected.pdf'
+
+    def _path(self, item: str) -> Path:
+        if not item or "\\" in item or ":" in item:
+>           raise MaterialError("materials must use relative paths or configured aliases")
+E           research_agent.rag.materials.MaterialError: materials must use relative paths or configured aliases
+
+src\research_agent\rag\materials.py:39: MaterialError
+_ test_first_call_writes_body_and_optional_review_cannot_remove_valid_files[C-01] _
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_first_call_writes_body_an0')
+case_id = 'C-01'
+
+    @pytest.mark.parametrize('case_id', ['C-01', 'E-01'])
+    def test_first_call_writes_body_and_optional_review_cannot_remove_valid_files(tmp_path, case_id):
+        names = papers(tmp_path/'papers')
+        if case_id.startswith('E'):
+            names = names[:2]
+        settings = Settings(tmp_path, tmp_path/'out', 'injected-workspace', [tmp_path/'papers'])
+        llm = DirectLLM()
+        result = ResearchAgentEngine(settings, lambda: llm).solve_sync(case(case_id, names))
+        assert llm.stages == ['report', 'audit']
+        assert set(result) == {'case_id', 'path', 'markdown'}
+>       assert json.loads((settings.output/f'data/injected-workspace/{case_id}.json').read_text()) == result
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_eval_20261026_regressions.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_first_call_writes_body_an0/out/data/injected-workspace/C-01.json')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0xac in position 101: illegal multibyte sequence
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1028: UnicodeDecodeError
+_ test_first_call_writes_body_and_optional_review_cannot_remove_valid_files[E-01] _
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_first_call_writes_body_an1')
+case_id = 'E-01'
+
+    @pytest.mark.parametrize('case_id', ['C-01', 'E-01'])
+    def test_first_call_writes_body_and_optional_review_cannot_remove_valid_files(tmp_path, case_id):
+        names = papers(tmp_path/'papers')
+        if case_id.startswith('E'):
+            names = names[:2]
+        settings = Settings(tmp_path, tmp_path/'out', 'injected-workspace', [tmp_path/'papers'])
+        llm = DirectLLM()
+        result = ResearchAgentEngine(settings, lambda: llm).solve_sync(case(case_id, names))
+        assert llm.stages == ['report', 'audit']
+        assert set(result) == {'case_id', 'path', 'markdown'}
+>       assert json.loads((settings.output/f'data/injected-workspace/{case_id}.json').read_text()) == result
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_eval_20261026_regressions.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_first_call_writes_body_an1/out/data/injected-workspace/E-01.json')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0xac in position 111: illegal multibyte sequence
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1028: UnicodeDecodeError
+_____ test_deepening_finds_late_evidence_without_losing_authorized_files ______
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_deepening_finds_late_evid0')
+
+    def test_deepening_finds_late_evidence_without_losing_authorized_files(tmp_path):
+        folder = tmp_path / "papers"
+        folder.mkdir()
+        with fitz.open() as doc:
+            for page in range(10):
+                p = doc.new_page()
+                text = ("Adaptive encoder study and experimental design. " if page < 9 else
+                        "Adaptive encoder noise measurements demonstrate parameter sensitivity with calibration errors.")
+                p.insert_text((30, 50), text)
+            doc.save(folder / "target.pdf")
+        with fitz.open() as doc:
+            doc.new_page().insert_text((30, 50), "A different topic of atmospheric observations.")
+            doc.save(folder / "other.pdf")
+        settings = Settings(tmp_path, tmp_path / "out", material_roots=[folder])
+        index = DocumentIndex(settings, tmp_path / "cache")
+        initial = index.build(["target.pdf", "other.pdf"], page_limit=4)
+    
+        class LLM:
+            def json(self, stage, data, **kwargs):
+                return {"papers": [{"filename": row["filename"], "decision": "include",
+                                    "reason": "Late-page sensitivity evidence supports the requested measurements.",
+                                    "chunk_ids": [row["chunks"][0]["chunk_id"]]}
+                                   for row in data["candidates"] if row["filename"] == "target.pdf"]}
+    
+        case = SimpleNamespace(case_id="B-99", input="Find adaptive encoder noise measurements", to_dict=lambda: {})
+        handler = TaskHandlers(LLM(), "team")
+        handler.document_expander = index.expand_documents
+>       result = handler.retrieval(case, HybridRetriever(initial), QueryPlan("adaptive encoder noise measurements"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_fulltext_deepening.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C2088F6CF0>
+case = namespace(case_id='B-99', input='Find adaptive encoder noise measurements', to_dict=<function test_deepening_finds_late_evidence_without_losing_authorized_files.<locals>.<lambda> at 0x000001C2088F93A0>)
+retriever = <research_agent.rag.retrieval.HybridRetriever object at 0x000001C2088F5EB0>
+plan = QueryPlan(topic='adaptive encoder noise measurements', methods='', focus='', exclusions=[], variants=[], subqueries=[])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+______ test_explicit_uncertainty_is_not_overridden_by_high_lexical_score ______
+
+    def test_explicit_uncertainty_is_not_overridden_by_high_lexical_score():
+        from research_agent.core.models import Chunk
+        c = Chunk("c", "paper.pdf", 1, "Method", "A strong lexical match to an adaptive encoder.", "text", "h")
+    
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [("paper.pdf", .99, [SimpleNamespace(chunk=c)])]
+    
+        class LLM:
+            def json(self, *args, **kwargs):
+                return {"papers": [{"filename": "paper.pdf", "decision": "uncertain", "chunk_ids": ["c"],
+                                    "reason": "Not enough evidence to establish the required contribution."}]}
+    
+        handler = TaskHandlers(LLM(), "team")
+        case = SimpleNamespace(case_id="B-98", input="adaptive encoder", to_dict=lambda: {})
+>       result = handler.retrieval(case, Retriever(), QueryPlan("adaptive encoder", subqueries=["encoder"]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_fulltext_deepening.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C2088F7C20>
+case = namespace(case_id='B-98', input='adaptive encoder', to_dict=<function test_explicit_uncertainty_is_not_overridden_by_high_lexical_score.<locals>.<lambda> at 0x000001C2088FA660>)
+retriever = <test_fulltext_deepening.test_explicit_uncertainty_is_not_overridden_by_high_lexical_score.<locals>.Retriever object at 0x000001C2088F7B90>
+plan = QueryPlan(topic='adaptive encoder', methods='', focus='', exclusions=[], variants=[], subqueries=['encoder'])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+_________ test_idea_reads_pdf_text_without_table_grid_reconstruction __________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_idea_reads_pdf_text_witho0')
+
+    def test_idea_reads_pdf_text_without_table_grid_reconstruction(tmp_path):
+        import fitz
+        names = papers(tmp_path/'papers')[:2]
+        with fitz.open(tmp_path/'papers'/names[0]) as document:
+            document[0].insert_text((40,700),'Table 1: A caption must not trigger grid reconstruction.')
+            document.saveIncr()
+        settings = Settings(tmp_path,tmp_path/'out','runtime-dir',[tmp_path/'papers'])
+        with patch.object(fitz.Page,'find_tables',side_effect=AssertionError('grid reconstruction should be disabled')):
+            result = ResearchAgentEngine(settings,FakeLLM).solve_sync(case('E-01',names))
+        assert result['path']=='data/expert/E-01-灵感Idea报告-runtime-dir.md'
+>       assert json.loads((settings.output/'data/runtime-dir/E-01.json').read_text()) == result
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_idea_runtime_regressions.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_idea_reads_pdf_text_witho0/out/data/runtime-dir/E-01.json')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0xac in position 151: illegal multibyte sequence
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1028: UnicodeDecodeError
+_ LargeLibraryRetrievalTests.test_clear_subquery_peaks_remove_weak_model_approvals _
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_clear_subquery_peaks_remove_weak_model_approvals>
+
+    def test_clear_subquery_peaks_remove_weak_model_approvals(self):
+        chunks = {name: Chunk(name, f"{name}.pdf", 1, "Abstract", f"specific {name} title",
+                              "text", name) for name in ("one", "two", "three", "extra")}
+    
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                if plan.topic in {"one", "two", "three"}:
+                    name = plan.topic
+                    return [(f"{name}.pdf", .85, [SimpleNamespace(chunk=chunks[name])])]
+                return [("extra.pdf", .4, [SimpleNamespace(chunk=chunks["extra"])])]
+    
+        class LLM:
+            def json(self, stage, data, **kwargs):
+                return {"papers": [{"filename": row["filename"], "reason": "摘要相关。",
+                                    "chunk_ids": [row["chunks"][0]["chunk_id"]]}
+                                   for row in data["candidates"]]}
+    
+        case = SimpleNamespace(case_id="B-94", input="寻找三个独立研究方向的论文", to_dict=lambda: {})
+        handler = TaskHandlers(LLM(), "demo")
+>       result = handler.retrieval(case, Retriever(), QueryPlan("mixed", subqueries=["one", "two", "three"]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20884FF20>
+case = namespace(case_id='B-94', input='寻找三个独立研究方向的论文', to_dict=<function LargeLibraryRetrievalTests.test_clear_subquery_peaks_remove_weak_model_approvals.<locals>.<lambda> at 0x000001C2088D4F40>)
+retriever = <test_large_library_retrieval.LargeLibraryRetrievalTests.test_clear_subquery_peaks_remove_weak_model_approvals.<locals>.Retriever object at 0x000001C20884CD70>
+plan = QueryPlan(topic='mixed', methods='', focus='', exclusions=[], variants=[], subqueries=['one', 'two', 'three'])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+_ LargeLibraryRetrievalTests.test_empty_model_query_falls_back_to_original_question _
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_empty_model_query_falls_back_to_original_question>
+
+    def test_empty_model_query_falls_back_to_original_question(self):
+        source = Chunk("hit", "target.pdf", 1, "Abstract", "Petri net signal hierarchy", "text", "h")
+    
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [("target.pdf", 0.4, [SimpleNamespace(chunk=source)])] if plan.topic == "原始问题 Petri net" else []
+    
+        class LLM:
+            def json(self, stage, data, **kwargs):
+                return {"papers": [{"filename": "target.pdf", "reason": "原文讨论信号层级。", "chunk_ids": ["hit"]}]}
+    
+        case = SimpleNamespace(case_id="B-05", input="原始问题 Petri net", to_dict=lambda: {})
+>       result = TaskHandlers(LLM(), "demo").retrieval(case, Retriever(), QueryPlan("过窄中文改写"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20884D2E0>
+case = namespace(case_id='B-05', input='原始问题 Petri net', to_dict=<function LargeLibraryRetrievalTests.test_empty_model_query_falls_back_to_original_question.<locals>.<lambda> at 0x000001C2088D5940>)
+retriever = <test_large_library_retrieval.LargeLibraryRetrievalTests.test_empty_model_query_falls_back_to_original_question.<locals>.Retriever object at 0x000001C20884D910>
+plan = QueryPlan(topic='过窄中文改写', methods='', focus='', exclusions=[], variants=[], subqueries=[])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+_ LargeLibraryRetrievalTests.test_explicit_three_papers_discards_extra_model_approval _
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_explicit_three_papers_discards_extra_model_approval>
+
+    def test_explicit_three_papers_discards_extra_model_approval(self):
+        chunks = {name: Chunk(name, f"{name}.pdf", 1, "Abstract", f"specific {name} paper title",
+                              "text", name) for name in ("one", "two", "three", "extra")}
+    
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                if plan.topic in {"one", "two", "three"}:
+                    name = plan.topic
+                    return [(f"{name}.pdf", .9, [SimpleNamespace(chunk=chunks[name])])]
+                return [("extra.pdf", .5, [SimpleNamespace(chunk=chunks["extra"])])]
+    
+        class LLM:
+            def json(self, stage, data, **kwargs):
+                return {"papers": [{"filename": row["filename"], "reason": "摘要相关。",
+                                    "chunk_ids": [row["chunks"][0]["chunk_id"]]}
+                                   for row in data["candidates"]]}
+    
+        case = SimpleNamespace(case_id="B-95", input="请找出三篇相关论文", to_dict=lambda: {})
+        handler = TaskHandlers(LLM(), "demo")
+>       result = handler.retrieval(case, Retriever(), QueryPlan("mixed", subqueries=["one", "two", "three"]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:186: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20884DFA0>
+case = namespace(case_id='B-95', input='请找出三篇相关论文', to_dict=<function LargeLibraryRetrievalTests.test_explicit_three_papers_discards_extra_model_approval.<locals>.<lambda> at 0x000001C2088D5DA0>)
+retriever = <test_large_library_retrieval.LargeLibraryRetrievalTests.test_explicit_three_papers_discards_extra_model_approval.<locals>.Retriever object at 0x000001C20884D7F0>
+plan = QueryPlan(topic='mixed', methods='', focus='', exclusions=[], variants=[], subqueries=['one', 'two', 'three'])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+_ LargeLibraryRetrievalTests.test_high_ranked_wrong_chunk_id_gets_single_paper_recheck _
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_high_ranked_wrong_chunk_id_gets_single_paper_recheck>
+
+    def test_high_ranked_wrong_chunk_id_gets_single_paper_recheck(self):
+        target = Chunk("real", "target.pdf", 1, "Abstract", "harmonic locked optical laser transceiver",
+                       "text", "h")
+    
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [("target.pdf", .68, [SimpleNamespace(chunk=target)])]
+    
+        class LLM:
+            calls = 0
+    
+            def json(self, stage, data, **kwargs):
+                self.calls += 1
+                return {"papers": [{"filename": "target.pdf", "reason": "标题与摘要匹配",
+                                    "chunk_ids": ["wrong" if self.calls == 1 else "real"]}]}
+    
+        llm = LLM()
+        case = SimpleNamespace(case_id="B-91", input="找一篇谐波锁定激光器论文",
+                               to_dict=lambda: {"materials": ["target.pdf"]})
+        handler = TaskHandlers(llm, "demo")
+>       result = handler.retrieval(case, Retriever(), QueryPlan("laser"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:281: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20883E4B0>
+case = namespace(case_id='B-91', input='找一篇谐波锁定激光器论文', to_dict=<function LargeLibraryRetrievalTests.test_high_ranked_wrong_chunk_id_gets_single_paper_recheck.<locals>.<lambda> at 0x000001C2088D4AE0>)
+retriever = <test_large_library_retrieval.LargeLibraryRetrievalTests.test_high_ranked_wrong_chunk_id_gets_single_paper_recheck.<locals>.Retriever object at 0x000001C20883DD60>
+plan = QueryPlan(topic='laser', methods='', focus='', exclusions=[], variants=[], subqueries=[])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+_ LargeLibraryRetrievalTests.test_independent_subquery_rescues_compound_request _
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_independent_subquery_rescues_compound_request>
+
+    def test_independent_subquery_rescues_compound_request(self):
+        target = Chunk("selection", "selection.pdf", 1, "Abstract",
+                       "Selection prior to biological evolution", "text", "h3")
+    
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                if plan.topic == "selection prior biological evolution":
+                    return [("selection.pdf", .9, [SimpleNamespace(chunk=target)])]
+                return []
+    
+        class LLM:
+            def json(self, stage, data, **kwargs):
+                return {"papers": [{"filename": "selection.pdf", "reason": "原文对应子主题。",
+                                    "chunk_ids": ["selection"]}]}
+    
+        case = SimpleNamespace(case_id="B-98", input="多个不同主题", to_dict=lambda: {})
+        plan = QueryPlan("混合主题", subqueries=["selection prior biological evolution"])
+>       result = TaskHandlers(LLM(), "demo").retrieval(case, Retriever(), plan)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20883F710>
+case = namespace(case_id='B-98', input='多个不同主题', to_dict=<function LargeLibraryRetrievalTests.test_independent_subquery_rescues_compound_request.<locals>.<lambda> at 0x000001C2088D65C0>)
+retriever = <test_large_library_retrieval.LargeLibraryRetrievalTests.test_independent_subquery_rescues_compound_request.<locals>.Retriever object at 0x000001C20883D430>
+plan = QueryPlan(topic='混合主题', methods='', focus='', exclusions=[], variants=[], subqueries=['selection prior biological evolution'])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+_ LargeLibraryRetrievalTests.test_invalid_model_approval_is_recorded_without_failing_whole_case _
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_invalid_model_approval_is_recorded_without_failing_whole_case>
+
+    def test_invalid_model_approval_is_recorded_without_failing_whole_case(self):
+        target = Chunk("hit", "target.pdf", 1, "Abstract", "target research paper", "text", "h")
+    
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [("target.pdf", .8, [SimpleNamespace(chunk=target)])]
+    
+        class LLM:
+            def json(self, stage, data, **kwargs):
+                self_data = data["task"]
+                assert "materials" not in self_data
+                return {"papers": [{"filename": "outside.pdf", "reason": "wrong", "chunk_ids": ["hit"]},
+                                   {"filename": "target.pdf", "reason": "supported", "chunk_ids": ["hit"]}]}
+    
+        case = SimpleNamespace(case_id="B-92", input="target", to_dict=lambda: {"materials": ["target.pdf"]})
+        handler = TaskHandlers(LLM(), "demo")
+>       result = handler.retrieval(case, Retriever(), QueryPlan("target"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20884D0A0>
+case = namespace(case_id='B-92', input='target', to_dict=<function LargeLibraryRetrievalTests.test_invalid_model_approval_is_recorded_without_failing_whole_case.<locals>.<lambda> at 0x000001C2088D6980>)
+retriever = <test_large_library_retrieval.LargeLibraryRetrievalTests.test_invalid_model_approval_is_recorded_without_failing_whole_case.<locals>.Retriever object at 0x000001C20884CF50>
+plan = QueryPlan(topic='target', methods='', focus='', exclusions=[], variants=[], subqueries=[])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+___ LargeLibraryRetrievalTests.test_no_tail_pruning_when_score_gap_is_small ___
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_no_tail_pruning_when_score_gap_is_small>
+
+    def test_no_tail_pruning_when_score_gap_is_small(self):
+        chunks = {name: Chunk(name, f"{name}.pdf", 1, "Abstract", f"specific {name} title",
+                              "text", name) for name in ("one", "two", "extra")}
+    
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                if plan.topic in {"one", "two"}:
+                    name = plan.topic
+                    return [(f"{name}.pdf", .8, [SimpleNamespace(chunk=chunks[name])])]
+                return [("extra.pdf", .7, [SimpleNamespace(chunk=chunks["extra"])])]
+    
+        class LLM:
+            def json(self, stage, data, **kwargs):
+                return {"papers": [{"filename": row["filename"], "reason": "摘要相关。",
+                                    "chunk_ids": [row["chunks"][0]["chunk_id"]]}
+                                   for row in data["candidates"]]}
+    
+        case = SimpleNamespace(case_id="B-93", input="两个方向的论文", to_dict=lambda: {})
+        handler = TaskHandlers(LLM(), "demo")
+>       result = handler.retrieval(case, Retriever(), QueryPlan("mixed", subqueries=["one", "two"]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:235: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20884E750>
+case = namespace(case_id='B-93', input='两个方向的论文', to_dict=<function LargeLibraryRetrievalTests.test_no_tail_pruning_when_score_gap_is_small.<locals>.<lambda> at 0x000001C2088D7060>)
+retriever = <test_large_library_retrieval.LargeLibraryRetrievalTests.test_no_tail_pruning_when_score_gap_is_small.<locals>.Retriever object at 0x000001C20884D2E0>
+plan = QueryPlan(topic='mixed', methods='', focus='', exclusions=[], variants=[], subqueries=['one', 'two'])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+_ LargeLibraryRetrievalTests.test_original_question_keeps_targets_when_rewrite_has_other_candidates _
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_original_question_keeps_targets_when_rewrite_has_other_candidates>
+
+    def test_original_question_keeps_targets_when_rewrite_has_other_candidates(self):
+        target = Chunk("target", "target.pdf", 1, "Abstract", "relevant target", "text", "h1")
+        distractor = Chunk("distractor", "other.pdf", 1, "Abstract", "other topic", "text", "h2")
+    
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return ([('other.pdf', .4, [SimpleNamespace(chunk=distractor)])]
+                        if plan.topic == "narrow" else
+                        [('target.pdf', .5, [SimpleNamespace(chunk=target)])])
+    
+        class LLM:
+            def json(self, stage, data, **kwargs):
+                return {"papers": [{"filename": row["filename"], "reason": "原文匹配。",
+                                    "chunk_ids": [row["chunks"][0]["chunk_id"]]}
+                                   for row in data["candidates"]]}
+    
+        case = SimpleNamespace(case_id="B-99", input="original target", to_dict=lambda: {})
+>       result = TaskHandlers(LLM(), "demo").retrieval(case, Retriever(), QueryPlan("narrow"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20852FE60>
+case = namespace(case_id='B-99', input='original target', to_dict=<function LargeLibraryRetrievalTests.test_original_question_keeps_targets_when_rewrite_has_other_candidates.<locals>.<lambda> at 0x000001C2088D6E80>)
+retriever = <test_large_library_retrieval.LargeLibraryRetrievalTests.test_original_question_keeps_targets_when_rewrite_has_other_candidates.<locals>.Retriever object at 0x000001C20852EAE0>
+plan = QueryPlan(topic='narrow', methods='', focus='', exclusions=[], variants=[], subqueries=[])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+_ LargeLibraryRetrievalTests.test_query_stage_retries_then_uses_original_question _
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_query_stage_retries_then_uses_original_question>
+
+    def test_query_stage_retries_then_uses_original_question(self):
+        class IncompleteLLM:
+            def __init__(self):
+                self.calls = []
+    
+            def json(self, stage, data, **kwargs):
+                self.calls.append(kwargs["max_tokens"])
+                raise ModelError("model response incomplete")
+    
+        llm = IncompleteLLM()
+        handler = TaskHandlers(llm, "demo")
+        case = SimpleNamespace(function="Literature_Retrieval", input="原始研究问题", constraints=[])
+>       plan = handler._plan(case)
+               ^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20883D3A0>
+case = namespace(function='Literature_Retrieval', input='原始研究问题', constraints=[])
+
+    def _plan(self, case):
+        if case.function in {"Survey", "Idea"} and getattr(self.llm, "supports_batched_extraction", False):
+            # 指定材料已确定：把有限在线时间留给原文提取、写作和审查。
+            self.query_plan_status = "original_for_report_budget"
+            return QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]))
+>       data = case.to_dict()
+               ^^^^^^^^^^^^
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'to_dict'
+
+src\research_agent\workflows\tasks.py:48: AttributeError
+_ LargeLibraryRetrievalTests.test_strong_title_cannot_override_missing_semantic_approval _
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_strong_title_cannot_override_missing_semantic_approval>
+
+    def test_strong_title_cannot_override_missing_semantic_approval(self):
+        target = Chunk("target", "target.pdf", 1, "Abstract",
+                       "Dust destruction in bubbles driven by multiple supernovae explosions", "text", "h1")
+        other = Chunk("other", "other.pdf", 1, "Abstract", "Single supernova dust", "text", "h2")
+    
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                if plan.topic == "multiple supernova bubble dust":
+                    return [("target.pdf", .85, [SimpleNamespace(chunk=target)]),
+                            ("other.pdf", .60, [SimpleNamespace(chunk=other)])]
+                return []
+    
+        class RejectingLLM:
+            def json(self, stage, data, **kwargs):
+                return {"papers": []}
+    
+        case = SimpleNamespace(case_id="B-97", input="多个超新星气泡中的尘埃破坏",
+                               to_dict=lambda: {})
+        handler = TaskHandlers(RejectingLLM(), "demo")
+        plan = QueryPlan("mixed", subqueries=["multiple supernova bubble dust"])
+>       result = handler.retrieval(case, Retriever(), plan)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20883EA20>
+case = namespace(case_id='B-97', input='多个超新星气泡中的尘埃破坏', to_dict=<function LargeLibraryRetrievalTests.test_strong_title_cannot_override_missing_semantic_approval.<locals>.<lambda> at 0x000001C2088D77E0>)
+retriever = <test_large_library_retrieval.LargeLibraryRetrievalTests.test_strong_title_cannot_override_missing_semantic_approval.<locals>.Retriever object at 0x000001C20883F740>
+plan = QueryPlan(topic='mixed', methods='', focus='', exclusions=[], variants=[], subqueries=['multiple supernova bubble dust'])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+__ LargeLibraryRetrievalTests.test_subquery_replaces_lower_scored_duplicate ___
+
+self = <test_large_library_retrieval.LargeLibraryRetrievalTests testMethod=test_subquery_replaces_lower_scored_duplicate>
+
+    def test_subquery_replaces_lower_scored_duplicate(self):
+        low = Chunk("low", "target.pdf", 2, "Body", "generic text", "text", "l")
+        high = Chunk("high", "target.pdf", 1, "Abstract", "specific target abstract", "text", "h")
+    
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                if plan.topic == "specific target":
+                    return [("target.pdf", .85, [SimpleNamespace(chunk=high)])]
+                return [("target.pdf", .10, [SimpleNamespace(chunk=low)])]
+    
+        class LLM:
+            def json(self, stage, data, **kwargs):
+                return {"papers": [{"filename": "target.pdf", "reason": "标题和摘要匹配。",
+                                    "chunk_ids": ["high"]}]}
+    
+        case = SimpleNamespace(case_id="B-96", input="original target", to_dict=lambda: {})
+        handler = TaskHandlers(LLM(), "demo")
+>       result = handler.retrieval(case, Retriever(), QueryPlan("mixed", subqueries=["specific target"]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_large_library_retrieval.py:163: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C20883D9A0>
+case = namespace(case_id='B-96', input='original target', to_dict=<function LargeLibraryRetrievalTests.test_subquery_replaces_lower_scored_duplicate.<locals>.<lambda> at 0x000001C2088D7E20>)
+retriever = <test_large_library_retrieval.LargeLibraryRetrievalTests.test_subquery_replaces_lower_scored_duplicate.<locals>.Retriever object at 0x000001C20883C0B0>
+plan = QueryPlan(topic='mixed', methods='', focus='', exclusions=[], variants=[], subqueries=['specific target'])
+
+    @tool(name="rank_papers_with_evidence")
+    def retrieval(self, case, retriever, plan):
+        # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
+        rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
+>       original = retriever.top_documents(QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]), exclusions=plan.exclusions,
+                                                                ^^^^^^^^^^
+                                                     variants=plan.variants),
+                                           limit=18, excerpts=3)
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'title'
+
+src\research_agent\workflows\tasks.py:81: AttributeError
+_____ test_d01_returns_reproducible_baseline_candidate_and_model_details ______
+
+    def test_d01_returns_reproducible_baseline_candidate_and_model_details():
+>       result = run_d01(_sample("D-01"))
+                         ^^^^^^^^^^^^^^^
+
+tests\test_layered_d_algorithms.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_layered_d_algorithms.py:13: in _sample
+    return json.loads((ROOT / name / "sample.json").read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('科研助手赛题材料/x新/research-experiments/D-01/sample.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '科研助手赛题材料\\x新\\research-experiments\\D-01\\sample.json'
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1013: FileNotFoundError
+_______________ test_d02_run_selects_config_and_rank_reuses_it ________________
+
+    def test_d02_run_selects_config_and_rank_reuses_it():
+>       request = _sample("D-02")
+                  ^^^^^^^^^^^^^^^
+
+tests\test_layered_d_algorithms.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_layered_d_algorithms.py:13: in _sample
+    return json.loads((ROOT / name / "sample.json").read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('科研助手赛题材料/x新/research-experiments/D-02/sample.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '科研助手赛题材料\\x新\\research-experiments\\D-02\\sample.json'
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1013: FileNotFoundError
+______________ test_public_samples_run_in_separate_process[D-01] ______________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_public_samples_run_in_sep0')
+case_id = 'D-01'
+
+    @pytest.mark.parametrize("case_id", ["D-01", "D-02", "D-05"])
+    def test_public_samples_run_in_separate_process(tmp_path, case_id):
+        settings = Settings(workspace=tmp_path, output=tmp_path / "out")
+        path = LayeredDRunner(settings, tmp_path / "work").prepare_implementation(case_id)
+>       materials = {key: (ROOT / case_id / name).read_text(encoding="utf-8")
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     for key, name in (("protocol", "protocol.json"), ("sample", "sample.json"))}
+
+tests\test_public_selftest.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('科研助手赛题材料/x新/research-experiments-20261020-source-v1/D-01/protocol.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '科研助手赛题材料\\x新\\research-experiments-20261020-source-v1\\D-01\\protocol.json'
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1013: FileNotFoundError
+______________ test_public_samples_run_in_separate_process[D-02] ______________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_public_samples_run_in_sep1')
+case_id = 'D-02'
+
+    @pytest.mark.parametrize("case_id", ["D-01", "D-02", "D-05"])
+    def test_public_samples_run_in_separate_process(tmp_path, case_id):
+        settings = Settings(workspace=tmp_path, output=tmp_path / "out")
+        path = LayeredDRunner(settings, tmp_path / "work").prepare_implementation(case_id)
+>       materials = {key: (ROOT / case_id / name).read_text(encoding="utf-8")
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     for key, name in (("protocol", "protocol.json"), ("sample", "sample.json"))}
+
+tests\test_public_selftest.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('科研助手赛题材料/x新/research-experiments-20261020-source-v1/D-02/protocol.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '科研助手赛题材料\\x新\\research-experiments-20261020-source-v1\\D-02\\protocol.json'
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1013: FileNotFoundError
+______________ test_public_samples_run_in_separate_process[D-05] ______________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_public_samples_run_in_sep2')
+case_id = 'D-05'
+
+    @pytest.mark.parametrize("case_id", ["D-01", "D-02", "D-05"])
+    def test_public_samples_run_in_separate_process(tmp_path, case_id):
+        settings = Settings(workspace=tmp_path, output=tmp_path / "out")
+        path = LayeredDRunner(settings, tmp_path / "work").prepare_implementation(case_id)
+>       materials = {key: (ROOT / case_id / name).read_text(encoding="utf-8")
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     for key, name in (("protocol", "protocol.json"), ("sample", "sample.json"))}
+
+tests\test_public_selftest.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('科研助手赛题材料/x新/research-experiments-20261020-source-v1/D-05/protocol.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '科研助手赛题材料\\x新\\research-experiments-20261020-source-v1\\D-05\\protocol.json'
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1013: FileNotFoundError
+_ test_explicit_account_quota_rejection_is_not_retried_or_charged_as_unknown_inference _
+
+    def test_explicit_account_quota_rejection_is_not_retried_or_charged_as_unknown_inference():
+        gateway = GatewayLLM()
+        gateway.base_url, gateway.api_key, gateway.model = "https://example.invalid", "test", "test"
+        with patch.object(gateway, "_request_once", side_effect=ModelQuotaError("quota exhausted")):
+            with pytest.raises(ModelQuotaError):
+>               TaskHandlers(gateway, "test")._plan(SimpleNamespace(function="Literature_Retrieval", input="比较机制", constraints=[]))
+
+tests\test_report_fix_regressions.py:217: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.workflows.tasks.TaskHandlers object at 0x000001C208A2BDA0>
+case = namespace(function='Literature_Retrieval', input='比较机制', constraints=[])
+
+    def _plan(self, case):
+        if case.function in {"Survey", "Idea"} and getattr(self.llm, "supports_batched_extraction", False):
+            # 指定材料已确定：把有限在线时间留给原文提取、写作和审查。
+            self.query_plan_status = "original_for_report_budget"
+            return QueryPlan('\n'.join([case.title, case.input, *case.constraints, case.expected_output]))
+>       data = case.to_dict()
+               ^^^^^^^^^^^^
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'to_dict'
+
+src\research_agent\workflows\tasks.py:48: AttributeError
+_____ test_full_official_case_reaches_report_and_audit_and_saved_receipt ______
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_full_official_case_reache0')
+
+    def test_full_official_case_reaches_report_and_audit_and_saved_receipt(tmp_path):
+        names = papers(tmp_path / 'papers')
+        payload = case('C-03', names)
+        payload.update(title='按标题比较方法、实验条件与局限', input='阅读指定论文，按输出要求写综述。',
+                       expected_output='返回 case_id、path 和完整 Markdown 综述。')
+        class Capture(DirectLLM):
+            def json(self, stage, data, **kwargs):
+                if stage in {'report', 'audit'}:
+                    assert data['task'] == payload
+                return super().json(stage, data, **kwargs)
+        settings = Settings(tmp_path, tmp_path/'out', 'platform-workspace', [tmp_path/'papers'])
+        result = ResearchAgentEngine(settings, Capture).solve_sync(payload)
+        assert set(result) == {'case_id', 'path', 'markdown'}
+        receipt = next((settings.output/'data/platform-workspace/work/C-03').glob('*/receipt.json'))
+>       assert json.loads(receipt.read_text())['source_case'] == payload
+                          ^^^^^^^^^^^^^^^^^^^
+
+tests\test_survey_input_contract.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-regression-20261027T210100/temp/pytest/test_full_official_case_reache0/out/data/platform-workspace/work/C-03/133dfda42e9e4ffa85ca5835bcff9e22/receipt.json')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0x80 in position 2660: illegal multibyte sequence
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1028: UnicodeDecodeError
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\stability-0414-host-regression-20261027T210100\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_agent_core.py::CoreTests::test_full_25_case_batch_with_real_d
+FAILED tests/test_agent_core.py::CoreTests::test_http_health_solve_and_sdk_adapter
+FAILED tests/test_cd_runtime_regressions.py::test_d_natural_input_can_save_honest_missing_session
+FAILED tests/test_cd_runtime_regressions.py::test_d_client_partial_result_is_preserved
+FAILED tests/test_cd_runtime_regressions.py::test_d_postprocessing_error_keeps_platform_result
+FAILED tests/test_contract_044.py::test_output_mounted_library_is_selected_without_searching_team_directories
+FAILED tests/test_eval_20261026_regressions.py::test_first_call_writes_body_and_optional_review_cannot_remove_valid_files[C-01]
+FAILED tests/test_eval_20261026_regressions.py::test_first_call_writes_body_and_optional_review_cannot_remove_valid_files[E-01]
+FAILED tests/test_fulltext_deepening.py::test_deepening_finds_late_evidence_without_losing_authorized_files
+FAILED tests/test_fulltext_deepening.py::test_explicit_uncertainty_is_not_overridden_by_high_lexical_score
+FAILED tests/test_idea_runtime_regressions.py::test_idea_reads_pdf_text_without_table_grid_reconstruction
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_clear_subquery_peaks_remove_weak_model_approvals
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_empty_model_query_falls_back_to_original_question
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_explicit_three_papers_discards_extra_model_approval
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_high_ranked_wrong_chunk_id_gets_single_paper_recheck
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_independent_subquery_rescues_compound_request
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_invalid_model_approval_is_recorded_without_failing_whole_case
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_no_tail_pruning_when_score_gap_is_small
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_original_question_keeps_targets_when_rewrite_has_other_candidates
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_query_stage_retries_then_uses_original_question
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_strong_title_cannot_override_missing_semantic_approval
+FAILED tests/test_large_library_retrieval.py::LargeLibraryRetrievalTests::test_subquery_replaces_lower_scored_duplicate
+FAILED tests/test_layered_d_algorithms.py::test_d01_returns_reproducible_baseline_candidate_and_model_details
+FAILED tests/test_layered_d_algorithms.py::test_d02_run_selects_config_and_rank_reuses_it
+FAILED tests/test_public_selftest.py::test_public_samples_run_in_separate_process[D-01]
+FAILED tests/test_public_selftest.py::test_public_samples_run_in_separate_process[D-02]
+FAILED tests/test_public_selftest.py::test_public_samples_run_in_separate_process[D-05]
+FAILED tests/test_report_fix_regressions.py::test_explicit_account_quota_rejection_is_not_retried_or_charged_as_unknown_inference
+FAILED tests/test_survey_input_contract.py::test_full_official_case_reaches_report_and_audit_and_saved_receipt
+29 failed, 216 passed, 9 skipped, 5 warnings in 24.83s

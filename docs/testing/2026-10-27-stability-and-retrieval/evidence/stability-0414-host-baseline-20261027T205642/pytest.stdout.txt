@@ -1,0 +1,211 @@
+FFFFFF                                                                   [100%]
+================================== FAILURES ===================================
+_____ test_cancelled_queued_b_request_does_not_overwrite_existing_answer ______
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T205642/temp/pytest/test_cancelled_queued_b_reques0')
+
+    def test_cancelled_queued_b_request_does_not_overwrite_existing_answer(tmp_path):
+        engine = engine_for(tmp_path)
+        target = engine.settings.output / 'data/runtime-directory/B-01.json'
+        prior = {'case_id': 'B-01', 'papers': [{'filename': 'prior.pdf', 'reason': 'Earlier committed evidence'}]}
+        write_json(target, prior)
+        engine.lock.acquire()
+    
+        async def scenario():
+            task = asyncio.create_task(engine.solve(case('B-01')))
+            await asyncio.sleep(.03)
+            task.cancel()
+            with pytest.raises(asyncio.CancelledError):
+                await task
+            engine.lock.release()
+            await asyncio.sleep(.16)
+    
+        try:
+            asyncio.run(scenario())
+        finally:
+            if engine.lock.locked():
+                engine.lock.release()
+>       assert json.loads(target.read_text(encoding='utf-8')) == prior
+E       AssertionError: assert {'case_id': '... 'papers': []} == {'case_id': '...d evidence'}]}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'papers': []} != {'papers': [{'filename': 'prior.pdf', 'reason': 'Earlier committed evidence'}]}
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py:41: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    research_agent.core.engine:engine.py:65 {"event": "research_request_failed", "case_id": "B-01", "error_type": "TimeoutError", "message": "case cancelled"}
+_________ test_receipt_write_failure_does_not_leave_published_success _________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T205642/temp/pytest/test_receipt_write_failure_doe0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000023EF8A13E90>
+
+    def test_receipt_write_failure_does_not_leave_published_success(tmp_path, monkeypatch):
+        import research_agent.core.engine as core
+        engine = engine_for(tmp_path)
+        original = core.write_json
+    
+        def fail_receipt(path, value):
+            if path.name == 'receipt.json':
+                raise OSError('Injected receipt storage failure')
+            return original(path, value)
+    
+        monkeypatch.setattr(core, 'write_json', fail_receipt)
+        with pytest.raises(OSError, match='receipt storage'):
+            engine.solve_sync(case('A-01'))
+>       assert not (engine.settings.output / 'data/runtime-directory/A-01.json').exists()
+E       AssertionError: assert not True
+E        +  where True = exists()
+E        +    where exists = (WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T205642/temp/pytest/test_receipt_write_failure_doe0/output') / 'data/runtime-directory/A-01.json').exists
+E        +      where WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T205642/temp/pytest/test_receipt_write_failure_doe0/output') = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T20564...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False).output
+E        +        where Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T20564...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False) = <research_agent.core.engine.ResearchAgentEngine object at 0x0000023EF8A13BC0>.settings
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py:57: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    research_agent.core.engine:engine.py:175 {"event": "research_case_failed", "case_id": "A-01", "error_type": "OSError", "team": "runtime-directory", "material_roots": [], "diagnostic_path": "data/runtime-directory/work/A-01/66c097c1799a4ec489c2f7fba5b11034/error.json"}
+ERROR    research_agent.core.engine:engine.py:65 {"event": "research_request_failed", "case_id": "A-01", "error_type": "OSError", "message": "Injected receipt storage failure"}
+__________ test_failed_retry_does_not_keep_previous_receipt_pointer ___________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T205642/temp/pytest/test_failed_retry_does_not_kee0')
+
+    def test_failed_retry_does_not_keep_previous_receipt_pointer(tmp_path):
+        engine = engine_for(tmp_path)
+        engine.solve_sync(case('A-01'))
+        pointer = engine.settings.output / 'data/runtime-directory/work/receipts/A-01.json'
+        assert pointer.exists()
+    
+        class Broken(FakeLLM):
+            def json(self, *args, **kwargs):
+                raise RuntimeError('Injected gateway failure')
+    
+        engine.llm_factory = Broken
+        with pytest.raises(RuntimeError, match='gateway failure'):
+            engine.solve_sync(case('A-01'))
+>       assert not pointer.exists(), 'Retry must not advertise the previous successful receipt'
+E       AssertionError: Retry must not advertise the previous successful receipt
+E       assert not True
+E        +  where True = exists()
+E        +    where exists = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T205642/temp/pytest/test_failed_retry_does_not_kee0/output/data/runtime-directory/work/receipts/A-01.json').exists
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py:74: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    research_agent.core.engine:engine.py:175 {"event": "research_case_failed", "case_id": "A-01", "error_type": "RuntimeError", "team": "runtime-directory", "material_roots": [], "diagnostic_path": "data/runtime-directory/work/A-01/74e02968f405418391b01a75b9af466f/error.json"}
+ERROR    research_agent.core.engine:engine.py:65 {"event": "research_request_failed", "case_id": "A-01", "error_type": "RuntimeError", "message": "Injected gateway failure"}
+______ test_b_auxiliary_diagnostic_failure_does_not_destroy_valid_answer ______
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T205642/temp/pytest/test_b_auxiliary_diagnostic_fa0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000023EF8A13530>
+
+    def test_b_auxiliary_diagnostic_failure_does_not_destroy_valid_answer(tmp_path, monkeypatch):
+        import research_agent.core.engine as core
+        library = tmp_path / 'papers'
+        names = papers(library)
+        settings = Settings(tmp_path, tmp_path / 'output', 'runtime-directory', [library])
+        engine = ResearchAgentEngine(settings, FakeLLM)
+        original = core.write_json
+    
+        def fail_auxiliary(path, value):
+            if path.name == 'b-outcome.json':
+                raise OSError('Injected auxiliary diagnostic failure')
+            return original(path, value)
+    
+        monkeypatch.setattr(core, 'write_json', fail_auxiliary)
+>       result = engine.solve_sync(case('B-01', names))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\research_agent\core\engine.py:59: in solve_sync
+    return self._solve_one(payload, cancelled, received_at)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\research_agent\core\engine.py:98: in _solve_one
+    return self._execute_one(case)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+src\research_agent\core\engine.py:164: in _execute_one
+    write_json(confined(work, 'b-outcome.json'), outcome)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T205642/temp/pytest/test_b_auxiliary_diagnostic_fa0/output/data/runtime-directory/work/B-01/548143d5e3c145ceb19c0bcaaafaabbd/b-outcome.json')
+value = {'authorized_pdf_count': 5, 'case_id': 'B-01', 'diagnostic_path': 'data/runtime-directory/work/B-01/548143d5e3c145ceb19c0bcaaafaabbd/b-outcome.json', 'material_diagnostics': [], ...}
+
+    def fail_auxiliary(path, value):
+        if path.name == 'b-outcome.json':
+>           raise OSError('Injected auxiliary diagnostic failure')
+E           OSError: Injected auxiliary diagnostic failure
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py:87: OSError
+------------------------------ Captured log call ------------------------------
+ERROR    research_agent.core.engine:engine.py:175 {"event": "research_case_failed", "case_id": "B-01", "error_type": "OSError", "team": "runtime-directory", "material_roots": ["C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\stability-0414-host-baseline-20261027T205642\\temp\\pytest\\test_b_auxiliary_diagnostic_fa0\\papers"], "diagnostic_path": "data/runtime-directory/work/B-01/548143d5e3c145ceb19c0bcaaafaabbd/error.json"}
+ERROR    research_agent.core.engine:engine.py:65 {"event": "research_request_failed", "case_id": "B-01", "error_type": "OSError", "message": "Injected auxiliary diagnostic failure"}
+___ test_cancellation_during_markdown_write_leaves_no_public_partial_answer ___
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T205642/temp/pytest/test_cancellation_during_markd0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000023EF8A5BCB0>
+
+    def test_cancellation_during_markdown_write_leaves_no_public_partial_answer(tmp_path, monkeypatch):
+        import research_agent.core.engine as core
+        library = tmp_path / 'papers'
+        names = papers(library)
+        engine = ResearchAgentEngine(Settings(tmp_path, tmp_path / 'output', 'runtime-directory', [library]), FakeLLM)
+        cancelled = threading.Event()
+        original = core.atomic_text
+    
+        def cancel_after_markdown(path, value):
+            original(path, value)
+            if path.suffix == '.md':
+                cancelled.set()
+    
+        monkeypatch.setattr(core, 'atomic_text', cancel_after_markdown)
+>       with pytest.raises(TimeoutError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'TimeoutError'>
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py:111: Failed
+______ test_b_failure_writer_cannot_replace_a_committed_current_request _______
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/stability-0414-host-baseline-20261027T205642/temp/pytest/test_b_failure_writer_cannot_r0')
+
+    def test_b_failure_writer_cannot_replace_a_committed_current_request(tmp_path):
+        from research_agent.core.b_submission import B_REQUEST, failure_submission
+        settings = Settings(tmp_path, tmp_path / 'output', 'runtime-directory', [])
+        target = settings.output / 'data/runtime-directory/B-01.json'
+        result = {'case_id': 'B-01', 'papers': [{'filename': 'valid.pdf', 'reason': 'Verified original evidence'}]}
+        write_json(target, result)
+        token = B_REQUEST.set({'outcome': {'result': result, 'result_saved': True, 'outcome': 'matched',
+                                         'case_id': 'B-01', 'path': 'data/runtime-directory/B-01.json'}})
+        try:
+            outcome = failure_submission(settings, type('Case', (), {'case_id': 'B-01'})(), 'LateDiagnosticError')
+        finally:
+            B_REQUEST.reset(token)
+>       assert outcome['result'] == result
+E       AssertionError: assert {'case_id': '... 'papers': []} == {'case_id': '...l evidence'}]}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'papers': []} != {'papers': [{'filename': 'valid.pdf', 'reason': 'Verified original evidence'}]}
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py:129: AssertionError
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\stability-0414-host-baseline-20261027T205642\pytest.xml -
+=========================== short test summary info ===========================
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py::test_cancelled_queued_b_request_does_not_overwrite_existing_answer
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py::test_receipt_write_failure_does_not_leave_published_success
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py::test_failed_retry_does_not_keep_previous_receipt_pointer
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py::test_b_auxiliary_diagnostic_failure_does_not_destroy_valid_answer
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py::test_cancellation_during_markdown_write_leaves_no_public_partial_answer
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_submission_stability.py::test_b_failure_writer_cannot_replace_a_committed_current_request
+6 failed, 5 warnings in 2.04s

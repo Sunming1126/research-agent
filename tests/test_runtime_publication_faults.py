@@ -3,6 +3,7 @@ import asyncio
 import json
 import threading
 import time
+from pathlib import Path
 
 import pytest
 
@@ -14,7 +15,9 @@ from research_agent.integrations.http_runtime import ResearchRequestAdapter
 
 
 @pytest.mark.parametrize('body', [[], None, {'status': 'success', 'metadata': [], 'output': None},
-                                  {'status': 'error', 'metadata': {'trace_id': 'real-id'}, 'output': []}])
+                                  {'status': 'error', 'metadata': {'trace_id': 'real-id'}, 'output': []},
+                                  {'status': 'success', 'metadata': [], 'output': {'answer': json.dumps(
+                                      {'case_id': 'A-01', 'answer': 'valid', 'clarifying_question': 'scope?'})}}])
 def test_malformed_upstream_sdk_envelope_is_explicit_502(body):
     async def upstream(scope, receive, send):
         await receive()
@@ -72,7 +75,7 @@ def test_json_publish_failure_retracts_markdown_and_receipt(tmp_path, monkeypatc
     original = core.os.replace
     fault = {'raised': False}
     def fail_once(source, target):
-        if str(target).replace('\\', '/').endswith('/data/runtime-directory/C-01.json') and not fault['raised']:
+        if Path(target) == engine.settings.output / 'data/runtime-directory/C-01.json' and not fault['raised']:
             fault['raised'] = True
             raise OSError('Injected JSON publication failure')
         return original(source, target)

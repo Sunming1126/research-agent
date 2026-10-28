@@ -15,7 +15,7 @@ MAX_SUBQUERIES = 8
 
 def fuse_document_rankings(rankings, *, k=60, excerpts=4):
     """文档级 RRF；原词法分只作门限，跨通道排名和证据分别合并，不修改输入命中。"""
-    totals, rows, evidence = defaultdict(float), {}, defaultdict(dict)
+    totals, rows, evidence, evidence_scores = defaultdict(float), {}, defaultdict(dict), defaultdict(dict)
     for ranking in rankings:
         seen = set()
         for rank, (name, score, hits) in enumerate(ranking, start=1):
@@ -27,10 +27,12 @@ def fuse_document_rankings(rankings, *, k=60, excerpts=4):
                 rows[name] = score
             for hit in hits:
                 old = evidence[name].get(hit.chunk.chunk_id)
-                if old is None or hit.score > old.score:
+                hit_score = getattr(hit, 'score', score)
+                if old is None or hit_score > evidence_scores[name][hit.chunk.chunk_id]:
                     evidence[name][hit.chunk.chunk_id] = hit
+                    evidence_scores[name][hit.chunk.chunk_id] = hit_score
     ordered = sorted(rows, key=lambda name: (-totals[name], -rows[name], name))
-    merged = [(name, rows[name], sorted(evidence[name].values(), key=lambda h: (-h.score, h.chunk.start))[:excerpts])
+    merged = [(name, rows[name], sorted(evidence[name].values(), key=lambda h: (-evidence_scores[name][h.chunk.chunk_id], h.chunk.start))[:excerpts])
               for name in ordered]
     return merged, dict(totals)
 

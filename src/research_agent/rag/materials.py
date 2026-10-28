@@ -35,6 +35,19 @@ class MaterialResolver:
         self.settings = settings
 
     def _path(self, item: str) -> Path:
+        # Windows离线复测允许专用授权根内的本机绝对路径；UNC和驱动器相对路径仍拒绝。
+        if isinstance(item, str) and item.startswith('\\\\'):
+            raise MaterialError("network material paths are not authorized")
+        if isinstance(item, str) and Path(item).is_absolute() and not item.startswith('/'):
+            target = Path(item)
+            for root in self.settings.material_roots:
+                if target == root and root.is_dir():
+                    return root
+                if root in target.parents:
+                    checked = confined(root, target.relative_to(root).as_posix())
+                    if checked.exists():
+                        return checked
+            raise MaterialError("absolute material path is outside authorized roots or missing")
         if not item or "\\" in item or ":" in item:
             raise MaterialError("materials must use relative paths or configured aliases")
         # 题面使用逻辑目录 data/论文库，平台实际挂载 /data/papers。

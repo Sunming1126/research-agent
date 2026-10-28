@@ -1,0 +1,23 @@
+...s..................s................................................. [ 25%]
+......s................................................................. [ 50%]
+..........................................s........................s.... [ 75%]
+.......................................................................  [100%]
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+..\..\镜像测试\runtime\py312-windows\fastapi\testclient.py:1
+  C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runtime\py312-windows\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\stability-0414-host-regression-20261027T212154\pytest.xml -
+282 passed, 6 skipped, 6 warnings in 66.09s (0:01:06)

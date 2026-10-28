@@ -1,0 +1,49 @@
+...s.....F............s................................................. [ 25%]
+......s................................................................. [ 50%]
+..........................................s........................s.... [ 75%]
+.......................................................................  [100%]
+================================== FAILURES ===================================
+________________ CoreTests.test_full_25_case_batch_with_real_d ________________
+
+self = <test_agent_core.CoreTests testMethod=test_full_25_case_batch_with_real_d>
+
+    def test_full_25_case_batch_with_real_d(self):
+        exp = Path(os.environ.get("PUBLIC_EXPERIMENT_ROOT","/materials"))
+        if not exp.is_dir():
+            self.skipTest("public experiment mount not configured")
+        self.make_dispatch()
+        self.s.experiment_mode="local"
+        self.s.local_experiment_root=exp
+        summary=self.engine.solve_sync({"dispatch":True})
+        self.assertTrue(summary["complete"],summary)
+        self.assertEqual(self.engine.precheck(),{"cases":25,"valid":True})
+        for number in range(1,6):
+            result=read_json(self.s.output/f"data/test/D-{number:02d}.json")
+>           self.assertEqual(result["status"],"completed",result)
+E           AssertionError: 'failed' != 'completed'
+E           - failed
+E           + completed
+E            : {'case_id': 'D-01', 'status': 'failed', 'metrics': [{'name': 'Macro-F1', 'unit': '分数', 'reference': None, 'observed': None, 'relative_error': None}, {'name': 'Accuracy', 'unit': '%', 'reference': None, 'observed': None, 'relative_error': None}, {'name': '运行时间', 'unit': '秒', 'reference': None, 'observed': None, 'relative_error': None}], 'figures': []}
+
+tests\test_agent_core.py:280: AssertionError
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+..\..\镜像测试\runtime\py312-windows\fastapi\testclient.py:1
+  C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runtime\py312-windows\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\stability-0414-host-regression-20261027T211107\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_agent_core.py::CoreTests::test_full_25_case_batch_with_real_d
+1 failed, 281 passed, 6 skipped, 6 warnings in 30.00s

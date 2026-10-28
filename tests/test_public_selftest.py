@@ -1,5 +1,6 @@
 """公开自测执行真实独立进程，并验证修复必须来自第二次完整模型回复。"""
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -11,7 +12,8 @@ from research_agent.workflows.sample_validation import run_public_sample
 from research_agent.workflows.sample_worker import validate_source
 
 
-ROOT = Path("科研助手赛题材料/x新/research-experiments-20261020-source-v1")
+ROOT = Path(os.environ.get('PUBLIC_LAYERED_EXPERIMENT_ROOT',
+            str(Path(__file__).resolve().parents[1] / '科研助手赛题材料/research-experiments-20261020-source-v1')))
 
 
 @pytest.mark.parametrize("case_id", ["D-01", "D-02", "D-05"])

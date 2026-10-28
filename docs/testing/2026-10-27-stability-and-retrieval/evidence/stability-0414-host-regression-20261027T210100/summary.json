@@ -1,0 +1,13 @@
+{
+  "stage": "host-regression",
+  "returncode": 1,
+  "collected": 254,
+  "failed": 29,
+  "skipped": 9,
+  "passed": 216,
+  "seconds": 26.197,
+  "real_model_calls": 0,
+  "environment": "Windows Python 3.12.14, isolated test dependencies; no Docker resource limit",
+  "image_acceptance": false,
+  "source_fingerprint": "c2d69fed566982d17b9bf1b58b436be92a31f17d200df77b59deae09ee898a90"
+}

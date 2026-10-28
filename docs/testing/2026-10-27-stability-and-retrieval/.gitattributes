@@ -1,0 +1,4 @@
+evidence/** -text -whitespace
+toolkit/*.zip -text
+verification.json -text -whitespace
+evidence-sha256.json -text -whitespace

@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 
 from research_agent.workflows.d_algorithms.d01 import run_d01
@@ -6,7 +7,8 @@ from research_agent.workflows.d_algorithms.d02 import run_d02
 from research_agent.workflows.d_algorithms.d05 import run_d05
 
 
-ROOT = Path("科研助手赛题材料/x新/research-experiments")
+ROOT = Path(os.environ.get('PUBLIC_LAYERED_EXPERIMENT_ROOT',
+            str(Path(__file__).resolve().parents[1] / '科研助手赛题材料/research-experiments-20261020-source-v1')))
 
 
 def _sample(name):
