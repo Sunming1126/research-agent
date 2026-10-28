@@ -1,0 +1,118 @@
+{
+  "benchmark": "b-seven-paper-new-questions-v1",
+  "frozen_before_target_calls": true,
+  "annotation": "Questions prepared after development fixes; unseen by target calls and not used to tune source. Same seven-paper corpus, not a domain-held-out benchmark or official gold.",
+  "papers": {
+    "2004.04906-DPR.pdf": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f",
+    "2005.11401-RAG.pdf": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+    "2007.01282-FiD.pdf": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953",
+    "2104.08663-BEIR.pdf": "1925755aeb627123d1a63c66f02e5aa2432f7e92751a02bea7c8c3b6bbb6ec33",
+    "2112.04426-RETRO.pdf": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+    "2203.02155-InstructGPT.pdf": "c1984bb50a5b90fddb895fdc3a0f72e5bc977148c9f63ef6040cbe7a3e1f0d98",
+    "2310.11511-Self-RAG.pdf": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+  },
+  "cases": [
+    {
+      "task": {
+        "case_id": "B-85",
+        "function": "Literature_Retrieval",
+        "title": "人类反馈训练指令跟随",
+        "input": "找使用人类示范、偏好比较和强化学习，从人类反馈微调语言模型以遵循指令的原始方法论文。排除训练独立检索器、跨域检索基准和依赖外部文本检索的生成方法。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2203.02155-InstructGPT.pdf"
+      ]
+    },
+    {
+      "task": {
+        "case_id": "B-86",
+        "function": "Literature_Retrieval",
+        "title": "跨域零样本检索评测",
+        "input": "找提出跨领域、多数据集、零样本信息检索评测基准，比较稀疏与稠密检索并分析域外泛化的论文。每一篇结果须给出原文依据；排除仅提出单个检索或生成模型的新方法。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2104.08663-BEIR.pdf"
+      ]
+    },
+    {
+      "task": {
+        "case_id": "B-87",
+        "function": "Literature_Retrieval",
+        "title": "Passage fusion in a generative reader",
+        "input": "Find original methods where a decoder fuses separately encoded retrieved passages to answer open-domain questions. Exclude joint retriever-generator learning, standalone retrievers, and retrieval benchmark surveys. Background mentions of passage fusion are insufficient.",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2007.01282-FiD.pdf"
+      ]
+    },
+    {
+      "task": {
+        "case_id": "B-88",
+        "function": "Literature_Retrieval",
+        "title": "三个不同研究角色与明确总数",
+        "input": "每个方向至少一篇，合计三篇：分别寻找稠密双编码段落检索器、跨域零样本检索评测基准、基于人类反馈训练指令跟随语言模型的原始工作。三个方向独立，每一篇不必同时满足三个方向；排除检索增强生成和多段阅读器。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2004.04906-DPR.pdf",
+        "2104.08663-BEIR.pdf",
+        "2203.02155-InstructGPT.pdf"
+      ]
+    }
+  ]
+}

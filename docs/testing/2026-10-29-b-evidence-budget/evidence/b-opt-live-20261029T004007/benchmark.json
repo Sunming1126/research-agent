@@ -1,0 +1,123 @@
+{
+  "benchmark": "b-seven-paper-diagnostic-v1",
+  "frozen_before_target_calls": true,
+  "annotation": "Locally specified diagnostic relevance sets, checked against original-paper abstracts; not official gold or a held-out domain benchmark",
+  "source_pages": [
+    "https://arxiv.org/abs/2004.04906",
+    "https://arxiv.org/abs/2005.11401",
+    "https://arxiv.org/abs/2007.01282",
+    "https://arxiv.org/abs/2112.04426",
+    "https://arxiv.org/abs/2310.11511"
+  ],
+  "papers": {
+    "2004.04906-DPR.pdf": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f",
+    "2005.11401-RAG.pdf": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+    "2007.01282-FiD.pdf": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953",
+    "2104.08663-BEIR.pdf": "1925755aeb627123d1a63c66f02e5aa2432f7e92751a02bea7c8c3b6bbb6ec33",
+    "2112.04426-RETRO.pdf": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+    "2203.02155-InstructGPT.pdf": "c1984bb50a5b90fddb895fdc3a0f72e5bc977148c9f63ef6040cbe7a3e1f0d98",
+    "2310.11511-Self-RAG.pdf": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+  },
+  "cases": [
+    {
+      "task": {
+        "case_id": "B-81",
+        "function": "Literature_Retrieval",
+        "title": "双编码器原始检索方法",
+        "input": "找以开放域问答为主要任务、训练稠密双编码检索器，并在Natural Questions和TriviaQA评估的原始方法论文。排除仅将已有检索器当组件的生成模型，以及检索基准评测论文。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2004.04906-DPR.pdf"
+      ]
+    },
+    {
+      "task": {
+        "case_id": "B-82",
+        "function": "Literature_Retrieval",
+        "title": "三个独立的检索生成方法目标",
+        "input": "分别找满足以下任一独立目标的原始方法论文：1. 联合优化检索器与生成器、结合参数和非参数记忆完成知识密集生成；2. 利用检索到的文本块、分块交叉注意力和大规模近邻库训练语言模型；3. 用反思标记按需检索、生成并评价自身输出。同一篇无需同时满足三个不同目标。排除纯检索器、仅检索基准评测、仅固定检索后的多段阅读器，以及仅靠人类反馈对齐而不含外部检索的方法。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2005.11401-RAG.pdf",
+        "2112.04426-RETRO.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ]
+    },
+    {
+      "task": {
+        "case_id": "B-83",
+        "function": "Literature_Retrieval",
+        "title": "按需检索与反思控制",
+        "input": "找用自我反思机制决定何时检索，并通过反思标记评价检索片段及生成内容的原始方法论文。排除固定检索流程、没有此类反思控制的方案。不能因相关工作提及自我反思就纳入。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2310.11511-Self-RAG.pdf"
+      ]
+    },
+    {
+      "task": {
+        "case_id": "B-84",
+        "function": "Literature_Retrieval",
+        "title": "无匹配的负对照",
+        "input": "找以卫星遥感实测城市植被和地表温度、控制季节混杂因素并估计热岛效应的原始研究论文。仅有通用文本检索或语言生成方法而没有该领域实测研究的不相关。没有匹配则返回空列表，不凑数。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": []
+    }
+  ]
+}

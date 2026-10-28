@@ -1,0 +1,20 @@
+{
+  "case_id": "B-88",
+  "function": "Literature_Retrieval",
+  "title": "三个不同研究角色与明确总数",
+  "input": "每个方向至少一篇，合计三篇：分别寻找稠密双编码段落检索器、跨域零样本检索评测基准、基于人类反馈训练指令跟随语言模型的原始工作。三个方向独立，每一篇不必同时满足三个方向；排除检索增强生成和多段阅读器。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2104.08663-BEIR.pdf",
+    "2112.04426-RETRO.pdf",
+    "2203.02155-InstructGPT.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "constraints": [
+    "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+  ],
+  "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+  "output_schema_ref": "Literature_Retrieval"
+}

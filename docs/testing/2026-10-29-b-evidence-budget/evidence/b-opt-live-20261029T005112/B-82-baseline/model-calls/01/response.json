@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"联合检索与生成、分块交叉注意力近邻检索、自反思按需检索的原始方法论文\", \"methods\": \"联合优化检索器与生成器；参数与非参数记忆结合；分块交叉注意力与大规模近邻库；反思标记驱动的按需检索与自评\", \"focus\": \"识别分别实现三个独立目标的原始方法论文，而非纯检索器、基准评测或固定检索后的阅读器\", \"exclusions\": [\"纯检索器\", \"仅检索基准评测\", \"仅固定检索后的多段阅读器\", \"仅靠人类反馈对齐而不含外部检索\"], \"variants\": [\"jointly optimize retriever and generator\", \"parametric and non-parametric memory\", \"retrieval-augmented generation\", \"chunked cross-attention\", \"large-scale nearest neighbor retrieval\", \"reflection tokens\", \"self-reflective retrieval\", \"ChEC-seq\"], \"subqueries\": [\"jointly optimize retriever and generator knowledge-intensive generation\", \"parametric and non-parametric memory retrieval-augmented generation\", \"chunked cross-attention large-scale nearest neighbor language model\", \"reflection tokens on-demand retrieval self-evaluation\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206292,
+  "id": "0217932062906053b39ea1d457e6524cc696cd2a0824aa14b4682",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 248,
+    "prompt_tokens": 567,
+    "total_tokens": 815,
+    "prompt_tokens_details": {
+      "cached_tokens": 512
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

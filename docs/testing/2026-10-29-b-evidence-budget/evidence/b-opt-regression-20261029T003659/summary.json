@@ -1,0 +1,11 @@
+{
+  "returncode": 1,
+  "collected": 315,
+  "failures": 27,
+  "errors": 92,
+  "skipped": 2,
+  "passed": 194,
+  "seconds": 17.234,
+  "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+  "target_real_model_calls": 0
+}

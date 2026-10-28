@@ -1,0 +1,20 @@
+{
+  "case_id": "B-84",
+  "function": "Literature_Retrieval",
+  "title": "无匹配的负对照",
+  "input": "找以卫星遥感实测城市植被和地表温度、控制季节混杂因素并估计热岛效应的原始研究论文。仅有通用文本检索或语言生成方法而没有该领域实测研究的不相关。没有匹配则返回空列表，不凑数。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2104.08663-BEIR.pdf",
+    "2112.04426-RETRO.pdf",
+    "2203.02155-InstructGPT.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "constraints": [
+    "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+  ],
+  "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+  "output_schema_ref": "Literature_Retrieval"
+}

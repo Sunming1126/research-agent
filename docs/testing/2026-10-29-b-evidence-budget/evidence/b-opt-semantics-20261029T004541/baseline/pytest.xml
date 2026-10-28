@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="13" skipped="0" tests="20" time="0.228" timestamp="2026-10-29T00:45:41.987142+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u540c\u4e00\u7bc7\u65e0\u9700\u540c\u65f6\u6ee1\u8db3\u4e09\u4e2a\u4e0d\u540c\u76ee\u6807\u3002-None]" time="0.001"><failure message="AssertionError: assert 1 == None&#10; +  where 1 = requested_paper_count('同一篇无需同时满足三个不同目标。')">text = '同一篇无需同时满足三个不同目标。', expected = None
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 1 == None
+E        +  where 1 = requested_paper_count('同一篇无需同时满足三个不同目标。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u6bcf\u4e00\u7bc7\u90fd\u5fc5\u987b\u6709\u539f\u6587\u8bc1\u636e\u3002-None]" time="0.001"><failure message="AssertionError: assert 1 == None&#10; +  where 1 = requested_paper_count('每一篇都必须有原文证据。')">text = '每一篇都必须有原文证据。', expected = None
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 1 == None
+E        +  where 1 = requested_paper_count('每一篇都必须有原文证据。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u6bcf\u4e2a\u76ee\u6807\u5404\u4e00\u7bc7\u3002-None]" time="0.001"><failure message="AssertionError: assert 1 == None&#10; +  where 1 = requested_paper_count('每个目标各一篇。')">text = '每个目标各一篇。', expected = None
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 1 == None
+E        +  where 1 = requested_paper_count('每个目标各一篇。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u6bcf\u4e2a\u65b9\u5411\u627e\u4e24\u7bc7\u8bba\u6587\u3002-None]" time="0.001" /><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u81f3\u5c11\u4e09\u7bc7\u76f8\u5173\u8bba\u6587\u3002-None]" time="0.001"><failure message="AssertionError: assert 3 == None&#10; +  where 3 = requested_paper_count('至少三篇相关论文。')">text = '至少三篇相关论文。', expected = None
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 3 == None
+E        +  where 3 = requested_paper_count('至少三篇相关论文。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u4e0d\u5c11\u4e8e3\u7bc7\u8bba\u6587\u3002-None]" time="0.001"><failure message="AssertionError: assert 3 == None&#10; +  where 3 = requested_paper_count('不少于3篇论文。')">text = '不少于3篇论文。', expected = None
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 3 == None
+E        +  where 3 = requested_paper_count('不少于3篇论文。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u627e3\u7bc7\u4ee5\u4e0a\u7684\u76f8\u5173\u8bba\u6587\u3002-None]" time="0.001"><failure message="AssertionError: assert 3 == None&#10; +  where 3 = requested_paper_count('找3篇以上的相关论文。')">text = '找3篇以上的相关论文。', expected = None
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 3 == None
+E        +  where 3 = requested_paper_count('找3篇以上的相关论文。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u4e09\u7bc7\u6216\u66f4\u591a\u8bba\u6587\u3002-None]" time="0.001"><failure message="AssertionError: assert 3 == None&#10; +  where 3 = requested_paper_count('三篇或更多论文。')">text = '三篇或更多论文。', expected = None
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 3 == None
+E        +  where 3 = requested_paper_count('三篇或更多论文。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u627e\u4e09\u7bc7\u76f8\u5173\u8bba\u6587\u3002-3]" time="0.001" /><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u6bcf\u4e2a\u65b9\u5411\u5404\u627e\u4e00\u7bc7\uff0c\u5408\u8ba1\u4e09\u7bc7\u8bba\u6587\u3002-3]" time="0.001" /><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u81f3\u5c11\u4e09\u7bc7\uff0c\u6700\u591a\u4e94\u7bc7\u3002-5]" time="0.001"><failure message="AssertionError: assert 3 == 5&#10; +  where 3 = requested_paper_count('至少三篇，最多五篇。')">text = '至少三篇，最多五篇。', expected = 5
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 3 == 5
+E        +  where 3 = requested_paper_count('至少三篇，最多五篇。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u603b\u51718\u7bc7\u8bba\u6587\u3002-8]" time="0.001" /><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u67e5\u627e\u4e0d\u8d85\u8fc75\u7bc7\u8bba\u6587\u3002-5]" time="0.001" /><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u9009\u62e9\u4e24\u7bc7\u8bba\u6587\u3002-2]" time="0.001"><failure message="AssertionError: assert None == 2&#10; +  where None = requested_paper_count('选择两篇论文。')">text = '选择两篇论文。', expected = 2
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 2
+E        +  where None = requested_paper_count('选择两篇论文。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u6700\u591a\u5341\u4e8c\u7bc7\u8bba\u6587\u3002-12]" time="0.001"><failure message="AssertionError: assert 2 == 12&#10; +  where 2 = requested_paper_count('最多十二篇论文。')">text = '最多十二篇论文。', expected = 12
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 2 == 12
+E        +  where 2 = requested_paper_count('最多十二篇论文。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u627e\u4e8c\u5341\u4e00\u7bc7\u8bba\u6587\u3002-21]" time="0.001"><failure message="AssertionError: assert 1 == 21&#10; +  where 1 = requested_paper_count('找二十一篇论文。')">text = '找二十一篇论文。', expected = 21
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 1 == 21
+E        +  where 1 = requested_paper_count('找二十一篇论文。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u540c\u4e00\u7bc7\u4e0d\u5fc5\u6ee1\u8db3\u6240\u6709\u76ee\u6807\uff0c\u8bf7\u8fd4\u56de\u4e09\u7bc7\u76f8\u5173\u8bba\u6587\u3002-3]" time="0.001"><failure message="AssertionError: assert 1 == 3&#10; +  where 1 = requested_paper_count('同一篇不必满足所有目标，请返回三篇相关论文。')">text = '同一篇不必满足所有目标，请返回三篇相关论文。', expected = 3
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+&gt;       assert requested_paper_count(text) == expected
+E       AssertionError: assert 1 == 3
+E        +  where 1 = requested_paper_count('同一篇不必满足所有目标，请返回三篇相关论文。')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:34: AssertionError</failure></testcase><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u6bcf\u7bc7\u4e00\u6761\u7406\u7531\u3002-None]" time="0.001" /><testcase classname="tests.test_b_count_semantics" name="test_requested_global_count_semantics[\u67e5\u627e3\u7bc7\u76f8\u5173\u7814\u7a76\uff1b\u6bcf\u4e2a\u65b9\u5411\u81f3\u5c11\u4e00\u7bc7\u3002-3]" time="0.001" /><testcase classname="tests.test_b_count_semantics" name="test_correctly_approved_independent_targets_are_not_cut_to_one" time="0.001"><failure message="AssertionError: assert 1 == 3&#10; +  where 1 = len([{'filename': 'paper-0.pdf', 'reason': 'The supplied method supports one requested independent target.'}])">def test_correctly_approved_independent_targets_are_not_cut_to_one():
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [(f'paper-{i}.pdf', .7, [RetrievalHit(Chunk(str(i), f'paper-{i}.pdf', 1,
+                        'Methods', 'A verified independent method contribution.', 'text', 'fixture'), .7, ())]) for i in range(3)]
+        class Reader:
+            def json(self, stage, data, **kwargs):
+                return {'papers': [{'filename': c['filename'], 'reason': 'The supplied method supports one requested independent target.',
+                        'decision': 'include', 'chunk_ids': [c['chunks'][0]['chunk_id']]} for c in data['candidates']]}
+        question = '分别检索三个独立目标。同一篇无需同时满足三个不同目标。'
+        case = SimpleNamespace(case_id='B-90', input=question, to_dict=lambda: {'input': question})
+        handler = TaskHandlers(Reader(), 'fixture')
+        result = handler.retrieval(case, Retriever(), QueryPlan('independent method'))
+&gt;       assert len(result['papers']) == 3
+E       AssertionError: assert 1 == 3
+E        +  where 1 = len([{'filename': 'paper-0.pdf', 'reason': 'The supplied method supports one requested independent target.'}])
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_count_semantics.py:50: AssertionError</failure></testcase></testsuite></testsuites>

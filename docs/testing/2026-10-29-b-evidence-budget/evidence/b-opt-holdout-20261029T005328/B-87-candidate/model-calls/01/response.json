@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"Decoder fusing separately encoded retrieved passages for open-domain question answering\", \"methods\": \"separate passage encoding, decoder-side passage fusion, generative reader\", \"focus\": \"original methods where a decoder fuses independently encoded retrieved passages to answer open-domain questions\", \"exclusions\": [\"joint retriever-generator learning\", \"standalone retrievers\", \"retrieval benchmark surveys\", \"background-only mentions of passage fusion\"], \"variants\": [\"passage fusion\", \"generative reader\", \"separately encoded passages\", \"retrieved passage fusion\", \"decoder fusion\", \"open-domain question answering\"], \"subqueries\": [\"decoder fuses separately encoded retrieved passages\", \"generative reader passage fusion open-domain QA\", \"fusion-in-decoder retrieved passages\", \"independent passage encoding decoder fusion\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206443,
+  "id": "02179320644223416e38debc86f845189b93b52559f1b78945cd8",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 167,
+    "prompt_tokens": 502,
+    "total_tokens": 669,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

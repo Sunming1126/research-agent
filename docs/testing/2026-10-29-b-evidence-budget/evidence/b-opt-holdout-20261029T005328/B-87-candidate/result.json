@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-87",
+    "papers": [
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "reason": "该论文提出 Fusion-in-Decoder：每个检索到的段落连同标题与问题拼接后由编码器独立编码，解码器再对所有段落表示做注意力并融合证据来生成答案，属于开放域问答中解码器融合分别编码段落的原创方法。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 3.891,
+  "target_real_model_calls": 2,
+  "total_tokens": 5207,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

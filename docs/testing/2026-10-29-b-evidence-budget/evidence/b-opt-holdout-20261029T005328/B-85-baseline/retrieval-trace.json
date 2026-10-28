@@ -1,0 +1,151 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "使用人类示范、偏好比较和强化学习从人类反馈微调语言模型以遵循指令的原始方法",
+      "methods": "人类示范监督微调、偏好比较奖励建模、强化学习从人类反馈（RLHF）",
+      "focus": "定位提出该原始方法的论文，而非依赖外部文本检索的生成方法或检索器训练工作",
+      "exclusions": [
+        "训练独立检索器",
+        "跨域检索基准",
+        "依赖外部文本检索的生成方法"
+      ],
+      "variants": [
+        "instruction following",
+        "supervised fine-tuning from human demonstrations",
+        "human preference comparisons",
+        "reinforcement learning from human feedback",
+        "RLHF",
+        "InstructGPT"
+      ],
+      "subqueries": [
+        "human feedback instruction following language models",
+        "supervised fine-tuning human demonstrations",
+        "preference comparison reward modeling",
+        "reinforcement learning from human feedback"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf"
+    ],
+    "original": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf"
+    ],
+    "components": [
+      {
+        "query": "human feedback instruction following language models",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2112.04426-RETRO.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "supervised fine-tuning human demonstrations",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      },
+      {
+        "query": "preference comparison reward modeling",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      },
+      {
+        "query": "reinforcement learning from human feedback",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2203.02155-InstructGPT.pdf": 0.09836065573770493,
+      "2310.11511-Self-RAG.pdf": 0.09651817716333845,
+      "2005.11401-RAG.pdf": 0.06349206349206349,
+      "2007.01282-FiD.pdf": 0.03125,
+      "2104.08663-BEIR.pdf": 0.030309988518943745,
+      "2004.04906-DPR.pdf": 0.030303030303030304,
+      "2112.04426-RETRO.pdf": 0.06231203665002413
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.7908
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.6911
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.4992
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.523
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3609
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.3135
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.3267
+      }
+    ],
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "00b097d5d840a802af6ac341b2915d357ea08e2aa8889e784669d8e4b08718a3",
+  "raw_evidence_relative_path": "B-85-baseline/output/data/b_comparison/work/B-85/fc26c2ef84a44db1ac741397ce3b641a/evidence.json"
+}

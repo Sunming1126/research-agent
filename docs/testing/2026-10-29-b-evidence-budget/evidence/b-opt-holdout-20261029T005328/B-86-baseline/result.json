@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-86",
+    "papers": [
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "reason": "该论文提出BEIR，一个面向信息检索模型零样本评测的异构基准，覆盖18个来自不同文本检索任务与领域的数据集，并评测了包括词法、稀疏、稠密、late-interaction与重排序在内的10个检索系统，报告BM25作为稳健基线、稠密与稀疏检索在零样本下泛化不足等域外泛化分析。这同时满足跨领域、多数据集、零样本IR评测基准，以及比较稀疏与稠密检索并分析域外泛化的关键条件，且其核心贡献正是评测基准而非单一检索或生成模型新方法。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 7.781,
+  "target_real_model_calls": 3,
+  "total_tokens": 6458,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

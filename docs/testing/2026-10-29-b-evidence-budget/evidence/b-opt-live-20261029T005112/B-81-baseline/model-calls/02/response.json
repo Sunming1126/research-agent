@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文以开放域问答为主要任务，提出用稠密表示实现段落检索，并采用简单的双编码器框架从少量问题-段落对学习嵌入；摘要报告在多个开放域QA数据集上评估，且片段明确提到在Natural Questions和TriviaQA上使用检索监督。其核心贡献正是训练稠密双编码检索器的原始方法，符合题目要求。\",\"chunk_ids\":[\"e8362eff8fa0d326ae6c\",\"55088e0ebf2a71a06e47\",\"e0650766aa3071a07889\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206277,
+  "id": "021793206275933e41c82dd1debd95d24831350e3c3a87755fb21",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 152,
+    "prompt_tokens": 3923,
+    "total_tokens": 4075,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

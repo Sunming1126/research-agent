@@ -61,10 +61,10 @@ def test_later_batch_failure_retains_only_earlier_verified_papers(fault):
     model = Model()
     handler = TaskHandlers(model, 'runtime-directory')
     result = handler.retrieval(CaseContext.from_dict(case('B-01')), Retriever(), QueryPlan('fixture topic'))
-    assert len(result['papers']) == 6
+    assert len(result['papers']) == 8
     assert model.calls == 2
     assert handler.retrieval_trace['partial_error']['failed_batch'] == 1
-    assert {p['filename'] for p in result['papers']} <= set(handler.retrieval_trace['candidates'][:6])
+    assert {p['filename'] for p in result['papers']} <= set(handler.retrieval_trace['candidates'][:8])
 
 
 def test_first_batch_failure_is_not_claimed_as_successful_retrieval():

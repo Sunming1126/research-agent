@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"稠密双编码段落检索器、跨域零样本检索评测基准、基于人类反馈训练指令跟随语言模型的原始工作\", \"methods\": \"稠密双编码器段落检索；跨域零样本检索基准评测；基于人类反馈的指令微调与强化学习训练\", \"focus\": \"分别定位三个独立方向的原始论文，每方向至少一篇，合计三篇\", \"exclusions\": [\"检索增强生成\", \"多段阅读器\"], \"variants\": [\"dense dual-encoder passage retriever\", \"dense passage retrieval\", \"cross-domain zero-shot retrieval benchmark\", \"zero-shot retrieval evaluation\", \"instruction following with human feedback\", \"reinforcement learning from human feedback\", \"InstructGPT\"], \"subqueries\": [\"dense dual-encoder passage retriever\", \"cross-domain zero-shot retrieval benchmark\", \"instruction following human feedback training\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206453,
+  "id": "02179320645195273b8dfe497f31d2aa905b6fe2ab6c681c3a6e5",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 186,
+    "prompt_tokens": 517,
+    "total_tokens": 703,
+    "prompt_tokens_details": {
+      "cached_tokens": 512
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

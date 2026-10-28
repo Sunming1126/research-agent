@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"卫星遥感实测城市植被与地表温度、控制季节混杂因素并估计城市热岛效应的原始研究\", \"methods\": \"卫星遥感实测、季节混杂因素控制、城市热岛效应估计\", \"focus\": \"寻找基于卫星遥感实测数据、控制季节混杂后估计城市植被对地表温度/热岛效应影响的原始实证研究\", \"exclusions\": [\"仅有通用文本检索方法\", \"仅有语言生成方法\", \"无领域实测研究\", \"综述或非原始研究\", \"凑数的不相关论文\"], \"variants\": [\"satellite remote sensing\", \"urban vegetation\", \"land surface temperature\", \"urban heat island\", \"seasonal confounding control\", \"empirical remote sensing study\"], \"subqueries\": [\"satellite remote sensing urban vegetation land surface temperature\", \"seasonal confounding control urban heat island estimation\", \"empirical study urban vegetation cooling effect\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793205669,
+  "id": "0217932056677437f7defdca68741f744da3a9cb51804c4263adf",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 185,
+    "prompt_tokens": 507,
+    "total_tokens": 692,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

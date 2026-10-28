@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\": [{\"filename\": \"2007.01282-FiD.pdf\", \"reason\": \"该论文提出 Fusion-in-Decoder，将检索到的多个段落联合编码后交给生成器完成开放域问答，属于结合检索与生成的知识密集生成方法；摘要片段还说明其使用 BM25/DPR 检索并借助 FAISS 近邻库，且实验表明显式文本记忆在知识检索任务上具有竞争力。这支持目标1（联合检索与生成、结合参数与非参数记忆）和目标2（利用检索文本块、分块交叉注意力与大规模近邻库训练语言模型）的相关性。\", \"chunk_ids\": [\"9a0c9c16374a4d2c489f\", \"1871abe7aa419571b900\", \"f20f1e111cab3eb1189c\"], \"relevant\": true, \"decision\": \"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206296,
+  "id": "021793206294979888862656ddb6bf8fba16f467f9d03d9387b20",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 194,
+    "prompt_tokens": 1192,
+    "total_tokens": 1386,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

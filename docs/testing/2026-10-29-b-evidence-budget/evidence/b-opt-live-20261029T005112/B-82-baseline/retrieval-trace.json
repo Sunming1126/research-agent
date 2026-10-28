@@ -1,0 +1,155 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "联合检索与生成、分块交叉注意力近邻检索、自反思按需检索的原始方法论文",
+      "methods": "联合优化检索器与生成器；参数与非参数记忆结合；分块交叉注意力与大规模近邻库；反思标记驱动的按需检索与自评",
+      "focus": "识别分别实现三个独立目标的原始方法论文，而非纯检索器、基准评测或固定检索后的阅读器",
+      "exclusions": [
+        "纯检索器",
+        "仅检索基准评测",
+        "仅固定检索后的多段阅读器",
+        "仅靠人类反馈对齐而不含外部检索"
+      ],
+      "variants": [
+        "jointly optimize retriever and generator",
+        "parametric and non-parametric memory",
+        "retrieval-augmented generation",
+        "chunked cross-attention",
+        "large-scale nearest neighbor retrieval",
+        "reflection tokens"
+      ],
+      "subqueries": [
+        "jointly optimize retriever and generator knowledge-intensive generation",
+        "parametric and non-parametric memory retrieval-augmented generation",
+        "chunked cross-attention large-scale nearest neighbor language model",
+        "reflection tokens on-demand retrieval self-evaluation"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "components": [
+      {
+        "query": "jointly optimize retriever and generator knowledge-intensive generation",
+        "filenames": [
+          "2005.11401-RAG.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      },
+      {
+        "query": "parametric and non-parametric memory retrieval-augmented generation",
+        "filenames": [
+          "2005.11401-RAG.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      },
+      {
+        "query": "chunked cross-attention large-scale nearest neighbor language model",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2104.08663-BEIR.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ]
+      },
+      {
+        "query": "reflection tokens on-demand retrieval self-evaluation",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2005.11401-RAG.pdf": 0.06557377049180328,
+      "2112.04426-RETRO.pdf": 0.0803975388851116,
+      "2310.11511-Self-RAG.pdf": 0.08065355527016024,
+      "2004.04906-DPR.pdf": 0.06299603174603174,
+      "2007.01282-FiD.pdf": 0.030309988518943745,
+      "2104.08663-BEIR.pdf": 0.04666516279419505,
+      "2203.02155-InstructGPT.pdf": 0.045949904158859384
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.654
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.5707
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.7993
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.4725
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.47
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.4593
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3104
+      }
+    ],
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "requested_limit": 1,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "4781cb90a4c4a48d0d66a6ccc52abfc3a805bb138e850c85789a72dbc6b4493a",
+  "raw_evidence_relative_path": "B-82-baseline/output/data/b_comparison/work/B-82/858525e449594c6aaec56069070f56ac/evidence.json"
+}

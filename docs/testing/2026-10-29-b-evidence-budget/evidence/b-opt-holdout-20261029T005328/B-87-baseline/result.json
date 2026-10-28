@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-87",
+    "papers": [
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "reason": "该论文提出 Fusion-in-Decoder：先用编码器分别编码每个检索到的段落，再由生成式解码器融合这些独立编码的段落来回答开放域问题，摘要还报告了随检索段落数增加性能提升，符合“解码器融合分别编码的检索段落”这一核心方法条件。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 6.953,
+  "target_real_model_calls": 3,
+  "total_tokens": 6156,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

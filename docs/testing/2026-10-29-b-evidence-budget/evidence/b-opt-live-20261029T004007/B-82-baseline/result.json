@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-82",
+    "papers": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "reason": "该文提出SELF-RAG框架，训练单一语言模型按需自适应检索段落，并用反思标记（reflection tokens）生成并评价自身输出，直接对应目标3（用反思标记按需检索、生成并评价自身输出）。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 5.719,
+  "target_real_model_calls": 3,
+  "total_tokens": 6547,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

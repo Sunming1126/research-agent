@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文提出稠密段落检索器（DPR），采用双编码器架构，用问题-段落对训练稠密嵌入，并以批内内积比较作为训练目标，直接对应“稠密双编码段落检索器”这一方向。\",\"chunk_ids\":[\"55088e0ebf2a71a06e47\",\"cfccf2338d4729715928\",\"db1097678faadc771f6a\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2104.08663-BEIR.pdf\",\"reason\":\"该论文提出BEIR，一个面向多样检索任务与领域的异构零样本评测基准，包含18个公开数据集并评测多种检索系统，直接对应“跨域零样本检索评测基准”方向。\",\"chunk_ids\":[\"1867b7a62882f32d83ae\",\"c5d112e9475598e79e81\",\"3bb4b9770902b46987b1\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2203.02155-InstructGPT.pdf\",\"reason\":\"该论文标题即为用人类反馈训练语言模型遵循指令，正文说明基于人类反馈的强化学习（RLHF）来对齐模型与人类意图，并以人类偏好评分评估，对应“基于人类反馈训练指令跟随语言模型的原始工作”方向。\",\"chunk_ids\":[\"9aacc62a7729374d7fab\",\"9a64ebe90805adec0447\",\"52eb6fb7968fd93a72cf\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206450,
+  "id": "021793206448711c2eb6daa98a94139fa98701b99e0cb3c79dfbb",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 354,
+    "prompt_tokens": 4900,
+    "total_tokens": 5254,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,37 @@
+............F.......                                                     [100%]
+================================== FAILURES ===================================
+_ test_requested_global_count_semantics[\u67e5\u627e\u4e0d\u8d85\u8fc75\u7bc7\u8bba\u6587\u3002-5] _
+
+text = '查找不超过5篇论文。', expected = 5
+
+    @pytest.mark.parametrize('text,expected', [
+        ('同一篇无需同时满足三个不同目标。', None),
+        ('每一篇都必须有原文证据。', None),
+        ('每个目标各一篇。', None),
+        ('每个方向找两篇论文。', None),
+        ('至少三篇相关论文。', None),
+        ('不少于3篇论文。', None),
+        ('找3篇以上的相关论文。', None),
+        ('三篇或更多论文。', None),
+        ('找三篇相关论文。', 3),
+        ('每个方向各找一篇，合计三篇论文。', 3),
+        ('至少三篇，最多五篇。', 5),
+        ('总共8篇论文。', 8),
+        ('查找不超过5篇论文。', 5),
+        ('选择两篇论文。', 2),
+        ('最多十二篇论文。', 12),
+        ('找二十一篇论文。', 21),
+        ('同一篇不必满足所有目标，请返回三篇相关论文。', 3),
+        ('每篇一条理由。', None),
+        ('查找3篇相关研究；每个方向至少一篇。', 3),
+    ])
+    def test_requested_global_count_semantics(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 5
+E        +  where None = requested_paper_count('查找不超过5篇论文。')
+
+tests\test_b_count_semantics.py:34: AssertionError
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\b-opt-semantics-20261029T004426\candidate\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_b_count_semantics.py::test_requested_global_count_semantics[\u67e5\u627e\u4e0d\u8d85\u8fc75\u7bc7\u8bba\u6587\u3002-5]
+1 failed, 19 passed in 0.28s

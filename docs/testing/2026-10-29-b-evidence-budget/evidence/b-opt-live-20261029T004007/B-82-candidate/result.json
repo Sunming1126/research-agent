@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-82",
+    "papers": [
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "reason": "该论文提出Retrieval-Enhanced Transformer，将输入分块并从大规模文本库检索相似块，通过分块交叉注意力（chunked cross-attention）结合检索到的文本块进行生成，且将检索库扩展到万亿token规模，直接对应目标2（利用检索文本块、分块交叉注意力和大规模近邻库训练语言模型）。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 6.766,
+  "target_real_model_calls": 2,
+  "total_tokens": 7163,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

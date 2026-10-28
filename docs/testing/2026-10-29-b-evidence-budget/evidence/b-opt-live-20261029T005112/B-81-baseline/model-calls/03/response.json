@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\": [], \"reason\": \"当前批次仅有一篇候选论文，其片段内容为InstructGPT的指令微调与提示数据来源，未涉及训练稠密双编码检索器，也未在Natural Questions和TriviaQA上评估检索器；其核心贡献不属于开放域问答的稠密双编码原始检索方法，故不纳入。\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206278,
+  "id": "0217932062771896d6c4a2c22a8ac0107afc732836cd422bd0a96",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 77,
+    "prompt_tokens": 904,
+    "total_tokens": 981,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "稠密双编码段落检索器、跨域零样本检索评测基准、基于人类反馈训练指令跟随语言模型",
+      "methods": "稠密双编码检索、零样本跨域检索评测、人类反馈强化学习指令微调",
+      "focus": "分别定位三个独立方向的原始工作，每方向至少一篇，合计三篇",
+      "exclusions": [
+        "检索增强生成",
+        "多段阅读器"
+      ],
+      "variants": [
+        "dense dual-encoder passage retriever",
+        "dual-encoder dense retrieval",
+        "zero-shot cross-domain retrieval benchmark",
+        "cross-domain zero-shot retrieval evaluation",
+        "instruction following with human feedback",
+        "reinforcement learning from human feedback"
+      ],
+      "subqueries": [
+        "dense dual-encoder passage retriever",
+        "zero-shot cross-domain retrieval benchmark",
+        "instruction following human feedback training"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "original": [
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "components": [
+      {
+        "query": "dense dual-encoder passage retriever",
+        "filenames": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "zero-shot cross-domain retrieval benchmark",
+        "filenames": [
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      },
+      {
+        "query": "instruction following human feedback training",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2004.04906-DPR.pdf": 0.06478893337698204,
+      "2104.08663-BEIR.pdf": 0.048915917503966164,
+      "2203.02155-InstructGPT.pdf": 0.04813947436898257,
+      "2310.11511-Self-RAG.pdf": 0.06325204813108039,
+      "2112.04426-RETRO.pdf": 0.06253817866721093,
+      "2007.01282-FiD.pdf": 0.03007688828584351,
+      "2005.11401-RAG.pdf": 0.04643902077700826
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2004.04906-DPR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.7486
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.6132
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.443
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.7964
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.7132
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.5949
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3509
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "requested_limit": 3,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "f94f8549ff2b879d325b2ee9c22672e672a529adf774ef78a1ec9aea3f8becac",
+  "raw_evidence_relative_path": "B-88-candidate/output/data/b_comparison/work/B-88/de6ecc90534b4b8aae6a5100f5817c01/evidence.json"
+}

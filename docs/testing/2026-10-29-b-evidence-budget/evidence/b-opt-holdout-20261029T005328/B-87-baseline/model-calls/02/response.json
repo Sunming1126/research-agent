@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2007.01282-FiD.pdf\",\"reason\":\"该论文提出 Fusion-in-Decoder：先用编码器分别编码每个检索到的段落，再由生成式解码器融合这些独立编码的段落来回答开放域问题，摘要还报告了随检索段落数增加性能提升，符合“解码器融合分别编码的检索段落”这一核心方法条件。\",\"chunk_ids\":[\"838203d62561ebbf9491\",\"1b86294f1e2c94646b6a\",\"33e423da53d6ac048f25\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2112.04426-RETRO.pdf\",\"reason\":\"RETRO 使用编码器分别处理检索到的邻居，并在解码器的 chunked cross-attention 中融合这些编码表示，属于解码器融合分别编码的检索内容；但当前片段显示其面向长序列语言建模与预训练检索，而非开放域问答，且检索表示冻结，是否满足“回答开放域问题”这一并列条件证据不足。\",\"chunk_ids\":[\"76ea6395ce71a7b15eb1\",\"81ec95a8405ecafc73a5\",\"4122755d9004e369a160\"],\"relevant\":true,\"decision\":\"uncertain\"},{\"filename\":\"2005.11401-RAG.pdf\",\"reason\":\"RAG 将检索器与生成器联合训练，属于题目明确排除的 joint retriever-generator learning；其贡献不是解码器对分别编码段落的融合方法，因此不纳入。\",\"chunk_ids\":[\"07f6ef060035ae01bc9b\",\"8ac61f0a514850f46412\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"DPR 的核心贡献是稠密段落检索器（dual-encoder），属于题目排除的 standalone retriever，未提出解码器融合分别编码段落的方法。\",\"chunk_ids\":[\"e8362eff8fa0d326ae6c\",\"e0650766aa3071a07889\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"Self-RAG 的核心是让 LM 按需检索并用反思 token 自评，属于检索增强生成框架，并非提出解码器融合分别编码检索段落的原始方法；其处理多段落的方式是相关性评估与生成，不满足本题关键条件。\",\"chunk_ids\":[\"1fa0596a2bb63bd8428d\",\"e0d531b3d95c84051d08\",\"dc0d90c9ba5d4372a133\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2104.08663-BEIR.pdf\",\"reason\":\"BEIR 是信息检索模型的零样本评测基准，属于题目排除的 retrieval benchmark，未涉及解码器融合段落的方法。\",\"chunk_ids\":[\"a228351dcb63339fa43d\",\"18d389f3d6d356f946e3\",\"a8e7b14293a0285e6fb2\"],\"relevant\":false,\"decision\":\"exclude\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793206440,
+  "id": "021793206436870f3d3e58bfdffea9769710a7767b276c33a9944",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 690,
+    "prompt_tokens": 3914,
+    "total_tokens": 4604,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

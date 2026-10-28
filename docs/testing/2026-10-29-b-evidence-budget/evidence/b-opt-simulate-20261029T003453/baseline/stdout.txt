@@ -1,0 +1,413 @@
+FFFFFFFFFFFFFFFF..FF....                                                 [100%]
+================================== FAILURES ===================================
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[0] ____
+
+index = 0
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[1] ____
+
+index = 1
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[2] ____
+
+index = 2
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[3] ____
+
+index = 3
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[4] ____
+
+index = 4
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[5] ____
+
+index = 5
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[6] ____
+
+index = 6
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:52: AssertionError
+___ test_independent_condition_evidence_survives_higher_scoring_overlap[7] ____
+
+index = 7
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_independent_condition_evidence_survives_higher_scoring_overlap(index):
+        anchor, condition = f'encoder{index}', f'calibration{index}'
+        overlap = [hit(f'overlap-{j}', (anchor + ' method repeated description. ') * 12, .99 - j * .01) for j in range(3)]
+        required = hit('condition', f'We use {anchor} and measure {condition} under controlled perturbations.', .41, page=9)
+        class Retriever:
+            def top_documents(self, plan, **kwargs):
+                return [('method.pdf', .8, [required] if plan.topic == condition else overlap)]
+        reader = Reader([anchor, condition])
+        handler = TaskHandlers(reader, 'fixture')
+        result = handler.retrieval(task(f'Find {anchor} with {condition}'), Retriever(),
+                                   QueryPlan(anchor, focus=condition, subqueries=[anchor, condition]))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:52: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[0] __________
+
+index = 0
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[1] __________
+
+index = 1
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[2] __________
+
+index = 2
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[3] __________
+
+index = 3
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[4] __________
+
+index = 4
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[5] __________
+
+index = 5
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[6] __________
+
+index = 6
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:67: AssertionError
+__________ test_query_match_after_prefix_is_visible_to_the_reader[7] __________
+
+index = 7
+
+    @pytest.mark.parametrize('index', range(8))
+    def test_query_match_after_prefix_is_visible_to_the_reader(index):
+        phrase = f'isotope{index} calibration{index}'
+        original = ('General experimental background and apparatus details. ' * 27) + phrase + ' demonstrates the required method.'
+        evidence = hit('late-match', original, .8)
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [('method.pdf', .8, [evidence])]
+        reader = Reader(phrase.split())
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find ' + phrase), Retriever(), QueryPlan(phrase))
+>       assert [p['filename'] for p in result['papers']] == ['method.pdf']
+E       AssertionError: assert [] == ['method.pdf']
+E         
+E         Right contains one more item: 'method.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:67: AssertionError
+________ test_short_evidence_does_not_require_an_extra_small_batch[7] _________
+
+count = 7
+
+    @pytest.mark.parametrize('count', [5, 6, 7, 8])
+    def test_short_evidence_does_not_require_an_extra_small_batch(count):
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [(f'paper-{i}.pdf', .7, [hit(str(i), 'An independently measured temperature effect.', name=f'paper-{i}.pdf')])
+                        for i in range(count)]
+        reader = Reader(['temperature'])
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find temperature experiments'), Retriever(), QueryPlan('temperature'))
+        assert len(result['papers']) == count
+>       assert len(reader.requests) == 1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len([{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-6.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}])
+E        +    where [{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-6.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}] = <test_b_evidence_counterexamples.Reader object at 0x0000021895679E20>.requests
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:81: AssertionError
+________ test_short_evidence_does_not_require_an_extra_small_batch[8] _________
+
+count = 8
+
+    @pytest.mark.parametrize('count', [5, 6, 7, 8])
+    def test_short_evidence_does_not_require_an_extra_small_batch(count):
+        class Retriever:
+            def top_documents(self, *args, **kwargs):
+                return [(f'paper-{i}.pdf', .7, [hit(str(i), 'An independently measured temperature effect.', name=f'paper-{i}.pdf')])
+                        for i in range(count)]
+        reader = Reader(['temperature'])
+        result = TaskHandlers(reader, 'fixture').retrieval(task('Find temperature experiments'), Retriever(), QueryPlan('temperature'))
+        assert len(result['papers']) == count
+>       assert len(reader.requests) == 1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len([{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-7.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}])
+E        +    where [{'candidates': [{'chunks': [{'chunk_id': '0', 'heading': 'Methods', 'page': 2, 'text': 'An independently measured tem... temperature effect.'}], 'filename': 'paper-7.pdf', 'score': 0.7}], 'task': {'input': 'Find temperature experiments'}}] = <test_b_evidence_counterexamples.Reader object at 0x000002189567B920>.requests
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py:81: AssertionError
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\b-opt-simulate-20261029T003453\baseline\pytest.xml -
+=========================== short test summary info ===========================
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[0]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[1]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[2]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[3]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[4]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[5]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[6]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_independent_condition_evidence_survives_higher_scoring_overlap[7]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[0]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[1]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[2]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[3]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[4]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[5]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[6]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_query_match_after_prefix_is_visible_to_the_reader[7]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_short_evidence_does_not_require_an_extra_small_batch[7]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_evidence_counterexamples.py::test_short_evidence_does_not_require_an_extra_small_batch[8]
+18 failed, 6 passed in 0.34s
