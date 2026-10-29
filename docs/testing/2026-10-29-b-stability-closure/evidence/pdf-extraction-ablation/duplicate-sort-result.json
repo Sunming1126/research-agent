@@ -1,0 +1,84 @@
+{
+  "stage": "offline_duplicate_sort_ablation",
+  "authorization": "explicit-user-authorized-offline-no-model",
+  "native_harness_execution": false,
+  "target_model_calls": 0,
+  "target_model_tokens": 0,
+  "factor": "PyMuPDF sort argument only; application coordinate sort remains enabled",
+  "documents": 60,
+  "sampled_pages": 612,
+  "sampling": "up to 12 evenly spaced pages per PDF after the first four pages",
+  "pymupdf_version": "1.24.14",
+  "schedule": [
+    true,
+    false,
+    false,
+    true,
+    true,
+    false
+  ],
+  "runs": [
+    {
+      "sequence": 0,
+      "method": "pymupdf_sorted_plus_python_sort",
+      "wall_seconds": 5.2768,
+      "cpu_seconds": 5.2031,
+      "pages": 612,
+      "exact_text_match": true,
+      "mismatch_count": 0,
+      "mismatch_page_indexes": []
+    },
+    {
+      "sequence": 1,
+      "method": "pymupdf_unsorted_plus_python_sort",
+      "wall_seconds": 5.1667,
+      "cpu_seconds": 5.0781,
+      "pages": 612,
+      "exact_text_match": true,
+      "mismatch_count": 0,
+      "mismatch_page_indexes": []
+    },
+    {
+      "sequence": 2,
+      "method": "pymupdf_unsorted_plus_python_sort",
+      "wall_seconds": 5.1207,
+      "cpu_seconds": 4.9219,
+      "pages": 612,
+      "exact_text_match": true,
+      "mismatch_count": 0,
+      "mismatch_page_indexes": []
+    },
+    {
+      "sequence": 3,
+      "method": "pymupdf_sorted_plus_python_sort",
+      "wall_seconds": 5.1118,
+      "cpu_seconds": 4.8438,
+      "pages": 612,
+      "exact_text_match": true,
+      "mismatch_count": 0,
+      "mismatch_page_indexes": []
+    },
+    {
+      "sequence": 4,
+      "method": "pymupdf_sorted_plus_python_sort",
+      "wall_seconds": 5.1054,
+      "cpu_seconds": 4.7969,
+      "pages": 612,
+      "exact_text_match": true,
+      "mismatch_count": 0,
+      "mismatch_page_indexes": []
+    },
+    {
+      "sequence": 5,
+      "method": "pymupdf_unsorted_plus_python_sort",
+      "wall_seconds": 5.0483,
+      "cpu_seconds": 4.8125,
+      "pages": 612,
+      "exact_text_match": true,
+      "mismatch_count": 0,
+      "mismatch_page_indexes": []
+    }
+  ],
+  "cache_limit": "OS page cache uncontrolled; alternating order reduces but does not remove cache bias",
+  "decision_rule": "candidate eligible only if every page is byte-for-byte identical and repeated median CPU and wall time improve"
+}
