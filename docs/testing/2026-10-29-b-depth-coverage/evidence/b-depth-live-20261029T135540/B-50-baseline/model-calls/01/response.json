@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"在论文正文中检索连续英文短语 \\\"is trivial if the second equality is\\\"\", \"methods\": \"连续短语精确匹配；允许 PDF 换行、标点与连字符的排版差异\", \"focus\": \"定位正文包含该连续短语的论文，并给出可核验的原文依据；参考文献列表不计为正文证据\", \"exclusions\": [\"仅凭主题相似判断\", \"仅凭常识或语义相近判断\", \"将参考文献列表中的条目作为正文证据\"], \"variants\": [\"is trivial if the second equality is\", \"trivial if the second equality is\", \"second equality is trivial\", \"continuous phrase exact match\", \"PDF line-break and hyphen normalization\", \"verbatim phrase search in full text\"], \"subqueries\": []}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253447,
+  "id": "021793253446579746abb8ea69ccb3d7a75bd7d82f8063f5afc01",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 164,
+    "prompt_tokens": 933,
+    "total_tokens": 1097,
+    "prompt_tokens_details": {
+      "cached_tokens": 896
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

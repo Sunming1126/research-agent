@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="5" time="0.562" timestamp="2026-10-29T13:07:20.767262+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="tests.test_deep_probe_counterexamples" name="test_late_condition_reaches_reader_before_candidate_expansion[5]" time="0.024"><failure message="ValueError: configure dedicated material directories, not workspace/data/output">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/candidate/temp/test_late_condition_reaches_re0')
+target = 5
+
+    @pytest.mark.parametrize('target', [5, 9, 13])
+    def test_late_condition_reaches_reader_before_candidate_expansion(tmp_path, target):
+        make_pdf(tmp_path / 'neutral.pdf', 14, target)
+&gt;       index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[tmp_path]), tmp_path / 'cache')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_deep_probe_counterexamples.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+&lt;string&gt;:17: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/candidate...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False)
+
+    def __post_init__(self):
+        if not safe_relative_path(self.team) or "/" in self.team or self.team.endswith((".", " ")):
+            raise ValueError("team must be one safe directory name")
+        self.workspace = self.workspace.resolve()
+        self.output = self.output.resolve()
+        self.material_roots = [root.resolve() for root in self.material_roots]
+        if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
+&gt;           raise ValueError("configure dedicated material directories, not workspace/data/output")
+E           ValueError: configure dedicated material directories, not workspace/data/output
+
+src\research_agent\core\config.py:38: ValueError</failure></testcase><testcase classname="tests.test_deep_probe_counterexamples" name="test_late_condition_reaches_reader_before_candidate_expansion[9]" time="0.024"><failure message="ValueError: configure dedicated material directories, not workspace/data/output">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/candidate/temp/test_late_condition_reaches_re1')
+target = 9
+
+    @pytest.mark.parametrize('target', [5, 9, 13])
+    def test_late_condition_reaches_reader_before_candidate_expansion(tmp_path, target):
+        make_pdf(tmp_path / 'neutral.pdf', 14, target)
+&gt;       index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[tmp_path]), tmp_path / 'cache')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_deep_probe_counterexamples.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+&lt;string&gt;:17: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/candidate...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False)
+
+    def __post_init__(self):
+        if not safe_relative_path(self.team) or "/" in self.team or self.team.endswith((".", " ")):
+            raise ValueError("team must be one safe directory name")
+        self.workspace = self.workspace.resolve()
+        self.output = self.output.resolve()
+        self.material_roots = [root.resolve() for root in self.material_roots]
+        if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
+&gt;           raise ValueError("configure dedicated material directories, not workspace/data/output")
+E           ValueError: configure dedicated material directories, not workspace/data/output
+
+src\research_agent\core\config.py:38: ValueError</failure></testcase><testcase classname="tests.test_deep_probe_counterexamples" name="test_late_condition_reaches_reader_before_candidate_expansion[13]" time="0.020"><failure message="ValueError: configure dedicated material directories, not workspace/data/output">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/candidate/temp/test_late_condition_reaches_re2')
+target = 13
+
+    @pytest.mark.parametrize('target', [5, 9, 13])
+    def test_late_condition_reaches_reader_before_candidate_expansion(tmp_path, target):
+        make_pdf(tmp_path / 'neutral.pdf', 14, target)
+&gt;       index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[tmp_path]), tmp_path / 'cache')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_deep_probe_counterexamples.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+&lt;string&gt;:17: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/candidate...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False)
+
+    def __post_init__(self):
+        if not safe_relative_path(self.team) or "/" in self.team or self.team.endswith((".", " ")):
+            raise ValueError("team must be one safe directory name")
+        self.workspace = self.workspace.resolve()
+        self.output = self.output.resolve()
+        self.material_roots = [root.resolve() for root in self.material_roots]
+        if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
+&gt;           raise ValueError("configure dedicated material directories, not workspace/data/output")
+E           ValueError: configure dedicated material directories, not workspace/data/output
+
+src\research_agent\core\config.py:38: ValueError</failure></testcase><testcase classname="tests.test_deep_probe_counterexamples" name="test_absence_or_bibliography_does_not_invent_own_work[True]" time="0.019"><failure message="ValueError: configure dedicated material directories, not workspace/data/output">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/candidate/temp/test_absence_or_bibliography_d0')
+bibliography = True
+
+    @pytest.mark.parametrize('bibliography', [True, False])
+    def test_absence_or_bibliography_does_not_invent_own_work(tmp_path, bibliography):
+        make_pdf(tmp_path / 'neutral.pdf', 14, 5 if bibliography else None, bibliography)
+&gt;       index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[tmp_path]), tmp_path / 'cache')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_deep_probe_counterexamples.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+&lt;string&gt;:17: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/candidate...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False)
+
+    def __post_init__(self):
+        if not safe_relative_path(self.team) or "/" in self.team or self.team.endswith((".", " ")):
+            raise ValueError("team must be one safe directory name")
+        self.workspace = self.workspace.resolve()
+        self.output = self.output.resolve()
+        self.material_roots = [root.resolve() for root in self.material_roots]
+        if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
+&gt;           raise ValueError("configure dedicated material directories, not workspace/data/output")
+E           ValueError: configure dedicated material directories, not workspace/data/output
+
+src\research_agent\core\config.py:38: ValueError</failure></testcase><testcase classname="tests.test_deep_probe_counterexamples" name="test_absence_or_bibliography_does_not_invent_own_work[False]" time="0.017"><failure message="ValueError: configure dedicated material directories, not workspace/data/output">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/candidate/temp/test_absence_or_bibliography_d1')
+bibliography = False
+
+    @pytest.mark.parametrize('bibliography', [True, False])
+    def test_absence_or_bibliography_does_not_invent_own_work(tmp_path, bibliography):
+        make_pdf(tmp_path / 'neutral.pdf', 14, 5 if bibliography else None, bibliography)
+&gt;       index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[tmp_path]), tmp_path / 'cache')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_deep_probe_counterexamples.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+&lt;string&gt;:17: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/candidate...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False)
+
+    def __post_init__(self):
+        if not safe_relative_path(self.team) or "/" in self.team or self.team.endswith((".", " ")):
+            raise ValueError("team must be one safe directory name")
+        self.workspace = self.workspace.resolve()
+        self.output = self.output.resolve()
+        self.material_roots = [root.resolve() for root in self.material_roots]
+        if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
+&gt;           raise ValueError("configure dedicated material directories, not workspace/data/output")
+E           ValueError: configure dedicated material directories, not workspace/data/output
+
+src\research_agent\core\config.py:38: ValueError</failure></testcase></testsuite></testsuites>

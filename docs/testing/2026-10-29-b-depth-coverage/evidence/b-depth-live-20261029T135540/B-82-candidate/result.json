@@ -1,0 +1,28 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-82",
+    "papers": [
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "reason": "该论文提出Retrieval-Enhanced Transformer，将输入序列分块并从大规模文本数据库检索相似文本块，通过分块交叉注意力机制结合检索到的文本块进行生成，且将检索库扩展到万亿token规模，直接满足目标2（利用检索到的文本块、分块交叉注意力和大规模近邻库训练语言模型）。"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "reason": "该论文提出Self-RAG框架，训练语言模型生成反思标记（reflection tokens），包括检索标记和批评标记，使模型能按需检索、生成并评价自身输出，直接满足目标3（用反思标记按需检索、生成并评价自身输出）。"
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "reason": "该论文提出RAG模型，将预训练seq2seq生成器（参数记忆）与Wikipedia稠密向量索引（非参数记忆）结合，通过端到端训练联合学习检索器与生成器，完成知识密集生成，直接满足目标1（联合优化检索器与生成器、结合参数和非参数记忆完成知识密集生成）。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 7.656,
+  "target_real_model_calls": 3,
+  "total_tokens": 7758,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

@@ -1,0 +1,1 @@
+{"v2_cases_frozen": 12, "qualified_corpus": 60, "target_real_model_calls": 0}

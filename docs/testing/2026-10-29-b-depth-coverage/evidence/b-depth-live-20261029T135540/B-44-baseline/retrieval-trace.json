@@ -1,0 +1,178 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "论文正文中连续英文短语的精确检索",
+      "methods": "连续短语匹配，允许PDF换行、标点和连字符排版差异",
+      "focus": "在给定论文集合的正文中定位包含连续短语 \"and the sid implemented in the cran\" 的论文，参考文献列表不作为正文证据",
+      "exclusions": [
+        "仅凭主题相似判断",
+        "仅凭常识判断",
+        "参考文献列表中的匹配"
+      ],
+      "variants": [
+        "and the sid implemented in the cran",
+        "SID implemented in the CRAN",
+        "sid implemented in cran",
+        "continuous phrase search",
+        "exact phrase matching in full text",
+        "PDF line-break and hyphen normalization"
+      ],
+      "subqueries": []
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2004.04906-DPR.pdf",
+      "ruc-diversification-2019.pdf",
+      "2212.10496.pdf",
+      "2401.15884.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2512.24620.pdf",
+      "2512.24861.pdf",
+      "2005.11401-RAG.pdf",
+      "2312.10997.pdf",
+      "2512.23317.pdf",
+      "2512.24663.pdf",
+      "2511.12805.pdf",
+      "2512.22268.pdf",
+      "2007.01282-FiD.pdf",
+      "2305.06983.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2512.24335.pdf"
+    ],
+    "original": [
+      "ruc-diversification-2019.pdf",
+      "2512.24335.pdf",
+      "2004.04906-DPR.pdf",
+      "2511.12805.pdf",
+      "2005.11401-RAG.pdf",
+      "2512.24620.pdf",
+      "2007.01282-FiD.pdf",
+      "2512.24702.pdf",
+      "2104.08663-BEIR.pdf",
+      "2305.06983.pdf",
+      "2212.10496.pdf",
+      "2401.15884.pdf",
+      "2512.21927.pdf",
+      "2512.22268.pdf",
+      "2112.04426-RETRO.pdf",
+      "2512.24640.pdf",
+      "2512.22411.pdf",
+      "2512.20368.pdf"
+    ],
+    "components": [],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2004.04906-DPR.pdf": 0.032266458495966696,
+      "ruc-diversification-2019.pdf": 0.03252247488101534,
+      "2212.10496.pdf": 0.029957522915269395,
+      "2401.15884.pdf": 0.029513888888888888,
+      "2104.08663-BEIR.pdf": 0.029877369007803793,
+      "2112.04426-RETRO.pdf": 0.028484848484848488,
+      "2512.24620.pdf": 0.03007688828584351,
+      "2512.24861.pdf": 0.014705882352941176,
+      "2005.11401-RAG.pdf": 0.029877369007803793,
+      "2312.10997.pdf": 0.014285714285714285,
+      "2512.23317.pdf": 0.014084507042253521,
+      "2512.24663.pdf": 0.013888888888888888,
+      "2511.12805.pdf": 0.0293236301369863,
+      "2512.22268.pdf": 0.02702702702702703,
+      "2007.01282-FiD.pdf": 0.028258706467661692,
+      "2305.06983.pdf": 0.027443609022556388,
+      "2310.11511-Self-RAG.pdf": 0.012987012987012988,
+      "2512.24335.pdf": 0.028949545078577336,
+      "2512.24702.pdf": 0.014705882352941176,
+      "2512.21927.pdf": 0.0136986301369863,
+      "2512.24640.pdf": 0.013157894736842105,
+      "2512.22411.pdf": 0.012987012987012988,
+      "2512.20368.pdf": 0.01282051282051282
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 18,
+    "candidates": [
+      "ruc-diversification-2019.pdf",
+      "2004.04906-DPR.pdf",
+      "2512.24620.pdf",
+      "2212.10496.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2401.15884.pdf",
+      "2511.12805.pdf",
+      "2512.24335.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2305.06983.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "ruc-diversification-2019.pdf",
+        "score": 0.4034
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.3712
+      },
+      {
+        "filename": "2512.24620.pdf",
+        "score": 0.3605
+      },
+      {
+        "filename": "2212.10496.pdf",
+        "score": 0.3461
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3694
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.35
+      },
+      {
+        "filename": "2401.15884.pdf",
+        "score": 0.3449
+      },
+      {
+        "filename": "2511.12805.pdf",
+        "score": 0.37
+      },
+      {
+        "filename": "2512.24335.pdf",
+        "score": 0.373
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.3433
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3575
+      },
+      {
+        "filename": "2305.06983.pdf",
+        "score": 0.3491
+      }
+    ],
+    "batch_sizes": [
+      8,
+      4
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2512.24620.pdf",
+      "ruc-diversification-2019.pdf"
+    ]
+  },
+  "raw_evidence_sha256": "ac6d3bffb95d3b89db7a8b683fb7b3ffc397b3fe30f578dbb24ba18ab9b8331d",
+  "source_chunk_count": 0
+}

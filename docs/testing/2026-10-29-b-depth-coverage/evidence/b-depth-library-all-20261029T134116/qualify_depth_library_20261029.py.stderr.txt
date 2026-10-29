@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\qualify_depth_library_20261029.py", line 113, in <module>
+    main()
+  File "C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\qualify_depth_library_20261029.py", line 62, in main
+    assert len(corpus) >= 7, 'Too few qualified documents for a meaningful diagnostic'
+           ^^^^^^^^^^^^^^^^
+AssertionError: Too few qualified documents for a meaningful diagnostic

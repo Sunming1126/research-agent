@@ -1,0 +1,209 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "CRAG（Corrective Retrieval Augmented Generation）原始方法论文",
+      "methods": "检索质量评价器置信度驱动的修复动作选择；知识分解再重组筛选",
+      "focus": "识别提出 CRAG 本身的原始贡献论文，而非综述或相关工作提及",
+      "exclusions": [
+        "仅在综述中介绍 CRAG 的论文",
+        "仅在工作相关部分提及 CRAG 的论文",
+        "引用 CRAG 作为参考文献的论文"
+      ],
+      "variants": [
+        "Corrective Retrieval Augmented Generation",
+        "CRAG",
+        "retrieval evaluator confidence",
+        "corrective actions retrieval",
+        "decompose-then-recompose knowledge refinement",
+        "retrieval quality evaluator"
+      ],
+      "subqueries": [
+        "Corrective Retrieval Augmented Generation original paper",
+        "retrieval evaluator confidence corrective actions",
+        "decompose then recompose knowledge filtering"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2401.15884.pdf",
+      "2312.10997.pdf",
+      "2305.06983.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "ruc-diversification-2019.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2512.24861.pdf",
+      "2104.08663-BEIR.pdf",
+      "2512.20368.pdf",
+      "2512.24639.pdf",
+      "2512.24702.pdf",
+      "2004.04906-DPR.pdf",
+      "2212.10496.pdf",
+      "2511.14431.pdf",
+      "2512.20562.pdf",
+      "2512.23527.pdf"
+    ],
+    "original": [
+      "2401.15884.pdf",
+      "2312.10997.pdf",
+      "ruc-diversification-2019.pdf",
+      "2305.06983.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2512.20368.pdf",
+      "2512.24736.pdf",
+      "2512.24605.pdf",
+      "2005.11401-RAG.pdf",
+      "2512.20562.pdf",
+      "2212.10496.pdf",
+      "2104.08663-BEIR.pdf",
+      "2512.24702.pdf",
+      "2512.24663.pdf",
+      "2512.24861.pdf",
+      "2512.24639.pdf",
+      "2512.23955.pdf",
+      "2112.04426-RETRO.pdf"
+    ],
+    "components": [
+      {
+        "query": "Corrective Retrieval Augmented Generation original paper",
+        "filenames": [
+          "2401.15884.pdf",
+          "2305.06983.pdf",
+          "2312.10997.pdf"
+        ]
+      },
+      {
+        "query": "retrieval evaluator confidence corrective actions",
+        "filenames": [
+          "2401.15884.pdf",
+          "2312.10997.pdf",
+          "2305.06983.pdf"
+        ]
+      },
+      {
+        "query": "decompose then recompose knowledge filtering",
+        "filenames": [
+          "2401.15884.pdf",
+          "2007.01282-FiD.pdf",
+          "2312.10997.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2401.15884.pdf": 0.0819672131147541,
+      "2312.10997.pdf": 0.08013312852022529,
+      "2305.06983.pdf": 0.06350006400409626,
+      "2310.11511-Self-RAG.pdf": 0.031009615384615385,
+      "ruc-diversification-2019.pdf": 0.03125763125763126,
+      "2005.11401-RAG.pdf": 0.02964426877470356,
+      "2007.01282-FiD.pdf": 0.031054405392392875,
+      "2112.04426-RETRO.pdf": 0.027526395173453996,
+      "2512.24861.pdf": 0.02782608695652174,
+      "2104.08663-BEIR.pdf": 0.02817460317460317,
+      "2512.20368.pdf": 0.029236022193768675,
+      "2512.24639.pdf": 0.027046783625730993,
+      "2512.24702.pdf": 0.0273972602739726,
+      "2004.04906-DPR.pdf": 0.013513513513513514,
+      "2212.10496.pdf": 0.027417840375586856,
+      "2511.14431.pdf": 0.013157894736842105,
+      "2512.20562.pdf": 0.027272727272727275,
+      "2512.23527.pdf": 0.01282051282051282,
+      "2512.24736.pdf": 0.014925373134328358,
+      "2512.24605.pdf": 0.014705882352941176,
+      "2512.24663.pdf": 0.013513513513513514,
+      "2512.23955.pdf": 0.012987012987012988
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 19,
+    "candidates": [
+      "2401.15884.pdf",
+      "2312.10997.pdf",
+      "2305.06983.pdf",
+      "ruc-diversification-2019.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2512.20368.pdf",
+      "2104.08663-BEIR.pdf",
+      "2512.24861.pdf",
+      "2112.04426-RETRO.pdf",
+      "2212.10496.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2401.15884.pdf",
+        "score": 0.8457
+      },
+      {
+        "filename": "2312.10997.pdf",
+        "score": 0.6633
+      },
+      {
+        "filename": "2305.06983.pdf",
+        "score": 0.72
+      },
+      {
+        "filename": "ruc-diversification-2019.pdf",
+        "score": 0.4216
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.5325
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.3658
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3381
+      },
+      {
+        "filename": "2512.20368.pdf",
+        "score": 0.3626
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.3312
+      },
+      {
+        "filename": "2512.24861.pdf",
+        "score": 0.3218
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.3135
+      },
+      {
+        "filename": "2212.10496.pdf",
+        "score": 0.3338
+      }
+    ],
+    "batch_sizes": [
+      8,
+      4
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2401.15884.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2007.01282-FiD.pdf",
+      "2305.06983.pdf",
+      "2312.10997.pdf",
+      "2401.15884.pdf",
+      "2512.20368.pdf"
+    ]
+  },
+  "raw_evidence_sha256": "2959b8f8a999560896af939a789f48f3eb09fc366a0b64f0fe5fef494b81cca5",
+  "source_chunk_count": 0
+}

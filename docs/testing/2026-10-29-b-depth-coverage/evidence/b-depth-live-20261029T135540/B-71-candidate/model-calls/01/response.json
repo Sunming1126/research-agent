@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\":\"CRAG（Corrective Retrieval Augmented Generation）原始方法论文\",\"methods\":\"检索质量评价器置信度驱动的修复动作选择；知识分解再重组筛选\",\"focus\":\"核验提出 CRAG 本身的原始贡献论文，排除仅在综述或相关工作中介绍 CRAG 的文献\",\"exclusions\":[\"仅在综述中介绍 CRAG 的论文\",\"仅在相关工作中提及 CRAG 的论文\",\"非原始提出 CRAG 的论文\"],\"variants\":[\"Corrective Retrieval Augmented Generation\",\"CRAG\",\"retrieval evaluator confidence\",\"corrective actions retrieval\",\"decompose-then-recompose knowledge selection\",\"retrieval quality evaluator\"],\"subqueries\":[\"Corrective Retrieval Augmented Generation original paper\",\"retrieval evaluator confidence corrective actions\",\"decompose then recompose knowledge filtering CRAG\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253518,
+  "id": "02179325351670034cf8297fe89ff93b17b5141a0abd4064dc316",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 179,
+    "prompt_tokens": 929,
+    "total_tokens": 1108,
+    "prompt_tokens_details": {
+      "cached_tokens": 896
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

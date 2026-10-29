@@ -1,0 +1,173 @@
+FFFFF                                                                    [100%]
+================================== FAILURES ===================================
+______ test_late_condition_reaches_reader_before_candidate_expansion[5] _______
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/baseline/temp/test_late_condition_reaches_re0')
+target = 5
+
+    @pytest.mark.parametrize('target', [5, 9, 13])
+    def test_late_condition_reaches_reader_before_candidate_expansion(tmp_path, target):
+        make_pdf(tmp_path / 'neutral.pdf', 14, target)
+>       index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[tmp_path]), tmp_path / 'cache')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+<string>:17: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/baseline/...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False)
+
+    def __post_init__(self):
+        if not safe_relative_path(self.team) or "/" in self.team or self.team.endswith((".", " ")):
+            raise ValueError("team must be one safe directory name")
+        self.workspace = self.workspace.resolve()
+        self.output = self.output.resolve()
+        self.material_roots = [root.resolve() for root in self.material_roots]
+        if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
+>           raise ValueError("configure dedicated material directories, not workspace/data/output")
+E           ValueError: configure dedicated material directories, not workspace/data/output
+
+src\research_agent\core\config.py:38: ValueError
+______ test_late_condition_reaches_reader_before_candidate_expansion[9] _______
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/baseline/temp/test_late_condition_reaches_re1')
+target = 9
+
+    @pytest.mark.parametrize('target', [5, 9, 13])
+    def test_late_condition_reaches_reader_before_candidate_expansion(tmp_path, target):
+        make_pdf(tmp_path / 'neutral.pdf', 14, target)
+>       index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[tmp_path]), tmp_path / 'cache')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+<string>:17: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/baseline/...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False)
+
+    def __post_init__(self):
+        if not safe_relative_path(self.team) or "/" in self.team or self.team.endswith((".", " ")):
+            raise ValueError("team must be one safe directory name")
+        self.workspace = self.workspace.resolve()
+        self.output = self.output.resolve()
+        self.material_roots = [root.resolve() for root in self.material_roots]
+        if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
+>           raise ValueError("configure dedicated material directories, not workspace/data/output")
+E           ValueError: configure dedicated material directories, not workspace/data/output
+
+src\research_agent\core\config.py:38: ValueError
+______ test_late_condition_reaches_reader_before_candidate_expansion[13] ______
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/baseline/temp/test_late_condition_reaches_re2')
+target = 13
+
+    @pytest.mark.parametrize('target', [5, 9, 13])
+    def test_late_condition_reaches_reader_before_candidate_expansion(tmp_path, target):
+        make_pdf(tmp_path / 'neutral.pdf', 14, target)
+>       index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[tmp_path]), tmp_path / 'cache')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+<string>:17: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/baseline/...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False)
+
+    def __post_init__(self):
+        if not safe_relative_path(self.team) or "/" in self.team or self.team.endswith((".", " ")):
+            raise ValueError("team must be one safe directory name")
+        self.workspace = self.workspace.resolve()
+        self.output = self.output.resolve()
+        self.material_roots = [root.resolve() for root in self.material_roots]
+        if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
+>           raise ValueError("configure dedicated material directories, not workspace/data/output")
+E           ValueError: configure dedicated material directories, not workspace/data/output
+
+src\research_agent\core\config.py:38: ValueError
+_________ test_absence_or_bibliography_does_not_invent_own_work[True] _________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/baseline/temp/test_absence_or_bibliography_d0')
+bibliography = True
+
+    @pytest.mark.parametrize('bibliography', [True, False])
+    def test_absence_or_bibliography_does_not_invent_own_work(tmp_path, bibliography):
+        make_pdf(tmp_path / 'neutral.pdf', 14, 5 if bibliography else None, bibliography)
+>       index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[tmp_path]), tmp_path / 'cache')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+<string>:17: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/baseline/...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False)
+
+    def __post_init__(self):
+        if not safe_relative_path(self.team) or "/" in self.team or self.team.endswith((".", " ")):
+            raise ValueError("team must be one safe directory name")
+        self.workspace = self.workspace.resolve()
+        self.output = self.output.resolve()
+        self.material_roots = [root.resolve() for root in self.material_roots]
+        if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
+>           raise ValueError("configure dedicated material directories, not workspace/data/output")
+E           ValueError: configure dedicated material directories, not workspace/data/output
+
+src\research_agent\core\config.py:38: ValueError
+________ test_absence_or_bibliography_does_not_invent_own_work[False] _________
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/baseline/temp/test_absence_or_bibliography_d1')
+bibliography = False
+
+    @pytest.mark.parametrize('bibliography', [True, False])
+    def test_absence_or_bibliography_does_not_invent_own_work(tmp_path, bibliography):
+        make_pdf(tmp_path / 'neutral.pdf', 14, 5 if bibliography else None, bibliography)
+>       index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[tmp_path]), tmp_path / 'cache')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+<string>:17: in __init__
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-semantics-20261029T130717/baseline/...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False)
+
+    def __post_init__(self):
+        if not safe_relative_path(self.team) or "/" in self.team or self.team.endswith((".", " ")):
+            raise ValueError("team must be one safe directory name")
+        self.workspace = self.workspace.resolve()
+        self.output = self.output.resolve()
+        self.material_roots = [root.resolve() for root in self.material_roots]
+        if any(root in {self.workspace, self.workspace / "data", self.output} for root in self.material_roots):
+>           raise ValueError("configure dedicated material directories, not workspace/data/output")
+E           ValueError: configure dedicated material directories, not workspace/data/output
+
+src\research_agent\core\config.py:38: ValueError
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\b-depth-semantics-20261029T130717\baseline\pytest.xml -
+=========================== short test summary info ===========================
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py::test_late_condition_reaches_reader_before_candidate_expansion[5]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py::test_late_condition_reaches_reader_before_candidate_expansion[9]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py::test_late_condition_reaches_reader_before_candidate_expansion[13]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py::test_absence_or_bibliography_does_not_invent_own_work[True]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py::test_absence_or_bibliography_does_not_invent_own_work[False]
+5 failed, 5 warnings in 0.74s

@@ -1,0 +1,206 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "HyDE 原始方法论文：不依赖相关性标签，由生成模型生成假想文档，再用无监督对比编码器映射到稠密检索空间",
+      "methods": "生成模型生成假想文档；无监督对比编码器；稠密检索空间映射",
+      "focus": "核验提出 HyDE 本身的原始贡献论文，排除仅引用或综述该方法的论文",
+      "exclusions": [
+        "只引用该方法的论文",
+        "综述该方法的论文",
+        "相关工作或参考文献中的提及"
+      ],
+      "variants": [
+        "Hypothetical Document Embeddings",
+        "HyDE",
+        "zero-shot dense retrieval",
+        "generative model hypothetical documents",
+        "unsupervised contrastive encoder",
+        "dense retrieval without relevance labels"
+      ],
+      "subqueries": [
+        "Hypothetical Document Embeddings original paper",
+        "HyDE zero-shot dense retrieval generative model",
+        "unsupervised contrastive encoder dense retrieval"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "ruc-diversification-2019.pdf",
+      "2212.10496.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2401.15884.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2305.06983.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2312.10997.pdf",
+      "2512.20051.pdf",
+      "2512.24702.pdf",
+      "2512.24861.pdf",
+      "2512.24603.pdf",
+      "2512.24639.pdf",
+      "2512.24971.pdf",
+      "2601.00905.pdf"
+    ],
+    "original": [
+      "2212.10496.pdf",
+      "ruc-diversification-2019.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2401.15884.pdf",
+      "2004.04906-DPR.pdf",
+      "2312.10997.pdf",
+      "2007.01282-FiD.pdf",
+      "2512.24736.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2305.06983.pdf",
+      "2601.00905.pdf",
+      "2512.24702.pdf",
+      "2511.14669.pdf",
+      "2512.20051.pdf",
+      "2512.24861.pdf",
+      "2512.24603.pdf"
+    ],
+    "components": [
+      {
+        "query": "Hypothetical Document Embeddings original paper",
+        "filenames": [
+          "2212.10496.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      },
+      {
+        "query": "HyDE zero-shot dense retrieval generative model",
+        "filenames": [
+          "2212.10496.pdf",
+          "2004.04906-DPR.pdf",
+          "2401.15884.pdf"
+        ]
+      },
+      {
+        "query": "unsupervised contrastive encoder dense retrieval",
+        "filenames": [
+          "2212.10496.pdf",
+          "2004.04906-DPR.pdf",
+          "2104.08663-BEIR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "ruc-diversification-2019.pdf": 0.03252247488101534,
+      "2212.10496.pdf": 0.08170280274986781,
+      "2007.01282-FiD.pdf": 0.03057889822595705,
+      "2004.04906-DPR.pdf": 0.06303457966764418,
+      "2104.08663-BEIR.pdf": 0.06325967938871165,
+      "2401.15884.pdf": 0.04640914640914641,
+      "2005.11401-RAG.pdf": 0.03055037313432836,
+      "2112.04426-RETRO.pdf": 0.044864612511671335,
+      "2305.06983.pdf": 0.028381642512077296,
+      "2310.11511-Self-RAG.pdf": 0.028370221327967807,
+      "2312.10997.pdf": 0.02900988017658188,
+      "2512.20051.pdf": 0.027046783625730993,
+      "2512.24702.pdf": 0.027212143650499815,
+      "2512.24861.pdf": 0.026500526500526502,
+      "2512.24603.pdf": 0.026153846153846153,
+      "2512.24639.pdf": 0.013157894736842105,
+      "2512.24971.pdf": 0.012987012987012988,
+      "2601.00905.pdf": 0.02651914295749912,
+      "2512.24736.pdf": 0.014492753623188406,
+      "2511.14669.pdf": 0.013333333333333334
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 18,
+    "candidates": [
+      "2212.10496.pdf",
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2401.15884.pdf",
+      "2112.04426-RETRO.pdf",
+      "ruc-diversification-2019.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf",
+      "2312.10997.pdf",
+      "2305.06983.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2512.24702.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2212.10496.pdf",
+        "score": 0.835
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.6242
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.6954
+      },
+      {
+        "filename": "2401.15884.pdf",
+        "score": 0.6052
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.5833
+      },
+      {
+        "filename": "ruc-diversification-2019.pdf",
+        "score": 0.4392
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3805
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.4005
+      },
+      {
+        "filename": "2312.10997.pdf",
+        "score": 0.3831
+      },
+      {
+        "filename": "2305.06983.pdf",
+        "score": 0.3538
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.3574
+      },
+      {
+        "filename": "2512.24702.pdf",
+        "score": 0.3472
+      }
+    ],
+    "batch_sizes": [
+      8,
+      4
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2212.10496.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2212.10496.pdf",
+      "2401.15884.pdf"
+    ]
+  },
+  "raw_evidence_sha256": "148325f7c80cfa31446bc924de4b1e489d7a1e237935466733efc22032d02110",
+  "source_chunk_count": 0
+}

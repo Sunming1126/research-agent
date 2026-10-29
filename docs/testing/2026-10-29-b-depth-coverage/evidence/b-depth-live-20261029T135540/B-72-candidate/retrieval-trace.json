@@ -1,0 +1,551 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "HyDE 原始方法论文：不依赖相关性标签，由生成模型生成假想文档，再用无监督对比编码器映射到稠密检索空间",
+      "methods": "生成模型生成假想文档；无监督对比编码器；稠密检索空间映射",
+      "focus": "核验提出 HyDE 本身的原始贡献论文，排除仅引用或综述该方法的论文",
+      "exclusions": [
+        "只引用该方法的论文",
+        "综述该方法的论文",
+        "相关工作或参考文献中的提及"
+      ],
+      "variants": [
+        "Hypothetical Document Embeddings",
+        "HyDE",
+        "zero-shot dense retrieval",
+        "generative model hypothetical documents",
+        "unsupervised contrastive encoder",
+        "dense retrieval without relevance labels"
+      ],
+      "subqueries": [
+        "Hypothetical Document Embeddings original paper",
+        "HyDE zero-shot dense retrieval generative model",
+        "unsupervised contrastive encoder dense retrieval"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "ruc-diversification-2019.pdf",
+      "2212.10496.pdf",
+      "2312.10997.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2401.15884.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2305.06983.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2512.24639.pdf",
+      "2512.20051.pdf",
+      "2512.24702.pdf",
+      "2512.24861.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2512.24603.pdf",
+      "2512.24971.pdf"
+    ],
+    "original": [
+      "2212.10496.pdf",
+      "ruc-diversification-2019.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2401.15884.pdf",
+      "2312.10997.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2512.24736.pdf",
+      "2512.24622.pdf",
+      "2512.21674.pdf",
+      "2305.06983.pdf",
+      "2601.00905.pdf",
+      "2512.24702.pdf",
+      "2512.20051.pdf",
+      "2511.14669.pdf"
+    ],
+    "components": [
+      {
+        "query": "Hypothetical Document Embeddings original paper",
+        "filenames": [
+          "2212.10496.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      },
+      {
+        "query": "HyDE zero-shot dense retrieval generative model",
+        "filenames": [
+          "2212.10496.pdf",
+          "2004.04906-DPR.pdf",
+          "2401.15884.pdf"
+        ]
+      },
+      {
+        "query": "unsupervised contrastive encoder dense retrieval",
+        "filenames": [
+          "2212.10496.pdf",
+          "2004.04906-DPR.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "ruc-diversification-2019.pdf": 0.03252247488101534,
+      "2212.10496.pdf": 0.08170280274986781,
+      "2312.10997.pdf": 0.030798389007344232,
+      "2007.01282-FiD.pdf": 0.029910714285714284,
+      "2004.04906-DPR.pdf": 0.0623485622536856,
+      "2104.08663-BEIR.pdf": 0.04715356328259554,
+      "2401.15884.pdf": 0.045949904158859384,
+      "2005.11401-RAG.pdf": 0.030330882352941176,
+      "2112.04426-RETRO.pdf": 0.04485852311939269,
+      "2305.06983.pdf": 0.027799227799227798,
+      "2310.11511-Self-RAG.pdf": 0.04534213829988478,
+      "2512.24639.pdf": 0.013888888888888888,
+      "2512.20051.pdf": 0.02668564312399929,
+      "2512.24702.pdf": 0.02667140825035562,
+      "2512.24861.pdf": 0.013333333333333334,
+      "2203.02155-InstructGPT.pdf": 0.013157894736842105,
+      "2512.24603.pdf": 0.012987012987012988,
+      "2512.24971.pdf": 0.01282051282051282,
+      "2512.24736.pdf": 0.014084507042253521,
+      "2512.24622.pdf": 0.013888888888888888,
+      "2512.21674.pdf": 0.0136986301369863,
+      "2601.00905.pdf": 0.013333333333333334,
+      "2511.14669.pdf": 0.01282051282051282
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 846,
+      "documents_opened": 60,
+      "authorized_documents": 60,
+      "initial_page_limit": 4,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2512.23178.pdf": [
+          18,
+          63
+        ],
+        "2511.18883.pdf": [
+          6,
+          8
+        ],
+        "2312.10997.pdf": [
+          5,
+          9
+        ],
+        "2512.24639.pdf": [
+          5,
+          8
+        ],
+        "2310.11511-Self-RAG.pdf": [
+          9,
+          12
+        ],
+        "2005.11401-RAG.pdf": [
+          5,
+          9
+        ],
+        "2512.21451.pdf": [
+          9,
+          25
+        ],
+        "2512.20368.pdf": [
+          11,
+          24
+        ],
+        "2512.24736.pdf": [
+          14,
+          20
+        ],
+        "2512.21780.pdf": [
+          5,
+          6
+        ],
+        "2512.23527.pdf": [
+          5,
+          16
+        ],
+        "2512.23339.pdf": [
+          5,
+          6
+        ],
+        "2512.24262.pdf": [
+          9,
+          10
+        ],
+        "2512.24702.pdf": [
+          6,
+          9
+        ],
+        "2305.06983.pdf": [
+          5,
+          6
+        ],
+        "2511.14669.pdf": [
+          5,
+          8
+        ],
+        "2512.20562.pdf": [
+          10
+        ],
+        "2512.21005.pdf": [
+          5,
+          6
+        ],
+        "2512.24971.pdf": [
+          5
+        ],
+        "2512.23904.pdf": [
+          5,
+          7
+        ],
+        "2004.04906-DPR.pdf": [
+          5,
+          6
+        ],
+        "2512.24605.pdf": [
+          5,
+          7
+        ],
+        "2511.17905.pdf": [
+          8,
+          12
+        ],
+        "ruc-diversification-2019.pdf": [
+          5,
+          19
+        ],
+        "2512.23203.pdf": [
+          11
+        ],
+        "2512.23985.pdf": [
+          16,
+          24
+        ],
+        "2512.24620.pdf": [
+          5,
+          11
+        ],
+        "2512.21674.pdf": [
+          5,
+          6
+        ],
+        "2512.24622.pdf": [
+          6,
+          12
+        ],
+        "2401.15884.pdf": [
+          6,
+          7
+        ],
+        "2511.12805.pdf": [
+          6,
+          8
+        ],
+        "2512.24335.pdf": [
+          16,
+          17
+        ],
+        "2512.21632.pdf": [
+          5
+        ],
+        "2104.08663-BEIR.pdf": [
+          6,
+          9
+        ],
+        "2212.10496.pdf": [
+          5,
+          6
+        ],
+        "2512.23955.pdf": [
+          5,
+          7
+        ],
+        "2512.23317.pdf": [
+          6,
+          8
+        ],
+        "2511.18626.pdf": [
+          9,
+          15
+        ],
+        "2512.20051.pdf": [
+          5,
+          8
+        ],
+        "2512.24861.pdf": [
+          5,
+          6
+        ],
+        "2512.23188.pdf": [
+          5,
+          12
+        ],
+        "2512.20305.pdf": [
+          7,
+          8
+        ],
+        "2512.24640.pdf": [
+          31,
+          39
+        ],
+        "2512.22268.pdf": [
+          8,
+          9
+        ],
+        "2512.24663.pdf": [
+          7,
+          12
+        ],
+        "2512.21927.pdf": [
+          10,
+          13
+        ],
+        "2512.24515.pdf": [
+          10,
+          12
+        ],
+        "2512.24603.pdf": [
+          5,
+          10
+        ],
+        "2512.23843.pdf": [
+          17,
+          18
+        ],
+        "2112.04426-RETRO.pdf": [
+          9,
+          13
+        ],
+        "2512.24768.pdf": [
+          9
+        ],
+        "2512.22286.pdf": [
+          9,
+          21
+        ],
+        "2601.00905.pdf": [
+          5,
+          6
+        ],
+        "2512.22411.pdf": [
+          7,
+          16
+        ],
+        "2203.02155-InstructGPT.pdf": [
+          19,
+          51
+        ],
+        "2511.14431.pdf": [
+          5,
+          9
+        ]
+      },
+      "coverage_limited": true,
+      "unread_pages_in_opened_documents": 1185,
+      "scanned_pages_by_document": {
+        "2512.23178.pdf": 20,
+        "2511.18883.pdf": 20,
+        "2312.10997.pdf": 17,
+        "2512.24639.pdf": 6,
+        "2310.11511-Self-RAG.pdf": 20,
+        "2005.11401-RAG.pdf": 15,
+        "2512.21451.pdf": 20,
+        "2512.20368.pdf": 20,
+        "2512.24736.pdf": 20,
+        "2512.21780.pdf": 6,
+        "2512.23527.pdf": 20,
+        "2512.23339.pdf": 20,
+        "2512.24262.pdf": 10,
+        "2512.24702.pdf": 7,
+        "2305.06983.pdf": 20,
+        "2511.14669.pdf": 13,
+        "2512.20562.pdf": 20,
+        "2512.21005.pdf": 13,
+        "2512.24971.pdf": 2,
+        "2512.23904.pdf": 11,
+        "2512.20811.pdf": 11,
+        "2004.04906-DPR.pdf": 9,
+        "2512.24605.pdf": 10,
+        "2511.17905.pdf": 19,
+        "ruc-diversification-2019.pdf": 19,
+        "2512.24011.pdf": 4,
+        "2512.23203.pdf": 12,
+        "2512.23985.pdf": 20,
+        "2512.24620.pdf": 10,
+        "2512.21674.pdf": 10,
+        "2512.24622.pdf": 11,
+        "2401.15884.pdf": 12,
+        "2511.12805.pdf": 15,
+        "2512.24335.pdf": 17,
+        "2512.21632.pdf": 3,
+        "2104.08663-BEIR.pdf": 20,
+        "2212.10496.pdf": 7,
+        "2512.23955.pdf": 15,
+        "2512.23317.pdf": 20,
+        "2511.18626.pdf": 20,
+        "2512.20051.pdf": 13,
+        "2512.24861.pdf": 5,
+        "2512.23188.pdf": 20,
+        "2512.24792.pdf": 0,
+        "2512.20305.pdf": 20,
+        "2512.24640.pdf": 20,
+        "2512.22268.pdf": 8,
+        "2007.01282-FiD.pdf": 2,
+        "2512.24663.pdf": 17,
+        "2512.21927.pdf": 20,
+        "2512.24515.pdf": 15,
+        "2512.24603.pdf": 9,
+        "2512.23843.pdf": 20,
+        "2112.04426-RETRO.pdf": 20,
+        "2512.24768.pdf": 20,
+        "2512.22286.pdf": 20,
+        "2601.00905.pdf": 3,
+        "2512.22411.pdf": 15,
+        "2203.02155-InstructGPT.pdf": 20,
+        "2511.14431.pdf": 15
+      },
+      "sampling_limited_documents": [
+        "2512.23178.pdf",
+        "2511.18883.pdf",
+        "2310.11511-Self-RAG.pdf",
+        "2512.21451.pdf",
+        "2512.20368.pdf",
+        "2512.24736.pdf",
+        "2512.23527.pdf",
+        "2512.23339.pdf",
+        "2512.20562.pdf",
+        "2512.23985.pdf",
+        "2512.23317.pdf",
+        "2511.18626.pdf",
+        "2512.23188.pdf",
+        "2512.20305.pdf",
+        "2512.24640.pdf",
+        "2512.21927.pdf",
+        "2112.04426-RETRO.pdf",
+        "2512.24768.pdf",
+        "2512.22286.pdf",
+        "2203.02155-InstructGPT.pdf"
+      ],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "elapsed_seconds": 10.109,
+      "documents_unopened": 0
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 18,
+    "candidates": [
+      "2212.10496.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2401.15884.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "ruc-diversification-2019.pdf",
+      "2312.10997.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2305.06983.pdf",
+      "2512.20051.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2212.10496.pdf",
+        "score": 0.8344
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.6964
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.6226
+      },
+      {
+        "filename": "2401.15884.pdf",
+        "score": 0.6053
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.6696
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.5799
+      },
+      {
+        "filename": "ruc-diversification-2019.pdf",
+        "score": 0.4363
+      },
+      {
+        "filename": "2312.10997.pdf",
+        "score": 0.3982
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.4007
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3799
+      },
+      {
+        "filename": "2305.06983.pdf",
+        "score": 0.3547
+      },
+      {
+        "filename": "2512.20051.pdf",
+        "score": 0.3466
+      }
+    ],
+    "batch_sizes": [
+      7,
+      5
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2212.10496.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "accepted_evidence": [
+      {
+        "filename": "2212.10496.pdf",
+        "chunk_id": "1a3e33e17a2e564a06b0",
+        "page": 2,
+        "document_sha256": "dc0ae3c5584ed146beee122e6a9ad9c48547dde048d53e9be8435d8f1d354531",
+        "chunk_sha256": "1a3e33e17a2e564a06b0a1cb0721c22af5cd7eefa2d934a7704dd8add9de421d"
+      },
+      {
+        "filename": "2212.10496.pdf",
+        "chunk_id": "6c3b1c6ae16f09f8bd50",
+        "page": 2,
+        "document_sha256": "dc0ae3c5584ed146beee122e6a9ad9c48547dde048d53e9be8435d8f1d354531",
+        "chunk_sha256": "6c3b1c6ae16f09f8bd507c69bfb24db4e253f6ddc2aecb823373e4e46e0c3dc1"
+      },
+      {
+        "filename": "2212.10496.pdf",
+        "chunk_id": "d68d5dbba419f6221d2d",
+        "page": 1,
+        "document_sha256": "dc0ae3c5584ed146beee122e6a9ad9c48547dde048d53e9be8435d8f1d354531",
+        "chunk_sha256": "d68d5dbba419f6221d2da65e1e3a9a02e58bd1c0c1091df16f04ffa0da60691e"
+      }
+    ],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2212.10496.pdf",
+      "2401.15884.pdf"
+    ]
+  },
+  "raw_evidence_sha256": "7157308303d7306265410efe09476813be8b10c6dbe7f3e86730d05ddfcc0eb1",
+  "source_chunk_count": 3
+}

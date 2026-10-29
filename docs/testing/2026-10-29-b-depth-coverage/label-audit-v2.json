@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-10-29T05:53:34.469896+00:00",
+  "basis": "Review of frozen original source_quote fields only; v2 retrieval outcomes not inspected and no target real model calls yet.",
+  "primary_case_ids": [
+    "B-41",
+    "B-42",
+    "B-43",
+    "B-44",
+    "B-45",
+    "B-46",
+    "B-47",
+    "B-50",
+    "B-51",
+    "B-52"
+  ],
+  "excluded_from_primary": [
+    {
+      "case_id": "B-48",
+      "reason": "Table column headers flattened across lines; not a continuous prose sentence.",
+      "source_quote_sha256": "6efa0d71c0463a271238ddfebb02a9c6e9b443939761a4370b21399076ae0a42"
+    },
+    {
+      "case_id": "B-49",
+      "reason": "Funding acknowledgement; genuine prose but outside scientific-body diagnostic scope.",
+      "source_quote_sha256": "cc434097a0d3233c34eb580368932e7d800c4861a16b419d7f5f794eab270fc0"
+    }
+  ],
+  "raw_v2_cases_retained": 12,
+  "rule": "Exclude both versions symmetrically, retain all raw results; no production parameter change."
+}

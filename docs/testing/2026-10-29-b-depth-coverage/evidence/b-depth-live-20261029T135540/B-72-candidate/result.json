@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-72",
+    "papers": [
+      {
+        "filename": "2212.10496.pdf",
+        "reason": "该论文自身提出 HyDE（Hypothetical Document Embeddings），摘要片段明确描述：将查询输入指令跟随生成模型生成假想文档，再用无监督对比编码器将其编码为稠密向量并检索语料，且标题强调无需相关性标签的零样本稠密检索，符合原始方法论文的核心条件。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 19.969,
+  "target_real_model_calls": 3,
+  "total_tokens": 11185,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

@@ -1,0 +1,540 @@
+{
+  "results": [
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-42",
+        "papers": []
+      },
+      "disk_matches": true,
+      "seconds": 7.828,
+      "target_real_model_calls": 3,
+      "total_tokens": 8591,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-42",
+      "variant": "baseline",
+      "hits": 0,
+      "missed": [
+        "2512.23188.pdf"
+      ],
+      "false_positives": [],
+      "expected": 1,
+      "exact": false
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-42",
+        "papers": [
+          {
+            "filename": "2512.23188.pdf",
+            "reason": "该篇正文第8页明确定义了组间差异，原文为“Group disparity refers to the maximum difference between the proportions of infected individuals or between socialization levels or between vaccination levels in two different groups over time under the same policies.”，与检索短语“group disparity refers to the maximum difference”在允许大小写及排版差异下构成连续原文匹配，且位于正文而非参考文献。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 18.016,
+      "target_real_model_calls": 3,
+      "total_tokens": 8628,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-42",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-44",
+        "papers": [
+          {
+            "filename": "2511.12805.pdf",
+            "reason": "该篇正文第8页明确出现连续短语原文“and the SID implemented in the CRAN package of the same name”，与检索短语在大小写和换行排版上仅有可允许的差异，属于本篇方法/实验部分对SID实现的描述，满足连续短语检索条件。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 16.984,
+      "target_real_model_calls": 3,
+      "total_tokens": 8977,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-44",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-44",
+        "papers": []
+      },
+      "disk_matches": true,
+      "seconds": 8.0,
+      "target_real_model_calls": 3,
+      "total_tokens": 9554,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-44",
+      "variant": "baseline",
+      "hits": 0,
+      "missed": [
+        "2511.12805.pdf"
+      ],
+      "false_positives": [],
+      "expected": 1,
+      "exact": false
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-46",
+        "papers": []
+      },
+      "disk_matches": true,
+      "seconds": 7.797,
+      "target_real_model_calls": 3,
+      "total_tokens": 10841,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-46",
+      "variant": "baseline",
+      "hits": 0,
+      "missed": [
+        "2512.20368.pdf"
+      ],
+      "false_positives": [],
+      "expected": 1,
+      "exact": false
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-46",
+        "papers": [
+          {
+            "filename": "2512.20368.pdf",
+            "reason": "该论文正文第8页出现连续短语“All expectations are taken with respect to the learner’s internal randomness and the stochastic loss environment as well as the random context xt.”，与检索短语完全一致（仅大小写差异），属于正文而非参考文献，满足连续短语原文匹配条件。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 19.203,
+      "target_real_model_calls": 3,
+      "total_tokens": 9259,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-46",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-50",
+        "papers": [
+          {
+            "filename": "2512.23317.pdf",
+            "reason": "该篇正文第8页的Remark 1中出现了与检索短语几乎完全一致的连续原文“condition (7) is trivial if the second equality is replaced by ≥”，仅存在换行与后续词语的排版差异，属于本篇正文（非参考文献）中的原文表述，满足连续短语检索条件。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 17.688,
+      "target_real_model_calls": 3,
+      "total_tokens": 9469,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-50",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-50",
+        "papers": []
+      },
+      "disk_matches": true,
+      "seconds": 8.922,
+      "target_real_model_calls": 3,
+      "total_tokens": 8957,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-50",
+      "variant": "baseline",
+      "hits": 0,
+      "missed": [
+        "2512.23317.pdf"
+      ],
+      "false_positives": [],
+      "expected": 1,
+      "exact": false
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-81",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文以开放域问答为主要任务，提出并训练稠密双编码检索器（Dense Passage Retriever），通过优化问题与段落向量的内积来训练双编码器，并在开放Natural Questions设定下评估，摘要还报告了相对BM25的Top-5准确率提升，符合原始方法论文的要求。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 4.515,
+      "target_real_model_calls": 2,
+      "total_tokens": 5233,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-81",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-81",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文以开放域问答为主要任务，提出并训练稠密双编码检索器（Dense Passage Retriever），用问题与段落编码器最大化内积、批内负例训练，并在开放Natural Questions上评估，摘要还报告了相对BM25与ORQA的提升；属于原始方法论文，而非把已有检索器当组件的生成模型或检索基准评测。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 7.281,
+      "target_real_model_calls": 2,
+      "total_tokens": 5390,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-81",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-82",
+        "papers": [
+          {
+            "filename": "2112.04426-RETRO.pdf",
+            "reason": "该论文提出Retrieval-Enhanced Transformer，将输入序列分块并从大规模文本数据库检索相似文本块，通过分块交叉注意力机制结合检索到的文本块进行生成，且将检索库扩展到万亿token规模，直接满足目标2（利用检索到的文本块、分块交叉注意力和大规模近邻库训练语言模型）。"
+          },
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出Self-RAG框架，训练语言模型生成反思标记（reflection tokens），包括检索标记和批评标记，使模型能按需检索、生成并评价自身输出，直接满足目标3（用反思标记按需检索、生成并评价自身输出）。"
+          },
+          {
+            "filename": "2005.11401-RAG.pdf",
+            "reason": "该论文提出RAG模型，将预训练seq2seq生成器（参数记忆）与Wikipedia稠密向量索引（非参数记忆）结合，通过端到端训练联合学习检索器与生成器，完成知识密集生成，直接满足目标1（联合优化检索器与生成器、结合参数和非参数记忆完成知识密集生成）。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 7.656,
+      "target_real_model_calls": 3,
+      "total_tokens": 7758,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-82",
+      "variant": "candidate",
+      "hits": 3,
+      "missed": [],
+      "false_positives": [],
+      "expected": 3,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-82",
+        "papers": [
+          {
+            "filename": "2112.04426-RETRO.pdf",
+            "reason": "该论文提出Retrieval-Enhanced Transformer，将输入序列分块并从大规模文本库检索相似文本块，用分块交叉注意力（chunked cross-attention）结合检索到的文本块进行生成，且将检索库扩展到万亿token规模，直接满足目标2（利用检索文本块、分块交叉注意力和大规模近邻库训练语言模型）。"
+          },
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出Self-RAG，训练语言模型生成反思标记（reflection tokens），包括检索标记和批评标记，按需决定是否检索、生成并评价自身输出质量，直接满足目标3（用反思标记按需检索、生成并评价自身输出）。"
+          },
+          {
+            "filename": "2005.11401-RAG.pdf",
+            "reason": "该论文提出RAG模型，将参数记忆（预训练seq2seq）与非参数记忆（Wikipedia稠密向量索引）结合，检索器与生成器端到端联合学习，用于知识密集生成任务，直接满足目标1（联合优化检索器与生成器、结合参数和非参数记忆完成知识密集生成）。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 6.734,
+      "target_real_model_calls": 2,
+      "total_tokens": 6569,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-82",
+      "variant": "baseline",
+      "hits": 3,
+      "missed": [],
+      "false_positives": [],
+      "expected": 3,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-83",
+        "papers": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出 SELF-RAG，通过让语言模型生成反思标记（reflection tokens）来决定是否需要检索，并用反思标记评价检索片段的相关性、生成内容是否有支持以及整体效用，属于用自我反思机制控制按需检索并评价检索片段与生成内容的原始方法，符合题目要求。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 4.735,
+      "target_real_model_calls": 2,
+      "total_tokens": 5576,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-83",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-83",
+        "papers": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出 SELF-RAG 框架，通过让语言模型学习生成反思标记（reflection tokens）来决定是否需要检索，并在检索后评价检索片段的相关性、生成内容是否有支持以及整体完整性，属于用自我反思机制控制按需检索并评价检索片段与生成内容的原始方法论文，符合题目要求。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.266,
+      "target_real_model_calls": 2,
+      "total_tokens": 4912,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-83",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-84",
+        "papers": []
+      },
+      "disk_matches": true,
+      "seconds": 5.062,
+      "target_real_model_calls": 2,
+      "total_tokens": 4257,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-84",
+      "variant": "candidate",
+      "hits": 0,
+      "missed": [],
+      "false_positives": [],
+      "expected": 0,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-84",
+        "papers": []
+      },
+      "disk_matches": true,
+      "seconds": 4.047,
+      "target_real_model_calls": 2,
+      "total_tokens": 3764,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-84",
+      "variant": "baseline",
+      "hits": 0,
+      "missed": [],
+      "false_positives": [],
+      "expected": 0,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-71",
+        "papers": [
+          {
+            "filename": "2401.15884.pdf",
+            "reason": "该论文自身提出 CRAG：设计轻量检索评价器对检索文档整体质量给出置信度，并据此触发 Correct/Incorrect/Ambiguous 等修复动作；同时提出分解-再重组算法对检索文档筛选关键知识条带并重组。摘要与正文片段直接支持这两个关键条件，属于原始方法论文而非综述提及。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 8.344,
+      "target_real_model_calls": 3,
+      "total_tokens": 9584,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-71",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-71",
+        "papers": [
+          {
+            "filename": "2401.15884.pdf",
+            "reason": "该论文自身提出 CRAG（Corrective Retrieval Augmented Generation）：设计轻量级检索评价器评估检索文档整体质量并给出置信度，据此触发 Correct/Incorrect/Ambiguous 等不同知识检索修复动作；同时提出 decompose-then-recompose 算法对检索文档分解、过滤无关知识条并重组关键信息。摘要与正文片段共同支持这两个关键条件，且属于作者原始贡献而非综述转述。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 18.781,
+      "target_real_model_calls": 3,
+      "total_tokens": 9970,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-71",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-72",
+        "papers": [
+          {
+            "filename": "2212.10496.pdf",
+            "reason": "该论文自身提出 HyDE（Hypothetical Document Embeddings），摘要片段明确描述：将查询输入指令跟随生成模型生成假想文档，再用无监督对比编码器将其编码为稠密向量并检索语料，且标题强调无需相关性标签的零样本稠密检索，符合原始方法论文的核心条件。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 19.969,
+      "target_real_model_calls": 3,
+      "total_tokens": 11185,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-72",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-72",
+        "papers": [
+          {
+            "filename": "2212.10496.pdf",
+            "reason": "该论文自身提出 HyDE（Hypothetical Document Embeddings），将稠密检索分解为两步：先由指令跟随的生成模型根据查询生成假想文档，再用无监督对比编码器把该假想文档编码为稠密向量并检索语料，且标题强调无需相关性标签的零样本稠密检索。摘要片段直接描述了这一原始方法贡献，符合题目要求的原始方法论文而非仅引用或综述。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 9.594,
+      "target_real_model_calls": 3,
+      "total_tokens": 10929,
+      "unknown_usage_calls": 0,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-72",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    }
+  ],
+  "complete": true,
+  "image_acceptance": false
+}

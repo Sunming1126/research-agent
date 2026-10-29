@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2401.15884.pdf\",\"reason\":\"该论文自身提出 CRAG（Corrective Retrieval Augmented Generation）：设计轻量级检索评价器评估检索文档整体质量并给出置信度，据此触发 Correct/Incorrect/Ambiguous 等不同知识检索修复动作；同时提出 decompose-then-recompose 算法对检索文档分解、过滤无关知识条并重组关键信息。摘要与正文片段共同支持这两个关键条件，且属于作者原始贡献而非综述转述。\",\"chunk_ids\":[\"db1409db2321385135b4\",\"e27946a0e46b092e8e16\",\"011820514afd6dab7315\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253529,
+  "id": "021793253528598ef74dd90a5750f77dc784a69dff0f3adb665c9",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 162,
+    "prompt_tokens": 6174,
+    "total_tokens": 6336,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "stages": [
+    {
+      "script": "download_depth_library_20261029.py",
+      "returncode": 0
+    },
+    {
+      "script": "qualify_depth_library_20261029.py",
+      "returncode": 0
+    },
+    {
+      "script": "benchmark_depth_retrieval_20261029.py",
+      "returncode": 0
+    }
+  ],
+  "target_real_model_calls": 0,
+  "complete": true
+}

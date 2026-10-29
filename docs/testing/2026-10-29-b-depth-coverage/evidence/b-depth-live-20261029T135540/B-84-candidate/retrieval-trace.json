@@ -1,0 +1,189 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "卫星遥感实测城市植被与地表温度、控制季节混杂因素并估计城市热岛效应的原始研究",
+      "methods": "卫星遥感观测、季节混杂因素控制、热岛效应估计",
+      "focus": "寻找基于卫星遥感实测数据的城市植被与地表温度原始实证研究，需控制季节混杂并估计热岛效应",
+      "exclusions": [
+        "仅有通用文本检索方法",
+        "仅有语言生成方法",
+        "无领域实测研究",
+        "综述或非原始研究",
+        "凑数的不相关论文"
+      ],
+      "variants": [
+        "satellite remote sensing",
+        "urban vegetation",
+        "land surface temperature",
+        "urban heat island effect",
+        "seasonal confounding control",
+        "empirical remote sensing study"
+      ],
+      "subqueries": [
+        "satellite remote sensing urban vegetation land surface temperature",
+        "urban heat island effect estimation remote sensing",
+        "seasonal confounding control urban heat island",
+        "empirical study urban vegetation cooling effect"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2203.02155-InstructGPT.pdf",
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "original": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf"
+    ],
+    "components": [
+      {
+        "query": "satellite remote sensing urban vegetation land surface temperature",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "urban heat island effect estimation remote sensing",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      },
+      {
+        "query": "seasonal confounding control urban heat island",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ]
+      },
+      {
+        "query": "empirical study urban vegetation cooling effect",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2007.01282-FiD.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2203.02155-InstructGPT.pdf": 0.0814383923849815,
+      "2004.04906-DPR.pdf": 0.04738666351569577,
+      "2005.11401-RAG.pdf": 0.046897546897546896,
+      "2007.01282-FiD.pdf": 0.047379032258064516,
+      "2104.08663-BEIR.pdf": 0.03125763125763126,
+      "2112.04426-RETRO.pdf": 0.03007688828584351,
+      "2310.11511-Self-RAG.pdf": 0.08023473326124535
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 149,
+      "documents_opened": 7,
+      "authorized_documents": 7,
+      "initial_page_limit": 8,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2203.02155-InstructGPT.pdf": [
+          17,
+          18
+        ],
+        "2104.08663-BEIR.pdf": [
+          9
+        ],
+        "2310.11511-Self-RAG.pdf": [
+          9,
+          10
+        ]
+      },
+      "coverage_limited": false,
+      "unread_pages_in_opened_documents": 149,
+      "scanned_pages_by_document": {
+        "2005.11401-RAG.pdf": 11,
+        "2007.01282-FiD.pdf": 0,
+        "2203.02155-InstructGPT.pdf": 60,
+        "2112.04426-RETRO.pdf": 35,
+        "2104.08663-BEIR.pdf": 16,
+        "2004.04906-DPR.pdf": 5,
+        "2310.11511-Self-RAG.pdf": 22
+      },
+      "sampling_limited_documents": [],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "elapsed_seconds": 0.547,
+      "documents_unopened": 0
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.4778
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.4156
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.3946
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3967
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3568
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.3449
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.2898
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "accepted_evidence": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "raw_evidence_sha256": "a489b5498c4254d9ccd574edf871902b015da49fa70ac402b27293ff9ed0d507",
+  "source_chunk_count": 0
+}

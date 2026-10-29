@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"正文包含连续英文短语 \\\"all expectations are taken with respect to\\\" 的论文检索\", \"methods\": \"连续短语原文匹配，容忍 PDF 换行、标点与连字符排版差异\", \"focus\": \"定位正文中出现该精确连续短语的论文，排除仅主题相似或参考文献列表中的出现\", \"exclusions\": [\"仅主题相似\", \"仅凭常识判断\", \"参考文献列表中的出现\", \"非正文位置的出现\"], \"variants\": [\"all expectations are taken with respect to\", \"expectations are taken with respect to\", \"all expectations taken with respect to\", \"expectations taken with respect to\", \"taken with respect to\", \"with respect to\"], \"subqueries\": []}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253401,
+  "id": "021793253399804f47b3ae95ec9e82c79e9e226fe2407f99d8edb",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 154,
+    "prompt_tokens": 933,
+    "total_tokens": 1087,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,1558 @@
+{
+  "target": 60,
+  "count": 60,
+  "papers": [
+    {
+      "id": "2004.04906",
+      "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "category": "cs.IR",
+      "filename": "2004.04906-DPR.pdf",
+      "source_url": "https://arxiv.org/pdf/2004.04906",
+      "abstract_url": "https://arxiv.org/abs/2004.04906",
+      "sha256": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f",
+      "bytes": 383508,
+      "downloaded_at": "2026-10-29T04:51:01.152544+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2005.11401",
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "category": "cs.CL",
+      "filename": "2005.11401-RAG.pdf",
+      "source_url": "https://arxiv.org/pdf/2005.11401",
+      "abstract_url": "https://arxiv.org/abs/2005.11401",
+      "sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "bytes": 885323,
+      "downloaded_at": "2026-10-29T04:51:01.171101+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2007.01282",
+      "title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "category": "cs.CL",
+      "filename": "2007.01282-FiD.pdf",
+      "source_url": "https://arxiv.org/pdf/2007.01282",
+      "abstract_url": "https://arxiv.org/abs/2007.01282",
+      "sha256": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953",
+      "bytes": 326612,
+      "downloaded_at": "2026-10-29T04:51:01.187756+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2104.08663",
+      "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models",
+      "category": "cs.IR",
+      "filename": "2104.08663-BEIR.pdf",
+      "source_url": "https://arxiv.org/pdf/2104.08663",
+      "abstract_url": "https://arxiv.org/abs/2104.08663",
+      "sha256": "1925755aeb627123d1a63c66f02e5aa2432f7e92751a02bea7c8c3b6bbb6ec33",
+      "bytes": 2094824,
+      "downloaded_at": "2026-10-29T04:51:01.208468+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2112.04426",
+      "title": "Improving language models by retrieving from trillions of tokens",
+      "category": "cs.CL",
+      "filename": "2112.04426-RETRO.pdf",
+      "source_url": "https://arxiv.org/pdf/2112.04426",
+      "abstract_url": "https://arxiv.org/abs/2112.04426",
+      "sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+      "bytes": 1566448,
+      "downloaded_at": "2026-10-29T04:51:01.229164+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2203.02155",
+      "title": "Training language models to follow instructions with human feedback",
+      "category": "cs.CL",
+      "filename": "2203.02155-InstructGPT.pdf",
+      "source_url": "https://arxiv.org/pdf/2203.02155",
+      "abstract_url": "https://arxiv.org/abs/2203.02155",
+      "sha256": "c1984bb50a5b90fddb895fdc3a0f72e5bc977148c9f63ef6040cbe7a3e1f0d98",
+      "bytes": 1797405,
+      "downloaded_at": "2026-10-29T04:51:01.249176+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2310.11511",
+      "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+      "category": "cs.CL",
+      "filename": "2310.11511-Self-RAG.pdf",
+      "source_url": "https://arxiv.org/pdf/2310.11511",
+      "abstract_url": "https://arxiv.org/abs/2310.11511",
+      "sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978",
+      "bytes": 1405127,
+      "downloaded_at": "2026-10-29T04:51:01.267891+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "ruc-diversification-2019",
+      "title": "搜索结果多样化研究综述",
+      "category": "Chinese-IR",
+      "filename": "ruc-diversification-2019.pdf",
+      "source_url": "https://playbigdata.ruc.edu.cn/dou/publication/2019_JC_Survey.pdf",
+      "abstract_url": null,
+      "sha256": "68b9946dc41388c573c8967922854c0cea71dfd1ba08adf2a13a2807d2cfcf70",
+      "bytes": 850315,
+      "downloaded_at": "2026-10-29T04:53:45.027649+00:00",
+      "metadata_origin": "author university public PDF",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2401.15884",
+      "title": "Corrective Retrieval Augmented Generation",
+      "category": "cs.CL",
+      "filename": "2401.15884.pdf",
+      "source_url": "https://arxiv.org/pdf/2401.15884",
+      "abstract_url": "https://arxiv.org/abs/2401.15884",
+      "sha256": "975aa1fd3c1b603126e93ff99d6504858b61301bf1d34c9df88ebe53a0b026cb",
+      "bytes": 667756,
+      "downloaded_at": "2026-10-29T05:10:19.048769+00:00",
+      "metadata_origin": "official paper page checked 2026-10-29",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2305.06983",
+      "title": "Active Retrieval Augmented Generation",
+      "category": "cs.CL",
+      "filename": "2305.06983.pdf",
+      "source_url": "https://arxiv.org/pdf/2305.06983",
+      "abstract_url": "https://arxiv.org/abs/2305.06983",
+      "sha256": "2425bd04de6e082512ef576298ec24df770a7f576bb2c23d09b3fd498f716c52",
+      "bytes": 850866,
+      "downloaded_at": "2026-10-29T05:10:29.084842+00:00",
+      "metadata_origin": "official paper page checked 2026-10-29",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2212.10496",
+      "title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+      "category": "cs.CL",
+      "filename": "2212.10496.pdf",
+      "source_url": "https://arxiv.org/pdf/2212.10496",
+      "abstract_url": "https://arxiv.org/abs/2212.10496",
+      "sha256": "dc0ae3c5584ed146beee122e6a9ad9c48547dde048d53e9be8435d8f1d354531",
+      "bytes": 424964,
+      "downloaded_at": "2026-10-29T05:10:30.987910+00:00",
+      "metadata_origin": "official paper page checked 2026-10-29",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2312.10997",
+      "title": "Retrieval-Augmented Generation for Large Language Models: A Survey",
+      "category": "cs.CL",
+      "filename": "2312.10997.pdf",
+      "source_url": "https://arxiv.org/pdf/2312.10997",
+      "abstract_url": "https://arxiv.org/abs/2312.10997",
+      "sha256": "396a0fadeb4cd40f5c8ccc36b73a0815f6cb4d7f6bfa53b6c48c1f9aba7c7e02",
+      "bytes": 1662567,
+      "downloaded_at": "2026-10-29T05:10:39.614672+00:00",
+      "metadata_origin": "official paper page checked 2026-10-29",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24603",
+      "title": "Collaborative Low-Rank Adaptation for Pre-Trained Vision Transformers",
+      "category": "cs.CV",
+      "filename": "2512.24603.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24603",
+      "abstract_url": "https://arxiv.org/abs/2512.24603",
+      "sha256": "70da92819bbf756feb4a1c039b4d559c27d3c9e16f270b8b6dafd76793951c94",
+      "bytes": 684882,
+      "downloaded_at": "2026-10-29T05:10:49.861730+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24605",
+      "title": "MoniRefer: A Real-world Large-scale Multi-modal Dataset based on Roadside Infrastructure for 3D Visual Grounding",
+      "category": "cs.CV",
+      "filename": "2512.24605.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24605",
+      "abstract_url": "https://arxiv.org/abs/2512.24605",
+      "sha256": "e684ec157a1c6c2c4cd3174dcf05fd97938322833299964c1104d9e3e6ba2125",
+      "bytes": 5240999,
+      "downloaded_at": "2026-10-29T05:12:22.254549+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24620",
+      "title": "LLHA-Net: A Hierarchical Attention Network for Two-View Correspondence Learning",
+      "category": "cs.CV",
+      "filename": "2512.24620.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24620",
+      "abstract_url": "https://arxiv.org/abs/2512.24620",
+      "sha256": "ef8f7767948d3ce97ebaac1fe974438520347f30edcf0eee3de365527b27137f",
+      "bytes": 3192580,
+      "downloaded_at": "2026-10-29T05:12:58.871808+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24622",
+      "title": "FireRescue: A UAV-Based Dataset and Enhanced YOLO Model for Object Detection in Fire Rescue Scenes",
+      "category": "cs.CV",
+      "filename": "2512.24622.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24622",
+      "abstract_url": "https://arxiv.org/abs/2512.24622",
+      "sha256": "d2ae95ae1de8d364775b448c285bb4af7ffd292a000cfff84de73d1afb878316",
+      "bytes": 5947513,
+      "downloaded_at": "2026-10-29T05:15:54.932069+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24639",
+      "title": "From Sequential to Spatial: Reordering Autoregression for Efficient Visual Generation",
+      "category": "cs.CV",
+      "filename": "2512.24639.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24639",
+      "abstract_url": "https://arxiv.org/abs/2512.24639",
+      "sha256": "0996c095e8cc09b04bc95450b45355454c0b4c8a2e8be257b971575e4f27bd03",
+      "bytes": 4145494,
+      "downloaded_at": "2026-10-29T05:17:19.324563+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24663",
+      "title": "Renormalization Group Guided Tensor Network Structure Search",
+      "category": "cs.CV",
+      "filename": "2512.24663.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24663",
+      "abstract_url": "https://arxiv.org/abs/2512.24663",
+      "sha256": "66ae26ed43a43a03dcac42947a30ecc1eb894521268b8b32683e0246ead1d5e5",
+      "bytes": 4759634,
+      "downloaded_at": "2026-10-29T05:19:51.389441+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.20051",
+      "title": "Generative Bayesian Hyperparameter Tuning",
+      "category": "stat.ML",
+      "filename": "2512.20051.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.20051",
+      "abstract_url": "https://arxiv.org/abs/2512.20051",
+      "sha256": "2b901937ea7255612a5f6aacd85582107af2a6df003ebad61694022c68152b26",
+      "bytes": 263765,
+      "downloaded_at": "2026-10-29T05:19:54.697237+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.20305",
+      "title": "A Structured Nonparametric Framework for Nonlinear Accelerated Failure Time Models (KAN-AFT)",
+      "category": "stat.ML",
+      "filename": "2512.20305.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.20305",
+      "abstract_url": "https://arxiv.org/abs/2512.20305",
+      "sha256": "a58a41b790c0d78571620a9e6fd12b10d496786fa6382cbb634288ca281ffdaf",
+      "bytes": 1388802,
+      "downloaded_at": "2026-10-29T05:20:22.768880+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.20368",
+      "title": "Avoiding the Price of Adaptivity: Inference in Linear Contextual Bandits via Stability",
+      "category": "stat.ML",
+      "filename": "2512.20368.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.20368",
+      "abstract_url": "https://arxiv.org/abs/2512.20368",
+      "sha256": "405c038bc56c8a64b8d27a63787992f0308df2ee5d11207cff7e4f0f5eb4bae7",
+      "bytes": 1330531,
+      "downloaded_at": "2026-10-29T05:20:36.016168+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.20562",
+      "title": "Shallow Neural Networks Learn Low-Degree Spherical Polynomials with Feature Learning by Learnable Channel Attention",
+      "category": "stat.ML",
+      "filename": "2512.20562.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.20562",
+      "abstract_url": "https://arxiv.org/abs/2512.20562",
+      "sha256": "1f0a23d5c3ab0000611d8f224152cdff364fdd630d611501ec0fdf69b1b63293",
+      "bytes": 920852,
+      "downloaded_at": "2026-10-29T05:20:38.993600+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.20811",
+      "title": "Weighted MCC: A Robust Measure of Multiclass Classifier Performance for Observations with Individual Weights",
+      "category": "stat.ML",
+      "filename": "2512.20811.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.20811",
+      "abstract_url": "https://arxiv.org/abs/2512.20811",
+      "sha256": "4ab7f56aa151531409e0b99bcc87043d3f7c2fe4d31213fd4dcaff1e7b51547b",
+      "bytes": 302016,
+      "downloaded_at": "2026-10-29T05:20:41.299715+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.21005",
+      "title": "Learning from Neighbors with PHIBP: Predicting Infectious Disease Dynamics in Data-Sparse Environments",
+      "category": "stat.ML",
+      "filename": "2512.21005.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.21005",
+      "abstract_url": "https://arxiv.org/abs/2512.21005",
+      "sha256": "0db44137fe68fe8e69aaeb5ae2e7650cef6a5d0e04058f20cdacbaabbdeab2ba",
+      "bytes": 13118737,
+      "downloaded_at": "2026-10-29T05:24:07.367203+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.23178",
+      "title": "Clipped Gradient Methods for Nonsmooth Convex Optimization under Heavy-Tailed Noise: A Refined Analysis",
+      "category": "math.OC",
+      "filename": "2512.23178.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.23178",
+      "abstract_url": "https://arxiv.org/abs/2512.23178",
+      "sha256": "f154ba6dc936b58e4ee0e62d57013c908b5d1997fa9305e53d765b75f9b41b3b",
+      "bytes": 1501421,
+      "downloaded_at": "2026-10-29T05:24:18.087459+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.23188",
+      "title": "Incorporating Authority Perception, Economic Status, and Behavioral Response in Infectious Disease Control",
+      "category": "math.OC",
+      "filename": "2512.23188.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.23188",
+      "abstract_url": "https://arxiv.org/abs/2512.23188",
+      "sha256": "da6a05e5a255ac3384190ba578c43c5985d724c640edfd2d615f07ddf285653d",
+      "bytes": 769944,
+      "downloaded_at": "2026-10-29T05:24:20.521263+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.23203",
+      "title": "Coefficient-level output-feedback stabilization of linear port-Hamiltonian descriptor systems",
+      "category": "math.OC",
+      "filename": "2512.23203.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.23203",
+      "abstract_url": "https://arxiv.org/abs/2512.23203",
+      "sha256": "f7d4adb9f5c2f186ebc66616710366ef6cb575660a48a7cb99100d7bc7164c6a",
+      "bytes": 399149,
+      "downloaded_at": "2026-10-29T05:24:23.096461+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.23317",
+      "title": "Essential Convergence Rates of Continuous-Time Models for Optimization Methods",
+      "category": "math.OC",
+      "filename": "2512.23317.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.23317",
+      "abstract_url": "https://arxiv.org/abs/2512.23317",
+      "sha256": "94e78d3de7d5d0721c9df6d38c297768906195962a970c38ca3e3715d7edc482",
+      "bytes": 589294,
+      "downloaded_at": "2026-10-29T05:24:26.745682+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.23339",
+      "title": "Small-time global controllability of a class of bilinear fourth-order parabolic equations",
+      "category": "math.OC",
+      "filename": "2512.23339.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.23339",
+      "abstract_url": "https://arxiv.org/abs/2512.23339",
+      "sha256": "25eac310e02c5653db2133c03bea9393c646ed20a6e0266c4b87a4f948f55ea9",
+      "bytes": 512987,
+      "downloaded_at": "2026-10-29T05:24:29.681990+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.23527",
+      "title": "Identifying faulty edges in resistive electrical networks",
+      "category": "math.OC",
+      "filename": "2512.23527.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.23527",
+      "abstract_url": "https://arxiv.org/abs/2512.23527",
+      "sha256": "42987cb0bf325dff3691c4e037d19c1b243398f520695b446693f0552e85252c",
+      "bytes": 448696,
+      "downloaded_at": "2026-10-29T05:24:38.489427+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2511.12805",
+      "title": "Practical Causal Evaluation Metrics for Biological Networks",
+      "category": "q-bio.MN",
+      "filename": "2511.12805.pdf",
+      "source_url": "https://arxiv.org/pdf/2511.12805",
+      "abstract_url": "https://arxiv.org/abs/2511.12805",
+      "sha256": "986e9595df49a26d7eec6176965250678805717989c0a42022bb59768baca2c9",
+      "bytes": 1404658,
+      "downloaded_at": "2026-10-29T05:24:43.488494+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2511.14431",
+      "title": "BiRNe: Symbolic bifurcation analysis of reaction networks with Python",
+      "category": "q-bio.MN",
+      "filename": "2511.14431.pdf",
+      "source_url": "https://arxiv.org/pdf/2511.14431",
+      "abstract_url": "https://arxiv.org/abs/2511.14431",
+      "sha256": "de5f869667b5b7eac9214ea7df23ddd642926b5f98366698f88e977dc3d2f4e1",
+      "bytes": 420912,
+      "downloaded_at": "2026-10-29T05:24:45.474309+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2511.14669",
+      "title": "Hyperbolic Graph Embeddings Reveal the Host-Pathogen Interactome",
+      "category": "q-bio.MN",
+      "filename": "2511.14669.pdf",
+      "source_url": "https://arxiv.org/pdf/2511.14669",
+      "abstract_url": "https://arxiv.org/abs/2511.14669",
+      "sha256": "40534e00e35f5f814a7006719231a4a0bffe82b2609f671cc3e2d90c95fb8297",
+      "bytes": 1567816,
+      "downloaded_at": "2026-10-29T05:24:48.812954+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2511.17905",
+      "title": "Canalization as a stabilizing principle of gene regulatory networks: a discrete dynamical systems perspective",
+      "category": "q-bio.MN",
+      "filename": "2511.17905.pdf",
+      "source_url": "https://arxiv.org/pdf/2511.17905",
+      "abstract_url": "https://arxiv.org/abs/2511.17905",
+      "sha256": "535234869ba1d983d9659c1432280fa298b0ec5946be99982346bcaef298d43c",
+      "bytes": 3316994,
+      "downloaded_at": "2026-10-29T05:25:23.868116+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2511.18626",
+      "title": "Learning the principles of T cell antigen discernment",
+      "category": "q-bio.MN",
+      "filename": "2511.18626.pdf",
+      "source_url": "https://arxiv.org/pdf/2511.18626",
+      "abstract_url": "https://arxiv.org/abs/2511.18626",
+      "sha256": "65badc068c227e027b4a9a34e58d2565e494a740957db11f420a597ecc80e945",
+      "bytes": 2873021,
+      "downloaded_at": "2026-10-29T05:25:56.438844+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2511.18883",
+      "title": "Enumeration of Autocatalytic Subsystems in Large Chemical Reaction Networks",
+      "category": "q-bio.MN",
+      "filename": "2511.18883.pdf",
+      "source_url": "https://arxiv.org/pdf/2511.18883",
+      "abstract_url": "https://arxiv.org/abs/2511.18883",
+      "sha256": "0c5f26ed93de4b93dfa0fe6446e4c8bf3646c3ae3b1e080b60828a3f7370b12f",
+      "bytes": 1274488,
+      "downloaded_at": "2026-10-29T05:26:01.767454+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.21632",
+      "title": "Can A Kinematically Hot and Thick Disk Form A Bar? : Role of Highly Spinning Dark Matter Halos",
+      "category": "astro-ph.GA",
+      "filename": "2512.21632.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.21632",
+      "abstract_url": "https://arxiv.org/abs/2512.21632",
+      "sha256": "b04ce8b7161f13a4166fde10d9c081b3a4eb43ac5234005599e9cdb16e1d998b",
+      "bytes": 1220063,
+      "downloaded_at": "2026-10-29T05:26:04.172778+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.21674",
+      "title": "A systematic study on the aromatic and aliphatic hydrocarbon emission features of nearby galaxies using AKARI near-IR spectra",
+      "category": "astro-ph.GA",
+      "filename": "2512.21674.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.21674",
+      "abstract_url": "https://arxiv.org/abs/2512.21674",
+      "sha256": "59f1e92db7faa90d02cb7667a103720e8f5b72f9cd0173a4e54a8faf7bfad045",
+      "bytes": 2613818,
+      "downloaded_at": "2026-10-29T05:26:12.845676+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.21780",
+      "title": "The rotation curve of the Milky Way measured by Classical Cepheids from Gaia DR3",
+      "category": "astro-ph.GA",
+      "filename": "2512.21780.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.21780",
+      "abstract_url": "https://arxiv.org/abs/2512.21780",
+      "sha256": "374bb0c7cc786fe9ea18afa83327e41f827f54ec25b52b1a9ce5d4b68952d0d9",
+      "bytes": 779852,
+      "downloaded_at": "2026-10-29T05:26:14.712531+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.21927",
+      "title": "A large, long-lived, slowly-expanding superbubble across the Perseus Arm",
+      "category": "astro-ph.GA",
+      "filename": "2512.21927.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.21927",
+      "abstract_url": "https://arxiv.org/abs/2512.21927",
+      "sha256": "6326ecae3f0b55c72621c96242918128b1a4f66e87033c7638202c55e9d866e3",
+      "bytes": 1991530,
+      "downloaded_at": "2026-10-29T05:26:20.879656+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.22268",
+      "title": "Quenching pathways in the green valley at low redshift: confronting SDSS AGN hosts with IllustrisTNG and EAGLE",
+      "category": "astro-ph.GA",
+      "filename": "2512.22268.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.22268",
+      "abstract_url": "https://arxiv.org/abs/2512.22268",
+      "sha256": "a6ab399f9840ebfbcdf2385c6c5a5c95a603d7acd4ba17baed001478a600ba10",
+      "bytes": 4916659,
+      "downloaded_at": "2026-10-29T05:26:49.938587+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.22411",
+      "title": "On the origin and nature of double-double radio galaxies",
+      "category": "astro-ph.GA",
+      "filename": "2512.22411.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.22411",
+      "abstract_url": "https://arxiv.org/abs/2512.22411",
+      "sha256": "262ff93d8094103c61a1b61bbd3bb35e38cd4ce74d8f07aadf5547474bbb30ad",
+      "bytes": 566669,
+      "downloaded_at": "2026-10-29T05:26:52.061338+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.23904",
+      "title": "Competing Antiferromagnetic Phases in Multiferroic Wurtzite Transition-Metal Chalcogenides",
+      "category": "cond-mat.mtrl-sci",
+      "filename": "2512.23904.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.23904",
+      "abstract_url": "https://arxiv.org/abs/2512.23904",
+      "sha256": "bb008090208daeff6e9e747bd550dbeff578e9b423a4772007b8e46c12e5b0d1",
+      "bytes": 3643162,
+      "downloaded_at": "2026-10-29T05:27:22.496640+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.23955",
+      "title": "Ultrafast Exciton-Polariton Transport and Relaxation in Halide Perovskite",
+      "category": "cond-mat.mtrl-sci",
+      "filename": "2512.23955.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.23955",
+      "abstract_url": "https://arxiv.org/abs/2512.23955",
+      "sha256": "aaccc5b921c5c9e8ef76fd9e6d923425ab662779965cc7f0a55431b7c1e3e61d",
+      "bytes": 1882003,
+      "downloaded_at": "2026-10-29T05:27:42.887176+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.23985",
+      "title": "Bayesian inference and uncertainty quantification for modeling of body-centered-cubic single crystals",
+      "category": "cond-mat.mtrl-sci",
+      "filename": "2512.23985.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.23985",
+      "abstract_url": "https://arxiv.org/abs/2512.23985",
+      "sha256": "a757bd0c1cbb320ff0cd12648867a3abe270559b1076fb749c65bb15b801268a",
+      "bytes": 4303459,
+      "downloaded_at": "2026-10-29T05:28:00.391242+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24011",
+      "title": "Selective Amplification of the Topological Hall Signal in Cr$_2$Te$_3$: The Role of Molecular Exchange Coupling",
+      "category": "cond-mat.mtrl-sci",
+      "filename": "2512.24011.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24011",
+      "abstract_url": "https://arxiv.org/abs/2512.24011",
+      "sha256": "5f8f0a0448e675abaf9a71d49bd37b0f90e0825ebadc12098e650351fd89dbd6",
+      "bytes": 12195142,
+      "downloaded_at": "2026-10-29T05:29:40.804540+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24971",
+      "title": "Evaluating the Impact of Compression Techniques on the Robustness of CNNs under Natural Corruptions",
+      "category": "cs.CV",
+      "filename": "2512.24971.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24971",
+      "abstract_url": "https://arxiv.org/abs/2512.24971",
+      "sha256": "396f336900e1955f17ae974cfa15810503f06213f77aaad981a676db61745af1",
+      "bytes": 498474,
+      "downloaded_at": "2026-10-29T05:41:20.751446+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24861",
+      "title": "OFL-SAM2: Prompt SAM2 with Online Few-shot Learner for Efficient Medical Image Segmentation",
+      "category": "cs.CV",
+      "filename": "2512.24861.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24861",
+      "abstract_url": "https://arxiv.org/abs/2512.24861",
+      "sha256": "de3aa3ad351e1c197340dccccdd870f29ab80bcbc1e326594cc9edbab3025746",
+      "bytes": 857889,
+      "downloaded_at": "2026-10-29T05:41:28.574922+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2601.00905",
+      "title": "Evaluating Contextual Intelligence in Recyclability: A Comprehensive Study of Image-Based Reasoning Systems",
+      "category": "cs.CV",
+      "filename": "2601.00905.pdf",
+      "source_url": "https://arxiv.org/pdf/2601.00905",
+      "abstract_url": "https://arxiv.org/abs/2601.00905",
+      "sha256": "4575cbde5ad811c27cf2cea0b190446512d6f2f60145641f956ee577e4031af6",
+      "bytes": 971297,
+      "downloaded_at": "2026-10-29T05:41:29.602645+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24702",
+      "title": "Evolving, Not Training: Zero-Shot Reasoning Segmentation via Evolutionary Prompting",
+      "category": "cs.CV",
+      "filename": "2512.24702.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24702",
+      "abstract_url": "https://arxiv.org/abs/2512.24702",
+      "sha256": "0ceb2fdf886de4a5a5c3ec3e454db31547179fa09234ae5f8ae8819539b310e2",
+      "bytes": 1138936,
+      "downloaded_at": "2026-10-29T05:41:40.834832+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24792",
+      "title": "Projection-based Adversarial Attack using Physics-in-the-Loop Optimization for Monocular Depth Estimation",
+      "category": "cs.CV",
+      "filename": "2512.24792.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24792",
+      "abstract_url": "https://arxiv.org/abs/2512.24792",
+      "sha256": "8c5b6abec6b460c7c8b70430a501906d4011fad4534ce6ac72125baf6e454ef9",
+      "bytes": 1238593,
+      "downloaded_at": "2026-10-29T05:41:53.144030+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.22286",
+      "title": "A General Weighting Theory for Ensemble Learning: Beyond Variance Reduction via Spectral and Geometric Structure",
+      "category": "stat.ML",
+      "filename": "2512.22286.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.22286",
+      "abstract_url": "https://arxiv.org/abs/2512.22286",
+      "sha256": "fc4ca0bb0f09c4ed3bb3825cf790c36ca0da627ab4e5716d87de932b3bb358c5",
+      "bytes": 374102,
+      "downloaded_at": "2026-10-29T05:41:55.068964+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24515",
+      "title": "Improving the stability of the covariance-controlled adaptive Langevin thermostat for large-scale Bayesian sampling",
+      "category": "stat.ML",
+      "filename": "2512.24515.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24515",
+      "abstract_url": "https://arxiv.org/abs/2512.24515",
+      "sha256": "f99b5abfdfba43c27a9adb397967680a79a85ff2d6310a7ad8e71b36fdad79b9",
+      "bytes": 448230,
+      "downloaded_at": "2026-10-29T05:41:59.592533+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24768",
+      "title": "Sparse Offline Reinforcement Learning with Corruption Robustness",
+      "category": "stat.ML",
+      "filename": "2512.24768.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24768",
+      "abstract_url": "https://arxiv.org/abs/2512.24768",
+      "sha256": "2c84096debf25fcff25b47fb5b75689584a11c0909c7715fadaa4af2f1e644f6",
+      "bytes": 595653,
+      "downloaded_at": "2026-10-29T05:42:09.585236+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.21451",
+      "title": "An approach to Fisher-Rao metric for infinite dimensional non-parametric information geometry",
+      "category": "stat.ML",
+      "filename": "2512.21451.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.21451",
+      "abstract_url": "https://arxiv.org/abs/2512.21451",
+      "sha256": "7ff403e48e1050a67cbbdcee95c0e41253eefa4431ec4d0b5ff50444b3bf6149",
+      "bytes": 602261,
+      "downloaded_at": "2026-10-29T05:42:13.153268+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24335",
+      "title": "Backpropagation from KL Projections: Differential and Exact I-Projection Correspondences",
+      "category": "math.OC",
+      "filename": "2512.24335.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24335",
+      "abstract_url": "https://arxiv.org/abs/2512.24335",
+      "sha256": "50a3155d9bbe5bf8f01c0a7a3609c970a649b97d05a7d3d42856b1c4772364b4",
+      "bytes": 296012,
+      "downloaded_at": "2026-10-29T05:42:15.846387+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24262",
+      "title": "Projective Controllability of Complete Lifted Control Systems",
+      "category": "math.OC",
+      "filename": "2512.24262.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24262",
+      "abstract_url": "https://arxiv.org/abs/2512.24262",
+      "sha256": "7027de767fdceb25c28510de361370bfc3f10e7968d98aa994d674d043db3bb7",
+      "bytes": 322371,
+      "downloaded_at": "2026-10-29T05:42:18.324244+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24736",
+      "title": "Some Studies on Stochastic Optimization based Quantitative Risk Management",
+      "category": "math.OC",
+      "filename": "2512.24736.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24736",
+      "abstract_url": "https://arxiv.org/abs/2512.24736",
+      "sha256": "38bab414f2301587b9af6ceabdba99ab0876dfcdc811c31c402492b712d3af01",
+      "bytes": 358600,
+      "downloaded_at": "2026-10-29T05:42:21.404369+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.24640",
+      "title": "A Differential Game with Symmetric Incomplete Information on Probabilistic Initial Condition and with Signal Revelation",
+      "category": "math.OC",
+      "filename": "2512.24640.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.24640",
+      "abstract_url": "https://arxiv.org/abs/2512.24640",
+      "sha256": "2bd6b33e6ae3e01beebeeddb9cf331a2573ea260d055c8b1969a4881812325b2",
+      "bytes": 388827,
+      "downloaded_at": "2026-10-29T05:42:26.935386+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    },
+    {
+      "id": "2512.23843",
+      "title": "The Flow-Limit of Reflect-Reflect-Relax: Existence, Stability, and Discrete-Time Behavior",
+      "category": "math.OC",
+      "filename": "2512.23843.pdf",
+      "source_url": "https://arxiv.org/pdf/2512.23843",
+      "abstract_url": "https://arxiv.org/abs/2512.23843",
+      "sha256": "e24134c9f2dc44c20b3dea429f46a971ff0fa6bc54d5ba080b998a5c855dc0e1",
+      "bytes": 397586,
+      "downloaded_at": "2026-10-29T05:42:28.555234+00:00",
+      "metadata_origin": "historical official arXiv manifest; identity pending PDF validation",
+      "pdf_text_validation": "pending native preflight"
+    }
+  ],
+  "failures": [
+    {
+      "id": "2401.15884",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:01.821862+00:00"
+    },
+    {
+      "id": "2305.06983",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:05.014722+00:00"
+    },
+    {
+      "id": "2212.10496",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:08.177242+00:00"
+    },
+    {
+      "id": "2312.10997",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:11.360175+00:00"
+    },
+    {
+      "id": "2512.24603",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:14.968987+00:00"
+    },
+    {
+      "id": "2512.24605",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:17.839762+00:00"
+    },
+    {
+      "id": "2512.24620",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:22.036583+00:00"
+    },
+    {
+      "id": "2512.24622",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:24.197514+00:00"
+    },
+    {
+      "id": "2512.24639",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:28.886170+00:00"
+    },
+    {
+      "id": "2512.24663",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:30.585049+00:00"
+    },
+    {
+      "id": "2512.20051",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:33.799489+00:00"
+    },
+    {
+      "id": "2512.20305",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:37.348119+00:00"
+    },
+    {
+      "id": "2512.20368",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:40.202445+00:00"
+    },
+    {
+      "id": "2512.20562",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:43.372420+00:00"
+    },
+    {
+      "id": "2512.20811",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:46.588703+00:00"
+    },
+    {
+      "id": "2512.21005",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:49.783582+00:00"
+    },
+    {
+      "id": "2512.23178",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:52.951382+00:00"
+    },
+    {
+      "id": "2512.23188",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:56.188385+00:00"
+    },
+    {
+      "id": "2512.23203",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:51:59.393138+00:00"
+    },
+    {
+      "id": "2512.23317",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:02.595224+00:00"
+    },
+    {
+      "id": "2512.23339",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:05.786027+00:00"
+    },
+    {
+      "id": "2512.23527",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:10.445620+00:00"
+    },
+    {
+      "id": "2511.12805",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:12.188005+00:00"
+    },
+    {
+      "id": "2511.14431",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:15.600303+00:00"
+    },
+    {
+      "id": "2511.14669",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:18.609056+00:00"
+    },
+    {
+      "id": "2511.17905",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:21.783076+00:00"
+    },
+    {
+      "id": "2511.18626",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:25.411539+00:00"
+    },
+    {
+      "id": "2511.18883",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:28.189070+00:00"
+    },
+    {
+      "id": "2512.21632",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:31.461445+00:00"
+    },
+    {
+      "id": "2512.21674",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:34.598435+00:00"
+    },
+    {
+      "id": "2512.21780",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:37.772870+00:00"
+    },
+    {
+      "id": "2512.21927",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:41.000365+00:00"
+    },
+    {
+      "id": "2512.22268",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:44.159892+00:00"
+    },
+    {
+      "id": "2512.22411",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:47.393515+00:00"
+    },
+    {
+      "id": "2512.23904",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:52.130811+00:00"
+    },
+    {
+      "id": "2512.23955",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:53.785904+00:00"
+    },
+    {
+      "id": "2512.23985",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:52:57.051016+00:00"
+    },
+    {
+      "id": "2512.24011",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:00.194076+00:00"
+    },
+    {
+      "id": "2512.24091",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:04.385274+00:00"
+    },
+    {
+      "id": "2512.24093",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:06.587780+00:00"
+    },
+    {
+      "id": "2512.19029",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:09.826965+00:00"
+    },
+    {
+      "id": "2512.19569",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:12.997965+00:00"
+    },
+    {
+      "id": "2512.19675",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:16.305158+00:00"
+    },
+    {
+      "id": "2512.19984",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:19.403057+00:00"
+    },
+    {
+      "id": "2512.19985",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:22.589924+00:00"
+    },
+    {
+      "id": "2512.20765",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:25.747586+00:00"
+    },
+    {
+      "id": "2512.23514",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:28.970989+00:00"
+    },
+    {
+      "id": "2512.23538",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:32.165698+00:00"
+    },
+    {
+      "id": "2512.23558",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:35.377496+00:00"
+    },
+    {
+      "id": "2512.23559",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:38.568672+00:00"
+    },
+    {
+      "id": "2512.23638",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:41.788040+00:00"
+    },
+    {
+      "id": "2512.23689",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:45.011868+00:00"
+    },
+    {
+      "id": "2511.19813",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:48.503474+00:00"
+    },
+    {
+      "id": "2511.23114",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:51.373971+00:00"
+    },
+    {
+      "id": "2512.00696",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:54.586733+00:00"
+    },
+    {
+      "id": "2512.02478",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:53:57.832476+00:00"
+    },
+    {
+      "id": "2512.02908",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:01.011805+00:00"
+    },
+    {
+      "id": "2512.03191",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:04.156556+00:00"
+    },
+    {
+      "id": "2512.04937",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:07.381375+00:00"
+    },
+    {
+      "id": "2512.07116",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:10.567386+00:00"
+    },
+    {
+      "id": "2512.10309",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:13.780105+00:00"
+    },
+    {
+      "id": "2512.10588",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:16.960353+00:00"
+    },
+    {
+      "id": "2512.10708",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:20.144911+00:00"
+    },
+    {
+      "id": "2512.11495",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:23.398172+00:00"
+    },
+    {
+      "id": "2512.11927",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:26.572723+00:00"
+    },
+    {
+      "id": "2512.15737",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:29.816295+00:00"
+    },
+    {
+      "id": "2512.17106",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:33.033763+00:00"
+    },
+    {
+      "id": "2512.17491",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:36.188045+00:00"
+    },
+    {
+      "id": "2512.17597",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:41.006649+00:00"
+    },
+    {
+      "id": "2512.18442",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:42.602018+00:00"
+    },
+    {
+      "id": "2512.18752",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:45.803740+00:00"
+    },
+    {
+      "id": "2512.20887",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:50.074759+00:00"
+    },
+    {
+      "id": "2512.20909",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:52.200892+00:00"
+    },
+    {
+      "id": "2512.20910",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:55.719383+00:00"
+    },
+    {
+      "id": "2512.20916",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:54:58.606038+00:00"
+    },
+    {
+      "id": "2512.21021",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:55:01.811702+00:00"
+    },
+    {
+      "id": "2512.21039",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:55:04.996512+00:00"
+    },
+    {
+      "id": "2401.15884",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:58:58.466619+00:00"
+    },
+    {
+      "id": "2305.06983",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:03.306778+00:00"
+    },
+    {
+      "id": "2212.10496",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:05.737553+00:00"
+    },
+    {
+      "id": "2312.10997",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:07.984724+00:00"
+    },
+    {
+      "id": "2512.24603",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:11.117589+00:00"
+    },
+    {
+      "id": "2512.24605",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:14.341453+00:00"
+    },
+    {
+      "id": "2512.24620",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:17.543964+00:00"
+    },
+    {
+      "id": "2512.24622",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:20.813175+00:00"
+    },
+    {
+      "id": "2512.24639",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:23.921145+00:00"
+    },
+    {
+      "id": "2512.24663",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:27.129139+00:00"
+    },
+    {
+      "id": "2512.20051",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:30.342499+00:00"
+    },
+    {
+      "id": "2512.20305",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:33.552346+00:00"
+    },
+    {
+      "id": "2512.20368",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:36.802656+00:00"
+    },
+    {
+      "id": "2512.20562",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:39.903631+00:00"
+    },
+    {
+      "id": "2512.20811",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:43.236185+00:00"
+    },
+    {
+      "id": "2512.21005",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:46.335971+00:00"
+    },
+    {
+      "id": "2512.23178",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:49.626600+00:00"
+    },
+    {
+      "id": "2512.23188",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:52.723359+00:00"
+    },
+    {
+      "id": "2512.23203",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:56.023504+00:00"
+    },
+    {
+      "id": "2512.23317",
+      "error_type": "URLError",
+      "time": "2026-10-29T04:59:59.129653+00:00"
+    },
+    {
+      "id": "2512.23339",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:02.339171+00:00"
+    },
+    {
+      "id": "2512.23527",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:05.555796+00:00"
+    },
+    {
+      "id": "2511.12805",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:08.732196+00:00"
+    },
+    {
+      "id": "2511.14431",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:13.236852+00:00"
+    },
+    {
+      "id": "2511.14669",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:15.169426+00:00"
+    },
+    {
+      "id": "2511.17905",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:18.320027+00:00"
+    },
+    {
+      "id": "2511.18626",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:21.531137+00:00"
+    },
+    {
+      "id": "2511.18883",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:24.864174+00:00"
+    },
+    {
+      "id": "2512.21632",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:27.951049+00:00"
+    },
+    {
+      "id": "2512.21674",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:31.128765+00:00"
+    },
+    {
+      "id": "2512.21780",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:34.382541+00:00"
+    },
+    {
+      "id": "2512.21927",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:37.520825+00:00"
+    },
+    {
+      "id": "2512.22268",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:40.767892+00:00"
+    },
+    {
+      "id": "2512.22411",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:43.970854+00:00"
+    },
+    {
+      "id": "2512.23904",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:47.142331+00:00"
+    },
+    {
+      "id": "2512.23955",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:50.346096+00:00"
+    },
+    {
+      "id": "2512.23985",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:54.037199+00:00"
+    },
+    {
+      "id": "2512.24011",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:00:56.762437+00:00"
+    },
+    {
+      "id": "2512.24091",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:00.037020+00:00"
+    },
+    {
+      "id": "2512.24093",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:03.159763+00:00"
+    },
+    {
+      "id": "2512.19029",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:06.378950+00:00"
+    },
+    {
+      "id": "2512.19569",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:09.601943+00:00"
+    },
+    {
+      "id": "2512.19675",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:12.780481+00:00"
+    },
+    {
+      "id": "2512.19984",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:16.285685+00:00"
+    },
+    {
+      "id": "2512.19985",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:19.137795+00:00"
+    },
+    {
+      "id": "2512.20765",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:22.402281+00:00"
+    },
+    {
+      "id": "2512.23514",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:27.249307+00:00"
+    },
+    {
+      "id": "2512.23538",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:28.756253+00:00"
+    },
+    {
+      "id": "2512.23558",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:31.935517+00:00"
+    },
+    {
+      "id": "2512.23559",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:35.169431+00:00"
+    },
+    {
+      "id": "2512.23638",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:38.447983+00:00"
+    },
+    {
+      "id": "2512.23689",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:41.842558+00:00"
+    },
+    {
+      "id": "2511.19813",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:44.771367+00:00"
+    },
+    {
+      "id": "2511.23114",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:49.971394+00:00"
+    },
+    {
+      "id": "2512.00696",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:51.154381+00:00"
+    },
+    {
+      "id": "2512.02478",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:54.422974+00:00"
+    },
+    {
+      "id": "2512.02908",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:01:57.609779+00:00"
+    },
+    {
+      "id": "2512.03191",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:00.787520+00:00"
+    },
+    {
+      "id": "2512.04937",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:03.995634+00:00"
+    },
+    {
+      "id": "2512.07116",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:07.206842+00:00"
+    },
+    {
+      "id": "2512.10309",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:10.398838+00:00"
+    },
+    {
+      "id": "2512.10588",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:14.573493+00:00"
+    },
+    {
+      "id": "2512.10708",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:16.917180+00:00"
+    },
+    {
+      "id": "2512.11495",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:19.973265+00:00"
+    },
+    {
+      "id": "2512.11927",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:23.183654+00:00"
+    },
+    {
+      "id": "2512.15737",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:26.441214+00:00"
+    },
+    {
+      "id": "2512.17106",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:29.778566+00:00"
+    },
+    {
+      "id": "2512.17491",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:32.798927+00:00"
+    },
+    {
+      "id": "2512.17597",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:36.976464+00:00"
+    },
+    {
+      "id": "2512.18442",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:40.800583+00:00"
+    },
+    {
+      "id": "2512.18752",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:42.395350+00:00"
+    },
+    {
+      "id": "2512.20887",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:45.739553+00:00"
+    },
+    {
+      "id": "2512.20909",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:48.777885+00:00"
+    },
+    {
+      "id": "2512.20910",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:52.056332+00:00"
+    },
+    {
+      "id": "2512.20916",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:55.185277+00:00"
+    },
+    {
+      "id": "2512.21021",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:02:58.418016+00:00"
+    },
+    {
+      "id": "2512.21039",
+      "error_type": "URLError",
+      "time": "2026-10-29T05:03:01.630130+00:00"
+    }
+  ]
+}

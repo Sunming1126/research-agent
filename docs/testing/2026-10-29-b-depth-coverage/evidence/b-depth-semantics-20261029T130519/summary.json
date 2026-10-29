@@ -1,0 +1,25 @@
+{
+  "baseline": {
+    "returncode": 1,
+    "collected": 5,
+    "failures": 0,
+    "errors": 5,
+    "skipped": 0,
+    "passed": 0,
+    "seconds": 4.096,
+    "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+    "target_real_model_calls": 0
+  },
+  "candidate": {
+    "returncode": 1,
+    "collected": 5,
+    "failures": 0,
+    "errors": 5,
+    "skipped": 0,
+    "passed": 0,
+    "seconds": 2.097,
+    "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+    "target_real_model_calls": 0
+  },
+  "mock_reader_not_semantic_benchmark": true
+}

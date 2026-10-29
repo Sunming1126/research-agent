@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-81",
+    "papers": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "reason": "该论文以开放域问答为主要任务，提出并训练稠密双编码检索器（Dense Passage Retriever），通过优化问题与段落向量的内积来训练双编码器，并在开放Natural Questions设定下评估，摘要还报告了相对BM25的Top-5准确率提升，符合原始方法论文的要求。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 4.515,
+  "target_real_model_calls": 2,
+  "total_tokens": 5233,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

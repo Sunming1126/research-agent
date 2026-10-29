@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2512.20368.pdf\",\"reason\":\"该论文正文第8页出现连续短语“All expectations are taken with respect to the learner’s internal randomness and the stochastic loss environment as well as the random context xt.”，与检索短语完全一致（仅大小写差异），属于正文而非参考文献，满足连续短语原文匹配条件。\",\"chunk_ids\":[\"4aff05776a36aa057790\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253421,
+  "id": "02179325342009609b5057e6c5823bee4bfc995e78b34aee585f6",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 103,
+    "prompt_tokens": 6092,
+    "total_tokens": 6195,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

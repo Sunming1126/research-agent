@@ -1,0 +1,15 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-44",
+    "papers": []
+  },
+  "disk_matches": true,
+  "seconds": 8.0,
+  "target_real_model_calls": 3,
+  "total_tokens": 9554,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}
