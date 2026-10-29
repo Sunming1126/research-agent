@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2511.12805.pdf\",\"reason\":\"该篇正文在描述实验实现时明确写出使用了 CRAN 同名包中的 SID 实现，原文为“the SID implemented in the CRAN package of the same name”，与目标连续短语“and the sid implemented in the cran”在允许换行、标点与大小写排版差异的条件下对应，属于本篇方法/实验正文证据，而非参考文献列表。\",\"chunk_ids\":[\"b11e7dcb47fc1ac1832b\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265746,
+  "id": "021793265745163662416cb134b03a75ced108817244360b0c34a",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 126,
+    "prompt_tokens": 5187,
+    "total_tokens": 5313,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

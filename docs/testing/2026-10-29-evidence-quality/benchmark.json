@@ -1,0 +1,370 @@
+{
+  "cases": [
+    {
+      "task": {
+        "case_id": "B-42",
+        "function": "Literature_Retrieval",
+        "title": "论文正文的连续短语检索",
+        "input": "请查找正文包含此连续英文短语的论文：\"group disparity refers to the maximum difference\"。允许PDF中的换行、标点和连字符排版差异，但不能仅凭主题相似或常识判断。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "ruc-diversification-2019.pdf",
+          "2401.15884.pdf",
+          "2305.06983.pdf",
+          "2212.10496.pdf",
+          "2312.10997.pdf",
+          "2512.24603.pdf",
+          "2512.24605.pdf",
+          "2512.24620.pdf",
+          "2512.24622.pdf",
+          "2512.24639.pdf",
+          "2512.24663.pdf",
+          "2512.20051.pdf",
+          "2512.20305.pdf",
+          "2512.20368.pdf",
+          "2512.20562.pdf",
+          "2512.20811.pdf",
+          "2512.21005.pdf",
+          "2512.23178.pdf",
+          "2512.23188.pdf",
+          "2512.23203.pdf",
+          "2512.23317.pdf",
+          "2512.23339.pdf",
+          "2512.23527.pdf",
+          "2511.12805.pdf",
+          "2511.14431.pdf",
+          "2511.14669.pdf",
+          "2511.17905.pdf",
+          "2511.18626.pdf",
+          "2511.18883.pdf",
+          "2512.21632.pdf",
+          "2512.21674.pdf",
+          "2512.21780.pdf",
+          "2512.21927.pdf",
+          "2512.22268.pdf",
+          "2512.22411.pdf",
+          "2512.23904.pdf",
+          "2512.23955.pdf",
+          "2512.23985.pdf",
+          "2512.24011.pdf",
+          "2512.24971.pdf",
+          "2512.24861.pdf",
+          "2601.00905.pdf",
+          "2512.24702.pdf",
+          "2512.24792.pdf",
+          "2512.22286.pdf",
+          "2512.24515.pdf",
+          "2512.24768.pdf",
+          "2512.21451.pdf",
+          "2512.24335.pdf",
+          "2512.24262.pdf",
+          "2512.24736.pdf",
+          "2512.24640.pdf",
+          "2512.23843.pdf"
+        ],
+        "constraints": [
+          "只返回在本篇正文中能找到连续短语原文的论文；参考文献列表不作为本篇研究的正文证据。无匹配可为空。"
+        ],
+        "expected_output": "匹配论文的完整文件名与可核验的原文依据。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2512.23188.pdf"
+      ],
+      "category": "prior_B_reference",
+      "source_page": 8,
+      "check": "exact_names"
+    },
+    {
+      "task": {
+        "case_id": "B-44",
+        "function": "Literature_Retrieval",
+        "title": "论文正文的连续短语检索",
+        "input": "请查找正文包含此连续英文短语的论文：\"and the sid implemented in the cran\"。允许PDF中的换行、标点和连字符排版差异，但不能仅凭主题相似或常识判断。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "ruc-diversification-2019.pdf",
+          "2401.15884.pdf",
+          "2305.06983.pdf",
+          "2212.10496.pdf",
+          "2312.10997.pdf",
+          "2512.24603.pdf",
+          "2512.24605.pdf",
+          "2512.24620.pdf",
+          "2512.24622.pdf",
+          "2512.24639.pdf",
+          "2512.24663.pdf",
+          "2512.20051.pdf",
+          "2512.20305.pdf",
+          "2512.20368.pdf",
+          "2512.20562.pdf",
+          "2512.20811.pdf",
+          "2512.21005.pdf",
+          "2512.23178.pdf",
+          "2512.23188.pdf",
+          "2512.23203.pdf",
+          "2512.23317.pdf",
+          "2512.23339.pdf",
+          "2512.23527.pdf",
+          "2511.12805.pdf",
+          "2511.14431.pdf",
+          "2511.14669.pdf",
+          "2511.17905.pdf",
+          "2511.18626.pdf",
+          "2511.18883.pdf",
+          "2512.21632.pdf",
+          "2512.21674.pdf",
+          "2512.21780.pdf",
+          "2512.21927.pdf",
+          "2512.22268.pdf",
+          "2512.22411.pdf",
+          "2512.23904.pdf",
+          "2512.23955.pdf",
+          "2512.23985.pdf",
+          "2512.24011.pdf",
+          "2512.24971.pdf",
+          "2512.24861.pdf",
+          "2601.00905.pdf",
+          "2512.24702.pdf",
+          "2512.24792.pdf",
+          "2512.22286.pdf",
+          "2512.24515.pdf",
+          "2512.24768.pdf",
+          "2512.21451.pdf",
+          "2512.24335.pdf",
+          "2512.24262.pdf",
+          "2512.24736.pdf",
+          "2512.24640.pdf",
+          "2512.23843.pdf"
+        ],
+        "constraints": [
+          "只返回在本篇正文中能找到连续短语原文的论文；参考文献列表不作为本篇研究的正文证据。无匹配可为空。"
+        ],
+        "expected_output": "匹配论文的完整文件名与可核验的原文依据。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2511.12805.pdf"
+      ],
+      "category": "prior_B_reference",
+      "source_page": 8,
+      "check": "exact_names"
+    },
+    {
+      "task": {
+        "case_id": "B-82",
+        "function": "Literature_Retrieval",
+        "title": "三个独立的检索生成方法目标",
+        "input": "分别找满足以下任一独立目标的原始方法论文：1. 联合优化检索器与生成器、结合参数和非参数记忆完成知识密集生成；2. 利用检索到的文本块、分块交叉注意力和大规模近邻库训练语言模型；3. 用反思标记按需检索、生成并评价自身输出。同一篇无需同时满足三个不同目标。排除纯检索器、仅检索基准评测、仅固定检索后的多段阅读器，以及仅靠人类反馈对齐而不含外部检索的方法。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2005.11401-RAG.pdf",
+        "2112.04426-RETRO.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "category": "prior_B_reference",
+      "check": "exact_names"
+    },
+    {
+      "task": {
+        "case_id": "B-84",
+        "function": "Literature_Retrieval",
+        "title": "无匹配的负对照",
+        "input": "找以卫星遥感实测城市植被和地表温度、控制季节混杂因素并估计热岛效应的原始研究论文。仅有通用文本检索或语言生成方法而没有该领域实测研究的不相关。没有匹配则返回空列表，不凑数。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [],
+      "category": "prior_B_reference",
+      "check": "exact_names"
+    },
+    {
+      "task": {
+        "case_id": "A-21",
+        "function": "Chat",
+        "title": "串行预算核算",
+        "input": "串行执行40次操作，每次1.5毫秒，没有重叠且忽略额外开销，总耗时多少毫秒？请写出计算并提出一个必要的澄清问题。",
+        "materials": [],
+        "constraints": [],
+        "expected_output": "Chat",
+        "output_schema_ref": "Chat"
+      },
+      "category": "A_numeric_control",
+      "check": "sixty_ms"
+    },
+    {
+      "task": {
+        "case_id": "B-74",
+        "function": "Literature_Retrieval",
+        "title": "新增原始方法",
+        "input": "在给定论文中找提出FLARE本身的原始论文：预测即将生成的句子，当其中出现低置信度词时，利用预测句子检索并重新生成。只在相关工作中提及FLARE的论文不纳入。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2305.06983.pdf",
+          "2401.15884.pdf",
+          "2212.10496.pdf",
+          "2312.10997.pdf",
+          "2104.08663-BEIR.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ],
+        "constraints": [],
+        "expected_output": "Literature_Retrieval",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "category": "new_B_method",
+      "check": "exact_names",
+      "expected_filenames": [
+        "2305.06983.pdf"
+      ]
+    },
+    {
+      "task": {
+        "case_id": "B-75",
+        "function": "Literature_Retrieval",
+        "title": "并集与数量上限",
+        "input": "分别找提出CRAG和提出HyDE本身的原始方法论文，满足任一目标即可；总共最多两篇，不要求同一篇同时提出两个方法。排除只综述或引用这些方法的论文。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2305.06983.pdf",
+          "2401.15884.pdf",
+          "2212.10496.pdf",
+          "2312.10997.pdf",
+          "2104.08663-BEIR.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ],
+        "constraints": [],
+        "expected_output": "Literature_Retrieval",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "category": "new_B_union",
+      "check": "exact_names",
+      "expected_filenames": [
+        "2401.15884.pdf",
+        "2212.10496.pdf"
+      ]
+    },
+    {
+      "task": {
+        "case_id": "C-21",
+        "function": "Survey",
+        "title": "检索与生成的耦合机制",
+        "input": "比较这五篇论文中检索器、生成器或阅读器如何耦合，区分本篇提出的机制、训练对象、使用的数据与实验条件，指出哪些结果不可直接横比。用原文支持关键事实；不能把FiD描述为联合训练检索器，也不能把后续论文对基线的描述冒称原论文提出。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "正文800至4500字符、至少引用这五篇指定论文；有实际页码；不提出新的实测结果。"
+        ],
+        "expected_output": "Survey",
+        "output_schema_ref": "Survey"
+      },
+      "category": "C_real_papers",
+      "check": "report",
+      "source_facts": [
+        "DPR trains a dense dual-encoder retriever.",
+        "FiD encodes passages independently and fuses them in the decoder.",
+        "Self-RAG uses reflection tokens to retrieve and critique adaptively."
+      ]
+    },
+    {
+      "task": {
+        "case_id": "E-21",
+        "function": "Idea",
+        "title": "证据约束下的可验证方案",
+        "input": "基于这五篇论文，提出在检索预算受限时结合检索器、阅读器和按需检索控制的待验证方案。明确模块接口与冲突处理，给出基线、数据划分、防泄漏、消融、指标计算、拟议资源与重复次数、失败判据。严格区分论文事实与新假设；不要把拟议实验写成已完成结果，不宣称全球首创。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "正文800至6000字符；仅使用当前论文支持事实，全部新设置标注为拟议。"
+        ],
+        "expected_output": "Idea",
+        "output_schema_ref": "Idea"
+      },
+      "category": "E_real_papers",
+      "check": "report",
+      "source_facts": [
+        "RETRO is a retrieval-augmented language model.",
+        "FiD uses a decoder to combine independently encoded passages.",
+        "Self-RAG supplies adaptive retrieval/critique mechanisms, not evidence of this proposed combined experiment."
+      ]
+    },
+    {
+      "task": {
+        "case_id": "D-01",
+        "function": "Reproduction",
+        "title": "无平台会话时的诚实失败",
+        "input": "name=Macro-F1, unit=分数; name=Accuracy, unit=%; name=运行时间, unit=秒。当前测试不提供实验方法或平台运行凭据，无法执行时如实返回materials_missing，不能编造观测值。",
+        "materials": [
+          "not-provided-D01-method.txt"
+        ],
+        "constraints": [],
+        "expected_output": "Reproduction",
+        "output_schema_ref": "Reproduction"
+      },
+      "category": "D_missing_material_control",
+      "check": "materials_missing"
+    }
+  ],
+  "frozen_before_target_calls": true,
+  "limits": [
+    "Local cross-task diagnostics, no official gold or official D experiment session",
+    "Four old B references are regression controls, not new held-out improvements",
+    "Report source_facts are evaluator-only guidance, never given to generation workers"
+  ],
+  "corpus_sha256": "c7619c8941e0bc04bd46928c6b824ba6a7ba0d263ffd1aa81ab54ad8309d6c46"
+}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+from ..core.citations import CITATION_PATTERN, citation_pairs
 
 
 def report_task(case):
@@ -19,8 +20,7 @@ def compact_claims(rows):
 
 def cited_evidence(markdown, rows):
     """按编号及物理页定位事实；没有页码时保留该论文全部候选。"""
-    pairs = {(int(ref), int(page) if page else None)
-             for ref, page in re.findall(r"\[(\d{1,2})(?:,\s*p\.\s*(\d+))?\]", markdown)}
+    pairs = citation_pairs(markdown)
     ids = set(re.findall(r"ev-\d+", markdown))
     return [e for e in rows if e["evidence_id"] in ids or (e["ref"], e["page"]) in pairs
             or (e["ref"], None) in pairs]
@@ -29,7 +29,7 @@ def cited_evidence(markdown, rows):
 def revision_view(markdown, patches):
     """未改正文已首审：复审发送变更附近原文及完整标题结构，明确标记为节选。"""
     paragraphs = markdown.split("\n\n")
-    clean = lambda text: re.sub(r"\[(?:E:[^\]]+|\d{1,2}(?:,\s*p\.\s*\d+)?)\]", "", text).strip()
+    clean = lambda text: CITATION_PATTERN.sub('', re.sub(r'\[E:[^\]]+\]', '', text)).strip()
     changed = [clean(p["replacement"]) for p in patches if clean(p["replacement"])]
     indices = {i for i, p in enumerate(paragraphs) if any(text in clean(p) for text in changed)}
     if not indices:

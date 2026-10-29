@@ -1,0 +1,33 @@
+{
+  "returncode": 0,
+  "collected": 394,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 7,
+  "passed": 387,
+  "seconds": 53.57,
+  "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+  "target_real_model_calls": 0,
+  "baseline_counterexamples": {
+    "returncode": 1,
+    "collected": 14,
+    "failures": 13,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 0,
+    "seconds": 2.541,
+    "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+    "target_real_model_calls": 0
+  },
+  "candidate_counterexamples": {
+    "returncode": 0,
+    "collected": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 13,
+    "seconds": 2.603,
+    "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+    "target_real_model_calls": 0
+  }
+}

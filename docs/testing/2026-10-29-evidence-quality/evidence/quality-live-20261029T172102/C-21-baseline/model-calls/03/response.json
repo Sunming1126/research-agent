@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"type\":\"json_object\",\"patches\":[{\"original\":\"FiD 在 Natural Questions 与 TriviaQA 上报告新最优，并观察到检索段落数增加时性能显著提升[3, p.2][3, p.4]；其 NQ 开放域版本丢弃超过 5 个 token 的答案[3, p.3]。\",\"replacement\":\"FiD 在 Natural Questions 与 TriviaQA 基准上取得新的最优结果、优于现有工作[E:ev-18][E:ev-19]，并观察到检索段落数增加时性能显著提升[E:ev-18]；其 NQ 开放域版本丢弃超过 5 个 token 的答案[E:ev-21]。\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265848,
+  "id": "02179326584725123c5b6bc0dca724893eb7d2b1f969c7c61ad7f",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 161,
+    "prompt_tokens": 3720,
+    "total_tokens": 3881,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

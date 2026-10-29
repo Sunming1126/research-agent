@@ -1,0 +1,72 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "C-21",
+    "path": "data/expert/C-21-综述-b_comparison.md",
+    "markdown": "## 研究问题与比较维度\n\n五篇工作共同关心开放域知识密集型任务中检索与生成的耦合方式，但耦合发生在何处、训练谁、用什么监督、在何种数据与指标上评估差异很大。本文按“检索器是否训练、生成器如何消费检索结果、训练信号来源、评估任务与条件”四个维度比较，并说明哪些结果不可直接横比。\n\n## 检索器与生成器的耦合位置\n\nDPR 将检索实现为稠密双编码器：用稠密编码器把任意文本段落映射为 d 维实值向量并为全部段落建索引[1, p.2]，训练数据由问题、一个正段落与 n 个负段落组成，以正段落的负对数似然为损失[1, p.3]。其动机是稀疏 TF-IDF/BM25 为事实标准，而稠密表示在同义改写上互补[1, p.1]。DPR 的消融显示，在 Natural Questions 上把检索器与阅读器联合学习，并未优于先分别训练强检索器与阅读器的流水线，后者取得 39.8 EM[1, p.8]。因此不能把 DPR 描述为联合训练检索器与生成器；其耦合是“先检索、后阅读”的松耦合。\n\nRAG 把参数记忆（预训练 seq2seq）与非参数记忆（维基百科稠密向量索引）结合[2, p.1]，将检索文档视为隐变量，端到端训练检索器与生成器，并提出 RAG-Sequence（各目标词共用同一文档）与 RAG-Token（各目标词可用不同文档）两种边缘化方式[2, p.3]。这是真正的联合训练，与 DPR 的分离训练形成对照。\n\nFiD 采用两步流程：先检索支持段落，再由 seq2seq 模型处理[3, p.2]；编码器独立处理各段落，解码器对全部段落表示拼接后做注意力，即“仅在解码器融合证据”[3, p.3]。该设计使其能扩展到大量上下文，且与 RAG 等在编码器层面融合的做法不同[3, p.3]。FiD 的检索器不是本文联合训练对象，其贡献在生成端的融合结构。\n\nRETRO 以冻结的 BERT 检索器从万亿级 token 数据库按连续 token 块检索，键为冻结 BERT 嵌入、值为原始文本块[4, p.2]；用分块交叉注意力注入检索文本，复杂度随检索数据量线性增长，且因检索器冻结而无需训练和更新检索网络[4, p.2]。与 RAG 的可训练检索器相比，RETRO 的耦合是“冻结检索＋生成端交叉注意力”，训练对象只有生成器。\n\nSelf-RAG 让任意 LM 通过反思 token 学习按需检索：反思 token 由训练好的 critic 模型离线插入原语料，再以扩展词表的下一词预测统一训练[5, p.2]。其出发点是固定数量、不加区分的检索会削弱模型灵活性或产生无用回答[5, p.1]。与前述方法不同，Self-RAG 的耦合包含“是否检索、检索是否相关、生成是否有支持”的自评环节，训练信号来自 critic 而非检索监督。\n\n## 数据、任务与指标\n\nDPR 在多个开放域 QA 数据集上评估稠密检索器[1, p.1]，并指出 SQuAD 因缺少段落时问题缺上下文而不理想[1, p.4]。RAG 除 QA 外还研究开放域问题生成，采用更难的 Jeopardy 形式[2, p.5]；在 FEVER 上把类别映射为单 token 直接训练，且不使用检索证据监督[2, p.5]。FiD 在 Natural Questions 与 TriviaQA 基准上取得新的最优结果、优于现有工作[3, p.2][3, p.4]，并观察到检索段落数增加时性能显著提升[3, p.2]；其 NQ 开放域版本丢弃超过 5 个 token 的答案[3, p.3]。RETRO 在 Pile 上以 2 万亿 token 数据库取得与 GPT-3、Jurassic-1 可比的表现而参数少 25 倍[4, p.1]，并提出考虑测试文档与训练集邻近度的评估以处理泄漏[4, p.2]，在泄漏水平降至 α=12.5% 时仍优于基线[4, p.15]。Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LLM，部分指标超过 ChatGPT[5, p.8]。\n\n## 不可直接横比之处与证据缺口\n\n上述数值分属不同任务、数据划分与指标：DPR 的 39.8 EM 是 NQ 上流水线与联合训练消融的对比[1, p.8]；FiD 的最优结论针对 NQ/TriviaQA 生成式设定[3, p.4]；RETRO 的可比性建立在 Pile 困惑度与参数规模条件上[4, p.1]；Self-RAG 的优势是相对监督微调与 ChatGPT 的任务级比较[5, p.8]。检索器是否训练、检索数量是否固定、是否控制泄漏，均改变比较条件，故不能据此排名。此外，各文对检索监督、推理开销的报告详略不一，例如 DPR 提到阅读器考虑更多段落但推理耗时不完全清楚[1, p.8]，此类细节需回原文核实，不能由现有摘录推断全文未做。\n\n## 参考文献\n\n[1] 2004.04906-DPR.pdf\n[2] 2005.11401-RAG.pdf\n[3] 2007.01282-FiD.pdf\n[4] 2112.04426-RETRO.pdf\n[5] 2310.11511-Self-RAG.pdf"
+  },
+  "disk_matches": true,
+  "internal_audit": {
+    "ok": false,
+    "mode": "model_report_needs_review",
+    "local_validation": true,
+    "delivered_attempt": 2,
+    "model_issues": [
+      "正文“FiD 在 Natural Questions 与 TriviaQA 基准上取得新的最优结果、优于现有工作[E:ev-18][E:ev-19]”中，ev-18 原文为“sets new state-of-the-art results on the TriviaQA and NaturalQuestions benchmarks”，ev-19 原文为“outperforms existing work on the NaturalQuestion and TriviaQA benchmarks”，两处证据分别支持“新最优”与“优于现有工作”，但正文将两者合并为同一句并同时挂两个引用，使“优于现有工作”被归到 ev-18、“新最优”被归到 ev-19，引用与断言对应错位；应分别对应或改为与各自原文一致的表述。; 正文“并观察到检索段落数增加时性能显著提升[E:ev-18]”中，ev-18 原文为“the performance of our method significantly improves when the number of retrieved passages increases”，与正文一致；但该句与“取得新的最优结果”同挂 ev-18，而 ev-18 的“new state-of-the-art”与“significantly improves”分属不同断言，正文未区分，属引用粒度不当，应拆分引用或明确各自依据。; 正文“其 NQ 开放域版本丢弃超过 5 个 token 的答案[E:ev-21]”中，ev-21 原文为“The open-domain version of this dataset is obtained by discarding answers with more than 5 tokens”，与正文一致；但正文使用“丢弃超过 5 个 token 的答案”可对应“more than 5 tokens”，此条不构成问题，故不列入。"
+    ],
+    "history": [
+      {
+        "attempt": 1,
+        "stage": "audit",
+        "audit": {
+          "ok": false,
+          "issues": [
+            "正文称“FiD 在 Natural Questions 与 TriviaQA 上报告新最优”，但所给证据 ev-18 与 ev-19 只支持“在 TriviaQA 和 NaturalQuestions 基准上取得新的最优结果/优于现有工作”，未出现“新最优”这一措辞；该表述属于对原文结论的强化，应改为与原文一致的“取得新的最优结果/优于现有工作”。",
+            "正文称“RETRO 在 Pile 上以 2 万亿 token 数据库取得与 GPT-3、Jurassic-1 可比的表现而参数少 25 倍[4, p.1]”，ev-23 原文为“With a 2 trillion token database... comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，与正文一致；但正文随后“在泄漏水平降至 α=12.5% 时仍优于基线[4, p.15]”中 ev-27 原文为“outperforms baseline models at all leakage levels, down to α=12.5%”，正文“降至”可对应“down to”，此条不构成问题，故不列入。",
+            "正文“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LLM，部分指标超过 ChatGPT[5, p.8]”与 ev-34 一致（“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”），但正文未说明“部分指标”具体为 Rouge 与 MAUVE，属可接受的概括，不列为问题。"
+          ]
+        }
+      },
+      {
+        "attempt": 1,
+        "stage": "validation",
+        "issues": [
+          "正文称“FiD 在 Natural Questions 与 TriviaQA 上报告新最优”，但所给证据 ev-18 与 ev-19 只支持“在 TriviaQA 和 NaturalQuestions 基准上取得新的最优结果/优于现有工作”，未出现“新最优”这一措辞；该表述属于对原文结论的强化，应改为与原文一致的“取得新的最优结果/优于现有工作”。; 正文称“RETRO 在 Pile 上以 2 万亿 token 数据库取得与 GPT-3、Jurassic-1 可比的表现而参数少 25 倍[4, p.1]”，ev-23 原文为“With a 2 trillion token database... comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，与正文一致；但正文随后“在泄漏水平降至 α=12.5% 时仍优于基线[4, p.15]”中 ev-27 原文为“outperforms baseline models at all leakage levels, down to α=12.5%”，正文“降至”可对应“down to”，此条不构成问题，故不列入。; 正文“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LLM，部分指标超过 ChatGPT[5, p.8]”与 ev-34 一致（“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”），但正文未说明“部分指标”具体为 Rouge 与 MAUVE，属可接受的概括，不列为问题。"
+        ]
+      },
+      {
+        "attempt": 2,
+        "stage": "audit",
+        "audit": {
+          "ok": false,
+          "issues": [
+            "正文“FiD 在 Natural Questions 与 TriviaQA 基准上取得新的最优结果、优于现有工作[E:ev-18][E:ev-19]”中，ev-18 原文为“sets new state-of-the-art results on the TriviaQA and NaturalQuestions benchmarks”，ev-19 原文为“outperforms existing work on the NaturalQuestion and TriviaQA benchmarks”，两处证据分别支持“新最优”与“优于现有工作”，但正文将两者合并为同一句并同时挂两个引用，使“优于现有工作”被归到 ev-18、“新最优”被归到 ev-19，引用与断言对应错位；应分别对应或改为与各自原文一致的表述。",
+            "正文“并观察到检索段落数增加时性能显著提升[E:ev-18]”中，ev-18 原文为“the performance of our method significantly improves when the number of retrieved passages increases”，与正文一致；但该句与“取得新的最优结果”同挂 ev-18，而 ev-18 的“new state-of-the-art”与“significantly improves”分属不同断言，正文未区分，属引用粒度不当，应拆分引用或明确各自依据。",
+            "正文“其 NQ 开放域版本丢弃超过 5 个 token 的答案[E:ev-21]”中，ev-21 原文为“The open-domain version of this dataset is obtained by discarding answers with more than 5 tokens”，与正文一致；但正文使用“丢弃超过 5 个 token 的答案”可对应“more than 5 tokens”，此条不构成问题，故不列入。"
+          ]
+        }
+      },
+      {
+        "attempt": 2,
+        "stage": "validation",
+        "issues": [
+          "正文“FiD 在 Natural Questions 与 TriviaQA 基准上取得新的最优结果、优于现有工作[E:ev-18][E:ev-19]”中，ev-18 原文为“sets new state-of-the-art results on the TriviaQA and NaturalQuestions benchmarks”，ev-19 原文为“outperforms existing work on the NaturalQuestion and TriviaQA benchmarks”，两处证据分别支持“新最优”与“优于现有工作”，但正文将两者合并为同一句并同时挂两个引用，使“优于现有工作”被归到 ev-18、“新最优”被归到 ev-19，引用与断言对应错位；应分别对应或改为与各自原文一致的表述。; 正文“并观察到检索段落数增加时性能显著提升[E:ev-18]”中，ev-18 原文为“the performance of our method significantly improves when the number of retrieved passages increases”，与正文一致；但该句与“取得新的最优结果”同挂 ev-18，而 ev-18 的“new state-of-the-art”与“significantly improves”分属不同断言，正文未区分，属引用粒度不当，应拆分引用或明确各自依据。; 正文“其 NQ 开放域版本丢弃超过 5 个 token 的答案[E:ev-21]”中，ev-21 原文为“The open-domain version of this dataset is obtained by discarding answers with more than 5 tokens”，与正文一致；但正文使用“丢弃超过 5 个 token 的答案”可对应“more than 5 tokens”，此条不构成问题，故不列入。"
+        ]
+      }
+    ]
+  },
+  "retrieval_trace": {},
+  "model_stages": [
+    "report",
+    "audit",
+    "repair",
+    "audit"
+  ],
+  "seconds": 17.75,
+  "target_real_model_calls": 4,
+  "total_tokens": 28162,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "assessment_failed",
+  "contract_errors": [
+    "facts must contain 1..12 items; split or sample without changing the evidence standard"
+  ],
+  "case_id": "C-21",
+  "variant": "candidate",
+  "attempt": "one_contract_repair",
+  "original_run": "quality-assess-20261029T172743",
+  "limits": "Same-provider sampled assessment, not human gold; quotation presence does not prove semantic entailment"
+}

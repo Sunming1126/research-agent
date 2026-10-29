@@ -1,0 +1,382 @@
+{
+  "results": [
+    {
+      "status": "assessment_failed",
+      "contract_errors": [
+        "facts must contain 1..12 items; split or sample without changing the evidence standard"
+      ],
+      "case_id": "C-21",
+      "variant": "candidate",
+      "attempt": "one_contract_repair",
+      "original_run": "quality-assess-20261029T172743",
+      "limits": "Same-provider sampled assessment, not human gold; quotation presence does not prove semantic entailment"
+    },
+    {
+      "status": "assessed",
+      "facts": [
+        {
+          "sentence": "DPR 将检索实现为稠密双编码器：用稠密编码器把任意文本段落映射为 d 维实值向量并为全部段落建索引[1, p.2]，训练数据由问题、一个正段落与 n 个负段落组成，以正段落的负对数似然为损失[1, p.3]。",
+          "verdict": "not_in_evidence",
+          "source_ids": [],
+          "source_quote": "",
+          "reason": "给定来源中没有 p.2 关于 d 维向量建索引的摘录，也没有 p.3 关于问题、正段落、n 个负段落及负对数似然损失的摘录，无法逐字核验。"
+        },
+        {
+          "sentence": "其动机是稀疏 TF-IDF/BM25 为事实标准，而稠密表示在同义改写上互补[1, p.1]。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-2"
+          ],
+          "source_quote": "Open-domain question answering relies on efﬁcient passage retrieval to select candidate contexts, where traditional sparse vector space models, such as TF-IDF or BM25, are the de facto method.",
+          "reason": "ev-2 连续摘录支持 TF-IDF/BM25 是事实标准；但该连续摘录不含稠密表示在同义改写上互补的表述，ev-1 的互补表述与事实标准表述不构成同一连续摘录，故整句只能判为不确定。"
+        },
+        {
+          "sentence": "DPR 的消融显示，在 Natural Questions 上把检索器与阅读器联合学习，并未优于先分别训练强检索器与阅读器的流水线，后者取得 39.8 EM[1, p.8]。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-3"
+          ],
+          "source_quote": "To compare our pipeline training approach with joint learning, we run an ablation on Natural Ques- tions where the retriever and reader are jointly",
+          "reason": "ev-3 只证明在 Natural Questions 上做了流水线与联合学习的消融，摘录在“jointly”处截断，未包含联合学习未优于流水线或 39.8 EM 的结论，故不能支持完整句子。"
+        },
+        {
+          "sentence": "RAG 把参数记忆（预训练 seq2seq）与非参数记忆（维基百科稠密向量索引）结合[2, p.1]，将检索文档视为隐变量，端到端训练检索器与生成器，并提出 RAG-Sequence（各目标词共用同一文档）与 RAG-Token（各目标词可用不同文档）两种边缘化方式[2, p.3]。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-9"
+          ],
+          "source_quote": "We explore a general-purpose ﬁne-tuning recipe for retrieval-augmented generation (RAG) — models which combine pre-trained parametric and non-parametric mem- ory for language generation. We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a p",
+          "reason": "ev-9 支持参数记忆为预训练 seq2seq、非参数记忆为维基百科稠密向量索引；但给定来源没有 p.3 关于检索文档为隐变量、端到端训练及 RAG-Sequence/RAG-Token 边缘化方式的摘录，故整句只能判为不确定。"
+        },
+        {
+          "sentence": "FiD 采用两步流程：先检索支持段落，再由 seq2seq 模型处理[3, p.2]；编码器独立处理各段落，解码器对全部段落表示拼接后做注意力，即“仅在解码器融合证据”[3, p.3]。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-20"
+          ],
+          "source_quote": "In this section, we describe our approach to open domain question answering. It proceeds in two steps, ﬁrst retrieving support passages before pro- cessing them with a sequence to sequence model.",
+          "reason": "ev-20 支持两步流程；但给定来源没有 p.3 关于编码器独立处理段落、解码器对拼接表示做注意力及“仅在解码器融合证据”的摘录，故整句不能完全支持。"
+        },
+        {
+          "sentence": "RETRO 以冻结的 BERT 检索器从万亿级 token 数据库按连续 token 块检索，键为冻结 BERT 嵌入、值为原始文本块[4, p.2]；用分块交叉注意力注入检索文本，复杂度随检索数据量线性增长，且因检索器冻结而无需训练和更新检索网络[4, p.2]。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-25"
+          ],
+          "source_quote": "We design our retrieval-enhanced architecture to be capable of retrieving from a database with trillions of tokens. For this purpose, we retrieve at the level of contiguous token chunks instead of individual tokens which reduces storage and computation requirements by a large linear factor. Our method ﬁrst constructs a key-value database, where values store raw chunks of text tokens and keys are frozen Bert embedddings (Devlin et al., 2019). We use a frozen model to avoid having to periodically",
+          "reason": "ev-25 支持万亿级 token 数据库、连续 token 块检索、键为冻结 BERT 嵌入、值为原始文本块及使用冻结模型；但摘录未包含分块交叉注意力、复杂度随检索数据量线性增长或无需训练更新检索网络的完整表述，故整句只能判为不确定。"
+        },
+        {
+          "sentence": "Self-RAG 让任意 LM 通过反思 token 学习按需检索：反思 token 由训练好的 critic 模型离线插入原语料，再以扩展词表的下一词预测统一训练[5, p.2]。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-33"
+          ],
+          "source_quote": "Though our work also studies fine-grained critique on retrieval and generation, we train our target LM on task examples augmented with reflection tokens from a critic mo",
+          "reason": "ev-33 支持用 critic 模型产生的反思 token 增强任务样例来训练目标 LM；但给定来源没有 p.2 关于反思 token 离线插入原语料、扩展词表下一词预测统一训练的摘录，故整句不能完全支持。"
+        },
+        {
+          "sentence": "其出发点是固定数量、不加区分的检索会削弱模型灵活性或产生无用回答[5, p.1]。",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-31"
+          ],
+          "source_quote": "However, indiscriminately retrieving and incorporating a fixed number of retrieved passages, regardless of whether retrieval is necessary, or passages are relevant, diminishes LM versatility or can lead to unhelpful response generation.",
+          "reason": "ev-31 连续摘录逐字支持固定数量、不加区分地检索和纳入段落会削弱 LM 灵活性或导致无用回答生成。"
+        },
+        {
+          "sentence": "DPR 在多个开放域 QA 数据集上评估稠密检索器[1, p.1]，并指出 SQuAD 因缺少段落时问题缺上下文而不理想[1, p.4]。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-5"
+          ],
+          "source_quote": "Although SQuAD has been used previously for open-domain QA re- search, it is not ideal because many questions lack context in absence of the provided paragraph.",
+          "reason": "ev-5 连续摘录支持 SQuAD 因缺少所给段落时许多问题缺上下文而不理想；但该连续摘录不含在多个开放域 QA 数据集上评估稠密检索器的表述，ev-2 的评估表述与 SQuAD 表述不构成同一连续摘录，故整句只能判为不确定。"
+        },
+        {
+          "sentence": "RAG 除 QA 外还研究开放域问题生成，采用更难的 Jeopardy 形式[2, p.5]；在 FEVER 上把类别映射为单 token 直接训练，且不使用检索证据监督[2, p.5]。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-11"
+          ],
+          "source_quote": "To evaluate RAG’s generation abilities in a non-QA setting, we study open-domain question gen- eration. Rather than use questions from standard open-domain QA tasks, which typically consist of short, simple questions, we propose the more demanding task of generating Jeopardy questions.",
+          "reason": "ev-11 连续摘录支持开放域问题生成及更难的 Jeopardy 形式；但该连续摘录不含 FEVER 类别映射为单 token、直接训练且不使用检索证据监督的表述，ev-13 的 FEVER 表述与 Jeopardy 表述不构成同一连续摘录，故整句只能判为不确定。"
+        },
+        {
+          "sentence": "FiD 在 Natural Questions 与 TriviaQA 基准上取得新的最优结果、优于现有工作[3, p.2][3, p.4]，并观察到检索段落数增加时性能显著提升[3, p.2]；其 NQ 开放域版本丢弃超过 5 个 token 的答案[3, p.3]。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-18"
+          ],
+          "source_quote": "While conceptually simple, this method sets new state-of- the-art results on the TriviaQA and NaturalQues- tions benchmarks. In particular, we show that the performance of our method signiﬁcantly improves when the number of retrieved passages increases.",
+          "reason": "ev-18 连续摘录支持在 TriviaQA 与 Natural Questions 上取得新最优，并支持检索段落数增加时性能显著提升；但该连续摘录不含优于现有工作或 NQ 开放域版本丢弃超过 5 个 token 答案的表述，故整句只能判为不确定。"
+        },
+        {
+          "sentence": "RETRO 在 Pile 上以 2 万亿 token 数据库取得与 GPT-3、Jurassic-1 可比的表现而参数少 25 倍[4, p.1]，并提出考虑测试文档与训练集邻近度的评估以处理泄漏[4, p.2]，在泄漏水平降至 α=12.5% 时仍优于基线[4, p.15]。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-23"
+          ],
+          "source_quote": "We enhance auto-regressive language models by conditioning on document chunks retrieved from a large corpus, based on local similarity with preceding tokens. With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters.",
+          "reason": "ev-23 连续摘录支持 2 万亿 token 数据库、在 Pile 上与 GPT-3/Jurassic-1 可比且参数少 25 倍；但该连续摘录不含提出考虑测试文档与训练集邻近度评估以处理泄漏，也不含 α=12.5% 时仍优于基线，故整句只能判为不确定。"
+        }
+      ],
+      "sampled_paper_facts": 12,
+      "verdict_counts": {
+        "supported": 1,
+        "contradicted": 0,
+        "not_in_evidence": 1,
+        "uncertain": 10
+      },
+      "case_id": "C-21",
+      "variant": "baseline",
+      "attempt": "one_contract_repair",
+      "original_run": "quality-assess-20261029T172743",
+      "limits": "Same-provider sampled assessment, not human gold; quotation presence does not prove semantic entailment"
+    },
+    {
+      "status": "assessed",
+      "facts": [
+        {
+          "sentence": "稀疏检索（TF-IDF/BM25）以倒排索引高效匹配关键词，而稠密编码在语义上与之互补，同义改写可映射到相近向量[1, p.1]；",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-1"
+          ],
+          "source_quote": "Retrieval in open-domain QA is usually imple-\nmented using TF-IDF or BM25 (Robertson and\nZaragoza, 2009), which matches keywords efﬁ-\nciently with an inverted index and can be seen\nas representing the question and context in high-\ndimensional, sparse vectors (with weighting). Con-\nversely, the dense, latent semantic encoding is com-\nplementary to sparse representations by design. For\nexample, synonyms or paraphrases that consist of\ncompletely different tokens may still be mapped to\nvectors close to each other.",
+          "reason": "引文明确说明TF-IDF/BM25用倒排索引高效匹配关键词，稠密编码与稀疏表示互补，同义/改写可映射到相近向量，支持该句。"
+        },
+        {
+          "sentence": "稠密双编码器在开放域问答的top-20段落检索准确率上较强BM25基线绝对提升9%–19%[1, p.1]。",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-2"
+          ],
+          "source_quote": "When evaluated on a\nwide range of open-domain QA datasets, our\ndense retriever outperforms a strong Lucene-\nBM25 system greatly by 9%-19% absolute in\nterms of top-20 passage retrieval accuracy",
+          "reason": "引文直接给出稠密检索器在top-20段落检索准确率上较Lucene-BM25绝对提升9%-19%，支持该句。"
+        },
+        {
+          "sentence": "生成式阅读器随检索段落数增加而显著改善，提示其善于融合多段证据[3, p.1][3, p.2]；",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-16",
+            "ev-18"
+          ],
+          "source_quote": "we ob-\nserve that the performance of this method sig-\nniﬁcantly improves when increasing the num-\nber of retrieved passages. This is evidence that\nsequence-to-",
+          "reason": "ev-16说明增加检索段落数时性能显著提升；ev-18进一步称这是生成模型善于融合多段证据的证据，支持该句。"
+        },
+        {
+          "sentence": "FiD在编码器独立处理段落、解码器联合融合，计算随段落数线性增长[3, p.3]。",
+          "verdict": "not_in_evidence",
+          "source_ids": [],
+          "source_quote": "",
+          "reason": "给定FiD摘录未包含“编码器独立处理段落、解码器联合融合”或“计算随段落数线性增长”的原文，无法由现有证据支持或反驳。"
+        },
+        {
+          "sentence": "但 indiscriminate 固定数量检索会引入无关段落、损害生成质量[5, p.1]，",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-31",
+            "ev-32"
+          ],
+          "source_quote": "However, indiscriminately retrieving and incorporating a fixed number\nof retrieved passages, regardless of whether retrieval is necessary, or passages are\nrelevant, diminishes LM versatility or can lead to unhelpful response generation.",
+          "reason": "ev-31明确说不加区分地检索固定数量段落会降低模型多样性或导致无益生成；ev-32也提到无关段落导致低质量生成，支持该句。"
+        },
+        {
+          "sentence": "Self-RAG 以反思标记实现按需检索与可控生成[5, p.3][5, p.2]。",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-33",
+            "ev-35"
+          ],
+          "source_quote": "we train our target LM on task examples augmented with reflection\ntokens from a critic model offline, with a far lower training cost compared to RLHF. In addition,\nreflection tokens in SELF-RAG enable controllable generation at inference",
+          "reason": "ev-33说明用反思标记训练并支持推理时可控生成；ev-35说明训练LM按需使用检索，支持该句。"
+        },
+        {
+          "sentence": "沿用稠密双编码器思路[1, p.2]，训练用正/负段落对[1, p.3]。",
+          "verdict": "not_in_evidence",
+          "source_ids": [],
+          "source_quote": "",
+          "reason": "给定DPR摘录中ev-2提到双编码器框架，但未包含“训练用正/负段落对”的原文；该句后半缺少摘录支持。"
+        },
+        {
+          "sentence": "DPR作者报告重叠切分未显优势[1, p.4]，本方案拟议沿用非重叠切分以避免泄漏。",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-4"
+          ],
+          "source_quote": "5However, Wang et al. (2019) also propose splitting docu-\nments into overlapping passages, which we do not ﬁnd advan-\ntageous compared to the non-overlapping version.",
+          "reason": "ev-4明确说作者未发现重叠切分相较非重叠切分有优势，支持前半句；后半句为方案拟议，报告已标注为拟议。"
+        },
+        {
+          "sentence": "候选NaturalQuestions（开放域版丢弃超过5词答案[3, p.3]）；",
+          "verdict": "not_in_evidence",
+          "source_ids": [],
+          "source_quote": "",
+          "reason": "给定FiD摘录未包含NaturalQuestions开放域版丢弃超过5词答案的原文，无法由现有证据支持。"
+        },
+        {
+          "sentence": "反思标记需离线critic生成[5, p.2]，critic版本差异导致标记漂移：对策为冻结critic权重与生成脚本，版本写入配置。",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-33"
+          ],
+          "source_quote": "we train our target LM on task examples augmented with reflection\ntokens from a critic model offline, with a far lower training cost compared to RLHF.",
+          "reason": "ev-33支持“反思标记需离线critic生成”；后半句为方案对策，报告已标注为复现瓶颈与对策，非论文事实。"
+        },
+        {
+          "sentence": "测试集邻近泄漏[4, p.2]：对策为按文档簇划分并报告重叠率。",
+          "verdict": "not_in_evidence",
+          "source_ids": [],
+          "source_quote": "",
+          "reason": "给定RETRO摘录ev-27讨论泄漏水平与局部泄漏，但未包含“测试集邻近泄漏”的原文表述；该句作为论文事实缺少摘录支持。"
+        },
+        {
+          "sentence": "在DPR稠密检索[1, p.1]、FiD融合[3, p.3]与Self-RAG按需检索[5, p.3]之间，本方案新增“预算约束下的门控+回退”联合接口及可证伪判据，属待验证设计，不宣称全球首创。",
+          "verdict": "not_in_evidence",
+          "source_ids": [],
+          "source_quote": "",
+          "reason": "该句描述的是本方案新增设计，报告已明确标注“属待验证设计，不宣称全球首创”，不是已完成论文事实；给定来源也不包含该联合接口。"
+        }
+      ],
+      "sampled_paper_facts": 12,
+      "verdict_counts": {
+        "supported": 7,
+        "contradicted": 0,
+        "not_in_evidence": 5,
+        "uncertain": 0
+      },
+      "limits": "Same-provider sampled fact assessment, not exhaustive human judgment; missing excerpt is not a false paper claim",
+      "case_id": "E-21",
+      "variant": "baseline",
+      "attempt": "original",
+      "original_run": "quality-assess-20261029T172743"
+    },
+    {
+      "status": "assessed",
+      "facts": [
+        {
+          "sentence": "开放域问答中，稀疏检索（TF-IDF/BM25）以倒排索引高效匹配关键词，而稠密编码在语义上与之互补，同义改写可映射到相近向量[1, p.1]；",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-1"
+          ],
+          "source_quote": "Retrieval in open-domain QA is usually imple-\nmented using TF-IDF or BM25 (Robertson and\nZaragoza, 2009), which matches keywords efﬁ-\nciently with an inverted index and can be seen\nas representing the question and context in high-\ndimensional, sparse vectors (with weighting). Con-\nversely, the dense, latent semantic encoding is com-\nplementary to sparse representations by design. For\nexample, synonyms or paraphrases that consist of\ncompletely different tokens may still be mapped to\nvectors close to each other.",
+          "reason": "引文明确说明TF-IDF/BM25以倒排索引高效匹配关键词，稠密语义编码与稀疏表示互补，同义/改写可映射到相近向量，支持该句。"
+        },
+        {
+          "sentence": "稠密双编码器在top-20段落检索准确率上较强BM25基线绝对提升9%–19%[1, p.1]。",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-2"
+          ],
+          "source_quote": "When evaluated on a\nwide range of open-domain QA datasets, our\ndense retriever outperforms a strong Lucene-\nBM25 system greatly by 9%-19% absolute in\nterms of top-20 passage retrieval accuracy",
+          "reason": "引文直接给出稠密检索器在top-20段落检索准确率上相对强Lucene-BM25绝对提升9%-19%，支持该句。"
+        },
+        {
+          "sentence": "生成侧，FiD将检索段落独立编码、在解码器联合融合，计算随段落数线性增长，且性能随检索段落数增加而提升[3, p.2][3, p.3]；",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-18",
+            "ev-19"
+          ],
+          "source_quote": "Then, a sequence-to-sequence\nmodel generates the answer, taking as input the re-\ntrieved passages in addition to the question. While\nconceptually simple, this method sets new state-of-\nthe-art results on the TriviaQA and NaturalQues-\ntions benchmarks. In particular, we show that the\nperformance of our method signiﬁcantly improves\nwhen the number of retrieved passages increases.",
+          "reason": "引文支持性能随检索段落数增加而提升，但未包含“独立编码、解码器联合融合”及“计算随段落数线性增长”的表述；给定摘录不足以支持整句全部内容。"
+        },
+        {
+          "sentence": "RAG将检索文档视为潜变量，并以RAG-Sequence与RAG-Token两种方式对生成分布做边缘化[2, p.3]；",
+          "verdict": "not_in_evidence",
+          "source_ids": [],
+          "source_quote": "",
+          "reason": "给定RAG摘录未出现“检索文档视为潜变量”或“RAG-Sequence与RAG-Token两种方式对生成分布做边缘化”的连续原文，无法由摘录支持。"
+        },
+        {
+          "sentence": "RETRO以冻结BERT检索token块、块级交叉注意力，使检索开销随检索数据量线性[4, p.2]；",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-25",
+            "ev-23"
+          ],
+          "source_quote": "We design our retrieval-enhanced architecture to be capable of retrieving from a database with trillions\nof tokens. For this purpose, we retrieve at the level of contiguous token chunks instead of individual\ntokens which reduces storage and computation requirements by a large linear factor. Our method ﬁrst\nconstructs a key-value database, where values store raw chunks of text tokens and keys are frozen\nBert embedddings (Devlin et al., 2019).",
+          "reason": "引文支持冻结BERT键、按连续token块检索并降低存储/计算，但“块级交叉注意力”和“检索开销随检索数据量线性”未在给定摘录中完整出现，整句仅部分可支持。"
+        },
+        {
+          "sentence": "Self-RAG则指出不加区分地固定检索若干段落会损害通用性与生成质量，主张按需检索并以反思标记控制[5, p.1]。",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-31"
+          ],
+          "source_quote": "However, indiscriminately retrieving and incorporating a fixed number\nof retrieved passages, regardless of whether retrieval is necessary, or passages are\nrelevant, diminishes LM versatility or can lead to unhelpful response generation.\nWe introduce a new framework called Self-Reflective Retrieval-Augmented Gen-",
+          "reason": "引文明确说不加区分地固定检索若干段落会削弱通用性或导致无益生成，并引入Self-Reflective框架，支持该句核心主张。"
+        },
+        {
+          "sentence": "NaturalQuestions开放域版（丢弃超过5 token的答案）[3, p.3]",
+          "verdict": "not_in_evidence",
+          "source_ids": [],
+          "source_quote": "",
+          "reason": "给定FiD摘录未出现NaturalQuestions开放域版“丢弃超过5 token的答案”的原文，无法由摘录支持。"
+        },
+        {
+          "sentence": "TriviaQA（采用DPR划分惯例的公开Web开发集）[2, p.18]",
+          "verdict": "not_in_evidence",
+          "source_ids": [],
+          "source_quote": "",
+          "reason": "给定RAG摘录未出现TriviaQA采用DPR划分惯例的公开Web开发集的原文，无法由摘录支持。"
+        },
+        {
+          "sentence": "SQuAD v1.1因缺段落时问题缺上下文，仅作对照[1, p.4]。",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-5"
+          ],
+          "source_quote": "Although SQuAD\nhas been used previously for open-domain QA re-\nsearch, it is not ideal because many questions lack\ncontext in absence of the provided paragraph. We\nstill include it in our experiments for providing\na fair comparison to previous work",
+          "reason": "引文说明SQuAD许多问题在缺少所给段落时缺乏上下文，但仍纳入实验以作公平比较，支持该句。"
+        },
+        {
+          "sentence": "DPR报告重叠切分未优于非重叠[1, p.4]，故统一采用非重叠切分并记录长度。",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-4"
+          ],
+          "source_quote": "5However, Wang et al. (2019) also propose splitting docu-\nments into overlapping passages, which we do not ﬁnd advan-\ntageous compared to the non-overlapping version.",
+          "reason": "引文明确说重叠切分相比非重叠版本未发现优势，支持“DPR报告重叠切分未优于非重叠”部分；后半句为本方案拟议设计，非论文事实。"
+        },
+        {
+          "sentence": "DPR显示分离训练可优于联合训练[1, p.8]，故先固定检索器再训阅读器，避免预算不可比。",
+          "verdict": "uncertain",
+          "source_ids": [
+            "ev-3"
+          ],
+          "source_quote": "To compare our pipeline training approach with\njoint learning, we run an ablation on Natural Ques-\ntions where the retriever and reader are jointly",
+          "reason": "引文只说明在Natural Questions上做联合学习消融比较，未给出“分离训练可优于联合训练”的结论；给定摘录不足以支持该句前半事实。"
+        },
+        {
+          "sentence": "RAG在FEVER上不使用检索证据监督[2, p.5]，本方案同样不假设有证据标注，改用弱监督触发标签。",
+          "verdict": "supported",
+          "source_ids": [
+            "ev-13"
+          ],
+          "source_quote": "Crucially, unlike most other approaches to FEVER, we do not use supervision on\nretrieved evidence.",
+          "reason": "引文明确说RAG在FEVER上不使用检索证据监督，支持该句前半；后半为本方案拟议设计，非论文事实。"
+        }
+      ],
+      "sampled_paper_facts": 12,
+      "verdict_counts": {
+        "supported": 6,
+        "contradicted": 0,
+        "not_in_evidence": 3,
+        "uncertain": 3
+      },
+      "case_id": "E-21",
+      "variant": "candidate",
+      "attempt": "one_contract_repair",
+      "original_run": "quality-assess-20261029T172743",
+      "limits": "Same-provider sampled assessment, not human gold; quotation presence does not prove semantic entailment"
+    }
+  ],
+  "complete": true,
+  "original_assessments_passed": 1,
+  "original_assessments_failed": 3,
+  "repair_limit_per_failed_report": 1,
+  "evaluator_role": "same-provider source-only diagnostic; not independent human gold"
+}

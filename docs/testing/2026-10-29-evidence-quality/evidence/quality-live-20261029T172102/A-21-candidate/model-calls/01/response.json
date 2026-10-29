@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"answer\": \"串行执行 40 次操作，每次 1.5 毫秒，且没有重叠、忽略额外开销，总耗时为 40 × 1.5 = 60 毫秒。\", \"clarifying_question\": \"这 40 次操作是否确实完全串行、不存在任何流水线或并行重叠，并且 1.5 毫秒是每次操作的固定耗时？\"}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265780,
+  "id": "021793265779538816811b617e2b5631e8927bae226874c6fd44c",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 90,
+    "prompt_tokens": 220,
+    "total_tokens": 310,
+    "prompt_tokens_details": {
+      "cached_tokens": 128
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

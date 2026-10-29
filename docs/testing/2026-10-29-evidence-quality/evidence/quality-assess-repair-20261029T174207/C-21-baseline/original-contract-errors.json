@@ -1,0 +1,8 @@
+{
+  "original_run": "quality-assess-20261029T172743",
+  "errors": [
+    "facts[1] source_quote must be one continuous verbatim excerpt; ellipses or joined excerpts are invalid",
+    "facts[8] source_quote must be one continuous verbatim excerpt; ellipses or joined excerpts are invalid",
+    "facts[9] source_quote must be one continuous verbatim excerpt; ellipses or joined excerpts are invalid"
+  ]
+}

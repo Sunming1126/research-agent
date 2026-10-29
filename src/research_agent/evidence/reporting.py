@@ -4,6 +4,7 @@ import re
 from collections import defaultdict
 from ..core.models import Chunk, Evidence
 from ..core.utils import source_quote_matches
+from ..core.citations import CITATION_PATTERN
 from ..rag.retrieval import QueryPlan
 from . import EvidenceError
 from .attribution import validate_named_attribution
@@ -147,16 +148,40 @@ def resolve_quote_source(chunk, quote, group):
         return None
     if source_quote_matches(quote, chunk.text):
         return chunk
-    neighbors = sorted((item for item in group if item.filename == chunk.filename and item.page == chunk.page),
-                       key=lambda item: item.start)
-    if len(neighbors) < 2:
-        return None
-    combined = " ".join(item.text for item in neighbors)
-    if not source_quote_matches(quote, combined):
-        return None
-    digest = hashlib.sha256((chunk.filename + str(chunk.page) + combined).encode("utf-8")).hexdigest()
-    return Chunk(digest[:20], chunk.filename, chunk.page, chunk.heading, combined, "text", digest,
-                 neighbors[0].start, neighbors[-1].end, chunk.document_sha256)
+    neighbors = sorted((item for item in group if item.filename == chunk.filename and item.page == chunk.page
+                        and item.document_sha256 == chunk.document_sha256 and item.kind != 'references'),
+                       key=lambda item: (item.start, -len(item.text)))
+    # Chunker separates paragraphs with two newlines and uses overlapping
+    # windows inside long paragraphs. A <=3-character boundary tolerates that
+    # separator/edge whitespace; omitting a nonempty intervening paragraph
+    # requires at least five characters and must never be silently bridged.
+    runs = []
+    for item in neighbors:
+        if not runs:
+            runs.append([item, item.text, 1])
+            continue
+        first, text, count = runs[-1]
+        offset = item.start - first.start
+        gap = offset - len(text)
+        if 0 <= gap <= 3:
+            runs[-1] = [first, text + ' ' * gap + item.text, count+1]
+        elif 0 <= offset < len(text):
+            overlap = min(len(text)-offset, len(item.text))
+            if text[offset:offset+overlap] == item.text[:overlap]:
+                runs[-1] = [first, text + item.text[overlap:], count+1]
+            else:
+                runs.append([item, item.text, 1])
+        else:
+            runs.append([item, item.text, 1])
+    for first, combined, count in runs:
+        if not source_quote_matches(quote, combined):
+            continue
+        if count == 1:
+            return first
+        digest = hashlib.sha256(f'{first.document_sha256}|{first.page}|{first.start}|{combined}'.encode()).hexdigest()
+        return Chunk(digest[:20], first.filename, first.page, first.heading, combined, 'text', digest,
+                     first.start, first.start+len(combined), first.document_sha256)
+    return None
 
 
 def model_evidence_rows(evidence):
@@ -359,7 +384,7 @@ def validate_citations(markdown, evidence, used_ids, minimum=1, *, function=None
             supported[e["ref"]].add(e["page"])
     # 与最终答卷校验一致：数字组[1,2]也作为引用；参数集合应用其他括号。
     # 否则写作检查漏过[2,5,8]，直到提交时才失败，错过模型修订机会。
-    matches = list(re.finditer(r"\[(\d{1,2}(?:\s*,\s*\d{1,2})*)(?:,\s*p\.\s*(\d+))?\]", markdown))
+    matches = list(CITATION_PATTERN.finditer(markdown))
     citations = [(ref, match.group(2) or '') for match in matches
                  for ref in re.split(r'\s*,\s*', match.group(1))]
     if len({int(ref) for ref, _ in citations}) < minimum:
@@ -419,7 +444,7 @@ def validate_citations(markdown, evidence, used_ids, minimum=1, *, function=None
                                 r"停止规则[:：]|停止条件[:：]|失败判据[:：]|证伪条件[:：]|预注册阈值[:：])", plain)
             attributed = re.search(r"(?:论文|作者|文献|原文).{0,10}(?:报告|发现|使用|达到|提升|实测|表明)", plain)
             proposed = (proposed or declared_proposal or proposal_heading or proposal_section) and not attributed
-            if not re.search(r"\[\d+,\s*p\.\s*\d+\]", sentence) and not proposed:
+            if not any(m[2] is not None for m in CITATION_PATTERN.finditer(sentence)) and not proposed:
                 if function == "Idea" and not attributed:
                     # Idea 的未明示数值可能是设计参数；交给带原文的审查判定，不能先误判再让模型空修订。
                     ambiguities.append(sentence)

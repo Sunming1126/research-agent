@@ -1,0 +1,24 @@
+{
+  "baseline": {
+    "returncode": 1,
+    "collected": 13,
+    "failures": 13,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 0,
+    "seconds": 1.584,
+    "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+    "target_real_model_calls": 0
+  },
+  "candidate": {
+    "returncode": 0,
+    "collected": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 13,
+    "seconds": 0.803,
+    "environment": "Windows isolated Python 3.12.14 source regression; not Linux image acceptance",
+    "target_real_model_calls": 0
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "status": "assessed",
+  "facts": [
+    {
+      "sentence": "稀疏检索（TF-IDF/BM25）以倒排索引高效匹配关键词，而稠密编码在语义上与之互补，同义改写可映射到相近向量[1, p.1]；",
+      "verdict": "supported",
+      "source_ids": [
+        "ev-1"
+      ],
+      "source_quote": "Retrieval in open-domain QA is usually imple-\nmented using TF-IDF or BM25 (Robertson and\nZaragoza, 2009), which matches keywords efﬁ-\nciently with an inverted index and can be seen\nas representing the question and context in high-\ndimensional, sparse vectors (with weighting). Con-\nversely, the dense, latent semantic encoding is com-\nplementary to sparse representations by design. For\nexample, synonyms or paraphrases that consist of\ncompletely different tokens may still be mapped to\nvectors close to each other.",
+      "reason": "引文明确说明TF-IDF/BM25用倒排索引高效匹配关键词，稠密编码与稀疏表示互补，同义/改写可映射到相近向量，支持该句。"
+    },
+    {
+      "sentence": "稠密双编码器在开放域问答的top-20段落检索准确率上较强BM25基线绝对提升9%–19%[1, p.1]。",
+      "verdict": "supported",
+      "source_ids": [
+        "ev-2"
+      ],
+      "source_quote": "When evaluated on a\nwide range of open-domain QA datasets, our\ndense retriever outperforms a strong Lucene-\nBM25 system greatly by 9%-19% absolute in\nterms of top-20 passage retrieval accuracy",
+      "reason": "引文直接给出稠密检索器在top-20段落检索准确率上较Lucene-BM25绝对提升9%-19%，支持该句。"
+    },
+    {
+      "sentence": "生成式阅读器随检索段落数增加而显著改善，提示其善于融合多段证据[3, p.1][3, p.2]；",
+      "verdict": "supported",
+      "source_ids": [
+        "ev-16",
+        "ev-18"
+      ],
+      "source_quote": "we ob-\nserve that the performance of this method sig-\nniﬁcantly improves when increasing the num-\nber of retrieved passages. This is evidence that\nsequence-to-",
+      "reason": "ev-16说明增加检索段落数时性能显著提升；ev-18进一步称这是生成模型善于融合多段证据的证据，支持该句。"
+    },
+    {
+      "sentence": "FiD在编码器独立处理段落、解码器联合融合，计算随段落数线性增长[3, p.3]。",
+      "verdict": "not_in_evidence",
+      "source_ids": [],
+      "source_quote": "",
+      "reason": "给定FiD摘录未包含“编码器独立处理段落、解码器联合融合”或“计算随段落数线性增长”的原文，无法由现有证据支持或反驳。"
+    },
+    {
+      "sentence": "但 indiscriminate 固定数量检索会引入无关段落、损害生成质量[5, p.1]，",
+      "verdict": "supported",
+      "source_ids": [
+        "ev-31",
+        "ev-32"
+      ],
+      "source_quote": "However, indiscriminately retrieving and incorporating a fixed number\nof retrieved passages, regardless of whether retrieval is necessary, or passages are\nrelevant, diminishes LM versatility or can lead to unhelpful response generation.",
+      "reason": "ev-31明确说不加区分地检索固定数量段落会降低模型多样性或导致无益生成；ev-32也提到无关段落导致低质量生成，支持该句。"
+    },
+    {
+      "sentence": "Self-RAG 以反思标记实现按需检索与可控生成[5, p.3][5, p.2]。",
+      "verdict": "supported",
+      "source_ids": [
+        "ev-33",
+        "ev-35"
+      ],
+      "source_quote": "we train our target LM on task examples augmented with reflection\ntokens from a critic model offline, with a far lower training cost compared to RLHF. In addition,\nreflection tokens in SELF-RAG enable controllable generation at inference",
+      "reason": "ev-33说明用反思标记训练并支持推理时可控生成；ev-35说明训练LM按需使用检索，支持该句。"
+    },
+    {
+      "sentence": "沿用稠密双编码器思路[1, p.2]，训练用正/负段落对[1, p.3]。",
+      "verdict": "not_in_evidence",
+      "source_ids": [],
+      "source_quote": "",
+      "reason": "给定DPR摘录中ev-2提到双编码器框架，但未包含“训练用正/负段落对”的原文；该句后半缺少摘录支持。"
+    },
+    {
+      "sentence": "DPR作者报告重叠切分未显优势[1, p.4]，本方案拟议沿用非重叠切分以避免泄漏。",
+      "verdict": "supported",
+      "source_ids": [
+        "ev-4"
+      ],
+      "source_quote": "5However, Wang et al. (2019) also propose splitting docu-\nments into overlapping passages, which we do not ﬁnd advan-\ntageous compared to the non-overlapping version.",
+      "reason": "ev-4明确说作者未发现重叠切分相较非重叠切分有优势，支持前半句；后半句为方案拟议，报告已标注为拟议。"
+    },
+    {
+      "sentence": "候选NaturalQuestions（开放域版丢弃超过5词答案[3, p.3]）；",
+      "verdict": "not_in_evidence",
+      "source_ids": [],
+      "source_quote": "",
+      "reason": "给定FiD摘录未包含NaturalQuestions开放域版丢弃超过5词答案的原文，无法由现有证据支持。"
+    },
+    {
+      "sentence": "反思标记需离线critic生成[5, p.2]，critic版本差异导致标记漂移：对策为冻结critic权重与生成脚本，版本写入配置。",
+      "verdict": "supported",
+      "source_ids": [
+        "ev-33"
+      ],
+      "source_quote": "we train our target LM on task examples augmented with reflection\ntokens from a critic model offline, with a far lower training cost compared to RLHF.",
+      "reason": "ev-33支持“反思标记需离线critic生成”；后半句为方案对策，报告已标注为复现瓶颈与对策，非论文事实。"
+    },
+    {
+      "sentence": "测试集邻近泄漏[4, p.2]：对策为按文档簇划分并报告重叠率。",
+      "verdict": "not_in_evidence",
+      "source_ids": [],
+      "source_quote": "",
+      "reason": "给定RETRO摘录ev-27讨论泄漏水平与局部泄漏，但未包含“测试集邻近泄漏”的原文表述；该句作为论文事实缺少摘录支持。"
+    },
+    {
+      "sentence": "在DPR稠密检索[1, p.1]、FiD融合[3, p.3]与Self-RAG按需检索[5, p.3]之间，本方案新增“预算约束下的门控+回退”联合接口及可证伪判据，属待验证设计，不宣称全球首创。",
+      "verdict": "not_in_evidence",
+      "source_ids": [],
+      "source_quote": "",
+      "reason": "该句描述的是本方案新增设计，报告已明确标注“属待验证设计，不宣称全球首创”，不是已完成论文事实；给定来源也不包含该联合接口。"
+    }
+  ],
+  "sampled_paper_facts": 12,
+  "verdict_counts": {
+    "supported": 7,
+    "contradicted": 0,
+    "not_in_evidence": 5,
+    "uncertain": 0
+  },
+  "limits": "Same-provider sampled fact assessment, not exhaustive human judgment; missing excerpt is not a false paper claim",
+  "case_id": "E-21",
+  "variant": "baseline"
+}

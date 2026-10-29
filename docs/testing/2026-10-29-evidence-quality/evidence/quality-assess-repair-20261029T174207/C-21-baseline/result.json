@@ -1,0 +1,123 @@
+{
+  "status": "assessed",
+  "facts": [
+    {
+      "sentence": "DPR 将检索实现为稠密双编码器：用稠密编码器把任意文本段落映射为 d 维实值向量并为全部段落建索引[1, p.2]，训练数据由问题、一个正段落与 n 个负段落组成，以正段落的负对数似然为损失[1, p.3]。",
+      "verdict": "not_in_evidence",
+      "source_ids": [],
+      "source_quote": "",
+      "reason": "给定来源中没有 p.2 关于 d 维向量建索引的摘录，也没有 p.3 关于问题、正段落、n 个负段落及负对数似然损失的摘录，无法逐字核验。"
+    },
+    {
+      "sentence": "其动机是稀疏 TF-IDF/BM25 为事实标准，而稠密表示在同义改写上互补[1, p.1]。",
+      "verdict": "uncertain",
+      "source_ids": [
+        "ev-2"
+      ],
+      "source_quote": "Open-domain question answering relies on efﬁcient passage retrieval to select candidate contexts, where traditional sparse vector space models, such as TF-IDF or BM25, are the de facto method.",
+      "reason": "ev-2 连续摘录支持 TF-IDF/BM25 是事实标准；但该连续摘录不含稠密表示在同义改写上互补的表述，ev-1 的互补表述与事实标准表述不构成同一连续摘录，故整句只能判为不确定。"
+    },
+    {
+      "sentence": "DPR 的消融显示，在 Natural Questions 上把检索器与阅读器联合学习，并未优于先分别训练强检索器与阅读器的流水线，后者取得 39.8 EM[1, p.8]。",
+      "verdict": "uncertain",
+      "source_ids": [
+        "ev-3"
+      ],
+      "source_quote": "To compare our pipeline training approach with joint learning, we run an ablation on Natural Ques- tions where the retriever and reader are jointly",
+      "reason": "ev-3 只证明在 Natural Questions 上做了流水线与联合学习的消融，摘录在“jointly”处截断，未包含联合学习未优于流水线或 39.8 EM 的结论，故不能支持完整句子。"
+    },
+    {
+      "sentence": "RAG 把参数记忆（预训练 seq2seq）与非参数记忆（维基百科稠密向量索引）结合[2, p.1]，将检索文档视为隐变量，端到端训练检索器与生成器，并提出 RAG-Sequence（各目标词共用同一文档）与 RAG-Token（各目标词可用不同文档）两种边缘化方式[2, p.3]。",
+      "verdict": "uncertain",
+      "source_ids": [
+        "ev-9"
+      ],
+      "source_quote": "We explore a general-purpose ﬁne-tuning recipe for retrieval-augmented generation (RAG) — models which combine pre-trained parametric and non-parametric mem- ory for language generation. We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a p",
+      "reason": "ev-9 支持参数记忆为预训练 seq2seq、非参数记忆为维基百科稠密向量索引；但给定来源没有 p.3 关于检索文档为隐变量、端到端训练及 RAG-Sequence/RAG-Token 边缘化方式的摘录，故整句只能判为不确定。"
+    },
+    {
+      "sentence": "FiD 采用两步流程：先检索支持段落，再由 seq2seq 模型处理[3, p.2]；编码器独立处理各段落，解码器对全部段落表示拼接后做注意力，即“仅在解码器融合证据”[3, p.3]。",
+      "verdict": "uncertain",
+      "source_ids": [
+        "ev-20"
+      ],
+      "source_quote": "In this section, we describe our approach to open domain question answering. It proceeds in two steps, ﬁrst retrieving support passages before pro- cessing them with a sequence to sequence model.",
+      "reason": "ev-20 支持两步流程；但给定来源没有 p.3 关于编码器独立处理段落、解码器对拼接表示做注意力及“仅在解码器融合证据”的摘录，故整句不能完全支持。"
+    },
+    {
+      "sentence": "RETRO 以冻结的 BERT 检索器从万亿级 token 数据库按连续 token 块检索，键为冻结 BERT 嵌入、值为原始文本块[4, p.2]；用分块交叉注意力注入检索文本，复杂度随检索数据量线性增长，且因检索器冻结而无需训练和更新检索网络[4, p.2]。",
+      "verdict": "uncertain",
+      "source_ids": [
+        "ev-25"
+      ],
+      "source_quote": "We design our retrieval-enhanced architecture to be capable of retrieving from a database with trillions of tokens. For this purpose, we retrieve at the level of contiguous token chunks instead of individual tokens which reduces storage and computation requirements by a large linear factor. Our method ﬁrst constructs a key-value database, where values store raw chunks of text tokens and keys are frozen Bert embedddings (Devlin et al., 2019). We use a frozen model to avoid having to periodically",
+      "reason": "ev-25 支持万亿级 token 数据库、连续 token 块检索、键为冻结 BERT 嵌入、值为原始文本块及使用冻结模型；但摘录未包含分块交叉注意力、复杂度随检索数据量线性增长或无需训练更新检索网络的完整表述，故整句只能判为不确定。"
+    },
+    {
+      "sentence": "Self-RAG 让任意 LM 通过反思 token 学习按需检索：反思 token 由训练好的 critic 模型离线插入原语料，再以扩展词表的下一词预测统一训练[5, p.2]。",
+      "verdict": "uncertain",
+      "source_ids": [
+        "ev-33"
+      ],
+      "source_quote": "Though our work also studies fine-grained critique on retrieval and generation, we train our target LM on task examples augmented with reflection tokens from a critic mo",
+      "reason": "ev-33 支持用 critic 模型产生的反思 token 增强任务样例来训练目标 LM；但给定来源没有 p.2 关于反思 token 离线插入原语料、扩展词表下一词预测统一训练的摘录，故整句不能完全支持。"
+    },
+    {
+      "sentence": "其出发点是固定数量、不加区分的检索会削弱模型灵活性或产生无用回答[5, p.1]。",
+      "verdict": "supported",
+      "source_ids": [
+        "ev-31"
+      ],
+      "source_quote": "However, indiscriminately retrieving and incorporating a fixed number of retrieved passages, regardless of whether retrieval is necessary, or passages are relevant, diminishes LM versatility or can lead to unhelpful response generation.",
+      "reason": "ev-31 连续摘录逐字支持固定数量、不加区分地检索和纳入段落会削弱 LM 灵活性或导致无用回答生成。"
+    },
+    {
+      "sentence": "DPR 在多个开放域 QA 数据集上评估稠密检索器[1, p.1]，并指出 SQuAD 因缺少段落时问题缺上下文而不理想[1, p.4]。",
+      "verdict": "uncertain",
+      "source_ids": [
+        "ev-5"
+      ],
+      "source_quote": "Although SQuAD has been used previously for open-domain QA re- search, it is not ideal because many questions lack context in absence of the provided paragraph.",
+      "reason": "ev-5 连续摘录支持 SQuAD 因缺少所给段落时许多问题缺上下文而不理想；但该连续摘录不含在多个开放域 QA 数据集上评估稠密检索器的表述，ev-2 的评估表述与 SQuAD 表述不构成同一连续摘录，故整句只能判为不确定。"
+    },
+    {
+      "sentence": "RAG 除 QA 外还研究开放域问题生成，采用更难的 Jeopardy 形式[2, p.5]；在 FEVER 上把类别映射为单 token 直接训练，且不使用检索证据监督[2, p.5]。",
+      "verdict": "uncertain",
+      "source_ids": [
+        "ev-11"
+      ],
+      "source_quote": "To evaluate RAG’s generation abilities in a non-QA setting, we study open-domain question gen- eration. Rather than use questions from standard open-domain QA tasks, which typically consist of short, simple questions, we propose the more demanding task of generating Jeopardy questions.",
+      "reason": "ev-11 连续摘录支持开放域问题生成及更难的 Jeopardy 形式；但该连续摘录不含 FEVER 类别映射为单 token、直接训练且不使用检索证据监督的表述，ev-13 的 FEVER 表述与 Jeopardy 表述不构成同一连续摘录，故整句只能判为不确定。"
+    },
+    {
+      "sentence": "FiD 在 Natural Questions 与 TriviaQA 基准上取得新的最优结果、优于现有工作[3, p.2][3, p.4]，并观察到检索段落数增加时性能显著提升[3, p.2]；其 NQ 开放域版本丢弃超过 5 个 token 的答案[3, p.3]。",
+      "verdict": "uncertain",
+      "source_ids": [
+        "ev-18"
+      ],
+      "source_quote": "While conceptually simple, this method sets new state-of- the-art results on the TriviaQA and NaturalQues- tions benchmarks. In particular, we show that the performance of our method signiﬁcantly improves when the number of retrieved passages increases.",
+      "reason": "ev-18 连续摘录支持在 TriviaQA 与 Natural Questions 上取得新最优，并支持检索段落数增加时性能显著提升；但该连续摘录不含优于现有工作或 NQ 开放域版本丢弃超过 5 个 token 答案的表述，故整句只能判为不确定。"
+    },
+    {
+      "sentence": "RETRO 在 Pile 上以 2 万亿 token 数据库取得与 GPT-3、Jurassic-1 可比的表现而参数少 25 倍[4, p.1]，并提出考虑测试文档与训练集邻近度的评估以处理泄漏[4, p.2]，在泄漏水平降至 α=12.5% 时仍优于基线[4, p.15]。",
+      "verdict": "uncertain",
+      "source_ids": [
+        "ev-23"
+      ],
+      "source_quote": "We enhance auto-regressive language models by conditioning on document chunks retrieved from a large corpus, based on local similarity with preceding tokens. With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters.",
+      "reason": "ev-23 连续摘录支持 2 万亿 token 数据库、在 Pile 上与 GPT-3/Jurassic-1 可比且参数少 25 倍；但该连续摘录不含提出考虑测试文档与训练集邻近度评估以处理泄漏，也不含 α=12.5% 时仍优于基线，故整句只能判为不确定。"
+    }
+  ],
+  "sampled_paper_facts": 12,
+  "verdict_counts": {
+    "supported": 1,
+    "contradicted": 0,
+    "not_in_evidence": 1,
+    "uncertain": 10
+  },
+  "case_id": "C-21",
+  "variant": "baseline",
+  "attempt": "one_contract_repair",
+  "original_run": "quality-assess-20261029T172743",
+  "limits": "Same-provider sampled assessment, not human gold; quotation presence does not prove semantic entailment"
+}

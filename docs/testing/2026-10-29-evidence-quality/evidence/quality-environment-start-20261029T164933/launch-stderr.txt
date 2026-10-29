@@ -1,0 +1,7 @@
+Start-Process : This command cannot be run due to the error: The system cannot find the file specified.
+At line:1 char:100
++ ... taskDocker){Start-Process -FilePath 'C:/Program Files/Docker/Docker/D ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+ 

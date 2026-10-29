@@ -336,7 +336,7 @@ class ReportWorkflow:
                     markdown = anchor + "\n\n" + markdown
                     used = list(dict.fromkeys(anchor_ids + used))
                 # 只补正文尚未引用的论文；不重复整份事实摘要扩大复审输入。
-                cited_refs = {int(n) for n in re.findall(r"\[(\d{1,2})(?:,\s*p\.\s*\d+)?\]", markdown)}
+                cited_refs = {int(n) for n in report_citations(markdown)}
                 missing_rows = [e for e in self.ledger if refs[e.filename] not in cited_refs]
                 if missing_rows and not direct:
                     anchor, anchor_ids = render_claim_ledger_section(select_claims(missing_rows, maximum_per_paper=2), refs)

@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"在论文正文中检索连续英文短语 \\\"and the sid implemented in the cran\\\"，允许 PDF 换行、标点和连字符排版差异\", \"methods\": \"连续短语精确匹配；容忍 PDF 排版差异（换行、标点、连字符）\", \"focus\": \"定位正文包含该连续短语原文的论文，参考文献列表不作为正文证据\", \"exclusions\": [\"仅凭主题相似判断\", \"仅凭常识判断\", \"参考文献列表中的条目作为正文证据\"], \"variants\": [\"and the sid implemented in the cran\", \"SID implemented in the CRAN\", \"sid implemented in cran\", \"SID in the CRAN\", \"implemented in the CRAN\", \"continuous phrase exact match\"], \"subqueries\": []}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265710,
+  "id": "021793265709648ab257ece25bd0fea81c82ca5c15ec8fdd4cdc5",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 163,
+    "prompt_tokens": 933,
+    "total_tokens": 1096,
+    "prompt_tokens_details": {
+      "cached_tokens": 896
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

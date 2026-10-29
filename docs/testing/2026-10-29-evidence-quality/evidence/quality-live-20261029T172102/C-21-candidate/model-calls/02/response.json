@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"type\":\"json_object\",\"patches\":[{\"original\":\"DPR 在多个开放域 QA 数据集上评测，并说明 SQuAD 因缺少段落时问题缺语境而不理想[1, p.4]；其段落切分采用不重叠版本[1, p.4]。RAG 除 QA 外还研究开放域问题生成，采用更难的 Jeopardy 形式[2, p.5]；FEVER 上把标签映射为单 token 直接训练，且不使用检索证据监督[2, p.5]；TriviaQA 沿用 DPR 的划分，即公开 Web 开发集，而非官方维基测试集[2, p.18]。FiD 报告在 NaturalQuestions 与 TriviaQA 上超过既有方法，并称生成模型在多段落证据聚合时表现较好[3, p.2][3, p.4]；NQ 开放域版本丢弃超过 5 个 token 的答案[3, p.3]。RETRO 在 Pile 上与 GPT-3、Jurassic-1 可比而参数少 25 倍[4, p.1]，并提出考虑测试集邻近度的评测以控制泄漏，在重叠低至 α=12.5% 时仍优于基线[4, p.15][4, p.2]。Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调模型，部分指标超过 ChatGPT[5, p.8]。\",\"replacement\":\"DPR 在多个开放域 QA 数据集上评测，并说明 SQuAD 因缺少段落时问题缺语境而不理想[E:ev-5]；其段落切分采用不重叠版本[E:ev-4]。RAG 除 QA 外还研究开放域问题生成，采用更难的 Jeopardy 形式[E:ev-11]；FEVER 上把标签映射为单 token 直接训练，且不使用检索证据监督[E:ev-13]；TriviaQA 沿用 DPR 的划分，即公开 Web 开发集，而非官方维基测试集[E:ev-14]。FiD 报告在 NaturalQuestions 与 TriviaQA 上超过既有方法，并称生成模型在多段落证据聚合时表现较好[E:ev-19]；NQ 开放域版本丢弃超过 5 个 token 的答案[E:ev-21]。RETRO 在 Pile 上与 GPT-3、Jurassic-1 可比而参数少 25 倍[E:ev-23]，并提出考虑测试集邻近度的评测以控制泄漏[E:ev-30]，在重叠低至 α=12.5% 时仍优于基线[E:ev-27]。Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调模型，部分指标超过 ChatGPT[E:ev-34]。\"},{\"original\":\"共识是检索能提升知识密集型生成，且多段落证据融合有益[3, p.2][4, p.16]。分歧在于训练对象：DPR 主张分离训练更简单有效[1, p.8]，RAG 主张端到端边缘化[2, p.3]，RETRO 主张冻结检索器以扩展规模[4, p.2]，Self-RAG 主张以反思 token 学习按需检索[5, p.2]。这些选择对应不同适用边界：DPR 面向抽取式 QA 的候选筛选，FiD 面向多段落生成式 QA，RETRO 面向大规模语言建模，Self-RAG 面向多样指令任务。\",\"replacement\":\"共识是检索能提升知识密集型生成，且多段落证据融合有益[E:ev-18][E:ev-26]。分歧在于训练对象：DPR 主张分离训练更简单有效[E:ev-6]，RAG 主张端到端边缘化[E:ev-15]，RETRO 主张冻结检索器以扩展规模[E:ev-29]，Self-RAG 主张以反思 token 学习按需检索[E:ev-37]。这些选择对应不同适用边界：DPR 面向抽取式 QA 的候选筛选，FiD 面向多段落生成式 QA，RETRO 面向大规模语言建模，Self-RAG 面向多样指令任务。\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265829,
+  "id": "0217932658257089c467886153d5c7930328e02fcfdb87b5eb585",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 942,
+    "prompt_tokens": 3987,
+    "total_tokens": 4929,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

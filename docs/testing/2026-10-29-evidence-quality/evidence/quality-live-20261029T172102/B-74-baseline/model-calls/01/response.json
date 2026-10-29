@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"提出 FLARE 本身的原始论文：预测即将生成的句子，当其中出现低置信度词时，利用预测句子检索并重新生成\", \"methods\": \"FLARE 原始方法：预测即将生成的句子，检测低置信度词，用预测句子检索并重新生成\", \"focus\": \"定位提出 FLARE 的原始论文，排除仅在相关工作中提及 FLARE 的论文\", \"exclusions\": [\"仅在相关工作中提及 FLARE 的论文\", \"未提出 FLARE 的论文\", \"仅引用 FLARE 的论文\"], \"variants\": [\"FLARE\", \"forward-looking active retrieval\", \"low-confidence token retrieval\", \"predicted sentence retrieval\", \"retrieve-and-regenerate\", \"active retrieval augmented generation\"], \"subqueries\": [\"FLARE forward-looking active retrieval original paper\", \"predicted sentence low-confidence token retrieval regeneration\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265791,
+  "id": "021793265790285c35f1a31989945a684cc428e09e81c7959bbaa",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 185,
+    "prompt_tokens": 502,
+    "total_tokens": 687,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

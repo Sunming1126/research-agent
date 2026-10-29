@@ -1,0 +1,6 @@
+{
+  "status": "assessment_failed",
+  "error_type": "AssertionError",
+  "case_id": "C-21",
+  "variant": "baseline"
+}

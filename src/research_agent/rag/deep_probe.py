@@ -19,7 +19,11 @@ def probe_pages(index, queries, initial_page_limit, *, max_pages=1200,
     from .materials import normalize_extracted_text
     import fitz
 
-    if initial_page_limit < 1 or max_pages < 0 or max_seconds < 0 or pages_per_document < 1:
+    if (type(initial_page_limit) is not int or initial_page_limit < 1
+            or type(max_pages) is not int or max_pages < 0
+            or type(pages_per_document) is not int or pages_per_document < 1
+            or not math.isfinite(max_seconds) or max_seconds < 0
+            or not math.isfinite(model_reserve) or model_reserve < 0):
         raise ValueError('invalid deep page probe limits')
     started = time.monotonic()
     terms = {t for q in queries if isinstance(q, str) for t in tokenize(q) if len(t) >= 2}
