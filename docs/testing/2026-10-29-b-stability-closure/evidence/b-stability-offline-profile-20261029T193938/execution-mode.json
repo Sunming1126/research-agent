@@ -1,0 +1,8 @@
+{
+  "mode": "offline-authorized",
+  "native_harness_execution": false,
+  "authorization": "User explicitly answered 允许本轮离线无模型测试 in this conversation on 2026-10-29",
+  "target_model_calls": 0,
+  "real_model_testing_still_requires_original_harness": true,
+  "date": "2026-10-29T19:39:38.525200+08:00"
+}

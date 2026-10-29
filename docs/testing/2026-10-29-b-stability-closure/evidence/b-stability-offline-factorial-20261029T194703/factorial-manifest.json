@@ -1,0 +1,39 @@
+{
+  "status": "frozen exploratory follow-up, not executed",
+  "reason": "Original fixed-query comparison completed: old 9/9, current 7/9; profile dominated by native PDF text extraction. Test one doubling of existing probe cap before any further tuning.",
+  "variants": [
+    "baseline",
+    "comparison",
+    "reference",
+    "budget",
+    "combined"
+  ],
+  "factors": {
+    "reference_prefix_state": [
+      false,
+      true
+    ],
+    "probe_cap_seconds": [
+      12,
+      24
+    ]
+  },
+  "repetitions": 3,
+  "case_keys": [
+    "B-42-fixed",
+    "B-44-fixed",
+    "B-50-fixed"
+  ],
+  "planned_task_executions": 45,
+  "unchanged": [
+    "max_pages=1200",
+    "pages_per_document=2",
+    "model_reserve=95",
+    "RRF",
+    "query plans",
+    "candidate limit",
+    "official runtime",
+    "dependencies"
+  ],
+  "acceptance": "Correctness first; compare misses/false positives, then paired wall/CPU time. No significance or real-model/Token improvement claims. Extra probe time never supersedes the existing 95-second remaining-model reserve."
+}

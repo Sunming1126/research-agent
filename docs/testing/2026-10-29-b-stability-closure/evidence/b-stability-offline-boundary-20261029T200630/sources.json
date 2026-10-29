@@ -1,0 +1,22 @@
+{
+  "baseline": {
+    "source": "镜像测试/审核/2026-10-29-quality-baseline-a329dd6/source",
+    "files_manifest": "镜像测试/b-stability-20261029/baseline-source-files.json"
+  },
+  "comparison": {
+    "source": "镜像测试/审核/2026-10-29-b-stability-current-43f8189/source",
+    "files_manifest": "镜像测试/b-stability-20261029/source-files.json"
+  },
+  "reference": {
+    "source": "镜像测试/审核/2026-10-29-b-stability-reference-v2-prototype/source",
+    "files_manifest": "镜像测试/b-stability-20261029/reference-v2-source-files.json"
+  },
+  "budget": {
+    "source": "镜像测试/审核/2026-10-29-b-stability-budget-prototype/source",
+    "files_manifest": "镜像测试/b-stability-20261029/budget-source-files.json"
+  },
+  "combined": {
+    "source": "镜像测试/审核/2026-10-29-b-stability-combined-v2-prototype/source",
+    "files_manifest": "镜像测试/b-stability-20261029/combined-v2-source-files.json"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "mode": "offline-authorized",
+  "native_harness_execution": false,
+  "target_model_calls": 0,
+  "authorization": "Explicit user approval in this conversation; scoped to offline no-model tests"
+}

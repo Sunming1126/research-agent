@@ -14,8 +14,19 @@ from ..core.session import checkpoint, current_session
 from ..core.utils import tokenize
 
 
+def _prefix_reference_section(index, material, initial_page_limit):
+    """Use only known, same-document prefix chunks; missing context stays unknown."""
+    known = [chunk for chunk in getattr(index, 'chunks', ())
+             if chunk.filename == material.filename and chunk.document_sha256 == material.sha256
+             and type(chunk.page) is int and 1 <= chunk.page <= initial_page_limit]
+    if not known:
+        return None
+    last = max(known, key=lambda chunk: (chunk.page, chunk.start))
+    return last.kind == 'references'
+
+
 def probe_pages(index, queries, initial_page_limit, *, max_pages=1200,
-                max_seconds=12., model_reserve=95., pages_per_document=2):
+                max_seconds=24., model_reserve=95., pages_per_document=2):
     from .materials import normalize_extracted_text
     import fitz
 
@@ -34,6 +45,7 @@ def probe_pages(index, queries, initial_page_limit, *, max_pages=1200,
              'unread_pages_in_opened_documents': 0, 'scanned_pages_by_document': {},
              'sampling_limited_documents': [],
              'scope': 'lexical page discovery; not exhaustive semantic relevance judgment'}
+    trace['reference_context_from_prefix'] = {}
     session = current_session()
 
     def exhausted():
@@ -81,7 +93,9 @@ def probe_pages(index, queries, initial_page_limit, *, max_pages=1200,
                                sorted({initial_page_limit + min(available - 1, math.floor((i + .5) * available / count))
                                        for i in range(count)}))
                     best = []
-                    references = False
+                    prefix_reference = _prefix_reference_section(index, material, initial_page_limit)
+                    trace['reference_context_from_prefix'][material.filename] = prefix_reference
+                    references = bool(prefix_reference)
                     for number in numbers:
                         if exhausted():
                             trace['coverage_limited'] = True

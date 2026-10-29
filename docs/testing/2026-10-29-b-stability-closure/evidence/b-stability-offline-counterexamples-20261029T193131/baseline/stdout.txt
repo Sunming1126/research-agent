@@ -1,0 +1,47 @@
+FF....                                                                   [100%]
+================================== FAILURES ===================================
+___ test_reference_title_in_prefix_does_not_authorize_continuation_as_body ____
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-stability-offline-counterexamples-20261029T193131/baseline/temp/test_reference_title_in_prefix0')
+
+    def test_reference_title_in_prefix_does_not_authorize_continuation_as_body(tmp_path):
+        answer,handler,index=retrieve(tmp_path,reference_page=4,target_page=5)
+        assert any(c.kind=='references' and c.page==4 for c in index.chunks)
+>       assert answer['papers']==[]
+E       AssertionError: assert [{'filename':...y evidence.'}] == []
+E         
+E         Left contains one more item: {'filename': 'scope.pdf', 'reason': 'The required literal method statement is present in supplied body evidence.'}
+E         Use -v to get more diff
+
+..\..\..\runs\b-stability-offline-counterexamples-20261029T193131\frozen-tests\test_probe_reference_context.py:57: AssertionError
+_ test_reference_title_on_prior_prefix_page_keeps_context_across_blankish_page _
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-stability-offline-counterexamples-20261029T193131/baseline/temp/test_reference_title_on_prior_0')
+
+    def test_reference_title_on_prior_prefix_page_keeps_context_across_blankish_page(tmp_path):
+        answer,_,_=retrieve(tmp_path,reference_page=3,target_page=5)
+>       assert answer['papers']==[]
+E       AssertionError: assert [{'filename':...y evidence.'}] == []
+E         
+E         Left contains one more item: {'filename': 'scope.pdf', 'reason': 'The required literal method statement is present in supplied body evidence.'}
+E         Use -v to get more diff
+
+..\..\..\runs\b-stability-offline-counterexamples-20261029T193131\frozen-tests\test_probe_reference_context.py:62: AssertionError
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\b-stability-offline-counterexamples-20261029T193131\baseline\pytest.xml -
+=========================== short test summary info ===========================
+FAILED ..\..\..\runs\b-stability-offline-counterexamples-20261029T193131\frozen-tests\test_probe_reference_context.py::test_reference_title_in_prefix_does_not_authorize_continuation_as_body
+FAILED ..\..\..\runs\b-stability-offline-counterexamples-20261029T193131\frozen-tests\test_probe_reference_context.py::test_reference_title_on_prior_prefix_page_keeps_context_across_blankish_page
+2 failed, 4 passed, 5 warnings in 1.05s

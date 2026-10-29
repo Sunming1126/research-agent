@@ -1,0 +1,44 @@
+{
+  "results": {
+    "baseline": {
+      "returncode": 1,
+      "collected": 6,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.975,
+      "mode": "offline-authorized",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "passed": 4
+    },
+    "comparison": {
+      "returncode": 1,
+      "collected": 6,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.129,
+      "mode": "offline-authorized",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "passed": 4
+    },
+    "prototype": {
+      "returncode": 0,
+      "collected": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.052,
+      "mode": "offline-authorized",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "passed": 6
+    }
+  },
+  "test_sha256": "e0e501f951f29a9eb7b4832c69a30f2fce06bd98427e439e2a71f2b4da12fb8d",
+  "mode": "offline-authorized",
+  "target_model_calls": 0,
+  "new_strategy_adopted": false
+}

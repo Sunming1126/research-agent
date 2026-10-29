@@ -1,0 +1,10 @@
+{
+  "baseline": {
+    "source": "镜像测试/审核/2026-10-29-quality-baseline-a329dd6/source",
+    "files_manifest": "镜像测试/b-stability-20261029/baseline-source-files.json"
+  },
+  "combined": {
+    "source": "协同开发/research-agent-stability-20261027",
+    "files_manifest": "镜像测试/b-stability-20261029/candidate-final-source-files.json"
+  }
+}

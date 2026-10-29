@@ -1,0 +1,3 @@
+evidence/** -text -whitespace
+*.json -text -whitespace
+*.zip -text
