@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文以开放域问答为主要任务，提出训练稠密双编码器检索器（Dense Passage Retriever），用问题-段落对训练双编码器，并在开放Natural Questions上报告端到端问答结果，摘要还提到在TriviaQA上训练检索器；属于原始方法论文，而非将已有检索器当组件的生成模型或检索基准评测。\",\"chunk_ids\":[\"55088e0ebf2a71a06e47\",\"3ccd81c82b95403c63da\",\"470e5a332b84dff914bd\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793248045,
+  "id": "021793248043991af77c6bdcb28310871ba6ee41ea156a663504b",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 154,
+    "prompt_tokens": 4544,
+    "total_tokens": 4698,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

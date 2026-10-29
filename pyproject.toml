@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "research-assistant-agent"
-version = "0.4.15"
+version = "0.4.16"
 description = "科研助手赛道 Agent"
 requires-python = ">=3.11"
 

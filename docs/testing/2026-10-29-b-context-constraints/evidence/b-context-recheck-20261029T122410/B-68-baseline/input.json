@@ -1,0 +1,20 @@
+{
+  "case_id": "B-68",
+  "function": "Literature_Retrieval",
+  "title": "AND条件而非多个OR目标",
+  "input": "只找同时满足两个条件的同一篇原始论文：第一，核心贡献是单独训练稠密双编码检索器；第二，核心贡献仅是跨领域零样本检索基准而不提出任何新训练检索器。这里是AND条件，不是各找一篇。若给定论文中没有同时满足者则返回空列表。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2104.08663-BEIR.pdf",
+    "2112.04426-RETRO.pdf",
+    "2203.02155-InstructGPT.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "constraints": [
+    "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+  ],
+  "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+  "output_schema_ref": "Literature_Retrieval"
+}

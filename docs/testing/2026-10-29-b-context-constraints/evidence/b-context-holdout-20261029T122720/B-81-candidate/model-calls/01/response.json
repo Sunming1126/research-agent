@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"以开放域问答为主要任务、训练稠密双编码检索器的原始方法论文，并在 Natural Questions 和 TriviaQA 上评估\", \"methods\": \"稠密双编码检索器训练；开放域问答\", \"focus\": \"原始方法论文，而非将已有检索器作为组件的生成模型或检索基准评测\", \"exclusions\": [\"仅将已有检索器当组件的生成模型\", \"检索基准评测论文\"], \"variants\": [\"dense dual-encoder retriever\", \"open-domain question answering\", \"dense passage retrieval\", \"dual-encoder training\", \"Natural Questions\", \"TriviaQA\"], \"subqueries\": [\"dense dual-encoder retriever open-domain QA\", \"dense passage retrieval Natural Questions TriviaQA\", \"original dense retriever training method\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793248048,
+  "id": "0217932480469243b39ea1d457e6524cc696cd2a0824aa147f971",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 175,
+    "prompt_tokens": 504,
+    "total_tokens": 679,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

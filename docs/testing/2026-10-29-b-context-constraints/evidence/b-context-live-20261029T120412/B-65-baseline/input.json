@@ -1,0 +1,20 @@
+{
+  "case_id": "B-65",
+  "function": "Literature_Retrieval",
+  "title": "Benchmark rather than a newly trained method",
+  "input": "Find exactly one paper whose main contribution is a heterogeneous zero-shot retrieval evaluation benchmark across many domains and datasets. Do not include a paper merely because it reports experiments on several QA datasets.",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2104.08663-BEIR.pdf",
+    "2112.04426-RETRO.pdf",
+    "2203.02155-InstructGPT.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "constraints": [
+    "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+  ],
+  "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+  "output_schema_ref": "Literature_Retrieval"
+}

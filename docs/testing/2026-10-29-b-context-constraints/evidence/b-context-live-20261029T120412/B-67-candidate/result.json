@@ -1,0 +1,11 @@
+{
+  "status": "failed",
+  "error_type": "TimeoutError",
+  "disk_matches": false,
+  "seconds": 569.547,
+  "target_real_model_calls": 1,
+  "total_tokens": 0,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

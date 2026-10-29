@@ -1,0 +1,154 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "结合参数化 seq2seq 记忆与非参数化 Wikipedia 记忆、联合训练神经检索器与生成器的知识密集型生成原始方法",
+      "methods": "parametric seq2seq memory, non-parametric Wikipedia memory, jointly trained neural retriever and generator",
+      "focus": "识别提出该联合记忆与联合训练框架的原始论文",
+      "exclusions": [
+        "fixed-retriever readers",
+        "chunked retrieval language-model pretraining"
+      ],
+      "variants": [
+        "retrieval-augmented generation",
+        "parametric memory",
+        "non-parametric memory",
+        "dense passage retriever",
+        "jointly trained retriever and generator",
+        "knowledge-intensive generation"
+      ],
+      "subqueries": [
+        "joint parametric non-parametric memory generation",
+        "dense passage retrieval Wikipedia memory",
+        "jointly train retriever and generator",
+        "knowledge-intensive generation with Wikipedia retrieval"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2005.11401-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "components": [
+      {
+        "query": "joint parametric non-parametric memory generation",
+        "filenames": [
+          "2005.11401-RAG.pdf",
+          "2112.04426-RETRO.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "dense passage retrieval Wikipedia memory",
+        "filenames": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      },
+      {
+        "query": "jointly train retriever and generator",
+        "filenames": [
+          "2005.11401-RAG.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      },
+      {
+        "query": "knowledge-intensive generation with Wikipedia retrieval",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2005.11401-RAG.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2005.11401-RAG.pdf": 0.09783183500793231,
+      "2310.11511-Self-RAG.pdf": 0.0803975388851116,
+      "2004.04906-DPR.pdf": 0.08014152250006296,
+      "2007.01282-FiD.pdf": 0.031009615384615385,
+      "2112.04426-RETRO.pdf": 0.06301166351569577,
+      "2104.08663-BEIR.pdf": 0.030303030303030304,
+      "2203.02155-InstructGPT.pdf": 0.029850746268656716
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.735
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.6956
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.7048
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.5583
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3897
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.3841
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.3141
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2005.11401-RAG.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "478c5805d4a7002f55b0217c6e40f942ee3c1e167939fed46fe2732141cde8de",
+  "raw_evidence_relative_path": "B-62-candidate/output/data/b_comparison/work/B-62/59a475aa3ab148569c6bae5fe902c214/evidence.json"
+}

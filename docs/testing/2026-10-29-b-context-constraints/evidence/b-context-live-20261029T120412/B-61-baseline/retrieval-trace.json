@@ -1,0 +1,117 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "trained dense dual-encoder passage retriever for open-domain question answering",
+      "methods": "dense dual-encoder retrieval, passage retrieval training",
+      "focus": "original paper whose primary contribution is a trained dense dual-encoder passage retriever for open-domain QA",
+      "exclusions": [
+        "retrieval-augmented generators",
+        "downstream readers",
+        "benchmark-only studies"
+      ],
+      "variants": [
+        "dense dual-encoder retriever",
+        "dense passage retrieval",
+        "dual-encoder passage retriever",
+        "open-domain question answering retrieval",
+        "trained dense retriever",
+        "bi-encoder passage retrieval"
+      ],
+      "subqueries": []
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "components": [],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2004.04906-DPR.pdf": 0.03278688524590164,
+      "2007.01282-FiD.pdf": 0.03225806451612903,
+      "2104.08663-BEIR.pdf": 0.03149801587301587,
+      "2005.11401-RAG.pdf": 0.03149801587301587,
+      "2310.11511-Self-RAG.pdf": 0.030536130536130537,
+      "2112.04426-RETRO.pdf": 0.030536130536130537,
+      "2203.02155-InstructGPT.pdf": 0.029850746268656716
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.6745
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.4191
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.4141
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3941
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.3727
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.3566
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.3382
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2004.04906-DPR.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "5bcd20b48f4ae894b5a3b721f8a3ded0da687e6a8f6aa9b5e2fa3f59a389642b",
+  "raw_evidence_relative_path": "B-61-baseline/output/data/b_comparison/work/B-61/3f8ea68865124551b39de4c3020649d6/evidence.json"
+}

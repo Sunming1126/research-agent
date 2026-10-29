@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2104.08663-BEIR.pdf\",\"reason\":\"该论文明确将自身定位为面向异构检索任务的零样本评测基准：摘要片段指出 BEIR 是首个广泛的零样本信息检索基准，并说明现有工作未深入评估零样本检索、仅聚焦单一任务或小语料；另一片段说明其纳入来自 9 个异构检索任务的 18 个英文零样本评测数据集，并强调领域多样性（从新闻、维基百科到专业科学文献）。这些证据共同支持其核心贡献是跨多领域、多数据集的异构零样本检索评测基准，而非仅在多个 QA 数据集上做实验。\",\"chunk_ids\":[\"f5f210b97634cfb4218f\",\"a8e7b14293a0285e6fb2\",\"1867b7a62882f32d83ae\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246723,
+  "id": "02179324672231024e994d08a876ec3f4dc3077f2522d84b740c0",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 199,
+    "prompt_tokens": 4974,
+    "total_tokens": 5173,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

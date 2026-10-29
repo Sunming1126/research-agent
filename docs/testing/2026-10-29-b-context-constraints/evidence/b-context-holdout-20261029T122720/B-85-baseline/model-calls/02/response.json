@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2203.02155-InstructGPT.pdf\",\"reason\":\"该论文的核心贡献正是题目所要求的原始方法：使用人类撰写的示范数据训练监督基线，收集人类对模型输出的偏好比较数据训练奖励模型，再用PPO强化学习以该奖励模型为目标微调GPT-3，使其遵循广泛的书面指令。摘要片段明确描述了示范、偏好比较、奖励模型与PPO微调这一完整流程，且以人类偏好评分作为主要评估指标，符合“人类示范+偏好比较+强化学习+从人类反馈微调语言模型以遵循指令”的全部关键条件，不属于排除项。\",\"chunk_ids\":[\"2ef32c8950122575aa48\",\"c41e1758c2d0cca476bc\",\"52eb6fb7968fd93a72cf\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"该论文核心是SELF-RAG，通过反思标记在推理时决定是否检索并自评生成质量，训练方式是用GPT-4生成反思标记后离线蒸馏，而非用人类示范、偏好比较和强化学习从人类反馈微调语言模型以遵循指令。片段中RLHF仅作为相关工作背景被提及，并明确说明其训练成本远低于RLHF，属于背景对照而非本篇贡献，因此不满足题目关键条件。\",\"chunk_ids\":[\"9c5178754de2d5f17725\",\"f15a71482e764a8512c9\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2005.11401-RAG.pdf\",\"reason\":\"该论文提出检索增强生成模型，将预训练参数记忆与外部文档检索结合用于生成，属于依赖外部文本检索的生成方法，正是题目排除项；其核心贡献是检索器与生成器的联合微调，而非使用人类示范、偏好比较和强化学习从人类反馈微调语言模型以遵循指令。片段中的人类评估针对生成事实性与问题生成任务，与RLHF指令微调无关。\",\"chunk_ids\":[\"ddc520c11d7a5b2a8377\",\"35e7e29c4788f745a7ed\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2112.04426-RETRO.pdf\",\"reason\":\"该论文核心是RETRO，一种通过分块交叉注意力从大规模语料库检索并增强语言模型的方法，属于依赖外部文本检索的生成方法，落入题目排除项；其贡献是检索增强的预训练与retro-fitting，而非使用人类示范、偏好比较和强化学习从人类反馈微调语言模型以遵循指令。片段未涉及RLHF指令微调。\",\"chunk_ids\":[\"a9c7c8574b42843f2ef7\",\"df9d3699fccb431c8bec\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2007.01282-FiD.pdf\",\"reason\":\"该论文研究开放域问答中的段落检索与答案生成，核心是检索器与生成器的联合训练，属于依赖外部文本检索的生成方法及检索相关研究，落入题目排除项；片段讨论的是QA检索与重排序方法，未涉及使用人类示范、偏好比较和强化学习从人类反馈微调语言模型以遵循指令。\",\"chunk_ids\":[\"fc9d615620020f66422b\",\"0621ccb868e006e2fc04\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2104.08663-BEIR.pdf\",\"reason\":\"该论文是跨域检索基准BEIR，构建多领域异构检索数据集并评估检索模型，正是题目明确排除的跨域检索基准；其核心贡献是基准与评测，而非使用人类示范、偏好比较和强化学习从人类反馈微调语言模型以遵循指令。片段仅涉及数据集构建与检索评估。\",\"chunk_ids\":[\"1867b7a62882f32d83ae\",\"4db7fb2ab62e11dd94a9\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文提出稠密段落检索器DPR，训练独立的双编码器检索器用于开放域问答的段落检索，正是题目排除的训练独立检索器；其核心贡献是检索器训练与相似度函数设计，而非使用人类示范、偏好比较和强化学习从人类反馈微调语言模型以遵循指令。片段未涉及RLHF指令微调。\",\"chunk_ids\":[\"db1097678faadc771f6a\",\"776d0f067021d3dda251\"],\"relevant\":false,\"decision\":\"exclude\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793248088,
+  "id": "021793248082919af77c6bdcb28310871ba6ee41ea156a66ee2de",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 1012,
+    "prompt_tokens": 4795,
+    "total_tokens": 5807,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

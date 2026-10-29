@@ -1,0 +1,366 @@
+FFFFFFFFF...FFFFFFFFF..                                                  [100%]
+================================== FAILURES ===================================
+__________ test_repeated_terms_do_not_hide_later_joint_evidence[400] __________
+
+left = 400
+
+    @pytest.mark.parametrize('left', [400, 450, 500, 550, 600, 650])
+    def test_repeated_terms_do_not_hide_later_joint_evidence(left):
+        chars = list(('neutral ' * 260)[:1800])
+        for offset, value in [(10, ' alpha '), (left, ' alpha '), (left+900, ' beta ')]:
+            chars[offset:offset+len(value)] = value
+        text = ''.join(chars)
+        excerpt = query_window(text, ['alpha beta'])
+        assert excerpt in text and len(excerpt) <= 1100
+>       assert 'alpha' in excerpt and 'beta' in excerpt
+E       AssertionError: assert ('alpha' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut' and 'beta' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:16: AssertionError
+__________ test_repeated_terms_do_not_hide_later_joint_evidence[450] __________
+
+left = 450
+
+    @pytest.mark.parametrize('left', [400, 450, 500, 550, 600, 650])
+    def test_repeated_terms_do_not_hide_later_joint_evidence(left):
+        chars = list(('neutral ' * 260)[:1800])
+        for offset, value in [(10, ' alpha '), (left, ' alpha '), (left+900, ' beta ')]:
+            chars[offset:offset+len(value)] = value
+        text = ''.join(chars)
+        excerpt = query_window(text, ['alpha beta'])
+        assert excerpt in text and len(excerpt) <= 1100
+>       assert 'alpha' in excerpt and 'beta' in excerpt
+E       AssertionError: assert ('alpha' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut' and 'beta' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:16: AssertionError
+__________ test_repeated_terms_do_not_hide_later_joint_evidence[500] __________
+
+left = 500
+
+    @pytest.mark.parametrize('left', [400, 450, 500, 550, 600, 650])
+    def test_repeated_terms_do_not_hide_later_joint_evidence(left):
+        chars = list(('neutral ' * 260)[:1800])
+        for offset, value in [(10, ' alpha '), (left, ' alpha '), (left+900, ' beta ')]:
+            chars[offset:offset+len(value)] = value
+        text = ''.join(chars)
+        excerpt = query_window(text, ['alpha beta'])
+        assert excerpt in text and len(excerpt) <= 1100
+>       assert 'alpha' in excerpt and 'beta' in excerpt
+E       AssertionError: assert ('alpha' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut' and 'beta' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:16: AssertionError
+__________ test_repeated_terms_do_not_hide_later_joint_evidence[550] __________
+
+left = 550
+
+    @pytest.mark.parametrize('left', [400, 450, 500, 550, 600, 650])
+    def test_repeated_terms_do_not_hide_later_joint_evidence(left):
+        chars = list(('neutral ' * 260)[:1800])
+        for offset, value in [(10, ' alpha '), (left, ' alpha '), (left+900, ' beta ')]:
+            chars[offset:offset+len(value)] = value
+        text = ''.join(chars)
+        excerpt = query_window(text, ['alpha beta'])
+        assert excerpt in text and len(excerpt) <= 1100
+>       assert 'alpha' in excerpt and 'beta' in excerpt
+E       AssertionError: assert ('alpha' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut' and 'beta' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:16: AssertionError
+__________ test_repeated_terms_do_not_hide_later_joint_evidence[600] __________
+
+left = 600
+
+    @pytest.mark.parametrize('left', [400, 450, 500, 550, 600, 650])
+    def test_repeated_terms_do_not_hide_later_joint_evidence(left):
+        chars = list(('neutral ' * 260)[:1800])
+        for offset, value in [(10, ' alpha '), (left, ' alpha '), (left+900, ' beta ')]:
+            chars[offset:offset+len(value)] = value
+        text = ''.join(chars)
+        excerpt = query_window(text, ['alpha beta'])
+        assert excerpt in text and len(excerpt) <= 1100
+>       assert 'alpha' in excerpt and 'beta' in excerpt
+E       AssertionError: assert ('alpha' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut' and 'beta' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:16: AssertionError
+__________ test_repeated_terms_do_not_hide_later_joint_evidence[650] __________
+
+left = 650
+
+    @pytest.mark.parametrize('left', [400, 450, 500, 550, 600, 650])
+    def test_repeated_terms_do_not_hide_later_joint_evidence(left):
+        chars = list(('neutral ' * 260)[:1800])
+        for offset, value in [(10, ' alpha '), (left, ' alpha '), (left+900, ' beta ')]:
+            chars[offset:offset+len(value)] = value
+        text = ''.join(chars)
+        excerpt = query_window(text, ['alpha beta'])
+        assert excerpt in text and len(excerpt) <= 1100
+>       assert 'alpha' in excerpt and 'beta' in excerpt
+E       AssertionError: assert ('alpha' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut' and 'beta' in 'neutral ne alpha eutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutr...l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:16: AssertionError
+_____________ test_substring_of_unrelated_word_is_not_a_query_hit _____________
+
+    def test_substring_of_unrelated_word_is_not_a_query_hit():
+        text = 'neutral ' * 180 + 'paragraph fragment paragraphs ' * 10
+>       assert query_window(text, ['rag']) == text[:1100]
+E       AssertionError: assert 'neutral neut...t paragraphs ' == 'neutral neut... neutral neut'
+E         
+E         Skipping 790 identical leading characters in diff, use -v to show
+E         - l neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neutral neut
+E         + l neutral paragraph fragment paragraphs paragraph fragment paragraphs paragraph fragment paragraphs paragraph fragment paragraphs paragraph fragment paragraphs paragraph fragment paragraphs paragra...
+E         
+E         ...Full output truncated (1 line hidden), use '-vv' to show
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:21: AssertionError
+_________ test_multilingual_global_limits[Find exactly two papers.-2] _________
+
+text = 'Find exactly two papers.', expected = 2
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 2
+E        +  where None = requested_paper_count('Find exactly two papers.')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+_______ test_multilingual_global_limits[Return no more than 1 paper.-1] _______
+
+text = 'Return no more than 1 paper.', expected = 1
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 1
+E        +  where None = requested_paper_count('Return no more than 1 paper.')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+_ test_multilingual_global_limits[Overall, return three papers; each topic is independent.-3] _
+
+text = 'Overall, return three papers; each topic is independent.', expected = 3
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 3
+E        +  where None = requested_paper_count('Overall, return three papers; each topic is independent.')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+_______ test_multilingual_global_limits[Return exactly zero papers.-0] ________
+
+text = 'Return exactly zero papers.', expected = 0
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 0
+E        +  where None = requested_paper_count('Return exactly zero papers.')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+_________ test_multilingual_global_limits[\u6700\u591a\u96f6\u7bc7-0] _________
+
+text = '最多零篇', expected = 0
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 0
+E        +  where None = requested_paper_count('最多零篇')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+_ test_multilingual_global_limits[\u603b\u5171\u4e09\u7bc7\uff0c\u4f46\u6700\u591a\u4e24\u7bc7-2] _
+
+text = '总共三篇，但最多两篇', expected = 2
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert 3 == 2
+E        +  where 3 = requested_paper_count('总共三篇，但最多两篇')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+_ test_multilingual_global_limits[\u6700\u591a3\u7bc7\uff0c\u4e14\u4e0d\u8d85\u8fc72\u7bc7-2] _
+
+text = '最多3篇，且不超过2篇', expected = 2
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert 3 == 2
+E        +  where 3 = requested_paper_count('最多3篇，且不超过2篇')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+_ test_multilingual_global_limits[Return at most five papers, no more than two papers.-2] _
+
+text = 'Return at most five papers, no more than two papers.', expected = 2
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 2
+E        +  where None = requested_paper_count('Return at most five papers, no more than two papers.')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+_________ test_multilingual_global_limits[Find twenty-one papers.-21] _________
+
+text = 'Find twenty-one papers.', expected = 21
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 21
+E        +  where None = requested_paper_count('Find twenty-one papers.')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+_ test_multilingual_global_limits[Select at least three papers and return at most five papers.-5] _
+
+text = 'Select at least three papers and return at most five papers.'
+expected = 5
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 5
+E        +  where None = requested_paper_count('Select at least three papers and return at most five papers.')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+_ test_multilingual_global_limits[Each topic requires two papers, in total return six papers.-6] _
+
+text = 'Each topic requires two papers, in total return six papers.'
+expected = 6
+
+    @pytest.mark.parametrize('text,expected', [
+        ('Find exactly two papers.', 2), ('Return no more than 1 paper.', 1),
+        ('Return at least 3 papers.', None), ('Each topic: find two papers.', None),
+        ('Find one paper per topic.', None), ('Overall, return three papers; each topic is independent.', 3),
+        ('Return exactly zero papers.', 0), ('最多零篇', 0),
+        ('总共三篇，但最多两篇', 2), ('最多3篇，且不超过2篇', 2),
+        ('Return at most five papers, no more than two papers.', 2), ('Find twenty-one papers.', 21),
+        ('Select at least three papers and return at most five papers.', 5),
+        ('Each topic requires two papers, in total return six papers.', 6),
+        ('Find three papers or more.', None), ('The same paper need not cover all topics.', None),
+    ])
+    def test_multilingual_global_limits(text, expected):
+>       assert requested_paper_count(text) == expected
+E       AssertionError: assert None == 6
+E        +  where None = requested_paper_count('Each topic requires two papers, in total return six papers.')
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py:36: AssertionError
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\b-context-semantics-20261029T115446\baseline\pytest.xml -
+=========================== short test summary info ===========================
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_repeated_terms_do_not_hide_later_joint_evidence[400]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_repeated_terms_do_not_hide_later_joint_evidence[450]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_repeated_terms_do_not_hide_later_joint_evidence[500]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_repeated_terms_do_not_hide_later_joint_evidence[550]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_repeated_terms_do_not_hide_later_joint_evidence[600]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_repeated_terms_do_not_hide_later_joint_evidence[650]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_substring_of_unrelated_word_is_not_a_query_hit
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[Find exactly two papers.-2]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[Return no more than 1 paper.-1]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[Overall, return three papers; each topic is independent.-3]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[Return exactly zero papers.-0]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[\u6700\u591a\u96f6\u7bc7-0]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[\u603b\u5171\u4e09\u7bc7\uff0c\u4f46\u6700\u591a\u4e24\u7bc7-2]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[\u6700\u591a3\u7bc7\uff0c\u4e14\u4e0d\u8d85\u8fc72\u7bc7-2]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[Return at most five papers, no more than two papers.-2]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[Find twenty-one papers.-21]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[Select at least three papers and return at most five papers.-5]
+FAILED ..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_b_context_constraints.py::test_multilingual_global_limits[Each topic requires two papers, in total return six papers.-6]
+18 failed, 5 passed in 0.76s

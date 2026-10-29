@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"生成式阅读器中解码器融合分别编码的检索段落以回答开放域问题\", \"methods\": \"独立编码检索段落、解码器端段落融合、生成式阅读器\", \"focus\": \"原始方法论文，需有原文证据表明解码器融合分别编码的检索段落用于开放域问答\", \"exclusions\": [\"联合检索器-生成器学习\", \"独立检索器\", \"检索基准综述\", \"仅背景提及段落融合\"], \"variants\": [\"passage fusion\", \"generative reader\", \"frozen retriever\", \"separately encoded passages\", \"decoder fusion\", \"open-domain question answering\"], \"subqueries\": [\"decoder fuses separately encoded retrieved passages\", \"generative reader passage fusion open-domain QA\", \"frozen retriever decoder fusion question answering\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793248113,
+  "id": "021793248111798b97e702619832bacb4ebf6c3ac1ede67dfe27c",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 173,
+    "prompt_tokens": 502,
+    "total_tokens": 675,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"结合参数化 seq2seq 记忆与非参数化 Wikipedia 记忆、联合训练神经检索器与生成器的知识密集型生成方法\", \"methods\": \"参数化 seq2seq 记忆、非参数化 Wikipedia 记忆、联合训练神经检索器与生成器\", \"focus\": \"寻找同时具备参数化与非参数化记忆并联合训练检索器与生成器的原始方法\", \"exclusions\": [\"fixed-retriever readers\", \"chunked retrieval language-model pretraining\"], \"variants\": [\"parametric seq2seq memory\", \"non-parametric Wikipedia memory\", \"jointly trained retriever and generator\", \"knowledge-intensive generation\", \"retrieval-augmented generation\", \"dense passage retrieval\"], \"subqueries\": [\"joint parametric non-parametric memory retrieval generation\", \"train retriever and generator jointly\", \"non-parametric Wikipedia memory generation\", \"knowledge-intensive generation with dense retrieval\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246680,
+  "id": "021793246679094bbc1b38287ece59059a49659ad58bad9b4cccf",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 194,
+    "prompt_tokens": 505,
+    "total_tokens": 699,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

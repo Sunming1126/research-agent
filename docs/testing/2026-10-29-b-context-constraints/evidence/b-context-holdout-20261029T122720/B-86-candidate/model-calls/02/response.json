@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2104.08663-BEIR.pdf\",\"reason\":\"该论文提出BEIR，一个跨领域、多数据集的异构信息检索评测基准，覆盖18个不同文本检索任务与领域的数据集，并系统评测包括词法、稀疏、稠密、后交互与重排序在内的10个检索系统，重点分析零样本与域外泛化表现，并比较稀疏与稠密检索的泛化能力，符合题目要求的评测基准贡献。\",\"chunk_ids\":[\"c5d112e9475598e79e81\",\"d3c5e0fd5510445f4693\",\"974d2089c3a0d6261cf4\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文核心贡献是提出稠密双编码器检索器DPR这一新检索方法，跨数据集泛化仅作为其方法的实验分析，并非提出跨领域多数据集零样本检索评测基准，属于题目排除的仅提出单个检索模型新方法。\",\"chunk_ids\":[\"e8362eff8fa0d326ae6c\",\"1b9a402c3502527d83c6\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2112.04426-RETRO.pdf\",\"reason\":\"该论文聚焦检索增强语言模型RETRO的构建与语言建模/问答评测，片段未显示其提出跨领域多数据集零样本检索评测基准或系统比较稀疏与稠密检索的域外泛化，当前证据不足以支持相关。\",\"chunk_ids\":[\"3e731de93326eb4e836f\",\"a9c7c8574b42843f2ef7\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2007.01282-FiD.pdf\",\"reason\":\"该论文提出融合稀疏与稠密检索的生成式开放域问答方法FiD，检索比较仅作为其QA系统的组件，核心贡献是新的生成式QA模型，属于题目排除的仅提出单个检索或生成模型新方法。\",\"chunk_ids\":[\"c8e1aba37eda77cdd36c\",\"1871abe7aa419571b900\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2203.02155-InstructGPT.pdf\",\"reason\":\"该论文研究指令微调与语言模型对齐，片段涉及跨任务泛化与真实性评测，与跨领域零样本信息检索评测基准及稀疏/稠密检索比较无关。\",\"chunk_ids\":[\"661a1b0f6c08dc82627c\",\"e125d1e4b61fc412c80a\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2005.11401-RAG.pdf\",\"reason\":\"该论文提出检索增强生成模型RAG，BM25与稠密检索比较仅作为其模型内部检索器替换实验，核心贡献是新的生成模型方法，属于题目排除的仅提出单个检索或生成模型新方法。\",\"chunk_ids\":[\"01f84dedab33687fa5ac\",\"ed35aeed49ebbe337c2a\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"该论文提出Self-RAG这一带自反思的检索增强生成方法，片段讨论RAG训练与提示策略及生成质量控制，未涉及跨领域多数据集零样本检索评测基准或稀疏与稠密检索域外泛化比较。\",\"chunk_ids\":[\"b70782ded0bc005232f5\",\"b6c01116839c6d215a92\"],\"relevant\":false,\"decision\":\"exclude\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793248101,
+  "id": "021793248097314593075d5bfc3e0cbf107ff469a4d1c91f8e3f1",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 794,
+    "prompt_tokens": 4626,
+    "total_tokens": 5420,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2007.01282-FiD.pdf\",\"reason\":\"该文提出 Fusion-in-Decoder 生成式阅读器：每个检索到的段落连同标题与问题拼接后由编码器独立编码，解码器再对所有段落表示做注意力以融合证据；文中明确说明编码器独立处理段落、解码器联合处理，从而区别于联合处理段落的做法。其检索使用 BM25，检索器未与阅读器联合学习，符合题目对独立段落编码、解码器融合且检索器不联合学习的要求。\",\"chunk_ids\":[\"c22d4d83680dcf97567f\",\"5abd537beef634a1552a\",\"9a0c9c16374a4d2c489f\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793247862,
+  "id": "021793247860667c2eb6daa98a94139fa98701b99e0cb3cd8d28c",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 171,
+    "prompt_tokens": 5337,
+    "total_tokens": 5508,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-85",
+    "papers": [
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "reason": "该论文的核心贡献正是题目所要求的原始方法：使用人类撰写的示范数据训练监督基线，收集人类对模型输出的偏好比较并训练奖励模型，再用PPO强化学习以该奖励信号微调GPT-3，使其遵循广泛的书面指令。摘要片段明确描述了从人类示范、偏好比较到强化学习微调的完整流程，且评估以人类偏好评分为主，符合“使用人类示范、偏好比较和强化学习从人类反馈微调语言模型以遵循指令”的关键条件，不属于排除项（非独立检索器、非跨域检索基准、非依赖外部文本检索的生成方法）。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 4.687,
+  "target_real_model_calls": 2,
+  "total_tokens": 5381,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

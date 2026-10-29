@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-63",
+    "papers": [
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "reason": "该论文提出Retro，用冻结的BERT检索器从大规模数据库检索文本块，并通过分块交叉注意力机制将检索结果融入自回归语言模型训练，直接满足题目要求的全部关键条件。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 6.141,
+  "target_real_model_calls": 2,
+  "total_tokens": 5727,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

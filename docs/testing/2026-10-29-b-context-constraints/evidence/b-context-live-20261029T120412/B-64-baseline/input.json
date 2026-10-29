@@ -1,0 +1,20 @@
+{
+  "case_id": "B-64",
+  "function": "Literature_Retrieval",
+  "title": "按需检索与反思的本篇贡献",
+  "input": "最多一篇：本篇提出反思标记，决定何时检索，并评价检索片段与生成内容。排除始终固定检索、以及只在相关工作提及反思机制的论文。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2104.08663-BEIR.pdf",
+    "2112.04426-RETRO.pdf",
+    "2203.02155-InstructGPT.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "constraints": [
+    "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+  ],
+  "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+  "output_schema_ref": "Literature_Retrieval"
+}

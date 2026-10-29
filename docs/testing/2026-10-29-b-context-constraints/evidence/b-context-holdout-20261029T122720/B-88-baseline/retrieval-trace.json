@@ -1,0 +1,150 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "稠密双编码段落检索器、跨域零样本检索评测基准、基于人类反馈训练指令跟随语言模型三个独立方向的原始工作",
+      "methods": "稠密双编码检索、零样本跨域检索评测、人类反馈强化学习训练指令跟随模型",
+      "focus": "分别定位三个方向的原始论文，每方向至少一篇，合计三篇，排除检索增强生成与多段阅读器",
+      "exclusions": [
+        "检索增强生成",
+        "多段阅读器",
+        "retrieval-augmented generation",
+        "multi-passage reader"
+      ],
+      "variants": [
+        "dense dual-encoder passage retriever",
+        "dense passage retrieval",
+        "zero-shot cross-domain retrieval benchmark",
+        "human feedback instruction-following language model",
+        "reinforcement learning from human feedback",
+        "DPR"
+      ],
+      "subqueries": [
+        "dense dual-encoder passage retriever original paper",
+        "zero-shot cross-domain retrieval evaluation benchmark",
+        "human feedback instruction-following language model training"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2203.02155-InstructGPT.pdf",
+      "2004.04906-DPR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2104.08663-BEIR.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "original": [
+      "2004.04906-DPR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "components": [
+      {
+        "query": "dense dual-encoder passage retriever original paper",
+        "filenames": [
+          "2004.04906-DPR.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      },
+      {
+        "query": "zero-shot cross-domain retrieval evaluation benchmark",
+        "filenames": [
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ]
+      },
+      {
+        "query": "human feedback instruction-following language model training",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2203.02155-InstructGPT.pdf": 0.06478893337698204,
+      "2004.04906-DPR.pdf": 0.048915917503966164,
+      "2310.11511-Self-RAG.pdf": 0.0637560803891449,
+      "2112.04426-RETRO.pdf": 0.06277856328259554,
+      "2104.08663-BEIR.pdf": 0.04765107388058208,
+      "2007.01282-FiD.pdf": 0.03007688828584351,
+      "2005.11401-RAG.pdf": 0.04618300439195962
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.7609
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.6419
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.5883
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.6661
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.8358
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.4867
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3608
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2004.04906-DPR.pdf"
+    ],
+    "requested_limit": 3,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "adc3ec1c18ee1c003c9db2b6465b815af47504c6838ec15158b1ce1187b05207",
+  "raw_evidence_relative_path": "B-88-baseline/output/data/b_comparison/work/B-88/0589c4b4e2bf4f50985f5ac6eb1b9eb4/evidence.json"
+}

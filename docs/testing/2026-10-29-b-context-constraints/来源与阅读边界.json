@@ -1,0 +1,50 @@
+[
+  {
+    "title": "面向企业知识库的层次化分块与混合检索增强生成方法设计",
+    "authors": "孙飒、张经伟、江卫",
+    "publication": "通信技术 2026,59(7):745-754",
+    "url": "https://txjs.cbpt.cnki.net/portal/journal/portal/client/paper/98c3d67f1899bdae2c105350595117b2",
+    "access": "CNKI期刊官方公开摘要；未获取付费全文",
+    "use": "借鉴层次与上下文分离思路；不移植其完整摘要/向量/交叉重排架构，不引用未读实验结论"
+  },
+  {
+    "title": "面向大语言模型生成能力提升的检索增强生成研究进展",
+    "authors": "刘澳迪、奚雪峰、周国栋",
+    "doi": "10.13328/j.cnki.jos.007684",
+    "url": "https://www.jos.org.cn/jos/article/abstract/7684",
+    "access": "期刊官方摘要已由检索索引获取，直接打开一次502；未声称已读全文",
+    "use": "区分检索增强和增强生成，分别验证候选召回与最终输出约束"
+  },
+  {
+    "title": "搜索结果多样化研究综述",
+    "authors": "窦志成、秦绪博、文继荣",
+    "publication": "计算机学报 2019,42(12)",
+    "url": "https://playbigdata.ruc.edu.cn/dou/publication/2019_JC_Survey.pdf",
+    "access": "作者学校公开PDF；本轮以摘要/主题结构作方法梳理，不声称逐段全文复核",
+    "use": "将多意图覆盖与冗余分开看待，不将词面多样化当语义正确",
+    "download": {
+      "status": "saved",
+      "file": "搜索结果多样化研究综述-作者公开版.pdf",
+      "bytes": 850315,
+      "sha256": "68b9946dc41388c573c8967922854c0cea71dfd1ba08adf2a13a2807d2cfcf70"
+    }
+  },
+  {
+    "title": "LlamaIndex SentenceWindowNodeParser",
+    "url": "https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/node_parser/text/sentence_window.py",
+    "access": "官方项目原始源码已读",
+    "use": "借鉴检索单位与上下文窗口分离，不引入框架或句分割模型"
+  },
+  {
+    "title": "Haystack SentenceWindowRetriever",
+    "url": "https://github.com/deepset-ai/haystack/blob/main/haystack/components/retrievers/sentence_window_retriever.py",
+    "access": "官方项目原始源码已读",
+    "use": "借鉴来源/位置边界。本轮只在同一授权chunk内选连续窗口，不跨文档合并"
+  },
+  {
+    "title": "Microsoft GraphRAG DRIFT search",
+    "url": "https://github.com/microsoft/graphrag/blob/main/docs/query/drift_search.md",
+    "access": "官方文档已读",
+    "use": "记录分层迭代检索路线；本项目推断其构图/社区摘要额外预算较高，本轮不接整套框架，也不声称其精度较差"
+  }
+]

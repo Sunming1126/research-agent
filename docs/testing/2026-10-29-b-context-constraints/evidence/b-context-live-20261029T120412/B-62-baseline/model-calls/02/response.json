@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2005.11401-RAG.pdf\",\"reason\":\"该论文提出检索增强生成（RAG）模型，将参数化记忆（预训练seq2seq transformer，BART）与非参数化记忆（Wikipedia稠密向量索引，经预训练神经检索器DPR访问）结合，并以端到端方式联合训练检索器与生成器，且无需对检索文档的直接监督。这正对应题目要求的原始方法：参数化seq2seq记忆+非参数化Wikipedia记忆+联合训练神经检索器与生成器用于知识密集型生成。\",\"chunk_ids\":[\"c756a51d51f0008a43af\",\"acdc076659aa221b40ac\",\"d08ea9032827ce606dad\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246682,
+  "id": "02179324668158458818742e03404164f2bdc6cf7ab386a9a51b0",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 173,
+    "prompt_tokens": 4584,
+    "total_tokens": 4757,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

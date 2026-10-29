@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-67",
+    "papers": [
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "reason": "该文提出 Fusion-in-Decoder 生成式阅读器：编码器对每个检索到的段落连同问题独立编码，解码器再对所有段落表示做联合注意力以融合证据，且明确指出该做法可扩展到大量上下文。其检索器为外部 BM25，并非与阅读器联合学习，符合“独立段落编码+解码器融合+检索器不联合学习”的核心条件。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 6.422,
+  "target_real_model_calls": 2,
+  "total_tokens": 6001,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-63",
+    "papers": [
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "reason": "该论文明确提出使用冻结的预训练BERT检索器（frozen BERT retriever）从大规模数据库检索，并用分块交叉注意力（chunked cross-attention）将检索到的文本块整合进自回归语言模型训练，且检索在连续token块级别进行以支持万亿级token数据库，直接满足题目的全部关键条件。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 5.718,
+  "target_real_model_calls": 2,
+  "total_tokens": 6267,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

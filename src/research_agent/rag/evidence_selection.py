@@ -1,5 +1,7 @@
 """B检索证据覆盖与输入预算；只选择已有授权原文，不生成论文事实。"""
 import json
+import re
+from collections import Counter
 
 from ..core.utils import tokenize
 
@@ -34,19 +36,47 @@ def query_window(text, queries, maximum=1100):
     """保留命中附近连续原文；返回值始终是原文子串，不拼接摘录。"""
     if len(text) <= maximum:
         return text
+    if maximum < 1:
+        raise ValueError('evidence window must be positive')
     terms = set(tokenize(' '.join(q for q in queries if isinstance(q, str))))
-    folded = text.casefold()
-    positions = sorted({p for term in terms if len(term) >= 2
-                        for p in [folded.find(term.casefold())] if p >= 0})
-    if not positions:
+    events = []
+    for term in sorted(terms):
+        if len(term) < 2 or len(term) > maximum:
+            continue
+        pattern = re.escape(term)
+        if re.fullmatch(r'[a-z0-9_+.#/-]+', term):
+            pattern = r'(?<![A-Za-z0-9_])' + pattern + r'(?![A-Za-z0-9_])'
+        events.extend((m.start(), m.end(), term) for m in re.finditer(pattern, text, re.I))
+    events.sort()
+    if not events:
         return text[:maximum]
-    starts = {0, max(0, len(text) - maximum)}
-    for position in positions:
-        starts.add(max(0, min(len(text) - maximum, position - maximum // 4)))
-    def coverage(start):
-        window = folded[start:start + maximum]
-        return sum(term.casefold() in window for term in terms)
-    start = max(sorted(starts), key=coverage)
+    # 所有原文命中一起滑窗，避免首次命中在背景段时掩盖后文的组合条件。
+    counts, left, right_end = Counter(), 0, 0
+    best = None
+    for right, (_, end, term) in enumerate(events):
+        counts[term] += 1
+        right_end = max(right_end, end)
+        while left <= right and right_end - events[left][0] > maximum:
+            old = events[left][2]
+            counts[old] -= 1
+            if not counts[old]:
+                del counts[old]
+            left += 1
+        if left > right:
+            continue
+        span_start, span_end = events[left][0], right_end
+        key = (len(counts), -(span_end - span_start), -span_start)
+        if best is None or key > best[0]:
+            best = (key, span_start, span_end)
+    if best is None:
+        return text[:maximum]
+    _, span_start, span_end = best
+    start = max(0, min(len(text) - maximum, span_start - (maximum - (span_end - span_start)) // 2))
+    # 在预算和全部命中都能保留时，向前靠近句界；始终保留连续原文。
+    lower = max(0, span_end - maximum, start - 160)
+    boundaries = [m.end() for m in re.finditer(r'(?:[。！？.!?]\s+|\n+)', text[lower:start])]
+    if boundaries:
+        start = lower + boundaries[-1]
     return text[start:start + maximum]
 
 

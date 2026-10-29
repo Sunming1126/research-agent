@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"跨领域、多数据集、零样本信息检索评测基准，比较稀疏与稠密检索并分析域外泛化\", \"methods\": \"零样本信息检索评测基准构建；稀疏检索与稠密检索对比；域外泛化分析\", \"focus\": \"识别提出跨领域多数据集零样本检索评测基准并比较稀疏与稠密检索、分析域外泛化的论文\", \"exclusions\": [\"仅提出单个检索模型的新方法\", \"仅提出单个生成模型的新方法\"], \"variants\": [\"zero-shot information retrieval benchmark\", \"cross-domain retrieval evaluation\", \"multi-dataset IR benchmark\", \"sparse versus dense retrieval\", \"out-of-domain generalization\", \"BEIR benchmark\"], \"subqueries\": [\"zero-shot cross-domain retrieval benchmark\", \"sparse versus dense retrieval comparison\", \"out-of-domain generalization retrieval evaluation\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793248103,
+  "id": "021793248102458291c0f5a72b510a28c7f913d2f5a6ea9609c1e",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 180,
+    "prompt_tokens": 505,
+    "total_tokens": 685,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

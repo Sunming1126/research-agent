@@ -1,0 +1,146 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "生成式阅读器分别编码检索段落并在解码器中融合",
+      "methods": "独立段落编码、解码器融合、非联合训练的检索器",
+      "focus": "识别提出该生成式阅读器架构的论文，且检索器不参与联合学习",
+      "exclusions": [
+        "standalone retrieval",
+        "reflection-token control",
+        "retrieval benchmarks"
+      ],
+      "variants": [
+        "generative reader",
+        "independent passage encoding",
+        "separate passage encoder",
+        "decoder fusion",
+        "frozen retriever",
+        "non-jointly learned retriever"
+      ],
+      "subqueries": [
+        "generative reader separate passage encoding",
+        "fuse encoded passages in decoder",
+        "reader with frozen retriever"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "components": [
+      {
+        "query": "generative reader separate passage encoding",
+        "filenames": [
+          "2007.01282-FiD.pdf",
+          "2004.04906-DPR.pdf",
+          "2104.08663-BEIR.pdf"
+        ]
+      },
+      {
+        "query": "fuse encoded passages in decoder",
+        "filenames": [
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      },
+      {
+        "query": "reader with frozen retriever",
+        "filenames": [
+          "2004.04906-DPR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2004.04906-DPR.pdf": 0.08066194924999791,
+      "2112.04426-RETRO.pdf": 0.06451612903225806,
+      "2007.01282-FiD.pdf": 0.06505334374186834,
+      "2005.11401-RAG.pdf": 0.04688263125763126,
+      "2104.08663-BEIR.pdf": 0.04640914640914641,
+      "2310.11511-Self-RAG.pdf": 0.030776515151515152,
+      "2203.02155-InstructGPT.pdf": 0.029850746268656716
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.6461
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.5832
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.644
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.5303
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.4582
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.4241
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.3657
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2007.01282-FiD.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "0e7f2faa0913bac4d6aa763b49db52d3c694510f51e7c58fdb7ac164e6fd0ab9",
+  "raw_evidence_relative_path": "B-67-baseline/output/data/b_comparison/work/B-67/652501956c1f4e8ebfaaa8d7f375c716/evidence.json"
+}

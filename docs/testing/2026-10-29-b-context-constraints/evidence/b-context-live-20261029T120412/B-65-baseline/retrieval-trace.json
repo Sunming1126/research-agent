@@ -1,0 +1,137 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "异构零样本检索评测基准（跨多领域、多数据集的 benchmark 论文）",
+      "methods": "heterogeneous zero-shot retrieval evaluation benchmark",
+      "focus": "识别主要贡献为跨多领域多数据集异构零样本检索评测基准的单篇论文，而非仅在多个 QA 数据集上报告实验的论文",
+      "exclusions": [
+        "仅在多个 QA 数据集上报告实验",
+        "新训练方法为主要贡献",
+        "非评测基准贡献"
+      ],
+      "variants": [
+        "heterogeneous zero-shot retrieval benchmark",
+        "zero-shot retrieval evaluation benchmark",
+        "multi-domain retrieval benchmark",
+        "multi-dataset retrieval evaluation",
+        "BEIR benchmark",
+        "zero-shot IR evaluation"
+      ],
+      "subqueries": [
+        "heterogeneous zero-shot retrieval evaluation benchmark",
+        "multi-domain multi-dataset retrieval benchmark paper"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "original": [
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "components": [
+      {
+        "query": "heterogeneous zero-shot retrieval evaluation benchmark",
+        "filenames": [
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ]
+      },
+      {
+        "query": "multi-domain multi-dataset retrieval benchmark paper",
+        "filenames": [
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2104.08663-BEIR.pdf": 0.06557377049180328,
+      "2112.04426-RETRO.pdf": 0.06377171215880893,
+      "2203.02155-InstructGPT.pdf": 0.047619047619047616,
+      "2310.11511-Self-RAG.pdf": 0.03055037313432836,
+      "2004.04906-DPR.pdf": 0.04738666351569577,
+      "2007.01282-FiD.pdf": 0.030303030303030304,
+      "2005.11401-RAG.pdf": 0.03055037313432836
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.9565
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.4795
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.4199
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.4247
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3924
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.3688
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.379
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2104.08663-BEIR.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "998cd4f8030c6981ca636998e6f99436c7122825a4b80022c50f2e6d4b1d4714",
+  "raw_evidence_relative_path": "B-65-baseline/output/data/b_comparison/work/B-65/40637d4f8ae54cb1a05ecf7e369428ea/evidence.json"
+}

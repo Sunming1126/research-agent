@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2104.08663-BEIR.pdf\",\"reason\":\"该论文提出BEIR，一个跨领域、多数据集的异构信息检索评测基准，覆盖18个不同文本检索任务与领域的数据集，并系统评测包括词法（BM25）、稀疏、稠密、后交互与重排序在内的10种检索系统，重点分析零样本/域外泛化表现，明确指出域内性能不能代表域外泛化，并比较稀疏与稠密检索的泛化能力。其核心贡献正是评测基准与跨域零样本比较，而非提出单个检索或生成模型的新方法，符合题目要求。\",\"chunk_ids\":[\"c5d112e9475598e79e81\",\"d3c5e0fd5510445f4693\",\"974d2089c3a0d6261cf4\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793248106,
+  "id": "021793248104380291c0f5a72b510a28c7f913d2f5a6ea9e3b493",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 195,
+    "prompt_tokens": 4626,
+    "total_tokens": 4821,
+    "prompt_tokens_details": {
+      "cached_tokens": 4608
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

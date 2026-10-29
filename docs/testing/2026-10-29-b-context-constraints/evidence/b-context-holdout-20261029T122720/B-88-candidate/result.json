@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-88",
+    "papers": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "reason": "该论文提出稠密双编码段落检索器DPR，使用双编码器架构并以问题-段落对训练稠密嵌入，直接对应“稠密双编码段落检索器”方向。"
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "reason": "该论文标题即为用人类反馈训练语言模型遵循指令，正文说明基于人类反馈的强化学习（RLHF）微调语言模型以对齐人类意图，并以人类偏好评分评估指令跟随，直接对应“基于人类反馈训练指令跟随语言模型的原始工作”方向。"
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "reason": "该论文提出BEIR，一个用于信息检索模型零样本/分布外评测的异构基准，覆盖18个不同任务与领域的数据集，直接对应“跨域零样本检索评测基准”方向。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 5.062,
+  "target_real_model_calls": 2,
+  "total_tokens": 5586,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

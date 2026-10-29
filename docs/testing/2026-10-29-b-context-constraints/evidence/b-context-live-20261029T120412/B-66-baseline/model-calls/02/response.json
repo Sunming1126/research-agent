@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2203.02155-InstructGPT.pdf\",\"reason\":\"该论文以人类书写的示范数据训练监督学习基线，并收集人类对模型输出的偏好比较数据训练奖励模型，再用PPO强化学习以该奖励优化输出，直接满足“以人类示范和偏好比较数据训练指令跟随语言模型并通过强化学习优化输出”的核心条件；其贡献是RLHF对齐方法本身，而非检索增强。\",\"chunk_ids\":[\"2ef32c8950122575aa48\",\"52eb6fb7968fd93a72cf\",\"8774b0aad5277e36919c\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246736,
+  "id": "021793246735855c2eb6daa98a94139fa98701b99e0cb3c545dad",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 146,
+    "prompt_tokens": 4874,
+    "total_tokens": 5020,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

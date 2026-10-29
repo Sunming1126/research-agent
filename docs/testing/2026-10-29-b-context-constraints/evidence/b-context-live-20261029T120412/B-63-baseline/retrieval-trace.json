@@ -1,0 +1,146 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "使用冻结的 BERT 检索器和分块交叉注意力，将自回归语言模型训练条件化于超大规模最近邻文本数据库的原始论文",
+      "methods": "frozen BERT retriever, chunked cross-attention, autoregressive language-model training, nearest-neighbor text database",
+      "focus": "定位提出该方法的原始论文，而非仅背景提及",
+      "exclusions": [
+        "仅背景提及该方法的论文",
+        "未使用冻结 BERT 检索器的检索增强方法",
+        "未采用分块交叉注意力的方法"
+      ],
+      "variants": [
+        "frozen BERT retriever",
+        "chunked cross-attention",
+        "retrieval-enhanced autoregressive language model",
+        "nearest-neighbor text database",
+        "large-scale retrieval database",
+        "retrieval-augmented language model pretraining"
+      ],
+      "subqueries": [
+        "frozen BERT retriever chunked cross-attention",
+        "autoregressive language model training nearest-neighbor database",
+        "retrieval-enhanced language model large text database"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "original": [
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "components": [
+      {
+        "query": "frozen BERT retriever chunked cross-attention",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2104.08663-BEIR.pdf",
+          "2007.01282-FiD.pdf"
+        ]
+      },
+      {
+        "query": "autoregressive language model training nearest-neighbor database",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      },
+      {
+        "query": "retrieval-enhanced language model large text database",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2007.01282-FiD.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2112.04426-RETRO.pdf": 0.0819672131147541,
+      "2004.04906-DPR.pdf": 0.048131080389144903,
+      "2310.11511-Self-RAG.pdf": 0.03125763125763126,
+      "2104.08663-BEIR.pdf": 0.04690554740957967,
+      "2203.02155-InstructGPT.pdf": 0.06326767990074442,
+      "2005.11401-RAG.pdf": 0.03007688828584351,
+      "2007.01282-FiD.pdf": 0.06254442075337598
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.9035
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.6103
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.5607
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.4786
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.4771
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.394
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3824
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2112.04426-RETRO.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "644e94f42665cc8fc132a4e69c445e537fc12a6a3109166b16e499e3949f96cd",
+  "raw_evidence_relative_path": "B-63-baseline/output/data/b_comparison/work/B-63/f432f047052d45c4bdb5ff61a3ee1094/evidence.json"
+}

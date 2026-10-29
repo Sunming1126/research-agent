@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-61",
+    "papers": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "reason": "该论文的核心贡献正是训练一个稠密双编码器段落检索器用于开放域问答：摘要说明其最终方案是优化问题与相关段落向量的内积，用批内所有问题-段落对的目标训练，提出 Dense Passage Retriever (DPR)，并在开放域 Natural Questions 上显著优于 BM25 与 ORQA；结论部分也明确其贡献是证明稠密检索可替代开放域问答中的稀疏检索组件，并给出训练稠密检索器的关键要素。这直接满足“主要贡献为训练好的稠密双编码器段落检索器”的条件，且不属于检索增强生成器、下游阅读器或仅基准研究。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 5.094,
+  "target_real_model_calls": 2,
+  "total_tokens": 5811,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

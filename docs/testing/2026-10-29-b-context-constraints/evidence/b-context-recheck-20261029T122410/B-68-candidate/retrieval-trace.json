@@ -1,0 +1,115 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "同时满足两个条件的同一篇原始论文：核心贡献是单独训练稠密双编码检索器，且核心贡献仅是跨领域零样本检索基准而不提出任何新训练检索器",
+      "methods": "稠密双编码检索器训练；跨领域零样本检索基准",
+      "focus": "判断给定论文中是否存在同一篇论文同时满足两个条件，若无则返回空列表",
+      "exclusions": [
+        "仅背景提及稠密检索而未作为核心贡献",
+        "仅提出新训练检索器但未涉及跨领域零样本基准",
+        "分别由不同论文满足两个条件"
+      ],
+      "variants": [
+        "dense dual-encoder retriever",
+        "zero-shot cross-domain retrieval benchmark",
+        "dense passage retrieval",
+        "dual-encoder training",
+        "zero-shot retrieval evaluation",
+        "cross-domain retrieval benchmark"
+      ],
+      "subqueries": []
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "components": [],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2004.04906-DPR.pdf": 0.03252247488101534,
+      "2104.08663-BEIR.pdf": 0.03252247488101534,
+      "2310.11511-Self-RAG.pdf": 0.03125763125763126,
+      "2112.04426-RETRO.pdf": 0.03149801587301587,
+      "2007.01282-FiD.pdf": 0.030536130536130537,
+      "2005.11401-RAG.pdf": 0.030776515151515152,
+      "2203.02155-InstructGPT.pdf": 0.029850746268656716
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.4109
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.3901
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.378
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.3539
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3562
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3449
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.3389
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "5e73b925621f4c92bf9fa2b6c2a47462d895ef6b77d6b062fdd06acecfe9c2c7",
+  "raw_evidence_relative_path": "B-68-candidate/output/data/b_comparison/work/B-68/ee813fc3ea2640a2839dedb664a17873/evidence.json"
+}

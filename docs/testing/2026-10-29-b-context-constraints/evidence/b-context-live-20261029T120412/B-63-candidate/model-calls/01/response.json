@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"使用冻结的 BERT 检索器与分块交叉注意力，将自回归语言模型训练条件化于超大规模最近邻文本数据库的原始论文\", \"methods\": \"frozen BERT retriever, chunked cross-attention, autoregressive language-model training, very large nearest-neighbor text database\", \"focus\": \"定位提出该组合方法的原始论文，而非仅背景提及\", \"exclusions\": [\"仅背景提及该方法的论文\", \"未使用冻结 BERT 检索器的检索增强方法\", \"未采用分块交叉注意力的方法\", \"非自回归语言模型训练场景\"], \"variants\": [\"frozen BERT retriever\", \"chunked cross-attention\", \"retrieval-enhanced autoregressive language model\", \"nearest-neighbor text database\", \"retrieval-augmented language model pretraining\", \"large-scale retrieval database\"], \"subqueries\": [\"frozen BERT retriever chunked cross-attention\", \"autoregressive language model nearest-neighbor retrieval database\", \"retrieval-enhanced pretraining trillion token database\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246693,
+  "id": "0217932466918636cb63cadb26a6eb1a5dd8bb71cce3d7f8bbb59",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 230,
+    "prompt_tokens": 503,
+    "total_tokens": 733,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

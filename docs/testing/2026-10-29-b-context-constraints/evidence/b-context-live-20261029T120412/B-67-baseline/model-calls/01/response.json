@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"generative reader with independent passage encoding and decoder fusion\", \"methods\": \"separate encoding of retrieved passages, fusion in decoder, non-joint retriever\", \"focus\": \"identify one paper introducing a generative reader that encodes retrieved passages separately and fuses them in its decoder, with retriever not jointly learned\", \"exclusions\": [\"standalone retrieval\", \"reflection-token control\", \"retrieval benchmarks\"], \"variants\": [\"generative reader\", \"independent passage encoding\", \"separate passage encoder\", \"decoder fusion\", \"frozen retriever\", \"non-joint retrieval\"], \"subqueries\": []}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246740,
+  "id": "021793246739565b869c66ddd8a6a297966635e3152d682857c46",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 137,
+    "prompt_tokens": 504,
+    "total_tokens": 641,
+    "prompt_tokens_details": {
+      "cached_tokens": 256
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}
