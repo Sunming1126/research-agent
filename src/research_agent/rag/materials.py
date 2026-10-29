@@ -398,3 +398,8 @@ class DocumentIndex:
             # 候选补读不能缩小本题最终核验的授权文件集合。
             self.materials, self.chunks = original_materials, original_chunks
 
+    @tool(name='probe_authorized_deep_pages')
+    def probe_deep_pages(self, queries, initial_page_limit, **limits):
+        from .deep_probe import probe_pages
+        return probe_pages(self, queries, initial_page_limit, **limits)
+

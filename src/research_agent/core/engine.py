@@ -171,6 +171,8 @@ class ResearchAgentEngine:
                     raise MaterialError('no readable unambiguous PDF remains in the authorized scope')
                 retriever = HybridRetriever(chunks)
                 handler.document_expander = index.expand_documents if pages else None
+                if b_case and pages:
+                    handler.document_probe = lambda queries: index.probe_deep_pages(queries, pages)
                 result = handler.handle(case, retriever)
             for material in index.materials:
                 if sha256_file(material.path) != material.sha256:
@@ -181,9 +183,10 @@ class ResearchAgentEngine:
             self._persist(case, result, work, filenames, specs, proof, handler, llm)
             if case.function == 'Literature_Retrieval':
                 outcome = {'case_id': case.case_id, 'result': result, 'result_saved': True,
-                           'outcome': 'partial' if index.errors or handler.retrieval_trace.get('partial_error') else ('matched' if result['papers'] else 'no_matches'),
+                           'outcome': 'partial' if index.errors or handler.retrieval_trace.get('partial_error') or handler.probe_trace.get('coverage_limited') else ('matched' if result['papers'] else 'no_matches'),
                            'material_diagnostics': index.errors, 'authorized_pdf_count': len(index.materials),
                            'retrieval_partial_error': handler.retrieval_trace.get('partial_error'),
+                           'page_probe_coverage': handler.probe_trace,
                            'path': f'data/{s.team}/{case.case_id}.json', 'diagnostic_path': work_relative + '/b-outcome.json'}
                 publish_b(outcome)
                 try:

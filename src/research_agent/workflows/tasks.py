@@ -39,6 +39,8 @@ class TaskHandlers(ReportWorkflow):
         self.coverage = {}
         self.evidence_audit = {}
         self.document_expander = None
+        self.document_probe = None
+        self.probe_trace = {}
         self.report_trace = []
 
     @staticmethod
@@ -92,6 +94,13 @@ class TaskHandlers(ReportWorkflow):
 
     @tool(name="rank_papers_with_evidence")
     def retrieval(self, case, retriever, plan):
+        if self.document_probe is not None:
+            probe, self.document_probe = self.document_probe, None
+            deeper, self.probe_trace = probe([self._question_text(case), plan.topic, plan.methods,
+                                             plan.focus, *plan.variants, *plan.subqueries])
+            if deeper:
+                merged_chunks = {c.chunk_id: c for c in [*retriever.chunks, *deeper]}
+                retriever = HybridRetriever(list(merged_chunks.values()))
         # 模型改写与原问题各保留一条召回通道；跨领域复合题可能被改写窄化。
         rewritten = retriever.top_documents(plan, limit=18, excerpts=3)
         original = retriever.top_documents(QueryPlan(self._question_text(case), exclusions=plan.exclusions,
@@ -142,7 +151,7 @@ class TaskHandlers(ReportWorkflow):
                                 "rewritten": [name for name, _, _ in rewritten],
                                 "original": [name for name, _, _ in original],
                                 "components": component_hits, "fusion": "document_rrf_k60",
-                                "fusion_scores": fusion_scores}
+                                "fusion_scores": fusion_scores, "deep_page_probe": self.probe_trace}
         requested = requested_paper_count(case.input)
         candidate_limit = min(18, max(12, (requested or 0) * 2))
         eligible = [row for row in grouped if row[0].lower().endswith('.pdf') and row[1] >= .13]
@@ -163,6 +172,7 @@ class TaskHandlers(ReportWorkflow):
         if not candidates:
             return {"case_id": case.case_id, "papers": []}
         approved = []
+        approval_evidence = defaultdict(set)
         partial_error = None
         rejected_approvals = []
         repair_attempts = 0
@@ -217,6 +227,7 @@ class TaskHandlers(ReportWorkflow):
                                 if isinstance(row, dict) and row.get("filename") == source["filename"]
                                 and valid_paper_approval(row, allowed)), None)
                             if replacement is not None:
+                                approval_evidence[source['filename']].update(replacement['chunk_ids'])
                                 approved.append((source["score"], {"filename": source["filename"],
                                                                    "reason": replacement["reason"]}))
                                 rejected_approvals[-1]["recovered"] = True
@@ -228,6 +239,7 @@ class TaskHandlers(ReportWorkflow):
                             rejected_approvals[-1]["recovered"] = False
                     continue
                 approved.append((source["score"], {"filename": item["filename"], "reason": item["reason"]}))
+                approval_evidence[item['filename']].update(item['chunk_ids'])
             if partial_error:
                 break
             start += len(batch)
@@ -260,6 +272,7 @@ class TaskHandlers(ReportWorkflow):
                 paper = next((p for p in value.get("papers", []) if isinstance(p, dict)
                               and p.get("filename") == name and valid_paper_approval(p, allowed)), None)
                 if paper:
+                    approval_evidence[name].update(paper['chunk_ids'])
                     unique[name.casefold()] = {"filename": name, "reason": paper["reason"]}
                     rule_added.append(name)
             except ModelQuotaError:
@@ -306,4 +319,14 @@ class TaskHandlers(ReportWorkflow):
             self.retrieval_trace["partial_error"] = partial_error
         fused_order = {name: index for index, (name, _, _) in enumerate(grouped)}
         accepted.sort(key=lambda paper: fused_order.get(paper['filename'], len(grouped)))
-        return {"case_id": case.case_id, "papers": accepted[:limit]}
+        accepted = accepted[:limit]
+        ids = {identifier for paper in accepted for identifier in approval_evidence[paper['filename']]}
+        # Keep the original top_documents protocol: lightweight retrievers need
+        # not expose an additional public .chunks collection. These are exactly
+        # the source objects from which the sent candidate excerpts were made.
+        sources = {h.chunk.chunk_id: h.chunk for _, _, group in grouped for h in group}
+        self.selected_chunks = [sources[identifier] for identifier in sorted(ids)]
+        self.retrieval_trace['accepted_evidence'] = [
+            {'filename': c.filename, 'chunk_id': c.chunk_id, 'page': c.page,
+             'document_sha256': c.document_sha256, 'chunk_sha256': c.sha256} for c in self.selected_chunks]
+        return {"case_id": case.case_id, "papers": accepted}
