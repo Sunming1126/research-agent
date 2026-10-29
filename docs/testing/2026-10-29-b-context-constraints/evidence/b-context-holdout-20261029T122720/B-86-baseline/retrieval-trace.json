@@ -1,0 +1,145 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "跨领域、多数据集、零样本信息检索评测基准，比较稀疏与稠密检索并分析域外泛化",
+      "methods": "零样本信息检索评测基准构建；稀疏检索与稠密检索对比；域外泛化分析",
+      "focus": "识别提出跨领域多数据集零样本检索评测基准并比较稀疏与稠密检索、分析域外泛化的论文",
+      "exclusions": [
+        "仅提出单个检索模型的新方法",
+        "仅提出单个生成模型的新方法"
+      ],
+      "variants": [
+        "zero-shot information retrieval benchmark",
+        "cross-domain retrieval evaluation",
+        "multi-dataset IR benchmark",
+        "sparse versus dense retrieval",
+        "out-of-domain generalization",
+        "BEIR benchmark"
+      ],
+      "subqueries": [
+        "zero-shot cross-domain retrieval benchmark",
+        "sparse versus dense retrieval comparison",
+        "out-of-domain generalization retrieval evaluation"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "original": [
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "components": [
+      {
+        "query": "zero-shot cross-domain retrieval benchmark",
+        "filenames": [
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      },
+      {
+        "query": "sparse versus dense retrieval comparison",
+        "filenames": [
+          "2004.04906-DPR.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf"
+        ]
+      },
+      {
+        "query": "out-of-domain generalization retrieval evaluation",
+        "filenames": [
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2104.08663-BEIR.pdf": 0.08144678636481915,
+      "2004.04906-DPR.pdf": 0.0803975388851116,
+      "2007.01282-FiD.pdf": 0.04787506400409626,
+      "2112.04426-RETRO.pdf": 0.06350806451612903,
+      "2203.02155-InstructGPT.pdf": 0.030536130536130537,
+      "2310.11511-Self-RAG.pdf": 0.03007688828584351,
+      "2005.11401-RAG.pdf": 0.030309988518943745
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.7941
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.6593
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.5199
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.6545
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.3237
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3318
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.3236
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2104.08663-BEIR.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "364dee9724475f524f16a76e266297e08a6ae353476081ab0c9f9a3a18a658c0",
+  "raw_evidence_relative_path": "B-86-baseline/output/data/b_comparison/work/B-86/46b6bf0d7c584c359e30e56312a5110a/evidence.json"
+}

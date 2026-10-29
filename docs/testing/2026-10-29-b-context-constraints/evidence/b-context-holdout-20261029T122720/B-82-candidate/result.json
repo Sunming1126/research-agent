@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-82",
+    "papers": [
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "reason": "该论文提出RAG模型，将参数记忆（预训练seq2seq）与非参数记忆（Wikipedia稠密向量索引）结合，并通过端到端训练联合学习检索器与生成器，直接满足目标1（联合优化检索器与生成器、结合参数与非参数记忆完成知识密集生成）。"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "reason": "该论文提出SELF-RAG，通过生成反思标记（retrieval与critique token）实现按需检索并自评生成质量，直接满足目标3（用反思标记按需检索、生成并评价自身输出）。"
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "reason": "该论文提出Retro，利用大规模语料检索文档块，并通过分块交叉注意力机制将检索文本融入自回归语言模型，直接满足目标2（利用检索到的文本块、分块交叉注意力和大规模近邻库训练语言模型）。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 5.125,
+  "target_real_model_calls": 2,
+  "total_tokens": 6337,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

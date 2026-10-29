@@ -1,0 +1,20 @@
+{
+  "case_id": "B-63",
+  "function": "Literature_Retrieval",
+  "title": "Frozen retrieval and chunked cross attention",
+  "input": "Return one original paper using a frozen BERT retriever and chunked cross-attention to condition autoregressive language-model training on a very large nearest-neighbor text database. A background mention of this approach is not sufficient.",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2104.08663-BEIR.pdf",
+    "2112.04426-RETRO.pdf",
+    "2203.02155-InstructGPT.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "constraints": [
+    "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+  ],
+  "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+  "output_schema_ref": "Literature_Retrieval"
+}

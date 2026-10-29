@@ -1,0 +1,1 @@
+{"status": "completed", "disk_matches": true, "seconds": 6.422, "target_real_model_calls": 2, "total_tokens": 6001, "quota_exhausted": false, "model": "deepseek-v4.1-flash", "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"}

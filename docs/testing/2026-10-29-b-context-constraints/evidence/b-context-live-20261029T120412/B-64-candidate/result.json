@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-64",
+    "papers": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "reason": "该论文提出通过生成反思标记（reflection tokens）实现按需检索与自我反思：摘要明确说明用检索标记和批评标记分别指示检索需求与生成质量，并在推理时动态决定何时检索；正文还给出基于 Retrieve 概率阈值的自适应检索机制。这同时满足“提出反思标记决定何时检索”和“评价检索片段与生成内容”的关键条件，且不属于固定检索或仅在相关工作提及反思机制。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 5.734,
+  "target_real_model_calls": 2,
+  "total_tokens": 4843,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

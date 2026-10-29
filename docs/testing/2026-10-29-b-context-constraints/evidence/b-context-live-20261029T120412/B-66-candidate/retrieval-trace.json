@@ -1,0 +1,146 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "以人类示范和偏好比较数据训练指令跟随语言模型并通过强化学习优化输出的原始论文",
+      "methods": "人类示范数据训练、偏好比较数据训练、强化学习优化输出",
+      "focus": "识别提出该训练范式的原始论文，而非引用该范式的检索增强论文",
+      "exclusions": [
+        "检索增强论文",
+        "仅引用该训练方式的论文",
+        "非原始提出该方法的论文"
+      ],
+      "variants": [
+        "instruction following language model",
+        "human demonstrations",
+        "preference comparisons",
+        "reinforcement learning from human feedback",
+        "RLHF",
+        "InstructGPT"
+      ],
+      "subqueries": [
+        "human demonstrations preference comparisons instruction following",
+        "reinforcement learning human feedback language model training",
+        "InstructGPT training with human preferences"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf"
+    ],
+    "original": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf"
+    ],
+    "components": [
+      {
+        "query": "human demonstrations preference comparisons instruction following",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      },
+      {
+        "query": "reinforcement learning human feedback language model training",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      },
+      {
+        "query": "InstructGPT training with human preferences",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2104.08663-BEIR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2203.02155-InstructGPT.pdf": 0.0819672131147541,
+      "2310.11511-Self-RAG.pdf": 0.08064516129032258,
+      "2007.01282-FiD.pdf": 0.031024531024531024,
+      "2112.04426-RETRO.pdf": 0.04712301587301587,
+      "2005.11401-RAG.pdf": 0.04713064713064713,
+      "2004.04906-DPR.pdf": 0.030536130536130537,
+      "2104.08663-BEIR.pdf": 0.04572376214167259
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2104.08663-BEIR.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.7561
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.7167
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.4011
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.5487
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.4157
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3152
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.3265
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "requested_limit": 1,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "c14373e77c9398d9e6bac22cb3a548fa002734dc26b490e6f4f2321d1fe3bcbf",
+  "raw_evidence_relative_path": "B-66-candidate/output/data/b_comparison/work/B-66/29f6fdf12806426091846a948abfa380/evidence.json"
+}

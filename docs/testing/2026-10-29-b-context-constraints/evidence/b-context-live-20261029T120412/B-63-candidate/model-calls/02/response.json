@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2112.04426-RETRO.pdf\",\"reason\":\"该论文提出Retro，用冻结的BERT检索器从大规模数据库检索文本块，并通过分块交叉注意力机制将检索结果融入自回归语言模型训练，直接满足题目要求的全部关键条件。\",\"chunk_ids\":[\"15563cf21f9afc474ee7\",\"0dc69faaaaef76243e87\",\"102925d3f3a5e43875b3\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246696,
+  "id": "0217932466951806cb63cadb26a6eb1a5dd8bb71cce3d7f147181",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 116,
+    "prompt_tokens": 4878,
+    "total_tokens": 4994,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

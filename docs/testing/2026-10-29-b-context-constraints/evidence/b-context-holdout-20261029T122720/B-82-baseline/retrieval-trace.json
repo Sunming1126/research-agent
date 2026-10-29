@@ -1,0 +1,149 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "联合检索与生成的原始方法论文：检索器-生成器联合优化、分块交叉注意力近邻检索、自反思按需检索",
+      "methods": "检索器与生成器联合训练、参数与非参数记忆结合、分块交叉注意力、大规模近邻库、反思标记与按需检索",
+      "focus": "识别满足三个独立目标之一的原始方法论文，并排除纯检索器、仅检索基准评测、固定检索后多段阅读器及仅人类反馈对齐方法",
+      "exclusions": [
+        "纯检索器",
+        "仅检索基准评测",
+        "仅固定检索后的多段阅读器",
+        "仅靠人类反馈对齐而不含外部检索"
+      ],
+      "variants": [
+        "jointly optimize retriever and generator",
+        "parametric and non-parametric memory",
+        "chunked cross-attention",
+        "large-scale nearest neighbor retrieval",
+        "reflection tokens",
+        "self-reflective retrieval-augmented generation"
+      ],
+      "subqueries": [
+        "joint retriever generator optimization knowledge-intensive generation",
+        "chunked cross-attention large nearest neighbor language model",
+        "reflection tokens self-evaluating retrieval generation"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "components": [
+      {
+        "query": "joint retriever generator optimization knowledge-intensive generation",
+        "filenames": [
+          "2005.11401-RAG.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      },
+      {
+        "query": "chunked cross-attention large nearest neighbor language model",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2007.01282-FiD.pdf"
+        ]
+      },
+      {
+        "query": "reflection tokens self-evaluating retrieval generation",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2005.11401-RAG.pdf": 0.06505334374186833,
+      "2112.04426-RETRO.pdf": 0.06452452301209573,
+      "2310.11511-Self-RAG.pdf": 0.06452452301209573,
+      "2004.04906-DPR.pdf": 0.04712301587301587,
+      "2007.01282-FiD.pdf": 0.04618300439195962,
+      "2104.08663-BEIR.pdf": 0.030536130536130537,
+      "2203.02155-InstructGPT.pdf": 0.04620592054390803
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.5508
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.6838
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.6556
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.4887
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.5544
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.5268
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.3509
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "29a57b9067b559b1d7b9446a0cbca422ebd0bf916a20edb66ed82a36b9d57595",
+  "raw_evidence_relative_path": "B-82-baseline/output/data/b_comparison/work/B-82/6dc975df3cf84a32975a74fbb6901b69/evidence.json"
+}

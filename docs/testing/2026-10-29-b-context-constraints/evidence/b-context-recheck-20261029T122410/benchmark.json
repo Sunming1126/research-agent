@@ -1,0 +1,72 @@
+{
+  "benchmark": "context-paired-recheck-after-transport-error-v1",
+  "frozen_before_target_calls": true,
+  "annotation": "Eight locally specified unseen phrasings; same seven-paper corpus, not official gold or domain-held-out.",
+  "source_pages": [
+    "https://arxiv.org/abs/2004.04906",
+    "https://arxiv.org/abs/2005.11401",
+    "https://arxiv.org/abs/2007.01282",
+    "https://arxiv.org/abs/2112.04426",
+    "https://arxiv.org/abs/2310.11511"
+  ],
+  "papers": {
+    "2004.04906-DPR.pdf": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f",
+    "2005.11401-RAG.pdf": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+    "2007.01282-FiD.pdf": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953",
+    "2104.08663-BEIR.pdf": "1925755aeb627123d1a63c66f02e5aa2432f7e92751a02bea7c8c3b6bbb6ec33",
+    "2112.04426-RETRO.pdf": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+    "2203.02155-InstructGPT.pdf": "c1984bb50a5b90fddb895fdc3a0f72e5bc977148c9f63ef6040cbe7a3e1f0d98",
+    "2310.11511-Self-RAG.pdf": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+  },
+  "cases": [
+    {
+      "task": {
+        "case_id": "B-67",
+        "function": "Literature_Retrieval",
+        "title": "Reader with independent passage encoding",
+        "input": "Return no more than one paper introducing a generative reader that encodes retrieved passages separately and fuses them in its decoder. The retriever is not jointly learned in this work. Exclude standalone retrieval, reflection-token control, and retrieval benchmarks.",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": [
+        "2007.01282-FiD.pdf"
+      ]
+    },
+    {
+      "task": {
+        "case_id": "B-68",
+        "function": "Literature_Retrieval",
+        "title": "AND条件而非多个OR目标",
+        "input": "只找同时满足两个条件的同一篇原始论文：第一，核心贡献是单独训练稠密双编码检索器；第二，核心贡献仅是跨领域零样本检索基准而不提出任何新训练检索器。这里是AND条件，不是各找一篇。若给定论文中没有同时满足者则返回空列表。",
+        "materials": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ],
+        "constraints": [
+          "只根据本题授权论文原文判断本篇贡献，缺失证据不凭背景提及补全。"
+        ],
+        "expected_output": "相关论文完整文件名和有原文依据的理由；无匹配可为空。",
+        "output_schema_ref": "Literature_Retrieval"
+      },
+      "expected_filenames": []
+    }
+  ],
+  "original_benchmark_sha256": "406a757f7ccf1b41f7f55cfd30266a0d33b052628756243542d7aa475e774548"
+}

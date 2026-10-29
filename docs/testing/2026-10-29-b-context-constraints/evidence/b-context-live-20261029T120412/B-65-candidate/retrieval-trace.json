@@ -1,0 +1,146 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "异构零样本检索评测基准论文识别",
+      "methods": "零样本检索评测、跨领域跨数据集基准构建",
+      "focus": "找出主贡献为异构零样本检索评测基准的单篇论文，排除仅在多个问答数据集上做实验的论文",
+      "exclusions": [
+        "仅在多个问答数据集上报告实验",
+        "以新训练方法为主贡献",
+        "以检索增强生成方法为主贡献"
+      ],
+      "variants": [
+        "heterogeneous zero-shot retrieval benchmark",
+        "zero-shot retrieval evaluation benchmark",
+        "multi-domain retrieval benchmark",
+        "zero-shot IR evaluation across datasets",
+        "heterogeneous retrieval evaluation suite",
+        "BEIR benchmark"
+      ],
+      "subqueries": [
+        "heterogeneous zero-shot retrieval evaluation benchmark",
+        "zero-shot retrieval benchmark across many domains",
+        "multi-dataset zero-shot retrieval evaluation benchmark"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "original": [
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "components": [
+      {
+        "query": "heterogeneous zero-shot retrieval evaluation benchmark",
+        "filenames": [
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ]
+      },
+      {
+        "query": "zero-shot retrieval benchmark across many domains",
+        "filenames": [
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      },
+      {
+        "query": "multi-dataset zero-shot retrieval evaluation benchmark",
+        "filenames": [
+          "2104.08663-BEIR.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2104.08663-BEIR.pdf": 0.0819672131147541,
+      "2203.02155-InstructGPT.pdf": 0.06374807987711213,
+      "2004.04906-DPR.pdf": 0.03200204813108039,
+      "2112.04426-RETRO.pdf": 0.07939671215880893,
+      "2310.11511-Self-RAG.pdf": 0.030536130536130537,
+      "2005.11401-RAG.pdf": 0.046649531024531024,
+      "2007.01282-FiD.pdf": 0.029850746268656716
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2005.11401-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.9566
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.479
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.4201
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.4413
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.4245
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.3827
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3787
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2104.08663-BEIR.pdf"
+    ],
+    "requested_limit": 1,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "fa8fe67a01d66c5b63277d0f9fee8d9f6268d320e2b5a34a9153fd4bb6426d3d",
+  "raw_evidence_relative_path": "B-65-candidate/output/data/b_comparison/work/B-65/6057d18a853c4daa801041d067ef8844/evidence.json"
+}

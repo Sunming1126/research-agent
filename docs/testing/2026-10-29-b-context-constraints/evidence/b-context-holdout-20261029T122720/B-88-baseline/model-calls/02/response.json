@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文提出稠密段落检索器（Dense Passage Retriever, DPR），使用双编码器架构，以问题和段落的稠密向量内积进行检索，并报告了段落检索准确率实验，直接满足“稠密双编码段落检索器”这一目标。\",\"chunk_ids\":[\"55088e0ebf2a71a06e47\",\"d10b9356687865312440\",\"cfccf2338d4729715928\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2104.08663-BEIR.pdf\",\"reason\":\"该论文提出BEIR，一个用于信息检索模型零样本评测的异构基准，标题与摘要明确指向跨数据集零样本评测，并报告了稠密检索模型的分布外/零样本泛化结果，满足“跨域零样本检索评测基准”这一目标。\",\"chunk_ids\":[\"18d389f3d6d356f946e3\",\"a228351dcb63339fa43d\",\"2a1e61f41f090af6e1f4\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2203.02155-InstructGPT.pdf\",\"reason\":\"该论文使用基于人类反馈的强化学习（RLHF）微调GPT-3以遵循广泛书面指令，摘要片段描述了收集人类示范与人类偏好比较、训练奖励模型并用PPO优化，属于基于人类反馈训练指令跟随语言模型的原始工作，满足第三个目标。\",\"chunk_ids\":[\"2ef32c8950122575aa48\",\"661a1b0f6c08dc82627c\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793248127,
+  "id": "0217932481245660736cb0c996dcf6699b9adc2424c5dbca25af0",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 373,
+    "prompt_tokens": 4026,
+    "total_tokens": 4399,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

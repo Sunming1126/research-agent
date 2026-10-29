@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-81",
+    "papers": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "reason": "该论文以开放域问答为主要任务，提出并训练稠密双编码检索器（Dense Passage Retrieval），在Natural Questions开放设定上评估，并报告Top-5检索准确率及端到端QA准确率，属于原始方法论文而非将已有检索器当组件的生成模型或检索基准评测。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 4.188,
+  "target_real_model_calls": 2,
+  "total_tokens": 5231,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

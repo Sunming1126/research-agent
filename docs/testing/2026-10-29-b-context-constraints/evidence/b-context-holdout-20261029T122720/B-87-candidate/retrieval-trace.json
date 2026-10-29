@@ -1,0 +1,147 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "生成式阅读器中解码器融合分别编码的检索段落以回答开放域问题",
+      "methods": "独立编码检索段落、解码器端段落融合、生成式阅读器",
+      "focus": "原始方法论文，需有原文证据表明解码器融合分别编码的检索段落用于开放域问答",
+      "exclusions": [
+        "联合检索器-生成器学习",
+        "独立检索器",
+        "检索基准综述",
+        "仅背景提及段落融合"
+      ],
+      "variants": [
+        "passage fusion",
+        "generative reader",
+        "frozen retriever",
+        "separately encoded passages",
+        "decoder fusion",
+        "open-domain question answering"
+      ],
+      "subqueries": [
+        "decoder fuses separately encoded retrieved passages",
+        "generative reader passage fusion open-domain QA",
+        "frozen retriever decoder fusion question answering"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "components": [
+      {
+        "query": "decoder fuses separately encoded retrieved passages",
+        "filenames": [
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "generative reader passage fusion open-domain QA",
+        "filenames": [
+          "2004.04906-DPR.pdf",
+          "2007.01282-FiD.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      },
+      {
+        "query": "frozen retriever decoder fusion question answering",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf",
+          "2007.01282-FiD.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2004.04906-DPR.pdf": 0.06530936012691697,
+      "2007.01282-FiD.pdf": 0.08065355527016024,
+      "2112.04426-RETRO.pdf": 0.06402049075403121,
+      "2310.11511-Self-RAG.pdf": 0.047371031746031744,
+      "2104.08663-BEIR.pdf": 0.03076923076923077,
+      "2005.11401-RAG.pdf": 0.046176046176046176,
+      "2203.02155-InstructGPT.pdf": 0.029850746268656716
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.5485
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.6297
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.5787
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.4744
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.4997
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.3971
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.3451
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2007.01282-FiD.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "d7524c380366403f4fec45b479d2a77c1e5f68a0fbc2e136ac4217198c0374fa",
+  "raw_evidence_relative_path": "B-87-candidate/output/data/b_comparison/work/B-87/a0a0625590d6421fa04e7b58c4755a5c/evidence.json"
+}

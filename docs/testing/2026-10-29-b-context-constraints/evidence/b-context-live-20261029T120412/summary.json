@@ -1,0 +1,344 @@
+{
+  "results": [
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-61",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文的核心贡献正是训练一个稠密双编码器段落检索器用于开放域问答：摘要明确提出用双编码器架构、以问题-段落对训练稠密嵌入模型，并给出DPR在开放域Natural Questions上相对BM25和ORQA的检索与端到端QA提升；结论部分也总结稠密检索可替代开放域问答中的稀疏检索组件。符合“主要贡献为训练好的稠密双编码器段落检索器”的条件，且不属于检索增强生成器、下游阅读器或纯基准研究。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 6.688,
+      "target_real_model_calls": 2,
+      "total_tokens": 5801,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-61",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-61",
+        "papers": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "reason": "该论文的核心贡献正是训练一个稠密双编码器段落检索器用于开放域问答：摘要说明其最终方案是优化问题与相关段落向量的内积，用批内所有问题-段落对的目标训练，提出 Dense Passage Retriever (DPR)，并在开放域 Natural Questions 上显著优于 BM25 与 ORQA；结论部分也明确其贡献是证明稠密检索可替代开放域问答中的稀疏检索组件，并给出训练稠密检索器的关键要素。这直接满足“主要贡献为训练好的稠密双编码器段落检索器”的条件，且不属于检索增强生成器、下游阅读器或仅基准研究。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.094,
+      "target_real_model_calls": 2,
+      "total_tokens": 5811,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-61",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-62",
+        "papers": [
+          {
+            "filename": "2005.11401-RAG.pdf",
+            "reason": "该论文提出RAG，将参数化seq2seq生成模型（BART）与非参数化Wikipedia稠密向量索引结合，用预训练神经检索器（DPR）访问，并以端到端方式联合训练检索器与生成器，且无需对检索文档的直接监督。这正好对应题目要求的原始方法：参数化seq2seq记忆+非参数化Wikipedia记忆+联合训练神经检索器与生成器用于知识密集型生成。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 8.671,
+      "target_real_model_calls": 2,
+      "total_tokens": 6661,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-62",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-62",
+        "papers": [
+          {
+            "filename": "2005.11401-RAG.pdf",
+            "reason": "该论文提出检索增强生成（RAG）模型，将参数化记忆（预训练seq2seq transformer，BART）与非参数化记忆（Wikipedia稠密向量索引，经预训练神经检索器DPR访问）结合，并以端到端方式联合训练检索器与生成器，且无需对检索文档的直接监督。这正对应题目要求的原始方法：参数化seq2seq记忆+非参数化Wikipedia记忆+联合训练神经检索器与生成器用于知识密集型生成。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.5,
+      "target_real_model_calls": 2,
+      "total_tokens": 5456,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-62",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-63",
+        "papers": [
+          {
+            "filename": "2112.04426-RETRO.pdf",
+            "reason": "该论文明确提出使用冻结的预训练BERT检索器（frozen BERT retriever）从大规模数据库检索，并用分块交叉注意力（chunked cross-attention）将检索到的文本块整合进自回归语言模型训练，且检索在连续token块级别进行以支持万亿级token数据库，直接满足题目的全部关键条件。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.718,
+      "target_real_model_calls": 2,
+      "total_tokens": 6267,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-63",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-63",
+        "papers": [
+          {
+            "filename": "2112.04426-RETRO.pdf",
+            "reason": "该论文提出Retro，用冻结的BERT检索器从大规模数据库检索文本块，并通过分块交叉注意力机制将检索结果融入自回归语言模型训练，直接满足题目要求的全部关键条件。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 6.141,
+      "target_real_model_calls": 2,
+      "total_tokens": 5727,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-63",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-64",
+        "papers": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出通过生成反思标记（reflection tokens）实现按需检索与自我反思：摘要明确说明用检索标记和批评标记分别指示检索需求与生成质量，并在推理时动态决定何时检索；正文还给出基于 Retrieve 概率阈值的自适应检索机制。这同时满足“提出反思标记决定何时检索”和“评价检索片段与生成内容”的关键条件，且不属于固定检索或仅在相关工作提及反思机制。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.734,
+      "target_real_model_calls": 2,
+      "total_tokens": 4843,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-64",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-64",
+        "papers": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "reason": "该论文提出通过生成反思标记（reflection tokens）实现按需检索与自我反思：检索标记决定何时需要检索，批评标记评价生成质量；并给出基于检索标记概率阈值的自适应检索机制。这同时满足“提出反思标记决定何时检索”和“评价检索片段与生成内容”的关键条件，且属于本篇核心贡献而非背景提及。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.625,
+      "target_real_model_calls": 2,
+      "total_tokens": 4841,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-64",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-65",
+        "papers": [
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "reason": "该论文标题即表明其贡献是面向信息检索模型零样本评估的异构基准；摘要片段明确指出 BEIR 是首个广泛的零样本信息检索基准，并说明其覆盖多个领域与任务类型、包含 18 个数据集，且与仅聚焦单一任务或小规模语料的 MultiReQA、KILT 等已有工作形成对比。这直接满足“跨多领域多数据集的异构零样本检索评估基准”这一核心贡献条件，而非仅在多个 QA 数据集上做实验。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.578,
+      "target_real_model_calls": 2,
+      "total_tokens": 5685,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-65",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-65",
+        "papers": [
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "reason": "该论文明确将自身定位为面向异构检索任务的零样本评测基准：摘要片段指出 BEIR 是首个广泛的零样本信息检索基准，并说明现有工作未深入评估零样本检索、仅聚焦单一任务或小语料；另一片段说明其纳入来自 9 个异构检索任务的 18 个英文零样本评测数据集，并强调领域多样性（从新闻、维基百科到专业科学文献）。这些证据共同支持其核心贡献是跨多领域、多数据集的异构零样本检索评测基准，而非仅在多个 QA 数据集上做实验。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 7.297,
+      "target_real_model_calls": 2,
+      "total_tokens": 5834,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-65",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-66",
+        "papers": [
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "reason": "该论文的核心贡献正是题目所要求的：先用标注者撰写的人类示范数据对GPT-3做监督微调，再收集模型输出的人类偏好排序数据训练奖励模型，并用强化学习（PPO）优化输出，得到InstructGPT。摘要与第2页片段明确描述了这一完整流程，且以人类偏好评分为主要评价指标，属于原始提出该训练方式的论文，而非仅引用该方式的检索增强论文。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.938,
+      "target_real_model_calls": 2,
+      "total_tokens": 5563,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-66",
+      "variant": "candidate",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-66",
+        "papers": [
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "reason": "该论文以人类书写的示范数据训练监督学习基线，并收集人类对模型输出的偏好比较数据训练奖励模型，再用PPO强化学习以该奖励优化输出，直接满足“以人类示范和偏好比较数据训练指令跟随语言模型并通过强化学习优化输出”的核心条件；其贡献是RLHF对齐方法本身，而非检索增强。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 5.782,
+      "target_real_model_calls": 2,
+      "total_tokens": 5685,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-66",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    },
+    {
+      "status": "completed",
+      "answer": {
+        "case_id": "B-67",
+        "papers": [
+          {
+            "filename": "2007.01282-FiD.pdf",
+            "reason": "该文提出 Fusion-in-Decoder 生成式阅读器：编码器对每个检索到的段落连同问题独立编码，解码器再对所有段落表示做联合注意力以融合证据，且明确指出该做法可扩展到大量上下文。其检索器为外部 BM25，并非与阅读器联合学习，符合“独立段落编码+解码器融合+检索器不联合学习”的核心条件。"
+          }
+        ]
+      },
+      "disk_matches": true,
+      "seconds": 6.422,
+      "target_real_model_calls": 2,
+      "total_tokens": 6001,
+      "quota_exhausted": false,
+      "model": "deepseek-v4.1-flash",
+      "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance",
+      "case_id": "B-67",
+      "variant": "baseline",
+      "hits": 1,
+      "missed": [],
+      "false_positives": [],
+      "expected": 1,
+      "exact": true
+    }
+  ],
+  "complete": false,
+  "image_acceptance": false
+}

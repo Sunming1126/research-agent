@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"异构零样本检索评测基准（跨多领域、多数据集的 benchmark 论文）\", \"methods\": \"heterogeneous zero-shot retrieval evaluation benchmark\", \"focus\": \"识别主要贡献为跨多领域多数据集异构零样本检索评测基准的单篇论文，而非仅在多个 QA 数据集上报告实验的论文\", \"exclusions\": [\"仅在多个 QA 数据集上报告实验\", \"新训练方法为主要贡献\", \"非评测基准贡献\"], \"variants\": [\"heterogeneous zero-shot retrieval benchmark\", \"zero-shot retrieval evaluation benchmark\", \"multi-domain retrieval benchmark\", \"multi-dataset retrieval evaluation\", \"BEIR benchmark\", \"zero-shot IR evaluation\"], \"subqueries\": [\"heterogeneous zero-shot retrieval evaluation benchmark\", \"multi-domain multi-dataset retrieval benchmark paper\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246713,
+  "id": "021793246711759b47388b0cda4b4b6277f5a29d88197f07b1055",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 165,
+    "prompt_tokens": 494,
+    "total_tokens": 659,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

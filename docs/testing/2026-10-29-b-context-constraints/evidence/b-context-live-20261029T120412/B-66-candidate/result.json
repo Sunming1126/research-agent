@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-66",
+    "papers": [
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "reason": "该论文的核心贡献正是题目所要求的：先用标注者撰写的人类示范数据对GPT-3做监督微调，再收集模型输出的人类偏好排序数据训练奖励模型，并用强化学习（PPO）优化输出，得到InstructGPT。摘要与第2页片段明确描述了这一完整流程，且以人类偏好评分为主要评价指标，属于原始提出该训练方式的论文，而非仅引用该方式的检索增强论文。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 5.938,
+  "target_real_model_calls": 2,
+  "total_tokens": 5563,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

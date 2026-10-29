@@ -1,0 +1,145 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "以开放域问答为主要任务、训练稠密双编码检索器的原始方法论文",
+      "methods": "稠密双编码器检索器训练",
+      "focus": "在 Natural Questions 和 TriviaQA 上评估的原始检索方法",
+      "exclusions": [
+        "仅将已有检索器当组件的生成模型",
+        "检索基准评测论文"
+      ],
+      "variants": [
+        "dense dual-encoder retriever",
+        "open-domain question answering",
+        "dense passage retrieval",
+        "dual-encoder retrieval training",
+        "Natural Questions",
+        "TriviaQA"
+      ],
+      "subqueries": [
+        "dense dual-encoder retriever open-domain QA",
+        "dense passage retrieval Natural Questions TriviaQA",
+        "original dense retriever training method"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2112.04426-RETRO.pdf"
+    ],
+    "original": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "components": [
+      {
+        "query": "dense dual-encoder retriever open-domain QA",
+        "filenames": [
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2104.08663-BEIR.pdf"
+        ]
+      },
+      {
+        "query": "dense passage retrieval Natural Questions TriviaQA",
+        "filenames": [
+          "2004.04906-DPR.pdf",
+          "2104.08663-BEIR.pdf",
+          "2007.01282-FiD.pdf"
+        ]
+      },
+      {
+        "query": "original dense retriever training method",
+        "filenames": [
+          "2004.04906-DPR.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2004.04906-DPR.pdf": 0.0819672131147541,
+      "2104.08663-BEIR.pdf": 0.0637560803891449,
+      "2005.11401-RAG.pdf": 0.04787506400409626,
+      "2007.01282-FiD.pdf": 0.04762704813108039,
+      "2310.11511-Self-RAG.pdf": 0.04666516279419505,
+      "2203.02155-InstructGPT.pdf": 0.03007688828584351,
+      "2112.04426-RETRO.pdf": 0.04618300439195962
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.8022
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.7007
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.6368
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.5779
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.5152
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.4834
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.3496
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2004.04906-DPR.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "ca27a2602016aacfafa12ed985fdd69a4b554400daefe8f8b2d64f0d83380173",
+  "raw_evidence_relative_path": "B-81-baseline/output/data/b_comparison/work/B-81/14338793b15147b8acfb84ad2f38d811/evidence.json"
+}

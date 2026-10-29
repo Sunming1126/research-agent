@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-88",
+    "papers": [
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "reason": "该论文使用基于人类反馈的强化学习（RLHF）微调GPT-3以遵循广泛书面指令，摘要片段描述了收集人类示范与人类偏好比较、训练奖励模型并用PPO优化，属于基于人类反馈训练指令跟随语言模型的原始工作，满足第三个目标。"
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "reason": "该论文提出稠密段落检索器（Dense Passage Retriever, DPR），使用双编码器架构，以问题和段落的稠密向量内积进行检索，并报告了段落检索准确率实验，直接满足“稠密双编码段落检索器”这一目标。"
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "reason": "该论文提出BEIR，一个用于信息检索模型零样本评测的异构基准，标题与摘要明确指向跨数据集零样本评测，并报告了稠密检索模型的分布外/零样本泛化结果，满足“跨域零样本检索评测基准”这一目标。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 5.906,
+  "target_real_model_calls": 2,
+  "total_tokens": 5126,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

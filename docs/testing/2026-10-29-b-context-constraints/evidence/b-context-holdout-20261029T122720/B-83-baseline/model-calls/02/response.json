@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"该论文提出 SELF-RAG 框架，通过让语言模型生成特殊反思标记（reflection tokens）来决定是否需要检索，并用反思标记评价检索片段的相关性、生成内容是否被片段支持以及整体完整性，属于以自我反思机制控制按需检索并评价检索片段与生成内容的原始方法论文，符合题目要求。\",\"chunk_ids\":[\"3cb8f602c01a41045cde\",\"96fb697d063ee874e59d\",\"993cacf2b2ae618b6828\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793248066,
+  "id": "021793248065140841fc2298faf73f2fc5d524f9c961e71f60733",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 144,
+    "prompt_tokens": 4817,
+    "total_tokens": 4961,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

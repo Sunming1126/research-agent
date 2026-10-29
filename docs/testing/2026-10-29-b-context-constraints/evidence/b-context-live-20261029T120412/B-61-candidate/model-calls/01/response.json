@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"trained dense dual-encoder passage retriever for open-domain question answering\", \"methods\": \"dense dual-encoder retrieval, passage retrieval training\", \"focus\": \"original paper whose primary contribution is a trained dense dual-encoder passage retriever for open-domain QA\", \"exclusions\": [\"retrieval-augmented generators\", \"downstream readers\", \"benchmark-only studies\"], \"variants\": [\"dense dual-encoder retriever\", \"dense passage retrieval\", \"dual-encoder passage retriever\", \"open-domain question answering retrieval\", \"trained dense retriever\", \"bi-encoder passage retrieval\"], \"subqueries\": []}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246664,
+  "id": "0217932466636201cb6d3ad1bdd7a7436196dd041d7fa4283a24c",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 142,
+    "prompt_tokens": 497,
+    "total_tokens": 639,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

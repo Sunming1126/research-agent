@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"按需检索与反思机制：模型自行决定何时检索，并评价检索片段与生成内容\", \"methods\": \"反思标记、按需检索决策、检索片段评价、生成内容评价\", \"focus\": \"识别提出反思标记以决定何时检索并评价检索片段与生成内容的论文，排除始终固定检索及仅在相关工作提及反思机制的论文\", \"exclusions\": [\"始终固定检索\", \"只在相关工作提及反思机制\", \"仅背景提及反思机制\"], \"variants\": [\"reflection tokens\", \"adaptive retrieval\", \"on-demand retrieval\", \"retrieval critique\", \"self-reflection retrieval\", \"Self-RAG\"], \"subqueries\": [\"reflection tokens decide when to retrieve\", \"adaptive retrieval with self-reflection\", \"critique retrieved passages and generation\", \"on-demand retrieval decision model\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246706,
+  "id": "02179324670535909b5057e6c5823bee4bfc995e78b34ae8edafc",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 172,
+    "prompt_tokens": 492,
+    "total_tokens": 664,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

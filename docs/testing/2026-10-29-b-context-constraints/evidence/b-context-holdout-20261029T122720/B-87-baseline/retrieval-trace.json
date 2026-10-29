@@ -1,0 +1,156 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "Decoder fuses separately encoded retrieved passages for open-domain question answering",
+      "methods": "generative reader with passage fusion over independently encoded retrieved passages",
+      "focus": "original methods where a decoder fuses separately encoded retrieved passages to answer open-domain questions",
+      "exclusions": [
+        "joint retriever-generator learning",
+        "standalone retrievers",
+        "retrieval benchmark surveys",
+        "background-only mentions of passage fusion"
+      ],
+      "variants": [
+        "passage fusion",
+        "generative reader",
+        "separately encoded passages",
+        "open-domain question answering",
+        "decoder fusion",
+        "retrieved passage fusion"
+      ],
+      "subqueries": [
+        "decoder fuses separately encoded retrieved passages",
+        "generative reader passage fusion open-domain QA",
+        "fusion-in-decoder retrieved passages",
+        "independent passage encoding decoder fusion"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "components": [
+      {
+        "query": "decoder fuses separately encoded retrieved passages",
+        "filenames": [
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "generative reader passage fusion open-domain QA",
+        "filenames": [
+          "2004.04906-DPR.pdf",
+          "2007.01282-FiD.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      },
+      {
+        "query": "fusion-in-decoder retrieved passages",
+        "filenames": [
+          "2007.01282-FiD.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      },
+      {
+        "query": "independent passage encoding decoder fusion",
+        "filenames": [
+          "2007.01282-FiD.pdf",
+          "2004.04906-DPR.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2004.04906-DPR.pdf": 0.08118237599993285,
+      "2007.01282-FiD.pdf": 0.09756742464304602,
+      "2310.11511-Self-RAG.pdf": 0.079621095750128,
+      "2005.11401-RAG.pdf": 0.04688263125763126,
+      "2112.04426-RETRO.pdf": 0.04666516279419505,
+      "2104.08663-BEIR.pdf": 0.030776515151515152,
+      "2203.02155-InstructGPT.pdf": 0.029850746268656716
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.6781
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.6281
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.6581
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.499
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.5168
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.3984
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.3461
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2007.01282-FiD.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "9cb0727fec8f1c5110a123b8fd6ec0f54d78c9fefbd70b4b88ed0d3231084421",
+  "raw_evidence_relative_path": "B-87-baseline/output/data/b_comparison/work/B-87/12b41c42c7d247b79d56dde7e4c248ac/evidence.json"
+}

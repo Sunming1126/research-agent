@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"生成式阅读器分别编码检索段落并在解码器中融合\", \"methods\": \"独立段落编码、解码器融合、非联合训练的检索器\", \"focus\": \"识别提出该生成式阅读器架构的论文，且检索器不参与联合学习\", \"exclusions\": [\"standalone retrieval\", \"reflection-token control\", \"retrieval benchmarks\"], \"variants\": [\"generative reader\", \"independent passage encoding\", \"separate passage encoder\", \"decoder fusion\", \"frozen retriever\", \"non-jointly learned retriever\"], \"subqueries\": [\"generative reader separate passage encoding\", \"fuse encoded passages in decoder\", \"reader with frozen retriever\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793247855,
+  "id": "021793247853496f03de131648b6a84481dc8a11850669ddd6ee2",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 152,
+    "prompt_tokens": 504,
+    "total_tokens": 656,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

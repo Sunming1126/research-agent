@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文的核心贡献正是训练一个稠密双编码器段落检索器用于开放域问答：摘要明确提出用双编码器架构、以问题-段落对训练稠密嵌入模型，并给出DPR在开放域Natural Questions上相对BM25和ORQA的检索与端到端QA提升；结论部分也总结稠密检索可替代开放域问答中的稀疏检索组件。符合“主要贡献为训练好的稠密双编码器段落检索器”的条件，且不属于检索增强生成器、下游阅读器或纯基准研究。\",\"chunk_ids\":[\"55088e0ebf2a71a06e47\",\"05fdf62399b01ab9cf43\",\"3ccd81c82b95403c63da\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246661,
+  "id": "0217932466595521fa1229209a334fb8c06440209bf10303de41f",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 188,
+    "prompt_tokens": 4974,
+    "total_tokens": 5162,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

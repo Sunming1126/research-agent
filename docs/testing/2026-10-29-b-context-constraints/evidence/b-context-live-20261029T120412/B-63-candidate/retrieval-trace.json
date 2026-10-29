@@ -1,0 +1,147 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "使用冻结的 BERT 检索器与分块交叉注意力，将自回归语言模型训练条件化于超大规模最近邻文本数据库的原始论文",
+      "methods": "frozen BERT retriever, chunked cross-attention, autoregressive language-model training, very large nearest-neighbor text database",
+      "focus": "定位提出该组合方法的原始论文，而非仅背景提及",
+      "exclusions": [
+        "仅背景提及该方法的论文",
+        "未使用冻结 BERT 检索器的检索增强方法",
+        "未采用分块交叉注意力的方法",
+        "非自回归语言模型训练场景"
+      ],
+      "variants": [
+        "frozen BERT retriever",
+        "chunked cross-attention",
+        "retrieval-enhanced autoregressive language model",
+        "nearest-neighbor text database",
+        "retrieval-augmented language model pretraining",
+        "large-scale retrieval database"
+      ],
+      "subqueries": [
+        "frozen BERT retriever chunked cross-attention",
+        "autoregressive language model nearest-neighbor retrieval database",
+        "retrieval-enhanced pretraining trillion token database"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "original": [
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "components": [
+      {
+        "query": "frozen BERT retriever chunked cross-attention",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2104.08663-BEIR.pdf",
+          "2007.01282-FiD.pdf"
+        ]
+      },
+      {
+        "query": "autoregressive language model nearest-neighbor retrieval database",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2007.01282-FiD.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      },
+      {
+        "query": "retrieval-enhanced pretraining trillion token database",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2112.04426-RETRO.pdf": 0.0819672131147541,
+      "2004.04906-DPR.pdf": 0.048131080389144903,
+      "2310.11511-Self-RAG.pdf": 0.04713064713064713,
+      "2104.08663-BEIR.pdf": 0.04690554740957967,
+      "2203.02155-InstructGPT.pdf": 0.0471386476426799,
+      "2007.01282-FiD.pdf": 0.06302657915561141,
+      "2005.11401-RAG.pdf": 0.029850746268656716
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.906
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.5195
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.4853
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.4037
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.3951
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.4804
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3839
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2112.04426-RETRO.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "2c9cce2ffa4a8aed9e27f58fb3f707a5b661ec5595585d8a796dd07481ffba71",
+  "raw_evidence_relative_path": "B-63-candidate/output/data/b_comparison/work/B-63/854b889024ea4de6bc315ef74c739e03/evidence.json"
+}

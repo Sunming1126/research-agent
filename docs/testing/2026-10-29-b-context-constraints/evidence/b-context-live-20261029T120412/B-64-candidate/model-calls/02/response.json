@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"该论文提出通过生成反思标记（reflection tokens）实现按需检索与自我反思：摘要明确说明用检索标记和批评标记分别指示检索需求与生成质量，并在推理时动态决定何时检索；正文还给出基于 Retrieve 概率阈值的自适应检索机制。这同时满足“提出反思标记决定何时检索”和“评价检索片段与生成内容”的关键条件，且不属于固定检索或仅在相关工作提及反思机制。\",\"chunk_ids\":[\"1fa0596a2bb63bd8428d\",\"993cacf2b2ae618b6828\",\"2928a5b3c0c5bc47ad39\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246702,
+  "id": "02179324670149241f89ff67558dec75454d97963e9341b8a031b",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 170,
+    "prompt_tokens": 4024,
+    "total_tokens": 4194,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

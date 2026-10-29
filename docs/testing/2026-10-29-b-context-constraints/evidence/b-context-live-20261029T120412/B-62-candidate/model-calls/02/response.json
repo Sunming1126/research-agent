@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2005.11401-RAG.pdf\",\"reason\":\"该论文提出RAG，将参数化seq2seq生成模型（BART）与非参数化Wikipedia稠密向量索引结合，用预训练神经检索器（DPR）访问，并以端到端方式联合训练检索器与生成器，且无需对检索文档的直接监督。这正好对应题目要求的原始方法：参数化seq2seq记忆+非参数化Wikipedia记忆+联合训练神经检索器与生成器用于知识密集型生成。\",\"chunk_ids\":[\"c756a51d51f0008a43af\",\"acdc076659aa221b40ac\",\"d08ea9032827ce606dad\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"该论文核心是SELF-RAG，通过反思token让LM自适应检索并评估检索段落，属于对检索增强生成的改进框架；其片段仅将联合训练检索与LM列为未来工作，并未提出题目所要求的联合训练神经检索器与生成器的原始方法，因此不满足关键条件。\",\"chunk_ids\":[\"bc704d1819d4f998ac9e\",\"29a8701a5b194178f89d\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文提出稠密段落检索器DPR，聚焦于检索模块本身，片段中仅提及DPR可与其他生成模型结合，并未提出参数化seq2seq与非参数化Wikipedia记忆联合训练检索器与生成器的方法，属于固定检索器读者方向，不满足题目核心条件。\",\"chunk_ids\":[\"d10b9356687865312440\",\"dca69d52a825a92fcaaf\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2112.04426-RETRO.pdf\",\"reason\":\"该论文提出Retro，使用冻结的BERT检索器与分块交叉注意力，在文档块上条件化自回归语言模型，属于分块检索语言模型预训练方向，且检索器为冻结的，不符合题目要求的联合训练神经检索器与生成器，也不符合排除条件之外的原始方法。\",\"chunk_ids\":[\"15563cf21f9afc474ee7\",\"065ec77610a3a952cdef\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2007.01282-FiD.pdf\",\"reason\":\"该论文提出Fusion-in-Decoder，聚焦于对多段落联合编码以提升开放域QA，片段未显示其联合训练神经检索器与生成器，也未提出参数化seq2seq与非参数化Wikipedia记忆的联合训练方法，不满足题目核心条件。\",\"chunk_ids\":[\"9a0c9c16374a4d2c489f\",\"60e16a14cbabc79a490c\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2104.08663-BEIR.pdf\",\"reason\":\"该论文是检索基准与稠密检索模型综述/评测，核心是信息检索评测，不涉及参数化seq2seq与非参数化Wikipedia记忆的联合训练生成方法，不满足题目核心条件。\",\"chunk_ids\":[\"a228351dcb63339fa43d\",\"2401a458d75cb59dd1dc\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2203.02155-InstructGPT.pdf\",\"reason\":\"该论文聚焦于指令微调与基于人类反馈的强化学习，与参数化/非参数化记忆联合训练检索器与生成器无关，不满足题目核心条件。\",\"chunk_ids\":[\"3d94eb9c742d18cc80c9\",\"97cbc71196681a4d36c4\"],\"relevant\":false,\"decision\":\"exclude\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793246676,
+  "id": "021793246672305d80e86c43f25c545aaf1644cd986b2f35fe9bb",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 831,
+    "prompt_tokens": 5142,
+    "total_tokens": 5973,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

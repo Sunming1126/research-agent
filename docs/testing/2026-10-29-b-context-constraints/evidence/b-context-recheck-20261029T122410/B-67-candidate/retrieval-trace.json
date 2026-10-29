@@ -1,0 +1,118 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "生成式阅读器分别编码检索段落并在解码器中融合",
+      "methods": "独立段落编码、解码器融合、非联合训练的检索器",
+      "focus": "识别提出该生成式阅读器架构的论文",
+      "exclusions": [
+        "standalone retrieval",
+        "reflection-token control",
+        "retrieval benchmarks",
+        "jointly learned retriever"
+      ],
+      "variants": [
+        "generative reader",
+        "independent passage encoding",
+        "separate passage encoder",
+        "decoder fusion",
+        "frozen retriever",
+        "non-jointly learned retriever"
+      ],
+      "subqueries": []
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "components": [],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2004.04906-DPR.pdf": 0.032266458495966696,
+      "2112.04426-RETRO.pdf": 0.03225806451612903,
+      "2007.01282-FiD.pdf": 0.032266458495966696,
+      "2005.11401-RAG.pdf": 0.031009615384615385,
+      "2104.08663-BEIR.pdf": 0.030536130536130537,
+      "2310.11511-Self-RAG.pdf": 0.030776515151515152,
+      "2203.02155-InstructGPT.pdf": 0.029850746268656716
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.4382
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.4293
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.4346
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3811
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.4242
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.373
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.363
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2007.01282-FiD.pdf"
+    ],
+    "requested_limit": 1,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "query_plan_status": "model",
+  "raw_evidence_sha256": "f719e9e22328b7b1d5f5037ebdbe93ac778a6a146ccccc7663bb7bed6d16b38d",
+  "raw_evidence_relative_path": "B-67-candidate/output/data/b_comparison/work/B-67/c225ac74874845e697f8057ec42b17ad/evidence.json"
+}
