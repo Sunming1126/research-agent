@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-42",
+    "papers": [
+      {
+        "filename": "2512.23188.pdf",
+        "reason": "该篇正文第8页明确定义了组间差异，原文为“Group disparity refers to the maximum difference between the proportions of infected individuals or between socialization levels or between vaccination levels in two different groups over time under the same policies.”，与检索短语“group disparity refers to the maximum difference”在允许大小写及排版差异下构成连续原文匹配，且位于正文而非参考文献。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 18.016,
+  "target_real_model_calls": 3,
+  "total_tokens": 8628,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

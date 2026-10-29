@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2512.23317.pdf\",\"reason\":\"该篇正文第8页的Remark 1中出现了与检索短语几乎完全一致的连续原文“condition (7) is trivial if the second equality is replaced by ≥”，仅存在换行与后续词语的排版差异，属于本篇正文（非参考文献）中的原文表述，满足连续短语检索条件。\",\"chunk_ids\":[\"beb6a19b67b48e1f3f1e\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253440,
+  "id": "021793253439738593075d5bfc3e0cbf107ff469a4d1c91ff1636",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 114,
+    "prompt_tokens": 5476,
+    "total_tokens": 5590,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

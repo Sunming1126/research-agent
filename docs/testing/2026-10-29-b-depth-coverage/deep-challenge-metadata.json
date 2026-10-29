@@ -1,0 +1,178 @@
+{
+  "version": 2,
+  "initial_page_limit": 4,
+  "cases": [
+    {
+      "filename": "2512.24768.pdf",
+      "page": 8,
+      "phrase": "but the critic subproblem is more involved",
+      "source_chunk_id": "c8bedf4036d1f942a34b",
+      "distinctive_terms": [
+        "subproblem"
+      ],
+      "expected_filenames": [
+        "2512.24768.pdf"
+      ],
+      "case_id": "B-41",
+      "split": "development"
+    },
+    {
+      "filename": "2512.23188.pdf",
+      "page": 8,
+      "phrase": "group disparity refers to the maximum difference",
+      "source_chunk_id": "379418b52649cb83276e",
+      "distinctive_terms": [
+        "disparity"
+      ],
+      "expected_filenames": [
+        "2512.23188.pdf"
+      ],
+      "case_id": "B-42",
+      "split": "heldout"
+    },
+    {
+      "filename": "2312.10997.pdf",
+      "page": 8,
+      "phrase": "proposed the concept of using propositions as",
+      "source_chunk_id": "0ec1f0f8ce346771634f",
+      "distinctive_terms": [
+        "propositions"
+      ],
+      "expected_filenames": [
+        "2312.10997.pdf"
+      ],
+      "case_id": "B-43",
+      "split": "development"
+    },
+    {
+      "filename": "2511.12805.pdf",
+      "page": 8,
+      "phrase": "and the sid implemented in the cran",
+      "source_chunk_id": "b11e7dcb47fc1ac1832b",
+      "distinctive_terms": [
+        "cran"
+      ],
+      "expected_filenames": [
+        "2511.12805.pdf"
+      ],
+      "case_id": "B-44",
+      "split": "heldout"
+    },
+    {
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 8,
+      "phrase": "tasks and even outperforms chatgpt in pubhealth",
+      "source_chunk_id": "4051243e5ce61debd7f2",
+      "distinctive_terms": [
+        "pubhealth"
+      ],
+      "expected_filenames": [
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "case_id": "B-45",
+      "split": "development"
+    },
+    {
+      "filename": "2512.20368.pdf",
+      "page": 8,
+      "phrase": "all expectations are taken with respect to",
+      "source_chunk_id": "4aff05776a36aa057790",
+      "distinctive_terms": [
+        "expectations"
+      ],
+      "expected_filenames": [
+        "2512.20368.pdf"
+      ],
+      "case_id": "B-46",
+      "split": "heldout"
+    },
+    {
+      "filename": "2511.18883.pdf",
+      "page": 8,
+      "phrase": "draw conclusions about the range of realizable",
+      "source_chunk_id": "da756cf4984843f000a8",
+      "distinctive_terms": [
+        "realizable"
+      ],
+      "expected_filenames": [
+        "2511.18883.pdf"
+      ],
+      "case_id": "B-47",
+      "split": "development"
+    },
+    {
+      "filename": "2512.24605.pdf",
+      "page": 8,
+      "phrase": "unique multiple overall method venue sensor type",
+      "source_chunk_id": "c3c142aaa53aa3af2505",
+      "distinctive_terms": [
+        "venue"
+      ],
+      "expected_filenames": [
+        "2512.24605.pdf"
+      ],
+      "case_id": "B-48",
+      "split": "heldout"
+    },
+    {
+      "filename": "2512.24861.pdf",
+      "page": 8,
+      "phrase": "of the hong kong special administrative region",
+      "source_chunk_id": "2f1462ea2e6fcd9b4d8e",
+      "distinctive_terms": [
+        "administrative"
+      ],
+      "expected_filenames": [
+        "2512.24861.pdf"
+      ],
+      "case_id": "B-49",
+      "split": "development"
+    },
+    {
+      "filename": "2512.23317.pdf",
+      "page": 8,
+      "phrase": "is trivial if the second equality is",
+      "source_chunk_id": "beb6a19b67b48e1f3f1e",
+      "distinctive_terms": [
+        "equality"
+      ],
+      "expected_filenames": [
+        "2512.23317.pdf"
+      ],
+      "case_id": "B-50",
+      "split": "heldout"
+    },
+    {
+      "filename": "2203.02155-InstructGPT.pdf",
+      "page": 8,
+      "phrase": "we asked labelers prioritize truthfulness and harmlessness",
+      "source_chunk_id": "e5af88448a615b587cd6",
+      "distinctive_terms": [
+        "harmlessness"
+      ],
+      "expected_filenames": [
+        "2203.02155-InstructGPT.pdf"
+      ],
+      "case_id": "B-51",
+      "split": "development"
+    },
+    {
+      "filename": "2512.20051.pdf",
+      "page": 8,
+      "phrase": "training can be far cheaper than supervised",
+      "source_chunk_id": "a37f6ee672581b8845fe",
+      "distinctive_terms": [
+        "cheaper"
+      ],
+      "expected_filenames": [
+        "2512.20051.pdf"
+      ],
+      "case_id": "B-52",
+      "split": "heldout"
+    }
+  ],
+  "corpus_sha256": "c7619c8941e0bc04bd46928c6b824ba6a7ba0d263ffd1aa81ab54ad8309d6c46",
+  "kind": "constructed continuous-prose late-page lexical diagnostic, not random semantic tasks or official gold",
+  "label_policy": "NFKC and line-wrap normalization, literal contiguous words, no dense citation blocks, unique full-corpus phrase, absent prefixes; split before v2 measurements",
+  "v1_status": "Not a primary benchmark: audit found ligature loss, removed numeric columns and bibliography positives. Preserve v1 artifacts; no production parameters changed based on v1 results."
+}

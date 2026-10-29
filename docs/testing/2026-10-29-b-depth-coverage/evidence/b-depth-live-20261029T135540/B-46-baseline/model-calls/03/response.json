@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253403,
+  "id": "0217932534025519714750b4c92df19b7d86c8470c87ebffe96e6",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 6,
+    "prompt_tokens": 3459,
+    "total_tokens": 3465,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "用自我反思机制决定何时检索，并通过反思标记评价检索片段及生成内容的原始方法论文",
+      "methods": "自我反思机制、按需检索、反思标记评价检索片段与生成内容",
+      "focus": "识别提出自我反思控制检索的原始方法论文，排除固定检索流程及仅相关工作提及自我反思的方案",
+      "exclusions": [
+        "固定检索流程",
+        "没有反思控制的检索方案",
+        "仅在相关工作提及自我反思"
+      ],
+      "variants": [
+        "self-reflection",
+        "retrieval on demand",
+        "reflection tokens",
+        "self-reflective retrieval",
+        "adaptive retrieval",
+        "Self-RAG"
+      ],
+      "subqueries": [
+        "self-reflection mechanism decide when to retrieve",
+        "reflection tokens evaluate retrieved passages",
+        "reflection tokens evaluate generated content",
+        "original self-reflective retrieval method paper"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2310.11511-Self-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "components": [
+      {
+        "query": "self-reflection mechanism decide when to retrieve",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2005.11401-RAG.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      },
+      {
+        "query": "reflection tokens evaluate retrieved passages",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf",
+          "2007.01282-FiD.pdf"
+        ]
+      },
+      {
+        "query": "reflection tokens evaluate generated content",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      },
+      {
+        "query": "original self-reflective retrieval method paper",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2104.08663-BEIR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2310.11511-Self-RAG.pdf": 0.09836065573770493,
+      "2004.04906-DPR.pdf": 0.03200204813108039,
+      "2112.04426-RETRO.pdf": 0.08013312852022529,
+      "2005.11401-RAG.pdf": 0.06325204813108039,
+      "2007.01282-FiD.pdf": 0.06277127890031116,
+      "2104.08663-BEIR.pdf": 0.046176046176046176,
+      "2203.02155-InstructGPT.pdf": 0.029850746268656716
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 149,
+      "documents_opened": 7,
+      "authorized_documents": 7,
+      "initial_page_limit": 8,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2005.11401-RAG.pdf": [
+          9,
+          18
+        ],
+        "2104.08663-BEIR.pdf": [
+          9
+        ],
+        "2112.04426-RETRO.pdf": [
+          9,
+          13
+        ],
+        "2203.02155-InstructGPT.pdf": [
+          9,
+          10
+        ],
+        "2310.11511-Self-RAG.pdf": [
+          9,
+          10
+        ]
+      },
+      "coverage_limited": false,
+      "unread_pages_in_opened_documents": 149,
+      "scanned_pages_by_document": {
+        "2005.11401-RAG.pdf": 11,
+        "2104.08663-BEIR.pdf": 16,
+        "2004.04906-DPR.pdf": 5,
+        "2112.04426-RETRO.pdf": 35,
+        "2007.01282-FiD.pdf": 0,
+        "2203.02155-InstructGPT.pdf": 60,
+        "2310.11511-Self-RAG.pdf": 22
+      },
+      "sampling_limited_documents": [],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "elapsed_seconds": 0.547,
+      "documents_unopened": 0
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2004.04906-DPR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.7051
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.5388
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.4768
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.5344
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.4651
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.3241
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.2042
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "accepted_evidence": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "chunk_id": "16856bb91c83a4ada58d",
+        "page": 4,
+        "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978",
+        "chunk_sha256": "16856bb91c83a4ada58d26ae14a16e908c4c4ba43ac1f2141466ec8c341ff1f2"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "chunk_id": "3cb8f602c01a41045cde",
+        "page": 3,
+        "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978",
+        "chunk_sha256": "3cb8f602c01a41045cde2d741a67923c2d0fd26b20cfc032dc38d2e527978f26"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "chunk_id": "96fb697d063ee874e59d",
+        "page": 4,
+        "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978",
+        "chunk_sha256": "96fb697d063ee874e59d6bec10e061e96c12f02eb8f4044835416d043c9b15f1"
+      }
+    ],
+    "fulltext_candidates": [
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "raw_evidence_sha256": "e910262676d14ac78a70cf9f1725555e14f31ff7bfcac94d6dfe31f14fd867f6",
+  "source_chunk_count": 3
+}

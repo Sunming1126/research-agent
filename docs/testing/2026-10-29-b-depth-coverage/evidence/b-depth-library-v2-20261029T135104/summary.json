@@ -1,0 +1,14 @@
+{
+  "stages": [
+    {
+      "script": "freeze_depth_challenge_v2_20261029.py",
+      "returncode": 0
+    },
+    {
+      "script": "benchmark_depth_retrieval_v2_20261029.py",
+      "returncode": 0
+    }
+  ],
+  "target_real_model_calls": 0,
+  "complete": true
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="5" time="0.669" timestamp="2026-10-29T13:39:59.976133+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="tests.test_deep_probe_counterexamples" name="test_late_condition_reaches_reader_before_candidate_expansion[5]" time="0.076"><failure message="AssertionError: assert [] == ['neutral.pdf']&#10;  &#10;  Right contains one more item: 'neutral.pdf'&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-regression-20261029T133958/baseline-counterexamples/temp/test_late_condition_reaches_re0')
+target = 5
+
+    @pytest.mark.parametrize('target', [5, 9, 13])
+    def test_late_condition_reaches_reader_before_candidate_expansion(tmp_path, target):
+        papers = tmp_path / 'papers'
+        make_pdf(papers / 'neutral.pdf', 14, target)
+        index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[papers]), tmp_path / 'cache')
+        index.parser.extract_tables = False
+        prefix = index.build(['neutral.pdf'], page_limit=2, tolerate_pdf_errors=True)
+        original_materials, original_chunks = index.materials, index.chunks
+        handler = TaskHandlers(Reader(['xenocalibration', 'isotopeperturbation']), 'fixture')
+        handler.document_expander = index.expand_documents
+        probe = getattr(index, 'probe_deep_pages', None)
+        if callable(probe):
+            handler.document_probe = lambda queries: probe(queries, 2)
+        text = 'xenocalibration isotopeperturbation'
+        task = SimpleNamespace(case_id='B-91', input=text, to_dict=lambda: {'input': text})
+        answer = handler.retrieval(task, HybridRetriever(prefix), QueryPlan(text))
+&gt;       assert [p['filename'] for p in answer['papers']] == ['neutral.pdf']
+E       AssertionError: assert [] == ['neutral.pdf']
+E         
+E         Right contains one more item: 'neutral.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py:42: AssertionError</failure></testcase><testcase classname="tests.test_deep_probe_counterexamples" name="test_late_condition_reaches_reader_before_candidate_expansion[9]" time="0.046"><failure message="AssertionError: assert [] == ['neutral.pdf']&#10;  &#10;  Right contains one more item: 'neutral.pdf'&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-regression-20261029T133958/baseline-counterexamples/temp/test_late_condition_reaches_re1')
+target = 9
+
+    @pytest.mark.parametrize('target', [5, 9, 13])
+    def test_late_condition_reaches_reader_before_candidate_expansion(tmp_path, target):
+        papers = tmp_path / 'papers'
+        make_pdf(papers / 'neutral.pdf', 14, target)
+        index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[papers]), tmp_path / 'cache')
+        index.parser.extract_tables = False
+        prefix = index.build(['neutral.pdf'], page_limit=2, tolerate_pdf_errors=True)
+        original_materials, original_chunks = index.materials, index.chunks
+        handler = TaskHandlers(Reader(['xenocalibration', 'isotopeperturbation']), 'fixture')
+        handler.document_expander = index.expand_documents
+        probe = getattr(index, 'probe_deep_pages', None)
+        if callable(probe):
+            handler.document_probe = lambda queries: probe(queries, 2)
+        text = 'xenocalibration isotopeperturbation'
+        task = SimpleNamespace(case_id='B-91', input=text, to_dict=lambda: {'input': text})
+        answer = handler.retrieval(task, HybridRetriever(prefix), QueryPlan(text))
+&gt;       assert [p['filename'] for p in answer['papers']] == ['neutral.pdf']
+E       AssertionError: assert [] == ['neutral.pdf']
+E         
+E         Right contains one more item: 'neutral.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py:42: AssertionError</failure></testcase><testcase classname="tests.test_deep_probe_counterexamples" name="test_late_condition_reaches_reader_before_candidate_expansion[13]" time="0.052"><failure message="AssertionError: assert [] == ['neutral.pdf']&#10;  &#10;  Right contains one more item: 'neutral.pdf'&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-depth-regression-20261029T133958/baseline-counterexamples/temp/test_late_condition_reaches_re2')
+target = 13
+
+    @pytest.mark.parametrize('target', [5, 9, 13])
+    def test_late_condition_reaches_reader_before_candidate_expansion(tmp_path, target):
+        papers = tmp_path / 'papers'
+        make_pdf(papers / 'neutral.pdf', 14, target)
+        index = DocumentIndex(Settings(tmp_path, tmp_path / 'out', 'fixture', material_roots=[papers]), tmp_path / 'cache')
+        index.parser.extract_tables = False
+        prefix = index.build(['neutral.pdf'], page_limit=2, tolerate_pdf_errors=True)
+        original_materials, original_chunks = index.materials, index.chunks
+        handler = TaskHandlers(Reader(['xenocalibration', 'isotopeperturbation']), 'fixture')
+        handler.document_expander = index.expand_documents
+        probe = getattr(index, 'probe_deep_pages', None)
+        if callable(probe):
+            handler.document_probe = lambda queries: probe(queries, 2)
+        text = 'xenocalibration isotopeperturbation'
+        task = SimpleNamespace(case_id='B-91', input=text, to_dict=lambda: {'input': text})
+        answer = handler.retrieval(task, HybridRetriever(prefix), QueryPlan(text))
+&gt;       assert [p['filename'] for p in answer['papers']] == ['neutral.pdf']
+E       AssertionError: assert [] == ['neutral.pdf']
+E         
+E         Right contains one more item: 'neutral.pdf'
+E         Use -v to get more diff
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_deep_probe_counterexamples.py:42: AssertionError</failure></testcase><testcase classname="tests.test_deep_probe_counterexamples" name="test_absence_or_bibliography_does_not_invent_own_work[True]" time="0.040" /><testcase classname="tests.test_deep_probe_counterexamples" name="test_absence_or_bibliography_does_not_invent_own_work[False]" time="0.040" /></testsuite></testsuites>

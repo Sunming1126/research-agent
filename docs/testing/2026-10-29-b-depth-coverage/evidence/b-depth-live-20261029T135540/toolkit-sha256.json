@@ -1,0 +1,9 @@
+{
+  "coordinator.py": "d3dcb47764782c609ba41eeb31a3b2d9fd650c7f7cdbce6d133745093d624e7f",
+  "live-worker.py": "bd557d8c00cdb9cbb85ce28aa18997f70dc7ea609ec1023ade2034ea5177a6e9",
+  "download-library.py": "d3a41fbca2aabd55813f01fb3bfe7943f4f0c6de4685b62f08238f68080501ec",
+  "qualify-library.py": "fd01458841e38f1374b95bee2597cd7c98b0b56fb99037ac2574e6df3f1c1f1b",
+  "retrieval-benchmark.py": "39d2172fa7a5675d18081e84af0677626bdd7b85a2a518ddc30931e6c4e0bc97",
+  "freeze-challenge-v2.py": "f2e1be8cb8fabdc71f33bc8411b5122a7c8adbf34fa4a8163e19ee67d0c405dc",
+  "retrieval-benchmark-v2.py": "9814be20cd36cab254de8a3f503d60b6c6a1e07af433f76b6bb587fced9856b7"
+}

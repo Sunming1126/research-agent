@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-50",
+    "papers": [
+      {
+        "filename": "2512.23317.pdf",
+        "reason": "该篇正文第8页的Remark 1中出现了与检索短语几乎完全一致的连续原文“condition (7) is trivial if the second equality is replaced by ≥”，仅存在换行与后续词语的排版差异，属于本篇正文（非参考文献）中的原文表述，满足连续短语检索条件。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 17.688,
+  "target_real_model_calls": 3,
+  "total_tokens": 9469,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

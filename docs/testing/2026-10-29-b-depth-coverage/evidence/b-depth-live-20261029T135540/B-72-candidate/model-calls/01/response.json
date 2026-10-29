@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"HyDE 原始方法论文：不依赖相关性标签，由生成模型生成假想文档，再用无监督对比编码器映射到稠密检索空间\", \"methods\": \"生成模型生成假想文档；无监督对比编码器；稠密检索空间映射\", \"focus\": \"核验提出 HyDE 本身的原始贡献论文，排除仅引用或综述该方法的论文\", \"exclusions\": [\"只引用该方法的论文\", \"综述该方法的论文\", \"相关工作或参考文献中的提及\"], \"variants\": [\"Hypothetical Document Embeddings\", \"HyDE\", \"zero-shot dense retrieval\", \"generative model hypothetical documents\", \"unsupervised contrastive encoder\", \"dense retrieval without relevance labels\"], \"subqueries\": [\"Hypothetical Document Embeddings original paper\", \"HyDE zero-shot dense retrieval generative model\", \"unsupervised contrastive encoder dense retrieval\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253537,
+  "id": "0217932535361193dcd3c0a2d24a55cb96c7787eab35382b1ca5c",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 187,
+    "prompt_tokens": 925,
+    "total_tokens": 1112,
+    "prompt_tokens_details": {
+      "cached_tokens": 256
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

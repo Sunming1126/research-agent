@@ -1,0 +1,141 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "卫星遥感实测城市植被与地表温度、控制季节混杂因素并估计城市热岛效应的原始研究",
+      "methods": "卫星遥感实测、季节混杂因素控制、热岛效应估计",
+      "focus": "寻找基于卫星遥感实测数据、控制季节混杂后估计城市热岛效应的原始研究论文",
+      "exclusions": [
+        "仅有通用文本检索方法",
+        "仅有语言生成方法",
+        "无领域实测研究",
+        "不相关凑数文献"
+      ],
+      "variants": [
+        "satellite remote sensing",
+        "urban vegetation",
+        "land surface temperature",
+        "seasonal confounding control",
+        "urban heat island effect",
+        "observational field study"
+      ],
+      "subqueries": [
+        "satellite remote sensing urban vegetation land surface temperature",
+        "seasonal confounding control urban heat island estimation",
+        "observational study urban heat island satellite data"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2203.02155-InstructGPT.pdf",
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "original": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf"
+    ],
+    "components": [
+      {
+        "query": "satellite remote sensing urban vegetation land surface temperature",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "seasonal confounding control urban heat island estimation",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2005.11401-RAG.pdf"
+        ]
+      },
+      {
+        "query": "observational study urban heat island satellite data",
+        "filenames": [
+          "2203.02155-InstructGPT.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2203.02155-InstructGPT.pdf": 0.06530936012691697,
+      "2004.04906-DPR.pdf": 0.04787506400409626,
+      "2005.11401-RAG.pdf": 0.04713064713064713,
+      "2104.08663-BEIR.pdf": 0.03125,
+      "2112.04426-RETRO.pdf": 0.030309988518943745,
+      "2310.11511-Self-RAG.pdf": 0.08019646491354583,
+      "2007.01282-FiD.pdf": 0.015151515151515152
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2310.11511-Self-RAG.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.4076
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.4313
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.3891
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3114
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.3225
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.2903
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.2988
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "raw_evidence_sha256": "4ab657627f30cebc7808092cf48a94e7d1954ae36651dae4d50fea4a572ceef6",
+  "source_chunk_count": 0
+}

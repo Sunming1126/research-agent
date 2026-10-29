@@ -1,0 +1,6 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFF.............................................. [ 19%]
+..........F...FFFFFFFFFFFFFFFFFFFFFFFFEEEEEEEEEEEEEEEEEEEE....EEE.EEEE.. [ 38%]
+..EEEE.....EEEEEEEEEEEEEEEEEE....EEEEEEEEE..................EF.......... [ 58%]
+........E........E..........EF.FFFFF.FF...FF...E..EEFs...EE.EE.EEEEEEEEE [ 77%]
+EEEEEEEEEE.....E....................................FFF........E..EEEEEE [ 97%]
+EEE.EEEEEE                                                               [100%]

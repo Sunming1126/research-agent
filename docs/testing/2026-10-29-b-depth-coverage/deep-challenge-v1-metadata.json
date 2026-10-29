@@ -1,0 +1,189 @@
+{
+  "kind": "constructed late-page literal diagnostic, not official or random research tasks",
+  "cases": [
+    {
+      "filename": "2512.24768.pdf",
+      "page": 8,
+      "phrase": "by solving the pessopt subroutine in contrast",
+      "source_chunk_id": "1ae416e48fb7e39486dd",
+      "distinctive_terms": [
+        "pessopt",
+        "subroutine"
+      ],
+      "expected_filenames": [
+        "2512.24768.pdf"
+      ],
+      "split": "development",
+      "case_id": "B-41"
+    },
+    {
+      "filename": "2512.23188.pdf",
+      "page": 8,
+      "phrase": "disparity refers to the maximum di erence",
+      "source_chunk_id": "379418b52649cb83276e",
+      "distinctive_terms": [
+        "disparity",
+        "erence"
+      ],
+      "expected_filenames": [
+        "2512.23188.pdf"
+      ],
+      "split": "heldout",
+      "case_id": "B-42"
+    },
+    {
+      "filename": "2312.10997.pdf",
+      "page": 8,
+      "phrase": "densex proposed the concept of using propositions",
+      "source_chunk_id": "0ec1f0f8ce346771634f",
+      "distinctive_terms": [
+        "densex",
+        "propositions"
+      ],
+      "expected_filenames": [
+        "2312.10997.pdf"
+      ],
+      "split": "development",
+      "case_id": "B-43"
+    },
+    {
+      "filename": "2511.12805.pdf",
+      "page": 8,
+      "phrase": "each simulation setting we regenerated independent replicates",
+      "source_chunk_id": "b11e7dcb47fc1ac1832b",
+      "distinctive_terms": [
+        "regenerated",
+        "replicates"
+      ],
+      "expected_filenames": [
+        "2511.12805.pdf"
+      ],
+      "split": "heldout",
+      "case_id": "B-44"
+    },
+    {
+      "filename": "2310.11511-Self-RAG.pdf",
+      "page": 8,
+      "phrase": "even outperforms chatgpt in pubhealth popqa biography",
+      "source_chunk_id": "4051243e5ce61debd7f2",
+      "distinctive_terms": [
+        "biography",
+        "pubhealth"
+      ],
+      "expected_filenames": [
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "split": "development",
+      "case_id": "B-45"
+    },
+    {
+      "filename": "2512.20368.pdf",
+      "page": 8,
+      "phrase": "composite mirror descent duchi et al step",
+      "source_chunk_id": "fb7d0016f56e87b92057",
+      "distinctive_terms": [
+        "duchi",
+        "mirror"
+      ],
+      "expected_filenames": [
+        "2512.20368.pdf"
+      ],
+      "split": "heldout",
+      "case_id": "B-46"
+    },
+    {
+      "filename": "2511.18883.pdf",
+      "page": 12,
+      "phrase": "fluffle is an informal whimsical term for",
+      "source_chunk_id": "dc45e9913b8881817fe5",
+      "distinctive_terms": [
+        "informal",
+        "whimsical"
+      ],
+      "expected_filenames": [
+        "2511.18883.pdf"
+      ],
+      "split": "development",
+      "case_id": "B-47"
+    },
+    {
+      "filename": "2512.24605.pdf",
+      "page": 8,
+      "phrase": "catrandgt lidar rgb two stage dssdbest lidar",
+      "source_chunk_id": "20248f3ffe8c7a68f18b",
+      "distinctive_terms": [
+        "catrandgt",
+        "dssdbest"
+      ],
+      "expected_filenames": [
+        "2512.24605.pdf"
+      ],
+      "split": "heldout",
+      "case_id": "B-48"
+    },
+    {
+      "filename": "2512.24861.pdf",
+      "page": 8,
+      "phrase": "et al segment anything in iccv landman",
+      "source_chunk_id": "3a11a7443a0d5fee417e",
+      "distinctive_terms": [
+        "iccv",
+        "landman"
+      ],
+      "expected_filenames": [
+        "2512.24861.pdf"
+      ],
+      "split": "development",
+      "case_id": "B-49"
+    },
+    {
+      "filename": "2512.23317.pdf",
+      "page": 9,
+      "phrase": "cannot be distinguished al though the indistinguishable",
+      "source_chunk_id": "ad5770639717a2dfa802",
+      "distinctive_terms": [
+        "distinguished",
+        "indistinguishable"
+      ],
+      "expected_filenames": [
+        "2512.23317.pdf"
+      ],
+      "split": "heldout",
+      "case_id": "B-50"
+    },
+    {
+      "filename": "2203.02155-InstructGPT.pdf",
+      "page": 8,
+      "phrase": "harmlessness since this is what we really",
+      "source_chunk_id": "e5af88448a615b587cd6",
+      "distinctive_terms": [
+        "harmlessness",
+        "really"
+      ],
+      "expected_filenames": [
+        "2203.02155-InstructGPT.pdf"
+      ],
+      "split": "development",
+      "case_id": "B-51"
+    },
+    {
+      "filename": "2512.20051.pdf",
+      "page": 8,
+      "phrase": "dtrain denote the training set and dval",
+      "source_chunk_id": "b3fb98e8a07c3c9583f3",
+      "distinctive_terms": [
+        "dtrain",
+        "dval"
+      ],
+      "expected_filenames": [
+        "2512.20051.pdf"
+      ],
+      "split": "heldout",
+      "case_id": "B-52"
+    }
+  ],
+  "initial_page_limit": 4,
+  "corpus_sha256": "c7619c8941e0bc04bd46928c6b824ba6a7ba0d263ffd1aa81ab54ad8309d6c46",
+  "label_policy": "Unique literal phrase in all qualified full texts, document-disjoint split before retrieval measurements",
+  "primary_use": "invalid, retained for audit only"
+}

@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该论文以开放域问答为主要任务，提出并训练稠密双编码检索器（Dense Passage Retriever），用问题与段落编码器最大化内积、批内负例训练，并在开放Natural Questions上评估，摘要还报告了相对BM25与ORQA的提升；属于原始方法论文，而非把已有检索器当组件的生成模型或检索基准评测。\",\"chunk_ids\":[\"55088e0ebf2a71a06e47\",\"3ccd81c82b95403c63da\",\"470e5a332b84dff914bd\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253464,
+  "id": "0217932534612496863c88f28d563d505635c26ab083df53e8fdd",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 155,
+    "prompt_tokens": 4573,
+    "total_tokens": 4728,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

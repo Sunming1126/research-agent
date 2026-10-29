@@ -1,0 +1,6 @@
+{
+  "tls_verification": true,
+  "hostname_verification": true,
+  "additional_ca_source": "existing isolated certifi Mozilla public root bundle",
+  "ca_sha256": "2ef52ad56b4803e264045c915e55c236cbfa045b84b81efefc218a19eb44bd2b"
+}

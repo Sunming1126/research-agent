@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-44",
+    "papers": [
+      {
+        "filename": "2511.12805.pdf",
+        "reason": "该篇正文第8页明确出现连续短语原文“and the SID implemented in the CRAN package of the same name”，与检索短语在大小写和换行排版上仅有可允许的差异，属于本篇方法/实验部分对SID实现的描述，满足连续短语检索条件。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "seconds": 16.984,
+  "target_real_model_calls": 3,
+  "total_tokens": 8977,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

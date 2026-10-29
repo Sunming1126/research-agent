@@ -1,0 +1,1 @@
+{"qualified": 60, "excluded": 0, "late_page_cases": 12, "model_calls": 0}

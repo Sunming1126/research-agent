@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2212.10496.pdf\",\"reason\":\"该论文自身提出 HyDE（Hypothetical Document Embeddings），将稠密检索分解为两步：先由指令跟随的生成模型根据查询生成假想文档，再用无监督对比编码器把该假想文档编码为稠密向量并检索语料，且标题强调无需相关性标签的零样本稠密检索。摘要片段直接描述了这一原始方法贡献，符合题目要求的原始方法论文而非仅引用或综述。\",\"chunk_ids\":[\"1a3e33e17a2e564a06b0\",\"d68d5dbba419f6221d2d\",\"6c3b1c6ae16f09f8bd50\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253560,
+  "id": "0217932535595553dcd3c0a2d24a55cb96c7787eab35382a1396b",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 170,
+    "prompt_tokens": 6565,
+    "total_tokens": 6735,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

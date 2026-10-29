@@ -1,0 +1,13 @@
+[
+  "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\windows-python312\\python.exe",
+  "-X",
+  "utf8",
+  "-c",
+  "import sys;sys.path[:0]=['C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\镜像测试\\\\审核\\\\2026-10-29-depth-baseline-b472c17\\\\source', 'C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\镜像测试\\\\审核\\\\2026-10-29-depth-baseline-b472c17\\\\source\\\\src', 'C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\协同开发\\\\research-agent-stability-20261027\\\\tests', 'C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\镜像测试\\\\runtime\\\\py312-windows'];import pytest;raise SystemExit(pytest.main(sys.argv[1:]))",
+  "-q",
+  "-p",
+  "no:cacheprovider",
+  "--basetemp=C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\b-depth-semantics-20261029T130717\\baseline\\temp",
+  "--junitxml=C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\b-depth-semantics-20261029T130717\\baseline\\pytest.xml",
+  "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\协同开发\\research-agent-stability-20261027\\tests\\test_deep_probe_counterexamples.py"
+]

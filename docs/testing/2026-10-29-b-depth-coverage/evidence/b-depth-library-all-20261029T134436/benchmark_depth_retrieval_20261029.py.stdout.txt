@@ -1,0 +1,4 @@
+baseline 0 {"actual_cases": 12, "exact": 3, "directory": "C:\\Users\\lenovo\\Desktop\\Agent\u6311\u6218\u8d5b\\\u955c\u50cf\u6d4b\u8bd5\\runs\\b-depth-retrieval-measurements-20261029T134450\\baseline"}
+
+candidate 0 {"actual_cases": 12, "exact": 10, "directory": "C:\\Users\\lenovo\\Desktop\\Agent\u6311\u6218\u8d5b\\\u955c\u50cf\u6d4b\u8bd5\\runs\\b-depth-retrieval-measurements-20261029T134450\\candidate"}
+

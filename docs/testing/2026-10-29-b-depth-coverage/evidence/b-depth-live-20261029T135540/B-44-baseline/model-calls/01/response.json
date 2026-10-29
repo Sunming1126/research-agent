@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"论文正文中连续英文短语的精确检索\", \"methods\": \"连续短语匹配，允许PDF换行、标点和连字符排版差异\", \"focus\": \"在给定论文集合的正文中定位包含连续短语 \\\"and the sid implemented in the cran\\\" 的论文，参考文献列表不作为正文证据\", \"exclusions\": [\"仅凭主题相似判断\", \"仅凭常识判断\", \"参考文献列表中的匹配\"], \"variants\": [\"and the sid implemented in the cran\", \"SID implemented in the CRAN\", \"sid implemented in cran\", \"continuous phrase search\", \"exact phrase matching in full text\", \"PDF line-break and hyphen normalization\"], \"subqueries\": []}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253392,
+  "id": "021793253391015388e10ad0dcd28daa4414437ebb5a857ac04fd",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 149,
+    "prompt_tokens": 933,
+    "total_tokens": 1082,
+    "prompt_tokens_details": {
+      "cached_tokens": 896
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

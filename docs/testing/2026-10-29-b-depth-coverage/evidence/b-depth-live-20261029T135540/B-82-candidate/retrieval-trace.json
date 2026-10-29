@@ -1,0 +1,268 @@
+{
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "联合优化检索器与生成器、分块交叉注意力近邻检索训练、反思标记按需检索自评的原始方法论文",
+      "methods": "检索器-生成器联合优化；参数与非参数记忆结合；分块交叉注意力；大规模近邻库训练；反思标记按需检索与自评",
+      "focus": "识别分别满足三个独立目标的原始方法论文，而非纯检索器、检索基准评测、固定检索多段阅读器或仅人类反馈对齐方法",
+      "exclusions": [
+        "纯检索器",
+        "仅检索基准评测",
+        "仅固定检索后的多段阅读器",
+        "仅靠人类反馈对齐而不含外部检索"
+      ],
+      "variants": [
+        "jointly optimize retriever and generator",
+        "parametric and non-parametric memory",
+        "chunked cross-attention",
+        "large-scale nearest neighbor retrieval",
+        "reflection tokens",
+        "self-reflective retrieval and generation"
+      ],
+      "subqueries": [
+        "joint retriever generator optimization knowledge-intensive generation",
+        "parametric non-parametric memory knowledge-intensive generation",
+        "chunked cross-attention large nearest neighbor language model",
+        "reflection tokens on-demand retrieval self-evaluation"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2112.04426-RETRO.pdf",
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2004.04906-DPR.pdf",
+      "2104.08663-BEIR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2007.01282-FiD.pdf"
+    ],
+    "components": [
+      {
+        "query": "joint retriever generator optimization knowledge-intensive generation",
+        "filenames": [
+          "2005.11401-RAG.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      },
+      {
+        "query": "parametric non-parametric memory knowledge-intensive generation",
+        "filenames": [
+          "2005.11401-RAG.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf"
+        ]
+      },
+      {
+        "query": "chunked cross-attention large nearest neighbor language model",
+        "filenames": [
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf",
+          "2007.01282-FiD.pdf"
+        ]
+      },
+      {
+        "query": "reflection tokens on-demand retrieval self-evaluation",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2112.04426-RETRO.pdf": 0.08066194924999791,
+      "2005.11401-RAG.pdf": 0.06530936012691699,
+      "2310.11511-Self-RAG.pdf": 0.08065355527016024,
+      "2004.04906-DPR.pdf": 0.06299603174603174,
+      "2007.01282-FiD.pdf": 0.04618300439195962,
+      "2104.08663-BEIR.pdf": 0.030536130536130537,
+      "2203.02155-InstructGPT.pdf": 0.04620592054390803
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 149,
+      "documents_opened": 7,
+      "authorized_documents": 7,
+      "initial_page_limit": 8,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2104.08663-BEIR.pdf": [
+          9
+        ],
+        "2203.02155-InstructGPT.pdf": [
+          17,
+          20
+        ],
+        "2005.11401-RAG.pdf": [
+          9,
+          19
+        ],
+        "2112.04426-RETRO.pdf": [
+          9,
+          13
+        ],
+        "2310.11511-Self-RAG.pdf": [
+          9,
+          20
+        ]
+      },
+      "coverage_limited": false,
+      "unread_pages_in_opened_documents": 149,
+      "scanned_pages_by_document": {
+        "2104.08663-BEIR.pdf": 16,
+        "2203.02155-InstructGPT.pdf": 60,
+        "2005.11401-RAG.pdf": 11,
+        "2112.04426-RETRO.pdf": 35,
+        "2310.11511-Self-RAG.pdf": 22,
+        "2004.04906-DPR.pdf": 5,
+        "2007.01282-FiD.pdf": 0
+      },
+      "sampling_limited_documents": [],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "elapsed_seconds": 0.578,
+      "documents_unopened": 0
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2004.04906-DPR.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.656
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.6553
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.84
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.4902
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.554
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.5264
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.352
+      }
+    ],
+    "batch_sizes": [
+      6,
+      1
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "accepted_evidence": [
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "chunk_id": "065ec77610a3a952cdef",
+        "page": 7,
+        "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+        "chunk_sha256": "065ec77610a3a952cdef7bf5804740b4c6cc7fe0553e8f98a347f1eeaf9e3efb"
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "chunk_id": "15563cf21f9afc474ee7",
+        "page": 1,
+        "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+        "chunk_sha256": "15563cf21f9afc474ee743d02637c8b74b1840c7cd8fe1c0c05104d3759df1af"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "chunk_id": "1fa0596a2bb63bd8428d",
+        "page": 1,
+        "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978",
+        "chunk_sha256": "1fa0596a2bb63bd8428d199613513438b28e91bd7acc905d556ff1f15447d718"
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "chunk_id": "4458f0f478e670fc77d5",
+        "page": 9,
+        "document_sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+        "chunk_sha256": "4458f0f478e670fc77d50b8c21a12f9170eb829d792bd59fd3371b2966e8367a"
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "chunk_id": "49df69863e1fbe5c34da",
+        "page": 1,
+        "document_sha256": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+        "chunk_sha256": "49df69863e1fbe5c34da58afd248dcf4cfb16677fd5a18a0b286623134d8b7f0"
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "chunk_id": "50d43c79ff04cc8e2285",
+        "page": 1,
+        "document_sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+        "chunk_sha256": "50d43c79ff04cc8e228573f05c7f079b20f8ea062f1e6fad87341dea96a77f2f"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "chunk_id": "7cd049bc90b6c462027e",
+        "page": 20,
+        "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978",
+        "chunk_sha256": "7cd049bc90b6c462027ef080320065d5630619fc16bb58d80bc289ec906140ab"
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "chunk_id": "c756a51d51f0008a43af",
+        "page": 2,
+        "document_sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+        "chunk_sha256": "c756a51d51f0008a43afad9599d63d8d24203f5ec452af5d308a60432b78a206"
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "chunk_id": "dc0d90c9ba5d4372a133",
+        "page": 1,
+        "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978",
+        "chunk_sha256": "dc0d90c9ba5d4372a1333b2faed0974689469c8a999406c5182e63d7b40fe0d7"
+      }
+    ],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "raw_evidence_sha256": "a21fbdfdbc68c65206a12cc9f1275b4a638f3cb323c440f700e829282b1d8d00",
+  "source_chunk_count": 9
+}

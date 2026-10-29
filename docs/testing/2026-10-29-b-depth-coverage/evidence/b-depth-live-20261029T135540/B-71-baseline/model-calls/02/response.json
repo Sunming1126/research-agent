@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2401.15884.pdf\",\"reason\":\"该论文自身提出 CRAG：设计轻量检索评价器对检索文档整体质量给出置信度，并据此触发 Correct/Incorrect/Ambiguous 等修复动作；同时提出分解-再重组算法对检索文档筛选关键知识条带并重组。摘要与正文片段直接支持这两个关键条件，属于原始方法论文而非综述提及。\",\"chunk_ids\":[\"db1409db2321385135b4\",\"e27946a0e46b092e8e16\",\"011820514afd6dab7315\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793253510,
+  "id": "021793253509311ef74dd90a5750f77dc784a69dff0f3ad457302",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 142,
+    "prompt_tokens": 5712,
+    "total_tokens": 5854,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

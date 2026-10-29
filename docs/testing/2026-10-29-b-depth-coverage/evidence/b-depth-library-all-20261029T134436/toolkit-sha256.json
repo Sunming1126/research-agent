@@ -1,0 +1,7 @@
+{
+  "coordinator.py": "c7fed654f223f434b85ca2adcb87bd27de79fc8662029c8dbd85f48c2e04c189",
+  "live-worker.py": "bd557d8c00cdb9cbb85ce28aa18997f70dc7ea609ec1023ade2034ea5177a6e9",
+  "download-library.py": "d3a41fbca2aabd55813f01fb3bfe7943f4f0c6de4685b62f08238f68080501ec",
+  "qualify-library.py": "fd01458841e38f1374b95bee2597cd7c98b0b56fb99037ac2574e6df3f1c1f1b",
+  "retrieval-benchmark.py": "39d2172fa7a5675d18081e84af0677626bdd7b85a2a518ddc30931e6c4e0bc97"
+}
