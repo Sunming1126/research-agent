@@ -1,0 +1,16 @@
+{
+  "artifacts": {
+    ".gitattributes": "7af1f71f99ef7bd482631d2612714e6f4a8f701544ee991b0a1c648cb0a0e209",
+    "baseline-source-files.json": "7f640fe95b9e71ded39dc92833e5182888d743bf3fa7672d685ddb571500bc4f",
+    "manifest.json": "d7ae2a6c899d8d899dba71a338ee3cfcd40152ca4e1d0ea7801a9869333dd628",
+    "preparation-status.json": "24006b56917a4f8f3cdce97c249c922276110b07870d97f990ccd56277e6a41c",
+    "prepared-toolkit.zip": "20dbe38962d12e159c35b0fb55988ece228b10fd6998b11c16c1ff6ad4ee517b",
+    "prototype-source-files.json": "a918e982de3638c30f7ae9e302340f93c149e58a947fec02be20d34513eb49f3",
+    "reference-context-prototype.patch": "761bd02f8f750feb37a52330a2895dca24f0d7142c27cb7745b6444cea510e97",
+    "source-files.json": "24487489b015fe5b6b75403eaa143d089b7126bab0bde995b2e0683505d32f53",
+    "本轮准备与待验证事项.md": "0738f88b7267dd04806b8fdca822b98645c703711630803f4383079a5aff7ebd"
+  },
+  "target_model_calls": 0,
+  "functional_tests_executed": 0,
+  "status": "prepared, not validated"
+}

@@ -1,0 +1,78 @@
+{
+  "status": "prepared_not_executed",
+  "source_worktree_python_files_unchanged": 193,
+  "source_reference_commit": "43f8189193984edd6869b5d453e4b5a0ec8c776a",
+  "priority": [
+    "correctness: misses, false positives, factual support",
+    "wall time and model Tokens"
+  ],
+  "counterexample_functions_prepared": [
+    "test_reference_title_in_prefix_does_not_authorize_continuation_as_body",
+    "test_reference_title_on_prior_prefix_page_keeps_context_across_blankish_page",
+    "test_appendix_after_prefix_reference_restores_eligible_body",
+    "test_reference_title_in_unread_range_still_excludes_same_page",
+    "test_plain_body_positive_is_preserved",
+    "test_missing_phrase_does_not_return_a_paper"
+  ],
+  "counterexample_variants": [
+    "0.4.17",
+    "0.4.18",
+    "reference-context prototype"
+  ],
+  "counterexample_executions_planned": 18,
+  "fixed_query_executions_planned": 18,
+  "query_replay_executions_planned": 6,
+  "profile_executions_planned": 1,
+  "functional_tests_executed": 0,
+  "target_model_calls": 0,
+  "prototype_status": "hypothesis only; not applied to production, not accepted, no improvement claim",
+  "why_not_executed": "Native Harness foreground verification failed; user currently cannot operate computer. Do not start independent headless tests.",
+  "preparation_failure_retained": {
+    "type": "template assertion",
+    "description": "First preparer counted indentation substring twice, including an existing nested assignment. Corrected to exact line matching before any test. This is not an agent test failure."
+  },
+  "syntax_inspection_only": [
+    {
+      "path": "镜像测试/b_stability_20261029.py",
+      "sha256": "3368cf82a22c65e76cf4530d56f08e0e2a517c9f0234d432c06dff8c5b0272e8",
+      "ast_parse_completed": true
+    },
+    {
+      "path": "镜像测试/b_stability_worker_20261029.py",
+      "sha256": "b748eb8737afe5a7e717e77ddd822b078becbf45826afa0e32805bc756539efb",
+      "ast_parse_completed": true
+    },
+    {
+      "path": "镜像测试/b_stability_counterexamples_20261029.py",
+      "sha256": "e0e501f951f29a9eb7b4832c69a30f2fce06bd98427e439e2a71f2b4da12fb8d",
+      "ast_parse_completed": true
+    },
+    {
+      "path": ".session-audit/prepare_b_stability_20261029.py",
+      "sha256": "92915e285550f24e0defcf0af03b2ea72f2308f97c7ada937d632b3bfc0d3719",
+      "ast_parse_completed": true
+    },
+    {
+      "path": ".session-audit/dispatch_b_stability_20261029.py",
+      "sha256": "26ec3cef10417f44e81c6d80c2c3d411cb7c7762360b397a610e905c4afd2e7f",
+      "ast_parse_completed": true
+    },
+    {
+      "path": ".session-audit/export_b_stability_20261029.py",
+      "sha256": "d8be150d9c4eba4434e2c4a420b827f8dee4ada96aa7a392358d60372039820a",
+      "ast_parse_completed": true
+    },
+    {
+      "path": "镜像测试/审核/2026-10-29-b-stability-reference-prototype/source/src/research_agent/rag/deep_probe.py",
+      "sha256": "66b56547b03d0cbbda3e120e2cc0a9f1a9f04fcc22f813e7fe26471aebca16d7",
+      "ast_parse_completed": true
+    }
+  ],
+  "limitations": [
+    "AST parsing is not a functional test",
+    "Existing literal questions are disclosed diagnostics, not held-out model relevance data",
+    "30-second cProfile run cannot substantiate normal 12-second latency",
+    "Prototype only addresses known prefix reference state, not reference headings hidden in skipped pages",
+    "Prototype needs new material positives/negatives, full regression and actual model accuracy/time/token measurement before adoption"
+  ]
+}
