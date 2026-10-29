@@ -1,0 +1,22 @@
+{
+  "case_id": "B-74",
+  "function": "Literature_Retrieval",
+  "title": "新增原始方法",
+  "input": "在给定论文中找提出FLARE本身的原始论文：预测即将生成的句子，当其中出现低置信度词时，利用预测句子检索并重新生成。只在相关工作中提及FLARE的论文不纳入。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2112.04426-RETRO.pdf",
+    "2310.11511-Self-RAG.pdf",
+    "2305.06983.pdf",
+    "2401.15884.pdf",
+    "2212.10496.pdf",
+    "2312.10997.pdf",
+    "2104.08663-BEIR.pdf",
+    "2203.02155-InstructGPT.pdf"
+  ],
+  "constraints": [],
+  "expected_output": "Literature_Retrieval",
+  "output_schema_ref": "Literature_Retrieval"
+}

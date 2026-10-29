@@ -1,0 +1,1 @@
+{"status": "completed", "disk_matches": true, "internal_audit": {}, "retrieval_trace": {}, "model_stages": ["chat"], "seconds": 2.5, "target_real_model_calls": 1, "total_tokens": 310, "unknown_usage_calls": 0, "quota_exhausted": false, "model": "deepseek-v4.1-flash", "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"}

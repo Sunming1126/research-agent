@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"patches\":[{\"original\":\"RAG把检索文档视为潜变量并端到端训练[2, p.3]\",\"replacement\":\"RAG将检索文档视为潜变量，并以RAG-Sequence与RAG-Token两种方式对生成分布做边缘化[2, p.3]\"},{\"original\":\"RETRO以冻结BERT检索token块、块级交叉注意力，使检索开销随块数线性[4, p.2]\",\"replacement\":\"RETRO以冻结BERT检索token块、块级交叉注意力，使检索开销随检索数据量线性[4, p.2]\"},{\"original\":\"| 防泄漏 | 测试问题对应段落与训练集做n-gram重叠检测，重叠>8连续token的样本标记并单独报告[4, p.15] |\",\"replacement\":\"| 防泄漏 | 拟议设置：测试问题对应段落与训练集做n-gram重叠检测，重叠>8连续token的样本标记并单独报告（阈值与操作属本方案拟议设计；RETRO原文仅以少于8个连续token共享作为无局部泄漏的合理水平[4, p.15]） |\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265884,
+  "id": "021793265882740ace291ce9e318ad358bb23d66c066152911009",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 251,
+    "prompt_tokens": 3250,
+    "total_tokens": 3501,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

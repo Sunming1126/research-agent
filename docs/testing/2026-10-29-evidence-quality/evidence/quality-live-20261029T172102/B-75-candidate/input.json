@@ -1,0 +1,22 @@
+{
+  "case_id": "B-75",
+  "function": "Literature_Retrieval",
+  "title": "并集与数量上限",
+  "input": "分别找提出CRAG和提出HyDE本身的原始方法论文，满足任一目标即可；总共最多两篇，不要求同一篇同时提出两个方法。排除只综述或引用这些方法的论文。",
+  "materials": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2112.04426-RETRO.pdf",
+    "2310.11511-Self-RAG.pdf",
+    "2305.06983.pdf",
+    "2401.15884.pdf",
+    "2212.10496.pdf",
+    "2312.10997.pdf",
+    "2104.08663-BEIR.pdf",
+    "2203.02155-InstructGPT.pdf"
+  ],
+  "constraints": [],
+  "expected_output": "Literature_Retrieval",
+  "output_schema_ref": "Literature_Retrieval"
+}

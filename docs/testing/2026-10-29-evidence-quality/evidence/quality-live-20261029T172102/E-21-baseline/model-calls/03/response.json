@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"patches\":[{\"original\":\"数据：候选NaturalQuestions（开放域版丢弃超过5词答案[3, p.3]）与TriviaQA；DPR使用非重叠段落切分[1, p.4]，本方案沿用非重叠以避免泄漏。\",\"replacement\":\"数据：候选NaturalQuestions（开放域版丢弃超过5词答案[E:ev-21]）；TriviaQA的规模与属性待核查，暂不列为已证事实。DPR作者报告重叠切分未显优势[E:ev-4]，本方案拟议沿用非重叠切分以避免泄漏。\"},{\"original\":\"1. 稠密检索训练依赖正负对构造[1, p.3]，负样本质量影响复现：对策为固定负采样脚本与随机种子，记录每问负样本数。\",\"replacement\":\"1. 稠密检索训练依赖正负对构造[E:ev-8]，负样本质量影响复现：对策为固定负采样脚本与随机种子，记录每问负样本数。\"},{\"original\":\"2. FiD式融合的段落数扩展受显存限制[3, p.3]：对策为固定最大段落数与批大小，超限时截断并记录。\",\"replacement\":\"2. FiD式融合中编码器独立处理段落，计算随段落数线性增长[E:ev-22]；段落数扩展的实际资源约束待核查：对策为固定最大段落数与批大小，超限时截断并记录。\"},{\"original\":\"3. 反思标记需离线critic生成[5, p.2]，critic版本差异导致标记漂移：对策为冻结critic权重与生成脚本，版本写入配置。\",\"replacement\":\"3. 反思标记需离线critic生成[E:ev-37]，critic版本差异导致标记漂移：对策为冻结critic权重与生成脚本，版本写入配置。\"},{\"original\":\"4. 测试集邻近泄漏[4, p.2]：对策为按文档簇划分并报告重叠率。\",\"replacement\":\"4. 测试集邻近泄漏[E:ev-30]：对策为按文档簇划分并报告重叠率。\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265867,
+  "id": "0217932658639788b180e7ab5368500e338034e77cb755d632a12",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 469,
+    "prompt_tokens": 2364,
+    "total_tokens": 2833,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

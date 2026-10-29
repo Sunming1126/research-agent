@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"提出 CRAG 与 HyDE 的原始方法论文\", \"methods\": \"CRAG（Corrective Retrieval-Augmented Generation）与 HyDE（Hypothetical Document Embeddings）两种检索增强方法\", \"focus\": \"分别定位首次提出 CRAG 和首次提出 HyDE 的原始方法论文，两目标取并集，最多两篇，不要求同一篇同时覆盖两个方法\", \"exclusions\": [\"只综述这些方法的论文\", \"只引用这些方法的论文\"], \"variants\": [\"Corrective Retrieval-Augmented Generation\", \"CRAG\", \"Hypothetical Document Embeddings\", \"HyDE\", \"retrieval-augmented generation\", \"zero-shot dense retrieval\"], \"subqueries\": [\"Corrective Retrieval-Augmented Generation original paper\", \"Hypothetical Document Embeddings original paper\"]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265810,
+  "id": "02179326580892723c5b6bc0dca724893eb7d2b1f969c7c82e2da",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 178,
+    "prompt_tokens": 501,
+    "total_tokens": 679,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

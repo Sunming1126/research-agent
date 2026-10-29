@@ -1,0 +1,12 @@
+{
+  "case_id": "D-01",
+  "function": "Reproduction",
+  "title": "无平台会话时的诚实失败",
+  "input": "name=Macro-F1, unit=分数; name=Accuracy, unit=%; name=运行时间, unit=秒。当前测试不提供实验方法或平台运行凭据，无法执行时如实返回materials_missing，不能编造观测值。",
+  "materials": [
+    "not-provided-D01-method.txt"
+  ],
+  "constraints": [],
+  "expected_output": "Reproduction",
+  "output_schema_ref": "Reproduction"
+}

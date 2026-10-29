@@ -1,0 +1,179 @@
+{
+  "raw_evidence_sha256": "d242ea4a8d95fc53518a02bc6a8a4e05c67655a53907b5a2675409e84070f9a2",
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "卫星遥感实测城市植被与地表温度、控制季节混杂因素并估计城市热岛效应的原始研究",
+      "methods": "卫星遥感观测、季节混杂因素控制、城市热岛效应估计",
+      "focus": "以遥感实测数据为基础的原始实证研究，而非通用文本检索或语言生成方法",
+      "exclusions": [
+        "仅有通用文本检索方法",
+        "仅有语言生成方法",
+        "无领域实测数据",
+        "非原始研究"
+      ],
+      "variants": [
+        "satellite remote sensing",
+        "urban vegetation",
+        "land surface temperature",
+        "seasonal confounding control",
+        "urban heat island effect",
+        "empirical remote sensing study"
+      ],
+      "subqueries": [
+        "satellite remote sensing urban vegetation land surface temperature",
+        "seasonal confounding control urban heat island estimation",
+        "empirical study urban heat island remote sensing"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2203.02155-InstructGPT.pdf",
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "original": [
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf"
+    ],
+    "components": [
+      {
+        "query": "satellite remote sensing urban vegetation land surface temperature",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf"
+        ]
+      },
+      {
+        "query": "seasonal confounding control urban heat island estimation",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ]
+      },
+      {
+        "query": "empirical study urban heat island remote sensing",
+        "filenames": [
+          "2310.11511-Self-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2004.04906-DPR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2203.02155-InstructGPT.pdf": 0.04891591750396616,
+      "2004.04906-DPR.pdf": 0.04738666351569577,
+      "2005.11401-RAG.pdf": 0.031024531024531024,
+      "2007.01282-FiD.pdf": 0.047379032258064516,
+      "2104.08663-BEIR.pdf": 0.03125763125763126,
+      "2112.04426-RETRO.pdf": 0.03007688828584351,
+      "2310.11511-Self-RAG.pdf": 0.08023473326124535
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 149,
+      "documents_opened": 7,
+      "authorized_documents": 7,
+      "initial_page_limit": 8,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2203.02155-InstructGPT.pdf": [
+          17,
+          18
+        ],
+        "2104.08663-BEIR.pdf": [
+          9
+        ],
+        "2310.11511-Self-RAG.pdf": [
+          9,
+          10
+        ]
+      },
+      "coverage_limited": false,
+      "unread_pages_in_opened_documents": 149,
+      "scanned_pages_by_document": {
+        "2005.11401-RAG.pdf": 11,
+        "2203.02155-InstructGPT.pdf": 60,
+        "2112.04426-RETRO.pdf": 35,
+        "2007.01282-FiD.pdf": 0,
+        "2104.08663-BEIR.pdf": 16,
+        "2310.11511-Self-RAG.pdf": 22,
+        "2004.04906-DPR.pdf": 5
+      },
+      "sampling_limited_documents": [],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "elapsed_seconds": 0.437,
+      "documents_unopened": 0
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 7,
+    "candidates": [
+      "2310.11511-Self-RAG.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2112.04426-RETRO.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.4073
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.3662
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.3863
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3883
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.3449
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.3094
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.2898
+      }
+    ],
+    "batch_sizes": [
+      7
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "accepted_evidence": [],
+    "fulltext_candidates": [
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ]
+  },
+  "source_chunk_count": 0
+}

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="14" time="0.323" timestamp="2026-10-29T16:42:09.389811+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_grouped_references_route_all_sources[[1,2]]" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_grouped_references_route_all_sources[[1, 2]]" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_grouped_references_route_all_sources[[1,2, p.4]]" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_audit_does_not_silently_drop_group_member_when_used_list_is_incomplete" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_repair_context_keeps_group_members_without_unrelated_papers" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_numeric_fact_with_grouped_page_citation_is_not_a_missing_page" time="0.002" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_grouped_wrong_paper_attribution_is_checked" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_missing_same_page_text_cannot_be_skipped_to_manufacture_a_quote[25]" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_missing_same_page_text_cannot_be_skipped_to_manufacture_a_quote[80]" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_missing_same_page_text_cannot_be_skipped_to_manufacture_a_quote[300]" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_same_filename_and_page_do_not_override_different_document_hashes" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_overlapping_chunks_cannot_duplicate_words_into_a_quote" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_real_cross_overlap_quote_is_recovered_without_repeating_overlap" time="0.001" /><testcase classname="镜像测试.runs.quality-regression-20261029T164207.frozen-tests.test_quality_counterexamples" name="test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers" time="0.003"><error message="failed on setup with &quot;PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\quality-regression-20261029T164207\\candidate-counterexamples\\temp'&quot;">cls = &lt;class '_pytest.runner.CallInfo'&gt;
+func = &lt;function call_and_report.&lt;locals&gt;.&lt;lambda&gt; at 0x000001A7C6B61260&gt;
+when = 'setup'
+reraise = (&lt;class '_pytest.outcomes.Exit'&gt;, &lt;class 'KeyboardInterrupt'&gt;)
+
+    @classmethod
+    def from_call(
+        cls,
+        func: Callable[[], TResult],
+        when: Literal["collect", "setup", "call", "teardown"],
+        reraise: type[BaseException] | tuple[type[BaseException], ...] | None = None,
+    ) -&gt; CallInfo[TResult]:
+        """Call func, wrapping the result in a CallInfo.
+    
+        :param func:
+            The function to call. Called without arguments.
+        :type func: Callable[[], _pytest.runner.TResult]
+        :param when:
+            The phase in which the function is called.
+        :param reraise:
+            Exception or exceptions that shall propagate if raised by the
+            function, instead of being wrapped in the CallInfo.
+        """
+        excinfo = None
+        instant = timing.Instant()
+        try:
+&gt;           result: TResult | None = func()
+                                     ^^^^^^
+
+..\..\镜像测试\runtime\py312-windows\_pytest\runner.py:344: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\镜像测试\runtime\py312-windows\_pytest\runner.py:246: in &lt;lambda&gt;
+    lambda: runtest_hook(item=item, **kwds), when=when, reraise=reraise
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\pluggy\_caller.py:197: in __call__
+    return self._hookexec(
+..\..\镜像测试\runtime\py312-windows\pluggy\_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\logging.py:843: in pytest_runtest_setup
+    yield
+..\..\镜像测试\runtime\py312-windows\_pytest\capture.py:895: in pytest_runtest_setup
+    return (yield)
+            ^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\runner.py:164: in pytest_runtest_setup
+    item.session._setupstate.setup(item)
+..\..\镜像测试\runtime\py312-windows\_pytest\runner.py:514: in setup
+    col.setup()
+..\..\镜像测试\runtime\py312-windows\_pytest\python.py:1674: in setup
+    self._request._fillfixtures()
+..\..\镜像测试\runtime\py312-windows\_pytest\fixtures.py:720: in _fillfixtures
+    item.funcargs[argname] = self.getfixturevalue(argname)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\fixtures.py:549: in getfixturevalue
+    fixturedef = self._get_active_fixturedef(argname)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\fixtures.py:640: in _get_active_fixturedef
+    fixturedef.execute(request=subrequest)
+..\..\镜像测试\runtime\py312-windows\_pytest\fixtures.py:1128: in execute
+    result = ihook.pytest_fixture_setup(fixturedef=self, request=request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\pluggy\_caller.py:197: in __call__
+    return self._hookexec(
+..\..\镜像测试\runtime\py312-windows\pluggy\_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\setuponly.py:36: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\fixtures.py:1196: in pytest_fixture_setup
+    result = call_fixture_func(fixturefunc, request, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\fixtures.py:923: in call_fixture_func
+    fixture_result = next(generator)
+                     ^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\tmpdir.py:264: in tmp_path
+    path = _mk_tmp(request, tmp_path_factory)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\tmpdir.py:251: in _mk_tmp
+    return factory.mktemp(name, numbered=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\tmpdir.py:135: in mktemp
+    p = make_numbered_dir(root=self.getbasetemp(), prefix=basename, mode=0o700)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\pathlib.py:229: in make_numbered_dir
+    max_existing = max(map(parse_num, find_suffixes(root, prefix)), default=-1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\镜像测试\runtime\py312-windows\_pytest\pathlib.py:188: in extract_suffixes
+    for entry in iter:
+                 ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/quality-regression-20261029T164207/candidate-counterexamples/temp')
+prefix = 'test_default_page_budget_is_re'
+
+    def find_prefixed(root: Path, prefix: str) -&gt; Iterator[os.DirEntry[str]]:
+        """Find all elements in root that begin with the prefix, case-insensitive."""
+        l_prefix = prefix.lower()
+&gt;       for x in os.scandir(root):
+                 ^^^^^^^^^^^^^^^^
+E       PermissionError: [WinError 5] 拒绝访问。: 'C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\quality-regression-20261029T164207\\candidate-counterexamples\\temp'
+
+..\..\镜像测试\runtime\py312-windows\_pytest\pathlib.py:176: PermissionError</error></testcase></testsuite></testsuites>

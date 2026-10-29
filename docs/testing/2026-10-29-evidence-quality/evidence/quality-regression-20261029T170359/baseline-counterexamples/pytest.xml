@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="13" skipped="1" tests="14" time="0.373" timestamp="2026-10-29T17:04:00.844160+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_grouped_references_route_all_sources[[1,2]]" time="0.001"><failure message="AssertionError: assert set() == {'ev-1', 'ev-2'}&#10;  &#10;  Extra items in the right set:&#10;  'ev-1'&#10;  'ev-2'&#10;  Use -v to get more diff">citation = '[1,2]'
+
+    @pytest.mark.parametrize('citation', ['[1,2]', '[1, 2]', '[1,2, p.4]'])
+    def test_grouped_references_route_all_sources(citation):
+        rows = evidence_rows()
+        expected = {'ev-2'} if 'p.' in citation else {'ev-1', 'ev-2'}
+&gt;       assert {e['evidence_id'] for e in cited_evidence('比较证据' + citation, rows)} == expected
+E       AssertionError: assert set() == {'ev-1', 'ev-2'}
+E         
+E         Extra items in the right set:
+E         'ev-1'
+E         'ev-2'
+E         Use -v to get more diff
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:23: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_grouped_references_route_all_sources[[1, 2]]" time="0.001"><failure message="AssertionError: assert set() == {'ev-1', 'ev-2'}&#10;  &#10;  Extra items in the right set:&#10;  'ev-1'&#10;  'ev-2'&#10;  Use -v to get more diff">citation = '[1, 2]'
+
+    @pytest.mark.parametrize('citation', ['[1,2]', '[1, 2]', '[1,2, p.4]'])
+    def test_grouped_references_route_all_sources(citation):
+        rows = evidence_rows()
+        expected = {'ev-2'} if 'p.' in citation else {'ev-1', 'ev-2'}
+&gt;       assert {e['evidence_id'] for e in cited_evidence('比较证据' + citation, rows)} == expected
+E       AssertionError: assert set() == {'ev-1', 'ev-2'}
+E         
+E         Extra items in the right set:
+E         'ev-1'
+E         'ev-2'
+E         Use -v to get more diff
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:23: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_grouped_references_route_all_sources[[1,2, p.4]]" time="0.001"><failure message="AssertionError: assert set() == {'ev-2'}&#10;  &#10;  Extra items in the right set:&#10;  'ev-2'&#10;  Use -v to get more diff">citation = '[1,2, p.4]'
+
+    @pytest.mark.parametrize('citation', ['[1,2]', '[1, 2]', '[1,2, p.4]'])
+    def test_grouped_references_route_all_sources(citation):
+        rows = evidence_rows()
+        expected = {'ev-2'} if 'p.' in citation else {'ev-1', 'ev-2'}
+&gt;       assert {e['evidence_id'] for e in cited_evidence('比较证据' + citation, rows)} == expected
+E       AssertionError: assert set() == {'ev-2'}
+E         
+E         Extra items in the right set:
+E         'ev-2'
+E         Use -v to get more diff
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:23: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_audit_does_not_silently_drop_group_member_when_used_list_is_incomplete" time="0.001"><failure message="AssertionError: assert {'ev-3'} == {'ev-1', 'ev-2', 'ev-3'}&#10;  &#10;  Extra items in the right set:&#10;  'ev-1'&#10;  'ev-2'&#10;  Use -v to get more diff">def test_audit_does_not_silently_drop_group_member_when_used_list_is_incomplete():
+        rows = evidence_rows()
+        ledger = [Evidence(r['evidence_id'], r['claim'], r['filename'], r['page'], str(r['ref']),
+                           'A traceable original passage.') for r in rows]
+        case = SimpleNamespace(function='Idea')
+        data = audit_request(case, '两篇的联合比较 [1,2]，另外一篇事实 [3, p.5]。', rows, ledger, used=['ev-3'])
+&gt;       assert {e['evidence_id'] for e in data['source_quotes']} == {'ev-1', 'ev-2', 'ev-3'}
+E       AssertionError: assert {'ev-3'} == {'ev-1', 'ev-2', 'ev-3'}
+E         
+E         Extra items in the right set:
+E         'ev-1'
+E         'ev-2'
+E         Use -v to get more diff
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:32: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_repair_context_keeps_group_members_without_unrelated_papers" time="0.001"><failure message="AssertionError: assert {'ev-1', 'ev-2', 'ev-3'} == {'ev-1', 'ev-2'}&#10;  &#10;  Extra items in the left set:&#10;  'ev-3'&#10;  Use -v to get more diff">def test_repair_context_keeps_group_members_without_unrelated_papers():
+        rows = evidence_rows()
+        data = repair_context('正文', ['组合条件应保留 [1,2]'], [], rows)
+&gt;       assert {e['evidence_id'] for e in data['claims']} == {'ev-1', 'ev-2'}
+E       AssertionError: assert {'ev-1', 'ev-2', 'ev-3'} == {'ev-1', 'ev-2'}
+E         
+E         Extra items in the left set:
+E         'ev-3'
+E         Use -v to get more diff
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:38: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_numeric_fact_with_grouped_page_citation_is_not_a_missing_page" time="0.003"><failure message="research_agent.evidence.EvidenceError: numeric claim has no page citation">def test_numeric_fact_with_grouped_page_citation_is_not_a_missing_page():
+        rows = [dict(r, page=4) for r in evidence_rows()[:2]]
+        body = '研究边界及比较条件需要逐项核对。'*60 + '\n\n论文报告准确率为90% [1,2, p.4]。'
+&gt;       validate_citations(body, rows, ['ev-1','ev-2'])
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+markdown = '研究边界及比较条件需要逐项核对。研究边界及比较条件需要逐项核对。研究边界及比较条件需要逐项核对。研究边界及比较条件需要逐项核对。研究边界及比较条件需要逐项核对。研究边界及比较条件需要逐项核对。研究边界及比较条件需要逐项核对。研究边界及...比较条件需要逐项核对。研究边界及比较条件需要逐项核对。研究边界及比较条件需要逐项核对。研究边界及比较条件需要逐项核对。研究边界及比较条件需要逐项核对。研究边界及比较条件需要逐项核对。\n\n论文报告准确率为90% [1,2, p.4]。'
+evidence = [{'claim': 'Independently supported observation 1.', 'evidence_id': 'ev-1', 'filename': '1.pdf', 'page': 4, ...}, {'claim': 'Independently supported observation 2.', 'evidence_id': 'ev-2', 'filename': '2.pdf', 'page': 4, ...}]
+used_ids = ['ev-1', 'ev-2'], minimum = 1
+
+    def validate_citations(markdown, evidence, used_ids, minimum=1, *, function=None, strict_facts=True):
+        if len(re.sub(r"\s", "", markdown)) &lt; 800:
+            raise EvidenceError("report body shorter than 800 characters")
+        known_ids = {e["evidence_id"] for e in evidence}
+        if not used_ids or not set(used_ids) &lt;= known_ids:
+            raise EvidenceError("report uses unknown or empty evidence IDs")
+        supported = defaultdict(set)
+        for e in evidence:
+            if e["evidence_id"] in used_ids:
+                supported[e["ref"]].add(e["page"])
+        # 与最终答卷校验一致：数字组[1,2]也作为引用；参数集合应用其他括号。
+        # 否则写作检查漏过[2,5,8]，直到提交时才失败，错过模型修订机会。
+        matches = list(re.finditer(r"\[(\d{1,2}(?:\s*,\s*\d{1,2})*)(?:,\s*p\.\s*(\d+))?\]", markdown))
+        citations = [(ref, match.group(2) or '') for match in matches
+                     for ref in re.split(r'\s*,\s*', match.group(1))]
+        if len({int(ref) for ref, _ in citations}) &lt; minimum:
+            raise EvidenceError("too few cited papers")
+        invalid, passages = [], []
+        for match in matches:
+            page = match.group(2)
+            for ref in map(int, re.split(r'\s*,\s*', match.group(1))):
+                if ref not in supported or (page and int(page) not in supported[ref]):
+                    # 给出真实标记和精确所在行，不能用不存在的[0,p.]让模型猜位置。
+                    line_start = markdown.rfind('\n', 0, match.start()) + 1
+                    line_end = markdown.find('\n', match.end())
+                    passage = markdown[line_start:line_end if line_end &gt;= 0 else len(markdown)]
+                    if passage not in passages:
+                        passages.append(passage)
+                    invalid.append(f"numeric bracket token {match.group()!r}: reference {ref} has no used evidence "
+                                   f"at this page; allowed pages: {sorted(p for p in supported.get(ref, set()) if p is not None)}")
+        if invalid:
+            raise EvidenceError('; '.join(invalid) + '. If these are parameter values, use braces; '
+                                'if these are mathematical closed intervals, use full-width brackets ［a,b］ to preserve meaning. '
+                                'Replace each offending token in the supplied passages; do not change valid citations or invent references.',
+                                passages=passages)
+        semantic_issues = []
+        try:
+            validate_named_attribution(markdown, evidence, used_ids)
+        except EvidenceError as exc:
+            if strict_facts:
+                raise
+            semantic_issues.append(str(exc))
+        # 已发生的数值事实必须附页码；待验证方案交由语义审查区分。
+        section_scopes = {}
+        ambiguities = semantic_issues
+        for paragraph in markdown.split("\n\n"):
+            heading = re.match(r"^\s*(#{1,6})\s+([^\n]+)", paragraph)
+            if heading:
+                level, title = len(heading[1]), heading[2]
+                section_scopes = {depth: scope for depth, scope in section_scopes.items() if depth &lt; level}
+                inherited = section_scopes[max(section_scopes)] if section_scopes else False
+                fact_section = re.search(r"论文事实|文献事实|已有结果|原文证据", title)
+                section_scopes[level] = False if fact_section else bool(re.search(r"建议|待验证|拟议", title) or inherited)
+            proposal_section = section_scopes[max(section_scopes)] if section_scopes else False
+            plain_paragraph = re.sub(r"[*#&gt;`]", "", paragraph.strip())
+            paragraph_proposal = re.match(r"^(?:[-*]\s*)?(?:建议|待验证|拟议|本方案建议|我们建议)", plain_paragraph)
+            table_proposal = re.match(r"^\s*\|[^\n]*(?:拟议|建议|待验证)[^\n]*\|", plain_paragraph)
+            proposal_heading = re.match(r"^[^。！？]{0,36}[（(](?:建议|待验证|拟议)[^）)]{0,40}[）)][:：]", plain_paragraph)
+            # Markdown 的单换行是软换行；不能把 PDF 自动折行拆成没有引用的独立事实。
+            sentences = re.split(r"(?&lt;=[。！？])\s*(?!\s*\[)|\n(?=\s*(?:[-*]|\d+[.)])\s|\s*\|)", paragraph)
+            declared_proposal = bool(paragraph_proposal or table_proposal)
+            for sentence in sentences:
+                # 段内可先引用论文事实，再明确声明后续为拟议步骤；声明只延续到本段结束。
+                if re.search(r"(?:拟议|建议|待验证)(?:获取|实验|设计|配置|方案|步骤|参数|设置|假设)[^。！？]{0,10}[:：]", sentence):
+                    declared_proposal = True
+                if not re.search(r"\d+(?:\.\d+)?\s*(?:%|ms|秒|分数|samples/s|queries/s)", sentence):
+                    continue
+                plain = re.sub(r"[*#&gt;`]", "", sentence.strip())
+                proposed = re.match(r"^(?:[-*]\s*)?(?:建议|待验证|假设|目标|拟|作为待验证|我们建议|本方案建议|"
+                                    r"停止规则[:：]|停止条件[:：]|失败判据[:：]|证伪条件[:：]|预注册阈值[:：])", plain)
+                attributed = re.search(r"(?:论文|作者|文献|原文).{0,10}(?:报告|发现|使用|达到|提升|实测|表明)", plain)
+                proposed = (proposed or declared_proposal or proposal_heading or proposal_section) and not attributed
+                if not re.search(r"\[\d+,\s*p\.\s*\d+\]", sentence) and not proposed:
+                    if function == "Idea" and not attributed:
+                        # Idea 的未明示数值可能是设计参数；交给带原文的审查判定，不能先误判再让模型空修订。
+                        ambiguities.append(sentence)
+                        continue
+                    if strict_facts:
+&gt;                       raise EvidenceError("numeric claim has no page citation", passages=[sentence])
+E                       research_agent.evidence.EvidenceError: numeric claim has no page citation
+
+src\research_agent\evidence\reporting.py:428: EvidenceError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_grouped_wrong_paper_attribution_is_checked" time="0.001"><failure message="Failed: DID NOT RAISE &lt;class 'research_agent.evidence.EvidenceError'&gt;">def test_grouped_wrong_paper_attribution_is_checked():
+        rows = [{'evidence_id':'ev-1','ref':1,'page':2,'filename':'2401.00001-ALPHA.pdf','quote':'We introduce ALPHA.'},
+                {'evidence_id':'ev-2','ref':2,'page':3,'filename':'other.pdf','quote':'We introduce another independent model.'},
+                {'evidence_id':'ev-3','ref':3,'page':4,'filename':'third.pdf','quote':'A separate evaluation protocol.'}]
+&gt;       with pytest.raises(EvidenceError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE &lt;class 'research_agent.evidence.EvidenceError'&gt;
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:51: Failed</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_missing_same_page_text_cannot_be_skipped_to_manufacture_a_quote[25]" time="0.001"><failure message="AssertionError: assert Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=90, document_sha256='source-A') is None&#10; +  where Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=90, document_sha256='source-A') = resolve_quote_source(Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text', sha256='a', start=0, end=29, document_sha256='source-A'), 'calibrated signal in all conditions without exception', [Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text...', text='in all conditions without exception.', kind='text', sha256='b', start=54, end=90, document_sha256='source-A')])">gap = 25
+
+    @pytest.mark.parametrize('gap', [25, 80, 300])
+    def test_missing_same_page_text_cannot_be_skipped_to_manufacture_a_quote(gap):
+        first = chunk('a', 'We observed calibrated signal', 0)
+        second = chunk('b', 'in all conditions without exception.', first.end+gap)
+&gt;       assert resolve_quote_source(first, 'calibrated signal in all conditions without exception', [first, second]) is None
+E       AssertionError: assert Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=90, document_sha256='source-A') is None
+E        +  where Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=90, document_sha256='source-A') = resolve_quote_source(Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text', sha256='a', start=0, end=29, document_sha256='source-A'), 'calibrated signal in all conditions without exception', [Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text...', text='in all conditions without exception.', kind='text', sha256='b', start=54, end=90, document_sha256='source-A')])
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:64: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_missing_same_page_text_cannot_be_skipped_to_manufacture_a_quote[80]" time="0.001"><failure message="AssertionError: assert Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...ha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=145, document_sha256='source-A') is None&#10; +  where Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...ha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=145, document_sha256='source-A') = resolve_quote_source(Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text', sha256='a', start=0, end=29, document_sha256='source-A'), 'calibrated signal in all conditions without exception', [Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text... text='in all conditions without exception.', kind='text', sha256='b', start=109, end=145, document_sha256='source-A')])">gap = 80
+
+    @pytest.mark.parametrize('gap', [25, 80, 300])
+    def test_missing_same_page_text_cannot_be_skipped_to_manufacture_a_quote(gap):
+        first = chunk('a', 'We observed calibrated signal', 0)
+        second = chunk('b', 'in all conditions without exception.', first.end+gap)
+&gt;       assert resolve_quote_source(first, 'calibrated signal in all conditions without exception', [first, second]) is None
+E       AssertionError: assert Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...ha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=145, document_sha256='source-A') is None
+E        +  where Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...ha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=145, document_sha256='source-A') = resolve_quote_source(Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text', sha256='a', start=0, end=29, document_sha256='source-A'), 'calibrated signal in all conditions without exception', [Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text... text='in all conditions without exception.', kind='text', sha256='b', start=109, end=145, document_sha256='source-A')])
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:64: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_missing_same_page_text_cannot_be_skipped_to_manufacture_a_quote[300]" time="0.001"><failure message="AssertionError: assert Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...ha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=365, document_sha256='source-A') is None&#10; +  where Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...ha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=365, document_sha256='source-A') = resolve_quote_source(Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text', sha256='a', start=0, end=29, document_sha256='source-A'), 'calibrated signal in all conditions without exception', [Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text... text='in all conditions without exception.', kind='text', sha256='b', start=329, end=365, document_sha256='source-A')])">gap = 300
+
+    @pytest.mark.parametrize('gap', [25, 80, 300])
+    def test_missing_same_page_text_cannot_be_skipped_to_manufacture_a_quote(gap):
+        first = chunk('a', 'We observed calibrated signal', 0)
+        second = chunk('b', 'in all conditions without exception.', first.end+gap)
+&gt;       assert resolve_quote_source(first, 'calibrated signal in all conditions without exception', [first, second]) is None
+E       AssertionError: assert Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...ha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=365, document_sha256='source-A') is None
+E        +  where Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...ha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=365, document_sha256='source-A') = resolve_quote_source(Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text', sha256='a', start=0, end=29, document_sha256='source-A'), 'calibrated signal in all conditions without exception', [Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text... text='in all conditions without exception.', kind='text', sha256='b', start=329, end=365, document_sha256='source-A')])
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:64: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_same_filename_and_page_do_not_override_different_document_hashes" time="0.001"><failure message="AssertionError: assert Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=66, document_sha256='source-A') is None&#10; +  where Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=66, document_sha256='source-A') = resolve_quote_source(Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text', sha256='a', start=0, end=29, document_sha256='source-A'), 'calibrated signal in all conditions without exception', [Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text...', text='in all conditions without exception.', kind='text', sha256='b', start=30, end=66, document_sha256='source-B')])">def test_same_filename_and_page_do_not_override_different_document_hashes():
+        first = chunk('a', 'We observed calibrated signal', 0)
+        second = chunk('b', 'in all conditions without exception.', first.end+1, 'source-B')
+&gt;       assert resolve_quote_source(first, 'calibrated signal in all conditions without exception', [first, second]) is None
+E       AssertionError: assert Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=66, document_sha256='source-A') is None
+E        +  where Chunk(chunk_id='c5c8218da8159fde1c6c', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='c5c8218da8159fde1c6cfe029b471c49ad11b624c558040ba3d40b3ef2784f4b', start=0, end=66, document_sha256='source-A') = resolve_quote_source(Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text', sha256='a', start=0, end=29, document_sha256='source-A'), 'calibrated signal in all conditions without exception', [Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal', kind='text...', text='in all conditions without exception.', kind='text', sha256='b', start=30, end=66, document_sha256='source-B')])
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:70: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_overlapping_chunks_cannot_duplicate_words_into_a_quote" time="0.001"><failure message="AssertionError: assert Chunk(chunk_id='b14ad49db9a8bd1b40e1', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='b14ad49db9a8bd1b40e1c8959785980d55195b2095328c6c98131ead268d5f5d', start=0, end=51, document_sha256='source-A') is None&#10; +  where Chunk(chunk_id='b14ad49db9a8bd1b40e1', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='b14ad49db9a8bd1b40e1c8959785980d55195b2095328c6c98131ead268d5f5d', start=0, end=51, document_sha256='source-A') = resolve_quote_source(Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal and', kind='text', sha256='a', start=0, end=33, document_sha256='source-A'), 'signal and signal and', [Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal and', kind='...'Methods', text='signal and stable responses.', kind='text', sha256='b', start=23, end=51, document_sha256='source-A')])">def test_overlapping_chunks_cannot_duplicate_words_into_a_quote():
+        original = 'We observed calibrated signal and stable responses.'
+        first = chunk('a', original[:33], 0)
+        second = chunk('b', original[23:], 23)
+        manufactured = first.text[-10:] + ' ' + second.text[:10]
+&gt;       assert resolve_quote_source(first, manufactured, [first, second]) is None
+E       AssertionError: assert Chunk(chunk_id='b14ad49db9a8bd1b40e1', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='b14ad49db9a8bd1b40e1c8959785980d55195b2095328c6c98131ead268d5f5d', start=0, end=51, document_sha256='source-A') is None
+E        +  where Chunk(chunk_id='b14ad49db9a8bd1b40e1', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated s...sha256='b14ad49db9a8bd1b40e1c8959785980d55195b2095328c6c98131ead268d5f5d', start=0, end=51, document_sha256='source-A') = resolve_quote_source(Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal and', kind='text', sha256='a', start=0, end=33, document_sha256='source-A'), 'signal and signal and', [Chunk(chunk_id='a', filename='paper.pdf', page=4, heading='Methods', text='We observed calibrated signal and', kind='...'Methods', text='signal and stable responses.', kind='text', sha256='b', start=23, end=51, document_sha256='source-A')])
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:78: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_real_cross_overlap_quote_is_recovered_without_repeating_overlap" time="0.001"><failure message="assert (None is not None)">def test_real_cross_overlap_quote_is_recovered_without_repeating_overlap():
+        original = 'We observed calibrated signal and stable responses.'
+        first = chunk('a', original[:33], 0)
+        second = chunk('b', original[23:], 23)
+        result = resolve_quote_source(first, original[12:47], [first, second])
+&gt;       assert result is not None and result.text == original
+E       assert (None is not None)
+
+..\..\..\runs\quality-regression-20261029T170359\frozen-tests\test_quality_counterexamples.py:86: AssertionError</failure></testcase><testcase classname="runs.quality-regression-20261029T170359.frozen-tests.test_quality_counterexamples" name="test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers" time="0.004"><skipped type="pytest.xfail" message="Known quota underutilization remains: full-page reallocation prototype did not pass timed retrieval gate; retained as an open defect, not a passed test" /></testcase></testsuite></testsuites>

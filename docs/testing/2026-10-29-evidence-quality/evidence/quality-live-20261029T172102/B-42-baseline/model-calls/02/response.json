@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"type\":\"json_object\",\"papers\":[{\"filename\":\"2512.23188.pdf\",\"reason\":\"该篇正文第8页明确定义了“Group disparity refers to the maximum difference between the proportions of infected individuals or between socialization levels or between vaccination levels in two different groups over time under the same policies.”，与检索短语“group disparity refers to the maximum difference”在允许大小写、换行和标点排版差异的条件下构成连续原文匹配，且该定义属于本篇正文的方法/指标定义，而非参考文献列表内容。\",\"chunk_ids\":[\"379418b52649cb83276e\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265683,
+  "id": "0217932656819861e8780d621ef24392ceed1bb945d0246a006e6",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 138,
+    "prompt_tokens": 5359,
+    "total_tokens": 5497,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

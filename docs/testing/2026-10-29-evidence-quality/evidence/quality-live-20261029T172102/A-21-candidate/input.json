@@ -1,0 +1,10 @@
+{
+  "case_id": "A-21",
+  "function": "Chat",
+  "title": "串行预算核算",
+  "input": "串行执行40次操作，每次1.5毫秒，没有重叠且忽略额外开销，总耗时多少毫秒？请写出计算并提出一个必要的澄清问题。",
+  "materials": [],
+  "constraints": [],
+  "expected_output": "Chat",
+  "output_schema_ref": "Chat"
+}

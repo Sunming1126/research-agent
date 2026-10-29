@@ -1,0 +1,160 @@
+{
+  "raw_evidence_sha256": "801124e9a3e4fcaa686c4520d4c7f9457d261e7f4e730aa6cb6a332edc0130eb",
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "urban vegetation surface temperature",
+      "methods": "remote sensing",
+      "focus": "comparison",
+      "exclusions": [
+        "plant taxonomy"
+      ],
+      "variants": [
+        "绿地 温度"
+      ],
+      "subqueries": []
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "Study_1.pdf",
+      "Study_2.pdf",
+      "Study_3.pdf",
+      "Study_4.pdf",
+      "Study_5.pdf"
+    ],
+    "original": [
+      "Study_1.pdf",
+      "Study_2.pdf",
+      "Study_3.pdf",
+      "Study_4.pdf",
+      "Study_5.pdf"
+    ],
+    "components": [],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "Study_1.pdf": 0.03278688524590164,
+      "Study_2.pdf": 0.03225806451612903,
+      "Study_3.pdf": 0.031746031746031744,
+      "Study_4.pdf": 0.03125,
+      "Study_5.pdf": 0.03076923076923077
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v2_maxmin",
+      "scanned_pages": 0,
+      "documents_opened": 5,
+      "authorized_documents": 5,
+      "initial_page_limit": 8,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {},
+      "coverage_limited": false,
+      "unread_pages_in_opened_documents": 0,
+      "scanned_pages_by_document": {
+        "Study_5.pdf": 0,
+        "Study_1.pdf": 0,
+        "Study_3.pdf": 0,
+        "Study_4.pdf": 0,
+        "Study_2.pdf": 0
+      },
+      "sampling_limited_documents": [],
+      "documents_content_opened": 0,
+      "pages_planned": 0,
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "metadata_elapsed_seconds": 0.016,
+      "elapsed_seconds": 0.016,
+      "documents_unopened": 0
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 5,
+    "candidates": [
+      "Study_1.pdf",
+      "Study_2.pdf",
+      "Study_3.pdf",
+      "Study_4.pdf",
+      "Study_5.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "Study_1.pdf",
+        "score": 0.5639
+      },
+      {
+        "filename": "Study_2.pdf",
+        "score": 0.5639
+      },
+      {
+        "filename": "Study_3.pdf",
+        "score": 0.5639
+      },
+      {
+        "filename": "Study_4.pdf",
+        "score": 0.5639
+      },
+      {
+        "filename": "Study_5.pdf",
+        "score": 0.5639
+      }
+    ],
+    "batch_sizes": [
+      5
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "Study_1.pdf",
+      "Study_2.pdf",
+      "Study_3.pdf",
+      "Study_4.pdf",
+      "Study_5.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "accepted_evidence": [
+      {
+        "filename": "Study_1.pdf",
+        "chunk_id": "081b75df0d48297ab406",
+        "page": 1,
+        "document_sha256": "c5c00aa5ef1171de9b84ed084f1235fd6022ba15d47e2971ffab1cb894e735e7",
+        "chunk_sha256": "081b75df0d48297ab406372f0ff67a995b2a3fa739bf2a96f6f626d8d8622247"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "chunk_id": "090dc53011cee12b10a1",
+        "page": 1,
+        "document_sha256": "382dddf69360118c9e7d8786d5d4e355d7904c64e4c3f59bcb159f07c643948c",
+        "chunk_sha256": "090dc53011cee12b10a108c602fc9f86dfa89b9ade717d068be874d6158678d8"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "chunk_id": "4a43f57386a3758cba6f",
+        "page": 1,
+        "document_sha256": "7dc9edcef46010ef9777ca6c97159dfaf3d57b1069b0c06b3a2df7deeec49c94",
+        "chunk_sha256": "4a43f57386a3758cba6f8a80b160b2dd37f5e8870311588f92d584993c92cb0e"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "chunk_id": "8ea49213abafc8e689a9",
+        "page": 1,
+        "document_sha256": "4ed37681fdea267010728bb571f22ce8e0caf2be1f7181b6d9b7229a4135e436",
+        "chunk_sha256": "8ea49213abafc8e689a9842a6c371685bf2f9fa97523b38ede18bdcdff277ef2"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "chunk_id": "f4aaed5a978bf33ebbb6",
+        "page": 1,
+        "document_sha256": "995310cc94e11840eeca22f57f514cb8c2dc23ef9a86ee9c6230bf7be87bb8a2",
+        "chunk_sha256": "f4aaed5a978bf33ebbb64bec4dbbd0258c4455b704588d56fbe0b942ead7a216"
+      }
+    ],
+    "fulltext_candidates": [
+      "Study_1.pdf",
+      "Study_2.pdf",
+      "Study_3.pdf",
+      "Study_4.pdf"
+    ]
+  },
+  "source_chunk_count": 5
+}

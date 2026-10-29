@@ -1,0 +1,302 @@
+{
+  "status": "completed",
+  "answer": {
+    "case_id": "B-75",
+    "papers": [
+      {
+        "filename": "2212.10496.pdf",
+        "reason": "该论文提出HyDE（Hypothetical Document Embeddings）方法本身：给定查询，先零样本指示指令跟随语言模型生成假设文档，再用无监督对比学习编码器将其编码为向量，在语料嵌入空间中检索相似真实文档。摘要明确说明这是本文提出的方法，并报告其显著优于无监督基线，满足“提出HyDE的原始方法论文”这一目标。"
+      },
+      {
+        "filename": "2401.15884.pdf",
+        "reason": "该论文提出Corrective Retrieval Augmented Generation（CRAG）方法本身：设计轻量检索评估器评估检索文档整体质量并返回置信度以触发不同检索动作，结合大规模网络搜索扩展检索结果，并用分解-重组算法过滤无关信息。摘要明确以“we propose the Corrective Retrieval Augmented Generation (CRAG)”表述，满足“提出CRAG的原始方法论文”这一目标。"
+      }
+    ]
+  },
+  "disk_matches": true,
+  "internal_audit": {},
+  "retrieval_trace": {
+    "query_plan": {
+      "topic": "提出CRAG与HyDE的原始方法论文",
+      "methods": "CRAG（Corrective Retrieval-Augmented Generation）与HyDE（Hypothetical Document Embeddings）两种检索增强方法",
+      "focus": "分别定位首次提出CRAG和首次提出HyDE的原始方法论文，两目标取并集，最多两篇，不要求同一篇同时提出两个方法",
+      "exclusions": [
+        "只综述这些方法的论文",
+        "只引用这些方法的论文"
+      ],
+      "variants": [
+        "Corrective Retrieval-Augmented Generation",
+        "CRAG",
+        "Hypothetical Document Embeddings",
+        "HyDE",
+        "retrieval-augmented generation",
+        "zero-shot dense retrieval"
+      ],
+      "subqueries": [
+        "Corrective Retrieval-Augmented Generation original paper",
+        "Hypothetical Document Embeddings original paper"
+      ]
+    },
+    "query_plan_status": "model",
+    "rewritten": [
+      "2212.10496.pdf",
+      "2401.15884.pdf",
+      "2312.10997.pdf",
+      "2005.11401-RAG.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2305.06983.pdf",
+      "2004.04906-DPR.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "original": [
+      "2212.10496.pdf",
+      "2312.10997.pdf",
+      "2401.15884.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2305.06983.pdf",
+      "2004.04906-DPR.pdf",
+      "2007.01282-FiD.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "components": [
+      {
+        "query": "Corrective Retrieval-Augmented Generation original paper",
+        "filenames": [
+          "2401.15884.pdf",
+          "2005.11401-RAG.pdf",
+          "2312.10997.pdf"
+        ]
+      },
+      {
+        "query": "Hypothetical Document Embeddings original paper",
+        "filenames": [
+          "2212.10496.pdf",
+          "2312.10997.pdf",
+          "2104.08663-BEIR.pdf"
+        ]
+      }
+    ],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2212.10496.pdf": 0.04918032786885246,
+      "2401.15884.pdf": 0.04839549075403121,
+      "2312.10997.pdf": 0.06400409626216078,
+      "2005.11401-RAG.pdf": 0.0471386476426799,
+      "2310.11511-Self-RAG.pdf": 0.031009615384615385,
+      "2104.08663-BEIR.pdf": 0.046176046176046176,
+      "2007.01282-FiD.pdf": 0.029418126757516764,
+      "2112.04426-RETRO.pdf": 0.028991596638655463,
+      "2305.06983.pdf": 0.029418126757516764,
+      "2004.04906-DPR.pdf": 0.028991596638655463,
+      "2203.02155-InstructGPT.pdf": 0.028169014084507043
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 189,
+      "documents_opened": 11,
+      "authorized_documents": 11,
+      "initial_page_limit": 8,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2104.08663-BEIR.pdf": [
+          9
+        ],
+        "2212.10496.pdf": [
+          9,
+          10
+        ],
+        "2310.11511-Self-RAG.pdf": [
+          9,
+          20
+        ],
+        "2203.02155-InstructGPT.pdf": [
+          10,
+          13
+        ],
+        "2005.11401-RAG.pdf": [
+          9,
+          17
+        ],
+        "2305.06983.pdf": [
+          9
+        ],
+        "2312.10997.pdf": [
+          9,
+          14
+        ],
+        "2112.04426-RETRO.pdf": [
+          9,
+          13
+        ],
+        "2401.15884.pdf": [
+          9
+        ]
+      },
+      "coverage_limited": false,
+      "unread_pages_in_opened_documents": 189,
+      "scanned_pages_by_document": {
+        "2004.04906-DPR.pdf": 5,
+        "2007.01282-FiD.pdf": 0,
+        "2104.08663-BEIR.pdf": 16,
+        "2212.10496.pdf": 3,
+        "2310.11511-Self-RAG.pdf": 22,
+        "2203.02155-InstructGPT.pdf": 60,
+        "2005.11401-RAG.pdf": 11,
+        "2305.06983.pdf": 16,
+        "2312.10997.pdf": 13,
+        "2112.04426-RETRO.pdf": 35,
+        "2401.15884.pdf": 8
+      },
+      "sampling_limited_documents": [],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "elapsed_seconds": 1.0,
+      "documents_unopened": 0
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 11,
+    "candidates": [
+      "2312.10997.pdf",
+      "2212.10496.pdf",
+      "2401.15884.pdf",
+      "2005.11401-RAG.pdf",
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2305.06983.pdf",
+      "2007.01282-FiD.pdf",
+      "2004.04906-DPR.pdf",
+      "2112.04426-RETRO.pdf",
+      "2203.02155-InstructGPT.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2312.10997.pdf",
+        "score": 0.6608
+      },
+      {
+        "filename": "2212.10496.pdf",
+        "score": 0.7485
+      },
+      {
+        "filename": "2401.15884.pdf",
+        "score": 0.7303
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.6381
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.613
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.3811
+      },
+      {
+        "filename": "2305.06983.pdf",
+        "score": 0.3705
+      },
+      {
+        "filename": "2007.01282-FiD.pdf",
+        "score": 0.3392
+      },
+      {
+        "filename": "2004.04906-DPR.pdf",
+        "score": 0.3573
+      },
+      {
+        "filename": "2112.04426-RETRO.pdf",
+        "score": 0.3377
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.2919
+      }
+    ],
+    "batch_sizes": [
+      8,
+      3
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2212.10496.pdf",
+      "2401.15884.pdf"
+    ],
+    "requested_limit": 2,
+    "explicitly_excluded": [],
+    "accepted_evidence": [
+      {
+        "filename": "2401.15884.pdf",
+        "chunk_id": "8356bb0549e7cd88384e",
+        "page": 1,
+        "document_sha256": "975aa1fd3c1b603126e93ff99d6504858b61301bf1d34c9df88ebe53a0b026cb",
+        "chunk_sha256": "8356bb0549e7cd88384eeb22be568f89a148471ed69b51983cace8cc9328555e"
+      },
+      {
+        "filename": "2212.10496.pdf",
+        "chunk_id": "c032ea4c3fb419b0560d",
+        "page": 1,
+        "document_sha256": "dc0ae3c5584ed146beee122e6a9ad9c48547dde048d53e9be8435d8f1d354531",
+        "chunk_sha256": "c032ea4c3fb419b0560d4804ec3a3054d88da9a8abec67e079f2b5450cd0352b"
+      },
+      {
+        "filename": "2212.10496.pdf",
+        "chunk_id": "c1b3fb6305b2e9536722",
+        "page": 1,
+        "document_sha256": "dc0ae3c5584ed146beee122e6a9ad9c48547dde048d53e9be8435d8f1d354531",
+        "chunk_sha256": "c1b3fb6305b2e9536722222b142f5286acf98301b3d3e3b523343fad996a5f8f"
+      },
+      {
+        "filename": "2401.15884.pdf",
+        "chunk_id": "c4673bd76964d9f0b007",
+        "page": 1,
+        "document_sha256": "975aa1fd3c1b603126e93ff99d6504858b61301bf1d34c9df88ebe53a0b026cb",
+        "chunk_sha256": "c4673bd76964d9f0b0071cea4885ea2bb871252a2be65fc4638abab0dcf34831"
+      },
+      {
+        "filename": "2212.10496.pdf",
+        "chunk_id": "d68d5dbba419f6221d2d",
+        "page": 1,
+        "document_sha256": "dc0ae3c5584ed146beee122e6a9ad9c48547dde048d53e9be8435d8f1d354531",
+        "chunk_sha256": "d68d5dbba419f6221d2da65e1e3a9a02e58bd1c0c1091df16f04ffa0da60691e"
+      },
+      {
+        "filename": "2401.15884.pdf",
+        "chunk_id": "db1409db2321385135b4",
+        "page": 1,
+        "document_sha256": "975aa1fd3c1b603126e93ff99d6504858b61301bf1d34c9df88ebe53a0b026cb",
+        "chunk_sha256": "db1409db2321385135b460639eeaae08b0cbf36a054a700a8413e08e3280cfa7"
+      }
+    ],
+    "fulltext_candidates": [
+      "2005.11401-RAG.pdf",
+      "2212.10496.pdf",
+      "2312.10997.pdf",
+      "2401.15884.pdf"
+    ]
+  },
+  "model_stages": [
+    "query",
+    "retrieve",
+    "retrieve"
+  ],
+  "seconds": 7.953,
+  "target_real_model_calls": 3,
+  "total_tokens": 8346,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "model": "deepseek-v4.1-flash",
+  "environment": "Windows source engine with real magic transport; not image or official HTTP acceptance"
+}

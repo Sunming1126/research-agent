@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 
 from ..core.utils import confined, sha256_file
+from ..core.citations import CITATION_PATTERN
 from ..integrations.instrumentation import tool
 
 
@@ -58,7 +59,7 @@ def validate_b_fields(case, result, filenames=None):
 def report_citations(body):
     # [111] 等晶向不算文献；支持 [1,2]、[1, 2] 和内部证据页码标注。
     citations = []
-    for match in re.finditer(r"\[(\d{1,2}(?:\s*,\s*\d{1,2})*)(?:,\s*p\.\s*\d+)?\]", body):
+    for match in CITATION_PATTERN.finditer(body):
         citations.extend(re.split(r"\s*,\s*", match.group(1)))
     return citations
 

@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2305.06983.pdf\",\"reason\":\"该论文摘要明确提出提出 Forward-Looking Active REtrieval augmented generation (FLARE)，并描述其核心机制：迭代地预测即将生成的句子，将其作为查询检索相关文档，若预测句子含低置信度词则重新生成该句子；片段还给出对低置信度词做掩码以形成隐式查询的具体方法。这正好满足题目要求的原始方法论文条件，而非仅在相关工作中提及。\",\"chunk_ids\":[\"10b824b23ed673953f27\",\"e8e16223723ddd50c12e\",\"9c66bade90ef7e68f508\"],\"relevant\":true,\"decision\":\"include\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265787,
+  "id": "0217932657861054c9833b195a1cac5bbbd18e9e4e5ff83ba250f",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 157,
+    "prompt_tokens": 5103,
+    "total_tokens": 5260,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

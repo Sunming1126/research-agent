@@ -1,0 +1,1 @@
+{"actual_cases": 1, "exact": 1, "directory": "C:\\Users\\lenovo\\Desktop\\Agent\u6311\u6218\u8d5b\\\u955c\u50cf\u6d4b\u8bd5\\runs\\quality-gate-measurements-20261029T173454\\B-42-baseline"}

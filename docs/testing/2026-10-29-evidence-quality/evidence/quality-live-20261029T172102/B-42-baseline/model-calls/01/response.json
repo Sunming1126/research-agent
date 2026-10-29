@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"topic\": \"在论文正文中检索连续英文短语 \\\"group disparity refers to the maximum difference\\\"，允许 PDF 换行、标点和连字符排版差异\", \"methods\": \"连续短语精确匹配；容忍 PDF 排版差异（换行、标点、连字符）\", \"focus\": \"仅以正文中可核验的连续短语原文为证据，参考文献列表不计入正文证据\", \"exclusions\": [\"仅凭主题相似判断\", \"仅凭常识判断\", \"参考文献列表作为正文证据\"], \"variants\": [\"group disparity refers to the maximum difference\", \"group disparity\", \"maximum difference\", \"continuous phrase search\", \"exact phrase matching\", \"PDF layout normalization\"], \"subqueries\": []}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265667,
+  "id": "0217932656667066525c18cf4d9efd868f038535426f81661e8bc",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 153,
+    "prompt_tokens": 933,
+    "total_tokens": 1086,
+    "prompt_tokens_details": {
+      "cached_tokens": 896
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

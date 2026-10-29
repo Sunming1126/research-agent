@@ -1,0 +1,29 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\"papers\":[{\"filename\":\"2305.06983.pdf\",\"reason\":\"该论文摘要明确提出 Forward-Looking Active REtrieval augmented generation (FLARE)，并说明其迭代地预测即将生成的句子、以该预测作为查询检索相关文档、当句子含低置信度词时重新生成，与题目要求的原始方法核心机制完全一致；正文片段进一步描述了先无检索生成临时下一句、若存在低于阈值的低置信度 token 则触发检索并重新生成该句的流程。\",\"chunk_ids\":[\"10b824b23ed673953f27\",\"f25dc4dfc62db57dd98c\",\"9c66bade90ef7e68f508\"],\"relevant\":true,\"decision\":\"include\"},{\"filename\":\"2312.10997.pdf\",\"reason\":\"该文仅在自适应检索方法的综述段落中提及 FLARE 作为示例，属于相关工作/背景引用，并非提出 FLARE 的原始论文。\",\"chunk_ids\":[\"ebbd444265388e96f37e\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2310.11511-Self-RAG.pdf\",\"reason\":\"该文提出 Self-RAG，其反思 token 与按需检索机制与 FLARE 不同，当前片段未显示其提出 FLARE 本身。\",\"chunk_ids\":[\"8d1b1308d69d0d73270c\",\"acc5249f597a7688c12f\",\"3bad279da09aeb3f860b\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2007.01282-FiD.pdf\",\"reason\":\"该文研究开放域问答的段落检索与生成，当前片段未涉及 FLARE 或前瞻式句子预测触发检索的机制。\",\"chunk_ids\":[\"0621ccb868e006e2fc04\",\"cfec53ad207363741b18\",\"f20f1e111cab3eb1189c\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2401.15884.pdf\",\"reason\":\"该文提出 Corrective Retrieval Augmented Generation (CRAG)，以检索评估器触发不同检索动作，并非 FLARE 的原始论文。\",\"chunk_ids\":[\"8356bb0549e7cd88384e\",\"db1409db2321385135b4\",\"c4673bd76964d9f0b007\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2005.11401-RAG.pdf\",\"reason\":\"该文提出 RAG 模型，属于检索增强生成的早期工作，当前片段未涉及 FLARE 的前瞻式句子预测与低置信度触发重生成机制。\",\"chunk_ids\":[\"93c9f5ef5e98707bda36\",\"1bbd478efc05f1b7e181\",\"b8f9b556140edaace649\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2004.04906-DPR.pdf\",\"reason\":\"该文研究稠密段落检索，与 FLARE 方法无关。\",\"chunk_ids\":[\"e47ed7471f81825ff683\",\"d7f4fb7b0ab44a62ce0b\",\"3ccd81c82b95403c63da\"],\"relevant\":false,\"decision\":\"exclude\"},{\"filename\":\"2212.10496.pdf\",\"reason\":\"该文提出 HyDE，用生成假设文档的嵌入进行零样本稠密检索，并非 FLARE 的原始论文。\",\"chunk_ids\":[\"c032ea4c3fb419b0560d\",\"4debcc7403802c54c546\",\"c1b3fb6305b2e9536722\"],\"relevant\":false,\"decision\":\"exclude\"}]}",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1793265797,
+  "id": "021793265793856ffbfb0a147800028083cadce647c2c44a4d024",
+  "model": "deepseek-v4-1-flash",
+  "service_tier": "default",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 807,
+    "prompt_tokens": 4832,
+    "total_tokens": 5639,
+    "prompt_tokens_details": {
+      "cached_tokens": 384
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

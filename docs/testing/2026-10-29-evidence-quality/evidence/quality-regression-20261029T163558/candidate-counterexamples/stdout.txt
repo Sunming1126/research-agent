@@ -1,0 +1,132 @@
+.............F                                                           [100%]
+================================== FAILURES ===================================
+_ test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers _
+
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/quality-regression-20261029T163558/candidate-counterexamples/temp/test_default_page_budget_is_re0')
+
+    def test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers(tmp_path):
+        import fitz
+        from research_agent.core.config import Settings
+        from research_agent.rag.materials import DocumentIndex
+        papers = tmp_path/'papers'
+        papers.mkdir()
+        for index in range(60):
+            with fitz.open() as document:
+                for page in range(65 if index == 59 else 5):
+                    text = 'Neutral laboratory apparatus and background observations.'
+                    if index == 59 and page == 7:
+                        text = 'We independently measure xenocalibration under controlled isotopeperturbation.'
+                    document.new_page().insert_text((40,80),text)
+                document.save(papers/f'{index:02d}.pdf')
+        index = DocumentIndex(Settings(tmp_path,tmp_path/'out','fixture',material_roots=[papers]),tmp_path/'cache')
+        index.parser.extract_tables = False
+>       index.build(['*.pdf'],page_limit=4)
+
+..\..\镜像测试\runs\quality-regression-20261029T163558\frozen-tests\test_quality_counterexamples.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\research_agent\rag\materials.py:343: in build
+    self.materials = resolved if resolved is not None else self.resolver.resolve(descriptions)
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\research_agent\rag\materials.py:131: in resolve
+    target = self._path(item)
+             ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <research_agent.rag.materials.MaterialResolver object at 0x000001DFE84A3F80>
+item = '*.pdf'
+
+    def _path(self, item: str) -> Path:
+        # Windows离线复测允许专用授权根内的本机绝对路径；UNC和驱动器相对路径仍拒绝。
+        if isinstance(item, str) and item.startswith('\\\\'):
+            raise MaterialError("network material paths are not authorized")
+        if isinstance(item, str) and Path(item).is_absolute() and not item.startswith('/'):
+            target = Path(item)
+            for root in self.settings.material_roots:
+                if target == root and root.is_dir():
+                    return root
+                if root in target.parents:
+                    checked = confined(root, target.relative_to(root).as_posix())
+                    if checked.exists():
+                        return checked
+            raise MaterialError("absolute material path is outside authorized roots or missing")
+        if not item or "\\" in item or ":" in item:
+            raise MaterialError("materials must use relative paths or configured aliases")
+        # 题面使用逻辑目录 data/论文库，平台实际挂载 /data/papers。
+        # 只映射已授权的唯一专用库，保留指定文件子路径；不搜索其他目录。
+        roots = self.settings.material_roots
+        if len(roots) == 1 and roots[0].name in {"papers", "论文库"}:
+            root = roots[0]
+            for alias in ("data/论文库", "/data/论文库", "论文库", "data/papers", "/data/papers", "papers"):
+                if item.rstrip("/") == alias:
+                    if root.is_dir():
+                        return root
+                    raise MaterialError("authorized paper library is missing")
+                if item.startswith(alias + "/"):
+                    target = confined(root, item[len(alias) + 1:])
+                    if target.is_file() or target.is_dir():
+                        return target
+                    raise MaterialError(f"authorized material not found: {item}")
+        if item.startswith("/"):
+            # 平台可传挂载后的绝对路径，但只能落在已经授权的专用根目录内。
+            target = Path(item)
+            for root in self.settings.material_roots:
+                if root in target.parents:
+                    checked = confined(root, target.relative_to(root).as_posix())
+                    if checked.exists():
+                        return checked
+                elif target == root and root.exists():
+                    return root
+            raise MaterialError("absolute material path is outside authorized roots or missing")
+        matches = []
+        for root in self.settings.material_roots:
+            # 明确路径可以相对于工作区或已配置的材料根目录。
+            options = [confined(root, item)]
+            if item == root.name:
+                options.append(root)
+            # 约定的 data/论文库 与 data/experiments/<当前题号> 在不同挂载点下
+            # 都只映射至已配置根目录，不能借此扩大授权范围。
+            for prefix in (f"data/{root.name}/", f"{root.name}/",
+                           f"data/{root.parent.name}/{root.name}/", f"{root.parent.name}/{root.name}/"):
+                if item.startswith(prefix):
+                    options.append(confined(root, item[len(prefix):]))
+            workspace_path = confined(self.settings.workspace, item)
+            if workspace_path == root or root in workspace_path.parents:
+                options.append(workspace_path)
+            if self.settings.workspace.name == "data" and item.startswith("data/"):
+                # 平台挂载根为 /data 时，仍接受题面相对项目根的 data/论文库/...。
+                data_path = confined(self.settings.workspace, item[5:])
+                if data_path == root or root in data_path.parents:
+                    options.append(data_path)
+            for candidate in options:
+                if candidate.exists() and candidate not in matches:
+                    matches.append(candidate)
+            if "/" not in item:
+                # 只在专用材料目录内按文件名查找，不遍历整个工作区或 data。
+                for candidate in root.rglob(item):
+                    checked = confined(root, candidate.relative_to(root).as_posix())
+                    if checked not in matches:
+                        matches.append(checked)
+        if not matches:
+            raise MaterialError(f"authorized material not found: {item}")
+        if len(matches) != 1:
+>           raise MaterialError(f"ambiguous material filename: {item}")
+E           research_agent.rag.materials.MaterialError: ambiguous material filename: *.pdf
+
+src\research_agent\rag\materials.py:111: MaterialError
+============================== warnings summary ===============================
+镜像测试/runs/quality-regression-20261029T163558/frozen-tests/test_quality_counterexamples.py::test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers
+镜像测试/runs/quality-regression-20261029T163558/frozen-tests/test_quality_counterexamples.py::test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+镜像测试/runs/quality-regression-20261029T163558/frozen-tests/test_quality_counterexamples.py::test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers
+镜像测试/runs/quality-regression-20261029T163558/frozen-tests/test_quality_counterexamples.py::test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+镜像测试/runs/quality-regression-20261029T163558/frozen-tests/test_quality_counterexamples.py::test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\quality-regression-20261029T163558\candidate-counterexamples\pytest.xml -
+=========================== short test summary info ===========================
+FAILED ..\..\镜像测试\runs\quality-regression-20261029T163558\frozen-tests\test_quality_counterexamples.py::test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers
+1 failed, 13 passed, 5 warnings in 0.68s

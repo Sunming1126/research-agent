@@ -1,0 +1,100 @@
+{
+  "type": "static source inspection and post-hoc reading of existing outputs; no new functional or model test",
+  "baseline_commit": "a329dd6cb0a2527fc664d19d55467da06086bb7e",
+  "candidate_commit": "43f8189193984edd6869b5d453e4b5a0ec8c776a",
+  "changed_src_files": [
+    "src/research_agent/__init__.py",
+    "src/research_agent/contracts/validation.py",
+    "src/research_agent/core/citations.py",
+    "src/research_agent/evidence/attribution.py",
+    "src/research_agent/evidence/reporting.py",
+    "src/research_agent/rag/deep_probe.py",
+    "src/research_agent/workflows/report_context.py",
+    "src/research_agent/workflows/reports.py"
+  ],
+  "probe_body_after_input_guard_ast_equal": true,
+  "input_guards": [
+    {
+      "variant": "baseline",
+      "expression": "initial_page_limit < 1 or max_pages < 0 or max_seconds < 0 or (pages_per_document < 1)"
+    },
+    {
+      "variant": "candidate",
+      "expression": "type(initial_page_limit) is not int or initial_page_limit < 1 or type(max_pages) is not int or (max_pages < 0) or (type(pages_per_document) is not int) or (pages_per_document < 1) or (not math.isfinite(max_seconds)) or (max_seconds < 0) or (not math.isfinite(model_reserve)) or (model_reserve < 0)"
+    }
+  ],
+  "unchanged_b_files": {
+    "src/research_agent/workflows/tasks.py": "d0c344eeecf0cca4717fb05f50cffb5672dbb4f72422d97ffb34b8d4f3e07fb2",
+    "src/research_agent/rag/retrieval.py": "d9024b357f466b8d3332df8ae3e924dd355a6fe52bb4aaa24498478a5fcb08cb",
+    "src/research_agent/rag/evidence_selection.py": "34cfd7e35266b49ff0948e9a69a50fb8066f1c979d134cff41eaf4d88c0c99e8",
+    "src/research_agent/rag/paper_selection.py": "41b6942acb6b3b291fbadd8bb4aa7fe0f8c7f0f3c32592a41aae0333dc0d7cbd"
+  },
+  "b44_existing_observations": [
+    {
+      "variant": "candidate",
+      "passed": false,
+      "query_plan": {
+        "topic": "在论文正文中检索连续英文短语 \"and the sid implemented in the cran\"，允许 PDF 换行、标点和连字符排版差异",
+        "methods": "连续短语精确匹配；容忍 PDF 排版差异（换行、标点、连字符）",
+        "focus": "定位正文包含该连续短语原文的论文，参考文献列表不作为正文证据",
+        "exclusions": [
+          "仅凭主题相似判断",
+          "仅凭常识判断",
+          "参考文献列表中的条目作为正文证据"
+        ],
+        "variants": [
+          "and the sid implemented in the cran",
+          "SID implemented in the CRAN",
+          "sid implemented in cran",
+          "SID in the CRAN",
+          "implemented in the CRAN",
+          "continuous phrase exact match"
+        ],
+        "subqueries": []
+      },
+      "probe": {
+        "scanned_pages": 538,
+        "documents_opened": 42,
+        "documents_unopened": 18,
+        "stop_reason": "probe_time_limit",
+        "elapsed_seconds": 12.219
+      },
+      "returned_files": []
+    },
+    {
+      "variant": "baseline",
+      "passed": true,
+      "query_plan": {
+        "topic": "在论文正文中检索连续英文短语 \"and the sid implemented in the cran\"，允许 PDF 换行、标点和连字符排版差异",
+        "methods": "连续短语精确匹配；容忍 PDF 排版差异（换行、标点、连字符）",
+        "focus": "仅依据正文原文出现该连续短语判定匹配，参考文献列表不计为正文证据；无匹配可为空",
+        "exclusions": [
+          "仅凭主题相似判断",
+          "仅凭常识判断",
+          "参考文献列表中的出现"
+        ],
+        "variants": [
+          "and the sid implemented in the cran",
+          "SID implemented in the CRAN",
+          "sid implemented in cran",
+          "SID in the CRAN",
+          "implemented in the CRAN",
+          "CRAN SID implementation"
+        ],
+        "subqueries": []
+      },
+      "probe": {
+        "scanned_pages": 752,
+        "documents_opened": 53,
+        "documents_unopened": 7,
+        "stop_reason": "probe_time_limit",
+        "elapsed_seconds": 12.141
+      },
+      "returned_files": [
+        "2511.12805.pdf"
+      ]
+    }
+  ],
+  "target_model_calls_this_inspection": 0,
+  "limits": "Equality after the guard is static evidence only, not proof of equal runtime performance. Shared reporting imports/startup and host variation are not isolated. First-wave failure stays failed."
+}

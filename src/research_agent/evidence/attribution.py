@@ -3,6 +3,7 @@ import re
 from pathlib import PurePath
 
 from . import EvidenceError
+from ..core.citations import citation_pairs
 
 
 def validate_named_attribution(markdown, evidence, used_ids=None):
@@ -27,9 +28,8 @@ def validate_named_attribution(markdown, evidence, used_ids=None):
             if (re.match(r"^(?:建议|待验证|拟议|本方案建议|我们建议)", plain)
                     and not re.search(r"论文|作者|原文|报告|实测|发现", plain)):
                 continue
-            cited = {int(n) for n in re.findall(r"\[(\d{1,2})(?:,\s*p\.\s*\d+)?\]", sentence)}
-            pairs = {(int(n), int(p) if p else None) for n, p in
-                     re.findall(r"\[(\d{1,2})(?:,\s*p\.\s*(\d+))?\]", sentence)}
+            pairs = citation_pairs(sentence)
+            cited = {ref for ref, _ in pairs}
             if not cited:
                 continue
             for alias, owner in names.values():
