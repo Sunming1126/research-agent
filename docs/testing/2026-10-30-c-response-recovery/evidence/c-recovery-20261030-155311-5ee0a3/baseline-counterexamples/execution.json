@@ -1,0 +1,10 @@
+{
+  "returncode": 1,
+  "seconds": 1.896,
+  "target_model_calls": 0,
+  "tests": 5,
+  "failures": 3,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 2
+}

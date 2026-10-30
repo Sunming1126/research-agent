@@ -34,7 +34,9 @@ class RecoveryModel:
             return {'markdown':text,'used_evidence_ids':used}
         if stage=='repair':
             # A paragraph repair cannot update used_evidence_ids in this protocol.
-            return {'patches':[{'original':'软件测试夹具','replacement':'离线测试材料'}]}
+            # The patch is valid and uniquely matches the title; the failure must
+            # come from unchanged evidence metadata, not an ambiguous patch.
+            return {'patches':[{'original':'# 离线合成材料比较','replacement':'# 离线合成材料的比较'}]}
         if stage=='audit':return {'ok':True,'issues':[]}
         raise AssertionError('Unexpected model stage '+stage)
 

@@ -4,12 +4,12 @@
     "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
     "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
     "native_tool_execution_verified": true,
-    "tool_call_sha256": "0f7208992ef1ef737ed99a00967a45ce5938ffe9860b4945b61e660c75253c72",
+    "tool_call_sha256": "8433acae49f9c17350d54e17a15c93d8bb225b5eb0d2a01f4346f2d12850b9b8",
     "provider": "magic"
   },
   "baseline": {
     "returncode": 1,
-    "seconds": 2.157,
+    "seconds": 1.896,
     "target_model_calls": 0,
     "tests": 5,
     "failures": 3,
@@ -19,7 +19,7 @@
   },
   "candidate": {
     "returncode": 0,
-    "seconds": 1.947,
+    "seconds": 1.241,
     "target_model_calls": 0,
     "tests": 5,
     "failures": 0,
@@ -29,7 +29,7 @@
   },
   "regression": {
     "returncode": 0,
-    "seconds": 105.472,
+    "seconds": 79.036,
     "target_model_calls": 0,
     "tests": 409,
     "failures": 0,
@@ -40,6 +40,6 @@
   "target_model_calls": 0,
   "official_eval_root_cause_confirmed": false,
   "linux_container_acceptance": false,
-  "source_files": 199,
+  "source_files": 201,
   "candidate_offline_checks_passed": true
 }
