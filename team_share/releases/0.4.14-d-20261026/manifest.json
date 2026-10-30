@@ -1,0 +1,205 @@
+{
+  "version": "0.4.14-d-20261026",
+  "image": "research-assistant:0.4.14-d-20261026",
+  "image_id": "sha256:75d75694dbb2117ba86a90ccf7a6ffff7bf038f867ed534289a5ce38a2daa0b4",
+  "tar": "team_share\\image\\research-assistant-0.4.14-d-20261026.tar",
+  "bytes": 295451136,
+  "sha256": "faa7690c1fd867116261b3d29d451c4868600eb56cbb1acdf0b390c5a464cd81",
+  "docker_load_verified": true,
+  "regressions": [
+    {
+      "file": "release-core-regressions.xml",
+      "tests": 98,
+      "skipped": 0
+    },
+    {
+      "file": "release-sdk-regressions.xml",
+      "tests": 17,
+      "skipped": 0
+    }
+  ],
+  "public_and_synthetic_checks": {
+    "D-01": 20,
+    "D-02": 20,
+    "D-05": 28
+  },
+  "real_model_cases": [
+    {
+      "case_id": "D-02",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:75d75694dbb2117ba86a90ccf7a6ffff7bf038f867ed534289a5ce38a2daa0b4",
+      "budget_seconds": 180,
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "b2a6b635d7dcc97775072b89b66c565dacc97b38a626af24256bbadcd0ec599d",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": false,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "empty_fields_repeated_unknown_terms_unequal_groups"
+            ]
+          },
+          {
+            "attempt": 2,
+            "status": "failed",
+            "error_type": "ModelError",
+            "message": "model transport failure (APITimeoutError) after retries"
+          }
+        ],
+        "decision": "submit_complete_model_source_for_formal_evaluation",
+        "public_selftest_passed": true,
+        "selected_attempt": 1,
+        "source_sha256": "b2a6b635d7dcc97775072b89b66c565dacc97b38a626af24256bbadcd0ec599d"
+      },
+      "source_sha256": "b2a6b635d7dcc97775072b89b66c565dacc97b38a626af24256bbadcd0ec599d",
+      "source_matches_current_response": true,
+      "seconds": 140.319,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 4331,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v20-complete-survey-task",
+          "requested_output_tokens": 1800,
+          "estimated_input_tokens": 3886,
+          "reserved_for_later": 0,
+          "seconds": 62.726
+        },
+        {
+          "stage": "d_source",
+          "tokens": 9735,
+          "usage_source": "unknown_reserved",
+          "model": "deepseek_v4",
+          "finish_reason": null,
+          "outcome": "retryable_failure",
+          "prompt_version": "20261026-v20-complete-survey-task"
+        }
+      ],
+      "candidate_present": false
+    },
+    {
+      "case_id": "D-05",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:75d75694dbb2117ba86a90ccf7a6ffff7bf038f867ed534289a5ce38a2daa0b4",
+      "budget_seconds": 180,
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "67700e9930b28c58276d877736c3a61f4ebc21a4b3e60215deadf38c623ac07b",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "simultaneous_public_arrivals",
+              "empty_public_jobs",
+              "idle_setup_rejection_retry_window",
+              "three_servers_reserved_service",
+              "completion_arrival_expiry_same_time"
+            ]
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      },
+      "source_sha256": "67700e9930b28c58276d877736c3a61f4ebc21a4b3e60215deadf38c623ac07b",
+      "source_matches_current_response": true,
+      "seconds": 59.051,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 3754,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v20-complete-survey-task",
+          "requested_output_tokens": 6500,
+          "estimated_input_tokens": 3300,
+          "reserved_for_later": 0,
+          "seconds": 58.502
+        }
+      ],
+      "candidate_present": true
+    },
+    {
+      "case_id": "D-01",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:75d75694dbb2117ba86a90ccf7a6ffff7bf038f867ed534289a5ce38a2daa0b4",
+      "budget_seconds": 180,
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "fe0d4c1fd0597d01a058342b91af29e0bdd753acaffc64d3fd6fe67cb51d7d02",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "imbalanced_empty_unknown_repeated_text"
+            ]
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      },
+      "source_sha256": "fe0d4c1fd0597d01a058342b91af29e0bdd753acaffc64d3fd6fe67cb51d7d02",
+      "source_matches_current_response": true,
+      "seconds": 65.797,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 3359,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v20-complete-survey-task",
+          "requested_output_tokens": 6500,
+          "estimated_input_tokens": 3454,
+          "reserved_for_later": 0,
+          "seconds": 65.074
+        }
+      ],
+      "candidate_present": true
+    }
+  ],
+  "official_score": null,
+  "official_sdk_unchanged": true,
+  "solve_contract_unchanged": true,
+  "protected_file_count": 37,
+  "baseline_0_4_13_archive_preserved": true,
+  "evidence_directory": "output\\d-optimization-0414\\final-image-v5",
+  "baseline_only_cases": [
+    "D-02"
+  ],
+  "limitations": [
+    "公开及合成测试不代表正式隐藏金标、来源凭证验收或新的官方成绩。",
+    "代码来自每题当前模型响应；线上模型质量、延迟仍会影响结果。",
+    "D-02候选生成/校验失败时回退本轮已验证基线，可能只有部分分。",
+    "全部中间失败轮次保留在output/d-optimization-0414，成功轮次不能代表总成功率。"
+  ]
+}

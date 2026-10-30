@@ -101,7 +101,8 @@ class LayeredDRunner:
                 prompt += '\n上次完整源码：\n' + previous_source.read_text(encoding='utf-8')
             prompt += "\n请修复问题，重新返回完整源码，不能返回补丁；算法和接口仍以当前公开材料为准。"
         remaining_tokens = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
-        requested = min(6500, remaining_tokens - (len(prompt) + 1) // 2 - 1200)
+        source_limit = (1800 if baseline_only else 3500) if case.case_id == 'D-02' else 6500
+        requested = min(source_limit, remaining_tokens - (len(prompt) + 1) // 2 - 1200)
         if requested < 1800:
             raise RuntimeError("D source generation has insufficient remaining token budget")
         session = current_session()
@@ -109,12 +110,16 @@ class LayeredDRunner:
         old_cap = getattr(self.llm, 'REQUEST_TIMEOUT_CAP', None)
         old_retries = getattr(self.llm, 'RETRY_ATTEMPTS', None)
         old_thinking = getattr(self.llm, 'thinking_override', None)
+        # D-02实测完整生成延迟较大，先保留本轮已验证基线，
+        # 再争取完整候选；基线短请求不能耗尽后续生成和正式运行时间。
+        generation_cap = 65 if case.case_id == 'D-02' and baseline_only else (
+            125 if case.case_id == 'D-02' and attempt == 1 else 100)
         if session:
             session.remaining(reserve=40)
             if old_deadline is not None:
-                self.llm.deadline = min(old_deadline, session.deadline - 35, time.monotonic() + 125)
+                self.llm.deadline = min(old_deadline, session.deadline - 40, time.monotonic() + generation_cap)
         if old_cap is not None:
-            self.llm.REQUEST_TIMEOUT_CAP = 125
+            self.llm.REQUEST_TIMEOUT_CAP = generation_cap
         if old_retries is not None:
             self.llm.RETRY_ATTEMPTS = 1
         self.llm.thinking_override = 'disabled'
@@ -133,17 +138,19 @@ class LayeredDRunner:
         save_generation_response(response, confined(self.work, "generation-response.json"))
         destination = confined(self.work, "implementation.py")
         save_source(response, destination)
+        # 每次完整源码与响应成对保留，公开自检失败也可追查，而不修改模型代码。
+        confined(self.work, f"source-attempt-{attempt}.py").write_bytes(destination.read_bytes())
         return destination
 
     def prepare_checked_implementation(self, case, tester=run_public_sample):
         """自检用于诊断和有余量时的修复，不能代替正式实验准入。"""
         history, feedback, candidate, verified = [], None, None, None
-        baseline_first = case.case_id in CASE_MODULES
+        baseline_only = case.case_id == 'D-02'
         materials = read_generation_materials(case.case_id, [self.settings.workspace, *self.settings.material_roots])
         for attempt in range(1, 3):
             try:
                 path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt,
-                                                             baseline_only=baseline_first and verified is None)
+                                                             baseline_only=baseline_only)
                 # 只有完整、可解析、当前模型原样输出的源码才可作为候选。
                 # 后续修复截断时保留之前的完整版本，不能拼接或修改源码。
                 candidate = (path.read_bytes(), (self.work / 'generation-response.json').read_bytes())
@@ -153,9 +160,10 @@ class LayeredDRunner:
                 write_json(confined(self.work, "public-selftest.json"), {"attempts": history,
                            'selected_attempt': attempt, 'public_selftest_passed': True})
                 session = current_session()
-                if baseline_first and attempt == 1 and session and session.remaining() >= 100:
+                if report.get('candidate_present') is False and attempt == 1 and (not session or session.remaining() >= 80):
+                    baseline_only = False
                     feedback = {'request': '基线已通过公开自检。保留正确基线，按公开方法增加完整候选算法及details；'
-                                           '返回完整源码，目标1800 token；不复制注释。'}
+                                           '返回完整源码；不要因长度目标省略必要逻辑或模型字段。'}
                     continue
                 return path
             except ModelQuotaError:
@@ -167,8 +175,11 @@ class LayeredDRunner:
                 history.append({"attempt": attempt, "status": "failed", **feedback})
                 write_json(confined(self.work, "public-selftest.json"), {"attempts": history})
                 session = current_session()
-                if attempt == 2 or (session and session.remaining() < 90):
+                if attempt == 2 or (session and session.remaining() < 60):
                     break
+                # 首次没有完整实现且余量有限时，最后一次请求争取真实基线。
+                # 已有完整候选则优先修复，避免主动降级回仅基线。
+                baseline_only = candidate is None and session is not None and session.remaining() < 95
         if candidate is None:
             raise RuntimeError('no complete current-session model source available')
         if verified is not None:

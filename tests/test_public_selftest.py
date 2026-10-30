@@ -11,7 +11,7 @@ from research_agent.workflows.sample_validation import run_public_sample
 from research_agent.workflows.sample_worker import validate_source
 
 
-ROOT = Path("科研助手赛题材料/x新/research-experiments-20261020-source-v1")
+ROOT = Path("科研助手赛题材料/research-experiments-20261020-source-v1")
 
 
 @pytest.mark.parametrize("case_id", ["D-01", "D-02", "D-05"])

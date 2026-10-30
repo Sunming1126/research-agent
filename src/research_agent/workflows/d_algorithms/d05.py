@@ -34,12 +34,16 @@ def _simulate(data: dict, fair: bool) -> dict:
         waiting[:] = keep
 
     while next_index < len(jobs) or waiting or any(server["busy_until"] > now for server in state):
+        if now >= horizon:
+            break
         if not waiting and not any(server["busy_until"] <= now for server in state):
             future = [job["arrival_ms"] for job in jobs[next_index:]]
             future.extend(server["busy_until"] for server in state if server["busy_until"] > now)
             if not future:
                 break
             now = min(future)
+        if now >= horizon:
+            break
         add_arrivals()
         drop_expired()
         free = [index for index, server in enumerate(state) if server["busy_until"] <= now]
@@ -49,7 +53,7 @@ def _simulate(data: dict, fair: bool) -> dict:
             server = state[server_index]
             if fair:
                 position = min(range(len(waiting)), key=lambda pos: (
-                    (allocated[waiting[pos]["flow"]] / max(1.0, weights.get(waiting[pos]["flow"], 1.0))),
+                    (allocated[waiting[pos]["flow"]] / weights[waiting[pos]["flow"]]),
                     waiting[pos]["arrival_ms"], waiting[pos]["id"],
                 ))
             else:

@@ -193,7 +193,7 @@ def run_experiment(request):
     for j in data['jobs']:
         heapq.heappush(events, (j['arrival_ms'], j))
     value = {'trace': [], 'served_ms': {f:0 for f in data['flow_weights']},
-             'dropped': [{'id':j['id']} for j in data['jobs']]}
+             'dropped': [{'id':j['id'],'reason':'horizon'} for j in data['jobs']]}
     return {'baseline':value,'candidate':None,'details':{}}
 ''')
     request = {'case_id':'D-05','phase':'run','data':{

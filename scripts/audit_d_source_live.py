@@ -12,22 +12,24 @@ from research_agent.workflows.source_generation import extract_source
 from research_agent.core.utils import sha256_file, write_json
 
 root = Path('/data/experiments')
-output = Path('/audit')
+output = Path(os.environ.get('D_AUDIT_OUTPUT', '/audit'))
+output.mkdir(parents=True, exist_ok=True)
 rows = []
-for case_id in ('D-01','D-02','D-05'):
+budget_seconds = int(os.environ.get('D_AUDIT_SECONDS', '180'))
+for case_id in os.environ.get('D_AUDIT_CASES', 'D-01,D-02,D-05').split(','):
     protocol = json.loads((root/case_id/'protocol.json').read_text())
     text = '按照当前公开方法和协议实现实验。核心指标：' + '；'.join(m['name']+'（'+m['unit']+'）' for m in protocol['metrics'])
     case = CaseContext.from_dict(dict(case_id=case_id,function='Reproduction',title='Public sample audit',input=text,
         materials=['data/experiments/'+case_id],constraints=[],expected_output='Reproduction',output_schema_ref='Reproduction'))
-    llm = GatewayLLM(timeout=170)
+    llm = GatewayLLM(timeout=budget_seconds)
     settings = Settings(Path('/data'),output,'local-public-audit',material_roots=[root/case_id])
     work = output/case_id
     runner = LayeredDRunner(settings,work,llm)
     started = time.monotonic()
     row = dict(case_id=case_id,official_model_api=True,formal_platform_session=False,
-               image_id=os.environ.get('TEST_IMAGE_ID'))
+               image_id=os.environ.get('TEST_IMAGE_ID'), budget_seconds=budget_seconds)
     try:
-        with CaseSession(case_id,170).activate():
+        with CaseSession(case_id,budget_seconds).activate():
             source = runner.prepare_checked_implementation(case)
         response = json.loads((work/'generation-response.json').read_text())
         assert source.read_text() == extract_source(response)
