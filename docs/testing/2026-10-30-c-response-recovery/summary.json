@@ -1,0 +1,45 @@
+{
+  "native_harness_execution": true,
+  "proof": {
+    "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+    "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+    "native_tool_execution_verified": true,
+    "tool_call_sha256": "0f7208992ef1ef737ed99a00967a45ce5938ffe9860b4945b61e660c75253c72",
+    "provider": "magic"
+  },
+  "baseline": {
+    "returncode": 1,
+    "seconds": 2.157,
+    "target_model_calls": 0,
+    "tests": 5,
+    "failures": 3,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 2
+  },
+  "candidate": {
+    "returncode": 0,
+    "seconds": 1.947,
+    "target_model_calls": 0,
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 5
+  },
+  "regression": {
+    "returncode": 0,
+    "seconds": 105.472,
+    "target_model_calls": 0,
+    "tests": 409,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 7,
+    "passed": 402
+  },
+  "target_model_calls": 0,
+  "official_eval_root_cause_confirmed": false,
+  "linux_container_acceptance": false,
+  "source_files": 199,
+  "candidate_offline_checks_passed": true
+}

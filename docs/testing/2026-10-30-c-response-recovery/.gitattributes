@@ -1,0 +1,4 @@
+evidence/** -text -diff
+platform-feedback/** -text -diff
+toolkit/** -text -diff
+*.json -text

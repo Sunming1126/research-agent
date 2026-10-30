@@ -58,13 +58,16 @@ def main():
     parser.add_argument('--repo',type=Path,required=True)
     parser.add_argument('--revision',required=True)
     parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--tested-source-manifest',type=Path)
+    parser.add_argument('--validation-summary',type=Path)
     args=parser.parse_args()
     out=args.output.resolve();out.mkdir(parents=True,exist_ok=False)
     revision=subprocess.check_output(['git','rev-parse',args.revision],cwd=args.repo,text=True).strip()
     snapshot=subprocess.check_output(['git','archive','--format=tar',revision,'--','agent.py','README.md',
                                      'requirements.txt','Dockerfile','.dockerignore','pyproject.toml','src'],cwd=args.repo)
     files={};line_ending_files=[]
-    tested=json.loads((args.repo/'docs/testing/2026-10-29-b-stability-closure/candidate-final-source-files.json').read_text(encoding='utf-8'))
+    tested_path=args.tested_source_manifest or (args.repo/'docs/testing/2026-10-29-b-stability-closure/candidate-final-source-files.json')
+    tested=json.loads(tested_path.read_text(encoding='utf-8'))
     with tarfile.open(fileobj=io.BytesIO(snapshot)) as archive:
         for member in archive:
             name=safe(member.name)
@@ -84,7 +87,7 @@ def main():
     assert not any(name.endswith('d_algorithms.py') for name in files)
     source_hashes={name:digest(data) for name,data in files.items()}
     image_files={name:data for name,data in files.items() if name.startswith('src/') or name in {'agent.py','README.md','requirements.txt'}}
-    version='0.4.19-stable-b-20261029';tag='research-assistant:'+version
+    version=re.search(rb'AGENT_VERSION=([^\s]+)',files['Dockerfile'])[1].decode();tag='research-assistant:'+version
     archive_path=out/('research-assistant-'+version+'.tar')
     pins={line.strip().lower() for line in files['requirements.txt'].decode().splitlines() if line.strip() and not line.lstrip().startswith('#')}
     created=datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
@@ -198,16 +201,24 @@ def main():
          'image_archive':archive_path.name,'image_archive_bytes':archive_path.stat().st_size,'image_archive_sha256':filehash(archive_path),
          'base_archive_sha256':filehash(args.base),'assembly':'OCI filesystem layers from complete Linux archive plus exact Git source; Docker daemon unavailable',
          'platform':'linux/amd64','port':8080,'official_runtime_entry_verified_statically':True,'static_archive_audit':'passed',
-         'docker_load_verified':False,'container_health_verified':False,'real_model_validation_for_0_4_19':False,
+         'docker_load_verified':False,'container_health_verified':False,'real_model_validation':False,
          'ready_for_recommended_contest_submission':False,'uploaded_to_contest':False,'official_score':None,
          'source_archive':source_zip.name,'source_archive_sha256':filehash(source_zip)}
     dump(out/'delivery-manifest.json',delivery)
     (out/'SHA256SUMS.txt').write_text(delivery['image_archive_sha256']+'  '+archive_path.name+'\n'+filehash(source_zip)+'  '+source_zip.name+'\n',encoding='ascii')
-    (out/'提交说明.md').write_text('# 科研助手0.4.19提交文件\n\n上传文件：`'+archive_path.name+'`。它是完整Linux/amd64镜像归档；不要上传源码ZIP。\n\n'
+    validation_note='上一轮离线正确性：同60篇十题旧8/10、新10/10；重复三题旧5/9、新9/9，397项源码回归通过，6环境跳过与1已知strict xfail。上述不是本镜像的真实模型或官方榜分。'
+    if args.validation_summary:
+        checks=json.loads(args.validation_summary.read_text(encoding='utf-8'))
+        assert checks['native_harness_execution'] and checks['candidate_offline_checks_passed']
+        validation_note=('本轮原Harness反例：旧版'+str(checks['baseline']['passed'])+'/'+str(checks['baseline']['tests'])+
+            '，候选'+str(checks['candidate']['passed'])+'/'+str(checks['candidate']['tests'])+'。完整源码回归'+str(checks['regression']['passed'])+
+            '通过，0失败，'+str(checks['regression']['skipped'])+'项跳过（含已知预期失败），目标模型调用0。'
+            '修复了独立复现的C响应恢复缺陷；尚无私有日志证明它就是eval-20261030-2de7fb4c的C-01根因，D-01失败未解决。')
+    (out/'提交说明.md').write_text('# 科研助手'+version+'提交文件\n\n上传文件：`'+archive_path.name+'`。它是完整Linux/amd64镜像归档；不要上传源码ZIP。\n\n'
         '此包从完整Linux依赖层及Git提交`'+revision+'`的应用源码组装，静态回读及摘要校验通过。官方AgentRuntime入口、非root用户、8080端口及33项依赖版本已核对。\n\n'
         '本机Docker因Inference manager临时通信文件故障未能启动，因此本包尚未完成docker load、容器健康与真实模型复测，不标为已完成验收。先在平台上传后检查镜像解析和健康状态，再决定启动本轮评测。\n\n'
         '平台操作：赛题一科研助手 → 上传主Agent镜像 → 选择同目录tar → 等待处理 → 核对版本/健康状态 → 开始评测。平台API凭据及RESEARCH_WORKSPACE_TEAM由平台注入，不写真实队名，不填写个人模型Key。\n\n'
-        '上一轮离线正确性：同60篇十题旧8/10、新10/10；重复三题旧5/9、新9/9，397项源码回归通过，6环境跳过与1已知strict xfail。上述不是本镜像的真实模型或官方榜分。\n\n'
+        +validation_note+'\n\n'
         '本地导入命令（待Docker恢复后执行）：\n\n```powershell\ndocker load -i "'+archive_path.name+'"\ndocker image inspect '+tag+'\n```\n',encoding='utf-8')
     print(json.dumps(delivery,ensure_ascii=False))
 

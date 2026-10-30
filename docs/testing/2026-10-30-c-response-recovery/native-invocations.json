@@ -1,0 +1,20 @@
+{
+  "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+  "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+  "calls": [
+    {
+      "seq": 1992,
+      "id": "call_00_z52ts42ed1r42q1hodzrcex5",
+      "name": "pwsh",
+      "arguments": "{\"command\":\"& 'C:/Users/lenovo/AppData/Local/Programs/Python/Python314/python.exe' 'C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/c_recovery_20261030.py' --stage all\",\"description\":\"Run C recovery counterexamples and regression once\",\"timeoutMs\":1500000,\"workdir\":\"C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\"}",
+      "sha256": "0f7208992ef1ef737ed99a00967a45ce5938ffe9860b4945b61e660c75253c72"
+    },
+    {
+      "seq": 2006,
+      "id": "call_00_4h54jfb23nsalny58jvmnevs",
+      "name": "pwsh",
+      "arguments": "{\"command\":\"& 'C:/Users/lenovo/AppData/Local/Programs/Python/Python314/python.exe' 'C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/c_recovery_20261030.py' --stage all\",\"description\":\"Rerun C recovery with approved access\",\"justification\":\"首次运行 5 项反例已给出有效结果，但完整回归里 115 条 setup error、27 条失败均为受限令牌无法访问 pytest 的 mode700 临时目录（连目录列举都被拒绝），导致 candidate_offline_checks_passed 被误判为 false。按你的说明申请一次性放宽权限重跑同一条命令，只做本地源码回归、目标模型调用 0、禁止外连，不修改任何源码/测试/配置/审批策略。\",\"sandbox_permissions\":\"danger-full-access\",\"timeoutMs\":1500000,\"workdir\":\"C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\"}",
+      "sha256": "973683e437f3930f234a19fda2e5ef18789bccee0e9e1574cf0372ab8954bc11"
+    }
+  ]
+}

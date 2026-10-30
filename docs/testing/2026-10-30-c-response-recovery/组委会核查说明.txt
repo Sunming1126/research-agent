@@ -1,0 +1,11 @@
+评测编号：eval-20261030-2de7fb4c
+镜像版本：research-assistant:0.4.19-stable-b-20261029
+镜像SHA-256：3343d8d92d083af9d767c310591ce58641151d047b23888f02ed1f342a3ba383
+
+C-01界面记录/solve返回HTTP 500（1次模型调用、8019 Token、模型52.1秒、纯处理2.0秒）。下载的判题说明仅为“评测校验未通过”，没有原始日志。另有D-01可信实验RESEARCH_EXPERIMENT_FAILED，全轮不计成绩。
+
+请协助核查C-01 Agent底层异常类型、异常栈或已保存的/output/data/<RESEARCH_WORKSPACE_TEAM>/work/C-01/<运行目录>/error.json、diagnostic-evidence.json、session.json。若日志涉及密钥请脱敏；不需要隐藏答案或评分参考。
+
+D-01请核查可信实验启动阶段、退出码/OOM/超时、来源准入或证据归档异常；如可提供Agent端experiment-error.json、experiment.stderr.log及已有平台回执，也请脱敏提供。请告知该异常是否需要组委会恢复或允许重跑。
+
+我们已针对独立复现的C响应恢复缺陷准备0.4.20候选，并完成原Harness无目标模型源码反例和回归；尚无法将其认定为本次C-01根因，因此需要上述诊断闭环。
