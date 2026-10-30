@@ -1,0 +1,2 @@
+d58521992b981d03f3b5833021e4099a98a71e1d1a37cca5c0f421748aafbc0c  research-assistant-0.4.20-c-recovery-20261030.tar
+a631c170f6c8b47f63b81941b8478f0667410e406dc6dabb1908228fe5b3e5a7  research-agent-c73d141-build-source.zip
