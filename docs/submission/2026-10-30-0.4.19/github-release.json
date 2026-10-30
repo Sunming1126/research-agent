@@ -1,0 +1,65 @@
+{
+  "release_id": 428597006,
+  "html_url": "https://github.com/Sunming1126/research-agent/releases/tag/untagged-924981127b254d7a15dc",
+  "draft": true,
+  "tag": "candidate-0.4.19-20261030",
+  "source_revision": "a34c658be0afa8bbcc9fc4fd1387388716e8016b",
+  "assets": [
+    {
+      "name": "research-assistant-0.4.19-stable-b-20261029.tar",
+      "bytes": 295413760,
+      "sha256": "3343d8d92d083af9d767c310591ce58641151d047b23888f02ed1f342a3ba383",
+      "remote_digest": "sha256:3343d8d92d083af9d767c310591ce58641151d047b23888f02ed1f342a3ba383",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-924981127b254d7a15dc/research-assistant-0.4.19-stable-b-20261029.tar"
+    },
+    {
+      "name": "research-agent-a34c658-build-source.zip",
+      "bytes": 130918,
+      "sha256": "49ff4c4adbc50d4ac6971c69462f7e63a666f3ff09acbc1ee4bf394c3e0042cf",
+      "remote_digest": "sha256:49ff4c4adbc50d4ac6971c69462f7e63a666f3ff09acbc1ee4bf394c3e0042cf",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-924981127b254d7a15dc/research-agent-a34c658-build-source.zip"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 222,
+      "sha256": "7f4251da70d7164a0d1faa809c8e9276ce48a59978a67282fb3b77374a86c89a",
+      "remote_digest": "sha256:7f4251da70d7164a0d1faa809c8e9276ce48a59978a67282fb3b77374a86c89a",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-924981127b254d7a15dc/SHA256SUMS.txt"
+    },
+    {
+      "name": "提交说明.md",
+      "bytes": 1348,
+      "sha256": "2e5ce38a73c846c05b8afcd92251ec5dbfc7a0a4b2fd1b82524f9fc98bd10318",
+      "remote_digest": "sha256:2e5ce38a73c846c05b8afcd92251ec5dbfc7a0a4b2fd1b82524f9fc98bd10318",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-924981127b254d7a15dc/default.md"
+    },
+    {
+      "name": "delivery-manifest.json",
+      "bytes": 1208,
+      "sha256": "015432260c528e791541042d85e7c6f39ca80af0dd3ac28b053cca22527903cd",
+      "remote_digest": "sha256:015432260c528e791541042d85e7c6f39ca80af0dd3ac28b053cca22527903cd",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-924981127b254d7a15dc/delivery-manifest.json"
+    },
+    {
+      "name": "static-image-audit.json",
+      "bytes": 15943,
+      "sha256": "fe9a3aa7f3566f8d61ae7a0fd5fe073839de25a244290ed2eb2db444de3d6098",
+      "remote_digest": "sha256:fe9a3aa7f3566f8d61ae7a0fd5fe073839de25a244290ed2eb2db444de3d6098",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-924981127b254d7a15dc/static-image-audit.json"
+    },
+    {
+      "name": "independent-static-audit.json",
+      "bytes": 460,
+      "sha256": "2d6b8cc0adfb322fd53c91f791a6e6ad32d88db0375363eb19ef6e1bdd728775",
+      "remote_digest": "sha256:2d6b8cc0adfb322fd53c91f791a6e6ad32d88db0375363eb19ef6e1bdd728775",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-924981127b254d7a15dc/independent-static-audit.json"
+    },
+    {
+      "name": "source-sha256.json",
+      "bytes": 5104,
+      "sha256": "60e18f70495632c904fe737789ac79a75fcfd80c408a387570e933abaa09aae8",
+      "remote_digest": "sha256:60e18f70495632c904fe737789ac79a75fcfd80c408a387570e933abaa09aae8",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-924981127b254d7a15dc/source-sha256.json"
+    }
+  ]
+}

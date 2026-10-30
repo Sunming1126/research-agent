@@ -1,0 +1,23 @@
+{
+  "version": "0.4.19-stable-b-20261029",
+  "source_revision": "a34c658be0afa8bbcc9fc4fd1387388716e8016b",
+  "image": "research-assistant:0.4.19-stable-b-20261029",
+  "image_id": "sha256:815b16f7d8e2911c8f686998d48802197c0b0a657559f7f0ec8445f4162eb3b6",
+  "image_archive": "research-assistant-0.4.19-stable-b-20261029.tar",
+  "image_archive_bytes": 295413760,
+  "image_archive_sha256": "3343d8d92d083af9d767c310591ce58641151d047b23888f02ed1f342a3ba383",
+  "base_archive_sha256": "3cd86ada7c1dd3782dac1c56e7c05e4bd7ca23e54d3d57faaaec0ddb9e92ff36",
+  "assembly": "OCI filesystem layers from complete Linux archive plus exact Git source; Docker daemon unavailable",
+  "platform": "linux/amd64",
+  "port": 8080,
+  "official_runtime_entry_verified_statically": true,
+  "static_archive_audit": "passed",
+  "docker_load_verified": false,
+  "container_health_verified": false,
+  "real_model_validation_for_0_4_19": false,
+  "ready_for_recommended_contest_submission": false,
+  "uploaded_to_contest": false,
+  "official_score": null,
+  "source_archive": "research-agent-a34c658-build-source.zip",
+  "source_archive_sha256": "49ff4c4adbc50d4ac6971c69462f7e63a666f3ff09acbc1ee4bf394c3e0042cf"
+}
