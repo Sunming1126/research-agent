@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="5" time="1.378" timestamp="2026-10-30T11:35:55.543628+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="" name="test_invalid_evidence_response_gets_one_complete_regeneration[empty_ids]" time="0.004"><failure message="research_agent.evidence.EvidenceError: Survey model report failed validation: report uses unknown or empty evidence IDs; report patch does not match a unique current passage">fault = 'empty_ids'
+
+    @pytest.mark.parametrize('fault',['empty_ids','unknown_ids','unknown_binding'])
+    def test_invalid_evidence_response_gets_one_complete_regeneration(fault):
+        model=RecoveryModel(fault);handler,task=context(model)
+&gt;       result=handler.compose_report(task)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_c_response_recovery.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;research_agent.workflows.tasks.TaskHandlers object at 0x0000018B941C93D0&gt;
+case = CaseContext(case_id='C-01', function='Survey', title='Synthetic research fixture', input='Compare urban vegetation and...f', 'Study_3.pdf', 'Study_4.pdf', 'Study_5.pdf'], constraints=[], expected_output='Survey', output_schema_ref='Survey')
+
+    @tool(name="write_evidence_backed_report")
+    def compose_report(self, case):
+        """写作阶段只消费本题已核验台账，可单独定向验证。"""
+        self._report_function = case.function
+        filenames = sorted({e.filename for e in self.ledger})
+        if not filenames or (case.function == "Survey" and len(filenames) &lt; 5):
+            raise EvidenceError("insufficient supported papers for report (Survey requires at least five)")
+        refs = {name: i+1 for i, name in enumerate(filenames)}
+        evidence = [{**asdict(e), "ref": refs[e.filename]} for e in self.ledger]
+        model_evidence = model_evidence_rows(evidence)
+        direct = getattr(self, '_source_report', False)
+        core = survey_core_facts(self.ledger) if case.function == "Survey" and not direct else []
+        anchor, anchor_ids = render_claim_ledger_section(core, refs) if core else ("", [])
+        feedback, history, previous_used, repair_targets = [], [], [], []
+        deliverable = None
+        deliverable_attempt = None
+        # E可先修一次格式，再修一次语义；两次语义审查仍不通过就结束。
+        # 全流程继续受本题时间和Token预算约束，不能靠重复重试超时。
+        for attempt in range(3 if case.function == 'Idea' else 2):
+            if sum(item.get('stage') == 'audit' for item in history) &gt;= 2:
+                break
+            patches = []
+            audit_evidence = model_evidence
+            try:
+                global_limit = any("exceeds" in issue and ("characters" in issue or "citation instances" in issue)
+                                   for issue in feedback)
+                if direct and any('citation instances' in issue for issue in feedback):
+                    global_limit = False
+                if attempt and self.last_draft and not global_limit:
+                    # 首稿已整篇审查过；只修正出错段，不重复生成和审查整篇事实。
+                    paragraphs = repair_targets or repair_paragraphs(self.last_draft, feedback)
+                    repair_data = repair_context(self.last_draft, paragraphs, feedback, model_evidence, case=case)
+                    # 按预计替换范围与当前全文计算复审成本，不能再用固定 4200。
+                    planned_patches = [{"original": p, "replacement": p} for p in paragraphs]
+                    next_audit = audit_request(case, self.last_draft, model_evidence, self.ledger,
+                                              patches=planned_patches, feedback=feedback,
+                                              full_review=not any(h.get("stage") == "audit" for h in history))
+                    reserve = self.llm.input_tokens("audit", next_audit) + 1500 if hasattr(self.llm, "input_tokens") else 4200
+                    repaired = self._model_step("repair", repair_data, 1400, reserve=reserve)
+                    if self.report_trace:
+                        self.report_trace[-1].setdefault('repair_responses', []).append(repaired)
+                    patches = repaired.get("patches", [])
+                    revised = apply_report_patches(self.last_draft, patches)
+                    value = {"markdown": revised, "used_evidence_ids": previous_used}
+                else:
+                    data = {"task": report_task(case),
+                            "claims": compact_claims(model_evidence), "papers": refs,
+                            "facts_appended_by_program": anchor_ids,
+                            "output_limits": ({"model_body_characters": max(800, 4500 - len(anchor) - 4),
+                                               "model_citation_instances": max(0, 40 - len(report_citations(anchor))),
+                                               "total_body_characters": 4500, "total_citation_instances": 40}
+                                              if case.function == "Survey" else {"model_body_characters": 6000}),
+                            "coverage_requirements": report_requirements(case.function), "repair_issues": feedback,
+                            "evidence_coverage": {name: list(facets) for name, facets in self.coverage.get("papers", {}).items()}}
+                    if case.function == 'Idea' or direct:
+                        data['output_limits']['target_body_characters'] = 2200
+                        data['response_fields'] = {'markdown': '完整报告正文字符串，不能省略或嵌套',
+                                                   'used_evidence_ids': '实际使用的证据ID数组'}
+                    if direct and case.function == 'Survey':
+                        data['output_limits'].update(target_body_characters=1600, model_citation_instances=25)
+                    # 哈希、偏移等核验元数据留在磁盘；为审查和一次修订保留实际模型预算。
+                    remaining = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
+                    requested = min(4200, remaining - len(json.dumps(data, ensure_ascii=False)) // 2 - 2000)
+                    if requested &lt; 1600:
+                        raise ModelError("insufficient model budget reserved for report")
+                    # 先用预计长度的正文计算一次审查和修订闭环的成本。
+                    preview = (anchor + "\n\n" if anchor else "") + "待核验正文。" * 260
+                    initial_audit = audit_request(case, preview, model_evidence, self.ledger)
+                    reserve = (self.llm.input_tokens("audit", initial_audit) + 1000
+                               + repair_tail_budget(self.llm, case, preview, model_evidence, self.ledger)
+                               if hasattr(self.llm, "input_tokens") else 7500)
+                    if direct:
+                        # 原文上下文只发一次；可选自审不能挤掉完整正文预算。
+                        reserve = 3500
+                    if hasattr(self.llm, "input_tokens"):
+                        # 当前写作和首次审查必须能执行；尚未发生的修订预估不能占满输出空间。
+                        available = max(0, self.llm.remaining_tokens - self.llm.input_tokens("report", data)
+                                        - (3000 if case.function == "Survey" else 4200))
+                        reserve = min(reserve, available)
+                    value = self._model_step("report", data, min(3000 if case.function == "Survey" else 4200, requested),
+                                             reserve=reserve, minimum=1600)
+            except (ModelError, EvidenceError, TimeoutError) as exc:
+                history.append({"attempt": attempt + 1, "stage": "report", "issues": [str(exc)]})
+                feedback = feedback + [str(exc)]
+                session = current_session()
+                # 首次正文JSON截断/格式错误可在原有两次写作上限内重新生成。
+                # 网络超时、额度拒绝不重试；不得用占位正文伪装成功。
+                retry_format = isinstance(exc, ModelError) and any(message in str(exc) for message in
+                    ('model returned invalid JSON', 'model response incomplete'))
+                if (direct and case.function == 'Survey' and attempt == 0 and deliverable is None
+                        and retry_format and (session is None or session.remaining() &gt;= 45)):
+                    self.last_draft = ''
+                    continue
+                break
+            markdown = value.get("markdown", "")
+            used = value.get("used_evidence_ids", [])
+            self.report_trace.append({"attempt": attempt + 1, "raw_markdown": markdown, "raw_response": value,
+                                      "used_evidence_ids": used, "patches": patches,
+                                      "source_task": report_task(case)})
+            if (not isinstance(markdown, str) or not markdown.strip() or not isinstance(used, list)
+                    or any(not isinstance(identifier, str) for identifier in used)):
+                feedback = ['invalid report response: markdown must be a nonempty string; '
+                            'used_evidence_ids must be an array of evidence ID strings']
+                history.append({"attempt": attempt + 1, "stage": "response_schema", "issues": list(feedback)})
+                self.last_draft = ''
+                continue
+            try:
+                markdown, bound_ids = render_evidence_citations(markdown, evidence)
+            except EvidenceError as exc:
+                self.last_draft = markdown
+                previous_used = list(used)
+                feedback, repair_targets = [str(exc)], getattr(exc, "passages", [])
+                history.append({"attempt": attempt + 1, "stage": "citation_binding", "issues": list(feedback)})
+                continue
+            if bound_ids:
+                used = list(dict.fromkeys((previous_used if patches else []) + bound_ids))
+            markdown = markdown.split("## 参考文献")[0].strip()
+            # 只修正与唯一授权 arXiv 编号相差一位的排版笔误。
+            markdown = correct_paper_ids(markdown, filenames)
+            if case.function == "Survey":
+                if anchor and not attempt and not markdown.startswith(anchor):
+                    markdown = anchor + "\n\n" + markdown
+                    used = list(dict.fromkeys(anchor_ids + used))
+                # 只补正文尚未引用的论文；不重复整份事实摘要扩大复审输入。
+                cited_refs = {int(n) for n in report_citations(markdown)}
+                missing_rows = [e for e in self.ledger if refs[e.filename] not in cited_refs]
+                if missing_rows and not direct:
+                    anchor, anchor_ids = render_claim_ledger_section(select_claims(missing_rows, maximum_per_paper=2), refs)
+                    markdown = anchor + "\n\n" + markdown
+                    used = list(dict.fromkeys(anchor_ids + used))
+            # 作者姓名若不在已核验事实中，不把模型猜测写成论文归因。
+            markdown = remove_unsupported_authors(markdown, evidence)
+            self.last_draft = markdown
+            previous_used = list(used)
+            try:
+                try:
+                    validate_report_limits(markdown + "\n\n", case.function)
+                except ValueError as exc:
+                    passages = []
+                    if direct and 'citation instances' in str(exc):
+                        passages = sorted(markdown.split('\n\n'), key=lambda p: len(report_citations(p)), reverse=True)[:2]
+                    raise EvidenceError(str(exc), passages=passages) from exc
+                numeric_ambiguities = validate_citations(markdown, evidence, used,
+                                                        minimum=5 if case.function == "Survey" else 1, function=case.function,
+                                                        strict_facts=not direct)
+                # 语义自审属于质量控制。先记录确已通过硬检查的完整模型稿，
+                # 不能把自审疑虑或局部修订失败误报成没有可交付的答卷。
+                if case.function == 'Idea' or direct:
+                    deliverable = markdown
+                    deliverable_attempt = attempt + 1
+                session = current_session()
+                if direct and session and session.remaining() &lt; 30:
+                    feedback = ['semantic review skipped: preserving submission deadline']
+                    break
+                audit_data = audit_request(case, markdown, model_evidence, self.ledger,
+                                           used=used, patches=patches, feedback=feedback,
+                                           full_review=bool(patches) and not any(h.get("stage") == "audit" for h in history))
+                audit_data["numeric_claims_to_classify"] = numeric_ambiguities
+                reserve = repair_tail_budget(self.llm, case, markdown, model_evidence, self.ledger) if not patches else 0
+                if not patches and hasattr(self.llm, "input_tokens"):
+                    # 优先完成当前真实审查。后续修订尚未发生，不能让其最坏估算挡住首审。
+                    # 修订请求发出前仍会按实际问题、替换范围重新核算完整复审成本。
+                    affordable = max(0, self.llm.remaining_tokens - self.llm.input_tokens("audit", audit_data) - 1000)
+                    reserve = min(reserve, affordable)
+                audit = self._model_step("audit", audit_data, 1000, reserve=reserve)
+                if (type(audit.get("ok")) is not bool or not isinstance(audit.get("issues"), list)
+                        or any(not isinstance(issue, str) for issue in audit["issues"])):
+                    raise EvidenceError("invalid semantic audit response")
+                history.append({"attempt": attempt + 1, "stage": "audit", "audit": dict(audit)})
+                if audit["ok"] and audit["issues"]:
+                    # 保留模型原始结论，但不能把仍有问题的正文当成通过。
+                    audit = {**audit, "reported_ok": True, "ok": False}
+                audit["history"] = list(history)
+                self.audit = audit
+                if audit.get("ok") is not True:
+                    issues = audit["issues"] or ["semantic audit rejected without details"]
+                    raise EvidenceError("; ".join(issues), passages=repair_paragraphs(markdown, issues))
+                return self._report_result(case, markdown, filenames, refs)
+            except (ModelError, TimeoutError) as exc:
+                # 额度或网络问题不是正文错误，禁止把它当成修订意见再调用写作模型。
+                feedback = [str(exc)]
+                history.append({"attempt": attempt + 1, "stage": "audit_unavailable", "issues": list(feedback)})
+                break
+            except EvidenceError as exc:
+                feedback = [str(exc)]
+                repair_targets = getattr(exc, "passages", [])
+                history.append({"attempt": attempt + 1, "stage": "validation", "issues": list(feedback)})
+        if case.function == "Survey" and not direct:
+            # 自由长文多次审查失败时，只拼接已经进入证据台账的事实。
+            markdown, used = deterministic_survey(case.input, self.ledger)
+            body = markdown.split("## 参考文献", 1)[0]
+            validate_report_limits(markdown, case.function)
+            validate_citations(body, evidence, used, minimum=5)
+            self.audit = {"ok": None, "mode": "deterministic_fallback", "local_validation": True,
+                          "model_issues": feedback, "history": history}
+            return {"case_id": case.case_id,
+                    "path": f"data/expert/{case.case_id}-综述-{self.team}.md", "markdown": markdown}
+        if deliverable is not None:
+            # 不改正文、不伪造审查通过；供平台实际判内容分，全部疑虑留存证据档案。
+            self.audit = {"ok": False, "mode": "model_report_needs_review", "local_validation": True,
+                          "delivered_attempt": deliverable_attempt, "model_issues": feedback, "history": history}
+            return self._report_result(case, deliverable, filenames, refs)
+        # c1-output-limits-v1 禁止用程序模板替代未生成或格式不合格的 E 报告。
+        self.audit = {"ok": False, "mode": "model_report_failed", "model_issues": feedback, "history": history}
+&gt;       raise EvidenceError(case.function + " model report failed validation: " + "; ".join(feedback))
+E       research_agent.evidence.EvidenceError: Survey model report failed validation: report uses unknown or empty evidence IDs; report patch does not match a unique current passage
+
+src\research_agent\workflows\reports.py:419: EvidenceError</failure></testcase><testcase classname="" name="test_invalid_evidence_response_gets_one_complete_regeneration[unknown_ids]" time="0.002"><failure message="research_agent.evidence.EvidenceError: Survey model report failed validation: report uses unknown or empty evidence IDs; report patch does not match a unique current passage">fault = 'unknown_ids'
+
+    @pytest.mark.parametrize('fault',['empty_ids','unknown_ids','unknown_binding'])
+    def test_invalid_evidence_response_gets_one_complete_regeneration(fault):
+        model=RecoveryModel(fault);handler,task=context(model)
+&gt;       result=handler.compose_report(task)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_c_response_recovery.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;research_agent.workflows.tasks.TaskHandlers object at 0x0000018B9610B770&gt;
+case = CaseContext(case_id='C-01', function='Survey', title='Synthetic research fixture', input='Compare urban vegetation and...f', 'Study_3.pdf', 'Study_4.pdf', 'Study_5.pdf'], constraints=[], expected_output='Survey', output_schema_ref='Survey')
+
+    @tool(name="write_evidence_backed_report")
+    def compose_report(self, case):
+        """写作阶段只消费本题已核验台账，可单独定向验证。"""
+        self._report_function = case.function
+        filenames = sorted({e.filename for e in self.ledger})
+        if not filenames or (case.function == "Survey" and len(filenames) &lt; 5):
+            raise EvidenceError("insufficient supported papers for report (Survey requires at least five)")
+        refs = {name: i+1 for i, name in enumerate(filenames)}
+        evidence = [{**asdict(e), "ref": refs[e.filename]} for e in self.ledger]
+        model_evidence = model_evidence_rows(evidence)
+        direct = getattr(self, '_source_report', False)
+        core = survey_core_facts(self.ledger) if case.function == "Survey" and not direct else []
+        anchor, anchor_ids = render_claim_ledger_section(core, refs) if core else ("", [])
+        feedback, history, previous_used, repair_targets = [], [], [], []
+        deliverable = None
+        deliverable_attempt = None
+        # E可先修一次格式，再修一次语义；两次语义审查仍不通过就结束。
+        # 全流程继续受本题时间和Token预算约束，不能靠重复重试超时。
+        for attempt in range(3 if case.function == 'Idea' else 2):
+            if sum(item.get('stage') == 'audit' for item in history) &gt;= 2:
+                break
+            patches = []
+            audit_evidence = model_evidence
+            try:
+                global_limit = any("exceeds" in issue and ("characters" in issue or "citation instances" in issue)
+                                   for issue in feedback)
+                if direct and any('citation instances' in issue for issue in feedback):
+                    global_limit = False
+                if attempt and self.last_draft and not global_limit:
+                    # 首稿已整篇审查过；只修正出错段，不重复生成和审查整篇事实。
+                    paragraphs = repair_targets or repair_paragraphs(self.last_draft, feedback)
+                    repair_data = repair_context(self.last_draft, paragraphs, feedback, model_evidence, case=case)
+                    # 按预计替换范围与当前全文计算复审成本，不能再用固定 4200。
+                    planned_patches = [{"original": p, "replacement": p} for p in paragraphs]
+                    next_audit = audit_request(case, self.last_draft, model_evidence, self.ledger,
+                                              patches=planned_patches, feedback=feedback,
+                                              full_review=not any(h.get("stage") == "audit" for h in history))
+                    reserve = self.llm.input_tokens("audit", next_audit) + 1500 if hasattr(self.llm, "input_tokens") else 4200
+                    repaired = self._model_step("repair", repair_data, 1400, reserve=reserve)
+                    if self.report_trace:
+                        self.report_trace[-1].setdefault('repair_responses', []).append(repaired)
+                    patches = repaired.get("patches", [])
+                    revised = apply_report_patches(self.last_draft, patches)
+                    value = {"markdown": revised, "used_evidence_ids": previous_used}
+                else:
+                    data = {"task": report_task(case),
+                            "claims": compact_claims(model_evidence), "papers": refs,
+                            "facts_appended_by_program": anchor_ids,
+                            "output_limits": ({"model_body_characters": max(800, 4500 - len(anchor) - 4),
+                                               "model_citation_instances": max(0, 40 - len(report_citations(anchor))),
+                                               "total_body_characters": 4500, "total_citation_instances": 40}
+                                              if case.function == "Survey" else {"model_body_characters": 6000}),
+                            "coverage_requirements": report_requirements(case.function), "repair_issues": feedback,
+                            "evidence_coverage": {name: list(facets) for name, facets in self.coverage.get("papers", {}).items()}}
+                    if case.function == 'Idea' or direct:
+                        data['output_limits']['target_body_characters'] = 2200
+                        data['response_fields'] = {'markdown': '完整报告正文字符串，不能省略或嵌套',
+                                                   'used_evidence_ids': '实际使用的证据ID数组'}
+                    if direct and case.function == 'Survey':
+                        data['output_limits'].update(target_body_characters=1600, model_citation_instances=25)
+                    # 哈希、偏移等核验元数据留在磁盘；为审查和一次修订保留实际模型预算。
+                    remaining = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
+                    requested = min(4200, remaining - len(json.dumps(data, ensure_ascii=False)) // 2 - 2000)
+                    if requested &lt; 1600:
+                        raise ModelError("insufficient model budget reserved for report")
+                    # 先用预计长度的正文计算一次审查和修订闭环的成本。
+                    preview = (anchor + "\n\n" if anchor else "") + "待核验正文。" * 260
+                    initial_audit = audit_request(case, preview, model_evidence, self.ledger)
+                    reserve = (self.llm.input_tokens("audit", initial_audit) + 1000
+                               + repair_tail_budget(self.llm, case, preview, model_evidence, self.ledger)
+                               if hasattr(self.llm, "input_tokens") else 7500)
+                    if direct:
+                        # 原文上下文只发一次；可选自审不能挤掉完整正文预算。
+                        reserve = 3500
+                    if hasattr(self.llm, "input_tokens"):
+                        # 当前写作和首次审查必须能执行；尚未发生的修订预估不能占满输出空间。
+                        available = max(0, self.llm.remaining_tokens - self.llm.input_tokens("report", data)
+                                        - (3000 if case.function == "Survey" else 4200))
+                        reserve = min(reserve, available)
+                    value = self._model_step("report", data, min(3000 if case.function == "Survey" else 4200, requested),
+                                             reserve=reserve, minimum=1600)
+            except (ModelError, EvidenceError, TimeoutError) as exc:
+                history.append({"attempt": attempt + 1, "stage": "report", "issues": [str(exc)]})
+                feedback = feedback + [str(exc)]
+                session = current_session()
+                # 首次正文JSON截断/格式错误可在原有两次写作上限内重新生成。
+                # 网络超时、额度拒绝不重试；不得用占位正文伪装成功。
+                retry_format = isinstance(exc, ModelError) and any(message in str(exc) for message in
+                    ('model returned invalid JSON', 'model response incomplete'))
+                if (direct and case.function == 'Survey' and attempt == 0 and deliverable is None
+                        and retry_format and (session is None or session.remaining() &gt;= 45)):
+                    self.last_draft = ''
+                    continue
+                break
+            markdown = value.get("markdown", "")
+            used = value.get("used_evidence_ids", [])
+            self.report_trace.append({"attempt": attempt + 1, "raw_markdown": markdown, "raw_response": value,
+                                      "used_evidence_ids": used, "patches": patches,
+                                      "source_task": report_task(case)})
+            if (not isinstance(markdown, str) or not markdown.strip() or not isinstance(used, list)
+                    or any(not isinstance(identifier, str) for identifier in used)):
+                feedback = ['invalid report response: markdown must be a nonempty string; '
+                            'used_evidence_ids must be an array of evidence ID strings']
+                history.append({"attempt": attempt + 1, "stage": "response_schema", "issues": list(feedback)})
+                self.last_draft = ''
+                continue
+            try:
+                markdown, bound_ids = render_evidence_citations(markdown, evidence)
+            except EvidenceError as exc:
+                self.last_draft = markdown
+                previous_used = list(used)
+                feedback, repair_targets = [str(exc)], getattr(exc, "passages", [])
+                history.append({"attempt": attempt + 1, "stage": "citation_binding", "issues": list(feedback)})
+                continue
+            if bound_ids:
+                used = list(dict.fromkeys((previous_used if patches else []) + bound_ids))
+            markdown = markdown.split("## 参考文献")[0].strip()
+            # 只修正与唯一授权 arXiv 编号相差一位的排版笔误。
+            markdown = correct_paper_ids(markdown, filenames)
+            if case.function == "Survey":
+                if anchor and not attempt and not markdown.startswith(anchor):
+                    markdown = anchor + "\n\n" + markdown
+                    used = list(dict.fromkeys(anchor_ids + used))
+                # 只补正文尚未引用的论文；不重复整份事实摘要扩大复审输入。
+                cited_refs = {int(n) for n in report_citations(markdown)}
+                missing_rows = [e for e in self.ledger if refs[e.filename] not in cited_refs]
+                if missing_rows and not direct:
+                    anchor, anchor_ids = render_claim_ledger_section(select_claims(missing_rows, maximum_per_paper=2), refs)
+                    markdown = anchor + "\n\n" + markdown
+                    used = list(dict.fromkeys(anchor_ids + used))
+            # 作者姓名若不在已核验事实中，不把模型猜测写成论文归因。
+            markdown = remove_unsupported_authors(markdown, evidence)
+            self.last_draft = markdown
+            previous_used = list(used)
+            try:
+                try:
+                    validate_report_limits(markdown + "\n\n", case.function)
+                except ValueError as exc:
+                    passages = []
+                    if direct and 'citation instances' in str(exc):
+                        passages = sorted(markdown.split('\n\n'), key=lambda p: len(report_citations(p)), reverse=True)[:2]
+                    raise EvidenceError(str(exc), passages=passages) from exc
+                numeric_ambiguities = validate_citations(markdown, evidence, used,
+                                                        minimum=5 if case.function == "Survey" else 1, function=case.function,
+                                                        strict_facts=not direct)
+                # 语义自审属于质量控制。先记录确已通过硬检查的完整模型稿，
+                # 不能把自审疑虑或局部修订失败误报成没有可交付的答卷。
+                if case.function == 'Idea' or direct:
+                    deliverable = markdown
+                    deliverable_attempt = attempt + 1
+                session = current_session()
+                if direct and session and session.remaining() &lt; 30:
+                    feedback = ['semantic review skipped: preserving submission deadline']
+                    break
+                audit_data = audit_request(case, markdown, model_evidence, self.ledger,
+                                           used=used, patches=patches, feedback=feedback,
+                                           full_review=bool(patches) and not any(h.get("stage") == "audit" for h in history))
+                audit_data["numeric_claims_to_classify"] = numeric_ambiguities
+                reserve = repair_tail_budget(self.llm, case, markdown, model_evidence, self.ledger) if not patches else 0
+                if not patches and hasattr(self.llm, "input_tokens"):
+                    # 优先完成当前真实审查。后续修订尚未发生，不能让其最坏估算挡住首审。
+                    # 修订请求发出前仍会按实际问题、替换范围重新核算完整复审成本。
+                    affordable = max(0, self.llm.remaining_tokens - self.llm.input_tokens("audit", audit_data) - 1000)
+                    reserve = min(reserve, affordable)
+                audit = self._model_step("audit", audit_data, 1000, reserve=reserve)
+                if (type(audit.get("ok")) is not bool or not isinstance(audit.get("issues"), list)
+                        or any(not isinstance(issue, str) for issue in audit["issues"])):
+                    raise EvidenceError("invalid semantic audit response")
+                history.append({"attempt": attempt + 1, "stage": "audit", "audit": dict(audit)})
+                if audit["ok"] and audit["issues"]:
+                    # 保留模型原始结论，但不能把仍有问题的正文当成通过。
+                    audit = {**audit, "reported_ok": True, "ok": False}
+                audit["history"] = list(history)
+                self.audit = audit
+                if audit.get("ok") is not True:
+                    issues = audit["issues"] or ["semantic audit rejected without details"]
+                    raise EvidenceError("; ".join(issues), passages=repair_paragraphs(markdown, issues))
+                return self._report_result(case, markdown, filenames, refs)
+            except (ModelError, TimeoutError) as exc:
+                # 额度或网络问题不是正文错误，禁止把它当成修订意见再调用写作模型。
+                feedback = [str(exc)]
+                history.append({"attempt": attempt + 1, "stage": "audit_unavailable", "issues": list(feedback)})
+                break
+            except EvidenceError as exc:
+                feedback = [str(exc)]
+                repair_targets = getattr(exc, "passages", [])
+                history.append({"attempt": attempt + 1, "stage": "validation", "issues": list(feedback)})
+        if case.function == "Survey" and not direct:
+            # 自由长文多次审查失败时，只拼接已经进入证据台账的事实。
+            markdown, used = deterministic_survey(case.input, self.ledger)
+            body = markdown.split("## 参考文献", 1)[0]
+            validate_report_limits(markdown, case.function)
+            validate_citations(body, evidence, used, minimum=5)
+            self.audit = {"ok": None, "mode": "deterministic_fallback", "local_validation": True,
+                          "model_issues": feedback, "history": history}
+            return {"case_id": case.case_id,
+                    "path": f"data/expert/{case.case_id}-综述-{self.team}.md", "markdown": markdown}
+        if deliverable is not None:
+            # 不改正文、不伪造审查通过；供平台实际判内容分，全部疑虑留存证据档案。
+            self.audit = {"ok": False, "mode": "model_report_needs_review", "local_validation": True,
+                          "delivered_attempt": deliverable_attempt, "model_issues": feedback, "history": history}
+            return self._report_result(case, deliverable, filenames, refs)
+        # c1-output-limits-v1 禁止用程序模板替代未生成或格式不合格的 E 报告。
+        self.audit = {"ok": False, "mode": "model_report_failed", "model_issues": feedback, "history": history}
+&gt;       raise EvidenceError(case.function + " model report failed validation: " + "; ".join(feedback))
+E       research_agent.evidence.EvidenceError: Survey model report failed validation: report uses unknown or empty evidence IDs; report patch does not match a unique current passage
+
+src\research_agent\workflows\reports.py:419: EvidenceError</failure></testcase><testcase classname="" name="test_invalid_evidence_response_gets_one_complete_regeneration[unknown_binding]" time="0.003"><failure message="research_agent.evidence.EvidenceError: Survey model report failed validation: draft contains unknown evidence citation; report patch does not match a unique current passage">fault = 'unknown_binding'
+
+    @pytest.mark.parametrize('fault',['empty_ids','unknown_ids','unknown_binding'])
+    def test_invalid_evidence_response_gets_one_complete_regeneration(fault):
+        model=RecoveryModel(fault);handler,task=context(model)
+&gt;       result=handler.compose_report(task)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_c_response_recovery.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;research_agent.workflows.tasks.TaskHandlers object at 0x0000018B96178260&gt;
+case = CaseContext(case_id='C-01', function='Survey', title='Synthetic research fixture', input='Compare urban vegetation and...f', 'Study_3.pdf', 'Study_4.pdf', 'Study_5.pdf'], constraints=[], expected_output='Survey', output_schema_ref='Survey')
+
+    @tool(name="write_evidence_backed_report")
+    def compose_report(self, case):
+        """写作阶段只消费本题已核验台账，可单独定向验证。"""
+        self._report_function = case.function
+        filenames = sorted({e.filename for e in self.ledger})
+        if not filenames or (case.function == "Survey" and len(filenames) &lt; 5):
+            raise EvidenceError("insufficient supported papers for report (Survey requires at least five)")
+        refs = {name: i+1 for i, name in enumerate(filenames)}
+        evidence = [{**asdict(e), "ref": refs[e.filename]} for e in self.ledger]
+        model_evidence = model_evidence_rows(evidence)
+        direct = getattr(self, '_source_report', False)
+        core = survey_core_facts(self.ledger) if case.function == "Survey" and not direct else []
+        anchor, anchor_ids = render_claim_ledger_section(core, refs) if core else ("", [])
+        feedback, history, previous_used, repair_targets = [], [], [], []
+        deliverable = None
+        deliverable_attempt = None
+        # E可先修一次格式，再修一次语义；两次语义审查仍不通过就结束。
+        # 全流程继续受本题时间和Token预算约束，不能靠重复重试超时。
+        for attempt in range(3 if case.function == 'Idea' else 2):
+            if sum(item.get('stage') == 'audit' for item in history) &gt;= 2:
+                break
+            patches = []
+            audit_evidence = model_evidence
+            try:
+                global_limit = any("exceeds" in issue and ("characters" in issue or "citation instances" in issue)
+                                   for issue in feedback)
+                if direct and any('citation instances' in issue for issue in feedback):
+                    global_limit = False
+                if attempt and self.last_draft and not global_limit:
+                    # 首稿已整篇审查过；只修正出错段，不重复生成和审查整篇事实。
+                    paragraphs = repair_targets or repair_paragraphs(self.last_draft, feedback)
+                    repair_data = repair_context(self.last_draft, paragraphs, feedback, model_evidence, case=case)
+                    # 按预计替换范围与当前全文计算复审成本，不能再用固定 4200。
+                    planned_patches = [{"original": p, "replacement": p} for p in paragraphs]
+                    next_audit = audit_request(case, self.last_draft, model_evidence, self.ledger,
+                                              patches=planned_patches, feedback=feedback,
+                                              full_review=not any(h.get("stage") == "audit" for h in history))
+                    reserve = self.llm.input_tokens("audit", next_audit) + 1500 if hasattr(self.llm, "input_tokens") else 4200
+                    repaired = self._model_step("repair", repair_data, 1400, reserve=reserve)
+                    if self.report_trace:
+                        self.report_trace[-1].setdefault('repair_responses', []).append(repaired)
+                    patches = repaired.get("patches", [])
+                    revised = apply_report_patches(self.last_draft, patches)
+                    value = {"markdown": revised, "used_evidence_ids": previous_used}
+                else:
+                    data = {"task": report_task(case),
+                            "claims": compact_claims(model_evidence), "papers": refs,
+                            "facts_appended_by_program": anchor_ids,
+                            "output_limits": ({"model_body_characters": max(800, 4500 - len(anchor) - 4),
+                                               "model_citation_instances": max(0, 40 - len(report_citations(anchor))),
+                                               "total_body_characters": 4500, "total_citation_instances": 40}
+                                              if case.function == "Survey" else {"model_body_characters": 6000}),
+                            "coverage_requirements": report_requirements(case.function), "repair_issues": feedback,
+                            "evidence_coverage": {name: list(facets) for name, facets in self.coverage.get("papers", {}).items()}}
+                    if case.function == 'Idea' or direct:
+                        data['output_limits']['target_body_characters'] = 2200
+                        data['response_fields'] = {'markdown': '完整报告正文字符串，不能省略或嵌套',
+                                                   'used_evidence_ids': '实际使用的证据ID数组'}
+                    if direct and case.function == 'Survey':
+                        data['output_limits'].update(target_body_characters=1600, model_citation_instances=25)
+                    # 哈希、偏移等核验元数据留在磁盘；为审查和一次修订保留实际模型预算。
+                    remaining = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
+                    requested = min(4200, remaining - len(json.dumps(data, ensure_ascii=False)) // 2 - 2000)
+                    if requested &lt; 1600:
+                        raise ModelError("insufficient model budget reserved for report")
+                    # 先用预计长度的正文计算一次审查和修订闭环的成本。
+                    preview = (anchor + "\n\n" if anchor else "") + "待核验正文。" * 260
+                    initial_audit = audit_request(case, preview, model_evidence, self.ledger)
+                    reserve = (self.llm.input_tokens("audit", initial_audit) + 1000
+                               + repair_tail_budget(self.llm, case, preview, model_evidence, self.ledger)
+                               if hasattr(self.llm, "input_tokens") else 7500)
+                    if direct:
+                        # 原文上下文只发一次；可选自审不能挤掉完整正文预算。
+                        reserve = 3500
+                    if hasattr(self.llm, "input_tokens"):
+                        # 当前写作和首次审查必须能执行；尚未发生的修订预估不能占满输出空间。
+                        available = max(0, self.llm.remaining_tokens - self.llm.input_tokens("report", data)
+                                        - (3000 if case.function == "Survey" else 4200))
+                        reserve = min(reserve, available)
+                    value = self._model_step("report", data, min(3000 if case.function == "Survey" else 4200, requested),
+                                             reserve=reserve, minimum=1600)
+            except (ModelError, EvidenceError, TimeoutError) as exc:
+                history.append({"attempt": attempt + 1, "stage": "report", "issues": [str(exc)]})
+                feedback = feedback + [str(exc)]
+                session = current_session()
+                # 首次正文JSON截断/格式错误可在原有两次写作上限内重新生成。
+                # 网络超时、额度拒绝不重试；不得用占位正文伪装成功。
+                retry_format = isinstance(exc, ModelError) and any(message in str(exc) for message in
+                    ('model returned invalid JSON', 'model response incomplete'))
+                if (direct and case.function == 'Survey' and attempt == 0 and deliverable is None
+                        and retry_format and (session is None or session.remaining() &gt;= 45)):
+                    self.last_draft = ''
+                    continue
+                break
+            markdown = value.get("markdown", "")
+            used = value.get("used_evidence_ids", [])
+            self.report_trace.append({"attempt": attempt + 1, "raw_markdown": markdown, "raw_response": value,
+                                      "used_evidence_ids": used, "patches": patches,
+                                      "source_task": report_task(case)})
+            if (not isinstance(markdown, str) or not markdown.strip() or not isinstance(used, list)
+                    or any(not isinstance(identifier, str) for identifier in used)):
+                feedback = ['invalid report response: markdown must be a nonempty string; '
+                            'used_evidence_ids must be an array of evidence ID strings']
+                history.append({"attempt": attempt + 1, "stage": "response_schema", "issues": list(feedback)})
+                self.last_draft = ''
+                continue
+            try:
+                markdown, bound_ids = render_evidence_citations(markdown, evidence)
+            except EvidenceError as exc:
+                self.last_draft = markdown
+                previous_used = list(used)
+                feedback, repair_targets = [str(exc)], getattr(exc, "passages", [])
+                history.append({"attempt": attempt + 1, "stage": "citation_binding", "issues": list(feedback)})
+                continue
+            if bound_ids:
+                used = list(dict.fromkeys((previous_used if patches else []) + bound_ids))
+            markdown = markdown.split("## 参考文献")[0].strip()
+            # 只修正与唯一授权 arXiv 编号相差一位的排版笔误。
+            markdown = correct_paper_ids(markdown, filenames)
+            if case.function == "Survey":
+                if anchor and not attempt and not markdown.startswith(anchor):
+                    markdown = anchor + "\n\n" + markdown
+                    used = list(dict.fromkeys(anchor_ids + used))
+                # 只补正文尚未引用的论文；不重复整份事实摘要扩大复审输入。
+                cited_refs = {int(n) for n in report_citations(markdown)}
+                missing_rows = [e for e in self.ledger if refs[e.filename] not in cited_refs]
+                if missing_rows and not direct:
+                    anchor, anchor_ids = render_claim_ledger_section(select_claims(missing_rows, maximum_per_paper=2), refs)
+                    markdown = anchor + "\n\n" + markdown
+                    used = list(dict.fromkeys(anchor_ids + used))
+            # 作者姓名若不在已核验事实中，不把模型猜测写成论文归因。
+            markdown = remove_unsupported_authors(markdown, evidence)
+            self.last_draft = markdown
+            previous_used = list(used)
+            try:
+                try:
+                    validate_report_limits(markdown + "\n\n", case.function)
+                except ValueError as exc:
+                    passages = []
+                    if direct and 'citation instances' in str(exc):
+                        passages = sorted(markdown.split('\n\n'), key=lambda p: len(report_citations(p)), reverse=True)[:2]
+                    raise EvidenceError(str(exc), passages=passages) from exc
+                numeric_ambiguities = validate_citations(markdown, evidence, used,
+                                                        minimum=5 if case.function == "Survey" else 1, function=case.function,
+                                                        strict_facts=not direct)
+                # 语义自审属于质量控制。先记录确已通过硬检查的完整模型稿，
+                # 不能把自审疑虑或局部修订失败误报成没有可交付的答卷。
+                if case.function == 'Idea' or direct:
+                    deliverable = markdown
+                    deliverable_attempt = attempt + 1
+                session = current_session()
+                if direct and session and session.remaining() &lt; 30:
+                    feedback = ['semantic review skipped: preserving submission deadline']
+                    break
+                audit_data = audit_request(case, markdown, model_evidence, self.ledger,
+                                           used=used, patches=patches, feedback=feedback,
+                                           full_review=bool(patches) and not any(h.get("stage") == "audit" for h in history))
+                audit_data["numeric_claims_to_classify"] = numeric_ambiguities
+                reserve = repair_tail_budget(self.llm, case, markdown, model_evidence, self.ledger) if not patches else 0
+                if not patches and hasattr(self.llm, "input_tokens"):
+                    # 优先完成当前真实审查。后续修订尚未发生，不能让其最坏估算挡住首审。
+                    # 修订请求发出前仍会按实际问题、替换范围重新核算完整复审成本。
+                    affordable = max(0, self.llm.remaining_tokens - self.llm.input_tokens("audit", audit_data) - 1000)
+                    reserve = min(reserve, affordable)
+                audit = self._model_step("audit", audit_data, 1000, reserve=reserve)
+                if (type(audit.get("ok")) is not bool or not isinstance(audit.get("issues"), list)
+                        or any(not isinstance(issue, str) for issue in audit["issues"])):
+                    raise EvidenceError("invalid semantic audit response")
+                history.append({"attempt": attempt + 1, "stage": "audit", "audit": dict(audit)})
+                if audit["ok"] and audit["issues"]:
+                    # 保留模型原始结论，但不能把仍有问题的正文当成通过。
+                    audit = {**audit, "reported_ok": True, "ok": False}
+                audit["history"] = list(history)
+                self.audit = audit
+                if audit.get("ok") is not True:
+                    issues = audit["issues"] or ["semantic audit rejected without details"]
+                    raise EvidenceError("; ".join(issues), passages=repair_paragraphs(markdown, issues))
+                return self._report_result(case, markdown, filenames, refs)
+            except (ModelError, TimeoutError) as exc:
+                # 额度或网络问题不是正文错误，禁止把它当成修订意见再调用写作模型。
+                feedback = [str(exc)]
+                history.append({"attempt": attempt + 1, "stage": "audit_unavailable", "issues": list(feedback)})
+                break
+            except EvidenceError as exc:
+                feedback = [str(exc)]
+                repair_targets = getattr(exc, "passages", [])
+                history.append({"attempt": attempt + 1, "stage": "validation", "issues": list(feedback)})
+        if case.function == "Survey" and not direct:
+            # 自由长文多次审查失败时，只拼接已经进入证据台账的事实。
+            markdown, used = deterministic_survey(case.input, self.ledger)
+            body = markdown.split("## 参考文献", 1)[0]
+            validate_report_limits(markdown, case.function)
+            validate_citations(body, evidence, used, minimum=5)
+            self.audit = {"ok": None, "mode": "deterministic_fallback", "local_validation": True,
+                          "model_issues": feedback, "history": history}
+            return {"case_id": case.case_id,
+                    "path": f"data/expert/{case.case_id}-综述-{self.team}.md", "markdown": markdown}
+        if deliverable is not None:
+            # 不改正文、不伪造审查通过；供平台实际判内容分，全部疑虑留存证据档案。
+            self.audit = {"ok": False, "mode": "model_report_needs_review", "local_validation": True,
+                          "delivered_attempt": deliverable_attempt, "model_issues": feedback, "history": history}
+            return self._report_result(case, deliverable, filenames, refs)
+        # c1-output-limits-v1 禁止用程序模板替代未生成或格式不合格的 E 报告。
+        self.audit = {"ok": False, "mode": "model_report_failed", "model_issues": feedback, "history": history}
+&gt;       raise EvidenceError(case.function + " model report failed validation: " + "; ".join(feedback))
+E       research_agent.evidence.EvidenceError: Survey model report failed validation: draft contains unknown evidence citation; report patch does not match a unique current passage
+
+src\research_agent\workflows\reports.py:419: EvidenceError</failure></testcase><testcase classname="" name="test_valid_bound_citations_do_not_require_extra_generation" time="0.006" /><testcase classname="" name="test_two_invalid_full_responses_are_rejected_with_original_evidence_retained" time="0.002" /></testsuite></testsuites>

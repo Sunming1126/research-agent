@@ -321,13 +321,32 @@ class ReportWorkflow:
             try:
                 markdown, bound_ids = render_evidence_citations(markdown, evidence)
             except EvidenceError as exc:
-                self.last_draft = markdown
-                previous_used = list(used)
                 feedback, repair_targets = [str(exc)], getattr(exc, "passages", [])
                 history.append({"attempt": attempt + 1, "stage": "citation_binding", "issues": list(feedback)})
+                if direct and case.function == 'Survey':
+                    # 内部证据编号绑定失败属于整份响应错误；段落patch不能修复
+                    # used_evidence_ids，重复标记也不满足patch的唯一原文约束。
+                    # 在原有两次写作上限内重新生成，保留首稿原始证据记录。
+                    self.last_draft = ''
+                    previous_used, repair_targets = [], []
+                    history[-1]['recovery'] = 'regenerate_full_response'
+                else:
+                    self.last_draft = markdown
+                    previous_used = list(used)
                 continue
             if bound_ids:
                 used = list(dict.fromkeys((previous_used if patches else []) + bound_ids))
+            if (direct and case.function == 'Survey'
+                    and (not used or not set(used) <= {row['evidence_id'] for row in evidence})):
+                # 不能由程序猜测模型使用了哪些证据。补齐整份响应，禁止只改正文
+                # 后继续携带同一份空/未知证据ID，最终仍须通过原有引用校验。
+                feedback = ['report uses unknown or empty evidence IDs; return a complete response '
+                            'with evidence IDs selected from the supplied authorized evidence']
+                history.append({'attempt': attempt + 1, 'stage': 'response_evidence',
+                                'issues': list(feedback), 'recovery': 'regenerate_full_response'})
+                self.last_draft = ''
+                previous_used, repair_targets = [], []
+                continue
             markdown = markdown.split("## 参考文献")[0].strip()
             # 只修正与唯一授权 arXiv 编号相差一位的排版笔误。
             markdown = correct_paper_ids(markdown, filenames)

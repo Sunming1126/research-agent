@@ -1,0 +1,50 @@
+{
+  "baseline_passed": 2,
+  "baseline_failed": 3,
+  "candidate_passed": 5,
+  "regression_passed": 402,
+  "regression_failures": 0,
+  "regression_errors": 0,
+  "environment_skips": 6,
+  "known_expected_failures": 1,
+  "skipped_details": [
+    {
+      "test": "tests.test_d_official_client_flow",
+      "type": null,
+      "message": "collection skipped"
+    },
+    {
+      "test": "test_case_insensitive_duplicate_selection",
+      "type": "pytest.skip",
+      "message": "case-insensitive filesystem cannot hold both filenames"
+    },
+    {
+      "test": "test_symlink_escape",
+      "type": "pytest.skip",
+      "message": "Windows symlink privilege is unavailable"
+    },
+    {
+      "test": "test_absolute_authorized_file_still_rejects_symlinks_and_traversal",
+      "type": "pytest.skip",
+      "message": "symlink unavailable"
+    },
+    {
+      "test": "test_scanned_page_does_not_hide_text_pages",
+      "type": "pytest.skip",
+      "message": "300-paper local benchmark not installed"
+    },
+    {
+      "test": "test_default_library_rejects_symlink_escape",
+      "type": "pytest.skip",
+      "message": "symlink creation unavailable"
+    },
+    {
+      "test": "test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers",
+      "type": "pytest.xfail",
+      "message": "Known quota underutilization remains: full-page reallocation prototype did not pass timed retrieval gate; retained as an open defect, not a passed test"
+    }
+  ],
+  "native_harness_execution": true,
+  "target_model_calls": 0,
+  "actual_platform_failure_root_cause_confirmed": false
+}

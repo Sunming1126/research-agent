@@ -1,0 +1,79 @@
+{
+  "release_id": 428636088,
+  "html_url": "https://github.com/Sunming1126/research-agent/releases/tag/untagged-f8c44d80dbfefafe393f",
+  "draft": true,
+  "tag": "candidate-0.4.20-c-recovery-20261030",
+  "source_revision": "c73d1415ca8f6491c8715a921fed70fd9bb2c1a9",
+  "assets": [
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 224,
+      "sha256": "6dafda4caa274703c740e1df6a152524bc36b21faf8c06da300468754bf3ad1a",
+      "remote_digest": "sha256:6dafda4caa274703c740e1df6a152524bc36b21faf8c06da300468754bf3ad1a",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-f8c44d80dbfefafe393f/SHA256SUMS.txt"
+    },
+    {
+      "name": "independent-static-audit.json",
+      "bytes": 460,
+      "sha256": "5dd093c1626c828ca50153577f44c1609d5b0f76dd69dc010d4914b41dfeb178",
+      "remote_digest": "sha256:5dd093c1626c828ca50153577f44c1609d5b0f76dd69dc010d4914b41dfeb178",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-f8c44d80dbfefafe393f/independent-static-audit.json"
+    },
+    {
+      "name": "组委会核查说明.txt",
+      "bytes": 1192,
+      "sha256": "1f341b65cda589229759c0cf3c4fa740113b46d5475aa33f1d289f3baf213945",
+      "remote_digest": "sha256:1f341b65cda589229759c0cf3c4fa740113b46d5475aa33f1d289f3baf213945",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-f8c44d80dbfefafe393f/default.txt"
+    },
+    {
+      "name": "delivery-manifest.json",
+      "bytes": 1203,
+      "sha256": "9f64272eead08c0c79769b172a627ae91d753dc86bebb575753c86a5069a9be9",
+      "remote_digest": "sha256:9f64272eead08c0c79769b172a627ae91d753dc86bebb575753c86a5069a9be9",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-f8c44d80dbfefafe393f/delivery-manifest.json"
+    },
+    {
+      "name": "提交说明.md",
+      "bytes": 1453,
+      "sha256": "8b0494062259bbbecd368492263cf86fc77db66a7b32d1449424c0a911ec8f8b",
+      "remote_digest": "sha256:8b0494062259bbbecd368492263cf86fc77db66a7b32d1449424c0a911ec8f8b",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-f8c44d80dbfefafe393f/default.md"
+    },
+    {
+      "name": "C类修复与验证报告.md",
+      "bytes": 2895,
+      "sha256": "8fc861481a8d04a5fd6fb1655036519294836a3c2a969f886bdb83716b363cc3",
+      "remote_digest": "sha256:8fc861481a8d04a5fd6fb1655036519294836a3c2a969f886bdb83716b363cc3",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-f8c44d80dbfefafe393f/C.md"
+    },
+    {
+      "name": "source-sha256.json",
+      "bytes": 5104,
+      "sha256": "0cd1a2d1c5c565b8e432260d7f1e28930fc5716cef64fadfe0cfc1a2a3deda9b",
+      "remote_digest": "sha256:0cd1a2d1c5c565b8e432260d7f1e28930fc5716cef64fadfe0cfc1a2a3deda9b",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-f8c44d80dbfefafe393f/source-sha256.json"
+    },
+    {
+      "name": "static-image-audit.json",
+      "bytes": 15943,
+      "sha256": "2ea99fa86645086059ceb2256a2b0042c9a9ced9eabd0cc0eed6870c2bdf09ac",
+      "remote_digest": "sha256:2ea99fa86645086059ceb2256a2b0042c9a9ced9eabd0cc0eed6870c2bdf09ac",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-f8c44d80dbfefafe393f/static-image-audit.json"
+    },
+    {
+      "name": "research-agent-c73d141-build-source.zip",
+      "bytes": 131306,
+      "sha256": "a631c170f6c8b47f63b81941b8478f0667410e406dc6dabb1908228fe5b3e5a7",
+      "remote_digest": "sha256:a631c170f6c8b47f63b81941b8478f0667410e406dc6dabb1908228fe5b3e5a7",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-f8c44d80dbfefafe393f/research-agent-c73d141-build-source.zip"
+    },
+    {
+      "name": "research-assistant-0.4.20-c-recovery-20261030.tar",
+      "bytes": 295413760,
+      "sha256": "d58521992b981d03f3b5833021e4099a98a71e1d1a37cca5c0f421748aafbc0c",
+      "remote_digest": "sha256:d58521992b981d03f3b5833021e4099a98a71e1d1a37cca5c0f421748aafbc0c",
+      "download_url": "https://github.com/Sunming1126/research-agent/releases/download/untagged-f8c44d80dbfefafe393f/research-assistant-0.4.20-c-recovery-20261030.tar"
+    }
+  ]
+}
