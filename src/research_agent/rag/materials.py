@@ -276,6 +276,8 @@ class DocumentParser:
 
 class Chunker:
     """按页和内容块切分；每段保留来源、偏移与内容哈希。"""
+    VERSION = "chunker-v2-appendix-context"
+
     def __init__(self, max_chars=850, overlap=110):
         self.max_chars, self.overlap = max_chars, overlap
 
@@ -292,9 +294,10 @@ class Chunker:
                 if not block:
                     continue
                 first = block.splitlines()[0]
-                if re.match(r"^(?:#{1,6}\s*)?(?:appendix|appendices|supplementary\s+(?:material|information)|附录|补充材料)\b", first, re.I):
+                appendix = re.match(r"^(?:#{1,6}\s*)?(?:(?:[A-Z](?:\.\d+)*|\d+(?:\.\d+)*)\.?\s+)?(?:appendix|appendices|supplementary\s+(?:material|information)|附录|补充材料)\b", block, re.I)
+                if appendix:
                     reference_section = False
-                    heading = first.lstrip("# ")[:160]
+                    heading = re.sub(r"\s+", " ", block[:max(len(first), appendix.end())]).lstrip("# ")[:160]
                 if re.match(r"^(#{1,6} |\d+(?:\.\d+)*\s+|abstract\b|conclusion\b|references\b|摘要|参考文献)", first, re.I):
                     heading = first.lstrip("# ")[:160]
                 if re.fullmatch(r"(?:\d+\.?\s+)?(?:references|bibliography|参考文献)", first, re.I):
@@ -345,7 +348,7 @@ class DocumentIndex:
         self.chunks = []
         for material in self.materials:
             checkpoint("document_index")
-            identity = f"{material.filename}|{material.sha256}|{self.parser.VERSION}|850|110|{self.parser.ocr}"
+            identity = f"{material.filename}|{material.sha256}|{self.parser.VERSION}|{self.chunker.VERSION}|850|110|{self.parser.ocr}"
             if not self.parser.extract_tables:
                 identity += '|text-blocks-only'
             if page_limit is not None:

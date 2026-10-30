@@ -1,0 +1,13 @@
+{
+  "kind": "independent_static_archive_audit",
+  "source_revision": "a34c658be0afa8bbcc9fc4fd1387388716e8016b",
+  "application_file_count": 43,
+  "python_3_11_syntax_files": 41,
+  "exact_python_bytes_match_final_regression": 41,
+  "no_stale_application_files": true,
+  "source_zip_readback": true,
+  "official_runtime_entry_retained": true,
+  "image_import_and_start_tested": false,
+  "native_harness_execution": false,
+  "real_model_calls": 0
+}

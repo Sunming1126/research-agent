@@ -1,0 +1,351 @@
+{
+  "date": "2026-10-29",
+  "candidate_version": "0.4.19-stable-b-20261029",
+  "baseline_commit": "a329dd6cb0a2527fc664d19d55467da06086bb7e",
+  "previous_candidate_commit": "43f8189193984edd6869b5d453e4b5a0ec8c776a",
+  "mode": "offline-authorized",
+  "native_harness_execution": false,
+  "real_model_calls": 0,
+  "real_model_token_change": "not measured",
+  "final_regression_run": "b-stability-offline-regression-final-20261029T200846",
+  "final_regression": {
+    "returncode": 0,
+    "collected": 404,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 7,
+    "seconds": 77.989,
+    "mode": "offline-authorized",
+    "native_harness_execution": false,
+    "target_model_calls": 0,
+    "passed": 397
+  },
+  "source_python_files_verified": 194,
+  "source_fingerprint": "0cbdd77b724cd1b4a93dcc66a00721b6933c4f2f4b21eb03098a2bad8fe81ad0",
+  "initial_counterexamples": {
+    "results": {
+      "baseline": {
+        "returncode": 1,
+        "collected": 6,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 1.975,
+        "mode": "offline-authorized",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "passed": 4
+      },
+      "comparison": {
+        "returncode": 1,
+        "collected": 6,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 1.129,
+        "mode": "offline-authorized",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "passed": 4
+      },
+      "prototype": {
+        "returncode": 0,
+        "collected": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 1.052,
+        "mode": "offline-authorized",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "passed": 6
+      }
+    },
+    "test_sha256": "e0e501f951f29a9eb7b4832c69a30f2fce06bd98427e439e2a71f2b4da12fb8d",
+    "mode": "offline-authorized",
+    "target_model_calls": 0,
+    "new_strategy_adopted": false
+  },
+  "expanded_counterexamples": {
+    "results": {
+      "baseline": {
+        "returncode": 1,
+        "collected": 10,
+        "failures": 5,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 1.593,
+        "mode": "offline-authorized",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "passed": 5
+      },
+      "comparison": {
+        "returncode": 1,
+        "collected": 10,
+        "failures": 5,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 1.416,
+        "mode": "offline-authorized",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "passed": 5
+      },
+      "reference-v2": {
+        "returncode": 0,
+        "collected": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 1.351,
+        "mode": "offline-authorized",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "passed": 10
+      },
+      "budget": {
+        "returncode": 1,
+        "collected": 10,
+        "failures": 5,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 1.424,
+        "mode": "offline-authorized",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "passed": 5
+      },
+      "combined-v2": {
+        "returncode": 0,
+        "collected": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 1.305,
+        "mode": "offline-authorized",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "passed": 10
+      }
+    },
+    "test_sha256": "7ce332b3a4eec3c2985c7bb3c1aa0de3528697f5028f4d470057e2ed56d3afe3",
+    "mode": "offline-authorized",
+    "target_model_calls": 0,
+    "new_strategy_adopted": false
+  },
+  "comparisons": {
+    "diagnostic": {
+      "run": "b-stability-offline-diagnostic-20261029T193253",
+      "summary": {
+        "baseline": {
+          "tasks": 9,
+          "exact": 9,
+          "false_positives": 0,
+          "misses": 0,
+          "median_retrieval_seconds": 12.656,
+          "max_retrieval_seconds": 14.844,
+          "median_cpu_seconds": 11.719,
+          "median_worker_seconds": 13.562
+        },
+        "comparison": {
+          "tasks": 9,
+          "exact": 7,
+          "false_positives": 0,
+          "misses": 2,
+          "median_retrieval_seconds": 12.719,
+          "max_retrieval_seconds": 17.0,
+          "median_cpu_seconds": 10.906,
+          "median_worker_seconds": 13.594
+        }
+      },
+      "query_plan_replay": {
+        "B-44-replay-baseline": {
+          "tasks": 3,
+          "exact": 3
+        },
+        "B-44-replay-candidate": {
+          "tasks": 3,
+          "exact": 3
+        }
+      }
+    },
+    "factorial": {
+      "run": "b-stability-offline-factorial-20261029T194703",
+      "summary": {
+        "baseline": {
+          "tasks": 9,
+          "exact": 5,
+          "false_positives": 0,
+          "misses": 4,
+          "median_retrieval_seconds": 13.657,
+          "max_retrieval_seconds": 15.109,
+          "median_cpu_seconds": 11.609,
+          "median_worker_seconds": 14.575
+        },
+        "budget": {
+          "tasks": 9,
+          "exact": 9,
+          "false_positives": 0,
+          "misses": 0,
+          "median_retrieval_seconds": 15.844,
+          "max_retrieval_seconds": 19.141,
+          "median_cpu_seconds": 13.281,
+          "median_worker_seconds": 16.804
+        },
+        "combined": {
+          "tasks": 9,
+          "exact": 9,
+          "false_positives": 0,
+          "misses": 0,
+          "median_retrieval_seconds": 16.547,
+          "max_retrieval_seconds": 18.922,
+          "median_cpu_seconds": 13.156,
+          "median_worker_seconds": 17.484
+        },
+        "comparison": {
+          "tasks": 9,
+          "exact": 5,
+          "false_positives": 0,
+          "misses": 4,
+          "median_retrieval_seconds": 13.172,
+          "max_retrieval_seconds": 15.015,
+          "median_cpu_seconds": 11.062,
+          "median_worker_seconds": 14.078
+        },
+        "reference": {
+          "tasks": 9,
+          "exact": 7,
+          "false_positives": 0,
+          "misses": 2,
+          "median_retrieval_seconds": 13.5,
+          "max_retrieval_seconds": 15.719,
+          "median_cpu_seconds": 11.469,
+          "median_worker_seconds": 14.584
+        }
+      }
+    },
+    "boundary": {
+      "run": "b-stability-offline-boundary-20261029T201202",
+      "summary": {
+        "baseline": {
+          "tasks": 4,
+          "exact": 2,
+          "false_positives": 0,
+          "misses": 2,
+          "median_retrieval_seconds": 0.078,
+          "max_retrieval_seconds": 0.094,
+          "median_cpu_seconds": 0.086,
+          "median_worker_seconds": 0.447
+        },
+        "combined": {
+          "tasks": 4,
+          "exact": 4,
+          "false_positives": 0,
+          "misses": 0,
+          "median_retrieval_seconds": 0.086,
+          "max_retrieval_seconds": 0.094,
+          "median_cpu_seconds": 0.055,
+          "median_worker_seconds": 0.437
+        },
+        "comparison": {
+          "tasks": 4,
+          "exact": 2,
+          "false_positives": 0,
+          "misses": 2,
+          "median_retrieval_seconds": 0.078,
+          "max_retrieval_seconds": 0.079,
+          "median_cpu_seconds": 0.078,
+          "median_worker_seconds": 0.404
+        }
+      }
+    },
+    "broader": {
+      "run": "b-stability-offline-broader-20261029T201234",
+      "summary": {
+        "baseline": {
+          "tasks": 10,
+          "exact": 8,
+          "false_positives": 0,
+          "misses": 2,
+          "median_retrieval_seconds": 15.031,
+          "max_retrieval_seconds": 16.031,
+          "median_cpu_seconds": 11.133,
+          "median_worker_seconds": 16.236
+        },
+        "combined": {
+          "tasks": 10,
+          "exact": 10,
+          "false_positives": 0,
+          "misses": 0,
+          "median_retrieval_seconds": 18.781,
+          "max_retrieval_seconds": 23.375,
+          "median_cpu_seconds": 13.086,
+          "median_worker_seconds": 19.695
+        },
+        "comparison": {
+          "tasks": 10,
+          "exact": 9,
+          "false_positives": 0,
+          "misses": 1,
+          "median_retrieval_seconds": 13.734,
+          "max_retrieval_seconds": 18.109,
+          "median_cpu_seconds": 11.109,
+          "median_worker_seconds": 14.643
+        }
+      }
+    },
+    "final-repeat": {
+      "run": "b-stability-offline-final-repeat-20261029T202248",
+      "summary": {
+        "baseline": {
+          "tasks": 9,
+          "exact": 5,
+          "false_positives": 0,
+          "misses": 4,
+          "median_retrieval_seconds": 14.282,
+          "max_retrieval_seconds": 15.938,
+          "median_cpu_seconds": 11.609,
+          "median_worker_seconds": 15.194
+        },
+        "combined": {
+          "tasks": 9,
+          "exact": 9,
+          "false_positives": 0,
+          "misses": 0,
+          "median_retrieval_seconds": 16.234,
+          "max_retrieval_seconds": 21.86,
+          "median_cpu_seconds": 12.969,
+          "median_worker_seconds": 17.162
+        }
+      }
+    }
+  },
+  "limits": [
+    "All target tests are explicitly authorized offline runs, not native Harness or real-model evaluations",
+    "Literal readers test evidence delivery, not semantic model correctness; repeated tasks are correlated",
+    "Broader ten questions are disclosed prior diagnostics, not new held-out data; four boundary controls use one paper",
+    "Factorial is exploratory after the initial comparison; host load and OS caches not controlled",
+    "Retrieval timings exclude initial indexing and real-model latency; whole worker timing recorded separately",
+    "No Linux image, 1CPU/1GiB, official HTTP/OTLP or leaderboard acceptance",
+    "Quota underutilization remains one strict xfail; six environment skips remain unpassed"
+  ],
+  "network_guards": {
+    "records": 179,
+    "external_attempts_blocked": 0,
+    "external_network_allowed": false
+  },
+  "all_executed_runs": [
+    "b-stability-offline-boundary-20261029T200035",
+    "b-stability-offline-boundary-20261029T200630",
+    "b-stability-offline-boundary-20261029T201202",
+    "b-stability-offline-broader-20261029T201234",
+    "b-stability-offline-counterexamples-20261029T193131",
+    "b-stability-offline-counterexamples-v2-20261029T200546",
+    "b-stability-offline-diagnostic-20261029T193253",
+    "b-stability-offline-factorial-20261029T194703",
+    "b-stability-offline-final-repeat-20261029T202248",
+    "b-stability-offline-profile-20261029T193938",
+    "b-stability-offline-regression-final-20261029T200846"
+  ]
+}

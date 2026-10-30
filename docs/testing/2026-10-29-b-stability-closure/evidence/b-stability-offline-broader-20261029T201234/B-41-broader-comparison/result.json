@@ -1,0 +1,366 @@
+{
+  "stage": "diagnostic",
+  "variant": "comparison",
+  "case_id": "B-41",
+  "item_key": "B-41-broader",
+  "actual": [
+    "2512.24768.pdf"
+  ],
+  "seconds": 14.65600000001723,
+  "cpu_seconds": 11.328125,
+  "trace": {
+    "query_plan": {
+      "topic": "but the critic subproblem is more involved",
+      "methods": "",
+      "focus": "",
+      "exclusions": [],
+      "variants": [],
+      "subqueries": []
+    },
+    "query_plan_status": "pending",
+    "rewritten": [
+      "2512.24768.pdf",
+      "2401.15884.pdf",
+      "2512.21451.pdf",
+      "2512.20811.pdf",
+      "2005.11401-RAG.pdf",
+      "2511.17905.pdf",
+      "2512.24792.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2512.22268.pdf",
+      "2512.24605.pdf",
+      "2511.18883.pdf",
+      "2601.00905.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2512.22411.pdf",
+      "2512.21674.pdf",
+      "2512.20305.pdf",
+      "2512.21005.pdf",
+      "2512.24663.pdf"
+    ],
+    "original": [
+      "2512.24768.pdf",
+      "2512.21451.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2005.11401-RAG.pdf",
+      "2401.15884.pdf",
+      "2511.17905.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2512.22268.pdf",
+      "2512.24605.pdf",
+      "2512.20811.pdf",
+      "2512.22411.pdf",
+      "2512.24011.pdf",
+      "2511.18883.pdf",
+      "2601.00905.pdf",
+      "2512.21927.pdf",
+      "2511.12805.pdf",
+      "2512.24736.pdf",
+      "2512.23985.pdf"
+    ],
+    "components": [],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2512.24768.pdf": 0.03278688524590164,
+      "2401.15884.pdf": 0.0315136476426799,
+      "2512.21451.pdf": 0.03200204813108039,
+      "2512.20811.pdf": 0.029910714285714284,
+      "2005.11401-RAG.pdf": 0.031009615384615385,
+      "2511.17905.pdf": 0.030303030303030304,
+      "2512.24792.pdf": 0.014925373134328358,
+      "2203.02155-InstructGPT.pdf": 0.029631255487269532,
+      "2512.22268.pdf": 0.02919863597612958,
+      "2512.24605.pdf": 0.02877846790890269,
+      "2511.18883.pdf": 0.027783137179239824,
+      "2601.00905.pdf": 0.027402402402402402,
+      "2310.11511-Self-RAG.pdf": 0.029571646010002173,
+      "2512.22411.pdf": 0.027598020555767037,
+      "2512.21674.pdf": 0.013333333333333334,
+      "2512.20305.pdf": 0.013157894736842105,
+      "2512.21005.pdf": 0.012987012987012988,
+      "2512.24663.pdf": 0.01282051282051282,
+      "2512.24011.pdf": 0.013888888888888888,
+      "2512.21927.pdf": 0.013333333333333334,
+      "2511.12805.pdf": 0.013157894736842105,
+      "2512.24736.pdf": 0.012987012987012988,
+      "2512.23985.pdf": 0.01282051282051282
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 415,
+      "documents_opened": 31,
+      "authorized_documents": 60,
+      "initial_page_limit": 4,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2512.23904.pdf": [
+          5,
+          7
+        ],
+        "2512.23843.pdf": [
+          5,
+          15
+        ],
+        "2511.14669.pdf": [
+          8,
+          9
+        ],
+        "2112.04426-RETRO.pdf": [
+          9,
+          11
+        ],
+        "2511.14431.pdf": [
+          6,
+          8
+        ],
+        "2512.24971.pdf": [
+          5
+        ],
+        "2512.24335.pdf": [
+          14,
+          17
+        ],
+        "2512.22286.pdf": [
+          9,
+          19
+        ],
+        "2512.24605.pdf": [
+          5,
+          9
+        ],
+        "2512.23317.pdf": [
+          6,
+          11
+        ],
+        "2512.22411.pdf": [
+          7,
+          11
+        ],
+        "2512.24603.pdf": [
+          6,
+          7
+        ],
+        "2512.24861.pdf": [
+          7
+        ],
+        "2512.21451.pdf": [
+          9,
+          38
+        ],
+        "2203.02155-InstructGPT.pdf": [
+          13,
+          16
+        ],
+        "2401.15884.pdf": [
+          6,
+          8
+        ],
+        "2512.21674.pdf": [
+          5,
+          11
+        ],
+        "2512.24011.pdf": [
+          6
+        ],
+        "2512.20811.pdf": [
+          5,
+          13
+        ],
+        "2005.11401-RAG.pdf": [
+          5,
+          8
+        ],
+        "2601.00905.pdf": [
+          5,
+          6
+        ],
+        "2511.17905.pdf": [
+          8,
+          10
+        ],
+        "2511.18883.pdf": [
+          8,
+          51
+        ],
+        "2512.20305.pdf": [
+          8,
+          28
+        ],
+        "2512.24736.pdf": [
+          5,
+          9
+        ],
+        "2310.11511-Self-RAG.pdf": [
+          5,
+          6
+        ],
+        "2512.24663.pdf": [
+          16,
+          19
+        ],
+        "2512.22268.pdf": [
+          5,
+          6
+        ]
+      },
+      "coverage_limited": true,
+      "unread_pages_in_opened_documents": 610,
+      "scanned_pages_by_document": {
+        "2512.23904.pdf": 11,
+        "2512.23843.pdf": 20,
+        "2511.14669.pdf": 13,
+        "2112.04426-RETRO.pdf": 20,
+        "2511.14431.pdf": 15,
+        "2512.24971.pdf": 2,
+        "2512.24335.pdf": 17,
+        "2512.22286.pdf": 20,
+        "2512.24605.pdf": 10,
+        "2512.23317.pdf": 20,
+        "2512.22411.pdf": 15,
+        "2512.24603.pdf": 9,
+        "2512.24861.pdf": 5,
+        "2512.21451.pdf": 20,
+        "2203.02155-InstructGPT.pdf": 20,
+        "2401.15884.pdf": 12,
+        "2512.21674.pdf": 10,
+        "2512.20368.pdf": 20,
+        "2512.24011.pdf": 4,
+        "2512.20811.pdf": 11,
+        "2005.11401-RAG.pdf": 15,
+        "2601.00905.pdf": 3,
+        "2511.17905.pdf": 19,
+        "2511.18883.pdf": 20,
+        "2512.20305.pdf": 20,
+        "2512.21632.pdf": 3,
+        "2512.24792.pdf": 0,
+        "2512.24736.pdf": 20,
+        "2310.11511-Self-RAG.pdf": 20,
+        "2512.24663.pdf": 17,
+        "2512.22268.pdf": 4
+      },
+      "sampling_limited_documents": [
+        "2112.04426-RETRO.pdf",
+        "2512.22286.pdf",
+        "2512.23317.pdf",
+        "2512.21451.pdf",
+        "2203.02155-InstructGPT.pdf",
+        "2512.20368.pdf",
+        "2511.18883.pdf",
+        "2512.20305.pdf",
+        "2512.24736.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "stop_reason": "probe_time_limit",
+      "elapsed_seconds": 13.156,
+      "documents_unopened": 29
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 23,
+    "candidates": [
+      "2512.24768.pdf",
+      "2512.21451.pdf",
+      "2401.15884.pdf",
+      "2005.11401-RAG.pdf",
+      "2511.17905.pdf",
+      "2512.20811.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2512.22268.pdf",
+      "2512.24605.pdf",
+      "2511.18883.pdf",
+      "2512.22411.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2512.24768.pdf",
+        "score": 0.6739
+      },
+      {
+        "filename": "2512.21451.pdf",
+        "score": 0.4915
+      },
+      {
+        "filename": "2401.15884.pdf",
+        "score": 0.507
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.461
+      },
+      {
+        "filename": "2511.17905.pdf",
+        "score": 0.4504
+      },
+      {
+        "filename": "2512.20811.pdf",
+        "score": 0.4897
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.4464
+      },
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.4214
+      },
+      {
+        "filename": "2512.22268.pdf",
+        "score": 0.4462
+      },
+      {
+        "filename": "2512.24605.pdf",
+        "score": 0.4442
+      },
+      {
+        "filename": "2511.18883.pdf",
+        "score": 0.425
+      },
+      {
+        "filename": "2512.22411.pdf",
+        "score": 0.4146
+      }
+    ],
+    "batch_sizes": [
+      8,
+      4
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2512.24768.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "accepted_evidence": [
+      {
+        "filename": "2512.24768.pdf",
+        "chunk_id": "c8bedf4036d1f942a34b",
+        "page": 8,
+        "document_sha256": "2c84096debf25fcff25b47fb5b75689584a11c0909c7715fadaa4af2f1e644f6",
+        "chunk_sha256": "c8bedf4036d1f942a34b304a86045ca581a75a8e7706fc65e13b28701d5cf3d0"
+      }
+    ],
+    "fulltext_candidates": [
+      "2005.11401-RAG.pdf",
+      "2401.15884.pdf",
+      "2512.21451.pdf",
+      "2512.24768.pdf"
+    ]
+  },
+  "index_wall_seconds": 2.5939999999827705,
+  "index_cpu_seconds": 2.0,
+  "prefix_cache_files_before": 0,
+  "target_model_calls": 0,
+  "model_tokens": 0,
+  "material_errors": [],
+  "authorized_documents": 60,
+  "initial_page_limit": 4,
+  "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+  "environment": "Windows source, no CPU/memory hard limits or Linux acceptance"
+}

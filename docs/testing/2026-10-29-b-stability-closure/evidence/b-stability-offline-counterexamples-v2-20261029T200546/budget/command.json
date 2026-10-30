@@ -1,0 +1,13 @@
+[
+  "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\windows-python312\\python.exe",
+  "-X",
+  "utf8",
+  "-c",
+  "import sys;sys.path[:0]=['C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\镜像测试\\\\审核\\\\2026-10-29-b-stability-budget-prototype\\\\source', 'C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\镜像测试\\\\审核\\\\2026-10-29-b-stability-budget-prototype\\\\source\\\\src', 'C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\协同开发\\\\research-agent-stability-20261027\\\\tests', 'C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\镜像测试\\\\runtime\\\\py312-windows', 'C:\\\\Users\\\\lenovo\\\\Desktop\\\\Agent挑战赛\\\\镜像测试'];import offline_network_guard_20261029;import pytest;raise SystemExit(pytest.main(sys.argv[1:]))",
+  "-q",
+  "-p",
+  "no:cacheprovider",
+  "--basetemp=C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\b-stability-offline-counterexamples-v2-20261029T200546\\budget\\temp",
+  "--junitxml=C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\b-stability-offline-counterexamples-v2-20261029T200546\\budget\\pytest.xml",
+  "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\b-stability-offline-counterexamples-v2-20261029T200546\\frozen-tests\\test_probe_reference_context.py"
+]

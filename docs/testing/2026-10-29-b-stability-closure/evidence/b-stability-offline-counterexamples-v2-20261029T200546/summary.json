@@ -1,0 +1,68 @@
+{
+  "results": {
+    "baseline": {
+      "returncode": 1,
+      "collected": 10,
+      "failures": 5,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.593,
+      "mode": "offline-authorized",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "passed": 5
+    },
+    "comparison": {
+      "returncode": 1,
+      "collected": 10,
+      "failures": 5,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.416,
+      "mode": "offline-authorized",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "passed": 5
+    },
+    "reference-v2": {
+      "returncode": 0,
+      "collected": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.351,
+      "mode": "offline-authorized",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "passed": 10
+    },
+    "budget": {
+      "returncode": 1,
+      "collected": 10,
+      "failures": 5,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.424,
+      "mode": "offline-authorized",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "passed": 5
+    },
+    "combined-v2": {
+      "returncode": 0,
+      "collected": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.305,
+      "mode": "offline-authorized",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "passed": 10
+    }
+  },
+  "test_sha256": "7ce332b3a4eec3c2985c7bb3c1aa0de3528697f5028f4d470057e2ed56d3afe3",
+  "mode": "offline-authorized",
+  "target_model_calls": 0,
+  "new_strategy_adopted": false
+}

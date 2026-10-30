@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="6" time="0.994" timestamp="2026-10-29T19:31:32.768945+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="runs.b-stability-offline-counterexamples-20261029T193131.frozen-tests.test_probe_reference_context" name="test_reference_title_in_prefix_does_not_authorize_continuation_as_body" time="0.076"><failure message="AssertionError: assert [{'filename':...y evidence.'}] == []&#10;  &#10;  Left contains one more item: {'filename': 'scope.pdf', 'reason': 'The required literal method statement is present in supplied body evidence.'}&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-stability-offline-counterexamples-20261029T193131/baseline/temp/test_reference_title_in_prefix0')
+
+    def test_reference_title_in_prefix_does_not_authorize_continuation_as_body(tmp_path):
+        answer,handler,index=retrieve(tmp_path,reference_page=4,target_page=5)
+        assert any(c.kind=='references' and c.page==4 for c in index.chunks)
+&gt;       assert answer['papers']==[]
+E       AssertionError: assert [{'filename':...y evidence.'}] == []
+E         
+E         Left contains one more item: {'filename': 'scope.pdf', 'reason': 'The required literal method statement is present in supplied body evidence.'}
+E         Use -v to get more diff
+
+..\..\..\runs\b-stability-offline-counterexamples-20261029T193131\frozen-tests\test_probe_reference_context.py:57: AssertionError</failure></testcase><testcase classname="runs.b-stability-offline-counterexamples-20261029T193131.frozen-tests.test_probe_reference_context" name="test_reference_title_on_prior_prefix_page_keeps_context_across_blankish_page" time="0.037"><failure message="AssertionError: assert [{'filename':...y evidence.'}] == []&#10;  &#10;  Left contains one more item: {'filename': 'scope.pdf', 'reason': 'The required literal method statement is present in supplied body evidence.'}&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-stability-offline-counterexamples-20261029T193131/baseline/temp/test_reference_title_on_prior_0')
+
+    def test_reference_title_on_prior_prefix_page_keeps_context_across_blankish_page(tmp_path):
+        answer,_,_=retrieve(tmp_path,reference_page=3,target_page=5)
+&gt;       assert answer['papers']==[]
+E       AssertionError: assert [{'filename':...y evidence.'}] == []
+E         
+E         Left contains one more item: {'filename': 'scope.pdf', 'reason': 'The required literal method statement is present in supplied body evidence.'}
+E         Use -v to get more diff
+
+..\..\..\runs\b-stability-offline-counterexamples-20261029T193131\frozen-tests\test_probe_reference_context.py:62: AssertionError</failure></testcase><testcase classname="runs.b-stability-offline-counterexamples-20261029T193131.frozen-tests.test_probe_reference_context" name="test_appendix_after_prefix_reference_restores_eligible_body" time="0.035" /><testcase classname="runs.b-stability-offline-counterexamples-20261029T193131.frozen-tests.test_probe_reference_context" name="test_reference_title_in_unread_range_still_excludes_same_page" time="0.037" /><testcase classname="runs.b-stability-offline-counterexamples-20261029T193131.frozen-tests.test_probe_reference_context" name="test_plain_body_positive_is_preserved" time="0.040" /><testcase classname="runs.b-stability-offline-counterexamples-20261029T193131.frozen-tests.test_probe_reference_context" name="test_missing_phrase_does_not_return_a_paper" time="0.041" /></testsuite></testsuites>

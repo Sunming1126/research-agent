@@ -1,0 +1,294 @@
+{
+  "stage": "diagnostic",
+  "variant": "comparison",
+  "case_id": "B-45",
+  "item_key": "B-45-broader",
+  "actual": [
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "seconds": 13.34299999999348,
+  "cpu_seconds": 9.390625,
+  "trace": {
+    "query_plan": {
+      "topic": "tasks and even outperforms chatgpt in pubhealth",
+      "methods": "",
+      "focus": "",
+      "exclusions": [],
+      "variants": [],
+      "subqueries": []
+    },
+    "query_plan_status": "pending",
+    "rewritten": [
+      "2310.11511-Self-RAG.pdf",
+      "2512.24702.pdf",
+      "2511.14431.pdf",
+      "2104.08663-BEIR.pdf",
+      "2312.10997.pdf",
+      "2005.11401-RAG.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2512.24515.pdf",
+      "2212.10496.pdf",
+      "2512.24639.pdf",
+      "2401.15884.pdf",
+      "2512.23904.pdf",
+      "2511.18883.pdf",
+      "2512.24768.pdf",
+      "2512.24640.pdf",
+      "2004.04906-DPR.pdf",
+      "2512.24792.pdf",
+      "2512.21780.pdf"
+    ],
+    "original": [
+      "2310.11511-Self-RAG.pdf",
+      "2511.14431.pdf",
+      "2512.24702.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2512.24515.pdf",
+      "2212.10496.pdf",
+      "2512.24639.pdf",
+      "2312.10997.pdf",
+      "2511.18883.pdf",
+      "ruc-diversification-2019.pdf",
+      "2512.24768.pdf",
+      "2512.24640.pdf",
+      "2004.04906-DPR.pdf",
+      "2512.24792.pdf",
+      "2401.15884.pdf",
+      "2512.21780.pdf"
+    ],
+    "components": [],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2310.11511-Self-RAG.pdf": 0.03278688524590164,
+      "2512.24702.pdf": 0.03200204813108039,
+      "2511.14431.pdf": 0.03200204813108039,
+      "2104.08663-BEIR.pdf": 0.03125,
+      "2312.10997.pdf": 0.02967032967032967,
+      "2005.11401-RAG.pdf": 0.030536130536130537,
+      "2203.02155-InstructGPT.pdf": 0.03007688828584351,
+      "2512.24515.pdf": 0.029631255487269532,
+      "2212.10496.pdf": 0.02919863597612958,
+      "2512.24639.pdf": 0.02877846790890269,
+      "2401.15884.pdf": 0.027071520029266508,
+      "2512.23904.pdf": 0.013888888888888888,
+      "2511.18883.pdf": 0.027783137179239824,
+      "2512.24768.pdf": 0.027212143650499815,
+      "2512.24640.pdf": 0.02684684684684685,
+      "2004.04906-DPR.pdf": 0.02649122807017544,
+      "2512.24792.pdf": 0.026144907723855092,
+      "2512.21780.pdf": 0.02564102564102564,
+      "ruc-diversification-2019.pdf": 0.013888888888888888
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 280,
+      "documents_opened": 21,
+      "authorized_documents": 60,
+      "initial_page_limit": 4,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2511.17905.pdf": [
+          10,
+          11
+        ],
+        "2512.24620.pdf": [
+          7,
+          9
+        ],
+        "2212.10496.pdf": [
+          5
+        ],
+        "ruc-diversification-2019.pdf": [
+          7,
+          8
+        ],
+        "2310.11511-Self-RAG.pdf": [
+          8,
+          10
+        ],
+        "2512.24639.pdf": [
+          5,
+          7
+        ],
+        "2512.24515.pdf": [
+          8,
+          11
+        ],
+        "2511.18883.pdf": [
+          11,
+          16
+        ],
+        "2004.04906-DPR.pdf": [
+          5,
+          6
+        ],
+        "2511.18626.pdf": [
+          5,
+          16
+        ],
+        "2005.11401-RAG.pdf": [
+          5,
+          6
+        ],
+        "2512.21005.pdf": [
+          11,
+          14
+        ],
+        "2512.24663.pdf": [
+          6,
+          7
+        ],
+        "2512.22268.pdf": [
+          5,
+          7
+        ]
+      },
+      "coverage_limited": true,
+      "unread_pages_in_opened_documents": 352,
+      "scanned_pages_by_document": {
+        "2511.17905.pdf": 19,
+        "2512.24620.pdf": 10,
+        "2212.10496.pdf": 7,
+        "ruc-diversification-2019.pdf": 19,
+        "2310.11511-Self-RAG.pdf": 20,
+        "2512.24639.pdf": 6,
+        "2512.21927.pdf": 20,
+        "2512.24011.pdf": 4,
+        "2512.23527.pdf": 20,
+        "2512.24515.pdf": 15,
+        "2512.24792.pdf": 0,
+        "2511.18883.pdf": 20,
+        "2512.21674.pdf": 10,
+        "2004.04906-DPR.pdf": 9,
+        "2512.23203.pdf": 12,
+        "2511.18626.pdf": 20,
+        "2005.11401-RAG.pdf": 15,
+        "2512.21005.pdf": 13,
+        "2512.24663.pdf": 17,
+        "2512.24736.pdf": 20,
+        "2512.22268.pdf": 4
+      },
+      "sampling_limited_documents": [
+        "2310.11511-Self-RAG.pdf",
+        "2512.21927.pdf",
+        "2512.23527.pdf",
+        "2511.18883.pdf",
+        "2511.18626.pdf",
+        "2512.24736.pdf"
+      ],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "stop_reason": "probe_time_limit",
+      "elapsed_seconds": 12.062,
+      "documents_unopened": 39
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 19,
+    "candidates": [
+      "2310.11511-Self-RAG.pdf",
+      "2512.24702.pdf",
+      "2511.14431.pdf",
+      "2104.08663-BEIR.pdf",
+      "2005.11401-RAG.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2312.10997.pdf",
+      "2512.24515.pdf",
+      "2212.10496.pdf",
+      "2512.24639.pdf",
+      "2511.18883.pdf",
+      "2512.24768.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "score": 0.7363
+      },
+      {
+        "filename": "2512.24702.pdf",
+        "score": 0.5398
+      },
+      {
+        "filename": "2511.14431.pdf",
+        "score": 0.4969
+      },
+      {
+        "filename": "2104.08663-BEIR.pdf",
+        "score": 0.4624
+      },
+      {
+        "filename": "2005.11401-RAG.pdf",
+        "score": 0.4528
+      },
+      {
+        "filename": "2203.02155-InstructGPT.pdf",
+        "score": 0.452
+      },
+      {
+        "filename": "2312.10997.pdf",
+        "score": 0.4566
+      },
+      {
+        "filename": "2512.24515.pdf",
+        "score": 0.4474
+      },
+      {
+        "filename": "2212.10496.pdf",
+        "score": 0.4383
+      },
+      {
+        "filename": "2512.24639.pdf",
+        "score": 0.4174
+      },
+      {
+        "filename": "2511.18883.pdf",
+        "score": 0.3747
+      },
+      {
+        "filename": "2512.24768.pdf",
+        "score": 0.3717
+      }
+    ],
+    "batch_sizes": [
+      8,
+      4
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "accepted_evidence": [
+      {
+        "filename": "2310.11511-Self-RAG.pdf",
+        "chunk_id": "4051243e5ce61debd7f2",
+        "page": 8,
+        "document_sha256": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978",
+        "chunk_sha256": "4051243e5ce61debd7f26bc32c81d2604dfecab8a2ef8234e00381cf6c831f9d"
+      }
+    ],
+    "fulltext_candidates": [
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2511.14431.pdf",
+      "2512.24702.pdf"
+    ]
+  },
+  "index_wall_seconds": 0.48499999998603016,
+  "index_cpu_seconds": 0.46875,
+  "prefix_cache_files_before": 74,
+  "target_model_calls": 0,
+  "model_tokens": 0,
+  "material_errors": [],
+  "authorized_documents": 60,
+  "initial_page_limit": 4,
+  "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+  "environment": "Windows source, no CPU/memory hard limits or Linux acceptance"
+}

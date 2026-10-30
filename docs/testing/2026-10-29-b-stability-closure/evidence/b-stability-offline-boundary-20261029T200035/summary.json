@@ -1,0 +1,1852 @@
+{
+  "results": [
+    {
+      "stage": "diagnostic",
+      "variant": "baseline",
+      "case_id": "B-91",
+      "item_key": "B-91-boundary",
+      "actual": [],
+      "seconds": 0.0629999999946449,
+      "cpu_seconds": 0.0625,
+      "trace": {
+        "query_plan": {
+          "topic": "multitask prompted training enables zero-shot task generalization",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              9,
+              10
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.016,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.4171
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.125,
+      "index_cpu_seconds": 0.109375,
+      "prefix_cache_files_before": 0,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [],
+      "exact": true,
+      "false_positives": [],
+      "missed": [],
+      "worker_wall_seconds": 0.4849872999766376
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "comparison",
+      "case_id": "B-91",
+      "item_key": "B-91-boundary",
+      "actual": [],
+      "seconds": 0.07800000000861473,
+      "cpu_seconds": 0.046875,
+      "trace": {
+        "query_plan": {
+          "topic": "multitask prompted training enables zero-shot task generalization",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              9,
+              10
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.016,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.4171
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.125,
+      "index_cpu_seconds": 0.109375,
+      "prefix_cache_files_before": 0,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [],
+      "exact": true,
+      "false_positives": [],
+      "missed": [],
+      "worker_wall_seconds": 0.5087671999935992
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "reference",
+      "case_id": "B-91",
+      "item_key": "B-91-boundary",
+      "actual": [],
+      "seconds": 0.07800000000861473,
+      "cpu_seconds": 0.0625,
+      "trace": {
+        "query_plan": {
+          "topic": "multitask prompted training enables zero-shot task generalization",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {},
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "reference_context_from_prefix": {
+            "2212.10496.pdf": true
+          },
+          "elapsed_seconds": 0.0,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.4171
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.125,
+      "index_cpu_seconds": 0.09375,
+      "prefix_cache_files_before": 0,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [],
+      "exact": true,
+      "false_positives": [],
+      "missed": [],
+      "worker_wall_seconds": 0.5406770000117831
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "budget",
+      "case_id": "B-91",
+      "item_key": "B-91-boundary",
+      "actual": [],
+      "seconds": 0.07800000000861473,
+      "cpu_seconds": 0.0625,
+      "trace": {
+        "query_plan": {
+          "topic": "multitask prompted training enables zero-shot task generalization",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 24.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              9,
+              10
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.0,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.4171
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.125,
+      "index_cpu_seconds": 0.078125,
+      "prefix_cache_files_before": 0,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [],
+      "exact": true,
+      "false_positives": [],
+      "missed": [],
+      "worker_wall_seconds": 0.4873673000256531
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "combined",
+      "case_id": "B-91",
+      "item_key": "B-91-boundary",
+      "actual": [],
+      "seconds": 0.0629999999946449,
+      "cpu_seconds": 0.078125,
+      "trace": {
+        "query_plan": {
+          "topic": "multitask prompted training enables zero-shot task generalization",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 24.0,
+          "selected_pages": {},
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "reference_context_from_prefix": {
+            "2212.10496.pdf": true
+          },
+          "elapsed_seconds": 0.016,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.4171
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.10899999999674037,
+      "index_cpu_seconds": 0.09375,
+      "prefix_cache_files_before": 0,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [],
+      "exact": true,
+      "false_positives": [],
+      "missed": [],
+      "worker_wall_seconds": 0.48914209997747093
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "comparison",
+      "case_id": "B-92",
+      "item_key": "B-92-boundary",
+      "actual": [],
+      "seconds": 0.09400000001187436,
+      "cpu_seconds": 0.078125,
+      "trace": {
+        "query_plan": {
+          "topic": "approximate nearest neighbor negative contrastive",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              10
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.015,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.3601
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.0,
+      "index_cpu_seconds": 0.015625,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [],
+      "exact": true,
+      "false_positives": [],
+      "missed": [],
+      "worker_wall_seconds": 0.3937088999955449
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "reference",
+      "case_id": "B-92",
+      "item_key": "B-92-boundary",
+      "actual": [],
+      "seconds": 0.07800000000861473,
+      "cpu_seconds": 0.078125,
+      "trace": {
+        "query_plan": {
+          "topic": "approximate nearest neighbor negative contrastive",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {},
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "reference_context_from_prefix": {
+            "2212.10496.pdf": true
+          },
+          "elapsed_seconds": 0.016,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.3601
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.01600000000325963,
+      "index_cpu_seconds": 0.0,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [],
+      "exact": true,
+      "false_positives": [],
+      "missed": [],
+      "worker_wall_seconds": 0.39587249999749474
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "budget",
+      "case_id": "B-92",
+      "item_key": "B-92-boundary",
+      "actual": [],
+      "seconds": 0.09400000001187436,
+      "cpu_seconds": 0.0625,
+      "trace": {
+        "query_plan": {
+          "topic": "approximate nearest neighbor negative contrastive",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 24.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              10
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.0,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.3601
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.0,
+      "index_cpu_seconds": 0.015625,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [],
+      "exact": true,
+      "false_positives": [],
+      "missed": [],
+      "worker_wall_seconds": 0.41366350001771934
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "combined",
+      "case_id": "B-92",
+      "item_key": "B-92-boundary",
+      "actual": [],
+      "seconds": 0.09400000001187436,
+      "cpu_seconds": 0.046875,
+      "trace": {
+        "query_plan": {
+          "topic": "approximate nearest neighbor negative contrastive",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 24.0,
+          "selected_pages": {},
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "reference_context_from_prefix": {
+            "2212.10496.pdf": true
+          },
+          "elapsed_seconds": 0.0,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.3601
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.0,
+      "index_cpu_seconds": 0.0,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [],
+      "exact": true,
+      "false_positives": [],
+      "missed": [],
+      "worker_wall_seconds": 0.45037649999721907
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "baseline",
+      "case_id": "B-92",
+      "item_key": "B-92-boundary",
+      "actual": [],
+      "seconds": 0.0779999999795109,
+      "cpu_seconds": 0.0625,
+      "trace": {
+        "query_plan": {
+          "topic": "approximate nearest neighbor negative contrastive",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              10
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.015,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.3601
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.0,
+      "index_cpu_seconds": 0.015625,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [],
+      "exact": true,
+      "false_positives": [],
+      "missed": [],
+      "worker_wall_seconds": 0.38524730000062846
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "reference",
+      "case_id": "B-93",
+      "item_key": "B-93-boundary",
+      "actual": [],
+      "seconds": 0.09400000001187436,
+      "cpu_seconds": 0.0625,
+      "trace": {
+        "query_plan": {
+          "topic": "scientific paper passage to support/refute the claim",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              11
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "reference_context_from_prefix": {
+            "2212.10496.pdf": true
+          },
+          "elapsed_seconds": 0.016,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.5453
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.0159999999741558,
+      "index_cpu_seconds": 0.015625,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [
+        "2212.10496.pdf"
+      ],
+      "exact": false,
+      "false_positives": [],
+      "missed": [
+        "2212.10496.pdf"
+      ],
+      "worker_wall_seconds": 0.41215449999435805
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "budget",
+      "case_id": "B-93",
+      "item_key": "B-93-boundary",
+      "actual": [],
+      "seconds": 0.07800000000861473,
+      "cpu_seconds": 0.09375,
+      "trace": {
+        "query_plan": {
+          "topic": "scientific paper passage to support/refute the claim",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 24.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              9,
+              11
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.015,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.5453
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.014999999984866008,
+      "index_cpu_seconds": 0.0,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [
+        "2212.10496.pdf"
+      ],
+      "exact": false,
+      "false_positives": [],
+      "missed": [
+        "2212.10496.pdf"
+      ],
+      "worker_wall_seconds": 0.4224252999993041
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "combined",
+      "case_id": "B-93",
+      "item_key": "B-93-boundary",
+      "actual": [],
+      "seconds": 0.0779999999795109,
+      "cpu_seconds": 0.0625,
+      "trace": {
+        "query_plan": {
+          "topic": "scientific paper passage to support/refute the claim",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 24.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              11
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "reference_context_from_prefix": {
+            "2212.10496.pdf": true
+          },
+          "elapsed_seconds": 0.015,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.5453
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.015000000013969839,
+      "index_cpu_seconds": 0.0,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [
+        "2212.10496.pdf"
+      ],
+      "exact": false,
+      "false_positives": [],
+      "missed": [
+        "2212.10496.pdf"
+      ],
+      "worker_wall_seconds": 0.4059705999970902
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "baseline",
+      "case_id": "B-93",
+      "item_key": "B-93-boundary",
+      "actual": [],
+      "seconds": 0.07899999999790452,
+      "cpu_seconds": 0.078125,
+      "trace": {
+        "query_plan": {
+          "topic": "scientific paper passage to support/refute the claim",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              9,
+              11
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.0,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.5453
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.015000000013969839,
+      "index_cpu_seconds": 0.0,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [
+        "2212.10496.pdf"
+      ],
+      "exact": false,
+      "false_positives": [],
+      "missed": [
+        "2212.10496.pdf"
+      ],
+      "worker_wall_seconds": 0.4020922999770846
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "comparison",
+      "case_id": "B-93",
+      "item_key": "B-93-boundary",
+      "actual": [],
+      "seconds": 0.09299999999348074,
+      "cpu_seconds": 0.0625,
+      "trace": {
+        "query_plan": {
+          "topic": "scientific paper passage to support/refute the claim",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [
+          "2212.10496.pdf"
+        ],
+        "original": [
+          "2212.10496.pdf"
+        ],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {
+          "2212.10496.pdf": 0.03278688524590164
+        },
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              9,
+              11
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.0,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 1,
+        "candidates": [
+          "2212.10496.pdf"
+        ],
+        "candidate_scores": [
+          {
+            "filename": "2212.10496.pdf",
+            "score": 0.5453
+          }
+        ],
+        "batch_sizes": [
+          1
+        ],
+        "evidence_policy": "condition_coverage_contiguous_window",
+        "rule_added": [],
+        "rejected_approvals": [],
+        "count_constrained": false,
+        "tail_gap": false,
+        "tail_filtered": [],
+        "approved": [],
+        "requested_limit": 10,
+        "explicitly_excluded": [],
+        "accepted_evidence": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.0,
+      "index_cpu_seconds": 0.015625,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [
+        "2212.10496.pdf"
+      ],
+      "exact": false,
+      "false_positives": [],
+      "missed": [
+        "2212.10496.pdf"
+      ],
+      "worker_wall_seconds": 0.4199889999872539
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "budget",
+      "case_id": "B-94",
+      "item_key": "B-94-boundary",
+      "actual": [],
+      "seconds": 0.09400000001187436,
+      "cpu_seconds": 0.109375,
+      "trace": {
+        "query_plan": {
+          "topic": "swahili/korean/japanese/bengali",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [],
+        "original": [],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {},
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 24.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              11
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.0,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 0,
+        "candidates": [],
+        "candidate_scores": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.015000000013969839,
+      "index_cpu_seconds": 0.015625,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [
+        "2212.10496.pdf"
+      ],
+      "exact": false,
+      "false_positives": [],
+      "missed": [
+        "2212.10496.pdf"
+      ],
+      "worker_wall_seconds": 0.4592461000138428
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "combined",
+      "case_id": "B-94",
+      "item_key": "B-94-boundary",
+      "actual": [],
+      "seconds": 0.07800000000861473,
+      "cpu_seconds": 0.09375,
+      "trace": {
+        "query_plan": {
+          "topic": "swahili/korean/japanese/bengali",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [],
+        "original": [],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {},
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 24.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              11
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "reference_context_from_prefix": {
+            "2212.10496.pdf": true
+          },
+          "elapsed_seconds": 0.015,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 0,
+        "candidates": [],
+        "candidate_scores": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.014999999984866008,
+      "index_cpu_seconds": 0.0,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [
+        "2212.10496.pdf"
+      ],
+      "exact": false,
+      "false_positives": [],
+      "missed": [
+        "2212.10496.pdf"
+      ],
+      "worker_wall_seconds": 0.4149537999765016
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "baseline",
+      "case_id": "B-94",
+      "item_key": "B-94-boundary",
+      "actual": [],
+      "seconds": 0.09399999998277053,
+      "cpu_seconds": 0.078125,
+      "trace": {
+        "query_plan": {
+          "topic": "swahili/korean/japanese/bengali",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [],
+        "original": [],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {},
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              11
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.015,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 0,
+        "candidates": [],
+        "candidate_scores": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.015000000013969839,
+      "index_cpu_seconds": 0.0,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [
+        "2212.10496.pdf"
+      ],
+      "exact": false,
+      "false_positives": [],
+      "missed": [
+        "2212.10496.pdf"
+      ],
+      "worker_wall_seconds": 0.4225420999864582
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "comparison",
+      "case_id": "B-94",
+      "item_key": "B-94-boundary",
+      "actual": [],
+      "seconds": 0.09399999998277053,
+      "cpu_seconds": 0.078125,
+      "trace": {
+        "query_plan": {
+          "topic": "swahili/korean/japanese/bengali",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [],
+        "original": [],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {},
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              11
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "elapsed_seconds": 0.0,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 0,
+        "candidates": [],
+        "candidate_scores": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.0,
+      "index_cpu_seconds": 0.015625,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [
+        "2212.10496.pdf"
+      ],
+      "exact": false,
+      "false_positives": [],
+      "missed": [
+        "2212.10496.pdf"
+      ],
+      "worker_wall_seconds": 0.4213447000074666
+    },
+    {
+      "stage": "diagnostic",
+      "variant": "reference",
+      "case_id": "B-94",
+      "item_key": "B-94-boundary",
+      "actual": [],
+      "seconds": 0.07800000000861473,
+      "cpu_seconds": 0.09375,
+      "trace": {
+        "query_plan": {
+          "topic": "swahili/korean/japanese/bengali",
+          "methods": "",
+          "focus": "",
+          "exclusions": [],
+          "variants": [],
+          "subqueries": []
+        },
+        "query_plan_status": "pending",
+        "rewritten": [],
+        "original": [],
+        "components": [],
+        "fusion": "document_rrf_k60",
+        "fusion_scores": {},
+        "deep_page_probe": {
+          "policy": "bounded_authorized_page_probe_v1",
+          "scanned_pages": 3,
+          "documents_opened": 1,
+          "authorized_documents": 1,
+          "initial_page_limit": 8,
+          "max_pages": 1200,
+          "max_seconds": 12.0,
+          "selected_pages": {
+            "2212.10496.pdf": [
+              11
+            ]
+          },
+          "coverage_limited": false,
+          "unread_pages_in_opened_documents": 3,
+          "scanned_pages_by_document": {
+            "2212.10496.pdf": 3
+          },
+          "sampling_limited_documents": [],
+          "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+          "reference_context_from_prefix": {
+            "2212.10496.pdf": true
+          },
+          "elapsed_seconds": 0.016,
+          "documents_unopened": 0
+        },
+        "candidate_limit": 12,
+        "eligible_before_limit": 0,
+        "candidates": [],
+        "candidate_scores": [],
+        "fulltext_candidates": [
+          "2212.10496.pdf"
+        ]
+      },
+      "index_wall_seconds": 0.01600000000325963,
+      "index_cpu_seconds": 0.0,
+      "prefix_cache_files_before": 2,
+      "target_model_calls": 0,
+      "model_tokens": 0,
+      "material_errors": [],
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+      "environment": "Windows source, no CPU/memory hard limits or Linux acceptance",
+      "expected": [
+        "2212.10496.pdf"
+      ],
+      "exact": false,
+      "false_positives": [],
+      "missed": [
+        "2212.10496.pdf"
+      ],
+      "worker_wall_seconds": 0.42084649999742396
+    }
+  ],
+  "complete": true,
+  "mode": "offline-authorized",
+  "target_model_calls": 0,
+  "limits": "One actual paper, four constructed boundary cases; not broad retrieval accuracy or independent model quality"
+}

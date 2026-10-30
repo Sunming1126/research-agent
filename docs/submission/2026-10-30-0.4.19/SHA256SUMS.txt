@@ -1,0 +1,2 @@
+3343d8d92d083af9d767c310591ce58641151d047b23888f02ed1f342a3ba383  research-assistant-0.4.19-stable-b-20261029.tar
+49ff4c4adbc50d4ac6971c69462f7e63a666f3ff09acbc1ee4bf394c3e0042cf  research-agent-a34c658-build-source.zip

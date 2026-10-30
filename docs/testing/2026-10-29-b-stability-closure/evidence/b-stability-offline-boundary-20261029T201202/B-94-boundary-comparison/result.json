@@ -1,0 +1,65 @@
+{
+  "stage": "diagnostic",
+  "variant": "comparison",
+  "case_id": "B-94",
+  "item_key": "B-94-boundary",
+  "actual": [],
+  "seconds": 0.0779999999795109,
+  "cpu_seconds": 0.078125,
+  "trace": {
+    "query_plan": {
+      "topic": "swahili/korean/japanese/bengali",
+      "methods": "",
+      "focus": "",
+      "exclusions": [],
+      "variants": [],
+      "subqueries": []
+    },
+    "query_plan_status": "pending",
+    "rewritten": [],
+    "original": [],
+    "components": [],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {},
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 3,
+      "documents_opened": 1,
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2212.10496.pdf": [
+          11
+        ]
+      },
+      "coverage_limited": false,
+      "unread_pages_in_opened_documents": 3,
+      "scanned_pages_by_document": {
+        "2212.10496.pdf": 3
+      },
+      "sampling_limited_documents": [],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "elapsed_seconds": 0.015,
+      "documents_unopened": 0
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 0,
+    "candidates": [],
+    "candidate_scores": [],
+    "fulltext_candidates": [
+      "2212.10496.pdf"
+    ]
+  },
+  "index_wall_seconds": 0.015000000013969839,
+  "index_cpu_seconds": 0.015625,
+  "prefix_cache_files_before": 2,
+  "target_model_calls": 0,
+  "model_tokens": 0,
+  "material_errors": [],
+  "authorized_documents": 1,
+  "initial_page_limit": 8,
+  "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+  "environment": "Windows source, no CPU/memory hard limits or Linux acceptance"
+}

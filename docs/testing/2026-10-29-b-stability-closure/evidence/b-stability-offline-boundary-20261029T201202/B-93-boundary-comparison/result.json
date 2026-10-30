@@ -1,0 +1,92 @@
+{
+  "stage": "diagnostic",
+  "variant": "comparison",
+  "case_id": "B-93",
+  "item_key": "B-93-boundary",
+  "actual": [],
+  "seconds": 0.07800000000861473,
+  "cpu_seconds": 0.078125,
+  "trace": {
+    "query_plan": {
+      "topic": "scientific paper passage to support/refute the claim",
+      "methods": "",
+      "focus": "",
+      "exclusions": [],
+      "variants": [],
+      "subqueries": []
+    },
+    "query_plan_status": "pending",
+    "rewritten": [
+      "2212.10496.pdf"
+    ],
+    "original": [
+      "2212.10496.pdf"
+    ],
+    "components": [],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2212.10496.pdf": 0.03278688524590164
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 3,
+      "documents_opened": 1,
+      "authorized_documents": 1,
+      "initial_page_limit": 8,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2212.10496.pdf": [
+          9,
+          11
+        ]
+      },
+      "coverage_limited": false,
+      "unread_pages_in_opened_documents": 3,
+      "scanned_pages_by_document": {
+        "2212.10496.pdf": 3
+      },
+      "sampling_limited_documents": [],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "elapsed_seconds": 0.0,
+      "documents_unopened": 0
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 1,
+    "candidates": [
+      "2212.10496.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2212.10496.pdf",
+        "score": 0.5453
+      }
+    ],
+    "batch_sizes": [
+      1
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "accepted_evidence": [],
+    "fulltext_candidates": [
+      "2212.10496.pdf"
+    ]
+  },
+  "index_wall_seconds": 0.01600000000325963,
+  "index_cpu_seconds": 0.0,
+  "prefix_cache_files_before": 2,
+  "target_model_calls": 0,
+  "model_tokens": 0,
+  "material_errors": [],
+  "authorized_documents": 1,
+  "initial_page_limit": 8,
+  "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+  "environment": "Windows source, no CPU/memory hard limits or Linux acceptance"
+}

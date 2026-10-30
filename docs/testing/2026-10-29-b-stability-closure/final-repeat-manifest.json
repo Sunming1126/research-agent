@@ -1,0 +1,158 @@
+{
+  "items": [
+    {
+      "key": "B-42-final-r0",
+      "case_id": "B-42",
+      "factor": "same_literal_query",
+      "task": {
+        "case_id": "B-42",
+        "input": "查找正文包含此连续短语的论文：group disparity refers to the maximum difference"
+      },
+      "plan": {
+        "topic": "group disparity refers to the maximum difference"
+      },
+      "phrase": "group disparity refers to the maximum difference",
+      "expected_filenames": [
+        "2512.23188.pdf"
+      ],
+      "repetition": 0
+    },
+    {
+      "key": "B-44-final-r0",
+      "case_id": "B-44",
+      "factor": "same_literal_query",
+      "task": {
+        "case_id": "B-44",
+        "input": "查找正文包含此连续短语的论文：and the sid implemented in the cran"
+      },
+      "plan": {
+        "topic": "and the sid implemented in the cran"
+      },
+      "phrase": "and the sid implemented in the cran",
+      "expected_filenames": [
+        "2511.12805.pdf"
+      ],
+      "repetition": 0
+    },
+    {
+      "key": "B-50-final-r0",
+      "case_id": "B-50",
+      "factor": "same_literal_query",
+      "task": {
+        "case_id": "B-50",
+        "input": "查找正文包含此连续短语的论文：is trivial if the second equality is"
+      },
+      "plan": {
+        "topic": "is trivial if the second equality is"
+      },
+      "phrase": "is trivial if the second equality is",
+      "expected_filenames": [
+        "2512.23317.pdf"
+      ],
+      "repetition": 0
+    },
+    {
+      "key": "B-42-final-r1",
+      "case_id": "B-42",
+      "factor": "same_literal_query",
+      "task": {
+        "case_id": "B-42",
+        "input": "查找正文包含此连续短语的论文：group disparity refers to the maximum difference"
+      },
+      "plan": {
+        "topic": "group disparity refers to the maximum difference"
+      },
+      "phrase": "group disparity refers to the maximum difference",
+      "expected_filenames": [
+        "2512.23188.pdf"
+      ],
+      "repetition": 1
+    },
+    {
+      "key": "B-44-final-r1",
+      "case_id": "B-44",
+      "factor": "same_literal_query",
+      "task": {
+        "case_id": "B-44",
+        "input": "查找正文包含此连续短语的论文：and the sid implemented in the cran"
+      },
+      "plan": {
+        "topic": "and the sid implemented in the cran"
+      },
+      "phrase": "and the sid implemented in the cran",
+      "expected_filenames": [
+        "2511.12805.pdf"
+      ],
+      "repetition": 1
+    },
+    {
+      "key": "B-50-final-r1",
+      "case_id": "B-50",
+      "factor": "same_literal_query",
+      "task": {
+        "case_id": "B-50",
+        "input": "查找正文包含此连续短语的论文：is trivial if the second equality is"
+      },
+      "plan": {
+        "topic": "is trivial if the second equality is"
+      },
+      "phrase": "is trivial if the second equality is",
+      "expected_filenames": [
+        "2512.23317.pdf"
+      ],
+      "repetition": 1
+    },
+    {
+      "key": "B-42-final-r2",
+      "case_id": "B-42",
+      "factor": "same_literal_query",
+      "task": {
+        "case_id": "B-42",
+        "input": "查找正文包含此连续短语的论文：group disparity refers to the maximum difference"
+      },
+      "plan": {
+        "topic": "group disparity refers to the maximum difference"
+      },
+      "phrase": "group disparity refers to the maximum difference",
+      "expected_filenames": [
+        "2512.23188.pdf"
+      ],
+      "repetition": 2
+    },
+    {
+      "key": "B-44-final-r2",
+      "case_id": "B-44",
+      "factor": "same_literal_query",
+      "task": {
+        "case_id": "B-44",
+        "input": "查找正文包含此连续短语的论文：and the sid implemented in the cran"
+      },
+      "plan": {
+        "topic": "and the sid implemented in the cran"
+      },
+      "phrase": "and the sid implemented in the cran",
+      "expected_filenames": [
+        "2511.12805.pdf"
+      ],
+      "repetition": 2
+    },
+    {
+      "key": "B-50-final-r2",
+      "case_id": "B-50",
+      "factor": "same_literal_query",
+      "task": {
+        "case_id": "B-50",
+        "input": "查找正文包含此连续短语的论文：is trivial if the second equality is"
+      },
+      "plan": {
+        "topic": "is trivial if the second equality is"
+      },
+      "phrase": "is trivial if the second equality is",
+      "expected_filenames": [
+        "2512.23317.pdf"
+      ],
+      "repetition": 2
+    }
+  ],
+  "scope": "Final exact-source old0.4.17 vs candidate0.4.19, existing three disclosed literal questions repeated three times, not held-out or real-model correctness"
+}

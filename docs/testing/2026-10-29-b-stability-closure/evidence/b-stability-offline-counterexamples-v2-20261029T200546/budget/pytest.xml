@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="10" time="0.799" timestamp="2026-10-29T20:05:52.465716+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="runs.b-stability-offline-counterexamples-v2-20261029T200546.frozen-tests.test_probe_reference_context" name="test_reference_title_in_prefix_does_not_authorize_continuation_as_body" time="0.051"><failure message="AssertionError: assert [{'filename':...y evidence.'}] == []&#10;  &#10;  Left contains one more item: {'filename': 'scope.pdf', 'reason': 'The required literal method statement is present in supplied body evidence.'}&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-stability-offline-counterexamples-v2-20261029T200546/budget/temp/test_reference_title_in_prefix0')
+
+    def test_reference_title_in_prefix_does_not_authorize_continuation_as_body(tmp_path):
+        answer,handler,index=retrieve(tmp_path,reference_page=4,target_page=5)
+        assert any(c.kind=='references' and c.page==4 for c in index.chunks)
+&gt;       assert answer['papers']==[]
+E       AssertionError: assert [{'filename':...y evidence.'}] == []
+E         
+E         Left contains one more item: {'filename': 'scope.pdf', 'reason': 'The required literal method statement is present in supplied body evidence.'}
+E         Use -v to get more diff
+
+..\..\..\runs\b-stability-offline-counterexamples-v2-20261029T200546\frozen-tests\test_probe_reference_context.py:57: AssertionError</failure></testcase><testcase classname="runs.b-stability-offline-counterexamples-v2-20261029T200546.frozen-tests.test_probe_reference_context" name="test_reference_title_on_prior_prefix_page_keeps_context_across_blankish_page" time="0.043"><failure message="AssertionError: assert [{'filename':...y evidence.'}] == []&#10;  &#10;  Left contains one more item: {'filename': 'scope.pdf', 'reason': 'The required literal method statement is present in supplied body evidence.'}&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-stability-offline-counterexamples-v2-20261029T200546/budget/temp/test_reference_title_on_prior_0')
+
+    def test_reference_title_on_prior_prefix_page_keeps_context_across_blankish_page(tmp_path):
+        answer,_,_=retrieve(tmp_path,reference_page=3,target_page=5)
+&gt;       assert answer['papers']==[]
+E       AssertionError: assert [{'filename':...y evidence.'}] == []
+E         
+E         Left contains one more item: {'filename': 'scope.pdf', 'reason': 'The required literal method statement is present in supplied body evidence.'}
+E         Use -v to get more diff
+
+..\..\..\runs\b-stability-offline-counterexamples-v2-20261029T200546\frozen-tests\test_probe_reference_context.py:62: AssertionError</failure></testcase><testcase classname="runs.b-stability-offline-counterexamples-v2-20261029T200546.frozen-tests.test_probe_reference_context" name="test_appendix_after_prefix_reference_restores_eligible_body" time="0.045" /><testcase classname="runs.b-stability-offline-counterexamples-v2-20261029T200546.frozen-tests.test_probe_reference_context" name="test_reference_title_in_unread_range_still_excludes_same_page" time="0.043" /><testcase classname="runs.b-stability-offline-counterexamples-v2-20261029T200546.frozen-tests.test_probe_reference_context" name="test_plain_body_positive_is_preserved" time="0.044" /><testcase classname="runs.b-stability-offline-counterexamples-v2-20261029T200546.frozen-tests.test_probe_reference_context" name="test_missing_phrase_does_not_return_a_paper" time="0.042" /><testcase classname="runs.b-stability-offline-counterexamples-v2-20261029T200546.frozen-tests.test_probe_reference_context" name="test_full_document_expansion_preserves_numbered_appendix[A\nAppendix]" time="0.060"><failure message="AssertionError: assert [] == ['scope.pdf']&#10;  &#10;  Right contains one more item: 'scope.pdf'&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-stability-offline-counterexamples-v2-20261029T200546/budget/temp/test_full_document_expansion_p0')
+heading = 'A\nAppendix'
+
+    @pytest.mark.parametrize('heading',['A\nAppendix','1\nAppendix'])
+    def test_full_document_expansion_preserves_numbered_appendix(tmp_path,heading):
+        index=make_appendix_index(tmp_path,heading)
+        handler=TaskHandlers(AppendixReader(),'fixture')
+        handler.document_probe=lambda queries:index.probe_deep_pages(queries,4)
+        handler.document_expander=index.expand_documents
+        text='Find the own appendix method xenocalibration isotopeperturbation'
+        case=SimpleNamespace(case_id='B-96',input=text,to_dict=lambda:{'input':text})
+        result=handler.retrieval(case,HybridRetriever(index.chunks),QueryPlan(text))
+&gt;       assert [p['filename'] for p in result['papers']]==['scope.pdf']
+E       AssertionError: assert [] == ['scope.pdf']
+E         
+E         Right contains one more item: 'scope.pdf'
+E         Use -v to get more diff
+
+..\..\..\runs\b-stability-offline-counterexamples-v2-20261029T200546\frozen-tests\test_probe_reference_context.py:135: AssertionError</failure></testcase><testcase classname="runs.b-stability-offline-counterexamples-v2-20261029T200546.frozen-tests.test_probe_reference_context" name="test_full_document_expansion_preserves_numbered_appendix[1\nAppendix]" time="0.059"><failure message="AssertionError: assert [] == ['scope.pdf']&#10;  &#10;  Right contains one more item: 'scope.pdf'&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-stability-offline-counterexamples-v2-20261029T200546/budget/temp/test_full_document_expansion_p1')
+heading = '1\nAppendix'
+
+    @pytest.mark.parametrize('heading',['A\nAppendix','1\nAppendix'])
+    def test_full_document_expansion_preserves_numbered_appendix(tmp_path,heading):
+        index=make_appendix_index(tmp_path,heading)
+        handler=TaskHandlers(AppendixReader(),'fixture')
+        handler.document_probe=lambda queries:index.probe_deep_pages(queries,4)
+        handler.document_expander=index.expand_documents
+        text='Find the own appendix method xenocalibration isotopeperturbation'
+        case=SimpleNamespace(case_id='B-96',input=text,to_dict=lambda:{'input':text})
+        result=handler.retrieval(case,HybridRetriever(index.chunks),QueryPlan(text))
+&gt;       assert [p['filename'] for p in result['papers']]==['scope.pdf']
+E       AssertionError: assert [] == ['scope.pdf']
+E         
+E         Right contains one more item: 'scope.pdf'
+E         Use -v to get more diff
+
+..\..\..\runs\b-stability-offline-counterexamples-v2-20261029T200546\frozen-tests\test_probe_reference_context.py:135: AssertionError</failure></testcase><testcase classname="runs.b-stability-offline-counterexamples-v2-20261029T200546.frozen-tests.test_probe_reference_context" name="test_legacy_cache_with_old_appendix_classification_is_not_reused" time="0.062"><failure message="assert False&#10; +  where False = any(&lt;generator object test_legacy_cache_with_old_appendix_classification_is_not_reused.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000014BD651CEE0&gt;)">tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/b-stability-offline-counterexamples-v2-20261029T200546/budget/temp/test_legacy_cache_with_old_app0')
+
+    def test_legacy_cache_with_old_appendix_classification_is_not_reused(tmp_path):
+        index=make_appendix_index(tmp_path)
+        material=index.materials[0]
+        rows=[asdict(c) for c in index.chunker.chunk(material,index.parser.pages(material))]
+        for row in rows:
+            if row['page']&gt;=7:row.update(kind='references',heading='References')
+        legacy_identity=f'{material.filename}|{material.sha256}|{index.parser.VERSION}|850|110|{index.parser.ocr}|text-blocks-only'
+        legacy=index.cache/(sha256_bytes(legacy_identity.encode())+'.json')
+        legacy.write_text(json.dumps({'chunks':rows}),encoding='utf-8')
+        before=hashlib.sha256(legacy.read_bytes()).hexdigest()
+        rebuilt=index.build(['scope.pdf'])
+&gt;       assert any(c.page==7 and c.kind!='references' and 'xenocalibration' in c.text for c in rebuilt)
+E       assert False
+E        +  where False = any(&lt;generator object test_legacy_cache_with_old_appendix_classification_is_not_reused.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000014BD651CEE0&gt;)
+
+..\..\..\runs\b-stability-offline-counterexamples-v2-20261029T200546\frozen-tests\test_probe_reference_context.py:150: AssertionError</failure></testcase><testcase classname="runs.b-stability-offline-counterexamples-v2-20261029T200546.frozen-tests.test_probe_reference_context" name="test_larger_probe_cap_still_reserves_model_time_during_scan" time="0.041" /></testsuite></testsuites>

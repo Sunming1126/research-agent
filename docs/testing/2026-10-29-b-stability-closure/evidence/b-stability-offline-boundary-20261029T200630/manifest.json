@@ -1,0 +1,113 @@
+{
+  "status": "frozen from source text before new boundary outputs",
+  "items": [
+    {
+      "key": "B-91-boundary",
+      "case_id": "B-91",
+      "factor": "real_reference_appendix_boundary",
+      "scope_filenames": [
+        "2212.10496.pdf"
+      ],
+      "task": {
+        "case_id": "B-91",
+        "input": "查找本篇正文或附录自身内容包含以下连续短语的论文，参考文献条目不符合条件：multitask prompted training enables zero-shot task generalization",
+        "materials": [
+          "2212.10496.pdf"
+        ]
+      },
+      "plan": {
+        "topic": "multitask prompted training enables zero-shot task generalization"
+      },
+      "phrase": "multitask prompted training enables zero-shot task generalization",
+      "expected_filenames": [],
+      "source_page": 9,
+      "source_role": "bibliography title, not own method",
+      "occurrence_pages_in_cached_full_source": [
+        9
+      ]
+    },
+    {
+      "key": "B-92-boundary",
+      "case_id": "B-92",
+      "factor": "real_reference_appendix_boundary",
+      "scope_filenames": [
+        "2212.10496.pdf"
+      ],
+      "task": {
+        "case_id": "B-92",
+        "input": "查找本篇正文或附录自身内容包含以下连续短语的论文，参考文献条目不符合条件：approximate nearest neighbor negative contrastive",
+        "materials": [
+          "2212.10496.pdf"
+        ]
+      },
+      "plan": {
+        "topic": "approximate nearest neighbor negative contrastive"
+      },
+      "phrase": "approximate nearest neighbor negative contrastive",
+      "expected_filenames": [],
+      "source_page": 10,
+      "source_role": "bibliography title, not own method",
+      "occurrence_pages_in_cached_full_source": [
+        10
+      ]
+    },
+    {
+      "key": "B-93-boundary",
+      "case_id": "B-93",
+      "factor": "real_reference_appendix_boundary",
+      "scope_filenames": [
+        "2212.10496.pdf"
+      ],
+      "task": {
+        "case_id": "B-93",
+        "input": "查找本篇正文或附录自身内容包含以下连续短语的论文，参考文献条目不符合条件：scientific paper passage to support/refute the claim",
+        "materials": [
+          "2212.10496.pdf"
+        ]
+      },
+      "plan": {
+        "topic": "scientific paper passage to support/refute the claim"
+      },
+      "phrase": "scientific paper passage to support/refute the claim",
+      "expected_filenames": [
+        "2212.10496.pdf"
+      ],
+      "source_page": 11,
+      "source_role": "appendix method instruction used as data",
+      "occurrence_pages_in_cached_full_source": [
+        11
+      ]
+    },
+    {
+      "key": "B-94-boundary",
+      "case_id": "B-94",
+      "factor": "real_reference_appendix_boundary",
+      "scope_filenames": [
+        "2212.10496.pdf"
+      ],
+      "task": {
+        "case_id": "B-94",
+        "input": "查找本篇正文或附录自身内容包含以下连续短语的论文，参考文献条目不符合条件：swahili/korean/japanese/bengali",
+        "materials": [
+          "2212.10496.pdf"
+        ]
+      },
+      "plan": {
+        "topic": "swahili/korean/japanese/bengali"
+      },
+      "phrase": "swahili/korean/japanese/bengali",
+      "expected_filenames": [
+        "2212.10496.pdf"
+      ],
+      "source_page": 11,
+      "source_role": "appendix method instruction used as data",
+      "occurrence_pages_in_cached_full_source": [
+        11
+      ]
+    }
+  ],
+  "repetitions": 1,
+  "annotation": "Codex source review using existing hash-bound full text; not human expert gold. References across pages 8–10; page11 has A newline Appendix. Whole-file phrase occurrences checked in frozen cache.",
+  "source_cache_sha256": "7e6fc0c336d1df0d13fb4259bc901f6212fbd92cbafc7296dc74eab8b99f20fd",
+  "scope": "One actual paper, four constructed boundary cases; not broad retrieval accuracy or independent model quality"
+}

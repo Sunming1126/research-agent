@@ -1,0 +1,155 @@
+{
+  "items": [
+    {
+      "key": "B-41-broader",
+      "case_id": "B-41",
+      "task": {
+        "case_id": "B-41",
+        "input": "查找正文包含此连续短语的论文：but the critic subproblem is more involved"
+      },
+      "plan": {
+        "topic": "but the critic subproblem is more involved"
+      },
+      "phrase": "but the critic subproblem is more involved",
+      "expected_filenames": [
+        "2512.24768.pdf"
+      ]
+    },
+    {
+      "key": "B-42-broader",
+      "case_id": "B-42",
+      "task": {
+        "case_id": "B-42",
+        "input": "查找正文包含此连续短语的论文：group disparity refers to the maximum difference"
+      },
+      "plan": {
+        "topic": "group disparity refers to the maximum difference"
+      },
+      "phrase": "group disparity refers to the maximum difference",
+      "expected_filenames": [
+        "2512.23188.pdf"
+      ]
+    },
+    {
+      "key": "B-43-broader",
+      "case_id": "B-43",
+      "task": {
+        "case_id": "B-43",
+        "input": "查找正文包含此连续短语的论文：proposed the concept of using propositions as"
+      },
+      "plan": {
+        "topic": "proposed the concept of using propositions as"
+      },
+      "phrase": "proposed the concept of using propositions as",
+      "expected_filenames": [
+        "2312.10997.pdf"
+      ]
+    },
+    {
+      "key": "B-44-broader",
+      "case_id": "B-44",
+      "task": {
+        "case_id": "B-44",
+        "input": "查找正文包含此连续短语的论文：and the sid implemented in the cran"
+      },
+      "plan": {
+        "topic": "and the sid implemented in the cran"
+      },
+      "phrase": "and the sid implemented in the cran",
+      "expected_filenames": [
+        "2511.12805.pdf"
+      ]
+    },
+    {
+      "key": "B-45-broader",
+      "case_id": "B-45",
+      "task": {
+        "case_id": "B-45",
+        "input": "查找正文包含此连续短语的论文：tasks and even outperforms chatgpt in pubhealth"
+      },
+      "plan": {
+        "topic": "tasks and even outperforms chatgpt in pubhealth"
+      },
+      "phrase": "tasks and even outperforms chatgpt in pubhealth",
+      "expected_filenames": [
+        "2310.11511-Self-RAG.pdf"
+      ]
+    },
+    {
+      "key": "B-46-broader",
+      "case_id": "B-46",
+      "task": {
+        "case_id": "B-46",
+        "input": "查找正文包含此连续短语的论文：all expectations are taken with respect to"
+      },
+      "plan": {
+        "topic": "all expectations are taken with respect to"
+      },
+      "phrase": "all expectations are taken with respect to",
+      "expected_filenames": [
+        "2512.20368.pdf"
+      ]
+    },
+    {
+      "key": "B-47-broader",
+      "case_id": "B-47",
+      "task": {
+        "case_id": "B-47",
+        "input": "查找正文包含此连续短语的论文：draw conclusions about the range of realizable"
+      },
+      "plan": {
+        "topic": "draw conclusions about the range of realizable"
+      },
+      "phrase": "draw conclusions about the range of realizable",
+      "expected_filenames": [
+        "2511.18883.pdf"
+      ]
+    },
+    {
+      "key": "B-50-broader",
+      "case_id": "B-50",
+      "task": {
+        "case_id": "B-50",
+        "input": "查找正文包含此连续短语的论文：is trivial if the second equality is"
+      },
+      "plan": {
+        "topic": "is trivial if the second equality is"
+      },
+      "phrase": "is trivial if the second equality is",
+      "expected_filenames": [
+        "2512.23317.pdf"
+      ]
+    },
+    {
+      "key": "B-51-broader",
+      "case_id": "B-51",
+      "task": {
+        "case_id": "B-51",
+        "input": "查找正文包含此连续短语的论文：we asked labelers prioritize truthfulness and harmlessness"
+      },
+      "plan": {
+        "topic": "we asked labelers prioritize truthfulness and harmlessness"
+      },
+      "phrase": "we asked labelers prioritize truthfulness and harmlessness",
+      "expected_filenames": [
+        "2203.02155-InstructGPT.pdf"
+      ]
+    },
+    {
+      "key": "B-52-broader",
+      "case_id": "B-52",
+      "task": {
+        "case_id": "B-52",
+        "input": "查找正文包含此连续短语的论文：training can be far cheaper than supervised"
+      },
+      "plan": {
+        "topic": "training can be far cheaper than supervised"
+      },
+      "phrase": "training can be far cheaper than supervised",
+      "expected_filenames": [
+        "2512.20051.pdf"
+      ]
+    }
+  ],
+  "scope": "Same ten previously disclosed source-audited literal diagnostics; not new held-out material or real-model relevance"
+}

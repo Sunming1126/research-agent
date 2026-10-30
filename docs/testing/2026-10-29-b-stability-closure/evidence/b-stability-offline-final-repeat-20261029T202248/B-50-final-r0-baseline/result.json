@@ -1,0 +1,292 @@
+{
+  "stage": "diagnostic",
+  "variant": "baseline",
+  "case_id": "B-50",
+  "item_key": "B-50-final-r0",
+  "actual": [],
+  "seconds": 14.26600000000326,
+  "cpu_seconds": 10.546875,
+  "trace": {
+    "query_plan": {
+      "topic": "is trivial if the second equality is",
+      "methods": "",
+      "focus": "",
+      "exclusions": [],
+      "variants": [],
+      "subqueries": []
+    },
+    "query_plan_status": "pending",
+    "rewritten": [
+      "2511.18883.pdf",
+      "2512.21451.pdf",
+      "2511.17905.pdf",
+      "2512.23178.pdf",
+      "2512.23203.pdf",
+      "2512.23985.pdf",
+      "2512.24335.pdf",
+      "2305.06983.pdf",
+      "2512.24736.pdf",
+      "2401.15884.pdf",
+      "2512.24702.pdf",
+      "2512.21927.pdf",
+      "2511.18626.pdf",
+      "2512.21632.pdf",
+      "2512.24792.pdf",
+      "2512.22286.pdf",
+      "2511.14431.pdf",
+      "2511.12805.pdf"
+    ],
+    "original": [
+      "2512.21451.pdf",
+      "2512.23203.pdf",
+      "2512.23985.pdf",
+      "2512.24335.pdf",
+      "2511.18883.pdf",
+      "2512.24736.pdf",
+      "2401.15884.pdf",
+      "2512.24702.pdf",
+      "2512.21927.pdf",
+      "2511.18626.pdf",
+      "2512.21632.pdf",
+      "2512.24792.pdf",
+      "2512.23178.pdf",
+      "2512.22286.pdf",
+      "2511.14431.pdf",
+      "ruc-diversification-2019.pdf",
+      "2511.12805.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "components": [],
+    "fusion": "document_rrf_k60",
+    "fusion_scores": {
+      "2511.18883.pdf": 0.03177805800756621,
+      "2512.21451.pdf": 0.03252247488101534,
+      "2511.17905.pdf": 0.015873015873015872,
+      "2512.23178.pdf": 0.0293236301369863,
+      "2512.23203.pdf": 0.0315136476426799,
+      "2512.23985.pdf": 0.031024531024531024,
+      "2512.24335.pdf": 0.03055037313432836,
+      "2305.06983.pdf": 0.014705882352941176,
+      "2512.24736.pdf": 0.02964426877470356,
+      "2401.15884.pdf": 0.029211087420042643,
+      "2512.24702.pdf": 0.028790389395194696,
+      "2512.21927.pdf": 0.028381642512077296,
+      "2511.18626.pdf": 0.027984344422700584,
+      "2512.21632.pdf": 0.027598020555767037,
+      "2512.24792.pdf": 0.027222222222222224,
+      "2512.22286.pdf": 0.02667140825035562,
+      "2511.14431.pdf": 0.02632034632034632,
+      "2511.12805.pdf": 0.025807525807525808,
+      "ruc-diversification-2019.pdf": 0.013157894736842105,
+      "2310.11511-Self-RAG.pdf": 0.01282051282051282
+    },
+    "deep_page_probe": {
+      "policy": "bounded_authorized_page_probe_v1",
+      "scanned_pages": 311,
+      "documents_opened": 21,
+      "authorized_documents": 60,
+      "initial_page_limit": 4,
+      "max_pages": 1200,
+      "max_seconds": 12.0,
+      "selected_pages": {
+        "2511.18626.pdf": [
+          15
+        ],
+        "2511.18883.pdf": [
+          8,
+          41
+        ],
+        "2104.08663-BEIR.pdf": [
+          5,
+          7
+        ],
+        "2512.21674.pdf": [
+          5
+        ],
+        "2512.21927.pdf": [
+          8,
+          20
+        ],
+        "2512.24622.pdf": [
+          5,
+          9
+        ],
+        "2512.24702.pdf": [
+          5,
+          6
+        ],
+        "2511.17905.pdf": [
+          5,
+          15
+        ],
+        "2512.22286.pdf": [
+          13,
+          18
+        ],
+        "2112.04426-RETRO.pdf": [
+          11,
+          15
+        ],
+        "2310.11511-Self-RAG.pdf": [
+          5,
+          6
+        ],
+        "2512.24605.pdf": [
+          10
+        ],
+        "2512.20305.pdf": [
+          10
+        ],
+        "2512.21451.pdf": [
+          13,
+          19
+        ],
+        "2512.23178.pdf": [
+          24,
+          39
+        ],
+        "2511.14431.pdf": [
+          5,
+          6
+        ]
+      },
+      "coverage_limited": true,
+      "unread_pages_in_opened_documents": 501,
+      "scanned_pages_by_document": {
+        "2511.18626.pdf": 20,
+        "2511.18883.pdf": 20,
+        "2512.24792.pdf": 0,
+        "2007.01282-FiD.pdf": 2,
+        "2104.08663-BEIR.pdf": 20,
+        "2512.21674.pdf": 10,
+        "2512.21927.pdf": 20,
+        "2512.24622.pdf": 11,
+        "2512.24702.pdf": 7,
+        "2511.17905.pdf": 19,
+        "2512.23985.pdf": 20,
+        "2512.22286.pdf": 20,
+        "2112.04426-RETRO.pdf": 20,
+        "2310.11511-Self-RAG.pdf": 20,
+        "2512.24605.pdf": 10,
+        "2512.20305.pdf": 20,
+        "2512.21451.pdf": 20,
+        "2512.23178.pdf": 20,
+        "2511.14431.pdf": 15,
+        "2512.22268.pdf": 8,
+        "2512.21005.pdf": 9
+      },
+      "sampling_limited_documents": [
+        "2511.18626.pdf",
+        "2511.18883.pdf",
+        "2512.21927.pdf",
+        "2512.23985.pdf",
+        "2512.22286.pdf",
+        "2112.04426-RETRO.pdf",
+        "2310.11511-Self-RAG.pdf",
+        "2512.20305.pdf",
+        "2512.21451.pdf",
+        "2512.23178.pdf"
+      ],
+      "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+      "stop_reason": "probe_time_limit",
+      "elapsed_seconds": 12.547,
+      "documents_unopened": 39
+    },
+    "candidate_limit": 12,
+    "eligible_before_limit": 20,
+    "candidates": [
+      "2512.21451.pdf",
+      "2511.18883.pdf",
+      "2512.23203.pdf",
+      "2512.23985.pdf",
+      "2512.24335.pdf",
+      "2512.24736.pdf",
+      "2512.23178.pdf",
+      "2401.15884.pdf",
+      "2512.24702.pdf",
+      "2512.21927.pdf",
+      "2511.18626.pdf",
+      "2512.21632.pdf"
+    ],
+    "candidate_scores": [
+      {
+        "filename": "2512.21451.pdf",
+        "score": 0.4541
+      },
+      {
+        "filename": "2511.18883.pdf",
+        "score": 0.4645
+      },
+      {
+        "filename": "2512.23203.pdf",
+        "score": 0.4074
+      },
+      {
+        "filename": "2512.23985.pdf",
+        "score": 0.4064
+      },
+      {
+        "filename": "2512.24335.pdf",
+        "score": 0.4041
+      },
+      {
+        "filename": "2512.24736.pdf",
+        "score": 0.4019
+      },
+      {
+        "filename": "2512.23178.pdf",
+        "score": 0.4312
+      },
+      {
+        "filename": "2401.15884.pdf",
+        "score": 0.3987
+      },
+      {
+        "filename": "2512.24702.pdf",
+        "score": 0.3987
+      },
+      {
+        "filename": "2512.21927.pdf",
+        "score": 0.3953
+      },
+      {
+        "filename": "2511.18626.pdf",
+        "score": 0.3927
+      },
+      {
+        "filename": "2512.21632.pdf",
+        "score": 0.3903
+      }
+    ],
+    "batch_sizes": [
+      8,
+      4
+    ],
+    "evidence_policy": "condition_coverage_contiguous_window",
+    "rule_added": [],
+    "rejected_approvals": [],
+    "count_constrained": false,
+    "tail_gap": false,
+    "tail_filtered": [],
+    "approved": [],
+    "requested_limit": 10,
+    "explicitly_excluded": [],
+    "accepted_evidence": [],
+    "fulltext_candidates": [
+      "2511.18883.pdf",
+      "2512.21451.pdf",
+      "2512.23178.pdf",
+      "2512.23203.pdf"
+    ]
+  },
+  "index_wall_seconds": 0.46900000001187436,
+  "index_cpu_seconds": 0.46875,
+  "prefix_cache_files_before": 67,
+  "target_model_calls": 0,
+  "model_tokens": 0,
+  "material_errors": [],
+  "authorized_documents": 60,
+  "initial_page_limit": 4,
+  "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+  "environment": "Windows source, no CPU/memory hard limits or Linux acceptance"
+}

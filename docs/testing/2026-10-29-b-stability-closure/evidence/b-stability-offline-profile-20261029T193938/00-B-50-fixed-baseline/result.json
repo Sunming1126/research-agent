@@ -1,0 +1,581 @@
+{
+  "stage": "profile",
+  "variant": "baseline",
+  "case_id": "B-50",
+  "probe": {
+    "policy": "bounded_authorized_page_probe_v1",
+    "scanned_pages": 846,
+    "documents_opened": 60,
+    "authorized_documents": 60,
+    "initial_page_limit": 4,
+    "max_pages": 1200,
+    "max_seconds": 30,
+    "selected_pages": {
+      "2511.18626.pdf": [
+        15
+      ],
+      "2511.18883.pdf": [
+        8,
+        41
+      ],
+      "2104.08663-BEIR.pdf": [
+        5,
+        7
+      ],
+      "2512.21674.pdf": [
+        5
+      ],
+      "2512.21927.pdf": [
+        8,
+        20
+      ],
+      "2512.24622.pdf": [
+        5,
+        9
+      ],
+      "2512.24702.pdf": [
+        5,
+        6
+      ],
+      "2511.17905.pdf": [
+        5,
+        15
+      ],
+      "2512.22286.pdf": [
+        13,
+        18
+      ],
+      "2112.04426-RETRO.pdf": [
+        11,
+        15
+      ],
+      "2310.11511-Self-RAG.pdf": [
+        5,
+        6
+      ],
+      "2512.24605.pdf": [
+        10
+      ],
+      "2512.20305.pdf": [
+        10
+      ],
+      "2512.21451.pdf": [
+        13,
+        19
+      ],
+      "2512.23178.pdf": [
+        24,
+        39
+      ],
+      "2511.14431.pdf": [
+        5,
+        6
+      ],
+      "2512.20562.pdf": [
+        6,
+        12
+      ],
+      "2203.02155-InstructGPT.pdf": [
+        13,
+        38
+      ],
+      "2512.23843.pdf": [
+        6,
+        8
+      ],
+      "2512.24736.pdf": [
+        5,
+        6
+      ],
+      "2512.23188.pdf": [
+        5,
+        7
+      ],
+      "2401.15884.pdf": [
+        5,
+        6
+      ],
+      "2512.23527.pdf": [
+        17,
+        22
+      ],
+      "2512.23339.pdf": [
+        17,
+        21
+      ],
+      "2212.10496.pdf": [
+        6
+      ],
+      "2512.20051.pdf": [
+        5,
+        9
+      ],
+      "2512.23955.pdf": [
+        7,
+        10
+      ],
+      "2512.21780.pdf": [
+        5,
+        6
+      ],
+      "ruc-diversification-2019.pdf": [
+        7,
+        8
+      ],
+      "2512.24768.pdf": [
+        6,
+        9
+      ],
+      "2511.12805.pdf": [
+        5,
+        6
+      ],
+      "2512.20368.pdf": [
+        14,
+        19
+      ],
+      "2512.24639.pdf": [
+        5,
+        7
+      ],
+      "2512.23904.pdf": [
+        5,
+        6
+      ],
+      "2512.24262.pdf": [
+        8,
+        9
+      ],
+      "2512.23317.pdf": [
+        8,
+        9
+      ],
+      "2512.24861.pdf": [
+        6
+      ],
+      "2512.24640.pdf": [
+        5,
+        9
+      ],
+      "2512.24603.pdf": [
+        6
+      ],
+      "2005.11401-RAG.pdf": [
+        9,
+        18
+      ],
+      "2305.06983.pdf": [
+        5,
+        6
+      ],
+      "2512.24335.pdf": [
+        9,
+        12
+      ],
+      "2512.22411.pdf": [
+        8,
+        11
+      ],
+      "2512.24620.pdf": [
+        7,
+        10
+      ],
+      "2511.14669.pdf": [
+        8
+      ],
+      "2512.24663.pdf": [
+        6,
+        11
+      ],
+      "2512.20811.pdf": [
+        5,
+        7
+      ],
+      "2512.23203.pdf": [
+        7,
+        8
+      ],
+      "2512.24515.pdf": [
+        8,
+        13
+      ],
+      "2004.04906-DPR.pdf": [
+        5,
+        7
+      ]
+    },
+    "coverage_limited": true,
+    "unread_pages_in_opened_documents": 1185,
+    "scanned_pages_by_document": {
+      "2511.18626.pdf": 20,
+      "2511.18883.pdf": 20,
+      "2512.24792.pdf": 0,
+      "2007.01282-FiD.pdf": 2,
+      "2104.08663-BEIR.pdf": 20,
+      "2512.21674.pdf": 10,
+      "2512.21927.pdf": 20,
+      "2512.24622.pdf": 11,
+      "2512.24702.pdf": 7,
+      "2511.17905.pdf": 19,
+      "2512.23985.pdf": 20,
+      "2512.22286.pdf": 20,
+      "2112.04426-RETRO.pdf": 20,
+      "2310.11511-Self-RAG.pdf": 20,
+      "2512.24605.pdf": 10,
+      "2512.20305.pdf": 20,
+      "2512.21451.pdf": 20,
+      "2512.23178.pdf": 20,
+      "2511.14431.pdf": 15,
+      "2512.22268.pdf": 8,
+      "2512.21005.pdf": 13,
+      "2512.20562.pdf": 20,
+      "2512.21632.pdf": 3,
+      "2203.02155-InstructGPT.pdf": 20,
+      "2512.23843.pdf": 20,
+      "2512.24736.pdf": 20,
+      "2512.23188.pdf": 20,
+      "2401.15884.pdf": 12,
+      "2512.23527.pdf": 20,
+      "2512.23339.pdf": 20,
+      "2212.10496.pdf": 7,
+      "2512.20051.pdf": 13,
+      "2512.23955.pdf": 15,
+      "2512.21780.pdf": 6,
+      "ruc-diversification-2019.pdf": 19,
+      "2512.24768.pdf": 20,
+      "2511.12805.pdf": 15,
+      "2512.20368.pdf": 20,
+      "2512.24639.pdf": 6,
+      "2512.23904.pdf": 11,
+      "2512.24262.pdf": 10,
+      "2512.23317.pdf": 20,
+      "2312.10997.pdf": 17,
+      "2512.24971.pdf": 2,
+      "2512.24861.pdf": 5,
+      "2512.24640.pdf": 20,
+      "2512.24603.pdf": 9,
+      "2005.11401-RAG.pdf": 15,
+      "2305.06983.pdf": 20,
+      "2512.24335.pdf": 17,
+      "2512.22411.pdf": 15,
+      "2512.24620.pdf": 10,
+      "2511.14669.pdf": 13,
+      "2512.24011.pdf": 4,
+      "2512.24663.pdf": 17,
+      "2601.00905.pdf": 3,
+      "2512.20811.pdf": 11,
+      "2512.23203.pdf": 12,
+      "2512.24515.pdf": 15,
+      "2004.04906-DPR.pdf": 9
+    },
+    "sampling_limited_documents": [
+      "2511.18626.pdf",
+      "2511.18883.pdf",
+      "2512.21927.pdf",
+      "2512.23985.pdf",
+      "2512.22286.pdf",
+      "2112.04426-RETRO.pdf",
+      "2310.11511-Self-RAG.pdf",
+      "2512.20305.pdf",
+      "2512.21451.pdf",
+      "2512.23178.pdf",
+      "2512.20562.pdf",
+      "2203.02155-InstructGPT.pdf",
+      "2512.24736.pdf",
+      "2512.23188.pdf",
+      "2512.23527.pdf",
+      "2512.23339.pdf",
+      "2512.24768.pdf",
+      "2512.20368.pdf",
+      "2512.23317.pdf",
+      "2512.24640.pdf"
+    ],
+    "scope": "lexical page discovery; not exhaustive semantic relevance judgment",
+    "elapsed_seconds": 16.843,
+    "documents_unopened": 0
+  },
+  "seconds": 16.85899999999674,
+  "cpu_seconds": 14.4375,
+  "top": [
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\审核\\2026-10-29-quality-baseline-a329dd6\\source\\src\\research_agent\\rag\\materials.py",
+      "line": 401,
+      "function": "probe_deep_pages",
+      "primitive_calls": 1,
+      "calls": 1,
+      "own_seconds": 3.4e-05,
+      "cumulative_seconds": 16.845928
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\审核\\2026-10-29-quality-baseline-a329dd6\\source\\src\\research_agent\\rag\\deep_probe.py",
+      "line": 17,
+      "function": "probe_pages",
+      "primitive_calls": 1,
+      "calls": 1,
+      "own_seconds": 0.086992,
+      "cumulative_seconds": 16.840656
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\utils.py",
+      "line": 894,
+      "function": "get_text",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.003197,
+      "cumulative_seconds": 14.148789
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\utils.py",
+      "line": 469,
+      "function": "get_text_blocks",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.021617,
+      "cumulative_seconds": 14.145247
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\__init__.py",
+      "line": 9441,
+      "function": "get_textpage",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.005602,
+      "cumulative_seconds": 13.91471
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\__init__.py",
+      "line": 7970,
+      "function": "_get_textpage",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.002816,
+      "cumulative_seconds": 13.879695
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\extra.py",
+      "line": 191,
+      "function": "page_get_textpage",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.000785,
+      "cumulative_seconds": 13.867523
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method pymupdf._extra.page_get_textpage>",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 13.865248,
+      "cumulative_seconds": 13.866739
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\审核\\2026-10-29-quality-baseline-a329dd6\\source\\src\\research_agent\\rag\\materials.py",
+      "line": 21,
+      "function": "normalize_extracted_text",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.001234,
+      "cumulative_seconds": 1.105116
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.any>",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.282319,
+      "cumulative_seconds": 1.103882
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\审核\\2026-10-29-quality-baseline-a329dd6\\source\\src\\research_agent\\rag\\materials.py",
+      "line": 23,
+      "function": "<genexpr>",
+      "primitive_calls": 2389553,
+      "calls": 2389553,
+      "own_seconds": 0.575964,
+      "cumulative_seconds": 0.821563
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\__init__.py",
+      "line": 2873,
+      "function": "__getitem__",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.002081,
+      "cumulative_seconds": 0.339048
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\__init__.py",
+      "line": 5004,
+      "function": "load_page",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.005859,
+      "cumulative_seconds": 0.330357
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\mupdf.py",
+      "line": 43259,
+      "function": "fz_load_page",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.000696,
+      "cumulative_seconds": 0.302718
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method pymupdf._mupdf.fz_load_page>",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.302022,
+      "cumulative_seconds": 0.302022
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\__init__.py",
+      "line": 2882,
+      "function": "__init__",
+      "primitive_calls": 60,
+      "calls": 60,
+      "own_seconds": 0.001682,
+      "cumulative_seconds": 0.277725
+    },
+    {
+      "file": "C:\\Users\\lenovo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\re\\__init__.py",
+      "line": 280,
+      "function": "_compile",
+      "primitive_calls": 212499,
+      "calls": 212499,
+      "own_seconds": 0.146341,
+      "cumulative_seconds": 0.266276
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.ord>",
+      "primitive_calls": 2388804,
+      "calls": 2388804,
+      "own_seconds": 0.24561,
+      "cumulative_seconds": 0.24561
+    },
+    {
+      "file": "C:\\Users\\lenovo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\re\\__init__.py",
+      "line": 164,
+      "function": "match",
+      "primitive_calls": 106717,
+      "calls": 106717,
+      "own_seconds": 0.052776,
+      "cumulative_seconds": 0.232648
+    },
+    {
+      "file": "C:\\Users\\lenovo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\re\\__init__.py",
+      "line": 169,
+      "function": "fullmatch",
+      "primitive_calls": 101187,
+      "calls": 101187,
+      "own_seconds": 0.051963,
+      "cumulative_seconds": 0.23128
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\__init__.py",
+      "line": 12611,
+      "function": "extractBLOCKS",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.000816,
+      "cumulative_seconds": 0.197386
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\extra.py",
+      "line": 185,
+      "function": "extractBLOCKS",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.00064,
+      "cumulative_seconds": 0.19657
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method pymupdf._extra.extractBLOCKS>",
+      "primitive_calls": 846,
+      "calls": 846,
+      "own_seconds": 0.19593,
+      "cumulative_seconds": 0.19593
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\审核\\2026-10-29-quality-baseline-a329dd6\\source\\src\\research_agent\\core\\utils.py",
+      "line": 89,
+      "function": "tokenize",
+      "primitive_calls": 850,
+      "calls": 850,
+      "own_seconds": 0.037379,
+      "cumulative_seconds": 0.188846
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\__init__.py",
+      "line": 4584,
+      "function": "init_doc",
+      "primitive_calls": 60,
+      "calls": 60,
+      "own_seconds": 0.001046,
+      "cumulative_seconds": 0.17089
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\__init__.py",
+      "line": 3543,
+      "function": "_loadOutline",
+      "primitive_calls": 60,
+      "calls": 60,
+      "own_seconds": 0.000232,
+      "cumulative_seconds": 0.155411
+    },
+    {
+      "file": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runtime\\py312-windows\\pymupdf\\mupdf.py",
+      "line": 43243,
+      "function": "fz_load_outline",
+      "primitive_calls": 60,
+      "calls": 60,
+      "own_seconds": 6.3e-05,
+      "cumulative_seconds": 0.155154
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method pymupdf._mupdf.fz_load_outline>",
+      "primitive_calls": 60,
+      "calls": 60,
+      "own_seconds": 0.15509,
+      "cumulative_seconds": 0.15509
+    },
+    {
+      "file": "C:\\Users\\lenovo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\re\\__init__.py",
+      "line": 209,
+      "function": "findall",
+      "primitive_calls": 4503,
+      "calls": 4503,
+      "own_seconds": 0.002952,
+      "cumulative_seconds": 0.127958
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'findall' of 're.Pattern' objects>",
+      "primitive_calls": 4503,
+      "calls": 4503,
+      "own_seconds": 0.11797,
+      "cumulative_seconds": 0.11797
+    }
+  ],
+  "deep_chunks": 2807,
+  "limits": "cProfile overhead and 30-second profiling budget; not comparable to normal 12-second latency",
+  "index_wall_seconds": 2.6410000000032596,
+  "index_cpu_seconds": 2.0,
+  "prefix_cache_files_before": 0,
+  "target_model_calls": 0,
+  "model_tokens": 0,
+  "material_errors": [],
+  "cache_control": "JSON prefix cache shared per variant; fresh Python process per task; OS caches not controlled",
+  "environment": "Windows source, no CPU/memory hard limits or Linux acceptance"
+}

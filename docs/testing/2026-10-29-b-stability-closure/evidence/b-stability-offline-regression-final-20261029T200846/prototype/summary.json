@@ -1,0 +1,12 @@
+{
+  "returncode": 0,
+  "collected": 404,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 7,
+  "seconds": 77.989,
+  "mode": "offline-authorized",
+  "native_harness_execution": false,
+  "target_model_calls": 0,
+  "passed": 397
+}
