@@ -1,3 +1,55 @@
+# 科研助手 Agent · 0.4.20 协作候选
+
+2026-10-30按用户要求将当前优化成果同步到main，供队友开发与复测。主线保持“授权材料检索 → 原文证据核验 → 生成 → 校验落盘”。当前平台复测与正式成绩待完成。
+
+[队友交接与优势说明](docs/队友交接-0.4.20-20261030.md) · [C修复PR #12](https://github.com/Sunming1126/research-agent/pull/12) · [完整候选镜像](https://github.com/Sunming1126/research-agent/releases/tag/untagged-f8c44d80dbfefafe393f)
+
+## 已验证的优化收益
+
+| 方向 | 实测对照范围 | 结果 | 证据 |
+|---|---|---|---|
+| 提交状态稳定性 | 原main c443883 → 0.4.14，同6条故障反例；本版保留修复 | 0/6通过 → 6/6通过；覆盖取消、部分发布、旧收据和有效结果被失败路径覆盖 | [稳定性闭环](docs/testing/2026-10-27-stability-and-retrieval/验收结果与量化.md) |
+| B深页检索 | 0.4.17 → 0.4.19，同60篇论文的10条固定字面查询；本版保留B代码 | 8/10 → 10/10；最后3题×3组重复由5/9 → 9/9，误报均0 | [B实验闭环](docs/testing/2026-10-29-b-stability-closure/本轮实验闭环与交付决定.md) |
+| C失败恢复 | 0.4.19 → 0.4.20，同5项严格反例，段落patch本身合法且唯一 | 2/5 → 5/5；修复空/未知证据ID与内部标记错误无法通过正文patch恢复的问题 | [C修复与验证](docs/testing/2026-10-30-c-response-recovery/C类修复与验证报告.md) |
+| 当前源码回归 | 原Harness固定总控执行，无目标模型调用 | 402通过、0失败、0错误；另有6环境跳过和1已知strict xfail | [实际结果](docs/testing/2026-10-30-c-response-recovery/metrics.json) |
+
+这些结果来自各阶段的冻结输入，不能合并成整体正确率，也不代表官方成绩。B项为0.4.19的实测结果，0.4.20保留其实现。B最终重复对照的检索中位耗时14.282→16.234秒（+13.7%）；本轮真实模型Token变化未测。C有效首稿不增加生成次数，无效首稿的完整重生成可能增加成本，仍受原有两次尝试上限约束。
+
+## 当前验收状态
+
+- 用户确认评测`eval-20261030-2de7fb4c`使用0.4.19：C-01曾返回HTTP500，D-01可信实验失败导致整轮不计成绩；暂无官方判题报告。
+- 0.4.20修复了独立可复现的C恢复缺陷，C-01私有根因仍缺少底层日志确认；D-01尚未解决。
+- 镜像归档静态核对通过，41份Python应用文件匹配最终源码回归指纹；本机Docker故障使导入、容器健康、资源限制及本镜像真实模型验收仍待执行。
+- 已知B短文档页配额未充分再分配，保留为strict xfail；全部原始失败、跳过和后续通过记录均保留。
+
+## 代码与镜像获取
+
+队友在干净的本地main上同步：
+
+```bash
+git switch main
+git pull --ff-only origin main
+```
+
+镜像使用[草稿Release](https://github.com/Sunming1126/research-agent/releases/tag/untagged-f8c44d80dbfefafe393f)中的`research-assistant-0.4.20-c-recovery-20261030.tar`（295,413,760字节）。镜像应用源码冻结于c73d141，后续main提交补充严格验证和协作说明；镜像内41份Python文件与当前main对应应用源码一致。
+
+SHA-256：`d58521992b981d03f3b5833021e4099a98a71e1d1a37cca5c0f421748aafbc0c`。
+
+附件大小与服务端摘要见[交付清单](docs/submission/2026-10-30-0.4.20-C/github-release.json)，运行边界见[镜像交接](docs/submission/2026-10-30-0.4.20-C/交接.md)。D盘镜像位于`D:\Agent挑战赛\提交材料\科研助手-0.4.20-C修复-20261030`。
+
+## 运行约定
+
+- 正式入口由官方`AgentRuntime`启动，监听8080；接入适配见[agent.py](agent.py)与[HTTP适配](src/research_agent/integrations/http_runtime.py)。
+- `<team>`读取平台注入的`RESEARCH_WORKSPACE_TEAM`，用于`/output/data/<team>/`，不填写真实队名，也不拿遥测身份`TEAM_ID`拼结果目录。
+- 论文默认挂载`/data/papers`；明确授权范围内检索，并以原文连续片段核验引用。D类正式源码需来自当前题模型会话与官方可信实验流程。
+- 凭据由本机既有连接或平台环境注入，禁止写入仓库、镜像、报告或备份。
+- 本机测试协调按工作区`AGENTS.md`与仓库[AGENT.md](AGENT.md)执行，真实模型仍固定原Harness工作区、总控会话和magic连接。
+
+[完整实现约定](AGENT.md) · [配置示例](config.example.json) · [容器配置示例](config.container.example.json)
+
+<details>
+<summary>历史版本与操作说明（原README，当前状态见上文）</summary>
+
 # 当前自我优化候选 0.4.16
 
 基于0.4.15/5a8227c，加固重复词的后续组合证据窗口、英文词边界及中英文数量硬上限。相同23项边界基线5通过、新23通过；完整Windows源码回归352通过、0失败、6跳过。真实完成后的16题配对两版均16/16、各32次调用，没有新提分/省费证据；首次1次TLS失败和成对补测均保留，不能宣称首次全过。仍是源码候选，无新已验收tar，不上传打榜。见[本轮验收与边界](docs/testing/2026-10-29-b-context-constraints/本轮验收与边界.md)。
@@ -183,3 +235,5 @@ JSON 和 Markdown 原子写入后回读。收据保存产物哈希、模型 Toke
 
 > 2026-10-27 自我优化候选：`0.4.14-stability-b-20261027`，基于 main c443883。改进取消/发布边界、保存回滚、B失败保留及文档级RRF。当前未生成新镜像、未上传平台，不能按版本号推定验收通过。方案与真实测试边界见 [本轮说明](docs/testing/2026-10-27-stability-and-retrieval/B检索优化方案.md)。旧0.4.13原始tar保留。
 
+
+</details>
