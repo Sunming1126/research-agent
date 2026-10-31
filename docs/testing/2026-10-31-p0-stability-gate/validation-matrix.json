@@ -1,0 +1,954 @@
+{
+  "scope": "review_protocol_not_test_results",
+  "agent_tests_run": 0,
+  "target_model_calls": 0,
+  "stage_order": [
+    "P0",
+    "P1",
+    "P2"
+  ],
+  "all_rows": [
+    {
+      "id": "CE-01",
+      "phase": "P0",
+      "hypotheses": [
+        "H1",
+        "H2"
+      ],
+      "injection_or_fixture": "C-01/C-03/E-01/E-02各一份合法首稿，无注入",
+      "expected_oracle": "精确字段/类型、内容与引用门槛、磁盘/HTTP逐字一致；不额外调用模型",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": "tests/test_http_runtime.py::test_final_http_schema_has_only_case_fields_for_all_five_categories",
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-02",
+      "phase": "P0",
+      "hypotheses": [
+        "H2"
+      ],
+      "injection_or_fixture": "分别删除case_id/path/markdown；另加status/output/metadata",
+      "expected_oracle": "产生missing_field/extra_field及JSON Pointer；未通过校验不得发布",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-03",
+      "phase": "P0",
+      "hypotheses": [
+        "H2"
+      ],
+      "injection_or_fixture": "markdown=null/list/dict，path=null/int，case_id类型或值不符",
+      "expected_oracle": "type_error/identity_mismatch精确区分；在生成恢复预算内修正或明确失败，不泄漏成功包装体",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-04",
+      "phase": "P0",
+      "hypotheses": [
+        "H2"
+      ],
+      "injection_or_fixture": "used_evidence_ids含对象/数字；引用元数据错嵌套；响应整体为数组",
+      "expected_oracle": "nested_structure或type_error，不凭顶层键齐全通过",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-05",
+      "phase": "P0",
+      "hypotheses": [
+        "H2",
+        "H6"
+      ],
+      "injection_or_fixture": "SDK success缺answer、嵌套error、metadata非对象、重复JSON键/NaN",
+      "expected_oracle": "platform_adapter或serialization分类；保留真实SDK trace；无伪造成功",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": "tests/test_runtime_publication_faults.py::test_malformed_upstream_sdk_envelope_is_explicit_502",
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-06",
+      "phase": "P0",
+      "hypotheses": [
+        "H1"
+      ],
+      "injection_or_fixture": "模型JSON截断/非法JSON后第二次合法；两次都非法",
+      "expected_oracle": "首例在原有上限内完整重生；后例如无合格候选则真实失败，计入硬失败",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-07",
+      "phase": "P0",
+      "hypotheses": [
+        "H1"
+      ],
+      "injection_or_fixture": "空/未知证据ID、重复未知内部标记，第二份完整合法",
+      "expected_oracle": "原文绑定/授权不放宽，最多一次完整重生；反例旧失败可复现",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": "tests/test_c_response_recovery.py::test_invalid_evidence_response_gets_one_complete_regeneration",
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-08",
+      "phase": "P0",
+      "hypotheses": [
+        "H1"
+      ],
+      "injection_or_fixture": "通过报告局部检查但完整答卷正文799字符；边界800/上限/上限+1",
+      "expected_oracle": "在完整契约阶段定位content_constraint；可恢复内容错误进入已声明动作，不能直到发布才无策略退出",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-09",
+      "phase": "P0",
+      "hypotheses": [
+        "H1"
+      ],
+      "injection_or_fixture": "Survey第40/41次引用、参考表重复/缺失/未授权PDF、JSON与MD不一致",
+      "expected_oracle": "每个失败有精确分类和证据；不能通过删依据或假参考文献兜底",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-10",
+      "phase": "P0",
+      "hypotheses": [
+        "H1",
+        "H7"
+      ],
+      "injection_or_fixture": "当前题合格模型稿后语义审查超时/拒绝，再次修订坏稿",
+      "expected_oracle": "仅可按显式政策保留当前题已验证候选；标明未完成/拒绝的语义审查，不冒充事实全通过",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-11",
+      "phase": "P0",
+      "hypotheses": [
+        "H1",
+        "H7"
+      ],
+      "injection_or_fixture": "在没有任何合法模型稿时注入永久额度耗尽/持续网络故障",
+      "expected_oracle": "停止无效调用；不得模板拼接E报告或复用旧题，真实失败保留且计入验收率",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "CE-12",
+      "phase": "P0",
+      "hypotheses": [
+        "H2"
+      ],
+      "injection_or_fixture": "恢复动作或D状态使用未定义枚举",
+      "expected_oracle": "enum_out_of_range；C/E Schema本身无status字段，禁止为了分类给正式答卷加字段",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "IO-01",
+      "phase": "P0",
+      "hypotheses": [
+        "H3"
+      ],
+      "injection_or_fixture": "临时文件write一次ENOSPC/短写，再恢复",
+      "expected_oracle": "已验证稿与输入不变，仅有界重试落盘；没有额外模型调用/半成品成功答卷",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "IO-02",
+      "phase": "P0",
+      "hypotheses": [
+        "H3"
+      ],
+      "injection_or_fixture": "永久EACCES/ENOSPC",
+      "expected_oracle": "不无限重试、不宣称成功或确认；尽可能保留主错误；不可恢复计入硬失败",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "IO-03",
+      "phase": "P0",
+      "hypotheses": [
+        "H3"
+      ],
+      "injection_or_fixture": "flush/fsync失败及临时/目标目录跨文件系统EXDEV",
+      "expected_oracle": "持久化未完成不得COMMITTED；同文件系统暂存，主因和补偿错误分别记录",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "IO-04",
+      "phase": "P0",
+      "hypotheses": [
+        "H3"
+      ],
+      "injection_or_fixture": "MD已rename，JSON rename抛错",
+      "expected_oracle": "撤回MD/JSON/receipt本次产物；不留下可被读成新成功的混合版本",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": "tests/test_runtime_publication_faults.py::test_json_publish_failure_retracts_markdown_and_receipt",
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "IO-05",
+      "phase": "P0",
+      "hypotheses": [
+        "H3"
+      ],
+      "injection_or_fixture": "JSON已rename，receipt pointer发布失败",
+      "expected_oracle": "全部恢复到明确一致状态；收据不指向未提交版本",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "IO-06",
+      "phase": "P0",
+      "hypotheses": [
+        "H3"
+      ],
+      "injection_or_fixture": "读回被并发修改或落盘内容截断",
+      "expected_oracle": "SHA/逐字核验报错，回滚并留存损坏文件，不能忽略读回失败",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "IO-07",
+      "phase": "P0",
+      "hypotheses": [
+        "H3"
+      ],
+      "injection_or_fixture": "发布失败后补偿rename再失败",
+      "expected_oracle": "原始错误与rollback_failed并存；启动恢复需fail-closed，不能误报rollback成功",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "IO-08",
+      "phase": "P0",
+      "hypotheses": [
+        "H3"
+      ],
+      "injection_or_fixture": "子进程在暂存、每次rename、commit标记前后被kill，随后重启",
+      "expected_oracle": "重启恢复一致状态，未完成版本不可通过precheck；进程kill不冒充断电测试",
+      "execution_layer": "linux_container_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "IO-09",
+      "phase": "P0",
+      "hypotheses": [
+        "H3",
+        "H4"
+      ],
+      "injection_or_fixture": "提交已确认后取消；提交前/发布中取消",
+      "expected_oracle": "状态转移及产物所有权正确，无超时线程延迟覆盖后续题",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": "tests/test_runtime_publication_faults.py::test_cancel_signal_never_waits_on_slow_publication_io",
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "TX-01",
+      "phase": "P0",
+      "hypotheses": [
+        "H4"
+      ],
+      "injection_or_fixture": "本地提交后、HTTP发送前断连，同一传输键重试",
+      "expected_oracle": "同题/同会话/同键/同输入回读同一已验证结果；不二次生成；远端接收仍unknown",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "TX-02",
+      "phase": "P0",
+      "hypotheses": [
+        "H4"
+      ],
+      "injection_or_fixture": "相同幂等键并发重复请求",
+      "expected_oracle": "一次有副作用执行，其他等待/回读；取消中的请求不夺取产物所有权",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "TX-03",
+      "phase": "P0",
+      "hypotheses": [
+        "H4"
+      ],
+      "injection_or_fixture": "相同幂等键，不同题目或材料/会话哈希",
+      "expected_oracle": "显式冲突并拒绝；不复用第一份答案",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "TX-04",
+      "phase": "P0",
+      "hypotheses": [
+        "H4"
+      ],
+      "injection_or_fixture": "相同题面但新评测/新Gateway会话/新传输键",
+      "expected_oracle": "执行新题实例，禁止跨正式评测复用答案、模型源码或官方凭证",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "TX-05",
+      "phase": "P0",
+      "hypotheses": [
+        "H4"
+      ],
+      "injection_or_fixture": "已提交后服务重启、receipt或结果被篡改后重试",
+      "expected_oracle": "只回放哈希/身份/SDK关联均有效的已提交实例；损坏拒绝并留证",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "TX-06",
+      "phase": "P0",
+      "hypotheses": [
+        "H4",
+        "H6"
+      ],
+      "injection_or_fixture": "平台在收到HTTP前后分别超时；本地无确认回调",
+      "expected_oracle": "区分LOCAL_COMMITTED/WIRE_SENT/REMOTE_ACK_UNKNOWN；不得伪造平台确认",
+      "execution_layer": "native_wire_end_to_end",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "OBS-01",
+      "phase": "P0",
+      "hypotheses": [
+        "H5"
+      ],
+      "injection_or_fixture": "诊断目录写入失败，异常对象/trace缺失",
+      "expected_oracle": "主错误不被诊断错误覆盖，辅助错误独立；真实trace不可得则null，不伪造",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "FP-01",
+      "phase": "P0",
+      "hypotheses": [
+        "H8"
+      ],
+      "injection_or_fixture": "A题变化、assigned字节变化、同文件名PDF替换",
+      "expected_oracle": "指纹变化导致不可配对或当前题拒绝；不能只比较case_id或镜像标签",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "FP-02",
+      "phase": "P0",
+      "hypotheses": [
+        "H8"
+      ],
+      "injection_or_fixture": "仅JSON空白/键顺序或路径分隔表示变化",
+      "expected_oracle": "保存raw与canonical两种哈希；不擅自重排数组/归一正文来掩盖差异",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "FP-03",
+      "phase": "P0",
+      "hypotheses": [
+        "H8"
+      ],
+      "injection_or_fixture": "平台目录标识与报名队名不同、授权根变更、符号链接越界",
+      "expected_oracle": "使用真实RWT及授权根；路径变化可解释，越界拒绝且无数据出站",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "RT-01",
+      "phase": "P0",
+      "hypotheses": [
+        "H6"
+      ],
+      "injection_or_fixture": "官方Runtime启动、健康检查、八字段请求、真实SDK导出",
+      "expected_oracle": "官方入口不变；HTTP/JSON/MD与真trace配对，导出失败不冒充内容成功",
+      "execution_layer": "linux_container_native_harness",
+      "existing_test_reference": "tests/test_http_runtime.py::test_sdk_routes_stay_owned_by_official_runtime",
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "D-01",
+      "phase": "P1",
+      "hypotheses": [
+        "H9"
+      ],
+      "injection_or_fixture": "固定模型回复和逻辑预算，自检虚拟耗时0/20/75秒，均未越硬截止",
+      "expected_oracle": "生成/升级/selected_attempt/源码SHA轨迹一致；只elapsed字段可不同",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "D-02",
+      "phase": "P1",
+      "hypotheses": [
+        "H9"
+      ],
+      "injection_or_fixture": "固定逻辑Token/调用预算阈值上下边界与相等",
+      "expected_oracle": "分支只由版本化逻辑预算决定；预算估计误差有独立证据",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "D-03",
+      "phase": "P1",
+      "hypotheses": [
+        "H9"
+      ],
+      "injection_or_fixture": "候选自检失败、额度拒绝、语法错，已存在合法当前题基线",
+      "expected_oracle": "只按声明原因回滚，记录前后源码哈希与selected_attempt，不由剩余秒数暗中选路",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "D-04",
+      "phase": "P1",
+      "hypotheses": [
+        "H9"
+      ],
+      "injection_or_fixture": "模型回复/源码/公共方法或协议SHA被替换",
+      "expected_oracle": "来源或输入不一致直接拒绝，禁止冒充当前题原样生成",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "D-05",
+      "phase": "P1",
+      "hypotheses": [
+        "H9"
+      ],
+      "injection_or_fixture": "时间扰动超过硬截止，或正式沙箱启动失败",
+      "expected_oracle": "有界终止并真实计失败；不要求越时还成功，也不据此删掉硬超时",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "D-06",
+      "phase": "P1",
+      "hypotheses": [
+        "H9"
+      ],
+      "injection_or_fixture": "固定源码快照/公开数据seed重复，再独立做真实模型重复",
+      "expected_oracle": "先隔离编排方差，再报告生成/效果方差；轨迹一致不能代替分数方差收敛",
+      "execution_layer": "linux_container_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    },
+    {
+      "id": "B-01",
+      "phase": "P2",
+      "hypotheses": [
+        "H8"
+      ],
+      "injection_or_fixture": "固定授权库深页召回/排序同分/超时降级/缓存版本",
+      "expected_oracle": "P0和P1评审通过后单独冻结比较，召回不下降且预算/误报可核验",
+      "execution_layer": "offline_native_harness",
+      "existing_test_reference": null,
+      "status": "planned_pending_review",
+      "executions": 0,
+      "result": null,
+      "required_artifacts": [
+        "input_fingerprint",
+        "env_fingerprint",
+        "decision_trace",
+        "original_error",
+        "contract_diff",
+        "artifact_hashes",
+        "wire_response_or_not_available",
+        "sdk_trace_id_or_null"
+      ]
+    }
+  ]
+}

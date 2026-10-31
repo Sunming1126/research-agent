@@ -1,0 +1,12 @@
+{
+  "kind": "artifact_preparation_validation_not_agent_tests",
+  "application_hashes_unchanged": 45,
+  "matrix_ids_unique": true,
+  "planned_rows": 39,
+  "all_executions_zero": true,
+  "historical_schema_diff_not_fabricated": true,
+  "local_document_links_verified": 8,
+  "production_diff_empty": true,
+  "agent_tests_executed": 0,
+  "target_model_calls": 0
+}

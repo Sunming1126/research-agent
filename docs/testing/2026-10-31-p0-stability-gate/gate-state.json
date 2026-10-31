@@ -1,0 +1,48 @@
+{
+  "client_date": "2026-10-31",
+  "stage": "G0_diagnosis_review",
+  "status": "awaiting_review",
+  "head_before_docs": "65e2e2f07a69aa15aa029ea7282af305a72cbf26",
+  "remote_main_checked": "f4b2f2cebe5a098d6e6efc990704ecdc1b388ea9",
+  "production_changes": [],
+  "application_snapshot_file_count": 45,
+  "agent_tests_executed": 0,
+  "target_model_calls": 0,
+  "new_platform_evaluations": 0,
+  "planned_matrix_rows": 39,
+  "planned_rows_per_phase": {
+    "P0": 32,
+    "P1": 6,
+    "P2": 1
+  },
+  "historical_baseline": {
+    "source_regression_passed": 402,
+    "environment_skips": 6,
+    "known_strict_xfail": 1,
+    "not_rerun_this_phase": true,
+    "local_peak_score": 86,
+    "stable_baseline_score": null
+  },
+  "acceptance_results": {
+    "ce_whole_case_zero_rate": null,
+    "schema_violation_rate": null,
+    "d_score_variance": null,
+    "paired_rounds_completed": 0,
+    "total_score_p05": null,
+    "total_score_p50": null,
+    "total_score_p95": null,
+    "hard_failure_rate": null,
+    "rollback_rate": null
+  },
+  "missing_platform_evidence": [
+    "two_low_eval_ids",
+    "platform_image_digest_per_run",
+    "low_run_visible_round_details",
+    "task_and_material_fingerprints_per_run",
+    "raw_final_response_and_error_type_not_exposed"
+  ],
+  "next_authorized_after_review": "P0 isolated failure reproduction and one-factor candidate only",
+  "P1_allowed": false,
+  "P2_allowed": false,
+  "created_utc": "2026-10-31T03:30:51.488617+00:00"
+}

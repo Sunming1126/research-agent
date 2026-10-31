@@ -1,0 +1,989 @@
+{
+  "kind": "static_read_only_not_functional_test",
+  "head": "65e2e2f07a69aa15aa029ea7282af305a72cbf26",
+  "anchors": [
+    {
+      "id": "S01",
+      "path": "src/research_agent/workflows/reports.py",
+      "file_sha256": "6d054a3480d7c41699fb0f852b71d02d1e0dfa14bf48d79e765797a2bac35f59",
+      "start": 229,
+      "end": 241,
+      "description": "报告尝试上限与交付候选初始化",
+      "numbered_excerpt": [
+        "229:         deliverable = None",
+        "230:         deliverable_attempt = None",
+        "231:         # E可先修一次格式，再修一次语义；两次语义审查仍不通过就结束。",
+        "232:         # 全流程继续受本题时间和Token预算约束，不能靠重复重试超时。",
+        "233:         for attempt in range(3 if case.function == 'Idea' else 2):",
+        "234:             if sum(item.get('stage') == 'audit' for item in history) >= 2:",
+        "235:                 break",
+        "236:             patches = []",
+        "237:             audit_evidence = model_evidence",
+        "238:             try:",
+        "239:                 global_limit = any(\"exceeds\" in issue and (\"characters\" in issue or \"citation instances\" in issue)",
+        "240:                                    for issue in feedback)",
+        "241:                 if direct and any('citation instances' in issue for issue in feedback):"
+      ]
+    },
+    {
+      "id": "S02",
+      "path": "src/research_agent/workflows/reports.py",
+      "file_sha256": "6d054a3480d7c41699fb0f852b71d02d1e0dfa14bf48d79e765797a2bac35f59",
+      "start": 296,
+      "end": 321,
+      "description": "生成错误分类、条件重试与正文类型检查",
+      "numbered_excerpt": [
+        "296:             except (ModelError, EvidenceError, TimeoutError) as exc:",
+        "297:                 history.append({\"attempt\": attempt + 1, \"stage\": \"report\", \"issues\": [str(exc)]})",
+        "298:                 feedback = feedback + [str(exc)]",
+        "299:                 session = current_session()",
+        "300:                 # 首次正文JSON截断/格式错误可在原有两次写作上限内重新生成。",
+        "301:                 # 网络超时、额度拒绝不重试；不得用占位正文伪装成功。",
+        "302:                 retry_format = isinstance(exc, ModelError) and any(message in str(exc) for message in",
+        "303:                     ('model returned invalid JSON', 'model response incomplete'))",
+        "304:                 if (direct and case.function == 'Survey' and attempt == 0 and deliverable is None",
+        "305:                         and retry_format and (session is None or session.remaining() >= 45)):",
+        "306:                     self.last_draft = ''",
+        "307:                     continue",
+        "308:                 break",
+        "309:             markdown = value.get(\"markdown\", \"\")",
+        "310:             used = value.get(\"used_evidence_ids\", [])",
+        "311:             self.report_trace.append({\"attempt\": attempt + 1, \"raw_markdown\": markdown, \"raw_response\": value,",
+        "312:                                       \"used_evidence_ids\": used, \"patches\": patches,",
+        "313:                                       \"source_task\": report_task(case)})",
+        "314:             if (not isinstance(markdown, str) or not markdown.strip() or not isinstance(used, list)",
+        "315:                     or any(not isinstance(identifier, str) for identifier in used)):",
+        "316:                 feedback = ['invalid report response: markdown must be a nonempty string; '",
+        "317:                             'used_evidence_ids must be an array of evidence ID strings']",
+        "318:                 history.append({\"attempt\": attempt + 1, \"stage\": \"response_schema\", \"issues\": list(feedback)})",
+        "319:                 self.last_draft = ''",
+        "320:                 continue",
+        "321:             try:"
+      ]
+    },
+    {
+      "id": "S03",
+      "path": "src/research_agent/workflows/reports.py",
+      "file_sha256": "6d054a3480d7c41699fb0f852b71d02d1e0dfa14bf48d79e765797a2bac35f59",
+      "start": 367,
+      "end": 388,
+      "description": "硬检查后保留报告候选，审查前存在时间分支",
+      "numbered_excerpt": [
+        "367:             previous_used = list(used)",
+        "368:             try:",
+        "369:                 try:",
+        "370:                     validate_report_limits(markdown + \"\\n\\n\", case.function)",
+        "371:                 except ValueError as exc:",
+        "372:                     passages = []",
+        "373:                     if direct and 'citation instances' in str(exc):",
+        "374:                         passages = sorted(markdown.split('\\n\\n'), key=lambda p: len(report_citations(p)), reverse=True)[:2]",
+        "375:                     raise EvidenceError(str(exc), passages=passages) from exc",
+        "376:                 numeric_ambiguities = validate_citations(markdown, evidence, used,",
+        "377:                                                         minimum=5 if case.function == \"Survey\" else 1, function=case.function,",
+        "378:                                                         strict_facts=not direct)",
+        "379:                 # 语义自审属于质量控制。先记录确已通过硬检查的完整模型稿，",
+        "380:                 # 不能把自审疑虑或局部修订失败误报成没有可交付的答卷。",
+        "381:                 if case.function == 'Idea' or direct:",
+        "382:                     deliverable = markdown",
+        "383:                     deliverable_attempt = attempt + 1",
+        "384:                 session = current_session()",
+        "385:                 if direct and session and session.remaining() < 30:",
+        "386:                     feedback = ['semantic review skipped: preserving submission deadline']",
+        "387:                     break",
+        "388:                 audit_data = audit_request(case, markdown, model_evidence, self.ledger,"
+      ]
+    },
+    {
+      "id": "S04",
+      "path": "src/research_agent/workflows/reports.py",
+      "file_sha256": "6d054a3480d7c41699fb0f852b71d02d1e0dfa14bf48d79e765797a2bac35f59",
+      "start": 411,
+      "end": 445,
+      "description": "最终交付或抛错，固定组装C/E顶层字段",
+      "numbered_excerpt": [
+        "411:                 return self._report_result(case, markdown, filenames, refs)",
+        "412:             except (ModelError, TimeoutError) as exc:",
+        "413:                 # 额度或网络问题不是正文错误，禁止把它当成修订意见再调用写作模型。",
+        "414:                 feedback = [str(exc)]",
+        "415:                 history.append({\"attempt\": attempt + 1, \"stage\": \"audit_unavailable\", \"issues\": list(feedback)})",
+        "416:                 break",
+        "417:             except EvidenceError as exc:",
+        "418:                 feedback = [str(exc)]",
+        "419:                 repair_targets = getattr(exc, \"passages\", [])",
+        "420:                 history.append({\"attempt\": attempt + 1, \"stage\": \"validation\", \"issues\": list(feedback)})",
+        "421:         if case.function == \"Survey\" and not direct:",
+        "422:             # 自由长文多次审查失败时，只拼接已经进入证据台账的事实。",
+        "423:             markdown, used = deterministic_survey(case.input, self.ledger)",
+        "424:             body = markdown.split(\"## 参考文献\", 1)[0]",
+        "425:             validate_report_limits(markdown, case.function)",
+        "426:             validate_citations(body, evidence, used, minimum=5)",
+        "427:             self.audit = {\"ok\": None, \"mode\": \"deterministic_fallback\", \"local_validation\": True,",
+        "428:                           \"model_issues\": feedback, \"history\": history}",
+        "429:             return {\"case_id\": case.case_id,",
+        "430:                     \"path\": f\"data/expert/{case.case_id}-综述-{self.team}.md\", \"markdown\": markdown}",
+        "431:         if deliverable is not None:",
+        "432:             # 不改正文、不伪造审查通过；供平台实际判内容分，全部疑虑留存证据档案。",
+        "433:             self.audit = {\"ok\": False, \"mode\": \"model_report_needs_review\", \"local_validation\": True,",
+        "434:                           \"delivered_attempt\": deliverable_attempt, \"model_issues\": feedback, \"history\": history}",
+        "435:             return self._report_result(case, deliverable, filenames, refs)",
+        "436:         # c1-output-limits-v1 禁止用程序模板替代未生成或格式不合格的 E 报告。",
+        "437:         self.audit = {\"ok\": False, \"mode\": \"model_report_failed\", \"model_issues\": feedback, \"history\": history}",
+        "438:         raise EvidenceError(case.function + \" model report failed validation: \" + \"; \".join(feedback))",
+        "439: ",
+        "440:     def _report_result(self, case, markdown, filenames, refs):",
+        "441:         selected_refs = {int(x) for x in report_citations(markdown)}",
+        "442:         markdown += \"\\n\\n## 参考文献\\n\\n\" + \"\\n\".join(",
+        "443:             f\"[{refs[name]}] {name}\" for name in filenames if refs[name] in selected_refs)",
+        "444:         kind = \"综述\" if case.function == \"Survey\" else \"灵感Idea报告\"",
+        "445:         return {\"case_id\": case.case_id, \"path\": f\"data/expert/{case.case_id}-{kind}-{self.team}.md\", \"markdown\": markdown}"
+      ]
+    },
+    {
+      "id": "S05",
+      "path": "src/research_agent/contracts/validation.py",
+      "file_sha256": "816339d326cda4fcb19aa588f662fb7840c40862d180eddfaa20105da3248b38",
+      "start": 25,
+      "end": 38,
+      "description": "最终wire层对C/E只检查键集合和case_id",
+      "numbered_excerpt": [
+        "25: def validate_wire_fields(case, result):",
+        "26:     \"\"\"纯函数：检查最终 HTTP 答卷，不依赖已经结束的 SDK 工具上下文。\"\"\"",
+        "27:     fields = {",
+        "28:         \"Chat\": (\"case_id\", \"answer\", \"clarifying_question\"),",
+        "29:         \"Literature_Retrieval\": (\"case_id\", \"papers\"),",
+        "30:         \"Survey\": (\"case_id\", \"path\", \"markdown\"),",
+        "31:         \"Idea\": (\"case_id\", \"path\", \"markdown\"),",
+        "32:         \"Reproduction\": (\"case_id\", \"status\", \"metrics\", \"figures\"),",
+        "33:     }",
+        "34:     _only(result, fields[case.function])",
+        "35:     if result[\"case_id\"] != case.case_id:",
+        "36:         raise ValueError(\"case_id mismatch\")",
+        "37:     if case.function == 'Literature_Retrieval':",
+        "38:         validate_b_fields(case, result)"
+      ]
+    },
+    {
+      "id": "S06",
+      "path": "src/research_agent/contracts/validation.py",
+      "file_sha256": "816339d326cda4fcb19aa588f662fb7840c40862d180eddfaa20105da3248b38",
+      "start": 77,
+      "end": 114,
+      "description": "完整报告类型/路径/最低长度/引用/读回校验",
+      "numbered_excerpt": [
+        "77: def validate_result(case, result, output_root=None, *, team=\"workspace_team\", filenames=None, specs=None, proof=None, readback=False):",
+        "78:     \"\"\"按题型核验字段、授权引用和产物；readback 时再核对磁盘内容。\"\"\"",
+        "79:     validate_wire_fields(case, result)",
+        "80:     if case.function == \"Chat\":",
+        "81:         _only(result, [\"case_id\", \"answer\", \"clarifying_question\"])",
+        "82:         if not all(_string(result[x]) for x in (\"answer\", \"clarifying_question\")):",
+        "83:             raise ValueError(\"empty Chat fields\")",
+        "84:     elif case.function == \"Literature_Retrieval\":",
+        "85:         validate_b_fields(case, result, filenames)",
+        "86:     elif case.function in {\"Survey\", \"Idea\"}:",
+        "87:         _only(result, [\"case_id\", \"path\", \"markdown\"])",
+        "88:         kind = \"综述\" if case.function == \"Survey\" else \"灵感Idea报告\"",
+        "89:         expected = f\"data/expert/{case.case_id}-{kind}-{team}.md\"",
+        "90:         if result[\"path\"] != expected:",
+        "91:             raise ValueError(\"invalid report path\")",
+        "92:         markdown = result[\"markdown\"]",
+        "93:         if not isinstance(markdown, str) or markdown.count(\"## 参考文献\") != 1:",
+        "94:             raise ValueError(\"report requires one references section\")",
+        "95:         body, references = markdown.split(\"## 参考文献\")",
+        "96:         validate_report_limits(markdown, case.function)",
+        "97:         if len(re.sub(r\"\\s\", \"\", body)) < 800:",
+        "98:             raise ValueError(\"report body shorter than 800 characters\")",
+        "99:         rows = re.findall(r\"^\\[(\\d+)\\]\\s+(.+\\.pdf)\\s*$\", references, re.M)",
+        "100:         if len({name for _, name in rows}) < (5 if case.function == \"Survey\" else 1):",
+        "101:             raise ValueError(\"insufficient PDF references\")",
+        "102:         refmap = dict(rows)",
+        "103:         if len(refmap) != len(rows) or len(set(refmap.values())) != len(rows):",
+        "104:             raise ValueError(\"duplicate references\")",
+        "105:         if filenames is not None and not set(refmap.values()) <= set(filenames):",
+        "106:             raise ValueError(\"unauthorized reference\")",
+        "107:         # 科学正文里的晶向 [111] 等三位方括号数字不属于论文编号。",
+        "108:         citations = report_citations(body)",
+        "109:         if set(citations) != set(refmap):",
+        "110:             raise ValueError(\"body citations and references differ\")",
+        "111:         if readback:",
+        "112:             if confined(output_root, expected).read_text(encoding=\"utf-8\") != markdown:",
+        "113:                 raise ValueError(\"JSON/Markdown readback mismatch\")",
+        "114:     elif case.function == \"Reproduction\":"
+      ]
+    },
+    {
+      "id": "S07",
+      "path": "src/research_agent/core/engine.py",
+      "file_sha256": "7339a59f0ee510ee8c045ecb2c3af67761b123c2ee12d92acaf9508bc99ce3a6",
+      "start": 176,
+      "end": 183,
+      "description": "handler返回之后执行完整校验和发布",
+      "numbered_excerpt": [
+        "176:                 result = handler.handle(case, retriever)",
+        "177:             for material in index.materials:",
+        "178:                 if sha256_file(material.path) != material.sha256:",
+        "179:                     raise ValueError(\"source material changed during case execution\")",
+        "180:             filenames = [m.filename for m in index.materials]",
+        "181:             checkpoint(\"submission_validation\")",
+        "182:             validate_result(case, result, s.output, team=s.team, filenames=filenames, specs=specs, proof=proof)",
+        "183:             self._persist(case, result, work, filenames, specs, proof, handler, llm)"
+      ]
+    },
+    {
+      "id": "S08",
+      "path": "src/research_agent/core/engine.py",
+      "file_sha256": "7339a59f0ee510ee8c045ecb2c3af67761b123c2ee12d92acaf9508bc99ce3a6",
+      "start": 198,
+      "end": 221,
+      "description": "失败诊断写入与重新抛错",
+      "numbered_excerpt": [
+        "198:         except Exception as exc:",
+        "199:             # SDK 保留错误类型与 trace_id；运行日志补充不含凭据的材料定位信息。",
+        "200:             diagnostic = {\"event\": \"research_case_failed\", \"case_id\": case.case_id,",
+        "201:                           \"error_type\": type(exc).__name__, \"team\": s.team,",
+        "202:                           \"material_roots\": [str(root) for root in s.material_roots],",
+        "203:                           \"diagnostic_path\": work_relative + \"/error.json\"}",
+        "204:             if isinstance(exc, (MaterialError, FileNotFoundError, PermissionError)):",
+        "205:                 diagnostic[\"material_error\"] = str(exc)[:500]",
+        "206:             logging.getLogger(__name__).error(\"%s\", json.dumps(diagnostic, ensure_ascii=False))",
+        "207:             write_json(confined(work, \"diagnostic-evidence.json\"), {\"claims\": [asdict(e) for e in handler.ledger],",
+        "208:                                                                   \"material_diagnostics\": index.errors,",
+        "209:                                                                   \"rejected_claims\": handler.rejected_claims,",
+        "210:                                                                   \"retrieval_trace\": handler.retrieval_trace,",
+        "211:                                                                   \"query_plan_status\": handler.query_plan_status,",
+        "212:                                                                   \"audit\": handler.audit,",
+        "213:                                                                    \"coverage\": handler.coverage,",
+        "214:                                                                    \"evidence_audit\": handler.evidence_audit,",
+        "215:                                                                    \"report_trace\": handler.report_trace,",
+        "216:                                                                   \"draft\": handler.last_draft})",
+        "217:             write_json(confined(work, \"error.json\"), {\"case_id\": case.case_id, \"error_type\": type(exc).__name__,",
+        "218:                                                     \"message\": str(exc)[:1000], \"usage\": getattr(llm, \"usage\", []),",
+        "219:                                                     \"model_response_failures\": getattr(llm, 'response_failures', [])})",
+        "220:             write_json(confined(work, \"session.json\"), session.snapshot())",
+        "221:             raise"
+      ]
+    },
+    {
+      "id": "S09",
+      "path": "src/research_agent/core/engine.py",
+      "file_sha256": "7339a59f0ee510ee8c045ecb2c3af67761b123c2ee12d92acaf9508bc99ce3a6",
+      "start": 223,
+      "end": 298,
+      "description": "暂存、读回、临界区发布、多文件异常回滚",
+      "numbered_excerpt": [
+        "223:     @tool(name=\"write_and_readback_submission\")",
+        "224:     def _persist(self, case, result, work, filenames, specs, proof, handler, llm):",
+        "225:         # 所有可失败的序列化/证据/收据准备先在本次 work 内完成；最后短临界区发布。",
+        "226:         s = self.settings",
+        "227:         checkpoint(\"persist_and_readback\")",
+        "228:         stage_root = confined(work, \"submission-stage\")",
+        "229:         updates = []",
+        "230:         if \"markdown\" in result:",
+        "231:             staged_markdown = confined(stage_root, result[\"path\"])",
+        "232:             atomic_text(staged_markdown, result[\"markdown\"])",
+        "233:             updates.append((staged_markdown, confined(s.output, result[\"path\"])))",
+        "234:             checkpoint()",
+        "235:         target = confined(s.output, f\"data/{s.team}/{case.case_id}.json\")",
+        "236:         staged_target = confined(stage_root, f\"data/{s.team}/{case.case_id}.json\")",
+        "237:         write_json(staged_target, result)",
+        "238:         checkpoint()",
+        "239:         readback = read_json(staged_target)",
+        "240:         if readback != result:",
+        "241:             raise ValueError(\"JSON readback mismatch\")",
+        "242:         validate_result(case, readback, stage_root if \"markdown\" in result else s.output,",
+        "243:                         team=s.team, filenames=filenames, specs=specs, proof=proof, readback=True)",
+        "244:         updates.append((staged_target, target))",
+        "245:         artifacts = [(target, staged_target)]",
+        "246:         if \"path\" in result:",
+        "247:             artifacts.append((confined(s.output, result[\"path\"]), staged_markdown))",
+        "248:         artifacts += [(confined(s.output, f[\"path\"]), confined(s.output, f[\"path\"])) for f in result.get(\"figures\", [])]",
+        "249:         rows = [asdict(Artifact(public.relative_to(s.output).as_posix(), public.suffix[1:], stored.stat().st_size, sha256_file(stored)))",
+        "250:                 for public, stored in artifacts]",
+        "251:         write_json(confined(work, \"evidence.json\"), {\"claims\": [asdict(e) for e in handler.ledger],",
+        "252:                                                    \"rejected_claims\": handler.rejected_claims,",
+        "253:                                                    \"retrieval_trace\": handler.retrieval_trace,",
+        "254:                                                    \"query_plan_status\": handler.query_plan_status,",
+        "255:                                                    \"chunks\": [asdict(c) for c in handler.selected_chunks],",
+        "256:                                                    \"audit\": handler.audit,",
+        "257:                                                    \"coverage\": handler.coverage,",
+        "258:                                                    \"evidence_audit\": handler.evidence_audit,",
+        "259:                                                    \"report_trace\": handler.report_trace,",
+        "260:                                                    \"last_model_draft\": handler.last_draft})",
+        "261:         write_json(confined(work, \"receipt.json\"), {\"case_id\": case.case_id, \"artifacts\": rows, \"filenames\": filenames,",
+        "262:                                                   \"specs\": specs, \"proof\": proof,",
+        "263:                                                   \"usage\": getattr(llm, \"usage\", []),",
+        "264:                                                   \"session\": current_session().snapshot() if current_session() else None,",
+        "265:                                                   \"source_case\": case.to_dict()})",
+        "266:         staged_pointer = confined(stage_root, \"receipt-pointer.json\")",
+        "267:         write_json(staged_pointer,",
+        "268:                    {\"receipt\": (work / \"receipt.json\").relative_to(s.output).as_posix()})",
+        "269:         updates.append((staged_pointer, confined(s.output, f\"data/{s.team}/work/receipts/{case.case_id}.json\")))",
+        "270:         session = current_session()",
+        "271:         if session is None:",
+        "272:             raise RuntimeError(\"submission publication requires an active case session\")",
+        "273:         installed = []",
+        "274:         try:",
+        "275:             with session.publication():",
+        "276:                 for index, (staged, public) in enumerate(updates):",
+        "277:                     checkpoint()",
+        "278:                     public.parent.mkdir(parents=True, exist_ok=True)",
+        "279:                     entry = {\"staged\": staged, \"public\": public, \"backup\": None, \"installed\": False}",
+        "280:                     installed.append(entry)",
+        "281:                     if public.exists():",
+        "282:                         backup = confined(stage_root, f\"backup-{index}\")",
+        "283:                         os.replace(public, backup)",
+        "284:                         entry[\"backup\"] = backup",
+        "285:                     os.replace(staged, public)",
+        "286:                     entry[\"installed\"] = True",
+        "287:                     checkpoint()",
+        "288:                 if read_json(target) != result:",
+        "289:                     raise ValueError(\"published JSON readback mismatch\")",
+        "290:                 validate_result(case, result, s.output, team=s.team, filenames=filenames, specs=specs, proof=proof, readback=True)",
+        "291:         except BaseException:",
+        "292:             # 只撤回本次已发布的文件，原样保留到 work；单文件 rename 不等于多文件事务。",
+        "293:             for entry in reversed(installed):",
+        "294:                 if entry[\"installed\"] and entry[\"public\"].exists():",
+        "295:                     os.replace(entry[\"public\"], entry[\"staged\"])",
+        "296:                 if entry[\"backup\"] is not None and entry[\"backup\"].exists():",
+        "297:                     os.replace(entry[\"backup\"], entry[\"public\"])",
+        "298:             raise"
+      ]
+    },
+    {
+      "id": "S10",
+      "path": "src/research_agent/core/utils.py",
+      "file_sha256": "918bc11a84e2a1be6b87bb50fcdf908567e713fe01cbbce38c050d27ecabc246",
+      "start": 57,
+      "end": 72,
+      "description": "原子写与读回，未显式flush/fsync",
+      "numbered_excerpt": [
+        "57: def atomic_text(path: Path, content: str) -> None:",
+        "58:     path.parent.mkdir(parents=True, exist_ok=True)",
+        "59:     fd, tmp = tempfile.mkstemp(prefix=\".writing-\", dir=path.parent)",
+        "60:     try:",
+        "61:         with os.fdopen(fd, \"w\", encoding=\"utf-8\", newline=\"\") as handle:",
+        "62:             handle.write(content)",
+        "63:         os.replace(tmp, path)",
+        "64:     finally:",
+        "65:         if os.path.exists(tmp):",
+        "66:             os.unlink(tmp)",
+        "67:     if path.read_text(encoding=\"utf-8\") != content:",
+        "68:         raise IOError(\"artifact readback mismatch\")",
+        "69: ",
+        "70: ",
+        "71: def write_json(path: Path, value: Any) -> None:",
+        "72:     atomic_text(path, json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + \"\\n\")"
+      ]
+    },
+    {
+      "id": "S11",
+      "path": "src/research_agent/integrations/http_runtime.py",
+      "file_sha256": "5a978678ec28cfbfd3903d34b9364f451ecaeb23047f171671578c75b8254948",
+      "start": 50,
+      "end": 69,
+      "description": "传输任务ID与模型会话ID分别映射",
+      "numbered_excerpt": [
+        "50:             headers = {key.decode(\"latin-1\").lower(): value.decode(\"latin-1\")",
+        "51:                        for key, value in scope.get(\"headers\", [])}",
+        "52:             timeout = min(self.timeout_supplier(), 180)",
+        "53:             envelope = {",
+        "54:                 \"task_id\": (headers.get(\"x-research-task-id\") or headers.get(\"idempotency-key\")",
+        "55:                             or headers.get(\"x-task-id\") or headers.get(\"x-agenthack-task-id\")",
+        "56:                             or os.getenv(\"AGENTHACK_TASK_ID\") or os.getenv(\"TASK_ID\") or case.case_id),",
+        "57:                 \"task_type\": case.function,",
+        "58:                 \"input\": case.to_dict(),",
+        "59:                 \"constraints\": {\"timeout_ms\": max(1, int(timeout * 1000))},",
+        "60:             }",
+        "61:             session = (os.getenv(\"CHALLENGE_SESSION_ID\")",
+        "62:                        or headers.get(\"x-session-id\") or headers.get(\"x-agenthack-session-id\")",
+        "63:                        or os.getenv(\"AGENTHACK_SESSION_ID\"))",
+        "64:             if session:",
+        "65:                 envelope[\"session_id\"] = session",
+        "66:             raw = json.dumps(envelope, ensure_ascii=False).encode(\"utf-8\")",
+        "67:             scope = dict(scope, headers=[(key, value) for key, value in scope.get(\"headers\", [])",
+        "68:                                         if key.lower() != b\"content-length\"]",
+        "69:                          + [(b\"content-length\", str(len(raw)).encode(\"ascii\"))])"
+      ]
+    },
+    {
+      "id": "S12",
+      "path": "src/research_agent/integrations/http_runtime.py",
+      "file_sha256": "5a978678ec28cfbfd3903d34b9364f451ecaeb23047f171671578c75b8254948",
+      "start": 112,
+      "end": 155,
+      "description": "成功解包校验和错误500/504/502路径",
+      "numbered_excerpt": [
+        "112:                     raise ValueError(\"runtime output must be a JSON object\")",
+        "113:                 if status == 200 and envelope.get(\"status\") in {\"success\", \"error\", \"timeout\"}:",
+        "114:                     # 只复制 SDK 实际给出的值，不生成/冒充追踪标识。",
+        "115:                     for name in (\"trace_id\", \"session_id\"):",
+        "116:                         value = metadata.get(name)",
+        "117:                         if value:",
+        "118:                             headers.append((f\"x-agenthack-{name.replace('_', '-')}\".encode(), str(value).encode(\"ascii\")))",
+        "119:                     headers.append((b\"x-agenthack-metadata\", json.dumps(metadata, ensure_ascii=True, separators=(\",\", \":\")).encode(\"ascii\")))",
+        "120:                 if status == 200 and envelope.get(\"status\") == \"success\":",
+        "121:                     result = json.loads(envelope[\"output\"][\"answer\"])",
+        "122:                     validate_wire_fields(case, result)",
+        "123:                     body = json.dumps(result, ensure_ascii=False, allow_nan=False).encode(\"utf-8\")",
+        "124:                 elif status == 200 and envelope.get(\"status\") in {\"error\", \"timeout\"}:",
+        "125:                     if b_slot is not None and self.settings_supplier:",
+        "126:                         error_type = envelope.get('output', {}).get('error', 'RuntimeError')",
+        "127:                         outcome = b_slot.get('outcome')",
+        "128:                         settings = self.settings_supplier()",
+        "129:                         if outcome is None:",
+        "130:                             outcome = failure_submission(settings, case, error_type)",
+        "131:                         result = outcome['result']",
+        "132:                         validate_wire_fields(case, result)",
+        "133:                         if outcome['result_saved']:",
+        "134:                             if read_json(confined(settings.output, outcome['path'])) != result:",
+        "135:                                 raise ValueError('B failure response/file mismatch')",
+        "136:                         status = 200 if outcome['result_saved'] else 500",
+        "137:                         body = json.dumps(result, ensure_ascii=False, allow_nan=False).encode('utf-8')",
+        "138:                     else:",
+        "139:                         status = 504 if envelope[\"status\"] == \"timeout\" else 500",
+        "140:                         body = json.dumps({\"detail\": \"research task \" + envelope[\"status\"],",
+        "141:                                            \"error_type\": envelope.get(\"output\", {}).get(\"error\", \"RuntimeError\")}).encode(\"utf-8\")",
+        "142:                 if b_slot is not None and b_slot.get('outcome'):",
+        "143:                     outcome = b_slot['outcome']",
+        "144:                     headers.append((b'x-research-outcome', outcome['outcome'].encode('ascii')))",
+        "145:                     headers.append((b'x-research-result-saved', str(outcome['result_saved']).lower().encode('ascii')))",
+        "146:                     if outcome.get('error_type'):",
+        "147:                         headers.append((b'x-research-error-type', str(outcome['error_type']).encode('ascii')))",
+        "148:                     if outcome.get('diagnostic_path'):",
+        "149:                         headers.append((b'x-research-diagnostic-path', quote(outcome['diagnostic_path'], safe='/').encode('ascii')))",
+        "150:             except (ValueError, KeyError, TypeError, UnicodeError):",
+        "151:                 # SDK 成功但无法转成合法答卷时显式失败，不能泄漏包装体作为成功输出。",
+        "152:                 return await JSONResponse({\"detail\": \"invalid research answer from runtime\"}, status_code=502)(scope, adapted_receive, send)",
+        "153:             headers = [(key, value) for key, value in headers if key.lower() != b\"content-length\"]",
+        "154:             await send(dict(start, status=status, headers=headers + [(b\"content-length\", str(len(body)).encode(\"ascii\"))]))",
+        "155:             await send({\"type\": \"http.response.body\", \"body\": body, \"more_body\": False})"
+      ]
+    },
+    {
+      "id": "S13",
+      "path": "src/research_agent/core/session.py",
+      "file_sha256": "1b9c4f483339f56521fef9c2dfedc1ec5baa02c714b84530307c050c2e7e249e",
+      "start": 25,
+      "end": 61,
+      "description": "发布状态、取消和硬截止时间护栏",
+      "numbered_excerpt": [
+        "25:     def cancel(self):",
+        "26:         # 取消不能在事件循环中等待磁盘锁；发布方在每次 rename 后和提交点检查信号。",
+        "27:         self.cancelled.set()",
+        "28: ",
+        "29:     @contextmanager",
+        "30:     def publication(self):",
+        "31:         with self._publication_lock:",
+        "32:             self.checkpoint(\"publishing_submission\")",
+        "33:             if self.publication_state == \"committed\":",
+        "34:                 raise RuntimeError(\"this request already committed a submission\")",
+        "35:             self.publication_state = \"publishing\"",
+        "36:             try:",
+        "37:                 yield",
+        "38:                 self.checkpoint()",
+        "39:             except BaseException:",
+        "40:                 self.publication_state = \"aborted\"",
+        "41:                 raise",
+        "42:             else:",
+        "43:                 self.publication_state = \"committed\"",
+        "44: ",
+        "45:     @property",
+        "46:     def deadline(self):",
+        "47:         return self.started_at + self.timeout",
+        "48: ",
+        "49:     def remaining(self, reserve=0):",
+        "50:         self.checkpoint()",
+        "51:         value = self.deadline - time.monotonic() - reserve",
+        "52:         if value <= 0:",
+        "53:             raise TimeoutError(\"insufficient case time reserved for next stage\")",
+        "54:         return value",
+        "55: ",
+        "56:     def checkpoint(self, stage=None):",
+        "57:         if self.cancelled.is_set():",
+        "58:             raise TimeoutError(\"case cancelled\")",
+        "59:         if time.monotonic() >= self.deadline:",
+        "60:             raise TimeoutError(\"case deadline exceeded\")",
+        "61:         if stage and stage != self.stage:"
+      ]
+    },
+    {
+      "id": "S14",
+      "path": "src/research_agent/workflows/layered_d_runner.py",
+      "file_sha256": "6c4ece7e92b3f603364b9653dd39a95e8546f43d3dc18d62c14f5c55f68b3854",
+      "start": 140,
+      "end": 182,
+      "description": "D两次生成、100/90秒分支、回退与选中源码",
+      "numbered_excerpt": [
+        "140:         history, feedback, candidate, verified = [], None, None, None",
+        "141:         baseline_first = case.case_id in CASE_MODULES",
+        "142:         materials = read_generation_materials(case.case_id, [self.settings.workspace, *self.settings.material_roots])",
+        "143:         for attempt in range(1, 3):",
+        "144:             try:",
+        "145:                 path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt,",
+        "146:                                                              baseline_only=baseline_first and verified is None)",
+        "147:                 # 只有完整、可解析、当前模型原样输出的源码才可作为候选。",
+        "148:                 # 后续修复截断时保留之前的完整版本，不能拼接或修改源码。",
+        "149:                 candidate = (path.read_bytes(), (self.work / 'generation-response.json').read_bytes())",
+        "150:                 report = tester(path, materials, case.case_id)",
+        "151:                 verified = (candidate, attempt)",
+        "152:                 history.append({\"attempt\": attempt, \"source_sha256\": sha256_file(path), **report})",
+        "153:                 write_json(confined(self.work, \"public-selftest.json\"), {\"attempts\": history,",
+        "154:                            'selected_attempt': attempt, 'public_selftest_passed': True})",
+        "155:                 session = current_session()",
+        "156:                 if baseline_first and attempt == 1 and session and session.remaining() >= 100:",
+        "157:                     feedback = {'request': '基线已通过公开自检。保留正确基线，按公开方法增加完整候选算法及details；'",
+        "158:                                            '返回完整源码，目标1800 token；不复制注释。'}",
+        "159:                     continue",
+        "160:                 return path",
+        "161:             except ModelQuotaError:",
+        "162:                 if candidate is None:",
+        "163:                     raise",
+        "164:                 break",
+        "165:             except (ValueError, SyntaxError, TypeError, KeyError, RuntimeError, TimeoutError) as exc:",
+        "166:                 feedback = {\"error_type\": type(exc).__name__, \"message\": str(exc)[:2000]}",
+        "167:                 history.append({\"attempt\": attempt, \"status\": \"failed\", **feedback})",
+        "168:                 write_json(confined(self.work, \"public-selftest.json\"), {\"attempts\": history})",
+        "169:                 session = current_session()",
+        "170:                 if attempt == 2 or (session and session.remaining() < 90):",
+        "171:                     break",
+        "172:         if candidate is None:",
+        "173:             raise RuntimeError('no complete current-session model source available')",
+        "174:         if verified is not None:",
+        "175:             candidate = verified[0]",
+        "176:         path = confined(self.work, 'implementation.py')",
+        "177:         path.write_bytes(candidate[0])",
+        "178:         (self.work / 'generation-response.json').write_bytes(candidate[1])",
+        "179:         write_json(confined(self.work, 'public-selftest.json'), {",
+        "180:             'attempts': history, 'decision': 'submit_complete_model_source_for_formal_evaluation',",
+        "181:             'public_selftest_passed': verified is not None,",
+        "182:             'selected_attempt': verified[1] if verified else None, 'source_sha256': sha256_file(path)})"
+      ]
+    },
+    {
+      "id": "S15",
+      "path": "agent.py",
+      "file_sha256": "bd0be854dc9ea00cd8f4cecfd43589f72869889a62cba9ad301820ebcc0857db",
+      "start": 25,
+      "end": 32,
+      "description": "官方AgentRuntime最终启动入口",
+      "numbered_excerpt": [
+        "25: if __name__ == \"__main__\":",
+        "26:     if AgentRuntime is None:",
+        "27:         raise RuntimeError(\"Official AgentHack SDK is required to start the Agent service\")",
+        "28:     from research_agent.integrations.http_runtime import install_research_protocol",
+        "29:     runtime = AgentRuntime(ResearchAgent())",
+        "30:     install_research_protocol(runtime)",
+        "31:     runtime.run()",
+        "32: "
+      ]
+    }
+  ],
+  "application_files": [
+    {
+      "path": "agent.py",
+      "bytes": 1073,
+      "sha256": "bd0be854dc9ea00cd8f4cecfd43589f72869889a62cba9ad301820ebcc0857db"
+    },
+    {
+      "path": "src/research_agent/__init__.py",
+      "bytes": 73,
+      "sha256": "817344dc2534a23e65aca86b18f52dd82310c19ef25d8c7b2f278a24e42859b0"
+    },
+    {
+      "path": "src/research_agent/__main__.py",
+      "bytes": 1913,
+      "sha256": "9a3cf72f632eb36445b835d6e09371e64ae01971f5faba67ba5c18f5f45a0050"
+    },
+    {
+      "path": "src/research_agent/contracts/__init__.py",
+      "bytes": 44,
+      "sha256": "dd2711c33ea154a33c9407feab03c7c38fc05743e25c5b0a7a6660dd08d50d1a"
+    },
+    {
+      "path": "src/research_agent/contracts/validation.py",
+      "bytes": 8591,
+      "sha256": "816339d326cda4fcb19aa588f662fb7840c40862d180eddfaa20105da3248b38"
+    },
+    {
+      "path": "src/research_agent/core/__init__.py",
+      "bytes": 59,
+      "sha256": "dfd1517d38f7486703dca5d5acdbbaa0442f3cf1d017700998e9e9e2f2f32ffa"
+    },
+    {
+      "path": "src/research_agent/core/b_submission.py",
+      "bytes": 3766,
+      "sha256": "284e8771e3a086460b34a6b909e8c1692569e2d9972a91f0926f5b1376085ae0"
+    },
+    {
+      "path": "src/research_agent/core/citations.py",
+      "bytes": 535,
+      "sha256": "4a33b97cd954169eb35522f52627f28f86fda5a061afbd1d85a3b56ae6f8c1e3"
+    },
+    {
+      "path": "src/research_agent/core/config.py",
+      "bytes": 5549,
+      "sha256": "ff7d23235da8d36a42d935bd6335d633929e512bdd2dd6e8e0bf4f3c0c447266"
+    },
+    {
+      "path": "src/research_agent/core/dispatch.py",
+      "bytes": 344,
+      "sha256": "9e818ff0f2ced29cb15163c6f7141bb21e02fb774e9de9b9bd8aa1dfd4290951"
+    },
+    {
+      "path": "src/research_agent/core/dispatch_plan.py",
+      "bytes": 8328,
+      "sha256": "d5e35e00965a82e400dceacc01b957fffe4e9db907f412a4111aff8e1c772c71"
+    },
+    {
+      "path": "src/research_agent/core/engine.py",
+      "bytes": 22245,
+      "sha256": "7339a59f0ee510ee8c045ecb2c3af67761b123c2ee12d92acaf9508bc99ce3a6"
+    },
+    {
+      "path": "src/research_agent/core/models.py",
+      "bytes": 2755,
+      "sha256": "ba3d9d4e498cb8da661827912f9f41e6bd02bd0b67d5765bc3a064bc477e735b"
+    },
+    {
+      "path": "src/research_agent/core/session.py",
+      "bytes": 3256,
+      "sha256": "1b9c4f483339f56521fef9c2dfedc1ec5baa02c714b84530307c050c2e7e249e"
+    },
+    {
+      "path": "src/research_agent/core/utils.py",
+      "bytes": 3401,
+      "sha256": "918bc11a84e2a1be6b87bb50fcdf908567e713fe01cbbce38c050d27ecabc246"
+    },
+    {
+      "path": "src/research_agent/evidence/__init__.py",
+      "bytes": 204,
+      "sha256": "979dd63615e748d9495a63bd2aa6cdd3fd99dec79eeccf654a6b4363a1758e90"
+    },
+    {
+      "path": "src/research_agent/evidence/attribution.py",
+      "bytes": 2614,
+      "sha256": "65d45bf1960e62a7eec9ebd4af1f753f6642122fc472340db38baabebe536e15"
+    },
+    {
+      "path": "src/research_agent/evidence/ledger.py",
+      "bytes": 6264,
+      "sha256": "12a1d30f5bc843596141102382a76c034438283047a242697256d8d23cda3807"
+    },
+    {
+      "path": "src/research_agent/evidence/reporting.py",
+      "bytes": 29254,
+      "sha256": "472cf9661eb6a0f98bb8a28ab50235904516a4d137611b92121903fa33a85a06"
+    },
+    {
+      "path": "src/research_agent/integrations/__init__.py",
+      "bytes": 50,
+      "sha256": "4f7da132b5504eb2eee2e52b75cf94b148d32d091594375e8cfbf856d8710e9a"
+    },
+    {
+      "path": "src/research_agent/integrations/http_runtime.py",
+      "bytes": 9499,
+      "sha256": "5a978678ec28cfbfd3903d34b9364f451ecaeb23047f171671578c75b8254948"
+    },
+    {
+      "path": "src/research_agent/integrations/instrumentation.py",
+      "bytes": 411,
+      "sha256": "6f14706265b8d0e493848bd4ab76e0d111d71d913a7092811000fe1c4331daaf"
+    },
+    {
+      "path": "src/research_agent/integrations/llm.py",
+      "bytes": 14552,
+      "sha256": "82b79e9f400c2f4d79e0fbc4785a85abb869fdb4351e99e34bcc58b6d930e677"
+    },
+    {
+      "path": "src/research_agent/integrations/prompts.py",
+      "bytes": 24067,
+      "sha256": "3881eef2b498a9e30dac64e7bdac9c74007fdb01c56c1b00135b5e2186a814d3"
+    },
+    {
+      "path": "src/research_agent/rag/__init__.py",
+      "bytes": 53,
+      "sha256": "326c733d09db3000559f367dbb3b85ee519989d9365a8431dd4bb59ead7a952b"
+    },
+    {
+      "path": "src/research_agent/rag/deep_probe.py",
+      "bytes": 7338,
+      "sha256": "9b18178bf172d8992183b049d7ad516ff2c0cc964d9e181dea2c5a7aba3f33b5"
+    },
+    {
+      "path": "src/research_agent/rag/evidence_selection.py",
+      "bytes": 4417,
+      "sha256": "34cfd7e35266b49ff0948e9a69a50fb8066f1c979d134cff41eaf4d88c0c99e8"
+    },
+    {
+      "path": "src/research_agent/rag/materials.py",
+      "bytes": 22730,
+      "sha256": "620d7c3cc8b907133808fd9b2d92ece6cdce76a5156c6af1996370a61961e25f"
+    },
+    {
+      "path": "src/research_agent/rag/paper_selection.py",
+      "bytes": 6929,
+      "sha256": "41b6942acb6b3b291fbadd8bb4aa7fe0f8c7f0f3c32592a41aae0333dc0d7cbd"
+    },
+    {
+      "path": "src/research_agent/rag/report_selection.py",
+      "bytes": 1482,
+      "sha256": "d56d880587cca46fcc32294c77d95690598768d29160364a2bc97f3da88ac35d"
+    },
+    {
+      "path": "src/research_agent/rag/retrieval.py",
+      "bytes": 9642,
+      "sha256": "d9024b357f466b8d3332df8ae3e924dd355a6fe52bb4aaa24498478a5fcb08cb"
+    },
+    {
+      "path": "src/research_agent/workflows/__init__.py",
+      "bytes": 59,
+      "sha256": "336b2baed92d4297655def8e9c7fa414c76d4461286c316878ce53014ac27729"
+    },
+    {
+      "path": "src/research_agent/workflows/d_algorithms/__init__.py",
+      "bytes": 192,
+      "sha256": "e18e39ccb960f057958ff607fe0027941efa245f186c264824521f6a57398906"
+    },
+    {
+      "path": "src/research_agent/workflows/d_algorithms/d01.py",
+      "bytes": 4044,
+      "sha256": "372279f7169a8fba01881ffff4b32f0f1cc5729a226b8ebad86a7d5d6b63157e"
+    },
+    {
+      "path": "src/research_agent/workflows/d_algorithms/d02.py",
+      "bytes": 5551,
+      "sha256": "75fa4bcccbe7039f03eda82d03cbd2e5732a0012e2b281245fa5a2620883112d"
+    },
+    {
+      "path": "src/research_agent/workflows/d_algorithms/d05.py",
+      "bytes": 4909,
+      "sha256": "133491efb0283f748cbf357fadf065bac55ac21d6f37b4209d84b9849baa2262"
+    },
+    {
+      "path": "src/research_agent/workflows/experiments.py",
+      "bytes": 9930,
+      "sha256": "4738c5a30a9c28e576e6abcca98bf5232f42526a826afb7bb83c630f67b18037"
+    },
+    {
+      "path": "src/research_agent/workflows/layered_d_runner.py",
+      "bytes": 15066,
+      "sha256": "6c4ece7e92b3f603364b9653dd39a95e8546f43d3dc18d62c14f5c55f68b3854"
+    },
+    {
+      "path": "src/research_agent/workflows/report_context.py",
+      "bytes": 6054,
+      "sha256": "c7859ea8c640ba61cd1bb3aa83cb3ae663fdfa500f1b5daf4b40cad1eecd7945"
+    },
+    {
+      "path": "src/research_agent/workflows/reports.py",
+      "bytes": 33767,
+      "sha256": "6d054a3480d7c41699fb0f852b71d02d1e0dfa14bf48d79e765797a2bac35f59"
+    },
+    {
+      "path": "src/research_agent/workflows/sample_validation.py",
+      "bytes": 13874,
+      "sha256": "b2177c865d7dca9452624fddd14aee447cf2f4aac937c091429fb66eb2cb4470"
+    },
+    {
+      "path": "src/research_agent/workflows/sample_worker.py",
+      "bytes": 6572,
+      "sha256": "c9b06dfa9cbab6572f81c6cfb56a5ee57fa205c7fcb0b87602260299bd07932f"
+    },
+    {
+      "path": "src/research_agent/workflows/source_generation.py",
+      "bytes": 6944,
+      "sha256": "f2b448be75efa0f38268f3d69070c3a9900d313c8a497021f4737517c772d0bb"
+    },
+    {
+      "path": "src/research_agent/workflows/source_reports.py",
+      "bytes": 2133,
+      "sha256": "52ac1e553cfe5f18e6de5cc9b0f8b734c681a3076ec7623e1b2bc25ac3ef87c0"
+    },
+    {
+      "path": "src/research_agent/workflows/tasks.py",
+      "bytes": 20303,
+      "sha256": "d0c344eeecf0cca4717fb05f50cffb5672dbb4f72422d97ffb34b8d4f3e07fb2"
+    }
+  ],
+  "rule_and_build_files": [
+    {
+      "path": "科研助手赛题材料/research-agent-spec.md",
+      "sha256": "c5302a8840cc994cee52a42e2dbaca836341a7b003ae15566cdae1a433038d4f"
+    },
+    {
+      "path": "科研助手赛题材料/research-scoring-rules.md",
+      "sha256": "5bda1d37d41c9e9cf535cffbfefb81c55a1f27a6a10dae8ca53d9f12c644d15a"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "66f72302b0d2e5ce9ff3d6154002152a63054050de817e532d0bbbbf7ba639b4"
+    },
+    {
+      "path": "requirements-test.txt",
+      "sha256": "a17be562caca1290589db6bd1340c07de80f73fe94b61b1db8c54bc63d039559"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "96b487e2e99d1793e7ba486c525f6eef80a4b928148ba5d282e7258ed226c69b"
+    }
+  ],
+  "external_reference_fingerprints": [
+    {
+      "basename": "赛题一组委会确认清单-逐项回复-20261015(3).md",
+      "sha256": "241270a9e8df6f5a4923bc411f7a983ff20cd1347b31d5ce54f89006b89599f7",
+      "role": "user_supplied_reference_not_execution_instructions",
+      "limitation": "2026-10-15 snapshot; later runtime/schema notices take precedence"
+    }
+  ],
+  "existing_tests_static_inventory": [
+    {
+      "path": "tests/test_http_runtime.py",
+      "sha256": "f13eceb07dd82fd4921b5b1e5e62b34ca0ff72f3743de2ab8caadbab9e39161d",
+      "execution_this_phase": "not_run",
+      "functions": [
+        {
+          "name": "test_direct_question_returns_exact_case_schema_and_preserves_metadata_in_headers",
+          "line": 56
+        },
+        {
+          "name": "test_platform_trace_parent_task_and_session_headers_are_preserved",
+          "line": 76
+        },
+        {
+          "name": "test_official_transport_id_and_challenge_session_are_distinct_from_case_and_team",
+          "line": 92
+        },
+        {
+          "name": "test_direct_timeout_uses_case_budget_instead_of_sdk_thirty_seconds",
+          "line": 105
+        },
+        {
+          "name": "test_legacy_sdk_envelope_still_returns_metadata",
+          "line": 123
+        },
+        {
+          "name": "test_business_failure_preserves_sdk_error_metadata_and_trace",
+          "line": 135
+        },
+        {
+          "name": "test_invalid_question_is_rejected_before_running_agent",
+          "line": 149
+        },
+        {
+          "name": "test_timeout_preserves_sdk_timeout_response_and_trace",
+          "line": 158
+        },
+        {
+          "name": "test_sdk_routes_stay_owned_by_official_runtime",
+          "line": 169
+        },
+        {
+          "name": "test_malformed_json_uses_native_sdk_validation",
+          "line": 176
+        },
+        {
+          "name": "test_final_http_schema_has_only_case_fields_for_all_five_categories",
+          "line": 191
+        },
+        {
+          "name": "test_invalid_success_wrapper_cannot_be_returned_as_a_valid_case",
+          "line": 210
+        },
+        {
+          "name": "test_real_b_workflow_writes_platform_directory_and_matches_http",
+          "line": 221
+        }
+      ]
+    },
+    {
+      "path": "tests/test_runtime_publication_faults.py",
+      "sha256": "eeb9b7f6bb6286480cc0493d78599ebb655c696fa1537c918b0892526d1cbc57",
+      "execution_this_phase": "not_run",
+      "functions": [
+        {
+          "name": "test_malformed_upstream_sdk_envelope_is_explicit_502",
+          "line": 21
+        },
+        {
+          "name": "test_cancel_signal_never_waits_on_slow_publication_io",
+          "line": 45
+        },
+        {
+          "name": "test_json_publish_failure_retracts_markdown_and_receipt",
+          "line": 70
+        }
+      ]
+    },
+    {
+      "path": "tests/test_c_response_recovery.py",
+      "sha256": "ae8833a4904684f99fe7b43f434a4ba58fca32302b0a5d7d01eaa5b5f414d943",
+      "execution_this_phase": "not_run",
+      "functions": [
+        {
+          "name": "test_invalid_evidence_response_gets_one_complete_regeneration",
+          "line": 56
+        },
+        {
+          "name": "test_valid_bound_citations_do_not_require_extra_generation",
+          "line": 66
+        },
+        {
+          "name": "test_two_invalid_full_responses_are_rejected_with_original_evidence_retained",
+          "line": 73
+        }
+      ]
+    },
+    {
+      "path": "tests/test_layered_d_runner.py",
+      "sha256": "bdd6d90fdca98f088bef98e5e8804235f1c5f71cc0b72b117ec707ec09575d45",
+      "execution_this_phase": "not_run",
+      "functions": [
+        {
+          "name": "test_layered_command_contains_case_and_implementation",
+          "line": 15
+        },
+        {
+          "name": "test_complete_rpc_status_is_normalized_to_completed",
+          "line": 20
+        },
+        {
+          "name": "test_direct_final_submission_from_client_is_accepted",
+          "line": 25
+        },
+        {
+          "name": "test_prepare_implementation_is_case_scoped",
+          "line": 30
+        },
+        {
+          "name": "test_prepare_generated_implementation_uses_gateway_response_verbatim",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "path": "tests/test_report_resilience.py",
+      "sha256": "341ff7a534a9705f30f7950a58b0764ee9328426a818fb2de63947d4223089af",
+      "execution_this_phase": "not_run",
+      "functions": [
+        {
+          "name": "test_idea_model_budget_failure_keeps_verified_evidence",
+          "line": 14
+        },
+        {
+          "name": "test_survey_recovers_one_missing_paper_before_fallback",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "path": "tests/test_report_budget_history.py",
+      "sha256": "31e533e2aa42de89f2fa5e76bed1ea9c6d491e7cb54f8f57712f0dce745a7f1e",
+      "execution_this_phase": "not_run",
+      "functions": [
+        {
+          "name": "test_audit_history_preserves_initial_rejection_before_budget_fallback",
+          "line": 13
+        }
+      ]
+    }
+  ]
+}

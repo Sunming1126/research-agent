@@ -1,0 +1,42 @@
+{
+  "gate-state.json": {
+    "bytes": 1509,
+    "sha256": "d27b519bddbdfa95c4333069bea4fa3caa5f58bb552f0009b2491da151e27f6d"
+  },
+  "preparation-check.json": {
+    "bytes": 372,
+    "sha256": "a554e0bab3c766b1503ebca38f475e78f41c77f2f1c44d0a224033d4ca1147ff"
+  },
+  "README.md": {
+    "bytes": 2211,
+    "sha256": "61f30052752025de77f89a9aad42264383871d5990dc3ac2c69461c2f4a8d599"
+  },
+  "schema-diff-evidence.json": {
+    "bytes": 2364,
+    "sha256": "039e5ee2d75590c52d93888a3b06d01ecbcc0575d096bc2c4a72b199cb46d95d"
+  },
+  "source-evidence.json": {
+    "bytes": 54667,
+    "sha256": "d857f603f6968e7b7d04b506913ea4e1b5780b6c220f04528f83dc410e1c5d18"
+  },
+  "validation-matrix.json": {
+    "bytes": 31325,
+    "sha256": "d1c35f80736f54979b7ebeb1739df2dc817d552cd10423adc9cc0cc5277cdd3c"
+  },
+  "决策轨迹.md": {
+    "bytes": 3444,
+    "sha256": "c07e1da3dc740734cb048f99b3b013b64b3c2d58b2390d99f28cfa242fba6032"
+  },
+  "执行协议与验收门禁.md": {
+    "bytes": 10968,
+    "sha256": "063624ef30909404648b731d3db67dc991f316958fbdba65f6454ed49f01140f"
+  },
+  "诊断报告.md": {
+    "bytes": 7553,
+    "sha256": "ea5020e720488f37cccb3dd8eedc4db6f73361d3e99393daf9f4b18b238f1460"
+  },
+  "验证矩阵.md": {
+    "bytes": 7253,
+    "sha256": "ebd9cec677a974423a20280ca3832e89e2a1f1c48521149413f5c8cc39cd7845"
+  }
+}
