@@ -1,0 +1,80 @@
+{
+  "case_id": "B-01",
+  "artifacts": [
+    {
+      "path": "data/platform-workspace/B-01.json",
+      "kind": "json",
+      "bytes": 171,
+      "sha256": "34dd32cdf08050549b3cf0840cb2455c78a3682e6c975258ba3ae000cc68882e"
+    }
+  ],
+  "filenames": [
+    "000-broken.pdf",
+    "valid.pdf"
+  ],
+  "specs": null,
+  "proof": null,
+  "usage": [],
+  "session": {
+    "case_id": "B-01",
+    "timeout_seconds": 170,
+    "elapsed_seconds": 0.312,
+    "stage": "persist_and_readback",
+    "stages": [
+      {
+        "stage": "material_resolution",
+        "elapsed_seconds": 0.015
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 0.031
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 0.047
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 0.093
+      },
+      {
+        "stage": "deep_page_probe",
+        "elapsed_seconds": 0.14
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 0.172
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 0.172
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 0.234
+      },
+      {
+        "stage": "submission_validation",
+        "elapsed_seconds": 0.265
+      },
+      {
+        "stage": "persist_and_readback",
+        "elapsed_seconds": 0.265
+      }
+    ],
+    "cancelled": false,
+    "publication_state": "active"
+  },
+  "source_case": {
+    "case_id": "B-01",
+    "function": "Literature_Retrieval",
+    "title": "Synthetic research fixture",
+    "input": "Compare urban vegetation and surface temperature using remote sensing; exclude plant taxonomy only.",
+    "materials": [
+      "papers"
+    ],
+    "constraints": [],
+    "expected_output": "Literature_Retrieval",
+    "output_schema_ref": "Literature_Retrieval"
+  }
+}

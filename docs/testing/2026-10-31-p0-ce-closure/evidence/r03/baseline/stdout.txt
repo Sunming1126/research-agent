@@ -1,0 +1,109 @@
+FFFF.                                                                    [100%]
+================================== FAILURES ===================================
+______________ test_report_staging_syncs_all_submission_files[C] ______________
+
+kind = 'C'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-durability-baseline-20261031-115712-e239d9/baseline/temp/test_report_staging_syncs_all_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002C6076A3DA0>
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_report_staging_syncs_all_submission_files(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        actual_sync = utils.os.fsync
+        calls = []
+        def counted(fd):
+            actual_sync(fd)
+            calls.append(fd)
+        monkeypatch.setattr(utils.os, 'fsync', counted)
+        result = engine.solve_sync(task)
+>       assert len(calls) >= 5, 'MD, JSON, evidence, receipt and pointer must be synced before publication'
+E       AssertionError: MD, JSON, evidence, receipt and pointer must be synced before publication
+E       assert 0 >= 5
+E        +  where 0 = len([])
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_durable_staging.py:30: AssertionError
+______________ test_report_staging_syncs_all_submission_files[E] ______________
+
+kind = 'E'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-durability-baseline-20261031-115712-e239d9/baseline/temp/test_report_staging_syncs_all_1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002C607730350>
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_report_staging_syncs_all_submission_files(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        actual_sync = utils.os.fsync
+        calls = []
+        def counted(fd):
+            actual_sync(fd)
+            calls.append(fd)
+        monkeypatch.setattr(utils.os, 'fsync', counted)
+        result = engine.solve_sync(task)
+>       assert len(calls) >= 5, 'MD, JSON, evidence, receipt and pointer must be synced before publication'
+E       AssertionError: MD, JSON, evidence, receipt and pointer must be synced before publication
+E       assert 0 >= 5
+E        +  where 0 = len([])
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_durable_staging.py:30: AssertionError
+____________ test_staging_sync_failure_cannot_publish_a_success[C] ____________
+
+kind = 'C'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-durability-baseline-20261031-115712-e239d9/baseline/temp/test_staging_sync_failure_cann0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002C6076A4B30>
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_staging_sync_failure_cannot_publish_a_success(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        def fail(fd):
+            raise OSError(errno.EIO, 'injected staging fsync failure')
+        monkeypatch.setattr(utils.os, 'fsync', fail)
+>       with pytest.raises(OSError, match='injected staging fsync failure'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'OSError'>
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_durable_staging.py:41: Failed
+____________ test_staging_sync_failure_cannot_publish_a_success[E] ____________
+
+kind = 'E'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-durability-baseline-20261031-115712-e239d9/baseline/temp/test_staging_sync_failure_cann1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002C60773E510>
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_staging_sync_failure_cannot_publish_a_success(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        def fail(fd):
+            raise OSError(errno.EIO, 'injected staging fsync failure')
+        monkeypatch.setattr(utils.os, 'fsync', fail)
+>       with pytest.raises(OSError, match='injected staging fsync failure'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'OSError'>
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_durable_staging.py:41: Failed
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\p0-ce-durability-baseline-20261031-115712-e239d9\baseline\junit.xml -
+============================ slowest 10 durations =============================
+0.25s call     ::test_report_staging_syncs_all_submission_files[E]
+0.22s call     ::test_staging_sync_failure_cannot_publish_a_success[C]
+0.22s call     ::test_report_staging_syncs_all_submission_files[C]
+0.21s call     ::test_staging_sync_failure_cannot_publish_a_success[E]
+0.01s setup    ::test_report_staging_syncs_all_submission_files[C]
+0.01s call     ::test_default_atomic_writer_retains_its_previous_behavior
+
+(4 durations < 0.005s hidden.  Use -vv to show these durations.)
+=========================== short test summary info ===========================
+FAILED ::test_report_staging_syncs_all_submission_files[C] - AssertionError: ...
+FAILED ::test_report_staging_syncs_all_submission_files[E] - AssertionError: ...
+FAILED ::test_staging_sync_failure_cannot_publish_a_success[C] - Failed: DID ...
+FAILED ::test_staging_sync_failure_cannot_publish_a_success[E] - Failed: DID ...
+4 failed, 1 passed, 5 warnings in 1.39s

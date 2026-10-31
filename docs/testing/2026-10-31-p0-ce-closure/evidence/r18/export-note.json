@@ -1,0 +1,140 @@
+{
+  "id": "r18",
+  "original_run": "p0-ce-wire-candidate-20261031-115354-30d0b5",
+  "original_run_preserved": true,
+  "summary": {
+    "stage": "candidate",
+    "suite": "wire",
+    "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-wire-candidate-20261031-115354-30d0b5",
+    "baseline_revision": "eb42a3934972548af3e784e8d2a362c5e6654cf2",
+    "application_source_unchanged_during_run": true,
+    "source_files": 45,
+    "target_model_calls": 0,
+    "native_harness_execution": false,
+    "result": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.36,
+      "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 18
+    }
+  },
+  "selected_artifact_map": [
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-C_.json",
+      "exported": "candidate/cases/case-20cd70913704.json",
+      "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-E_.json",
+      "exported": "candidate/cases/case-a493ed73212a.json",
+      "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-C_.json",
+      "exported": "candidate/cases/case-e133f632272a.json",
+      "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-E_.json",
+      "exported": "candidate/cases/case-2ec9e9a58c9e.json",
+      "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-C_.json",
+      "exported": "candidate/cases/case-826154f5d43d.json",
+      "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-E_.json",
+      "exported": "candidate/cases/case-68c2bd787919.json",
+      "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-C_.json",
+      "exported": "candidate/cases/case-58ef698ddc51.json",
+      "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-E_.json",
+      "exported": "candidate/cases/case-4465d06059db.json",
+      "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-C_.json",
+      "exported": "candidate/cases/case-b9fb93e25ea2.json",
+      "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-E_.json",
+      "exported": "candidate/cases/case-50419437d1c6.json",
+      "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-C_.json",
+      "exported": "candidate/cases/case-fcca83761d4b.json",
+      "sha256": "1ca840a7f79bbd8b3e8e2a4155319a2d15ea820b171df4ca2f054ac7000b2f55"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-E_.json",
+      "exported": "candidate/cases/case-b56f7a1dc68a.json",
+      "sha256": "c54c3e85aa162f2cecad4ee3b34df64a79e0f42c8e18a5d65a91a48a32b2c0fd"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-C_.json",
+      "exported": "candidate/cases/case-041ed6488bfe.json",
+      "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-E_.json",
+      "exported": "candidate/cases/case-77694f0d2be6.json",
+      "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-C_.json",
+      "exported": "candidate/cases/case-eac4a262484b.json",
+      "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+    },
+    {
+      "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-E_.json",
+      "exported": "candidate/cases/case-fcfccad85a1e.json",
+      "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+    },
+    {
+      "original": "candidate/temp/test_engine_keeps_structured_c1/output/data/synthetic-workspace/work/E-01/939736d92d75490387bce36545258259/diagnostic-evidence.json",
+      "exported": "candidate/artifacts/782861a55b4e-diagnostic-evidence.json",
+      "sha256": "34ca749545b535a015294088a127bdcb2f0f21e7ef50760130fc357021fed32e"
+    },
+    {
+      "original": "candidate/temp/test_engine_keeps_structured_c1/output/data/synthetic-workspace/work/E-01/939736d92d75490387bce36545258259/error.json",
+      "exported": "candidate/artifacts/8dbfd212fd02-error.json",
+      "sha256": "4f9ea8a6abfbeae78db0f6742c670b4fb11bfe0b36e719084798280d6257d67c"
+    },
+    {
+      "original": "candidate/temp/test_engine_keeps_structured_c1/output/data/synthetic-workspace/work/E-01/939736d92d75490387bce36545258259/session.json",
+      "exported": "candidate/artifacts/f0a22ccf918f-session.json",
+      "sha256": "4211cb8c54c25d5c099c7259d946a256ee9763573893d3c3e5c3d9e6eeecb906"
+    },
+    {
+      "original": "candidate/temp/test_engine_keeps_structured_c0/output/data/synthetic-workspace/work/C-01/05034422409c43bf8f9bb77298aadfe1/diagnostic-evidence.json",
+      "exported": "candidate/artifacts/3f9efd22012a-diagnostic-evidence.json",
+      "sha256": "34ca749545b535a015294088a127bdcb2f0f21e7ef50760130fc357021fed32e"
+    },
+    {
+      "original": "candidate/temp/test_engine_keeps_structured_c0/output/data/synthetic-workspace/work/C-01/05034422409c43bf8f9bb77298aadfe1/error.json",
+      "exported": "candidate/artifacts/99d1fe36f9e8-error.json",
+      "sha256": "a39c7f466d7a35204c2f70b3b1d2d8731e6f6c63f11b43bbfa04efb754f8dd91"
+    },
+    {
+      "original": "candidate/temp/test_engine_keeps_structured_c0/output/data/synthetic-workspace/work/C-01/05034422409c43bf8f9bb77298aadfe1/session.json",
+      "exported": "candidate/artifacts/46033af46080-session.json",
+      "sha256": "265be7d5eec4de655b87fea262a077eafc9c9aa65b00929e6d60a6c196c6c530"
+    }
+  ]
+}

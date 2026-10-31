@@ -1,0 +1,7 @@
+{
+  "case_id": "C-03",
+  "error_type": "OSError",
+  "message": "[Errno 5] injected transient end-to-end staging failure",
+  "usage": [],
+  "model_response_failures": []
+}

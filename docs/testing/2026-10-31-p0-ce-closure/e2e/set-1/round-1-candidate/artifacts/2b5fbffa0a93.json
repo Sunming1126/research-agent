@@ -1,0 +1,365 @@
+{
+  "claims": [
+    {
+      "evidence_id": "ev-1",
+      "claim": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "filename": "Study_1.pdf",
+      "page": 1,
+      "chunk_id": "9081fa297bb0f39937c5",
+      "quote": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "kind": "source_context",
+      "facet": "unspecified",
+      "role": "source_context",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-2",
+      "claim": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "filename": "Study_2.pdf",
+      "page": 1,
+      "chunk_id": "1468db2792e66f1ff4ae",
+      "quote": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "kind": "source_context",
+      "facet": "unspecified",
+      "role": "source_context",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-3",
+      "claim": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "filename": "Study_3.pdf",
+      "page": 1,
+      "chunk_id": "0ccb72fd75ff069b3e36",
+      "quote": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "kind": "source_context",
+      "facet": "unspecified",
+      "role": "source_context",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-4",
+      "claim": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "filename": "Study_4.pdf",
+      "page": 1,
+      "chunk_id": "8dd6b24a69aa5380f652",
+      "quote": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "kind": "source_context",
+      "facet": "unspecified",
+      "role": "source_context",
+      "verification": "verbatim_only"
+    },
+    {
+      "evidence_id": "ev-5",
+      "claim": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "filename": "Study_5.pdf",
+      "page": 1,
+      "chunk_id": "d7e6b5e3ed417dd91dee",
+      "quote": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "kind": "source_context",
+      "facet": "unspecified",
+      "role": "source_context",
+      "verification": "verbatim_only"
+    }
+  ],
+  "rejected_claims": [],
+  "retrieval_trace": {},
+  "query_plan_status": "model",
+  "chunks": [
+    {
+      "chunk_id": "9081fa297bb0f39937c5",
+      "filename": "Study_1.pdf",
+      "page": 1,
+      "heading": "Study_1.pdf",
+      "text": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "kind": "text",
+      "sha256": "9081fa297bb0f39937c57b5e169d5614349e2d8a8bd0830a10db1d9fbc9269d0",
+      "start": 0,
+      "end": 115,
+      "document_sha256": "86f9a2a1350b874c414ac161eb272cc62da8a23fe38113a888156810e05d9556"
+    },
+    {
+      "chunk_id": "1468db2792e66f1ff4ae",
+      "filename": "Study_2.pdf",
+      "page": 1,
+      "heading": "Study_2.pdf",
+      "text": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "kind": "text",
+      "sha256": "1468db2792e66f1ff4ae8e1f333170a5c6abc1ee512fd7e5c8b081268ccc30f2",
+      "start": 0,
+      "end": 115,
+      "document_sha256": "183db989605a6c2662695519f8e3f8e6780b87391d1bd94e715bde2733722c44"
+    },
+    {
+      "chunk_id": "0ccb72fd75ff069b3e36",
+      "filename": "Study_3.pdf",
+      "page": 1,
+      "heading": "Study_3.pdf",
+      "text": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "kind": "text",
+      "sha256": "0ccb72fd75ff069b3e36e68492e23907224de0bdc97e46cb450faa3a2372ee64",
+      "start": 0,
+      "end": 115,
+      "document_sha256": "b0ae294e67bbc10783d2450a6d2a1e93030bbb90e360ae4a5a5a8996335f4ec9"
+    },
+    {
+      "chunk_id": "8dd6b24a69aa5380f652",
+      "filename": "Study_4.pdf",
+      "page": 1,
+      "heading": "Study_4.pdf",
+      "text": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "kind": "text",
+      "sha256": "8dd6b24a69aa5380f65243cfb118156e1b6aa03096eebd2841c9e93ea74ae8c4",
+      "start": 0,
+      "end": 115,
+      "document_sha256": "86cc970ff71eb80f1a1d1cb6b01ce7f11ab51cd2a35c3e499ea7adc27e156bed"
+    },
+    {
+      "chunk_id": "d7e6b5e3ed417dd91dee",
+      "filename": "Study_5.pdf",
+      "page": 1,
+      "heading": "Study_5.pdf",
+      "text": "Synthetic software fixture: urban vegetation and remote sensing. Synthetic software fixture: urban vegetation and r",
+      "kind": "text",
+      "sha256": "d7e6b5e3ed417dd91deed5eccba6c2c04eafd778fd827ad63523add4cca4aacd",
+      "start": 0,
+      "end": 115,
+      "document_sha256": "a2e1d50ce9b72aac301cae15669ea51a029345733c2a02bebcdd3a20101d1f1d"
+    }
+  ],
+  "audit": {
+    "ok": true,
+    "issues": [],
+    "history": [
+      {
+        "attempt": 1,
+        "stage": "validation",
+        "issues": [
+          "report body shorter than 800 characters"
+        ]
+      },
+      {
+        "attempt": 2,
+        "stage": "audit",
+        "audit": {
+          "ok": true,
+          "issues": []
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "papers": {
+      "Study_1.pdf": {
+        "unspecified": [
+          "ev-1"
+        ]
+      },
+      "Study_2.pdf": {
+        "unspecified": [
+          "ev-2"
+        ]
+      },
+      "Study_3.pdf": {
+        "unspecified": [
+          "ev-3"
+        ]
+      },
+      "Study_4.pdf": {
+        "unspecified": [
+          "ev-4"
+        ]
+      },
+      "Study_5.pdf": {
+        "unspecified": [
+          "ev-5"
+        ]
+      }
+    },
+    "gaps": [
+      {
+        "filename": "Study_1.pdf",
+        "facet": "method"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "method"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "method"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "method"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "method"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "limitation"
+      }
+    ],
+    "scope": "gaps mean missing verified evidence, not that the paper omitted the topic"
+  },
+  "evidence_audit": {
+    "mode": "authorized_source_context",
+    "semantic_claims_verified": false
+  },
+  "report_trace": [
+    {
+      "attempt": 1,
+      "raw_markdown": "# Synthetic fixture report\n\n测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测\n\n[1, p.1] [2, p.1] [3, p.1] [4, p.1] [5, p.1]",
+      "raw_response": {
+        "markdown": "# Synthetic fixture report\n\n测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测测\n\n[1, p.1] [2, p.1] [3, p.1] [4, p.1] [5, p.1]",
+        "used_evidence_ids": [
+          "ev-1",
+          "ev-2",
+          "ev-3",
+          "ev-4",
+          "ev-5"
+        ]
+      },
+      "used_evidence_ids": [
+        "ev-1",
+        "ev-2",
+        "ev-3",
+        "ev-4",
+        "ev-5"
+      ],
+      "patches": [],
+      "source_task": {
+        "case_id": "E-01",
+        "function": "Idea",
+        "title": "Synthetic research fixture",
+        "input": "Compare urban vegetation and surface temperature using remote sensing; exclude plant taxonomy only.",
+        "materials": [
+          "Study_1.pdf",
+          "Study_2.pdf",
+          "Study_3.pdf",
+          "Study_4.pdf",
+          "Study_5.pdf"
+        ],
+        "constraints": [],
+        "expected_output": "Idea",
+        "output_schema_ref": "Idea"
+      }
+    },
+    {
+      "attempt": 2,
+      "raw_markdown": "# Synthetic fixture report\n\n## 证据比较\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[1, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[2, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[3, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[4, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[5, p.1]\n\n## 研究动机与边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 技术路线\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 基线与数据集\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 实验设计与消融\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 量化指标\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 多文献互补\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可行性与失败边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可证伪方式\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n",
+      "raw_response": {
+        "markdown": "# Synthetic fixture report\n\n## 证据比较\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[1, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[2, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[3, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[4, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[5, p.1]\n\n## 研究动机与边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 技术路线\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 基线与数据集\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 实验设计与消融\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 量化指标\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 多文献互补\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可行性与失败边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可证伪方式\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n",
+        "used_evidence_ids": [
+          "ev-1",
+          "ev-2",
+          "ev-3",
+          "ev-4",
+          "ev-5"
+        ]
+      },
+      "used_evidence_ids": [
+        "ev-1",
+        "ev-2",
+        "ev-3",
+        "ev-4",
+        "ev-5"
+      ],
+      "patches": [],
+      "source_task": {
+        "case_id": "E-01",
+        "function": "Idea",
+        "title": "Synthetic research fixture",
+        "input": "Compare urban vegetation and surface temperature using remote sensing; exclude plant taxonomy only.",
+        "materials": [
+          "Study_1.pdf",
+          "Study_2.pdf",
+          "Study_3.pdf",
+          "Study_4.pdf",
+          "Study_5.pdf"
+        ],
+        "constraints": [],
+        "expected_output": "Idea",
+        "output_schema_ref": "Idea"
+      }
+    }
+  ],
+  "last_model_draft": "# Synthetic fixture report\n\n## 证据比较\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[1, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[2, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[3, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[4, p.1]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[5, p.1]\n\n## 研究动机与边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 技术路线\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 基线与数据集\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 实验设计与消融\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 量化指标\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 多文献互补\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可行性与失败边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可证伪方式\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。"
+}

@@ -1,0 +1,1781 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="16" skipped="0" tests="18" time="1.249" timestamp="2026-10-31T11:53:36.923291+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[none-None-C]" time="0.003" /><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[none-None-E]" time="0.003" /><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[missing-missing_field-C]" time="0.003"><failure message="assert False&#10; +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA2C18380&gt;)">kind = 'C', fault = 'missing', code = 'missing_field'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[missing-missing_field-C]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+            assert messages[0]['status'] == 502
+            issues = body.get('contract_errors', [])
+&gt;           assert any(item['code'] == code for item in issues)
+E           assert False
+E            +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA2C18380&gt;)
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:77: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[missing-missing_field-E]" time="0.003"><failure message="assert False&#10; +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA2C18040&gt;)">kind = 'E', fault = 'missing', code = 'missing_field'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[missing-missing_field-E]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+            assert messages[0]['status'] == 502
+            issues = body.get('contract_errors', [])
+&gt;           assert any(item['code'] == code for item in issues)
+E           assert False
+E            +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA2C18040&gt;)
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:77: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[extra-extra_field-C]" time="0.003"><failure message="assert False&#10; +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA34A9F20&gt;)">kind = 'C', fault = 'extra', code = 'extra_field'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[extra-extra_field-C]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+            assert messages[0]['status'] == 502
+            issues = body.get('contract_errors', [])
+&gt;           assert any(item['code'] == code for item in issues)
+E           assert False
+E            +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA34A9F20&gt;)
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:77: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[extra-extra_field-E]" time="0.026"><failure message="assert False&#10; +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA2C1B030&gt;)">kind = 'E', fault = 'extra', code = 'extra_field'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[extra-extra_field-E]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+            assert messages[0]['status'] == 502
+            issues = body.get('contract_errors', [])
+&gt;           assert any(item['code'] == code for item in issues)
+E           assert False
+E            +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA2C1B030&gt;)
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:77: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[markdown_null-type_error-C]" time="0.027"><failure message="assert 200 == 502">kind = 'C', fault = 'markdown_null', code = 'type_error'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[markdown_null-type_error-C]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+&gt;           assert messages[0]['status'] == 502
+E           assert 200 == 502
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:75: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[markdown_null-type_error-E]" time="0.025"><failure message="assert 200 == 502">kind = 'E', fault = 'markdown_null', code = 'type_error'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[markdown_null-type_error-E]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+&gt;           assert messages[0]['status'] == 502
+E           assert 200 == 502
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:75: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[path_array-type_error-C]" time="0.003"><failure message="assert 200 == 502">kind = 'C', fault = 'path_array', code = 'type_error'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[path_array-type_error-C]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+&gt;           assert messages[0]['status'] == 502
+E           assert 200 == 502
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:75: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[path_array-type_error-E]" time="0.003"><failure message="assert 200 == 502">kind = 'E', fault = 'path_array', code = 'type_error'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[path_array-type_error-E]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+&gt;           assert messages[0]['status'] == 502
+E           assert 200 == 502
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:75: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[empty_markdown-content_constraint-C]" time="0.025"><failure message="assert 200 == 502">kind = 'C', fault = 'empty_markdown', code = 'content_constraint'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[empty_markdown-content_constraint-C]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+&gt;           assert messages[0]['status'] == 502
+E           assert 200 == 502
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:75: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[empty_markdown-content_constraint-E]" time="0.003"><failure message="assert 200 == 502">kind = 'E', fault = 'empty_markdown', code = 'content_constraint'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[empty_markdown-content_constraint-E]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+&gt;           assert messages[0]['status'] == 502
+E           assert 200 == 502
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:75: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[nested-nested_structure-C]" time="0.003"><failure message="assert False&#10; +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA46D4AD0&gt;)">kind = 'C', fault = 'nested', code = 'nested_structure'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[nested-nested_structure-C]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+            assert messages[0]['status'] == 502
+            issues = body.get('contract_errors', [])
+&gt;           assert any(item['code'] == code for item in issues)
+E           assert False
+E            +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA46D4AD0&gt;)
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:77: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[nested-nested_structure-E]" time="0.016"><failure message="assert False&#10; +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA46F25A0&gt;)">kind = 'E', fault = 'nested', code = 'nested_structure'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[nested-nested_structure-E]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+            assert messages[0]['status'] == 502
+            issues = body.get('contract_errors', [])
+&gt;           assert any(item['code'] == code for item in issues)
+E           assert False
+E            +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA46F25A0&gt;)
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:77: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[wrong_case-identity_mismatch-C]" time="0.003"><failure message="assert False&#10; +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA46D52F0&gt;)">kind = 'C', fault = 'wrong_case', code = 'identity_mismatch'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[wrong_case-identity_mismatch-C]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+            assert messages[0]['status'] == 502
+            issues = body.get('contract_errors', [])
+&gt;           assert any(item['code'] == code for item in issues)
+E           assert False
+E            +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA46D52F0&gt;)
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:77: AssertionError</failure></testcase><testcase classname="" name="test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[wrong_case-identity_mismatch-E]" time="0.003"><failure message="assert False&#10; +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA26B7B90&gt;)">kind = 'E', fault = 'wrong_case', code = 'identity_mismatch'
+request = &lt;FixtureRequest for &lt;Function test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata[wrong_case-identity_mismatch-E]&gt;&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    @pytest.mark.parametrize('fault,code', [
+        ('none', None), ('missing', 'missing_field'), ('extra', 'extra_field'),
+        ('markdown_null', 'type_error'), ('path_array', 'type_error'),
+        ('empty_markdown', 'content_constraint'), ('nested', 'nested_structure'),
+        ('wrong_case', 'identity_mismatch'),
+    ])
+    def test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata(kind, fault, code, request):
+        question = case(kind + '-01')
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        result = {'case_id': question['case_id'],
+                  'path': f'data/expert/{question["case_id"]}-{report_kind}-synthetic-workspace.md',
+                  'markdown': 'Synthetic wire-only string; complete content is checked separately by the engine.'}
+        if fault == 'missing':
+            result.pop('markdown')
+        elif fault == 'extra':
+            result['output'] = {}
+        elif fault == 'markdown_null':
+            result['markdown'] = None
+        elif fault == 'path_array':
+            result['path'] = []
+        elif fault == 'empty_markdown':
+            result['markdown'] = '  '
+        elif fault == 'nested':
+            result = [result]
+        elif fault == 'wrong_case':
+            result['case_id'] = kind + '-99'
+    
+        async def scenario():
+            # Deliberately synthetic SDK fixture identifiers, never native proof.
+            metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+            async def upstream(scope, receive, send):
+                await receive()
+                body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+                await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+                await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+            delivered = False
+            async def receive():
+                nonlocal delivered
+                if delivered:
+                    return {'type': 'http.disconnect'}
+                delivered = True
+                return {'type': 'http.request', 'body': json.dumps(question).encode()}
+            messages = []
+            async def send(message):
+                messages.append(message)
+            await ResearchRequestAdapter(upstream, lambda: 180)(
+                {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+            headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+            body = json.loads(b''.join(m.get('body', b'') for m in messages))
+            observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                        'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                        'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+            if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+                directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+                directory.mkdir(parents=True, exist_ok=True)
+                name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+                (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            if fault == 'none':
+                assert messages[0]['status'] == 200 and body == result
+            else:
+                assert messages[0]['status'] == 502
+                issues = body.get('contract_errors', [])
+                assert any(item['code'] == code for item in issues)
+                assert all('pointer' in item and 'expected' in item for item in issues)
+            assert headers.get('x-agenthack-trace-id') == metadata['trace_id']
+            assert headers.get('x-agenthack-session-id') == metadata['session_id']
+&gt;       asyncio.run(scenario())
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        # Deliberately synthetic SDK fixture identifiers, never native proof.
+        metadata = {'trace_id': 'fixture-sdk-trace', 'session_id': 'fixture-sdk-session'}
+        async def upstream(scope, receive, send):
+            await receive()
+            body = {'status': 'success', 'output': {'answer': json.dumps(result)}, 'metadata': metadata}
+            await send({'type': 'http.response.start', 'status': 200, 'headers': []})
+            await send({'type': 'http.response.body', 'body': json.dumps(body).encode()})
+        delivered = False
+        async def receive():
+            nonlocal delivered
+            if delivered:
+                return {'type': 'http.disconnect'}
+            delivered = True
+            return {'type': 'http.request', 'body': json.dumps(question).encode()}
+        messages = []
+        async def send(message):
+            messages.append(message)
+        await ResearchRequestAdapter(upstream, lambda: 180)(
+            {'type': 'http', 'path': '/solve', 'method': 'POST', 'headers': []}, receive, send)
+        headers = {k.decode(): v.decode() for k, v in messages[0]['headers']}
+        body = json.loads(b''.join(m.get('body', b'') for m in messages))
+        observed = {'kind': 'synthetic_SDK_wire_failure_injection', 'fault': fault,
+                    'sdk_identifiers_are_fixture_values': True, 'target_model_calls': 0,
+                    'http_status': messages[0]['status'], 'body': body, 'headers': headers}
+        if os.environ.get('P0_CASE_EVIDENCE_DIR'):
+            directory = Path(os.environ['P0_CASE_EVIDENCE_DIR'])
+            directory.mkdir(parents=True, exist_ok=True)
+            name = re.sub('[^a-zA-Z0-9_.-]', '_', request.node.name) + '.json'
+            (directory / name).write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        if fault == 'none':
+            assert messages[0]['status'] == 200 and body == result
+        else:
+            assert messages[0]['status'] == 502
+            issues = body.get('contract_errors', [])
+&gt;           assert any(item['code'] == code for item in issues)
+E           assert False
+E            +  where False = any(&lt;generator object test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata.&lt;locals&gt;.scenario.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA26B7B90&gt;)
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:77: AssertionError</failure></testcase><testcase classname="" name="test_engine_keeps_structured_contract_diff_in_failure_evidence[C]" time="0.259"><failure message="assert False&#10; +  where False = any(&lt;generator object test_engine_keeps_structured_contract_diff_in_failure_evidence.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA26B76B0&gt;)">kind = 'C'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-wire-baseline-20261031-115336-76e02e/baseline/temp/test_engine_keeps_structured_c0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000015CA2C94FB0&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_engine_keeps_structured_contract_diff_in_failure_evidence(kind, tmp_path, monkeypatch):
+        from fixtures import FakeLLM, papers
+        from research_agent.core.config import Settings
+        from research_agent.core.engine import ResearchAgentEngine
+        from research_agent.workflows.tasks import TaskHandlers
+        library = tmp_path / 'papers'
+        names = papers(library)
+        question = case(kind + '-01', names)
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        def corrupt_report(self, task, retriever):
+            return {'case_id': task.case_id,
+                    'path': f'data/expert/{task.case_id}-{report_kind}-synthetic-workspace.md',
+                    'markdown': None}
+        monkeypatch.setattr(TaskHandlers, 'handle', corrupt_report)
+        output = tmp_path / 'output'
+        engine = ResearchAgentEngine(Settings(tmp_path, output, 'synthetic-workspace', [library]), FakeLLM)
+        with pytest.raises(ValueError):
+            engine.solve_sync(question)
+        files = list((output / f'data/synthetic-workspace/work/{question["case_id"]}').glob('*/error.json'))
+        assert len(files) == 1
+        evidence = json.loads(files[0].read_text(encoding='utf-8'))
+&gt;       assert any(row['code'] == 'type_error' and row['pointer'] == '/markdown'
+                   for row in evidence.get('schema_diff', []))
+E       assert False
+E        +  where False = any(&lt;generator object test_engine_keeps_structured_contract_diff_in_failure_evidence.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA26B76B0&gt;)
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:106: AssertionError</failure></testcase><testcase classname="" name="test_engine_keeps_structured_contract_diff_in_failure_evidence[E]" time="0.174"><failure message="assert False&#10; +  where False = any(&lt;generator object test_engine_keeps_structured_contract_diff_in_failure_evidence.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA46D6B50&gt;)">kind = 'E'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-wire-baseline-20261031-115336-76e02e/baseline/temp/test_engine_keeps_structured_c1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000015CA2C83740&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_engine_keeps_structured_contract_diff_in_failure_evidence(kind, tmp_path, monkeypatch):
+        from fixtures import FakeLLM, papers
+        from research_agent.core.config import Settings
+        from research_agent.core.engine import ResearchAgentEngine
+        from research_agent.workflows.tasks import TaskHandlers
+        library = tmp_path / 'papers'
+        names = papers(library)
+        question = case(kind + '-01', names)
+        report_kind = '综述' if kind == 'C' else '灵感Idea报告'
+        def corrupt_report(self, task, retriever):
+            return {'case_id': task.case_id,
+                    'path': f'data/expert/{task.case_id}-{report_kind}-synthetic-workspace.md',
+                    'markdown': None}
+        monkeypatch.setattr(TaskHandlers, 'handle', corrupt_report)
+        output = tmp_path / 'output'
+        engine = ResearchAgentEngine(Settings(tmp_path, output, 'synthetic-workspace', [library]), FakeLLM)
+        with pytest.raises(ValueError):
+            engine.solve_sync(question)
+        files = list((output / f'data/synthetic-workspace/work/{question["case_id"]}').glob('*/error.json'))
+        assert len(files) == 1
+        evidence = json.loads(files[0].read_text(encoding='utf-8'))
+&gt;       assert any(row['code'] == 'type_error' and row['pointer'] == '/markdown'
+                   for row in evidence.get('schema_diff', []))
+E       assert False
+E        +  where False = any(&lt;generator object test_engine_keeps_structured_contract_diff_in_failure_evidence.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000015CA46D6B50&gt;)
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_wire_contract.py:106: AssertionError</failure></testcase></testsuite></testsuites>

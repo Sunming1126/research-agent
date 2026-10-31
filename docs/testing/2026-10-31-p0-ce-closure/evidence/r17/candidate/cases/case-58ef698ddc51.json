@@ -1,0 +1,23 @@
+{
+  "kind": "synthetic_SDK_wire_failure_injection",
+  "fault": "missing",
+  "sdk_identifiers_are_fixture_values": true,
+  "target_model_calls": 0,
+  "http_status": 502,
+  "body": {
+    "detail": "invalid research answer from runtime",
+    "contract_errors": [
+      {
+        "code": "missing_field",
+        "pointer": "/markdown",
+        "expected": "nonempty string"
+      }
+    ]
+  },
+  "headers": {
+    "x-agenthack-trace-id": "fixture-sdk-trace",
+    "x-agenthack-session-id": "fixture-sdk-session",
+    "content-length": "145",
+    "content-type": "application/json"
+  }
+}

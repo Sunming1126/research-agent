@@ -1,0 +1,7 @@
+{
+  "case_id": "C-01",
+  "error_type": "OSError",
+  "message": "[Errno 5] injected staging fsync failure",
+  "usage": [],
+  "model_response_failures": []
+}

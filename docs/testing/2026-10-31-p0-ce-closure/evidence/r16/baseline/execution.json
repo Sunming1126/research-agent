@@ -1,0 +1,13 @@
+{
+  "returncode": 1,
+  "timed_out": false,
+  "seconds": 1.927,
+  "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+  "native_harness_execution": false,
+  "target_model_calls": 0,
+  "tests": 18,
+  "failures": 16,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 2
+}

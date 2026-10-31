@@ -1,0 +1,23 @@
+{
+  "stage": "baseline",
+  "suite": "durability",
+  "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-durability-baseline-20261031-115712-e239d9",
+  "baseline_revision": "6145a5cc151f02f587585e918a75a3716c70c0a5",
+  "application_source_unchanged_during_run": true,
+  "source_files": 45,
+  "target_model_calls": 0,
+  "native_harness_execution": false,
+  "result": {
+    "returncode": 1,
+    "timed_out": false,
+    "seconds": 1.995,
+    "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+    "native_harness_execution": false,
+    "target_model_calls": 0,
+    "tests": 5,
+    "failures": 4,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 1
+  }
+}

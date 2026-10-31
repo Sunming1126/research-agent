@@ -1,0 +1,7 @@
+{
+  "case_id": "E-01",
+  "error_type": "ValueError",
+  "message": "report requires one references section",
+  "usage": [],
+  "model_response_failures": []
+}

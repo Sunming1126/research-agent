@@ -1,0 +1,14 @@
+{
+  "case_id": "C-03",
+  "scope": "current_request_staging_only",
+  "attempts": [
+    {
+      "action": "R3_retry_staging",
+      "attempt": 1,
+      "path": "submission-stage/data/expert/C-03-综述-offline-ce-fixed.md",
+      "value_sha256": "5934b1b61709b7ba7b9e1694167a9cdb1e7382e98ded8245dd8e85dee0184b20",
+      "error_type": "OSError",
+      "errno": 5
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "stage": "candidate",
+  "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-candidate-20261031-114250-1b828b",
+  "baseline_revision": "316c2d2c1b5c96c59b09fe906356f18d8d0364d8",
+  "application_source_unchanged_during_run": true,
+  "source_files": 45,
+  "target_model_calls": 0,
+  "native_harness_execution": false,
+  "result": {
+    "returncode": 0,
+    "seconds": 1.341,
+    "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+    "native_harness_execution": false,
+    "target_model_calls": 0,
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 8
+  }
+}

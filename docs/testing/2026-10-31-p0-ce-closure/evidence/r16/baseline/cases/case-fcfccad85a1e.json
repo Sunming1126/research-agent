@@ -1,0 +1,14 @@
+{
+  "kind": "synthetic_SDK_wire_failure_injection",
+  "fault": "wrong_case",
+  "sdk_identifiers_are_fixture_values": true,
+  "target_model_calls": 0,
+  "http_status": 502,
+  "body": {
+    "detail": "invalid research answer from runtime"
+  },
+  "headers": {
+    "content-length": "49",
+    "content-type": "application/json"
+  }
+}

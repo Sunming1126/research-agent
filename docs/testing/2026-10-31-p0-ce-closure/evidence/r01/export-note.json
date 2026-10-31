@@ -1,0 +1,68 @@
+{
+  "id": "r01",
+  "original_run": "p0-ce-baseline-20261031-114142-d5ffaa",
+  "original_run_preserved": true,
+  "summary": {
+    "stage": "baseline",
+    "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-baseline-20261031-114142-d5ffaa",
+    "baseline_revision": "316c2d2c1b5c96c59b09fe906356f18d8d0364d8",
+    "application_source_unchanged_during_run": true,
+    "source_files": 45,
+    "target_model_calls": 0,
+    "native_harness_execution": false,
+    "result": {
+      "returncode": 1,
+      "seconds": 2.175,
+      "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "tests": 8,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    }
+  },
+  "selected_artifact_map": [
+    {
+      "original": "baseline/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_C-2_.json",
+      "exported": "baseline/cases/case-8650b606d2b8.json",
+      "sha256": "083d5c9bd2d41d95325ae9fc1c8290d30744ff240e1fe035572bc0239be083b1"
+    },
+    {
+      "original": "baseline/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_E-3_.json",
+      "exported": "baseline/cases/case-3301661c70f7.json",
+      "sha256": "319c8348973a711165c69167bb91437f4b1298f4bc12f4bc9fbfb0501d5181a0"
+    },
+    {
+      "original": "baseline/cases/test_current_valid_draft_survives_later_audit_timeout_C_.json",
+      "exported": "baseline/cases/case-be4e720c5774.json",
+      "sha256": "fba26e5900ebe3fa6386541497ceb78bc5b496d0ae80119c993e13c7cd8f651c"
+    },
+    {
+      "original": "baseline/cases/test_current_valid_draft_survives_later_audit_timeout_E_.json",
+      "exported": "baseline/cases/case-2820fb3d1a0d.json",
+      "sha256": "bd86946ce1de8f1e0b268582172b22d7646da0498d6758d0c502dc029bdd8848"
+    },
+    {
+      "original": "baseline/cases/test_legal_800_character_boundary_uses_no_additional_generation_C_.json",
+      "exported": "baseline/cases/case-52a9c3e34b73.json",
+      "sha256": "8ce853ab5a5db4d47abcab0364dd6c118c19d4773ce7bd789f439f588082bb21"
+    },
+    {
+      "original": "baseline/cases/test_legal_800_character_boundary_uses_no_additional_generation_E_.json",
+      "exported": "baseline/cases/case-f4afc2fe8e37.json",
+      "sha256": "9a91a4dafebd1c6575ca804f6182609b3b34f4f350e2c388e002a871b6041448"
+    },
+    {
+      "original": "baseline/cases/test_short_first_draft_recovers_within_existing_attempt_limit_C_.json",
+      "exported": "baseline/cases/case-d22382adcd66.json",
+      "sha256": "5722559f3600c631ace63f90872d8458044b3d52578cee3c5241634fe5b9cd83"
+    },
+    {
+      "original": "baseline/cases/test_short_first_draft_recovers_within_existing_attempt_limit_E_.json",
+      "exported": "baseline/cases/case-72d2a6a17555.json",
+      "sha256": "2dbda507efd15aa208a5d54e8ba664a92313a9d29d6bfc6ae2c3fa92de132b9d"
+    }
+  ]
+}

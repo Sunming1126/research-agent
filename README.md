@@ -1,5 +1,7 @@
 # 科研助手 Agent · 0.4.20 协作候选
 
+> 2026-10-31本分支新增P0源码候选（`91d15f8`）：依次修复C/E短稿恢复、wire类型与诊断、暂存fsync、同值暂存有界重试。最终439通过、6环境跳过、1已知xfail；三组固定输入官方SDK本地夹具交付旧3/12→新12/12。目标模型调用0，真实模型/平台及Linux重启/持久幂等尚未验收，未合main/未发新镜像；下方原0.4.20 tar不含这四项改动。[本轮闭环与证据](docs/testing/2026-10-31-p0-ce-closure/P0四项修复闭环.md)。
+
 2026-10-30按用户要求将当前优化成果同步到main，供队友开发与复测。主线保持“授权材料检索 → 原文证据核验 → 生成 → 校验落盘”。当前平台复测与正式成绩待完成。
 
 [队友交接与优势说明](docs/队友交接-0.4.20-20261030.md) · [C修复PR #12](https://github.com/Sunming1126/research-agent/pull/12) · [完整候选镜像](https://github.com/Sunming1126/research-agent/releases/tag/untagged-f8c44d80dbfefafe393f)

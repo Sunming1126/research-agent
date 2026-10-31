@@ -1,0 +1,9 @@
+{
+  "id": "r14",
+  "original_run": "p0-ce-wire-baseline-20261031-115048-1ba297",
+  "original_run_preserved": true,
+  "status": "stopped_in_restricted_environment",
+  "completed_tests": null,
+  "note": "Owned blocked wire baseline stopped after same baseline completed with normal permissions; not passed.",
+  "selected_artifact_map": []
+}

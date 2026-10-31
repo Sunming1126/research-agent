@@ -1,0 +1,24 @@
+{
+  "kind": "evidence_seal_not_a_new_functional_test",
+  "application_files_verified": 45,
+  "application_head": "91d15f80d720476c9aee1f96a6320b97ecc97dea",
+  "changed_production_paths": [
+    "src/research_agent/contracts/validation.py",
+    "src/research_agent/core/engine.py",
+    "src/research_agent/core/utils.py",
+    "src/research_agent/integrations/http_runtime.py",
+    "src/research_agent/workflows/reports.py"
+  ],
+  "tests_at_final_export": {
+    "tests/test_ce_final_contract_recovery.py": "f25d85a307fe26b4d733c734131cf08fad65b74504563b6af68081078385f459",
+    "tests/test_ce_wire_contract.py": "a8627b4568c99f7bff068923a83e062daadc598098b32769db4d7c847e8ce859",
+    "tests/test_ce_durable_staging.py": "bb7f5d13e8304c7f7e698240400d16acc3e117fc50f292d5b43504fd77beecda",
+    "tests/test_ce_staging_retry.py": "b5ebc5b2fcf5e313725207837ad70845602d48e313683dc217d28d050f592420",
+    "tests/test_submission_stability.py": "65173828f0f4538b2e62bb1e26a1c7c2a99955b12aad1a1e47e16f6b1bc18be4",
+    "tests/fixtures.py": "964669c91cc110ccad67b00bff911098cf62a2287d25f1e2ba9eb60e50231b84"
+  },
+  "all_success_and_failure_records_retained": true,
+  "target_model_calls": 0,
+  "P0_overall_accepted": false,
+  "new_image_archive_built": false
+}

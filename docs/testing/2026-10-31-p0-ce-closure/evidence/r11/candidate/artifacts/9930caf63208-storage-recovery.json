@@ -1,0 +1,14 @@
+{
+  "case_id": "C-01",
+  "scope": "current_request_staging_only",
+  "attempts": [
+    {
+      "action": "R3_retry_staging",
+      "attempt": 1,
+      "path": "submission-stage/data/expert/C-01-综述-synthetic-workspace.md",
+      "value_sha256": "0ef9fa1fe18504d9832b05399b751c52965d7c7addaeacec01ad2127dc5c9e6f",
+      "error_type": "OSError",
+      "errno": 5
+    }
+  ]
+}

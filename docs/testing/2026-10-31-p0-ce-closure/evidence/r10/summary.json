@@ -1,0 +1,23 @@
+{
+  "stage": "baseline",
+  "suite": "retry",
+  "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-retry-baseline-20261031-120103-aebd3b",
+  "baseline_revision": "c9c079d3c0c0371d0b369400ed9892096b05939d",
+  "application_source_unchanged_during_run": true,
+  "source_files": 45,
+  "target_model_calls": 0,
+  "native_harness_execution": false,
+  "result": {
+    "returncode": 1,
+    "timed_out": false,
+    "seconds": 2.409,
+    "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+    "native_harness_execution": false,
+    "target_model_calls": 0,
+    "tests": 6,
+    "failures": 4,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 2
+  }
+}

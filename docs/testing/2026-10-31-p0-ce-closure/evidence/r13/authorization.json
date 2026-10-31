@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-31",
+  "user_reply": "允许本轮C/E离线测试",
+  "scope": "C/E故障注入、新旧对照和源码回归，由Codex在原Agent挑战赛目录执行",
+  "target_model_calls_allowed": false,
+  "execution": "Codex offline, not native Harness or official platform acceptance",
+  "real_model_scope_unchanged": "original Harness workspace / fixed session / magic"
+}
