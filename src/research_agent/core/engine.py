@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import errno
 import os
 import json
 import logging
@@ -16,7 +17,7 @@ from .dispatch_plan import verify_current_assignment
 from .models import CaseContext, Artifact
 from .session import CaseSession, checkpoint, current_session
 from .b_submission import B_REQUEST, publish_b, failure_submission
-from .utils import confined, write_json, read_json, atomic_text, sha256_file
+from .utils import confined, write_json, read_json, atomic_text, sha256_file, sha256_bytes
 from ..contracts.validation import validate_result
 from ..integrations.instrumentation import tool
 from ..integrations.llm import GatewayLLM
@@ -230,15 +231,41 @@ class ResearchAgentEngine:
         checkpoint("persist_and_readback")
         durable = case.function in {'Survey', 'Idea'}
         stage_root = confined(work, "submission-stage")
+        storage_retries = []
+        def stage_write(writer, path, value):
+            # Only pre-publication, request-owned files are retryable. The value
+            # is fixed; neither generation nor the publication transaction repeats.
+            for attempt in range(2 if durable else 1):
+                checkpoint()
+                try:
+                    return writer(path, value, durable=durable)
+                except OSError as exc:
+                    session = current_session()
+                    if (not durable or attempt or isinstance(exc, (TimeoutError, PermissionError))
+                            or exc.errno not in {errno.EIO, errno.EINTR, errno.EAGAIN, errno.ENOSPC, errno.EBUSY}
+                            or session is None or session.publication_state != 'active'):
+                        raise
+                    content = value if isinstance(value, str) else json.dumps(
+                        value, ensure_ascii=False, indent=2, allow_nan=False) + '\n'
+                    storage_retries.append({'action': 'R3_retry_staging', 'attempt': attempt + 1,
+                                            'path': path.relative_to(work).as_posix(),
+                                            'value_sha256': sha256_bytes(content.encode('utf-8')),
+                                            'error_type': type(exc).__name__, 'errno': exc.errno})
+                    try:
+                        write_json(confined(work, 'storage-recovery.json'),
+                                   {'case_id': case.case_id, 'scope': 'current_request_staging_only',
+                                    'attempts': storage_retries})
+                    except (OSError, ValueError):
+                        logging.getLogger(__name__).error('staging retry evidence could not be saved')
         updates = []
         if "markdown" in result:
             staged_markdown = confined(stage_root, result["path"])
-            atomic_text(staged_markdown, result["markdown"], durable=durable)
+            stage_write(atomic_text, staged_markdown, result["markdown"])
             updates.append((staged_markdown, confined(s.output, result["path"])))
             checkpoint()
         target = confined(s.output, f"data/{s.team}/{case.case_id}.json")
         staged_target = confined(stage_root, f"data/{s.team}/{case.case_id}.json")
-        write_json(staged_target, result, durable=durable)
+        stage_write(write_json, staged_target, result)
         checkpoint()
         readback = read_json(staged_target)
         if readback != result:
@@ -252,7 +279,7 @@ class ResearchAgentEngine:
         artifacts += [(confined(s.output, f["path"]), confined(s.output, f["path"])) for f in result.get("figures", [])]
         rows = [asdict(Artifact(public.relative_to(s.output).as_posix(), public.suffix[1:], stored.stat().st_size, sha256_file(stored)))
                 for public, stored in artifacts]
-        write_json(confined(work, "evidence.json"), {"claims": [asdict(e) for e in handler.ledger],
+        stage_write(write_json, confined(work, "evidence.json"), {"claims": [asdict(e) for e in handler.ledger],
                                                    "rejected_claims": handler.rejected_claims,
                                                    "retrieval_trace": handler.retrieval_trace,
                                                    "query_plan_status": handler.query_plan_status,
@@ -261,15 +288,15 @@ class ResearchAgentEngine:
                                                    "coverage": handler.coverage,
                                                    "evidence_audit": handler.evidence_audit,
                                                    "report_trace": handler.report_trace,
-                                                    "last_model_draft": handler.last_draft}, durable=durable)
-        write_json(confined(work, "receipt.json"), {"case_id": case.case_id, "artifacts": rows, "filenames": filenames,
+                                                    "last_model_draft": handler.last_draft})
+        stage_write(write_json, confined(work, "receipt.json"), {"case_id": case.case_id, "artifacts": rows, "filenames": filenames,
                                                   "specs": specs, "proof": proof,
                                                   "usage": getattr(llm, "usage", []),
                                                   "session": current_session().snapshot() if current_session() else None,
-                                                  "source_case": case.to_dict()}, durable=durable)
+                                                  "source_case": case.to_dict()})
         staged_pointer = confined(stage_root, "receipt-pointer.json")
-        write_json(staged_pointer,
-                    {"receipt": (work / "receipt.json").relative_to(s.output).as_posix()}, durable=durable)
+        stage_write(write_json, staged_pointer,
+                    {"receipt": (work / "receipt.json").relative_to(s.output).as_posix()})
         updates.append((staged_pointer, confined(s.output, f"data/{s.team}/work/receipts/{case.case_id}.json")))
         session = current_session()
         if session is None:
