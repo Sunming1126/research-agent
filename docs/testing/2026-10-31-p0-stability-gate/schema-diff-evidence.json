@@ -1,0 +1,56 @@
+{
+  "kind": "historical_visible_errors_not_reconstructed_responses",
+  "source_observations_sha256": "71df767851bb1ed3315be1eae513f7d45890ac1e8bc2719c4f5f95ddc835e305",
+  "expected_ce_keys": [
+    "case_id",
+    "path",
+    "markdown"
+  ],
+  "historical_failures": [
+    {
+      "run": "low-unmapped-a",
+      "evaluation_id": null,
+      "case_id": "C-01",
+      "visible_error": "输出字段结构错误：提交内容缺少必填字段或字段类型不符合赛题输出规范",
+      "raw_response": null,
+      "http_status": null,
+      "trace_id": null,
+      "actual_schema_diff": null,
+      "reason_diff_unavailable": "平台未开放原始响应；现有截图只提供通用提示，不能推定实际缺了哪个字段"
+    },
+    {
+      "run": "low-unmapped-a",
+      "evaluation_id": null,
+      "case_id": "E-01",
+      "visible_error": "输出字段结构错误：提交内容缺少必填字段或字段类型不符合赛题输出规范",
+      "raw_response": null,
+      "http_status": null,
+      "trace_id": null,
+      "actual_schema_diff": null,
+      "reason_diff_unavailable": "平台未开放原始响应；现有截图只提供通用提示，不能推定实际缺了哪个字段"
+    },
+    {
+      "run": "low-unmapped-b",
+      "evaluation_id": null,
+      "case_id": "C-01",
+      "visible_error": "输出字段结构错误：提交内容缺少必填字段或字段类型不符合赛题输出规范",
+      "raw_response": null,
+      "http_status": null,
+      "trace_id": null,
+      "actual_schema_diff": null,
+      "reason_diff_unavailable": "平台未开放原始响应；现有截图只提供通用提示，不能推定实际缺了哪个字段"
+    }
+  ],
+  "future_diff_format": {
+    "artifact_kind": "http_answer|staged_json|markdown|sdk_envelope|internal_model_response",
+    "stage": "generation|contract|staging|publish|wire|remote_confirmation",
+    "code": "missing_field|extra_field|type_error|enum_out_of_range|nested_structure|platform_adapter|content_constraint|identity_mismatch",
+    "pointer": "JSON Pointer",
+    "expected": "type/constraint",
+    "actual_type": "type",
+    "actual_value_sha256": "hash only in shared diagnostic",
+    "candidate_sha256": "hash",
+    "trace_id": null,
+    "source": "fixture_or_actual_response_must_be_explicit"
+  }
+}
