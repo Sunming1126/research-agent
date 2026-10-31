@@ -46,6 +46,9 @@ def audit_request(case, markdown, rows, ledger, *, used=(), patches=(), feedback
     """首轮审查全篇；复审保留全篇一次，事实证据限定为变更和原问题涉及项。"""
     from ..evidence.reporting import report_requirements
 
+    if case.function == 'Idea' and any(row.get('role') == 'source_context' for row in rows):
+        # E复审要确认修补后八项链条仍完整；C保留既有局部复审。
+        full_review = True
     changed = "\n\n".join(p["replacement"] for p in patches)
     partial = bool(patches) and not full_review
     context, view = revision_view(markdown, patches) if partial else (None, "complete_document")
@@ -58,7 +61,7 @@ def audit_request(case, markdown, rows, ledger, *, used=(), patches=(), feedback
         selected_ids = set(used) | {e["evidence_id"] for e in cited_evidence(markdown, rows)}
         selected = [e for e in rows if e["evidence_id"] in selected_ids] or rows
     known = {e["evidence_id"] for e in selected}
-    return {
+    result = {
         "task": report_task(case),
         "markdown": changed if partial else markdown,
         "full_document": context, "document_view": view,
@@ -70,6 +73,22 @@ def audit_request(case, markdown, rows, ledger, *, used=(), patches=(), feedback
                           for row in compact_claims(selected) if row["evidence_id"] in known],
         "papers": {str(e["ref"]): e["filename"] for e in selected},
     }
+
+    if case.function == 'Idea':
+        from ..integrations.idea_prompt import REQUIREMENTS
+        result['coverage_requirements'] = REQUIREMENTS
+        result['paragraph_index'] = [{'paragraph_id':f'p{i+1}','starts_with':p[:100]}
+                                     for i,p in enumerate(markdown.split('\n\n')) if p.strip()]
+        for row in result['source_quotes']:
+            if row.get('role') == 'source_context' and row.get('claim') == row.get('quote'):
+                row.pop('claim')
+    if case.function == 'Survey':
+        # Direct source excerpts formerly appeared twice (claim == quote),
+        # inflating audit/repair reservations until valid corrections could not run.
+        for row in result['source_quotes']:
+            if row.get('role') == 'source_context' and row.get('claim') == row.get('quote'):
+                row.pop('claim')
+    return result
 
 
 def repair_context(markdown, paragraphs, feedback, rows, *, case=None):

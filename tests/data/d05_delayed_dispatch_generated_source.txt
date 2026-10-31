@@ -1,0 +1,138 @@
+import math
+from collections import defaultdict
+from heapq import heappush, heappop
+
+def run_experiment(request):
+    data = request['data']
+    jobs = data['jobs']
+    flow_weights = data['flow_weights']
+    servers = data['servers']
+    setup_ms = data['setup_ms']
+    horizon_ms = data['horizon_ms']
+
+    def simulate(strategy):
+        trace = []
+        dropped = []
+        served_ms = {f: 0 for f in flow_weights}
+        server_free = [0] * servers
+        server_last_flow = [None] * servers
+        flow_alloc = defaultdict(int)
+        wait_queue = []
+        pending = sorted(jobs, key=lambda j: (j['arrival_ms'], j['id']))
+        pending_idx = 0
+        now = 0
+        active_servers = set()
+        server_end = [0] * servers
+        server_flow = [None] * servers
+        server_dispatch = [0] * servers
+        server_setup = [0] * servers
+        server_start = [0] * servers
+        server_wait = [0] * servers
+        server_service = [0] * servers
+        dispatched = set()
+        while True:
+            if pending_idx < len(pending):
+                next_arrival = pending[pending_idx]['arrival_ms']
+            else:
+                next_arrival = None
+            next_completion = min((server_end[s] for s in active_servers if server_end[s] > now), default=None)
+            if not active_servers and pending_idx >= len(pending) and not wait_queue:
+                break
+            if next_arrival is not None and (next_completion is None or next_arrival <= next_completion):
+                now = next_arrival
+                while pending_idx < len(pending) and pending[pending_idx]['arrival_ms'] == now:
+                    j = pending[pending_idx]
+                    heappush(wait_queue, (j['arrival_ms'], j['id'], j))
+                    pending_idx += 1
+            else:
+                if next_completion is not None:
+                    now = next_completion
+            for s in list(active_servers):
+                if server_end[s] <= now:
+                    active_servers.discard(s)
+                    server_free[s] = now
+            if not active_servers and pending_idx >= len(pending) and not wait_queue:
+                break
+            if next_arrival is not None and (next_completion is None or next_arrival <= next_completion):
+                continue
+            if not wait_queue:
+                continue
+            for s in range(servers):
+                if s in active_servers:
+                    continue
+                while True:
+                    if not wait_queue:
+                        break
+                    if strategy == 'fifo':
+                        cand = heappop(wait_queue)[2]
+                    else:
+                        best = None
+                        best_key = None
+                        temp = []
+                        while wait_queue:
+                            _, _, j = heappop(wait_queue)
+                            key = (flow_alloc[j['flow']] / flow_weights[j['flow']], j['arrival_ms'], j['id'])
+                            if best is None or key < best_key:
+                                if best is not None:
+                                    temp.append((best['arrival_ms'], best['id'], best))
+                                best = j
+                                best_key = key
+                            else:
+                                temp.append((j['arrival_ms'], j['id'], j))
+                        for item in temp:
+                            heappush(wait_queue, item)
+                        cand = best
+                    if cand['id'] in dispatched:
+                        continue
+                    start = now + (setup_ms if server_last_flow[s] is not None and server_last_flow[s] != cand['flow'] else 0)
+                    if start >= cand['deadline_ms']:
+                        dropped.append({'id': cand['id'], 'reason': 'deadline'})
+                        continue
+                    end = start + cand['service_ms']
+                    if end > horizon_ms:
+                        dropped.append({'id': cand['id'], 'reason': 'horizon'})
+                        continue
+                    dispatched.add(cand['id'])
+                    setup = setup_ms if server_last_flow[s] is not None and server_last_flow[s] != cand['flow'] else 0
+                    server_last_flow[s] = cand['flow']
+                    server_free[s] = end
+                    flow_alloc[cand['flow']] += cand['service_ms']
+                    server_end[s] = end
+                    server_flow[s] = cand['flow']
+                    server_dispatch[s] = now
+                    server_setup[s] = setup
+                    server_start[s] = start
+                    server_wait[s] = start - cand['arrival_ms']
+                    server_service[s] = cand['service_ms']
+                    active_servers.add(s)
+                    trace.append({
+                        'id': cand['id'],
+                        'flow': cand['flow'],
+                        'arrival_ms': cand['arrival_ms'],
+                        'service_ms': cand['service_ms'],
+                        'deadline_ms': cand['deadline_ms'],
+                        'server': s,
+                        'dispatch_ms': now,
+                        'setup_ms': setup,
+                        'start_ms': start,
+                        'end_ms': end,
+                        'wait_ms': start - cand['arrival_ms']
+                    })
+                    break
+            if not active_servers and pending_idx >= len(pending) and not wait_queue:
+                break
+        for _, _, j in wait_queue:
+            if j['id'] not in dispatched:
+                dropped.append({'id': j['id'], 'reason': 'horizon'})
+        for j in jobs:
+            if j['id'] not in dispatched and not any(d['id'] == j['id'] for d in dropped):
+                dropped.append({'id': j['id'], 'reason': 'horizon'})
+        for t in trace:
+            served_ms[t['flow']] += t['service_ms']
+        dropped.sort(key=lambda x: x['id'])
+        trace.sort(key=lambda x: (x['dispatch_ms'], x['server']))
+        return {'trace': trace, 'served_ms': dict(served_ms), 'dropped': dropped}
+
+    baseline = simulate('fifo')
+    candidate = simulate('fair')
+    return {'baseline': baseline, 'candidate': candidate, 'details': {}}

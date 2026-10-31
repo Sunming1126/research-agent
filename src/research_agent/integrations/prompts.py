@@ -163,9 +163,24 @@ INSTRUCTIONS["extract_batch"] = (
 
 def instructions_for(stage, data):
     """C/E 分别规划，预算估算和实际请求必须使用相同的提示词。"""
+    if isinstance(data, dict) and isinstance(data.get('task'), dict) and data['task'].get('function') == 'Idea':
+        from .idea_prompt import INSTRUCTION, AUDIT_INSTRUCTION, REPAIR_INSTRUCTION, PLAN_INSTRUCTION
+        if stage == 'extract_batch' and data.get('purpose') == 'idea_plan':
+            return PLAN_INSTRUCTION
+        if stage == 'repair' and not any(isinstance(p, dict) for p in data.get('paragraphs', [])):
+            return INSTRUCTIONS[stage]
+        dedicated = {'report': INSTRUCTION, 'audit': AUDIT_INSTRUCTION, 'repair': REPAIR_INSTRUCTION}
+        if stage in dedicated:
+            return dedicated[stage]
+    if stage == 'audit' and isinstance(data, dict) and data.get('task', {}).get('function') == 'Survey':
+        from .survey_prompt import AUDIT_INSTRUCTION
+        return AUDIT_INSTRUCTION
     if stage == "report" and isinstance(data, dict):
         task = data.get("task")
         function = task.get("function") if isinstance(task, dict) else None
+        if function == 'Survey' and any(row.get('role') == 'source_context' for row in data.get('claims', [])):
+            from .survey_prompt import INSTRUCTION
+            return INSTRUCTION
         if function in {'Survey', 'Idea'}:
             instruction = SURVEY_INSTRUCTION if function == 'Survey' else IDEA_INSTRUCTION
             instruction += ('task保留官方完整八字段题目。必须同时遵守title、input、constraints和expected_output中的具体要求。'

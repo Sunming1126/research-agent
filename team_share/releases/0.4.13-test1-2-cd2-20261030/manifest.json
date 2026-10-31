@@ -1,0 +1,568 @@
+{
+  "version": "0.4.13-test1-2-cd2-20261030",
+  "image": "research-assistant:0.4.13-test1-2-cd2-20261030",
+  "image_id": "sha256:d50e2376b56c444117ffa5e57ce58670fb34955b39b302ebb0a40ffa730614c0",
+  "branch": "test1-2",
+  "base_commit": "5656fd52e0eaa32bc5b253dee226488a6449a22b",
+  "changed_from_d1": [
+    "src/research_agent/integrations/prompts.py",
+    "src/research_agent/integrations/survey_prompt.py",
+    "src/research_agent/workflows/d02_policy.py",
+    "src/research_agent/workflows/layered_d_runner.py",
+    "src/research_agent/workflows/report_context.py",
+    "src/research_agent/workflows/reports.py",
+    "src/research_agent/workflows/sample_validation.py",
+    "src/research_agent/workflows/sample_worker.py",
+    "src/research_agent/workflows/survey_sources.py"
+  ],
+  "protected_existing_files": 39,
+  "sdk_dependencies_runtime_config_preserved": true,
+  "regressions_passed": 116,
+  "c_checks": [
+    {
+      "case_id": "C-01",
+      "seconds": 75.695,
+      "llm_calls": 4,
+      "total_tokens": 19952,
+      "body_characters": 2526,
+      "citation_instances": 28,
+      "format_and_files_passed": true,
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "正文称“DPR独立训练稠密检索器”，但原文[1, p.9]明确DPR是独立训练检索器与阅读器，而非联合训练，但未说检索器本身是独立训练的；且[1, p.2]描述DPR使用稠密编码器映射段落为向量并构建索引，未提及“独立训练”作为方法特点。该表述与原文证据不完全一致。",
+                  "正文称“RAG和FiD使用BM25或联合训练”，但原文[2, p.3]描述RAG将检索文档作为潜在变量进行端到端训练，未明确指定使用BM25；[3, p.4]中FiD使用BM25检索，但未提及联合训练。该断言缺乏直接证据支持。",
+                  "正文称“Self-RAG的批评模型依赖GPT-4”，但原文[5, p.2]明确批评模型基于GPT-4生成的反馈数据训练，且[5, p.17]显示批评模型预测与GPT-4反馈高度匹配。该表述正确，但未提及批评模型在训练时离线插入语料，无需托管批评模型，可能造成误解。"
+                ]
+              }
+            },
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "正文称“DPR独立训练稠密检索器”，但原文[1, p.9]明确DPR是独立训练检索器与阅读器，而非联合训练，但未说检索器本身是独立训练的；且[1, p.2]描述DPR使用稠密编码器映射段落为向量并构建索引，未提及“独立训练”作为方法特点。该表述与原文证据不完全一致。; 正文称“RAG和FiD使用BM25或联合训练”，但原文[2, p.3]描述RAG将检索文档作为潜在变量进行端到端训练，未明确指定使用BM25；[3, p.4]中FiD使用BM25检索，但未提及联合训练。该断言缺乏直接证据支持。; 正文称“Self-RAG的批评模型依赖GPT-4”，但原文[5, p.2]明确批评模型基于GPT-4生成的反馈数据训练，且[5, p.17]显示批评模型预测与GPT-4反馈高度匹配。该表述正确，但未提及批评模型在训练时离线插入语料，无需托管批评模型，可能造成误解。"
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "C-03",
+      "seconds": 76.188,
+      "llm_calls": 4,
+      "total_tokens": 22552,
+      "body_characters": 2473,
+      "citation_instances": 29,
+      "format_and_files_passed": true,
+      "report_audits": [
+        {
+          "ok": true,
+          "issues": [],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "正文第2节称“RAG 在非问答任务（如 Jeopardy 问题生成）上也进行了评估”，但 source_quotes ev-8 明确该任务为“open-domain question generation”，即开放域问题生成，属于问答类任务，并非非问答任务，存在事实矛盾。",
+                  "正文第2节称“相关工作表明，优化检索模块以提升下游任务性能已有多种方法，但 RAG 展示了单一架构可通过微调在多种任务上取得强性能”，该句前半部分“优化检索模块以提升下游任务性能已有多种方法”在 source_quotes ev-11 中对应“There is significant work on learning to retrieve documents...”，但 ev-11 并未提及“优化检索模块以提升下游任务性能”这一具体表述，且该句后半部分“RAG 展示了单一架构可通过微调在多种任务上取得强性能”在 ev-11 中对应“we show that a single retrieval-based architecture can be fine-tuned for strong performance on a variety of tasks”，但 ev-11 位于“相关工作”部分，并非 RAG 论文自身的实验结论，而是对已有工作的评述，正文将其归为 RAG 的展示，归属不当。",
+                  "正文第5节称“批评模型基于 GPT-4 生成的反馈数据训练，在预测 GPT-4 判断上表现出高匹配度”，source_quotes ev-26 仅说明“our fine-tuned reward model shows high prediction matching with GPT-4 predicted feedback”，但未提供具体匹配度数值或“高匹配度”的量化标准，正文断言“高匹配度”缺乏证据支持。"
+                ]
+              }
+            },
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "正文第2节称“RAG 在非问答任务（如 Jeopardy 问题生成）上也进行了评估”，但 source_quotes ev-8 明确该任务为“open-domain question generation”，即开放域问题生成，属于问答类任务，并非非问答任务，存在事实矛盾。; 正文第2节称“相关工作表明，优化检索模块以提升下游任务性能已有多种方法，但 RAG 展示了单一架构可通过微调在多种任务上取得强性能”，该句前半部分“优化检索模块以提升下游任务性能已有多种方法”在 source_quotes ev-11 中对应“There is significant work on learning to retrieve documents...”，但 ev-11 并未提及“优化检索模块以提升下游任务性能”这一具体表述，且该句后半部分“RAG 展示了单一架构可通过微调在多种任务上取得强性能”在 ev-11 中对应“we show that a single retrieval-based architecture can be fine-tuned for strong performance on a variety of tasks”，但 ev-11 位于“相关工作”部分，并非 RAG 论文自身的实验结论，而是对已有工作的评述，正文将其归为 RAG 的展示，归属不当。; 正文第5节称“批评模型基于 GPT-4 生成的反馈数据训练，在预测 GPT-4 判断上表现出高匹配度”，source_quotes ev-26 仅说明“our fine-tuned reward model shows high prediction matching with GPT-4 predicted feedback”，但未提供具体匹配度数值或“高匹配度”的量化标准，正文断言“高匹配度”缺乏证据支持。"
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": true,
+                "issues": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "c_test_image_id": "sha256:d50e2376b56c444117ffa5e57ce58670fb34955b39b302ebb0a40ffa730614c0",
+  "c_production_code_identical_to_test": true,
+  "d02_checks": [
+    {
+      "case_id": "D-02",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:d50e2376b56c444117ffa5e57ce58670fb34955b39b302ebb0a40ffa730614c0",
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "public sample execution failed: {\"error_type\": \"AttributeError\", \"message\": \"'int' object has no attribute 'get'\"}"
+          },
+          {
+            "attempt": 2,
+            "source_sha256": "d69bdb37922a06a9260ec5ebf7a3b56e18b33a88cb5b6ce1073606f1923fe7f9",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "rank_consistent": true,
+            "baseline_rank_consistent": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "empty_titles_repeated_unknown_terms_unequal_groups"
+            ]
+          }
+        ],
+        "selected_attempt": 2,
+        "public_selftest_passed": true
+      },
+      "source_sha256": "d69bdb37922a06a9260ec5ebf7a3b56e18b33a88cb5b6ce1073606f1923fe7f9",
+      "source_matches_current_response": true,
+      "seconds": 105.445,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 5046,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v20-complete-survey-task",
+          "requested_output_tokens": 4200,
+          "estimated_input_tokens": 4995,
+          "reserved_for_later": 0,
+          "seconds": 55.6
+        },
+        {
+          "stage": "d_source",
+          "tokens": 6909,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v20-complete-survey-task",
+          "requested_output_tokens": 4200,
+          "estimated_input_tokens": 8210,
+          "reserved_for_later": 0,
+          "seconds": 49.217
+        }
+      ]
+    }
+  ],
+  "d02_independent_repeat": [
+    {
+      "case_id": "D-02",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:d50e2376b56c444117ffa5e57ce58670fb34955b39b302ebb0a40ffa730614c0",
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "e254b4a980351cc1953f8c5b6ec87bbc1055edbc2ad6b7d55dc78085ba9d69bf",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "rank_consistent": true,
+            "baseline_rank_consistent": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "empty_titles_repeated_unknown_terms_unequal_groups"
+            ]
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      },
+      "source_sha256": "e254b4a980351cc1953f8c5b6ec87bbc1055edbc2ad6b7d55dc78085ba9d69bf",
+      "source_matches_current_response": true,
+      "seconds": 53.773,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 5124,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v20-complete-survey-task",
+          "requested_output_tokens": 4200,
+          "estimated_input_tokens": 4995,
+          "reserved_for_later": 0,
+          "seconds": 53.396
+        }
+      ]
+    }
+  ],
+  "worker": {
+    "all_passed": true,
+    "run_cases": 17,
+    "rank_cases": 7,
+    "cases": [
+      {
+        "case_id": "D-01",
+        "scenario": "empty_unknown_repeated_text",
+        "source_sha256": "4a282ef261bc69f10a378c9407a119cc23a40c844446b54161fbb75e3a3bfec8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-01",
+        "scenario": "public_sample",
+        "source_sha256": "4a282ef261bc69f10a378c9407a119cc23a40c844446b54161fbb75e3a3bfec8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-01",
+        "scenario": "training_order",
+        "source_sha256": "4a282ef261bc69f10a378c9407a119cc23a40c844446b54161fbb75e3a3bfec8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "all_empty_text",
+        "source_sha256": "d69bdb37922a06a9260ec5ebf7a3b56e18b33a88cb5b6ce1073606f1923fe7f9",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "all_empty_title",
+        "source_sha256": "d69bdb37922a06a9260ec5ebf7a3b56e18b33a88cb5b6ce1073606f1923fe7f9",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "larger_public_corpus",
+        "source_sha256": "d69bdb37922a06a9260ec5ebf7a3b56e18b33a88cb5b6ce1073606f1923fe7f9",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "public_sample",
+        "source_sha256": "d69bdb37922a06a9260ec5ebf7a3b56e18b33a88cb5b6ce1073606f1923fe7f9",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "repeated_query_words",
+        "source_sha256": "d69bdb37922a06a9260ec5ebf7a3b56e18b33a88cb5b6ce1073606f1923fe7f9",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "unequal_group_sizes",
+        "source_sha256": "d69bdb37922a06a9260ec5ebf7a3b56e18b33a88cb5b6ce1073606f1923fe7f9",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "unknown_query",
+        "source_sha256": "d69bdb37922a06a9260ec5ebf7a3b56e18b33a88cb5b6ce1073606f1923fe7f9",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "empty_jobs",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "exact_window",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "public_sample",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "rejected_then_short",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "simultaneous_servers_1",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "simultaneous_servers_2",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "simultaneous_servers_3",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      }
+    ],
+    "scope": "unmodified public worker, public/derived inputs, local method checks; not hidden evaluation"
+  },
+  "repeat_worker": {
+    "all_passed": true,
+    "run_cases": 17,
+    "rank_cases": 7,
+    "cases": [
+      {
+        "case_id": "D-01",
+        "scenario": "empty_unknown_repeated_text",
+        "source_sha256": "4a282ef261bc69f10a378c9407a119cc23a40c844446b54161fbb75e3a3bfec8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-01",
+        "scenario": "public_sample",
+        "source_sha256": "4a282ef261bc69f10a378c9407a119cc23a40c844446b54161fbb75e3a3bfec8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-01",
+        "scenario": "training_order",
+        "source_sha256": "4a282ef261bc69f10a378c9407a119cc23a40c844446b54161fbb75e3a3bfec8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "all_empty_text",
+        "source_sha256": "e254b4a980351cc1953f8c5b6ec87bbc1055edbc2ad6b7d55dc78085ba9d69bf",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "all_empty_title",
+        "source_sha256": "e254b4a980351cc1953f8c5b6ec87bbc1055edbc2ad6b7d55dc78085ba9d69bf",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "larger_public_corpus",
+        "source_sha256": "e254b4a980351cc1953f8c5b6ec87bbc1055edbc2ad6b7d55dc78085ba9d69bf",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "public_sample",
+        "source_sha256": "e254b4a980351cc1953f8c5b6ec87bbc1055edbc2ad6b7d55dc78085ba9d69bf",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "repeated_query_words",
+        "source_sha256": "e254b4a980351cc1953f8c5b6ec87bbc1055edbc2ad6b7d55dc78085ba9d69bf",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "unequal_group_sizes",
+        "source_sha256": "e254b4a980351cc1953f8c5b6ec87bbc1055edbc2ad6b7d55dc78085ba9d69bf",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "unknown_query",
+        "source_sha256": "e254b4a980351cc1953f8c5b6ec87bbc1055edbc2ad6b7d55dc78085ba9d69bf",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "empty_jobs",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "exact_window",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "public_sample",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "rejected_then_short",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "simultaneous_servers_1",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "simultaneous_servers_2",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "simultaneous_servers_3",
+        "source_sha256": "3d093c184885009da771a86f4dc961a203500fe3ba3a08fa105e5084ed7c08b5",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      }
+    ],
+    "scope": "unmodified public worker, public/derived inputs, local method checks; not hidden evaluation"
+  },
+  "benchmarks": [
+    {
+      "kind": "baseline",
+      "repeat": 1,
+      "seconds": 0.08502396600670181,
+      "completed_queries": 60,
+      "rankings_sha256": "bddfea78c5307a510031ff912b9723ebeeb39177544f7db950bdb253596b5e39"
+    },
+    {
+      "kind": "baseline",
+      "repeat": 2,
+      "seconds": 0.08956244701403193,
+      "completed_queries": 60,
+      "rankings_sha256": "bddfea78c5307a510031ff912b9723ebeeb39177544f7db950bdb253596b5e39"
+    },
+    {
+      "kind": "baseline",
+      "repeat": 3,
+      "seconds": 0.08882439200533554,
+      "completed_queries": 60,
+      "rankings_sha256": "bddfea78c5307a510031ff912b9723ebeeb39177544f7db950bdb253596b5e39"
+    },
+    {
+      "kind": "candidate",
+      "repeat": 1,
+      "seconds": 0.08601496199844405,
+      "completed_queries": 60,
+      "rankings_sha256": "81ab5f505c338a7e4a1f6789799f6e9b0226e148e188c193bb1d727a9da6ca2b"
+    },
+    {
+      "kind": "candidate",
+      "repeat": 2,
+      "seconds": 0.08465416697436012,
+      "completed_queries": 60,
+      "rankings_sha256": "81ab5f505c338a7e4a1f6789799f6e9b0226e148e188c193bb1d727a9da6ca2b"
+    },
+    {
+      "kind": "candidate",
+      "repeat": 3,
+      "seconds": 0.0873027759953402,
+      "completed_queries": 60,
+      "rankings_sha256": "81ab5f505c338a7e4a1f6789799f6e9b0226e148e188c193bb1d727a9da6ca2b"
+    }
+  ],
+  "official_hidden_evaluation": false,
+  "limitation": "Local API/public checks do not establish official score or the exact cause of eval-b5c0f3f8.",
+  "tar": "C:\\Users\\sun\\.codex\\worktrees\\from-0-4-13\\anic\\team_share\\image\\research-assistant-0.4.13-test1-2-cd2-20261030.tar",
+  "sha256": "5dc51a2a8335af316c78e858740ee66466d12f8f7c33bc86870b9d1f54dded35",
+  "bytes": 295593984,
+  "docker_load_verified": true
+}

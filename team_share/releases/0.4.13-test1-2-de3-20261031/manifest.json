@@ -1,0 +1,1197 @@
+{
+  "branch": "test1-2",
+  "base_commit": "04216cfcb997632a29b4a796e46557a8a19ded3a",
+  "image": "research-assistant:0.4.13-test1-2-de3-20261031",
+  "image_id": "sha256:c1630fab1cd837ccec0e1cc123498c38631fd4d8765f7be068a6851c27655420",
+  "changed_existing_files": [
+    "src/research_agent/integrations/prompts.py",
+    "src/research_agent/workflows/d02_policy.py",
+    "src/research_agent/workflows/d_generation_policy.py",
+    "src/research_agent/workflows/d_public_review.py",
+    "src/research_agent/workflows/layered_d_runner.py",
+    "src/research_agent/workflows/reports.py",
+    "src/research_agent/workflows/report_context.py",
+    "src/research_agent/workflows/sample_validation.py",
+    "src/research_agent/workflows/source_generation.py"
+  ],
+  "new_files": [
+    "src/research_agent/integrations/idea_prompt.py",
+    "src/research_agent/workflows/d05_policy.py",
+    "src/research_agent/workflows/d05_review.py",
+    "src/research_agent/workflows/d_boundary_cases.py",
+    "src/research_agent/workflows/idea_plan.py",
+    "src/research_agent/workflows/idea_repair.py",
+    "src/research_agent/workflows/idea_sources.py"
+  ],
+  "unchanged_existing_files": 37,
+  "sdk_dependencies_runtime_config_preserved": true,
+  "image_source_matches_workspace": true,
+  "image_source_hashes": {
+    "src/my_agent.py": "57116a14018aad25f1efd75ef061439c7160e3022f2acdd5ed6464d37d3dbde1",
+    "src/._my_agent.py": "0d545cf8c88d829c9aa4ab88ef179be533fe3aa9baa2368195044861dbdf47c9",
+    "src/.___main__.py": "0d545cf8c88d829c9aa4ab88ef179be533fe3aa9baa2368195044861dbdf47c9",
+    "src/__main__.py": "74bde54a74412ed5544d21c7002d658c99b97ccea091f35be166a9a703a26b48",
+    "src/research_agent/__init__.py": "138cde180413ca2b468acdf6daf4c4ae8cfb5c186809a5292165d4823fc492e7",
+    "src/research_agent/__main__.py": "9a3cf72f632eb36445b835d6e09371e64ae01971f5faba67ba5c18f5f45a0050",
+    "src/research_agent/evidence/attribution.py": "f7d52fe06da0261217440e16cfe472813c034c5af7975860717d018ccb98d6f2",
+    "src/research_agent/evidence/__init__.py": "979dd63615e748d9495a63bd2aa6cdd3fd99dec79eeccf654a6b4363a1758e90",
+    "src/research_agent/evidence/ledger.py": "12a1d30f5bc843596141102382a76c034438283047a242697256d8d23cda3807",
+    "src/research_agent/evidence/reporting.py": "15d82a345b0ef427b427175caaa7531ae8bc4847d15ea401cef4b229d93c98a0",
+    "src/research_agent/contracts/validation.py": "d4fab95bbc19e542ab19a045bdb5a7d5f29ddd1df3d859a088aca326edb8d14f",
+    "src/research_agent/contracts/__init__.py": "dd2711c33ea154a33c9407feab03c7c38fc05743e25c5b0a7a6660dd08d50d1a",
+    "src/research_agent/core/dispatch.py": "9e818ff0f2ced29cb15163c6f7141bb21e02fb774e9de9b9bd8aa1dfd4290951",
+    "src/research_agent/core/b_submission.py": "adab84f3d31d65c49022b6b3446f72f524a418828f44833631f05804b551489d",
+    "src/research_agent/core/session.py": "7806535a2028cfb692f55ca0d494304e4e737a9cc119c41b247ba73e6c5b2336",
+    "src/research_agent/core/utils.py": "918bc11a84e2a1be6b87bb50fcdf908567e713fe01cbbce38c050d27ecabc246",
+    "src/research_agent/core/__init__.py": "dfd1517d38f7486703dca5d5acdbbaa0442f3cf1d017700998e9e9e2f2f32ffa",
+    "src/research_agent/core/models.py": "ba3d9d4e498cb8da661827912f9f41e6bd02bd0b67d5765bc3a064bc477e735b",
+    "src/research_agent/core/dispatch_plan.py": "d5e35e00965a82e400dceacc01b957fffe4e9db907f412a4111aff8e1c772c71",
+    "src/research_agent/core/engine.py": "9686553105330db35ad1cfca9f1bfb5617ff0b9192e67a78f3ffdf7397ca64ff",
+    "src/research_agent/core/config.py": "ff7d23235da8d36a42d935bd6335d633929e512bdd2dd6e8e0bf4f3c0c447266",
+    "src/research_agent/workflows/layered_d_runner.py": "8c546750434a79a9e6221b8671c421d09e7cc69f38215b87f26f961385eddd32",
+    "src/research_agent/workflows/tasks.py": "78012157e4cf079e36e44c4565c4d30b889747ae9d385d9a9fc94fe046cf8051",
+    "src/research_agent/workflows/reports.py": "163d5ab34151241538689d08a9576caa71d851463d254db9733a8203620ac3bc",
+    "src/research_agent/workflows/source_reports.py": "52ac1e553cfe5f18e6de5cc9b0f8b734c681a3076ec7623e1b2bc25ac3ef87c0",
+    "src/research_agent/workflows/__init__.py": "336b2baed92d4297655def8e9c7fa414c76d4461286c316878ce53014ac27729",
+    "src/research_agent/workflows/source_generation.py": "8cd0765d04bd92165c89547df88888eb1142b1b51b1383d69920b8c2cd660221",
+    "src/research_agent/workflows/sample_worker.py": "dc0f5f0e78427cad46f685e10a1063863c000f4af731088df3687ad323e233fd",
+    "src/research_agent/workflows/report_context.py": "465cf40c68f8fdf264566afe124adb1d50b341aa117144e7cd8d3601b5484f84",
+    "src/research_agent/workflows/experiments.py": "4738c5a30a9c28e576e6abcca98bf5232f42526a826afb7bb83c630f67b18037",
+    "src/research_agent/workflows/sample_validation.py": "44109e2c6f7a20357098218e018e09a4fabebf366ff08141c7915fba59395746",
+    "src/research_agent/workflows/idea_plan.py": "f9fc68a14b50b208b08b0ff9398f3ba512261eecc1dca23ece0ae7a22013cd75",
+    "src/research_agent/workflows/idea_sources.py": "5fb0b287e60ea23f9c045dc24afe5a0d0a2f6ae4c1f9a998522d028d44a0d6bb",
+    "src/research_agent/workflows/d02_policy.py": "f0f76c27f540157e433cfcf0224637428683ba16b70364e600aa5a6b0673ac14",
+    "src/research_agent/workflows/d_generation_policy.py": "0286b1a955131d23f95085aff68f9eba4321bb84515d9743aa5d6854f66da600",
+    "src/research_agent/workflows/d05_review.py": "c78c2ec77760dc8fb1259cea4eb276e132d471fae65571abce13462ce0ca38f3",
+    "src/research_agent/workflows/d05_policy.py": "205593f9af88f9ffb47d734a9dbad034bd3a60830067f25124fdde5fb701f915",
+    "src/research_agent/workflows/d_public_review.py": "f19b1d2418a4ea148ae66961579c5a236df37c691e54a2b7c95ffc0f201cf042",
+    "src/research_agent/workflows/d_boundary_cases.py": "da0177cbfeb344003c79698d706cb758747559790f4c00eda94dd5a92ee437a2",
+    "src/research_agent/workflows/idea_repair.py": "956ec36c05015e8c8a04a22c22564aae20e655e2cc00de9e07833775d58dde1c",
+    "src/research_agent/workflows/survey_sources.py": "a6667e7c7e0a1e2609f45e8b44011f2c5cc148b4079f0b28b254b3ec9279b95b",
+    "src/research_agent/rag/materials.py": "a2d66acedd6449fb463367f92d80c6d92f8cba5fccbf5c7edbeacd108f7706a6",
+    "src/research_agent/rag/__init__.py": "326c733d09db3000559f367dbb3b85ee519989d9365a8431dd4bb59ead7a952b",
+    "src/research_agent/rag/report_selection.py": "d56d880587cca46fcc32294c77d95690598768d29160364a2bc97f3da88ac35d",
+    "src/research_agent/rag/paper_selection.py": "854793ab338afa39aa2ba35325a386da8a2710f35595ee5435928cf2b1d0fa5b",
+    "src/research_agent/rag/retrieval.py": "a58b5aeea134e38823ab7ff1a54a5aec7ee1ca6c130285dd105574aec09d63df",
+    "src/research_agent/integrations/http_runtime.py": "587569da3db63d3887d48e7b9a9051b4858effab9a77b8c9a94a575788a3eaf2",
+    "src/research_agent/integrations/prompts.py": "f0371b5ce21c1e013335cdc7eefc38afb1b092b3aff9c68681ef7a84c4d758ef",
+    "src/research_agent/integrations/instrumentation.py": "6f14706265b8d0e493848bd4ab76e0d111d71d913a7092811000fe1c4331daaf",
+    "src/research_agent/integrations/__init__.py": "4f7da132b5504eb2eee2e52b75cf94b148d32d091594375e8cfbf856d8710e9a",
+    "src/research_agent/integrations/llm.py": "82b79e9f400c2f4d79e0fbc4785a85abb869fdb4351e99e34bcc58b6d930e677",
+    "src/research_agent/integrations/idea_prompt.py": "6268b626a52b5af0e7b746ab979225fcab0b14ecc585e4f331b74e7d587bbc0a",
+    "src/research_agent/integrations/survey_prompt.py": "84fe5e9d6ff3d6acd1e06dcc1d88d84e6d2133881c1cf4af1d02f3faa9ac0d63"
+  },
+  "base_sdk_source_hashes": {
+    "src/my_agent.py": "57116a14018aad25f1efd75ef061439c7160e3022f2acdd5ed6464d37d3dbde1",
+    "src/._my_agent.py": "0d545cf8c88d829c9aa4ab88ef179be533fe3aa9baa2368195044861dbdf47c9",
+    "src/.___main__.py": "0d545cf8c88d829c9aa4ab88ef179be533fe3aa9baa2368195044861dbdf47c9",
+    "src/__main__.py": "74bde54a74412ed5544d21c7002d658c99b97ccea091f35be166a9a703a26b48"
+  },
+  "prebuilt_algorithms_in_image": false,
+  "version": "0.4.13-test1-2-de3-20261031",
+  "archive": "C:\\Users\\sun\\Desktop\\anic\\team_share\\image\\research-assistant-0.4.13-test1-2-de3-20261031.tar",
+  "archive_bytes": 295646720,
+  "archive_sha256": "364d823f8306001dc5e35fc5ad1490c26af35d82f9a318cae26303343066a370",
+  "docker_load_verified": true,
+  "tests": {
+    "linux-final": {
+      "tests": 120,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "http-final": {
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "isolation-final": {
+      "tests": 29,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "regressions_passed": 166,
+  "d_model_runs": [
+    {
+      "run": "live-d-final",
+      "case_id": "D-02",
+      "image_id": "sha256:53f019bf16b5c105718560f68f963263589c14c50cd6e79e5e5726277d51726c",
+      "status": "ready_for_formal_with_public_failure",
+      "seconds": 125.098,
+      "source_sha256": "de09e788622f4258df671e0b2aa93bfa3dc4e2d074cd45ddfc7e0ff392fa3369",
+      "source_matches_current_response": true,
+      "candidate_present": null,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "D-02 BM25 scaling must be positive"
+          },
+          {
+            "attempt": 2,
+            "status": "failed",
+            "error_type": "ModelError",
+            "message": "model transport failure (APITimeoutError) after retries"
+          }
+        ],
+        "decision": "submit_complete_model_source_for_formal_evaluation",
+        "public_selftest_passed": false,
+        "selected_attempt": null,
+        "source_sha256": "de09e788622f4258df671e0b2aa93bfa3dc4e2d074cd45ddfc7e0ff392fa3369"
+      }
+    },
+    {
+      "run": "live-d-final",
+      "case_id": "D-05",
+      "image_id": "sha256:53f019bf16b5c105718560f68f963263589c14c50cd6e79e5e5726277d51726c",
+      "status": "passed_public_sample",
+      "seconds": 53.928,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33",
+      "source_matches_current_response": true,
+      "candidate_present": true,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "simultaneous_public_arrivals",
+              "empty_public_jobs",
+              "retry_same_server_after_rejection",
+              "reserve_fair_service_on_dispatch",
+              "weighted_service_not_job_count",
+              "idle_flow_setup_deadline_retry",
+              "three_servers_expiry_simultaneous",
+              "deadline_before_horizon_rejection"
+            ],
+            "public_trace_ids": {
+              "baseline": [
+                [
+                  "a",
+                  0.0,
+                  0
+                ]
+              ],
+              "candidate": [
+                [
+                  "a",
+                  0.0,
+                  0
+                ]
+              ]
+            }
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      }
+    },
+    {
+      "run": "live-d-first",
+      "case_id": "D-02",
+      "image_id": "sha256:b818bc327f52392bf57cceeb6747d7168d4f3735a131af9aa7bcfda81f4d425b",
+      "status": "passed_public_sample",
+      "seconds": 109.836,
+      "source_sha256": "89f78f0825c3bd6e47cbc558d6d6f50c3d49bc7a32620020c9ff4ef54361380a",
+      "source_matches_current_response": true,
+      "candidate_present": false,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "D-02 BM25 q01/r01: public expected=1.2481893140102605, got=1.1284999277353038"
+          },
+          {
+            "attempt": 2,
+            "source_sha256": "89f78f0825c3bd6e47cbc558d6d6f50c3d49bc7a32620020c9ff4ef54361380a",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": false,
+            "rank_consistent": true,
+            "baseline_rank_consistent": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "empty_titles_repeated_unknown_terms_unequal_groups",
+              "field_conflict_cutoffs_unequal_groups",
+              "empty_body_independent_title"
+            ]
+          }
+        ],
+        "selected_attempt": 2,
+        "public_selftest_passed": true
+      }
+    },
+    {
+      "run": "live-d-first",
+      "case_id": "D-05",
+      "image_id": "sha256:b818bc327f52392bf57cceeb6747d7168d4f3735a131af9aa7bcfda81f4d425b",
+      "status": "passed_public_sample",
+      "seconds": 58.234,
+      "source_sha256": "6e0d015472447ed144e677ecb70eb8d0b08355441d4258081987f2eac2b80249",
+      "source_matches_current_response": true,
+      "candidate_present": true,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "6e0d015472447ed144e677ecb70eb8d0b08355441d4258081987f2eac2b80249",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "simultaneous_public_arrivals",
+              "empty_public_jobs",
+              "retry_same_server_after_rejection",
+              "reserve_fair_service_on_dispatch",
+              "weighted_service_not_job_count",
+              "idle_flow_setup_deadline_retry",
+              "three_servers_expiry_simultaneous",
+              "deadline_before_horizon_rejection"
+            ],
+            "public_trace_ids": {
+              "baseline": [
+                [
+                  "a",
+                  0.0,
+                  0
+                ]
+              ],
+              "candidate": [
+                [
+                  "a",
+                  0.0,
+                  0
+                ]
+              ]
+            }
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      }
+    },
+    {
+      "run": "live-d-fourth",
+      "case_id": "D-02",
+      "image_id": "sha256:9be1aed10396d995cc812485b8c63fc0890a062b33cfc7eb406aaf401d8afc8a",
+      "status": "ready_for_formal_with_public_failure",
+      "seconds": 125.1,
+      "source_sha256": "24d538235675044b1f6a420159b8ecdcf6f5a76259f043fc5d9a0a4a5d29830d",
+      "source_matches_current_response": true,
+      "candidate_present": null,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "D-02 BM25 q01/r01: public expected=1.7739752551331667, got=1.1284999277353036"
+          },
+          {
+            "attempt": 2,
+            "status": "failed",
+            "error_type": "ModelError",
+            "message": "model transport failure (APITimeoutError) after retries"
+          }
+        ],
+        "decision": "submit_complete_model_source_for_formal_evaluation",
+        "public_selftest_passed": false,
+        "selected_attempt": null,
+        "source_sha256": "24d538235675044b1f6a420159b8ecdcf6f5a76259f043fc5d9a0a4a5d29830d"
+      }
+    },
+    {
+      "run": "live-d-fourth",
+      "case_id": "D-05",
+      "image_id": "sha256:9be1aed10396d995cc812485b8c63fc0890a062b33cfc7eb406aaf401d8afc8a",
+      "status": "passed_public_sample",
+      "seconds": 53.628,
+      "source_sha256": "5ce12e19d844126e99d1240b93bb507b8a8d4275352d96cbe2c012b1da8b3c15",
+      "source_matches_current_response": true,
+      "candidate_present": true,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "5ce12e19d844126e99d1240b93bb507b8a8d4275352d96cbe2c012b1da8b3c15",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "simultaneous_public_arrivals",
+              "empty_public_jobs",
+              "retry_same_server_after_rejection",
+              "reserve_fair_service_on_dispatch",
+              "weighted_service_not_job_count",
+              "idle_flow_setup_deadline_retry",
+              "three_servers_expiry_simultaneous",
+              "deadline_before_horizon_rejection"
+            ],
+            "public_trace_ids": {
+              "baseline": [
+                [
+                  "a",
+                  0.0,
+                  0
+                ]
+              ],
+              "candidate": [
+                [
+                  "a",
+                  0.0,
+                  0
+                ]
+              ]
+            }
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      }
+    },
+    {
+      "run": "live-d-reasoning",
+      "case_id": "D-02",
+      "image_id": "sha256:c3b57a4583ee86f6b5b20e717c4438e93e95d98615f5354fed20b33123afed25",
+      "status": "passed_public_sample",
+      "seconds": 63.165,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2",
+      "source_matches_current_response": true,
+      "candidate_present": true,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "rank_consistent": true,
+            "baseline_rank_consistent": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "empty_titles_repeated_unknown_terms_unequal_groups",
+              "field_conflict_cutoffs_unequal_groups",
+              "empty_body_independent_title"
+            ]
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      }
+    },
+    {
+      "run": "live-d-release",
+      "case_id": "D-02",
+      "image_id": "sha256:eb8c5da59c7f37aabea7ae2a95b73c6dc8250e6d79ed9bd6ecb017ebcb85a8c6",
+      "status": "ready_for_formal_with_public_failure",
+      "seconds": 125.131,
+      "source_sha256": "e4064654f2f00f6f7d9bb7e48d92331ac539603bb19f66d55c9bac1ea981a3c3",
+      "source_matches_current_response": true,
+      "candidate_present": null,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "D-02 BM25 q02/r02: public expected=1.513975474726097, got=2.0326242918513326"
+          },
+          {
+            "attempt": 2,
+            "status": "failed",
+            "error_type": "ModelError",
+            "message": "model transport failure (APITimeoutError) after retries"
+          }
+        ],
+        "decision": "submit_complete_model_source_for_formal_evaluation",
+        "public_selftest_passed": false,
+        "selected_attempt": null,
+        "source_sha256": "e4064654f2f00f6f7d9bb7e48d92331ac539603bb19f66d55c9bac1ea981a3c3"
+      }
+    },
+    {
+      "run": "live-d-second",
+      "case_id": "D-02",
+      "image_id": "sha256:784e85db730f227cc8debe672a1236e8dff7b63aa0fa939191937db9161552f0",
+      "status": "passed_public_sample",
+      "seconds": 68.833,
+      "source_sha256": "c5518273aa343d33cbaed0001561277bc44de9493676fe1a25f0f50bcfd96558",
+      "source_matches_current_response": true,
+      "candidate_present": true,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "c5518273aa343d33cbaed0001561277bc44de9493676fe1a25f0f50bcfd96558",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "rank_consistent": true,
+            "baseline_rank_consistent": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "empty_titles_repeated_unknown_terms_unequal_groups",
+              "field_conflict_cutoffs_unequal_groups",
+              "empty_body_independent_title"
+            ]
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      }
+    },
+    {
+      "run": "live-d-second",
+      "case_id": "D-05",
+      "image_id": "sha256:784e85db730f227cc8debe672a1236e8dff7b63aa0fa939191937db9161552f0",
+      "status": "ready_for_formal_with_public_failure",
+      "seconds": 70.346,
+      "source_sha256": "df41697534ae49b357b7d35483db694af7b37ab31dde2509e718a6b8fdd66a79",
+      "source_matches_current_response": true,
+      "candidate_present": null,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "idle_flow_setup_deadline_retry: D-05 baseline task b must be dropped for deadline; public input={\"servers\": 1, \"setup_ms\": 2, \"horizon_ms\": 12, \"flow_weights\": {\"A\": 1, \"B\": 2}, \"jobs\": [{\"id\": \"a\", \"flow\": \"A\", \"arrival_ms\": 0, \"service_ms\": 1, \"deadline_ms\": 100}, {\"id\": \"b\", \"flow\": \"B\", \"arrival_ms\": 4, \"service_ms\": 1, \"deadline_ms\": 6}, {\"id\": \"c\", \"flow\": \"A\", \"arrival_ms\": 4, \"service_ms\": 1, \"deadline_ms\": 100}, {\"id\": \"d\", \"flow\": \"B\", \"arrival_ms\": 5, \"service_ms\": 5, \"deadline_ms\": 100}, {\"id\": \"e\", \"flow\": \"A\", \"arrival_ms\": 12, \"service_ms\": 1, \"deadline_ms\": 100}]}"
+          },
+          {
+            "attempt": 2,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "idle_flow_setup_deadline_retry: D-05 baseline task b must be dropped for deadline; public input={\"servers\": 1, \"setup_ms\": 2, \"horizon_ms\": 12, \"flow_weights\": {\"A\": 1, \"B\": 2}, \"jobs\": [{\"id\": \"a\", \"flow\": \"A\", \"arrival_ms\": 0, \"service_ms\": 1, \"deadline_ms\": 100}, {\"id\": \"b\", \"flow\": \"B\", \"arrival_ms\": 4, \"service_ms\": 1, \"deadline_ms\": 6}, {\"id\": \"c\", \"flow\": \"A\", \"arrival_ms\": 4, \"service_ms\": 1, \"deadline_ms\": 100}, {\"id\": \"d\", \"flow\": \"B\", \"arrival_ms\": 5, \"service_ms\": 5, \"deadline_ms\": 100}, {\"id\": \"e\", \"flow\": \"A\", \"arrival_ms\": 12, \"service_ms\": 1, \"deadline_ms\": 100}]}"
+          }
+        ],
+        "decision": "submit_complete_model_source_for_formal_evaluation",
+        "public_selftest_passed": false,
+        "selected_attempt": null,
+        "source_sha256": "df41697534ae49b357b7d35483db694af7b37ab31dde2509e718a6b8fdd66a79"
+      }
+    },
+    {
+      "run": "live-d-third",
+      "case_id": "D-05",
+      "image_id": "sha256:d53146ea0f046548bd7d898f889dca734780e9ee6b2230b010fbf48f514be34d",
+      "status": "passed_public_sample",
+      "seconds": 43.458,
+      "source_sha256": "28fd46b2c2be6d42ee6ca102911dd00f380da59bddfb1f4cd0293d124e23a426",
+      "source_matches_current_response": true,
+      "candidate_present": true,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "28fd46b2c2be6d42ee6ca102911dd00f380da59bddfb1f4cd0293d124e23a426",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "simultaneous_public_arrivals",
+              "empty_public_jobs",
+              "retry_same_server_after_rejection",
+              "reserve_fair_service_on_dispatch",
+              "weighted_service_not_job_count",
+              "idle_flow_setup_deadline_retry",
+              "three_servers_expiry_simultaneous",
+              "deadline_before_horizon_rejection"
+            ],
+            "public_trace_ids": {
+              "baseline": [
+                [
+                  "a",
+                  0.0,
+                  0
+                ]
+              ],
+              "candidate": [
+                [
+                  "a",
+                  0.0,
+                  0
+                ]
+              ]
+            }
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      }
+    },
+    {
+      "run": "live-d-third",
+      "case_id": "D-02",
+      "image_id": "sha256:d53146ea0f046548bd7d898f889dca734780e9ee6b2230b010fbf48f514be34d",
+      "status": "ready_for_formal_with_public_failure",
+      "seconds": 109.097,
+      "source_sha256": "bc163763b89abc84cc39c87096138114857038fc28b135501053d8f6a5974241",
+      "source_matches_current_response": true,
+      "candidate_present": null,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "D-02 selected config does not follow the public group-robust selection rule"
+          },
+          {
+            "attempt": 2,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "D-02 selected config does not follow the public group-robust selection rule"
+          }
+        ],
+        "decision": "submit_complete_model_source_for_formal_evaluation",
+        "public_selftest_passed": false,
+        "selected_attempt": null,
+        "source_sha256": "bc163763b89abc84cc39c87096138114857038fc28b135501053d8f6a5974241"
+      }
+    },
+    {
+      "run": "live-d-verified",
+      "case_id": "D-02",
+      "image_id": "sha256:c1630fab1cd837ccec0e1cc123498c38631fd4d8765f7be068a6851c27655420",
+      "status": "passed_public_sample",
+      "seconds": 116.484,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a",
+      "source_matches_current_response": true,
+      "candidate_present": false,
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "status": "failed",
+            "error_type": "ValueError",
+            "message": "D-02 BM25 q01/r07: public expected=0.774649593601, got=0.723620526136"
+          },
+          {
+            "attempt": 2,
+            "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": false,
+            "rank_consistent": true,
+            "baseline_rank_consistent": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "empty_titles_repeated_unknown_terms_unequal_groups",
+              "field_conflict_cutoffs_unequal_groups",
+              "empty_body_independent_title"
+            ]
+          }
+        ],
+        "selected_attempt": 2,
+        "public_selftest_passed": true
+      }
+    }
+  ],
+  "e_model_runs": [
+    {
+      "run": "de3-e-final-20261031",
+      "case_id": "E-01",
+      "http_status": 200,
+      "seconds": 129.895,
+      "llm_calls": 5,
+      "total_tokens": 21660,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "原文“RAG论文未提供完整训练代码，仅描述了模型架构和微调方法[1, p.1]”中，[1, p.1]的摘录仅描述RAG模型引入和比较，未提及代码或微调方法细节，因此该归因缺乏证据支持，属于编造。; 原文“Self-RAG论文未公开批评模型训练数据，仅说明该数据由GPT-4标注[2, p.2]”中，[2, p.2]摘录明确说明批评模型在由GPT-4标注的数据集上训练，但未提及“未公开”或“缺失”，因此该归因缺乏证据支持，属于编造。; 原文“诊断实验：在PubHealth上运行标准RAG，比较其准确率与论文报告值（待验证建议：约70%），若偏差超过5%，则调整实现细节。”中，“论文报告值（约70%）”无任何source_quotes支持，属于编造数值。; E要点bottleneck仍不完整，需补足：复现瓶颈反思：明确本题证据或题面暴露的瓶颈、原因、处理措施和诊断实验；不得凭未摘录推断论文未开源。"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-final-20261031",
+      "case_id": "E-02",
+      "http_status": 200,
+      "seconds": 147.38,
+      "llm_calls": 5,
+      "total_tokens": 22998,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "原文“DPR（Dense Passage Retriever）[1, p.4]与FiD（Fusion-in-Decoder）[2, p.3]的组合在开放域问答中取得了显著效果。然而，当检索到的多个段落包含冲突信息时，FiD的融合解码机制可能无法有效辨别，导致生成错误答案。”中“冲突信息”和“无法有效辨别”在给定证据中无对应描述，属于未引用的待验证观察，但未明确归属为题面观察，且未引用论文机制或局限。; 原文“DPR论文指出其使用100 token的段落长度[1, p.8]，而FiD论文未明确说明段落长度，需在复现时统一。”中FiD论文未说明段落长度，但未提供处理措施（如从DPR预处理脚本或FiD代码中获取默认值），且诊断实验“在验证集上测试不同段落长度对性能的影响”未说明如何与FiD编码器输入长度约束衔接。; 原文“回退策略：当冲突段落比例超过50%时，不进行筛选，回退到标准流水线。”中“50%”阈值无证据支持，且未说明该回退策略是否在消融实验中验证。; E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。; E要点bottleneck仍不完整，需补足：复现瓶颈反思：明确本题证据或题面暴露的瓶颈、原因、处理措施和诊断实验；不得凭未摘录推断论文未开源。"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-first-20261031",
+      "case_id": "E-01",
+      "http_status": 200,
+      "seconds": 84.559,
+      "llm_calls": 2,
+      "total_tokens": 4573,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "model transport failure (APITimeoutError) after retries"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-first-20261031",
+      "case_id": "E-02",
+      "http_status": 200,
+      "seconds": 112.776,
+      "llm_calls": 3,
+      "total_tokens": 14549,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "正文“DPR论文也提到，其检索器可能返回与问题相关但答案不一致的段落[1, p.8]”中，引用的[1, p.8]摘录未包含该描述，属于编造引用，应删除或替换为有证据支持的表述。; 正文“DPR论文未开源其训练好的NLI模型”中，DPR论文未涉及NLI模型，该陈述无证据支持，应删除或修改为基于证据的表述。; 正文“若冲突段落比例超过50%，则仅使用非冲突段落进行生成”中，回退策略的阈值50%无证据支持，且未在消融实验中明确验证，应补充设计或删除该具体数值。; E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。; E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。; E要点experiment仍不完整，需补足：实验设计：选择有理由的基线；无新增机制/单模块/组合的消融；共用划分、种子、资源；支持/否定/证据不足三种判断。; E要点data仍不完整，需补足：基准数据集：证据中的具体名称及其适配；拟议采样、划分单位和防泄漏。资料不足时给出可执行的获取、核查和替代步骤。; E审查证据不是当前正文连续原句：metrics; E要点bottleneck仍不完整，需补足：复现瓶颈反思：明确本题证据或题面暴露的瓶颈、原因、处理措施和诊断实验；不得凭未摘录推断论文未开源。; E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。; E要点feasibility仍不完整，需补足：场景与落地：题目约束下的资源上限、运行规模、获得数据条件、失败边界、停止或降级办法。",
+            "report patch does not match a unique current passage"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-fourth-20261031",
+      "case_id": "E-01",
+      "http_status": 200,
+      "seconds": 158.219,
+      "llm_calls": 4,
+      "total_tokens": 12790,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "正文“RAG原文未开源训练代码和检索器权重[1, p.1]”中，[1, p.1]未提及代码或权重未开源，证据缺失。应修改为引用[1]中实际存在的声明，或删除该归因。; 正文“Self-RAG的批评模型训练依赖GPT-4生成的数据[2, p.2]”中，[2, p.2]仅提及批评模型部分监督于GPT-4生成的数据，但未说明“依赖”或“无法直接复现”，证据不足。应修改为更准确的表述。; 正文“引用准确性：人工评估，定义为生成文本中每个引用是否被检索文档支持”中，未提供人工评估的具体标准或来源，且未说明如何确保评估一致性，缺乏可操作性。应补充评估细则或引用已有方法。; E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。; E审查证据不是当前正文连续原句：route; E审查证据不是当前正文连续原句：experiment; E审查证据不是当前正文连续原句：data; E要点bottleneck仍不完整，需补足：复现瓶颈反思：明确本题证据或题面暴露的瓶颈、原因、处理措施和诊断实验；不得凭未摘录推断论文未开源。; E审查证据不是当前正文连续原句：complementarity",
+            "model transport failure (APITimeoutError) after retries"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-fourth-20261031",
+      "case_id": "E-02",
+      "http_status": 200,
+      "seconds": 158.229,
+      "llm_calls": 4,
+      "total_tokens": 13283,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "原文“DPR与FiD的原始代码未明确开源（论文未提及代码仓库）[1, p.9][1, p.9]”中，[1, p.9]的摘录未提及代码仓库，但论文未提及不等于未开源，且[1, p.9]摘录内容为相关工作讨论，不涉及代码可用性，因此该陈述缺乏证据支持，属于推测。; 原文“段落重排序与冲突检测（新增）……使用Sentence-BERT”中，Sentence-BERT未在授权材料（DPR和FiD论文）中出现，属于未引用的外部工具，且未说明其来源或与本题证据的关联。; 原文“冲突阈值τ（拟议0.3-0.5）……通过验证集网格搜索确定”中，阈值范围及网格搜索方法均为作者自行设计，但未在正文中明确标注为待验证假设或原创设计，且缺乏与授权材料中任何机制或参数的关联依据。; E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。; E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。; E要点experiment仍不完整，需补足：实验设计：选择有理由的基线；无新增机制/单模块/组合的消融；共用划分、种子、资源；支持/否定/证据不足三种判断。; E要点data仍不完整，需补足：基准数据集：证据中的具体名称及其适配；拟议采样、划分单位和防泄漏。资料不足时给出可执行的获取、核查和替代步骤。; E要点bottleneck仍不完整，需补足：复现瓶颈反思：明确本题证据或题面暴露的瓶颈、原因、处理措施和诊断实验；不得凭未摘录推断论文未开源。; E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。; E要点feasibility仍不完整，需补足：场景与落地：题目约束下的资源上限、运行规模、获得数据条件、失败边界、停止或降级办法。",
+            "model transport failure (APITimeoutError) after retries"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-reasoning-20261031",
+      "case_id": "E-01",
+      "http_status": 500,
+      "seconds": 98.241,
+      "llm_calls": 2,
+      "total_tokens": 2643,
+      "format_and_files_passed": false,
+      "semantic_audits": []
+    },
+    {
+      "run": "de3-e-reasoning-20261031",
+      "case_id": "E-02",
+      "http_status": 500,
+      "seconds": 98.603,
+      "llm_calls": 2,
+      "total_tokens": 3102,
+      "format_and_files_passed": false,
+      "semantic_audits": []
+    },
+    {
+      "run": "de3-e-release-20261031",
+      "case_id": "E-01",
+      "http_status": 200,
+      "seconds": 151.441,
+      "llm_calls": 5,
+      "total_tokens": 20478,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "p8 中“生成器微调的具体方法、损失函数及训练数据来源待后续设计明确，当前未提供论文证据支持该微调设计，需在实验前补充” 该句承认微调设计无论文或题面依据，但消融实验3仍将其列为完整方案的一部分，导致实验设计包含未受支持的组件，需删除或替换为有依据的消融条件。; p16 中“处理措施：在引用验证模块中，若某声明无支持，则触发二次检索（检索Top-5新文档）或生成器重新生成” 以及 p18 中“该二次检索机制的有效性待实验验证，当前未提供论文或题面依据” 均明确承认二次检索机制无论文或题面依据，但瓶颈反思和多文献互补中仍将其作为处理措施和检测规则，需删除或替换为有依据的机制。; p4 中“K=5，拟议值” 和 p5 中“阈值τ（拟议τ=0.7）” 以及 p18 中“若引用验证模块发现无支持声明比例>10%（拟议阈值）” 这些拟议参数无论文或题面依据，但作为技术路线和检测规则的核心部分，需补充依据或改为待定。; E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。; E要点experiment仍不完整，需补足：实验设计：选择有理由的基线；无新增机制/单模块/组合的消融；共用划分、种子、资源；支持/否定/证据不足三种判断。; E要点bottleneck仍不完整，需补足：复现瓶颈反思：根据task的具体观察或论文方法条件，给出瓶颈原因、处理措施和诊断实验；资料覆盖不足只列为启动前核查事项。; E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-release-20261031",
+      "case_id": "E-02",
+      "http_status": 200,
+      "seconds": 147.505,
+      "llm_calls": 5,
+      "total_tokens": 24427,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "p6: '对每个段落表示，通过一个线性层+softmax预测其答案类型（支持/反对/无关）'——论文未提供段落级答案类型标注或冲突检测机制，该设计无来源支持，属于未验证的新假设，需在启动前定义标注规则。; p10: '仅消歧（不检测）：直接丢弃得分最低的20%段落'——消歧逻辑（丢弃20%段落）与完整模块的消歧逻辑（保留支持段落）不一致，且论文未定义段落得分，需在启动前明确区分和定义。; p27: '失败边界：若新增模块导致EM下降超过1%，则停止使用'——论文未提供EM下降1%的阈值依据，该数值属于自行设计，需在启动前验证合理性。; E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。; E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。; E要点experiment仍不完整，需补足：实验设计：选择有理由的基线；无新增机制/单模块/组合的消融；共用划分、种子、资源；支持/否定/证据不足三种判断。; E要点bottleneck仍不完整，需补足：复现瓶颈反思：根据task的具体观察或论文方法条件，给出瓶颈原因、处理措施和诊断实验；资料覆盖不足只列为启动前核查事项。; E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。; E要点feasibility仍不完整，需补足：场景与落地：题目约束下的资源上限、运行规模、获得数据条件、失败边界、停止或降级办法。"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-second-20261031",
+      "case_id": "E-01",
+      "http_status": 200,
+      "seconds": 158.414,
+      "llm_calls": 3,
+      "total_tokens": 10143,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "正文“RAG-Sequence模型将同一组检索文档用于整个序列的生成，并通过top-K近似边缘化得到输出概率[1, p.3]”中，将RAG-Sequence归因于RAG论文，但RAG论文并未命名“RAG-Sequence”为该模型的正式名称，且该句未引用论文原文中对应的具体描述，属于归因不准确。; 正文“Self-RAG引入反思令牌（reflection tokens）来按需决定是否检索并自我评估生成质量[2, p.2]”中，Self-RAG论文原文并未明确将reflection tokens的功能描述为“按需决定是否检索并自我评估生成质量”，该句属于对论文内容的过度概括，缺乏原文逐字支持。; 正文“诊断实验：在开发集上比较NLI模型与人工标注的一致性（计算F1分数），若F1<0.7，则考虑使用更强大的NLI模型或进行微调。”中，阈值0.7和“更强大的NLI模型或进行微调”均为作者自行设计，但未在正文中明确标注为“拟议值”或“待验证”，且未提供任何论文或题面依据，属于未声明的假设。; E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。; E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。; E要点experiment仍不完整，需补足：实验设计：选择有理由的基线；无新增机制/单模块/组合的消融；共用划分、种子、资源；支持/否定/证据不足三种判断。; E要点data仍不完整，需补足：基准数据集：证据中的具体名称及其适配；拟议采样、划分单位和防泄漏。资料不足时给出可执行的获取、核查和替代步骤。; E要点metrics仍不完整，需补足：量化指标：主要效果和成本指标逐一给计算口径、分子分母、统计单位；重复测量及比较方式。; E要点bottleneck仍不完整，需补足：复现瓶颈反思：明确本题证据或题面暴露的瓶颈、原因、处理措施和诊断实验；不得凭未摘录推断论文未开源。; E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。; E要点feasibility仍不完整，需补足：场景与落地：题目约束下的资源上限、运行规模、获得数据条件、失败边界、停止或降级办法。",
+            "model transport failure (APITimeoutError) after retries"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-second-20261031",
+      "case_id": "E-02",
+      "http_status": 200,
+      "seconds": 110.212,
+      "llm_calls": 2,
+      "total_tokens": 5151,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "model transport failure (APITimeoutError) after retries"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-third-20261031",
+      "case_id": "E-01",
+      "http_status": 500,
+      "seconds": 2.506,
+      "llm_calls": 0,
+      "total_tokens": 0,
+      "format_and_files_passed": false,
+      "semantic_audits": []
+    },
+    {
+      "run": "de3-e-third-20261031",
+      "case_id": "E-02",
+      "http_status": 500,
+      "seconds": 0.973,
+      "llm_calls": 0,
+      "total_tokens": 0,
+      "format_and_files_passed": false,
+      "semantic_audits": []
+    },
+    {
+      "run": "de3-e-verified-20261031",
+      "case_id": "E-01",
+      "http_status": 200,
+      "seconds": 149.799,
+      "llm_calls": 5,
+      "total_tokens": 22307,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "原文“RAG-Sequence（原始版本，均匀边际化）[1, p.3]”中，RAG-Sequence的边际化权重为检索概率p(d|x)与生成概率p(y|x,d)的乘积，并非均匀权重，需修正为正确描述。; 原文“Self-RAG（使用反思令牌）[2, p.2]”作为基线，但Self-RAG论文未在SearchQA上报告结果，且其反思令牌机制与RAG-Sequence框架差异较大，直接比较需说明适配或重实现步骤。; 原文“事实性 = 被评估者认为更可信的生成数 / 总比较数”中，分子分母定义不匹配：分子为“更可信的生成数”，分母为“总比较数”，但每个比较对产生一个选择，分母应为“总比较对数”，需统一口径。; E要点experiment仍不完整，需补足：实验设计：选择有理由的基线；无新增机制/单模块/组合的消融；共用划分、种子、资源；支持/否定/证据不足三种判断。; E要点metrics仍不完整，需补足：量化指标：主要效果和成本指标逐一给计算口径、分子分母、统计单位；重复测量及比较方式。"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "de3-e-verified-20261031",
+      "case_id": "E-02",
+      "http_status": 200,
+      "seconds": 140.553,
+      "llm_calls": 5,
+      "total_tokens": 25511,
+      "format_and_files_passed": true,
+      "semantic_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "remaining_issues": [
+            "原文“DPR论文指出k=10时EM为40.8 vs. 41.5（k=50），差值0.7 EM[1, p.8]”中，DPR论文原文[1, p.8]给出的EM值对应的是NQ数据集，但未明确说明该数值是否来自DPR+FiD流水线，且原文未提供k=10与k=50的EM差值0.7的明确表述，因此该数值的归因和引用存在不准确之处。; 原文“DPR的检索性能受负样本采样策略影响，但该归因在论文中无直接原文支持”中，DPR论文[1]确实讨论了负样本采样策略（如hard negatives），但未直接将其与检索性能的瓶颈关联，因此该归因缺乏原文支持，属于推测性陈述。; 原文“在单张32GB GPU上，k=20时，推理延迟约20ms/问题（与DPR论文中单段落延迟相当[1, p.8]）”中，DPR论文[1, p.8]提到的20ms延迟是针对单段落推理，但本方案中k=20时需处理20个段落，且新增了冲突检测模块，因此直接引用20ms作为总延迟缺乏依据，需补充具体计算或实验估计。; E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。; E要点data仍不完整，需补足：基准数据集：证据中的具体名称及其适配；拟议采样、划分单位和防泄漏。资料不足时给出可执行的获取、核查和替代步骤。; E要点bottleneck仍不完整，需补足：复现瓶颈反思：根据task的具体观察或论文方法条件，给出瓶颈原因、处理措施和诊断实验；资料覆盖不足只列为启动前核查事项。; E要点feasibility仍不完整，需补足：场景与落地：题目约束下的资源上限、运行规模、获得数据条件、失败边界、停止或降级办法。"
+          ]
+        }
+      ]
+    }
+  ],
+  "worker_validation": [
+    {
+      "folder": "worker-d02",
+      "case_id": "D-02",
+      "scenario": "public_sample",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2"
+    },
+    {
+      "folder": "worker-d02",
+      "case_id": "D-02",
+      "scenario": "unknown_query",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2"
+    },
+    {
+      "folder": "worker-d02",
+      "case_id": "D-02",
+      "scenario": "unequal_group_sizes",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2"
+    },
+    {
+      "folder": "worker-d02",
+      "case_id": "D-02",
+      "scenario": "repeated_query_words",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2"
+    },
+    {
+      "folder": "worker-d02",
+      "case_id": "D-02",
+      "scenario": "all_empty_title",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2"
+    },
+    {
+      "folder": "worker-d02",
+      "case_id": "D-02",
+      "scenario": "all_empty_text",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2"
+    },
+    {
+      "folder": "worker-d02",
+      "case_id": "D-02",
+      "scenario": "larger_public_corpus",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2"
+    },
+    {
+      "folder": "worker-d02",
+      "case_id": "D-02",
+      "scenario": "field_conflict_cutoffs_unequal_groups",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2"
+    },
+    {
+      "folder": "worker-d02",
+      "case_id": "D-02",
+      "scenario": "empty_body_independent_title",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2"
+    },
+    {
+      "folder": "worker-d02",
+      "case_id": "D-02",
+      "scenario": "published_空字段-重复未知词-不等组",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "d0b230725a17d65ffd54bfbb68d51bd4edc035c13162aa4711847fbcfb0302e2"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "public_sample",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "empty_jobs",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "deadline_before_horizon_rejection",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "published_并发预留",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "published_拒绝后同服务器重试",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "published_空任务与零服务流",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "published_空闲间隔与流切换",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "published_窗口恰好与超窗",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "published_过期与同时到达",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "simultaneous_servers_1",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "simultaneous_servers_2",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "simultaneous_servers_3",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "rejected_then_short",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "exact_window",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "weighted_service_not_job_count",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "idle_flow_setup_deadline_retry",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d05",
+      "case_id": "D-05",
+      "scenario": "three_servers_expiry_simultaneous",
+      "passed": true,
+      "candidate_present": true,
+      "source_sha256": "3dee5d50933ef2ecd2b8e891044348ff6a6871680a695b906fe13059d76efc33"
+    },
+    {
+      "folder": "worker-d02-verified",
+      "case_id": "D-02",
+      "scenario": "public_sample",
+      "passed": true,
+      "candidate_present": false,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a"
+    },
+    {
+      "folder": "worker-d02-verified",
+      "case_id": "D-02",
+      "scenario": "unknown_query",
+      "passed": true,
+      "candidate_present": false,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a"
+    },
+    {
+      "folder": "worker-d02-verified",
+      "case_id": "D-02",
+      "scenario": "unequal_group_sizes",
+      "passed": true,
+      "candidate_present": false,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a"
+    },
+    {
+      "folder": "worker-d02-verified",
+      "case_id": "D-02",
+      "scenario": "repeated_query_words",
+      "passed": true,
+      "candidate_present": false,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a"
+    },
+    {
+      "folder": "worker-d02-verified",
+      "case_id": "D-02",
+      "scenario": "all_empty_title",
+      "passed": true,
+      "candidate_present": false,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a"
+    },
+    {
+      "folder": "worker-d02-verified",
+      "case_id": "D-02",
+      "scenario": "all_empty_text",
+      "passed": true,
+      "candidate_present": false,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a"
+    },
+    {
+      "folder": "worker-d02-verified",
+      "case_id": "D-02",
+      "scenario": "larger_public_corpus",
+      "passed": true,
+      "candidate_present": false,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a"
+    },
+    {
+      "folder": "worker-d02-verified",
+      "case_id": "D-02",
+      "scenario": "field_conflict_cutoffs_unequal_groups",
+      "passed": true,
+      "candidate_present": false,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a"
+    },
+    {
+      "folder": "worker-d02-verified",
+      "case_id": "D-02",
+      "scenario": "empty_body_independent_title",
+      "passed": true,
+      "candidate_present": false,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a"
+    },
+    {
+      "folder": "worker-d02-verified",
+      "case_id": "D-02",
+      "scenario": "published_空字段-重复未知词-不等组",
+      "passed": true,
+      "candidate_present": false,
+      "source_sha256": "e79d07d7baa222cd65c78ba2e980c5fd13a762e278823fd71e1c226a6956bd9a"
+    }
+  ],
+  "limitations": [
+    "公开测试不是官方分数；未提交正式平台评测或D RPC会话。",
+    "D02完整候选生成仍有波动，最终复测通过的是第二次恢复基线，candidate=null。",
+    "最终E两题HTTP/协议/文件通过，但语义审查均仍有遗留意见，不宣称内容满分或已经涨分。",
+    "C通过隔离回归，本次未重新调用真实模型测C。"
+  ],
+  "git_changes_committed": false,
+  "git_changes_pushed": false
+}

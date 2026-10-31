@@ -85,20 +85,27 @@ def read_generation_materials(case_id: str, roots: list[Path]) -> dict[str, str]
 
 def build_source_prompt(case, materials: dict[str, str]) -> str:
     """生成只要求完整源码的提示词；题目材料作为待分析内容传入。"""
-    boundary = ''
-    if case.case_id == 'D-01':
-        boundary = ('基线必须是训练标签的多数类常量预测；最高频并列时选字典序最小的标签，'
-                    '为data.texts中每条文本重复该标签。禁止用输入顺序、Counter首次出现顺序或候选预测代替基线。\n')
-    elif case.case_id == 'D-05':
-        boundary = ('公开协议边界核对：同一时刻先处理所有到达/完成事件，再按服务器编号派发；'
-                    '优先队列的时间相同时必须有可比较的稳定标识，绝不能让Python比较任务dict。'
-                    '拒绝任务后该空闲服务器继续尝试等待任务，不能直接跳过服务器；'
-                    '公平累计在派发时预留；无任务和空闲间隔能正常退出/推进。'
-                    'baseline和candidate共享一个清晰的状态推进函数，避免重复事件和多套矛盾状态。\n')
-    elif case.case_id == 'D-02':
-        boundary = ('接口边界核对：run的baseline/candidate仅包含test_queries；'
-                    'dev_queries排名只存details.search，不混入正式预测。rank按data.selected排序，不能重选参。'
-                    '每个query完整排列所有documents；开发搜索逐项覆盖protocol.grid并按method的字典序规则打破并列。\n')
+    if case.case_id == 'D-05':
+        from .d05_policy import source_prompt
+        return source_prompt(case, materials)
+    guidance = {
+        'D-01': (
+            '本次从训练数据重新建立词表和类别的字典序；统计df时一篇文档内重复词只算一次。'
+            '训练集之外的词不能进入词表。使用协议中的epochs/lr/penalty，零初始化、全批量更新；'
+            '每一轮先累计所有样本梯度再更新，bias也正则化。softmax先减最大logit。'
+            'TF-IDF归一化后再附bias，空文本仍有bias；返回真实classes/vocabulary/idf/weights。'
+            '基线始终使用训练标签多数类，并列选字典序最小，不能复用候选预测。'),
+        'D-02': (
+            '把分词、标题/正文词频、df、长度预先计算一次，在各配置和查询间复用；'
+            '空标题也计入N，两个字段分别算平均长度和df，重复查询词按次数贡献。'
+            'run中完整遍历protocol.grid；search记录开发查询排名、普通均值和分组统计。'
+            '先算每个组内查询均值，再将组等权平均，不能按组大小加权。'
+            '选参依次最大化round(最差组MRR,12)、round(组宏MRR,12)、round(组宏Recall,12)，'
+            '最后最小化(title_weight,k1,b)。测试无标签，绝不参与选参。'
+            'rank只使用data.selected并返回candidate排名，不再搜索；baseline也必须支持rank。'),
+
+    }
+    boundary = guidance.get(case.case_id, '') + '\n'
     return (
         "请根据下面当前题目的公开方法、协议、样例和输入，实现一个完整的 Python 3.9 标准库算法。\n"
         "只返回一个完整的 ```python 代码块，不要解释、不要省略函数、不要返回补丁、不要拆成多个版本。\n"
@@ -106,7 +113,7 @@ def build_source_prompt(case, materials: dict[str, str]) -> str:
         "仅使用算法所需标准库，如math、collections、re、heapq、itertools、random、statistics、time；"
         "不使用动态加载、反射、私有运行时属性或第三方包。\n"
         "严格遵守 protocol.response_schema；这是算法内部返回，不是最终 Reproduction 答卷。\n\n"
-        "生成时间受限：源码目标不超过1800 token、100行，省略注释、类型注解和重复包装；"
+        "生成时间受限：源码保持紧凑，D-01/D-05目标约2200 token，D-02约2600 token；不要注释、类型注解、解释或重复包装；"
         "使用共享小函数实现基线和候选，仍须覆盖协议所有阶段和边界。"
         "优先保证baseline和完整输出结构；候选确实无法完成时按协议返回candidate=null，不能伪造轨迹或预测。\n"
         + boundary +

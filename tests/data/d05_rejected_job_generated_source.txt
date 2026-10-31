@@ -1,0 +1,297 @@
+import math
+from collections import defaultdict
+from heapq import heappush, heappop
+from copy import deepcopy
+
+def run_experiment(request):
+    data = request["data"]
+    jobs = data["jobs"]
+    flow_weights = data["flow_weights"]
+    servers = data["servers"]
+    setup_ms = data["setup_ms"]
+    horizon_ms = data["horizon_ms"]
+
+    def simulate(policy):
+        # policy: "fifo" or "fair"
+        job_list = []
+        for j in jobs:
+            job_list.append({
+                "id": j["id"],
+                "flow": j["flow"],
+                "arrival_ms": j["arrival_ms"],
+                "service_ms": j["service_ms"],
+                "deadline_ms": j["deadline_ms"]
+            })
+        # sort by arrival, then id
+        job_list.sort(key=lambda x: (x["arrival_ms"], x["id"]))
+        job_queue = []  # waiting jobs
+        job_idx = 0
+        n = len(job_list)
+
+        # per-server state
+        server_free = [0] * servers  # time when server becomes free
+        server_last_flow = [None] * servers
+
+        # flow accumulated service (including reserved)
+        flow_served = defaultdict(int)  # flow -> total ms reserved
+
+        # results
+        trace = []
+        dropped = []
+
+        # event queue: (time, type, server_id) type: 'free' or 'arrival'
+        # we handle arrivals via job_idx, completions via server_free
+        # use a min-heap for completion events
+        complete_heap = []  # (end_time, server_id)
+
+        now = 0
+        # initial events: all arrivals at time 0? we process via loop
+        # main loop
+        while True:
+            # 1) process completions up to now
+            while complete_heap and complete_heap[0][0] <= now:
+                end_time, sid = heappop(complete_heap)
+                server_free[sid] = end_time
+                # server_last_flow remains
+
+            # 2) add all arrivals <= now
+            while job_idx < n and job_list[job_idx]["arrival_ms"] <= now:
+                job_queue.append(job_list[job_idx])
+                job_idx += 1
+
+            # 3) drop expired waiting jobs (deadline <= now)
+            new_queue = []
+            for j in job_queue:
+                if j["deadline_ms"] <= now:
+                    dropped.append({"id": j["id"], "reason": "deadline"})
+                else:
+                    new_queue.append(j)
+            job_queue = new_queue
+
+            # 4) dispatch
+            dispatched_any = False
+            for sid in range(servers):
+                if server_free[sid] > now:
+                    continue
+                # server is idle now
+                if not job_queue:
+                    break
+                # select job based on policy
+                if policy == "fifo":
+                    # pick earliest arrival, then id
+                    best = min(job_queue, key=lambda x: (x["arrival_ms"], x["id"]))
+                else:  # fair
+                    # (flow_served[flow]/weight, arrival, id)
+                    best = min(job_queue, key=lambda x: (flow_served[x["flow"]] / flow_weights.get(x["flow"], 1), x["arrival_ms"], x["id"]))
+                # remove from queue
+                job_queue.remove(best)
+                # check deadline before start
+                start = now + (setup_ms if server_last_flow[sid] is not None and server_last_flow[sid] != best["flow"] else 0)
+                if start >= best["deadline_ms"]:
+                    dropped.append({"id": best["id"], "reason": "deadline"})
+                    # continue to next server (same time)
+                    continue
+                end = start + best["service_ms"]
+                if end > horizon_ms:
+                    dropped.append({"id": best["id"], "reason": "horizon"})
+                    # continue to next server
+                    continue
+                # dispatch
+                setup = setup_ms if server_last_flow[sid] is not None and server_last_flow[sid] != best["flow"] else 0
+                dispatch_ms = now
+                start_ms = dispatch_ms + setup
+                end_ms = start_ms + best["service_ms"]
+                wait_ms = start_ms - best["arrival_ms"]
+                trace.append({
+                    "id": best["id"],
+                    "flow": best["flow"],
+                    "arrival_ms": best["arrival_ms"],
+                    "service_ms": best["service_ms"],
+                    "deadline_ms": best["deadline_ms"],
+                    "server": sid,
+                    "dispatch_ms": dispatch_ms,
+                    "setup_ms": setup,
+                    "start_ms": start_ms,
+                    "end_ms": end_ms,
+                    "wait_ms": wait_ms
+                })
+                # update state
+                flow_served[best["flow"]] += best["service_ms"]
+                server_last_flow[sid] = best["flow"]
+                server_free[sid] = end_ms
+                heappush(complete_heap, (end_ms, sid))
+                dispatched_any = True
+                # after dispatch, continue to next server (same time)
+                # but we need to re-check server_free? server is now busy, so loop continues
+            # after dispatching all servers, if no dispatch and no pending events, break
+            if not dispatched_any:
+                # find next event time
+                next_time = None
+                if complete_heap:
+                    next_time = complete_heap[0][0]
+                if job_idx < n:
+                    arr_time = job_list[job_idx]["arrival_ms"]
+                    if next_time is None or arr_time < next_time:
+                        next_time = arr_time
+                if next_time is None:
+                    break
+                now = next_time
+            else:
+                # advance to next completion or arrival
+                next_time = None
+                if complete_heap:
+                    next_time = complete_heap[0][0]
+                if job_idx < n:
+                    arr_time = job_list[job_idx]["arrival_ms"]
+                    if next_time is None or arr_time < next_time:
+                        next_time = arr_time
+                if next_time is None:
+                    break
+                now = next_time
+
+        # after loop, any remaining jobs in queue -> horizon drop
+        for j in job_queue:
+            dropped.append({"id": j["id"], "reason": "horizon"})
+        # also any jobs not yet arrived? they never arrived? but we processed all arrivals up to horizon? 
+        # Actually if horizon passed and we stopped, remaining unarrived jobs are not considered.
+        # But the spec: "到窗口停止派发，剩余未派发任务统一记horizon"
+        # We stop when no events left; but if horizon is finite, we should stop at horizon?
+        # The simulation continues until no events; but if horizon is passed, we drop remaining.
+        # However, we already drop on dispatch if end>horizon. For jobs never dispatched, we drop them now.
+        # But we need to ensure we don't miss jobs that arrived after horizon? The simulation stops when no events.
+        # If horizon is reached, we should stop and drop all remaining.
+        # Let's add a check: if now >= horizon_ms, drop all remaining queue and break.
+        # Actually we already break when no events; but if horizon is reached, we should force stop.
+        # We'll add a horizon check after each loop.
+        # Re-run with horizon enforcement:
+        # We'll redo simulation with explicit horizon stop.
+        pass
+
+    # Redo simulation properly with horizon stop
+    def simulate_v2(policy):
+        job_list = []
+        for j in jobs:
+            job_list.append({
+                "id": j["id"],
+                "flow": j["flow"],
+                "arrival_ms": j["arrival_ms"],
+                "service_ms": j["service_ms"],
+                "deadline_ms": j["deadline_ms"]
+            })
+        job_list.sort(key=lambda x: (x["arrival_ms"], x["id"]))
+        job_queue = []
+        job_idx = 0
+        n = len(job_list)
+
+        server_free = [0] * servers
+        server_last_flow = [None] * servers
+        flow_served = defaultdict(int)
+
+        trace = []
+        dropped = []
+        complete_heap = []
+
+        now = 0
+        while True:
+            # process completions
+            while complete_heap and complete_heap[0][0] <= now:
+                end_time, sid = heappop(complete_heap)
+                server_free[sid] = end_time
+
+            # add arrivals
+            while job_idx < n and job_list[job_idx]["arrival_ms"] <= now:
+                job_queue.append(job_list[job_idx])
+                job_idx += 1
+
+            # drop expired
+            new_queue = []
+            for j in job_queue:
+                if j["deadline_ms"] <= now:
+                    dropped.append({"id": j["id"], "reason": "deadline"})
+                else:
+                    new_queue.append(j)
+            job_queue = new_queue
+
+            # dispatch
+            dispatched = False
+            for sid in range(servers):
+                if server_free[sid] > now:
+                    continue
+                if not job_queue:
+                    break
+                if policy == "fifo":
+                    best = min(job_queue, key=lambda x: (x["arrival_ms"], x["id"]))
+                else:
+                    best = min(job_queue, key=lambda x: (flow_served[x["flow"]] / flow_weights.get(x["flow"], 1), x["arrival_ms"], x["id"]))
+                job_queue.remove(best)
+                setup = setup_ms if server_last_flow[sid] is not None and server_last_flow[sid] != best["flow"] else 0
+                start = now + setup
+                if start >= best["deadline_ms"]:
+                    dropped.append({"id": best["id"], "reason": "deadline"})
+                    continue
+                end = start + best["service_ms"]
+                if end > horizon_ms:
+                    dropped.append({"id": best["id"], "reason": "horizon"})
+                    continue
+                trace.append({
+                    "id": best["id"],
+                    "flow": best["flow"],
+                    "arrival_ms": best["arrival_ms"],
+                    "service_ms": best["service_ms"],
+                    "deadline_ms": best["deadline_ms"],
+                    "server": sid,
+                    "dispatch_ms": now,
+                    "setup_ms": setup,
+                    "start_ms": start,
+                    "end_ms": end,
+                    "wait_ms": start - best["arrival_ms"]
+                })
+                flow_served[best["flow"]] += best["service_ms"]
+                server_last_flow[sid] = best["flow"]
+                server_free[sid] = end
+                heappush(complete_heap, (end, sid))
+                dispatched = True
+
+            # check horizon stop
+            if now >= horizon_ms:
+                for j in job_queue:
+                    dropped.append({"id": j["id"], "reason": "horizon"})
+                job_queue = []
+                break
+
+            # advance time
+            next_time = None
+            if complete_heap:
+                next_time = complete_heap[0][0]
+            if job_idx < n:
+                arr_time = job_list[job_idx]["arrival_ms"]
+                if next_time is None or arr_time < next_time:
+                    next_time = arr_time
+            if next_time is None or next_time > horizon_ms:
+                # stop at horizon
+                for j in job_queue:
+                    dropped.append({"id": j["id"], "reason": "horizon"})
+                job_queue = []
+                break
+            now = next_time
+
+        # after loop, any remaining queue (should be empty)
+        for j in job_queue:
+            dropped.append({"id": j["id"], "reason": "horizon"})
+
+        # sort trace by dispatch_ms, server
+        trace.sort(key=lambda x: (x["dispatch_ms"], x["server"]))
+        # sort dropped by id
+        dropped.sort(key=lambda x: x["id"])
+
+        # served_ms: all flows in flow_weights, even if zero
+        served_ms = {}
+        for f in flow_weights:
+            served_ms[f] = flow_served.get(f, 0)
+
+        return {"trace": trace, "served_ms": served_ms, "dropped": dropped}
+
+    baseline = simulate_v2("fifo")
+    candidate = simulate_v2("fair")
+
+    return {"baseline": baseline, "candidate": candidate, "details": {}}

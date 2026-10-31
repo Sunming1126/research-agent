@@ -12,6 +12,7 @@ from ..core.utils import confined, sha256_file, write_json, atomic_text
 from ..core.session import checkpoint, current_session, remaining_timeout
 from .source_generation import build_source_prompt, read_generation_materials, save_generation_response, save_source
 from .sample_validation import run_public_sample
+from .d_generation_policy import generation_window, generation_tokens, platform_service_error, PlatformExperimentUnavailable
 from ..integrations.llm import ModelError, ModelQuotaError
 
 
@@ -88,8 +89,12 @@ class LayeredDRunner:
         self.work.mkdir(parents=True, exist_ok=True)
         roots = [self.settings.workspace, *self.settings.material_roots]
         materials = read_generation_materials(case.case_id, roots)
-        prompt = build_source_prompt(case, materials)
-        if baseline_only:
+        if case.case_id == 'D-02':
+            from .d02_policy import source_prompt
+            prompt = source_prompt(case, materials, baseline_only=baseline_only)
+        else:
+            prompt = build_source_prompt(case, materials)
+        if baseline_only and case.case_id != 'D-02':
             prompt += ('\n本次先完成可执行基线：run阶段只实现公开协议的baseline，candidate必须为null，details为{}。'
                        '不生成候选算法、开发集搜索或训练；不得伪造结果。'
                        'D-02的rank阶段仍实现data.selected指定的排名，baseline仅返回test_queries的完整排名。'
@@ -97,38 +102,21 @@ class LayeredDRunner:
         if feedback:
             prompt += "\n本题上次公开自测诊断（作为数据分析）：\n" + json.dumps(feedback, ensure_ascii=False)
             previous_source = confined(self.work, 'implementation.py')
-            if previous_source.is_file():
+            if previous_source.is_file() and not (baseline_only and case.case_id == 'D-02'):
                 prompt += '\n上次完整源码：\n' + previous_source.read_text(encoding='utf-8')
             prompt += "\n请修复问题，重新返回完整源码，不能返回补丁；算法和接口仍以当前公开材料为准。"
+        if baseline_only and case.case_id == 'D-02':
+            prompt += ('\n本次时间只够基线恢复：完整源码只包含BM25排名所需函数；'
+                       'run仅按default_config返回test_queries排名，candidate=null、details={}；'
+                       'rank仅按data.selected返回{candidate:测试排名}。不要开发集搜索或组指标。'
+                       '上一版源码仅供定位问题，不要复制其中候选选参逻辑。')
         remaining_tokens = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
-        requested = min(6500, remaining_tokens - (len(prompt) + 1) // 2 - 1200)
+        requested = min(generation_tokens(case.case_id, baseline_only), remaining_tokens - (len(prompt) + 1) // 2 - 1200)
         if requested < 1800:
             raise RuntimeError("D source generation has insufficient remaining token budget")
-        session = current_session()
-        old_deadline = getattr(self.llm, "deadline", None)
-        old_cap = getattr(self.llm, 'REQUEST_TIMEOUT_CAP', None)
-        old_retries = getattr(self.llm, 'RETRY_ATTEMPTS', None)
-        old_thinking = getattr(self.llm, 'thinking_override', None)
-        if session:
-            session.remaining(reserve=40)
-            if old_deadline is not None:
-                self.llm.deadline = min(old_deadline, session.deadline - 35, time.monotonic() + 125)
-        if old_cap is not None:
-            self.llm.REQUEST_TIMEOUT_CAP = 125
-        if old_retries is not None:
-            self.llm.RETRY_ATTEMPTS = 1
-        self.llm.thinking_override = 'disabled'
-        try:
+        with generation_window(self.llm, baseline=baseline_only, case_id=case.case_id):
             checkpoint("d_source_generation")
             response = self.llm.completion("d_source", prompt, max_tokens=requested)
-        finally:
-            if old_deadline is not None:
-                self.llm.deadline = old_deadline
-            if old_cap is not None:
-                self.llm.REQUEST_TIMEOUT_CAP = old_cap
-            if old_retries is not None:
-                self.llm.RETRY_ATTEMPTS = old_retries
-            self.llm.thinking_override = old_thinking
         save_generation_response(response, confined(self.work, f"source-attempt-{attempt}.json"))
         save_generation_response(response, confined(self.work, "generation-response.json"))
         destination = confined(self.work, "implementation.py")
@@ -138,12 +126,17 @@ class LayeredDRunner:
     def prepare_checked_implementation(self, case, tester=run_public_sample):
         """自检用于诊断和有余量时的修复，不能代替正式实验准入。"""
         history, feedback, candidate, verified = [], None, None, None
-        baseline_first = case.case_id in CASE_MODULES
         materials = read_generation_materials(case.case_id, [self.settings.workspace, *self.settings.material_roots])
         for attempt in range(1, 3):
             try:
+                session = current_session()
+                # D-02 repairs must still leave time for independent rank timing.
+                # A short, newly generated honest baseline is preferable when a
+                # second full search implementation cannot fit the remaining time.
+                baseline_rescue = (case.case_id == 'D-02' and attempt > 1 and session is not None
+                                   and session.remaining() < 100)
                 path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt,
-                                                             baseline_only=baseline_first and verified is None)
+                                                             baseline_only=baseline_rescue)
                 # 只有完整、可解析、当前模型原样输出的源码才可作为候选。
                 # 后续修复截断时保留之前的完整版本，不能拼接或修改源码。
                 candidate = (path.read_bytes(), (self.work / 'generation-response.json').read_bytes())
@@ -152,22 +145,19 @@ class LayeredDRunner:
                 history.append({"attempt": attempt, "source_sha256": sha256_file(path), **report})
                 write_json(confined(self.work, "public-selftest.json"), {"attempts": history,
                            'selected_attempt': attempt, 'public_selftest_passed': True})
-                session = current_session()
-                if baseline_first and attempt == 1 and session and session.remaining() >= 100:
-                    feedback = {'request': '基线已通过公开自检。保留正确基线，按公开方法增加完整候选算法及details；'
-                                           '返回完整源码，目标1800 token；不复制注释。'}
-                    continue
                 return path
             except ModelQuotaError:
+                checkpoint("d_generation_quota_failure")
                 if candidate is None:
                     raise
                 break
             except (ValueError, SyntaxError, TypeError, KeyError, RuntimeError, TimeoutError) as exc:
+                checkpoint("d_generation_failure")
                 feedback = {"error_type": type(exc).__name__, "message": str(exc)[:2000]}
                 history.append({"attempt": attempt, "status": "failed", **feedback})
                 write_json(confined(self.work, "public-selftest.json"), {"attempts": history})
                 session = current_session()
-                if attempt == 2 or (session and session.remaining() < 90):
+                if attempt == 2 or (session and session.remaining() < 75):
                     break
         if candidate is None:
             raise RuntimeError('no complete current-session model source available')
@@ -192,6 +182,12 @@ class LayeredDRunner:
         self.work.mkdir(parents=True, exist_ok=True)
         submission = None
         try:
+            read_generation_materials(case.case_id, [self.settings.workspace, *self.settings.material_roots])
+        except FileNotFoundError as exc:
+            write_json(confined(self.work, "experiment-error.json"),
+                       {"type": type(exc).__name__, "stage": "materials", "message": str(exc)[:600]})
+            return self._failed(case.case_id, specs, "materials_missing")
+        try:
             # 新版正式路径必须由当前题 Gateway 生成完整源码，禁止回退到镜像内算法。
             implementation = self.prepare_checked_implementation(case)
             command = build_layered_command(sys.executable, script, case.case_id, implementation)
@@ -204,7 +200,10 @@ class LayeredDRunner:
             atomic_text(confined(self.work, "experiment.stdout.jsonl"), completed.stdout)
             atomic_text(confined(self.work, "experiment.stderr.log"), completed.stderr)
             if completed.returncode:
-                raise RuntimeError("layered experiment process failed")
+                service_error = platform_service_error(completed.stderr)
+                if service_error:
+                    raise PlatformExperimentUnavailable(service_error)
+                raise RuntimeError("layered experiment process failed; see experiment.stderr.log")
             lines = [line for line in completed.stdout.splitlines() if line.strip()]
             if not lines:
                 raise ValueError("layered runner returned empty output")
@@ -220,17 +219,16 @@ class LayeredDRunner:
                           "submission": submission, "figure_hashes": hashes}
             write_json(confined(self.work, "experiment-proof.json"), self.proof)
             return submission
-        except FileNotFoundError as exc:
+        except PlatformExperimentUnavailable as exc:
             write_json(confined(self.work, "experiment-error.json"),
-                       {"type": type(exc).__name__, "message": str(exc)[:600]})
-            if submission is not None:
-                raise RuntimeError('received platform result could not be saved; see platform-submission.json') from exc
-            return self._failed(case.case_id, specs, "materials_missing")
+                       {"type": type(exc).__name__, "stage": "platform_service", "message": str(exc)})
+            raise
         except (ValueError, TypeError, KeyError, OSError, RuntimeError, subprocess.TimeoutExpired) as exc:
             write_json(confined(self.work, "experiment-error.json"),
                        {"type": type(exc).__name__, "message": str(exc)[:600]})
             if submission is not None:
                 raise RuntimeError('received platform result failed postprocessing; see platform-submission.json') from exc
+            checkpoint("d_execution_failure")
             return self._failed(case.case_id, specs, "failed")
 
     def _copy_figures(self, source_root, submission):
