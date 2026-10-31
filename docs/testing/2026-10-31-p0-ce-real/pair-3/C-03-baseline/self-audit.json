@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 1,
+  "model_issues": [
+    "原文称“Self-RAG 不改变检索器本身，而是让任意 LM 学习按需检索[5, p.3]”，但所给证据 ev-35 仅说明“train an arbitrary LM to learn to use retrieval on-demand”，并未说明检索器本身未被改变，该否定性断言缺乏证据支持。; 原文称“RAG 在 TriviaQA 上沿用 DPR 的数据划分，即公开 Web Development 划分，并指出其他工作使用官方维基百科测试集[2, p.18]”，证据 ev-14 确实支持该表述，但原文将其归入“实验设置、指标与适用边界”并称“这些结果分别对应抽取式 QA 的 EM、生成式 QA 的精确匹配……”，其中“生成式 QA 的精确匹配”未在所给证据中明确对应 RAG 的 TriviaQA 指标口径，属未给证据的指标归因。; 原文称“RETRO 以 2 万亿 token 数据库、25 倍更少参数在 Pile 上取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，证据 ev-23 支持该句；但同段随后称“在 α=12.5% 泄漏水平下仍优于基线[4, p.15]”，证据 ev-27 原文为“down to α=12.5%”，意为泄漏水平降至 12.5% 时仍优于基线，原文“在 α=12.5% 泄漏水平下”未体现“降至/低至”的条件方向，属条件表述不准确。",
+    "insufficient reserved budget for repair"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "原文称“Self-RAG 不改变检索器本身，而是让任意 LM 学习按需检索[5, p.3]”，但所给证据 ev-35 仅说明“train an arbitrary LM to learn to use retrieval on-demand”，并未说明检索器本身未被改变，该否定性断言缺乏证据支持。",
+          "原文称“RAG 在 TriviaQA 上沿用 DPR 的数据划分，即公开 Web Development 划分，并指出其他工作使用官方维基百科测试集[2, p.18]”，证据 ev-14 确实支持该表述，但原文将其归入“实验设置、指标与适用边界”并称“这些结果分别对应抽取式 QA 的 EM、生成式 QA 的精确匹配……”，其中“生成式 QA 的精确匹配”未在所给证据中明确对应 RAG 的 TriviaQA 指标口径，属未给证据的指标归因。",
+          "原文称“RETRO 以 2 万亿 token 数据库、25 倍更少参数在 Pile 上取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，证据 ev-23 支持该句；但同段随后称“在 α=12.5% 泄漏水平下仍优于基线[4, p.15]”，证据 ev-27 原文为“down to α=12.5%”，意为泄漏水平降至 12.5% 时仍优于基线，原文“在 α=12.5% 泄漏水平下”未体现“降至/低至”的条件方向，属条件表述不准确。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "原文称“Self-RAG 不改变检索器本身，而是让任意 LM 学习按需检索[5, p.3]”，但所给证据 ev-35 仅说明“train an arbitrary LM to learn to use retrieval on-demand”，并未说明检索器本身未被改变，该否定性断言缺乏证据支持。; 原文称“RAG 在 TriviaQA 上沿用 DPR 的数据划分，即公开 Web Development 划分，并指出其他工作使用官方维基百科测试集[2, p.18]”，证据 ev-14 确实支持该表述，但原文将其归入“实验设置、指标与适用边界”并称“这些结果分别对应抽取式 QA 的 EM、生成式 QA 的精确匹配……”，其中“生成式 QA 的精确匹配”未在所给证据中明确对应 RAG 的 TriviaQA 指标口径，属未给证据的指标归因。; 原文称“RETRO 以 2 万亿 token 数据库、25 倍更少参数在 Pile 上取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，证据 ev-23 支持该句；但同段随后称“在 α=12.5% 泄漏水平下仍优于基线[4, p.15]”，证据 ev-27 原文为“down to α=12.5%”，意为泄漏水平降至 12.5% 时仍优于基线，原文“在 α=12.5% 泄漏水平下”未体现“降至/低至”的条件方向，属条件表述不准确。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "report",
+      "issues": [
+        "insufficient reserved budget for repair"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+[
+  {
+    "blind_id": "report-01",
+    "directory": "pair-1-162551-634d\\C-01-baseline",
+    "case_id": "C-01",
+    "variant": "baseline",
+    "round": 1,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-02",
+    "directory": "pair-1-162551-634d\\C-01-candidate",
+    "case_id": "C-01",
+    "variant": "candidate",
+    "round": 1,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-03",
+    "directory": "pair-1-162551-634d\\C-03-candidate",
+    "case_id": "C-03",
+    "variant": "candidate",
+    "round": 1,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-04",
+    "directory": "pair-1-162551-634d\\C-03-baseline",
+    "case_id": "C-03",
+    "variant": "baseline",
+    "round": 1,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-05",
+    "directory": "pair-1-162551-634d\\E-01-baseline",
+    "case_id": "E-01",
+    "variant": "baseline",
+    "round": 1,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-06",
+    "directory": "pair-1-162551-634d\\E-01-candidate",
+    "case_id": "E-01",
+    "variant": "candidate",
+    "round": 1,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-07",
+    "directory": "pair-1-162551-634d\\E-02-candidate",
+    "case_id": "E-02",
+    "variant": "candidate",
+    "round": 1,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-08",
+    "directory": "pair-1-162551-634d\\E-02-baseline",
+    "case_id": "E-02",
+    "variant": "baseline",
+    "round": 1,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-09",
+    "directory": "pair-2-163050-6d8a\\C-01-candidate",
+    "case_id": "C-01",
+    "variant": "candidate",
+    "round": 2,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-10",
+    "directory": "pair-2-163050-6d8a\\C-01-baseline",
+    "case_id": "C-01",
+    "variant": "baseline",
+    "round": 2,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-11",
+    "directory": "pair-2-163050-6d8a\\C-03-baseline",
+    "case_id": "C-03",
+    "variant": "baseline",
+    "round": 2,
+    "generation_status": "failed"
+  },
+  {
+    "blind_id": "report-12",
+    "directory": "pair-2-163050-6d8a\\C-03-candidate",
+    "case_id": "C-03",
+    "variant": "candidate",
+    "round": 2,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-13",
+    "directory": "pair-2-163050-6d8a\\E-01-candidate",
+    "case_id": "E-01",
+    "variant": "candidate",
+    "round": 2,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-14",
+    "directory": "pair-2-163050-6d8a\\E-01-baseline",
+    "case_id": "E-01",
+    "variant": "baseline",
+    "round": 2,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-15",
+    "directory": "pair-2-163050-6d8a\\E-02-baseline",
+    "case_id": "E-02",
+    "variant": "baseline",
+    "round": 2,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-16",
+    "directory": "pair-2-163050-6d8a\\E-02-candidate",
+    "case_id": "E-02",
+    "variant": "candidate",
+    "round": 2,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-17",
+    "directory": "pair-3-163430-a678\\C-01-baseline",
+    "case_id": "C-01",
+    "variant": "baseline",
+    "round": 3,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-18",
+    "directory": "pair-3-163430-a678\\C-01-candidate",
+    "case_id": "C-01",
+    "variant": "candidate",
+    "round": 3,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-19",
+    "directory": "pair-3-163430-a678\\C-03-candidate",
+    "case_id": "C-03",
+    "variant": "candidate",
+    "round": 3,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-20",
+    "directory": "pair-3-163430-a678\\C-03-baseline",
+    "case_id": "C-03",
+    "variant": "baseline",
+    "round": 3,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-21",
+    "directory": "pair-3-163430-a678\\E-01-baseline",
+    "case_id": "E-01",
+    "variant": "baseline",
+    "round": 3,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-22",
+    "directory": "pair-3-163430-a678\\E-01-candidate",
+    "case_id": "E-01",
+    "variant": "candidate",
+    "round": 3,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-23",
+    "directory": "pair-3-163430-a678\\E-02-candidate",
+    "case_id": "E-02",
+    "variant": "candidate",
+    "round": 3,
+    "generation_status": "completed"
+  },
+  {
+    "blind_id": "report-24",
+    "directory": "pair-3-163430-a678\\E-02-baseline",
+    "case_id": "E-02",
+    "variant": "baseline",
+    "round": 3,
+    "generation_status": "completed"
+  }
+]

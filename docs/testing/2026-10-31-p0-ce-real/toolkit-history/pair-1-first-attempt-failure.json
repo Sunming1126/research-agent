@@ -1,0 +1,8 @@
+{
+  "coordinator_tool_seq": 2076,
+  "do_not_count_as_completed_trial": true,
+  "status": "native_preflight_failed",
+  "error": "No new request/header after seq2070; latest actual config header seq2053 was inherited",
+  "target_model_calls": 0,
+  "phase": "pair-1"
+}

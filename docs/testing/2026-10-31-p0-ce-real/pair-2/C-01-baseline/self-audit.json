@@ -1,0 +1,49 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 2,
+  "model_issues": [
+    "正文称“RAG 沿用 DPR 的数据划分，TriviaQA 用 Web Development 公开集，并指出其他工作用官方 Wikipedia 测试集[2, p.18]”，但证据 ev-14 只说明 RAG 报告使用 DPR 的数据划分、TriviaQA 测试集为公开 Web Development 划分，并提到 Roberts et al. 使用官方 Wikipedia 测试集；未支持“其他工作”这一泛化归因，应限定为具体被引工作。; 正文称“RAG 与 FiD 均涉及多段证据融合，但前者端到端训练检索器、后者固定检索流程，二者在 TriviaQA 上的数字受划分与段落数影响，不能简单相减”，其中“后者固定检索流程”与“段落数影响”缺乏给定证据支持：ev-22 仅说明 FiD 在编码器独立处理段落、解码器融合，未说明其检索流程固定或段落数对 TriviaQA 数字的影响，应降为待核查或删除。; 正文称“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 上优于监督微调 LLM，并在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge 和 MAUVE 指标上超过 ChatGPT[5, p.8]”，但 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，Rouge 和 MAUVE 是括号内对任务范围的限定，改写后易被读作仅在这两个指标上超过 ChatGPT，与原文“在所列任务上超过 ChatGPT（含 Rouge 和 MAUVE）”的归因范围不一致，应恢复原文限定关系。"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "原文“DPR 报告在 Natural Questions 上联合训练检索器与阅读器的消融得 39.8 EM，并称隔离训练强检索器与阅读器可更简单有效地利用监督[1, p.8]”把 39.8 EM 归给联合训练消融，但证据 ev-6 显示 39.8 EM 是隔离训练强检索器与阅读器（pipeline）策略的得分，联合训练是作为对比的消融；应改为“流水线训练得 39.8 EM，并优于可比的联合训练消融”。",
+          "原文“RETRO 在 Pile 上以 2 万亿 token 库、25 倍更少参数取得与 GPT-3、Jurassic-1 可比的表现[4, p.1]”将“2 万亿 token 数据库”与“25 倍更少参数”并置，易被读作 2 万亿 token 库对应 25 倍更少参数；证据 ev-23 的 25× fewer parameters 是相对 GPT-3/Jurassic-1 的参数规模比较，数据库规模是另一属性，应明确区分两个比较条件。",
+          "原文“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 上优于监督微调 LLM，部分指标超过 ChatGPT[5, p.8]”中“部分指标超过 ChatGPT”未限定指标，证据 ev-34 明确为 PubHealth、PopQA、biography generations 与 ASQA 的 Rouge 和 MAUVE，应补足指标范围以免扩大归因。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "原文“DPR 报告在 Natural Questions 上联合训练检索器与阅读器的消融得 39.8 EM，并称隔离训练强检索器与阅读器可更简单有效地利用监督[1, p.8]”把 39.8 EM 归给联合训练消融，但证据 ev-6 显示 39.8 EM 是隔离训练强检索器与阅读器（pipeline）策略的得分，联合训练是作为对比的消融；应改为“流水线训练得 39.8 EM，并优于可比的联合训练消融”。; 原文“RETRO 在 Pile 上以 2 万亿 token 库、25 倍更少参数取得与 GPT-3、Jurassic-1 可比的表现[4, p.1]”将“2 万亿 token 数据库”与“25 倍更少参数”并置，易被读作 2 万亿 token 库对应 25 倍更少参数；证据 ev-23 的 25× fewer parameters 是相对 GPT-3/Jurassic-1 的参数规模比较，数据库规模是另一属性，应明确区分两个比较条件。; 原文“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 上优于监督微调 LLM，部分指标超过 ChatGPT[5, p.8]”中“部分指标超过 ChatGPT”未限定指标，证据 ev-34 明确为 PubHealth、PopQA、biography generations 与 ASQA 的 Rouge 和 MAUVE，应补足指标范围以免扩大归因。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“RAG 沿用 DPR 的数据划分，TriviaQA 用 Web Development 公开集，并指出其他工作用官方 Wikipedia 测试集[2, p.18]”，但证据 ev-14 只说明 RAG 报告使用 DPR 的数据划分、TriviaQA 测试集为公开 Web Development 划分，并提到 Roberts et al. 使用官方 Wikipedia 测试集；未支持“其他工作”这一泛化归因，应限定为具体被引工作。",
+          "正文称“RAG 与 FiD 均涉及多段证据融合，但前者端到端训练检索器、后者固定检索流程，二者在 TriviaQA 上的数字受划分与段落数影响，不能简单相减”，其中“后者固定检索流程”与“段落数影响”缺乏给定证据支持：ev-22 仅说明 FiD 在编码器独立处理段落、解码器融合，未说明其检索流程固定或段落数对 TriviaQA 数字的影响，应降为待核查或删除。",
+          "正文称“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 上优于监督微调 LLM，并在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge 和 MAUVE 指标上超过 ChatGPT[5, p.8]”，但 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，Rouge 和 MAUVE 是括号内对任务范围的限定，改写后易被读作仅在这两个指标上超过 ChatGPT，与原文“在所列任务上超过 ChatGPT（含 Rouge 和 MAUVE）”的归因范围不一致，应恢复原文限定关系。"
+        ]
+      }
+    },
+    {
+      "attempt": 2,
+      "stage": "validation",
+      "issues": [
+        "正文称“RAG 沿用 DPR 的数据划分，TriviaQA 用 Web Development 公开集，并指出其他工作用官方 Wikipedia 测试集[2, p.18]”，但证据 ev-14 只说明 RAG 报告使用 DPR 的数据划分、TriviaQA 测试集为公开 Web Development 划分，并提到 Roberts et al. 使用官方 Wikipedia 测试集；未支持“其他工作”这一泛化归因，应限定为具体被引工作。; 正文称“RAG 与 FiD 均涉及多段证据融合，但前者端到端训练检索器、后者固定检索流程，二者在 TriviaQA 上的数字受划分与段落数影响，不能简单相减”，其中“后者固定检索流程”与“段落数影响”缺乏给定证据支持：ev-22 仅说明 FiD 在编码器独立处理段落、解码器融合，未说明其检索流程固定或段落数对 TriviaQA 数字的影响，应降为待核查或删除。; 正文称“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 上优于监督微调 LLM，并在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge 和 MAUVE 指标上超过 ChatGPT[5, p.8]”，但 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，Rouge 和 MAUVE 是括号内对任务范围的限定，改写后易被读作仅在这两个指标上超过 ChatGPT，与原文“在所列任务上超过 ChatGPT（含 Rouge 和 MAUVE）”的归因范围不一致，应恢复原文限定关系。"
+      ]
+    }
+  ]
+}

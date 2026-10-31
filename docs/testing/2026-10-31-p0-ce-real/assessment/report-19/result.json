@@ -1,0 +1,166 @@
+{
+  "blind_id": "report-19",
+  "status": "partial_assessment",
+  "report_sha256": "d539ca1e05d4b21c797e593aa57300f9796911e55f43cb9044d09d6f74360c8a",
+  "ledger_sha256": "d9f5f93f609988622a4be7017e9464f34d4ebc3f30696c34ac916f1ee678b98a",
+  "checked_facts": [
+    {
+      "fact": {
+        "sentence": "DPR 将检索问题形式化为稠密表示学习：用稠密编码器把任意文本段落映射为 d 维实值向量并为全部段落建立索引[1, p.2]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-7"
+        ],
+        "source_quote": "Our dense passage retriever (DPR) uses a dense\nencoder EP (·) which maps any text passage to a d-\ndimensional real-valued vectors and builds an index\nfor all the M passages that we will use for retrieval.",
+        "reason": "原文明确说明DPR用稠密编码器将任意文本段落映射为d维实值向量并为全部M个段落建立索引，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "DPR 明确指出开放域问答依赖高效段落检索，稀疏向量空间模型是事实标准，而该文展示检索可仅用稠密表示实现，嵌入由少量问题—段落经简单双编码器框架学习[1, p.1]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-2"
+        ],
+        "source_quote": "Open-domain question answering relies on ef-\nﬁcient passage retrieval to select candidate\ncontexts, where traditional sparse vector space\nmodels, such as TF-IDF or BM25, are the de\nfacto method.\nIn this work, we show that\nretrieval can be practically implemented us-\ning dense representations alone, where em-\nbeddings are learned from a small number\nof questions and passages by a simple dual-\nencoder framework.",
+        "reason": "原文逐字包含开放域问答依赖高效段落检索、稀疏模型是事实标准、仅用稠密表示实现检索、嵌入由少量问题—段落经简单双编码器学习等要点。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "DPR 以问题、正段落与 n 个负段落构成训练实例，优化正段落的负对数似然[1, p.3]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-8"
+        ],
+        "source_quote": "Let D = {⟨qi, p+\ni , p−\ni,1, · · · , p−\ni,n⟩}m\ni=1 be the\ntraining data that consists of m instances. Each\ninstance contains one question qi and one relevant\n(positive) passage p+\ni , along with n irrelevant (neg-\nnegative) passages p−\ni,j. We optimize the loss function\nas the negative log likelihood of the positive pas-\nsage:",
+        "reason": "原文说明每个训练实例含一个问题、一个正段落和n个负段落，并优化正段落的负对数似然，与句子一致。"
+      },
+      "validation_issues": [
+        "quote_not_contiguous_authorized_excerpt"
+      ]
+    },
+    {
+      "fact": {
+        "sentence": "其消融显示，在 Natural Questions 上分别训练强检索器与阅读器可得 39.8 EM，作者据此认为该策略能有效利用可用监督，并以更简单设计优于可比的联合训练方案[1, p.8]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-6"
+        ],
+        "source_quote": "trained, following Lee et al. (2019). This approach\nobtains a score of 39.8 EM, which suggests that our\nstrategy of training a strong retriever and reader in\nisolation can leverage effectively available supervi-\nsion, while outperforming a comparable joint train-\ning approach with a simpler design (Appendix D).",
+        "reason": "原文给出39.8 EM，并称分别训练强检索器与阅读器能有效利用监督且以更简单设计优于可比联合训练，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "RAG 把检索文档视为潜变量，端到端训练检索器与生成器，并提出 RAG-Sequence（同一文档预测所有目标词元）与 RAG-Token（不同目标词元可基于不同文档）两种边缘化方式[2, p.3]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-15"
+        ],
+        "source_quote": "To train the retriever and generator end-to-end, we treat the retrieved document as a latent variable.\nWe propose two models that marginalize over the latent documents in different ways to produce a\ndistribution over generated text. In one approach, RAG-Sequence, the model uses the same document\nto predict each target token. The second approach, RAG-Token, can predict each target token based\non a different document.",
+        "reason": "原文明确将检索文档视为潜变量、端到端训练检索器与生成器，并定义RAG-Sequence与RAG-Token两种边缘化方式，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "FiD 的关键设计是在编码器独立处理各段落、仅在解码器联合融合，从而可扩展到大量上下文[3, p.3]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-22"
+        ],
+        "source_quote": "tion over the concatenation of the resulting repre-\nsentations of all the retrieved passages. The model\nthus performs evidence fusion in the decoder only,\nand we refer to it as Fusion-in-Decoder.\nBy processing passages independently in the en-\ncoder, but jointly in the decoder, this method dif-\nfers from Min et al. (2020) and Lewis et al. (2020).\nProcessing passages independently in the encoder\nallows to scale to large number of contexts, as it\nonly performs self attention over one context at a",
+        "reason": "原文说明FiD仅在解码器融合证据、编码器独立处理段落，并指出编码器独立处理可扩展到大量上下文，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "RETRO 使用冻结 BERT 检索器，免去训练与更新检索网络[4, p.2]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-29"
+        ],
+        "source_quote": "• We introduce Retro, a retrieval-enhanced autoregressive language model (§2.2). We use a\nchunked cross-attention module to incorporate the retrieved text (§2.4), with time complexity\nlinear in the amount of retrieved data. We show that retrieving based on a pre-trained frozen\nBert model (§2.3) works at scale, removing the need for training and updating a retriever\nnetwork.",
+        "reason": "原文明确称基于预训练冻结BERT模型检索可规模化，免去训练和更新检索网络，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "RETRO 在 Pile 上以少 25 倍参数取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-23"
+        ],
+        "source_quote": "We enhance auto-regressive language models by conditioning on document chunks retrieved from a\nlarge corpus, based on local similarity with preceding tokens. With a 2 trillion token database, our\nRetrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1\non the Pile, despite using 25× fewer parameters.",
+        "reason": "原文明确称RETRO在Pile上与GPT-3和Jurassic-1性能可比，且参数少25倍，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "在泄漏水平降至 α=12.5% 时仍优于基线[4, p.15]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-27"
+        ],
+        "source_quote": "On the other hand, Retro outperforms baseline models at all leakage levels, down to 𝛼= 12.5%.",
+        "reason": "原文明确称RETRO在所有泄漏水平直至α=12.5%时均优于基线模型，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "FiD 报告在 Natural Questions 与 TriviaQA 开放基准上取得当时最优[3, p.1]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-16"
+        ],
+        "source_quote": "We obtain state-of-the-\nart results on the Natural Questions and Triv-\niaQA open benchmarks.",
+        "reason": "原文明确称在Natural Questions和TriviaQA开放基准上取得当时最优结果，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "Self-RAG 在多个任务上优于监督微调 LLM，并在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上超过 ChatGPT[5, p.8]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-34"
+        ],
+        "source_quote": "Our SELF-RAG (bottom two rows) demonstrates a substantial performance advantage\nover supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA,\nbiography generations, and ASQA (Rouge and MAUVE).",
+        "reason": "原文明确称SELF-RAG在所有任务上优于监督微调LLM，并在PubHealth、PopQA、传记生成和ASQA的Rouge与MAUVE上超过ChatGPT，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "Self-RAG 则训练任意 LM 以扩展词表的下一个词元预测方式生成反思标记，标记由训练好的 critic 模型离线插入语料[5, p.2]",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-37"
+        ],
+        "source_quote": "SELF-RAG trains an arbitrary LM to generate text with reflection tokens by unifying them as the\nnext token prediction from the expanded model vocabulary. We train our generator LM on a diverse\ncollection of text interleaved with reflection tokens and retrieved passages. Reflection tokens, inspired\nby reward models used in reinforcement learning (Ziegler et al., 2019; Ouyang et al., 2022), are\ninserted offline into the original corpus by a trained critic model.",
+        "reason": "原文明确称SELF-RAG训练任意LM以扩展词表的下一个词元预测生成反思标记，且反思标记由训练好的critic模型离线插入原始语料，与句子一致。"
+      },
+      "validation_issues": []
+    }
+  ],
+  "valid_facts": 11,
+  "rejected_facts": 1,
+  "verdict_counts": {
+    "supported": 11,
+    "contradicted": 0,
+    "not_in_evidence": 0,
+    "uncertain": 0
+  },
+  "limits": "same-provider sampled excerpt review, not human gold or exhaustive correctness",
+  "target_real_model_calls": 1,
+  "total_tokens": 8820,
+  "quota_exhausted": false
+}

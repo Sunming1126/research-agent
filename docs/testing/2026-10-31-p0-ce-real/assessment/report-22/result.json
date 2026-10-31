@@ -1,0 +1,178 @@
+{
+  "blind_id": "report-22",
+  "status": "partial_assessment",
+  "report_sha256": "214ef9b753e5da741d797934e74e7de3d209cca559ea1b770da212171ef2db32",
+  "ledger_sha256": "dac483b35c06a2cde9611d3e83f07791937001ed0925d30e035f54ad99dfa740",
+  "checked_facts": [
+    {
+      "fact": {
+        "sentence": "开放域问答中，稀疏检索（TF-IDF/BM25）是事实标准，而稠密双编码器在top-20段落检索准确率上较强BM25基线绝对提升9%–19%[1, p.1]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-2"
+        ],
+        "source_quote": "Open-domain question answering relies on ef-\nﬁcient passage retrieval to select candidate\ncontexts, where traditional sparse vector space\nmodels, such as TF-IDF or BM25, are the de\nfacto method.\nIn this work, we show that\nretrieval can be practically implemented us-\ning dense representations alone, where em-\nbeddings are learned from a small number\nof questions and passages by a simple dual-\nencoder framework.\nWhen evaluated on a\nwide range of open-domain QA datasets, our\ndense retriever outperforms a strong Lucene-\nBM25 system greatly by 9%-19% absolute in\nterms of top-20 passage retrieval accuracy, and\nhelps our end-to-end QA system establi",
+        "reason": "原文明确称TF-IDF/BM25为事实标准，并报告稠密检索器在top-20段落检索准确率上较Lucene-BM25绝对提升9%-19%，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "生成式阅读器在检索段落数增加时性能显著提升，提示其善于融合多段证据[3, p.1][3, p.2][3, p.4]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-18"
+        ],
+        "source_quote": "representations.\nThen, a sequence-to-sequence\nmodel generates the answer, taking as input the re-\ntrieved passages in addition to the question. While\nconceptually simple, this method sets new state-of-\nthe-art results on the TriviaQA and NaturalQues-\ntions benchmarks. In particular, we show that the\nperformance of our method signiﬁcantly improves\nwhen the number of retrieved passages increases.\nWe believe that this is evidence that generative mod-\nels are good at combining evidence from multiple\npassages, compared to extractive ones.",
+        "reason": "原文称检索段落数增加时性能显著提升，并认为这是生成模型善于融合多段证据的证据，与句子一致。"
+      },
+      "validation_issues": [
+        "sentence_not_contiguous_report_text"
+      ]
+    },
+    {
+      "fact": {
+        "sentence": "但 indiscriminate 固定数量检索会引入无关段落、损害通用性[5, p.1]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-31"
+        ],
+        "source_quote": "Despite their remarkable capabilities, large language models (LLMs) often produce\nresponses containing factual inaccuracies due to their sole reliance on the paramet-\nric knowledge they encapsulate. Retrieval-Augmented Generation (RAG), an ad\nhoc approach that augments LMs with retrieval of relevant knowledge, decreases\nsuch issues. However, indiscriminately retrieving and incorporating a fixed number\nof retrieved passages, regardless of whether retrieval is necessary, or passages are\nrelevant, diminishes LM versatility or can lead to unhelpful response generation.\nWe introduce a new framework called Self-Reflective Retrieval-Augmented Gen-",
+        "reason": "原文称不加区分地检索并纳入固定数量段落会削弱LM通用性或导致无益生成，与句子一致。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "稠密编码器将段落映射为d维向量并建索引[1, p.2]，训练用问题-正段-负段三元组负对数似然[1, p.3]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-7",
+          "ev-8"
+        ],
+        "source_quote": "Our dense passage retriever (DPR) uses a dense\nencoder EP (·) which maps any text passage to a d-\ndimensional real-valued vectors and builds an index\nfor all the M passages that we will use for retrieval.",
+        "reason": "ev-7支持映射为d维向量并建索引；ev-8支持训练数据为问题-正段-负段三元组并优化正段负对数似然。source_quote完整包含于ev-7的quote中，且ev-8亦提供对应逐字片段。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "FiD式编码器独立编码各段、解码器联合融合[3, p.3]；或RAG式将检索文档视为隐变量[2, p.3]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-22",
+          "ev-15"
+        ],
+        "source_quote": "tion over the concatenation of the resulting repre-\nsentations of all the retrieved passages. The model\nthus performs evidence fusion in the decoder only,\nand we refer to it as Fusion-in-Decoder.\nBy processing passages independently in the en-\ncoder, but jointly in the decoder, this method dif-\nfers from Min et al. (2020) and Lewis et al. (2020).\nProcessing passages independently in the encoder\nallows to scale to large number of contexts, as it\nonly performs self attention over one context at a\ntime. This means that the computation time of the\nmodel grows linearly with the number of passages,\ninstead of quadratically. On the other hand, pro-",
+        "reason": "ev-22支持FiD编码器独立处理各段、解码器联合融合；ev-15支持RAG将检索文档视为隐变量。source_quote完整包含于ev-22的quote中。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "借鉴反思token的离线插入与推理期可控生成[5, p.3][5, p.2]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-37",
+          "ev-33"
+        ],
+        "source_quote": "SELF-RAG trains an arbitrary LM to generate text with reflection tokens by unifying them as the\nnext token prediction from the expanded model vocabulary. We train our generator LM on a diverse\ncollection of text interleaved with reflection tokens and retrieved passages. Reflection tokens, inspired\nby reward models used in reinforcement learning (Ziegler et al., 2019; Ouyang et al., 2022), are\ninserted offline into the original corpus by a trained critic model. This eliminates the need to host a\ncritic model during training, reducing overhead. The critic model, in part, is supervised on a dataset\nof input, output, and corresponding reflection ",
+        "reason": "ev-37支持反思token由批评模型离线插入；ev-33支持反思token在推理期实现可控生成。source_quote完整包含于ev-37的quote中。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "命名基准采用NaturalQuestions开放域版（丢弃超过5 token的答案）[3, p.3]与TriviaQA（沿用DPR划分惯例，报告Web开发集）[2, p.18]；SQuAD因缺上下文不理想，仅作公平对比[1, p.4]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-21",
+          "ev-14",
+          "ev-5"
+        ],
+        "source_quote": "• NaturalQuestions (Kwiatkowski et al., 2019)\ncontains questions corresponding to Google\nsearch queries. The open-domain version of\nthis dataset is obtained by discarding answers\nwith more than 5 tokens.",
+        "reason": "ev-21支持NQ开放域版丢弃超过5 token答案；ev-14支持TriviaQA沿用DPR划分并报告Web开发集；ev-5支持SQuAD因缺上下文不理想但仍作公平对比。source_quote完整包含于ev-21的quote中。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "原文称重叠切分未显优势[1, p.4]；对策为统一非重叠切分并在配置中固定。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-4"
+        ],
+        "source_quote": "5However, Wang et al. (2019) also propose splitting docu-\nments into overlapping passages, which we do not ﬁnd advan-\ntageous compared to the non-overlapping version.",
+        "reason": "原文明确称重叠切分相比非重叠版本未显优势，与句子前半一致；后半为报告拟议对策，非论文实测。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "原文在遵循Lee et al. (2019)的训练配置下报告39.8 EM，并称该策略（先独立训练强检索器与阅读器）优于可比的联合训练方案[1, p.8]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-6"
+        ],
+        "source_quote": "trained, following Lee et al. (2019). This approach\nobtains a score of 39.8 EM, which suggests that our\nstrategy of training a strong retriever and reader in\nisolation can leverage effectively available supervi-\nsion, while outperforming a comparable joint train-\ning approach with a simpler design (Appendix D).\nOne thing worth noticing is that our reader does\nconsider more passages compared to ORQA, al-\nthough it is not completely clear how much more\ntime it takes for inference. While DPR processes\nup to 100 passages for each question, the reader\nis able to ﬁt all of them into one batch on a sin-\ngle 32GB GPU, thus the latency remains almost",
+        "reason": "原文报告39.8 EM，并称独立训练强检索器与阅读器的策略优于可比的联合训练方案，与句子一致。"
+      },
+      "validation_issues": [
+        "sentence_not_contiguous_report_text"
+      ]
+    },
+    {
+      "fact": {
+        "sentence": "Retro面向万亿token级数据库，以连续token块级检索降低存储与计算需求，并用冻结BERT嵌入作为键以避免训练中周期性重算全库嵌入[4, p.2]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-25"
+        ],
+        "source_quote": "We design our retrieval-enhanced architecture to be capable of retrieving from a database with trillions\nof tokens. For this purpose, we retrieve at the level of contiguous token chunks instead of individual\ntokens which reduces storage and computation requirements by a large linear factor. Our method ﬁrst\nconstructs a key-value database, where values store raw chunks of text tokens and keys are frozen\nBert embedddings (Devlin et al., 2019). We use a frozen model to avoid having to periodically\nre-compute embeddings over the entire database during training. Each training sequence is then split\ninto chunks, which are augmented with their 𝑘-nea",
+        "reason": "原文称面向万亿token数据库、按连续token块检索以降低存储与计算、键为冻结BERT嵌入以避免训练中周期性重算全库嵌入，与句子一致。"
+      },
+      "validation_issues": [
+        "sentence_not_contiguous_report_text"
+      ]
+    },
+    {
+      "fact": {
+        "sentence": "反思token依赖批评模型：离线插入降低开销[5, p.2]；对策为固定批评模型版本并缓存其输出。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-37"
+        ],
+        "source_quote": "SELF-RAG trains an arbitrary LM to generate text with reflection tokens by unifying them as the\nnext token prediction from the expanded model vocabulary. We train our generator LM on a diverse\ncollection of text interleaved with reflection tokens and retrieved passages. Reflection tokens, inspired\nby reward models used in reinforcement learning (Ziegler et al., 2019; Ouyang et al., 2022), are\ninserted offline into the original corpus by a trained critic model. This eliminates the need to host a\ncritic model during training, reducing overhead. The critic model, in part, is supervised on a dataset\nof input, output, and corresponding reflection ",
+        "reason": "原文称反思token由训练好的批评模型离线插入，从而消除训练时托管批评模型的开销，与句子前半一致；后半为报告拟议对策。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "防泄漏：测试段落与训练段落做n-gram重叠检测，重叠≥8连续token的样本标记并分层报告[4, p.15][4, p.2]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-27",
+          "ev-30"
+        ],
+        "source_quote": "On the other hand, Retro outperforms baseline models at all leakage levels, down to 𝛼= 12.5%.\nAt this level, the loss is computed on chunks with less than 8 contiguous tokens shared with the\nclosest matching chunk in the training dataset—this is a reasonable level of overlap at which we\nconsider that there is no local leakage. Retrieval thus improves predictions on both chunks that are\nsyntactically similar to chunks in the training set, and on chunks that are syntactically diﬀerent from\nall training chunks. This points toward a non trivial Retro capacity of generalizing based on both\nmodel parameters and retrieval database. Similar results a",
+        "reason": "ev-27支持以与训练集最近块共享少于8连续token作为无局部泄漏的合理重叠水平；ev-30支持提出考虑测试文档与训练集邻近性的评估以应对测试集泄漏。source_quote完整包含于ev-27的quote中。"
+      },
+      "validation_issues": [
+        "sentence_not_contiguous_report_text"
+      ]
+    }
+  ],
+  "valid_facts": 8,
+  "rejected_facts": 4,
+  "verdict_counts": {
+    "supported": 8,
+    "contradicted": 0,
+    "not_in_evidence": 0,
+    "uncertain": 0
+  },
+  "limits": "same-provider sampled excerpt review, not human gold or exhaustive correctness",
+  "target_real_model_calls": 1,
+  "total_tokens": 10131,
+  "quota_exhausted": false
+}

@@ -1,0 +1,49 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 2,
+  "model_issues": [
+    "正文称“数据采用NaturalQuestions开放域版本（丢弃超过5词答案）[3, p.3]与TriviaQA，TriviaQA沿用DPR划分惯例[2, p.18]”，但[2, p.18]原文只说明TriviaQA沿用DPR划分，并未覆盖NaturalQuestions的划分；[3, p.3]只说明NQ开放域版本丢弃超过5词答案，未给出划分惯例。该句把两项事实合并归因，超出证据范围，应拆分并分别标注依据。; 正文称“参照RETRO的邻近泄漏评估，报告与训练集中最相近块共享少于8个连续token的子集结果[4, p.15][4, p.2]”，但[4, p.15]原文是“less than 8 contiguous tokens shared with the closest matching chunk in the training dataset”，即与训练集中最相近块共享少于8个连续token，而非“与训练块重叠少于8个连续token”的笼统表述；应改为与最近匹配训练块的重叠口径，避免改变泄漏定义。; 正文在“复现瓶颈与对策”中称“DPR联合训练与分离训练比较仅部分呈现[1, p.8]”，但[1, p.8]原文明确报告分离训练取得39.8 EM并优于可比的联合训练方法（附录D），并非“仅部分呈现”；该归因与证据不符，应改为按原文陈述比较结论或删除该瓶颈表述。"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“数据采用NaturalQuestions开放域版本（丢弃超过5词答案）与TriviaQA，沿用DPR划分惯例[2, p.18][3, p.3]”，但[2, p.18]的原文只说明TriviaQA沿用DPR划分，并未覆盖NaturalQuestions的划分；[3, p.3]只说明NQ开放域版本丢弃超过5词答案，未给出划分惯例。该句把两项事实合并归因，超出证据范围，应拆分并分别标注依据。",
+          "正文称“参照RETRO的邻近泄漏评估，报告与训练块重叠少于8个连续token的子集结果[4, p.15][4, p.2]”，但[4, p.15]原文是“less than 8 contiguous tokens shared with the closest matching chunk in the training dataset”，即与训练集中最相近块共享少于8个连续token，而非“与训练块重叠少于8个连续token”的笼统表述；应改为与最近匹配训练块的重叠口径，避免改变泄漏定义。",
+          "正文在“复现瓶颈与对策”中称“DPR联合训练与分离训练比较仅部分呈现[1, p.8]”，但[1, p.8]原文明确报告分离训练取得39.8 EM并优于可比的联合训练方法（附录D），并非“仅部分呈现”；该归因与证据不符，应改为按原文陈述比较结论或删除该瓶颈表述。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "正文称“数据采用NaturalQuestions开放域版本（丢弃超过5词答案）与TriviaQA，沿用DPR划分惯例[2, p.18][3, p.3]”，但[2, p.18]的原文只说明TriviaQA沿用DPR划分，并未覆盖NaturalQuestions的划分；[3, p.3]只说明NQ开放域版本丢弃超过5词答案，未给出划分惯例。该句把两项事实合并归因，超出证据范围，应拆分并分别标注依据。; 正文称“参照RETRO的邻近泄漏评估，报告与训练块重叠少于8个连续token的子集结果[4, p.15][4, p.2]”，但[4, p.15]原文是“less than 8 contiguous tokens shared with the closest matching chunk in the training dataset”，即与训练集中最相近块共享少于8个连续token，而非“与训练块重叠少于8个连续token”的笼统表述；应改为与最近匹配训练块的重叠口径，避免改变泄漏定义。; 正文在“复现瓶颈与对策”中称“DPR联合训练与分离训练比较仅部分呈现[1, p.8]”，但[1, p.8]原文明确报告分离训练取得39.8 EM并优于可比的联合训练方法（附录D），并非“仅部分呈现”；该归因与证据不符，应改为按原文陈述比较结论或删除该瓶颈表述。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“数据采用NaturalQuestions开放域版本（丢弃超过5词答案）[3, p.3]与TriviaQA，TriviaQA沿用DPR划分惯例[2, p.18]”，但[2, p.18]原文只说明TriviaQA沿用DPR划分，并未覆盖NaturalQuestions的划分；[3, p.3]只说明NQ开放域版本丢弃超过5词答案，未给出划分惯例。该句把两项事实合并归因，超出证据范围，应拆分并分别标注依据。",
+          "正文称“参照RETRO的邻近泄漏评估，报告与训练集中最相近块共享少于8个连续token的子集结果[4, p.15][4, p.2]”，但[4, p.15]原文是“less than 8 contiguous tokens shared with the closest matching chunk in the training dataset”，即与训练集中最相近块共享少于8个连续token，而非“与训练块重叠少于8个连续token”的笼统表述；应改为与最近匹配训练块的重叠口径，避免改变泄漏定义。",
+          "正文在“复现瓶颈与对策”中称“DPR联合训练与分离训练比较仅部分呈现[1, p.8]”，但[1, p.8]原文明确报告分离训练取得39.8 EM并优于可比的联合训练方法（附录D），并非“仅部分呈现”；该归因与证据不符，应改为按原文陈述比较结论或删除该瓶颈表述。"
+        ]
+      }
+    },
+    {
+      "attempt": 2,
+      "stage": "validation",
+      "issues": [
+        "正文称“数据采用NaturalQuestions开放域版本（丢弃超过5词答案）[3, p.3]与TriviaQA，TriviaQA沿用DPR划分惯例[2, p.18]”，但[2, p.18]原文只说明TriviaQA沿用DPR划分，并未覆盖NaturalQuestions的划分；[3, p.3]只说明NQ开放域版本丢弃超过5词答案，未给出划分惯例。该句把两项事实合并归因，超出证据范围，应拆分并分别标注依据。; 正文称“参照RETRO的邻近泄漏评估，报告与训练集中最相近块共享少于8个连续token的子集结果[4, p.15][4, p.2]”，但[4, p.15]原文是“less than 8 contiguous tokens shared with the closest matching chunk in the training dataset”，即与训练集中最相近块共享少于8个连续token，而非“与训练块重叠少于8个连续token”的笼统表述；应改为与最近匹配训练块的重叠口径，避免改变泄漏定义。; 正文在“复现瓶颈与对策”中称“DPR联合训练与分离训练比较仅部分呈现[1, p.8]”，但[1, p.8]原文明确报告分离训练取得39.8 EM并优于可比的联合训练方法（附录D），并非“仅部分呈现”；该归因与证据不符，应改为按原文陈述比较结论或删除该瓶颈表述。"
+      ]
+    }
+  ]
+}

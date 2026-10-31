@@ -1,0 +1,34 @@
+{
+  "case_id": "C-03",
+  "error_type": "EvidenceError",
+  "message": "Survey model report failed validation: Survey body exceeds 40 citation instances",
+  "usage": [
+    {
+      "stage": "report",
+      "tokens": 8228,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261027-v21-b-retrieval",
+      "requested_output_tokens": 3000,
+      "estimated_input_tokens": 11748,
+      "reserved_for_later": 3500,
+      "seconds": 8.047
+    },
+    {
+      "stage": "repair",
+      "tokens": 6602,
+      "usage_source": "gateway",
+      "model": "deepseek-v4-1-flash",
+      "finish_reason": "stop",
+      "outcome": "parsed",
+      "prompt_version": "20261027-v21-b-retrieval",
+      "requested_output_tokens": 1400,
+      "estimated_input_tokens": 9282,
+      "reserved_for_later": 20444,
+      "seconds": 4.75
+    }
+  ],
+  "model_response_failures": []
+}

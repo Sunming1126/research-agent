@@ -1,0 +1,10 @@
+{
+  "blind_id": "report-06",
+  "status": "assessment_failed",
+  "report_sha256": "3ffdf06a67532a6bed78961d26c44e2e21f1833a7120097fc43fdc900085ecc3",
+  "ledger_sha256": "a302e6c78abef19adcdfde13096762040a9f366cbe17d921d6041a3abb1bb870",
+  "error_type": "AssertionError",
+  "target_real_model_calls": 1,
+  "total_tokens": 9764,
+  "quota_exhausted": false
+}

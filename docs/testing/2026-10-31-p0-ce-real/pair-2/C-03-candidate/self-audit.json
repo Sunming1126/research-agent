@@ -1,0 +1,49 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 2,
+  "model_issues": [
+    "正文称“RETRO 在 2 万亿词元数据库的条件下，于 Pile 上以 25 倍更少参数取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，但证据 ev-23 原文为“With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters.”，原文的“2 trillion token database”是检索数据库规模，并非“词元数据库”这一表述所暗示的训练语料规模，且“词元”与“token”对应但“数据库”修饰关系被改写，比较条件表述不准确，应改为“在 2 万亿词元检索数据库条件下”。; 正文称“Self-RAG 报告在全部任务上相较监督微调 LLM 具有显著性能优势，甚至在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“demonstrates a substantial performance advantage over supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，原文“substantial”意为“大幅/显著”，正文“显著性能优势”在中文语境中易被读作统计显著性，而原文未做显著性检验，属程度词改写引入统计含义，应改为“大幅性能优势”或保留“substantial”的定性含义。; 正文称“RAG 在 TriviaQA 上沿用 DPR 的数据划分，即公开的 Web Development 划分，而 Roberts 等则使用 TriviaQA 官方维基百科测试集[2, p.18]”，证据 ev-14 原文为“We report our results using the datasets splits used in DPR [26]... For TriviaQA, this test dataset is the public TriviaQA Web Development split. Roberts et al. [52] used the TriviaQA official Wikipedia test set instead.”，原文“Roberts et al.”指该文献作者群体，正文“Roberts 等”为合理同义，但“沿用 DPR 的数据划分”将原文“using the datasets splits used in DPR”泛化为“数据划分”，原文仅指测试集划分，未断言训练/验证划分沿用，属范围扩大，应改为“沿用 DPR 的测试集划分”。"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“RAG 在 TriviaQA 上沿用 DPR 的数据划分，即公开的 Web Development 划分，而其他工作使用官方维基百科测试集[2, p.18]”，但证据 ev-14 原文为“For TriviaQA, this test dataset is the public TriviaQA Web Development split. Roberts et al. [52] used the TriviaQA official Wikipedia test set instead.”，其中“其他工作”仅指 Roberts et al. 一项，正文泛化为“其他工作”属归因扩大，应改为特指该文献。",
+          "正文称“RETRO 在 Pile 上以 25 倍更少参数取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，证据 ev-23 原文为“With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters.”，正文省略了“2 trillion token database”这一条件，比较条件不完整，应补出数据库规模或明确该比较的前提。",
+          "正文称“Self-RAG 报告在全部任务上优于监督微调 LLM，并在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“demonstrates a substantial performance advantage over supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，正文将“substantial performance advantage”表述为“优于”尚可，但“全部任务”与原文“in all tasks”一致；问题在于正文未保留原文“substantial”这一程度限定，且将“even outperforms”改写为并列陈述，弱化了原文的递进关系，属对原文结论强度的轻微改写，建议恢复程度词。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "正文称“RAG 在 TriviaQA 上沿用 DPR 的数据划分，即公开的 Web Development 划分，而其他工作使用官方维基百科测试集[2, p.18]”，但证据 ev-14 原文为“For TriviaQA, this test dataset is the public TriviaQA Web Development split. Roberts et al. [52] used the TriviaQA official Wikipedia test set instead.”，其中“其他工作”仅指 Roberts et al. 一项，正文泛化为“其他工作”属归因扩大，应改为特指该文献。; 正文称“RETRO 在 Pile 上以 25 倍更少参数取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，证据 ev-23 原文为“With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters.”，正文省略了“2 trillion token database”这一条件，比较条件不完整，应补出数据库规模或明确该比较的前提。; 正文称“Self-RAG 报告在全部任务上优于监督微调 LLM，并在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“demonstrates a substantial performance advantage over supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，正文将“substantial performance advantage”表述为“优于”尚可，但“全部任务”与原文“in all tasks”一致；问题在于正文未保留原文“substantial”这一程度限定，且将“even outperforms”改写为并列陈述，弱化了原文的递进关系，属对原文结论强度的轻微改写，建议恢复程度词。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“RETRO 在 2 万亿词元数据库的条件下，于 Pile 上以 25 倍更少参数取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，但证据 ev-23 原文为“With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters.”，原文的“2 trillion token database”是检索数据库规模，并非“词元数据库”这一表述所暗示的训练语料规模，且“词元”与“token”对应但“数据库”修饰关系被改写，比较条件表述不准确，应改为“在 2 万亿词元检索数据库条件下”。",
+          "正文称“Self-RAG 报告在全部任务上相较监督微调 LLM 具有显著性能优势，甚至在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“demonstrates a substantial performance advantage over supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，原文“substantial”意为“大幅/显著”，正文“显著性能优势”在中文语境中易被读作统计显著性，而原文未做显著性检验，属程度词改写引入统计含义，应改为“大幅性能优势”或保留“substantial”的定性含义。",
+          "正文称“RAG 在 TriviaQA 上沿用 DPR 的数据划分，即公开的 Web Development 划分，而 Roberts 等则使用 TriviaQA 官方维基百科测试集[2, p.18]”，证据 ev-14 原文为“We report our results using the datasets splits used in DPR [26]... For TriviaQA, this test dataset is the public TriviaQA Web Development split. Roberts et al. [52] used the TriviaQA official Wikipedia test set instead.”，原文“Roberts et al.”指该文献作者群体，正文“Roberts 等”为合理同义，但“沿用 DPR 的数据划分”将原文“using the datasets splits used in DPR”泛化为“数据划分”，原文仅指测试集划分，未断言训练/验证划分沿用，属范围扩大，应改为“沿用 DPR 的测试集划分”。"
+        ]
+      }
+    },
+    {
+      "attempt": 2,
+      "stage": "validation",
+      "issues": [
+        "正文称“RETRO 在 2 万亿词元数据库的条件下，于 Pile 上以 25 倍更少参数取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，但证据 ev-23 原文为“With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters.”，原文的“2 trillion token database”是检索数据库规模，并非“词元数据库”这一表述所暗示的训练语料规模，且“词元”与“token”对应但“数据库”修饰关系被改写，比较条件表述不准确，应改为“在 2 万亿词元检索数据库条件下”。; 正文称“Self-RAG 报告在全部任务上相较监督微调 LLM 具有显著性能优势，甚至在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“demonstrates a substantial performance advantage over supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，原文“substantial”意为“大幅/显著”，正文“显著性能优势”在中文语境中易被读作统计显著性，而原文未做显著性检验，属程度词改写引入统计含义，应改为“大幅性能优势”或保留“substantial”的定性含义。; 正文称“RAG 在 TriviaQA 上沿用 DPR 的数据划分，即公开的 Web Development 划分，而 Roberts 等则使用 TriviaQA 官方维基百科测试集[2, p.18]”，证据 ev-14 原文为“We report our results using the datasets splits used in DPR [26]... For TriviaQA, this test dataset is the public TriviaQA Web Development split. Roberts et al. [52] used the TriviaQA official Wikipedia test set instead.”，原文“Roberts et al.”指该文献作者群体，正文“Roberts 等”为合理同义，但“沿用 DPR 的数据划分”将原文“using the datasets splits used in DPR”泛化为“数据划分”，原文仅指测试集划分，未断言训练/验证划分沿用，属范围扩大，应改为“沿用 DPR 的测试集划分”。"
+      ]
+    }
+  ]
+}

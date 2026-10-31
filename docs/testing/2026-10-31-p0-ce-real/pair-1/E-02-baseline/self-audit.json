@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 1,
+  "model_issues": [
+    "正文称“FiD表明在检索段落数增加时性能显著提升，且解码器联合处理多段证据优于抽取式聚合[3, p.1][3, p.2][3, p.4]”，但证据ev-18/ev-19仅表述为“we believe that this is evidence that generative models are good at combining evidence from multiple passages, compared to extractive ones”，属作者信念性归因，非“表明……优于”的确定结论，应弱化为“作者认为/证据提示”。; 正文称“RETRO用冻结BERT检索与分块交叉注意力，使检索开销随检索量线性增长[4, p.2]”，ev-29原文为“time complexity linear in the amount of retrieved data”，指时间复杂度的线性，而非“检索开销”这一笼统表述；且“冻结BERT检索”对应ev-25/ev-29，引用页码可，但“检索开销”措辞与原文“time complexity”不完全一致，应改为“时间复杂度随检索数据量线性增长”。; 正文“防泄漏”段称“参照RETRO的泄漏分级思路[4, p.15][4, p.2]；该阈值标为待验证设置”，但同段前句“重叠超过8个连续token即从测试候选中剔除”直接采用8 token阈值，而ev-27中“less than 8 contiguous tokens”是RETRO用于定义无局部泄漏的评估分级，并非“从测试候选中剔除”的过滤规则；将论文的评估分级阈值直接表述为剔除规则并同时标“待验证”存在归因与条件混用，应明确区分论文分级与拟议过滤阈值。",
+    "insufficient reserved budget for repair"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“FiD表明在检索段落数增加时性能显著提升，且解码器联合处理多段证据优于抽取式聚合[3, p.1][3, p.2][3, p.4]”，但证据ev-18/ev-19仅表述为“we believe that this is evidence that generative models are good at combining evidence from multiple passages, compared to extractive ones”，属作者信念性归因，非“表明……优于”的确定结论，应弱化为“作者认为/证据提示”。",
+          "正文称“RETRO用冻结BERT检索与分块交叉注意力，使检索开销随检索量线性增长[4, p.2]”，ev-29原文为“time complexity linear in the amount of retrieved data”，指时间复杂度的线性，而非“检索开销”这一笼统表述；且“冻结BERT检索”对应ev-25/ev-29，引用页码可，但“检索开销”措辞与原文“time complexity”不完全一致，应改为“时间复杂度随检索数据量线性增长”。",
+          "正文“防泄漏”段称“参照RETRO的泄漏分级思路[4, p.15][4, p.2]；该阈值标为待验证设置”，但同段前句“重叠超过8个连续token即从测试候选中剔除”直接采用8 token阈值，而ev-27中“less than 8 contiguous tokens”是RETRO用于定义无局部泄漏的评估分级，并非“从测试候选中剔除”的过滤规则；将论文的评估分级阈值直接表述为剔除规则并同时标“待验证”存在归因与条件混用，应明确区分论文分级与拟议过滤阈值。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "正文称“FiD表明在检索段落数增加时性能显著提升，且解码器联合处理多段证据优于抽取式聚合[3, p.1][3, p.2][3, p.4]”，但证据ev-18/ev-19仅表述为“we believe that this is evidence that generative models are good at combining evidence from multiple passages, compared to extractive ones”，属作者信念性归因，非“表明……优于”的确定结论，应弱化为“作者认为/证据提示”。; 正文称“RETRO用冻结BERT检索与分块交叉注意力，使检索开销随检索量线性增长[4, p.2]”，ev-29原文为“time complexity linear in the amount of retrieved data”，指时间复杂度的线性，而非“检索开销”这一笼统表述；且“冻结BERT检索”对应ev-25/ev-29，引用页码可，但“检索开销”措辞与原文“time complexity”不完全一致，应改为“时间复杂度随检索数据量线性增长”。; 正文“防泄漏”段称“参照RETRO的泄漏分级思路[4, p.15][4, p.2]；该阈值标为待验证设置”，但同段前句“重叠超过8个连续token即从测试候选中剔除”直接采用8 token阈值，而ev-27中“less than 8 contiguous tokens”是RETRO用于定义无局部泄漏的评估分级，并非“从测试候选中剔除”的过滤规则；将论文的评估分级阈值直接表述为剔除规则并同时标“待验证”存在归因与条件混用，应明确区分论文分级与拟议过滤阈值。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "report",
+      "issues": [
+        "insufficient reserved budget for repair"
+      ]
+    }
+  ]
+}

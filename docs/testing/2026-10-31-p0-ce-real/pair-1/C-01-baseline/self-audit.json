@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 1,
+  "model_issues": [
+    "正文称“RETRO 的主战场是语言建模：在 2 万亿 token 数据库上以约少 25 倍的参数取得与 GPT-3、Jurassic-1 在 Pile 上可比的性能”，但证据 ev-23 原文为“With a 2 trillion token database... comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，其中“2 万亿 token”修饰的是检索数据库，而非“在 2 万亿 token 数据库上训练/评测”的模型规模；正文表述把数据库规模与模型参数比较混为同一实验条件，需按原文改写为“使用 2 万亿 token 的检索数据库，并以少 25 倍参数在 Pile 上取得可比性能”。; 正文称“Self-RAG 不训练新的稠密检索器，而是训练任意 LM 生成反思标记，把检索与相关性判断统一为扩展词表上的下一词预测[5, p.2]”，但所给证据 ev-37 仅支持“训练任意 LM 生成反思标记、统一为扩展词表下一词预测”，并未说明“不训练新的稠密检索器”；该否定性断言缺少对应原文支持，应删除或降为待核查。; 正文称“其对比显示在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LLM，并在部分任务上超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，即在这四项任务上超过 ChatGPT，而非“部分任务”；正文弱化了原文的归因范围，与证据不一致，应按原文限定为这四项任务（且 ASQA 仅限 Rouge 与 MAUVE 指标）。",
+    "insufficient reserved budget for repair"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“RETRO 的主战场是语言建模：在 2 万亿 token 数据库上以约少 25 倍的参数取得与 GPT-3、Jurassic-1 在 Pile 上可比的性能”，但证据 ev-23 原文为“With a 2 trillion token database... comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，其中“2 万亿 token”修饰的是检索数据库，而非“在 2 万亿 token 数据库上训练/评测”的模型规模；正文表述把数据库规模与模型参数比较混为同一实验条件，需按原文改写为“使用 2 万亿 token 的检索数据库，并以少 25 倍参数在 Pile 上取得可比性能”。",
+          "正文称“Self-RAG 不训练新的稠密检索器，而是训练任意 LM 生成反思标记，把检索与相关性判断统一为扩展词表上的下一词预测[5, p.2]”，但所给证据 ev-37 仅支持“训练任意 LM 生成反思标记、统一为扩展词表下一词预测”，并未说明“不训练新的稠密检索器”；该否定性断言缺少对应原文支持，应删除或降为待核查。",
+          "正文称“其对比显示在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LLM，并在部分任务上超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，即在这四项任务上超过 ChatGPT，而非“部分任务”；正文弱化了原文的归因范围，与证据不一致，应按原文限定为这四项任务（且 ASQA 仅限 Rouge 与 MAUVE 指标）。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "正文称“RETRO 的主战场是语言建模：在 2 万亿 token 数据库上以约少 25 倍的参数取得与 GPT-3、Jurassic-1 在 Pile 上可比的性能”，但证据 ev-23 原文为“With a 2 trillion token database... comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，其中“2 万亿 token”修饰的是检索数据库，而非“在 2 万亿 token 数据库上训练/评测”的模型规模；正文表述把数据库规模与模型参数比较混为同一实验条件，需按原文改写为“使用 2 万亿 token 的检索数据库，并以少 25 倍参数在 Pile 上取得可比性能”。; 正文称“Self-RAG 不训练新的稠密检索器，而是训练任意 LM 生成反思标记，把检索与相关性判断统一为扩展词表上的下一词预测[5, p.2]”，但所给证据 ev-37 仅支持“训练任意 LM 生成反思标记、统一为扩展词表下一词预测”，并未说明“不训练新的稠密检索器”；该否定性断言缺少对应原文支持，应删除或降为待核查。; 正文称“其对比显示在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LLM，并在部分任务上超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，即在这四项任务上超过 ChatGPT，而非“部分任务”；正文弱化了原文的归因范围，与证据不一致，应按原文限定为这四项任务（且 ASQA 仅限 Rouge 与 MAUVE 指标）。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "report",
+      "issues": [
+        "insufficient reserved budget for repair"
+      ]
+    }
+  ]
+}

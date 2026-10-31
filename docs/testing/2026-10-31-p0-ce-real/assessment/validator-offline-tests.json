@@ -1,0 +1,39 @@
+{
+  "execution": "Codex offline, zero model calls",
+  "results": [
+    {
+      "test": "valid",
+      "passed": true,
+      "issues": []
+    },
+    {
+      "test": "fabricated_quote",
+      "passed": true,
+      "issues": [
+        "quote_not_contiguous_authorized_excerpt"
+      ]
+    },
+    {
+      "test": "unknown_source",
+      "passed": true,
+      "issues": [
+        "invalid_source_ids",
+        "quote_not_contiguous_authorized_excerpt"
+      ]
+    },
+    {
+      "test": "noncontiguous_sentence",
+      "passed": true,
+      "issues": [
+        "sentence_not_contiguous_report_text"
+      ]
+    },
+    {
+      "test": "invalid_verdict",
+      "passed": true,
+      "issues": [
+        "invalid_verdict"
+      ]
+    }
+  ]
+}
