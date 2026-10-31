@@ -1,0 +1,66 @@
+{
+  ".gitattributes": {
+    "sha256": "b2caf282036fdc2f3447f2e151d90b08de38b50d349885c6e9c9da86ef9e7eba",
+    "bytes": 17
+  },
+  "build-context-sha256.json": {
+    "sha256": "3982c8841da405702361a4ba70c1c95839298e780a8f95d71dd78b465a4729dc",
+    "bytes": 5015
+  },
+  "delivery-manifest.json": {
+    "sha256": "1bd8449cd467e2b7c6d223b08a74a4dc6d8036e6b28a240dec97187d83b1a0cc",
+    "bytes": 2740
+  },
+  "github-p0-candidate-files-20261031.json": {
+    "sha256": "630c731c7adf6850079ad9a44e7ee521f5faf3df26de0d0b4d2aff4834fc59bf",
+    "bytes": 4412
+  },
+  "independent-static-audit.json": {
+    "sha256": "d8e63f74ebac6ba8762719e53b22babdb4b147c5a3d47f7fe76663d8d5820392",
+    "bytes": 991
+  },
+  "p0-candidate-docker-preflight-20261031.json": {
+    "sha256": "c171167ce581b2a1df1c7aa65dffc5b2eab1c200d77180e56d8709aeca13138b",
+    "bytes": 388
+  },
+  "p0-candidate-publish-error-20261031.json": {
+    "sha256": "486e6ad6d9a7570be415542e57903e9a9caaf7af9adf59ed7ebf762a9da2c199",
+    "bytes": 185
+  },
+  "p0-candidate-submission-backup-20261031.json": {
+    "sha256": "331bcfdd5a819b07ac5b1690d7f24538e2564b9ff8c55a6c4190be57597d6467",
+    "bytes": 4527
+  },
+  "SHA256SUMS.txt": {
+    "sha256": "e4a5e9b70140460ce459d9b334d169fc7b973d1a74aecb88e2acd2b66a63c2c5",
+    "bytes": 120
+  },
+  "source-sha256.json": {
+    "sha256": "ca3cfcdb0d775b0efc0495f587735c8ba2c18eb7e7712aaaea27c4d4f9d87f26",
+    "bytes": 4842
+  },
+  "support-file-sha256.json": {
+    "sha256": "f4728a9ce29600eccf19e7ee464139c70907e1342488374930f00c0f3f605d9e",
+    "bytes": 1968
+  },
+  "交接状态.md": {
+    "sha256": "ee2c24f710edfe49fcdcb139664ee4d849bff541dda981e0413f744426e42bd3",
+    "bytes": 1719
+  },
+  "提交说明.md": {
+    "sha256": "437b9bffa5b2409ede7f6d199c848f7800007986610708f6f2d21d218aba8977",
+    "bytes": 3664
+  },
+  "toolkit/audit_p0_submission_20261031.py": {
+    "sha256": "75a3b1d3a8d5f074408d041fa9a70fb6c9ca183c0c544a157076fc087f6f2b8b",
+    "bytes": 9180
+  },
+  "toolkit/backup_p0_submission_20261031.py": {
+    "sha256": "d13c8cbb038f48cb70678a2d8e3c6197308e0a80da527387f70a18a5a02f37a9",
+    "bytes": 2694
+  },
+  "toolkit/package_p0_candidate_20261031.py": {
+    "sha256": "c11b0714ca75c3530d8b4305cb9d67c8e8fb3e9adbdb4a93519929ea6891b726",
+    "bytes": 13076
+  }
+}

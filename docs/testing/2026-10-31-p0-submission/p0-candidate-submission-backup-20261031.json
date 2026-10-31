@@ -1,0 +1,110 @@
+{
+  "directory": "D:\\Agent挑战赛\\提交材料\\科研助手-P0-CE-a5fa363-20261031",
+  "source_revision": "a5fa363449b71680fa9044ad80cc2aaa64c803dd",
+  "image_archive": "research-assistant-0.4.20-p0-ce-a5fa363-20261031.tar",
+  "image_archive_sha256": "ba4b307ace632a2fd8cb0e7b44c5b0b34cebba7570bd5eeb6a49886f73276a5b",
+  "verified_files": 24,
+  "bytes": 295981045,
+  "linux_startup_verified": false,
+  "P0_overall_accepted": false,
+  "github_tar_upload_complete": false,
+  "target_model_calls": 0,
+  "files": {
+    "delivery-manifest.json": {
+      "sha256": "1bd8449cd467e2b7c6d223b08a74a4dc6d8036e6b28a240dec97187d83b1a0cc",
+      "bytes": 2740
+    },
+    "research-assistant-0.4.20-p0-ce-a5fa363-20261031.tar": {
+      "sha256": "ba4b307ace632a2fd8cb0e7b44c5b0b34cebba7570bd5eeb6a49886f73276a5b",
+      "bytes": 295526400
+    },
+    "SHA256SUMS.txt": {
+      "sha256": "e4a5e9b70140460ce459d9b334d169fc7b973d1a74aecb88e2acd2b66a63c2c5",
+      "bytes": 120
+    },
+    "提交说明.md": {
+      "sha256": "437b9bffa5b2409ede7f6d199c848f7800007986610708f6f2d21d218aba8977",
+      "bytes": 3664
+    },
+    "请先阅读.txt": {
+      "sha256": "198f985587017db97fed690f2d28bddcd7afb4a6aadd48cf4ecbee2544e24dc9",
+      "bytes": 527
+    },
+    "队内交接/build-context-sha256.json": {
+      "sha256": "3982c8841da405702361a4ba70c1c95839298e780a8f95d71dd78b465a4729dc",
+      "bytes": 5015
+    },
+    "队内交接/independent-static-audit.json": {
+      "sha256": "d8e63f74ebac6ba8762719e53b22babdb4b147c5a3d47f7fe76663d8d5820392",
+      "bytes": 991
+    },
+    "队内交接/metrics.json": {
+      "sha256": "89b27cf5aadbc9c00f816a77ebf087d7c3e35f81517f76fcfcb62e8e855efd95",
+      "bytes": 4724
+    },
+    "队内交接/P0四项修复闭环.md": {
+      "sha256": "aa755ae0d7de322e3012792ea05f5250ff36c18601e443d7818c7f2b54bb5cad",
+      "bytes": 8193
+    },
+    "队内交接/P0真实模型重复验证与阶段决策.md": {
+      "sha256": "54fa6582c7b05b7ee4431148b785ae7413d0dbb5d74c301370129c8f417acf29",
+      "bytes": 8320
+    },
+    "队内交接/research-agent-a5fa363-exact-build-context.zip": {
+      "sha256": "7e5aa283c6eea055ca267b4b38c4dc32ed3d7c0dbf8e7c5b0d6d6ddf7a562e4c",
+      "bytes": 134797
+    },
+    "队内交接/research-agent-a5fa363-source-tests.zip": {
+      "sha256": "788daaab6bb3e1e90589a6a1838ba1d123f6d181ae60c23604fc663007356029",
+      "bytes": 234144
+    },
+    "队内交接/source-sha256.json": {
+      "sha256": "ca3cfcdb0d775b0efc0495f587735c8ba2c18eb7e7712aaaea27c4d4f9d87f26",
+      "bytes": 4842
+    },
+    "队内交接/support-file-sha256.json": {
+      "sha256": "f4728a9ce29600eccf19e7ee464139c70907e1342488374930f00c0f3f605d9e",
+      "bytes": 1968
+    },
+    "队内交接/定向内容复核.md": {
+      "sha256": "f3b308187c915efb95d0c8d86a8c931c80d9fe092927bfdcb605ca4b09ae23a4",
+      "bytes": 2286
+    },
+    "备份审计/package_p0_candidate_20261031.py": {
+      "sha256": "c11b0714ca75c3530d8b4305cb9d67c8e8fb3e9adbdb4a93519929ea6891b726",
+      "bytes": 13076
+    },
+    "备份审计/audit_p0_submission_20261031.py": {
+      "sha256": "75a3b1d3a8d5f074408d041fa9a70fb6c9ca183c0c544a157076fc087f6f2b8b",
+      "bytes": 9180
+    },
+    "备份审计/publish_p0_candidate_files_20261031.py": {
+      "sha256": "0bbd5d3a9186cc1a1c31a0c0621520935ad91847e3178bedad5a976ea70fb716",
+      "bytes": 8446
+    },
+    "备份审计/mark_p0_candidate_partial_release_20261031.py": {
+      "sha256": "3d5b0b5dc5a1a88df82972127c293f18384b687028bcac76731a5e434c7828cc",
+      "bytes": 3557
+    },
+    "备份审计/backup_p0_submission_20261031.py": {
+      "sha256": "d13c8cbb038f48cb70678a2d8e3c6197308e0a80da527387f70a18a5a02f37a9",
+      "bytes": 2694
+    },
+    "备份审计/p0-candidate-docker-preflight-20261031.json": {
+      "sha256": "c171167ce581b2a1df1c7aa65dffc5b2eab1c200d77180e56d8709aeca13138b",
+      "bytes": 388
+    },
+    "备份审计/p0-candidate-publish-error-20261031.json": {
+      "sha256": "486e6ad6d9a7570be415542e57903e9a9caaf7af9adf59ed7ebf762a9da2c199",
+      "bytes": 185
+    },
+    "备份审计/p0-candidate-asset-recovery-20261031.json": {
+      "sha256": "7e1d108cc4647f6663fc3c959790ab5ddd4d2b40f9f883a9399e8731c6f6d2ba",
+      "bytes": 376
+    },
+    "备份审计/github-p0-candidate-files-20261031.json": {
+      "sha256": "630c731c7adf6850079ad9a44e7ee521f5faf3df26de0d0b4d2aff4834fc59bf",
+      "bytes": 4412
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "checked_at_utc": "2026-10-31T10:57:07.004925+00:00",
+  "command": "docker version --format {{json .Server}}",
+  "returncode": 1,
+  "server_available": false,
+  "error_class": "named_pipe_missing",
+  "docker_load_executed": false,
+  "container_started": false,
+  "settings_changed": false,
+  "factory_reset": false,
+  "images_deleted": false,
+  "target_model_calls": 0
+}

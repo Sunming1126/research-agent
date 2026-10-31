@@ -1,0 +1,8 @@
+{
+  "operation": "POST",
+  "endpoint_role": "asset",
+  "transport_type": "ConnectionResetError",
+  "errno": 10054,
+  "credentials_logged": false,
+  "time": 1793444384.6652508
+}
