@@ -46,10 +46,10 @@ def test_receipt_write_failure_does_not_leave_published_success(tmp_path, monkey
     engine = engine_for(tmp_path)
     original = core.write_json
 
-    def fail_receipt(path, value):
+    def fail_receipt(path, value, **kwargs):
         if path.name == 'receipt.json':
             raise OSError('Injected receipt storage failure')
-        return original(path, value)
+        return original(path, value, **kwargs)
 
     monkeypatch.setattr(core, 'write_json', fail_receipt)
     with pytest.raises(OSError, match='receipt storage'):
@@ -82,10 +82,10 @@ def test_b_auxiliary_diagnostic_failure_does_not_destroy_valid_answer(tmp_path, 
     engine = ResearchAgentEngine(settings, FakeLLM)
     original = core.write_json
 
-    def fail_auxiliary(path, value):
+    def fail_auxiliary(path, value, **kwargs):
         if path.name == 'b-outcome.json':
             raise OSError('Injected auxiliary diagnostic failure')
-        return original(path, value)
+        return original(path, value, **kwargs)
 
     monkeypatch.setattr(core, 'write_json', fail_auxiliary)
     result = engine.solve_sync(case('B-01', names))
@@ -102,8 +102,8 @@ def test_cancellation_during_markdown_write_leaves_no_public_partial_answer(tmp_
     cancelled = threading.Event()
     original = core.atomic_text
 
-    def cancel_after_markdown(path, value):
-        original(path, value)
+    def cancel_after_markdown(path, value, **kwargs):
+        original(path, value, **kwargs)
         if path.suffix == '.md':
             cancelled.set()
 

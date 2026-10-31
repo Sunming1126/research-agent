@@ -228,16 +228,17 @@ class ResearchAgentEngine:
         # 所有可失败的序列化/证据/收据准备先在本次 work 内完成；最后短临界区发布。
         s = self.settings
         checkpoint("persist_and_readback")
+        durable = case.function in {'Survey', 'Idea'}
         stage_root = confined(work, "submission-stage")
         updates = []
         if "markdown" in result:
             staged_markdown = confined(stage_root, result["path"])
-            atomic_text(staged_markdown, result["markdown"])
+            atomic_text(staged_markdown, result["markdown"], durable=durable)
             updates.append((staged_markdown, confined(s.output, result["path"])))
             checkpoint()
         target = confined(s.output, f"data/{s.team}/{case.case_id}.json")
         staged_target = confined(stage_root, f"data/{s.team}/{case.case_id}.json")
-        write_json(staged_target, result)
+        write_json(staged_target, result, durable=durable)
         checkpoint()
         readback = read_json(staged_target)
         if readback != result:
@@ -260,15 +261,15 @@ class ResearchAgentEngine:
                                                    "coverage": handler.coverage,
                                                    "evidence_audit": handler.evidence_audit,
                                                    "report_trace": handler.report_trace,
-                                                   "last_model_draft": handler.last_draft})
+                                                    "last_model_draft": handler.last_draft}, durable=durable)
         write_json(confined(work, "receipt.json"), {"case_id": case.case_id, "artifacts": rows, "filenames": filenames,
                                                   "specs": specs, "proof": proof,
                                                   "usage": getattr(llm, "usage", []),
                                                   "session": current_session().snapshot() if current_session() else None,
-                                                  "source_case": case.to_dict()})
+                                                  "source_case": case.to_dict()}, durable=durable)
         staged_pointer = confined(stage_root, "receipt-pointer.json")
         write_json(staged_pointer,
-                   {"receipt": (work / "receipt.json").relative_to(s.output).as_posix()})
+                    {"receipt": (work / "receipt.json").relative_to(s.output).as_posix()}, durable=durable)
         updates.append((staged_pointer, confined(s.output, f"data/{s.team}/work/receipts/{case.case_id}.json")))
         session = current_session()
         if session is None:

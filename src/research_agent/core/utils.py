@@ -54,12 +54,15 @@ def confined(root: Path, relative: str) -> Path:
     return resolved
 
 
-def atomic_text(path: Path, content: str) -> None:
+def atomic_text(path: Path, content: str, *, durable: bool = False) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(prefix=".writing-", dir=path.parent)
     try:
         with os.fdopen(fd, "w", encoding="utf-8", newline="") as handle:
             handle.write(content)
+            if durable:
+                handle.flush()
+                os.fsync(handle.fileno())
         os.replace(tmp, path)
     finally:
         if os.path.exists(tmp):
@@ -68,8 +71,8 @@ def atomic_text(path: Path, content: str) -> None:
         raise IOError("artifact readback mismatch")
 
 
-def write_json(path: Path, value: Any) -> None:
-    atomic_text(path, json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
+def write_json(path: Path, value: Any, *, durable: bool = False) -> None:
+    atomic_text(path, json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n", durable=durable)
 
 
 def clean_text(value: str) -> str:
