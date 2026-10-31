@@ -238,6 +238,8 @@ class ReportWorkflow:
             try:
                 global_limit = any("exceeds" in issue and ("characters" in issue or "citation instances" in issue)
                                    for issue in feedback)
+                # 全文不足最低长度时重新写完整稿；段落patch不能可靠补齐全局缺口。
+                global_limit = global_limit or any("report body shorter than 800 characters" in issue for issue in feedback)
                 if direct and any('citation instances' in issue for issue in feedback):
                     global_limit = False
                 if attempt and self.last_draft and not global_limit:
