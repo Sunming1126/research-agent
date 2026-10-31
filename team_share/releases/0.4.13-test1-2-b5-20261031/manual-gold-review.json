@@ -1,0 +1,18 @@
+{
+  "reason": "人工全文核验纠正预设标签：RETRO 第13页4.3明确使用DPR passages进行Natural Questions问答；B-01应包含RETRO。题面不变、两版同样评分，保留每次原始冻结文件。",
+  "corrected_B01_expected": [
+    "2004.04906-DPR.pdf",
+    "2005.11401-RAG.pdf",
+    "2007.01282-FiD.pdf",
+    "2112.04426-RETRO.pdf",
+    "2310.11511-Self-RAG.pdf"
+  ],
+  "evidence": {
+    "DPR": "p2 dual encoder training; p4 datasets",
+    "RAG": "p2-3 DPR + BART; p5 open-domain QA",
+    "FiD": "p4 DPR for NQ/TriviaQA + greedy decoding",
+    "RETRO": "p13 section4.3 Natural Questions, top20DPR passages",
+    "Self-RAG": "p7 Contriever-MS MARCO; open-domain QA benchmark evaluation"
+  },
+  "review_scope": "public developer-authored cases only, not official hidden gold"
+}

@@ -1,0 +1,655 @@
+[
+  {
+    "run": "b5-controlled-20261031",
+    "image_id": "sha256:e6569ff96c1483123c6a3cb9a62ba7e4a18dc747e238aa492f8ffb3bbe8649a4",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "hits": 2,
+        "relevant": 12,
+        "false_positives": 0,
+        "local_score": 2.5,
+        "missed": [
+          "study_06453d0f8d46.pdf",
+          "study_0e3f0eb070d6.pdf",
+          "study_36f25390418a.pdf",
+          "study_6c88ae4cb3fb.pdf",
+          "study_726ac8383b4a.pdf",
+          "study_7757b4bc3430.pdf",
+          "study_7e96a40e79ae.pdf",
+          "study_bc27ab5d4345.pdf",
+          "study_fbe83ee9f955.pdf",
+          "study_fdd69986fcbc.pdf"
+        ],
+        "extra": [],
+        "seconds": 155.476,
+        "calls": 4,
+        "format_pass": true,
+        "decided": 6,
+        "unprocessed": 15,
+        "outcome": "partial",
+        "errors": [
+          {
+            "stage": "retrieve",
+            "round": 0,
+            "batch": 2,
+            "error": "model transport failure (APITimeoutError) after retries"
+          }
+        ]
+      }
+    ],
+    "gold_source": "Controlled fixture construction",
+    "historical_gold_correction_documented": false
+  },
+  {
+    "run": "b6-public-20261031",
+    "image_id": "sha256:24989b43054e3261363fd9b9a7bd01af5245af98a3c7a90ad8001001d9662f5f",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "hits": 1,
+        "relevant": 5,
+        "false_positives": 0,
+        "local_score": 3.0,
+        "missed": [
+          "2005.11401-rag.pdf",
+          "2007.01282-fid.pdf",
+          "2112.04426-retro.pdf",
+          "2310.11511-self-rag.pdf"
+        ],
+        "extra": [],
+        "seconds": 37.136,
+        "calls": 2,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": []
+      },
+      {
+        "case_id": "B-02",
+        "hits": 2,
+        "relevant": 2,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 42.159,
+        "calls": 2,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": []
+      },
+      {
+        "case_id": "B-03",
+        "hits": 4,
+        "relevant": 4,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 40.744,
+        "calls": 2,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": []
+      }
+    ],
+    "gold_source": "Public-paper manually reviewed developer gold",
+    "historical_gold_correction_documented": true
+  },
+  {
+    "run": "b6-controlled-20261031",
+    "image_id": "sha256:24989b43054e3261363fd9b9a7bd01af5245af98a3c7a90ad8001001d9662f5f",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "hits": 6,
+        "relevant": 12,
+        "false_positives": 0,
+        "local_score": 7.5,
+        "missed": [
+          "study_06453d0f8d46.pdf",
+          "study_0e3f0eb070d6.pdf",
+          "study_726ac8383b4a.pdf",
+          "study_7e96a40e79ae.pdf",
+          "study_bc27ab5d4345.pdf",
+          "study_fdd69986fcbc.pdf"
+        ],
+        "extra": [],
+        "seconds": 152.497,
+        "calls": 6,
+        "format_pass": true,
+        "decided": 40,
+        "unprocessed": 8,
+        "outcome": "partial",
+        "errors": []
+      },
+      {
+        "case_id": "B-02",
+        "hits": 6,
+        "relevant": 8,
+        "false_positives": 0,
+        "local_score": 11.25,
+        "missed": [
+          "study_7e96a40e79ae.pdf",
+          "study_bc27ab5d4345.pdf"
+        ],
+        "extra": [],
+        "seconds": 144.113,
+        "calls": 6,
+        "format_pass": true,
+        "decided": 40,
+        "unprocessed": 8,
+        "outcome": "partial",
+        "errors": []
+      },
+      {
+        "case_id": "B-03",
+        "hits": 4,
+        "relevant": 7,
+        "false_positives": 0,
+        "local_score": 8.571428571428571,
+        "missed": [
+          "study_70a09756f953.pdf",
+          "study_957497669e42.pdf",
+          "study_bed2f18ea583.pdf"
+        ],
+        "extra": [],
+        "seconds": 151.323,
+        "calls": 6,
+        "format_pass": true,
+        "decided": 40,
+        "unprocessed": 8,
+        "outcome": "partial",
+        "errors": [
+          {
+            "stage": "plan",
+            "error": "model transport failure (APITimeoutError) after retries"
+          }
+        ]
+      }
+    ],
+    "gold_source": "Controlled fixture construction",
+    "historical_gold_correction_documented": false
+  },
+  {
+    "run": "b6-review-public-20261031",
+    "image_id": "sha256:96bc510e324daad008a871a83575ad18fa08a3d358fd3042fec40a5e6e64521d",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "hits": 4,
+        "relevant": 5,
+        "false_positives": 0,
+        "local_score": 12.0,
+        "missed": [
+          "2007.01282-fid.pdf"
+        ],
+        "extra": [],
+        "seconds": 45.104,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "partial",
+        "errors": []
+      },
+      {
+        "case_id": "B-02",
+        "hits": 2,
+        "relevant": 2,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 63.615,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": [
+          {
+            "stage": "plan",
+            "error": "model transport failure (APITimeoutError) after retries"
+          }
+        ]
+      },
+      {
+        "case_id": "B-03",
+        "hits": 4,
+        "relevant": 4,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 46.525,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": []
+      }
+    ],
+    "gold_source": "Public-paper manually reviewed developer gold",
+    "historical_gold_correction_documented": true
+  },
+  {
+    "run": "b6-task-only-public-20261031",
+    "image_id": "sha256:fdaf32d9c9665bcbbb615ace09a5ce5c4853e634066f90716176594ef158dc5a",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "hits": 4,
+        "relevant": 5,
+        "false_positives": 0,
+        "local_score": 12.0,
+        "missed": [
+          "2007.01282-fid.pdf"
+        ],
+        "extra": [],
+        "seconds": 44.882,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "partial",
+        "errors": []
+      },
+      {
+        "case_id": "B-02",
+        "hits": 2,
+        "relevant": 2,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 53.807,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": []
+      },
+      {
+        "case_id": "B-03",
+        "hits": 4,
+        "relevant": 4,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 39.519,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": []
+      }
+    ],
+    "gold_source": "Public-paper manually reviewed developer gold",
+    "historical_gold_correction_documented": true
+  },
+  {
+    "run": "b6-task-only-controlled-20261031",
+    "image_id": "sha256:fdaf32d9c9665bcbbb615ace09a5ce5c4853e634066f90716176594ef158dc5a",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "hits": 9,
+        "relevant": 12,
+        "false_positives": 0,
+        "local_score": 11.25,
+        "missed": [
+          "study_06453d0f8d46.pdf",
+          "study_7e96a40e79ae.pdf",
+          "study_bc27ab5d4345.pdf"
+        ],
+        "extra": [],
+        "seconds": 135.762,
+        "calls": 6,
+        "format_pass": true,
+        "decided": 32,
+        "unprocessed": 16,
+        "outcome": "partial",
+        "errors": []
+      },
+      {
+        "case_id": "B-02",
+        "hits": 6,
+        "relevant": 8,
+        "false_positives": 0,
+        "local_score": 11.25,
+        "missed": [
+          "study_7e96a40e79ae.pdf",
+          "study_bc27ab5d4345.pdf"
+        ],
+        "extra": [],
+        "seconds": 135.206,
+        "calls": 7,
+        "format_pass": true,
+        "decided": 40,
+        "unprocessed": 8,
+        "outcome": "partial",
+        "errors": []
+      },
+      {
+        "case_id": "B-03",
+        "hits": 4,
+        "relevant": 7,
+        "false_positives": 0,
+        "local_score": 8.571428571428571,
+        "missed": [
+          "study_70a09756f953.pdf",
+          "study_957497669e42.pdf",
+          "study_bed2f18ea583.pdf"
+        ],
+        "extra": [],
+        "seconds": 142.832,
+        "calls": 6,
+        "format_pass": true,
+        "decided": 40,
+        "unprocessed": 8,
+        "outcome": "partial",
+        "errors": [
+          {
+            "stage": "plan",
+            "error": "invalid B criterion/source"
+          }
+        ]
+      }
+    ],
+    "gold_source": "Controlled fixture construction",
+    "historical_gold_correction_documented": false
+  },
+  {
+    "run": "b6-final-public-20261031",
+    "image_id": "sha256:139a614acdae717995245cc84ff40a764bec39f12a2e15f5fb8d082324c3fc29",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "hits": 4,
+        "relevant": 5,
+        "false_positives": 0,
+        "local_score": 12.0,
+        "missed": [
+          "2112.04426-retro.pdf"
+        ],
+        "extra": [],
+        "seconds": 47.275,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "partial",
+        "errors": []
+      },
+      {
+        "case_id": "B-02",
+        "hits": 2,
+        "relevant": 2,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 47.955,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": []
+      },
+      {
+        "case_id": "B-03",
+        "hits": 4,
+        "relevant": 4,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 41.171,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": []
+      }
+    ],
+    "gold_source": "Public-paper manually reviewed developer gold",
+    "historical_gold_correction_documented": true
+  },
+  {
+    "run": "b6-final-controlled-20261031",
+    "image_id": "sha256:139a614acdae717995245cc84ff40a764bec39f12a2e15f5fb8d082324c3fc29",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "hits": 10,
+        "relevant": 12,
+        "false_positives": 0,
+        "local_score": 12.5,
+        "missed": [
+          "study_7e96a40e79ae.pdf",
+          "study_bc27ab5d4345.pdf"
+        ],
+        "extra": [],
+        "seconds": 150.462,
+        "calls": 6,
+        "format_pass": true,
+        "decided": 40,
+        "unprocessed": 8,
+        "outcome": "partial",
+        "errors": []
+      },
+      {
+        "case_id": "B-02",
+        "hits": 6,
+        "relevant": 8,
+        "false_positives": 0,
+        "local_score": 11.25,
+        "missed": [
+          "study_7e96a40e79ae.pdf",
+          "study_bc27ab5d4345.pdf"
+        ],
+        "extra": [],
+        "seconds": 141.495,
+        "calls": 7,
+        "format_pass": true,
+        "decided": 40,
+        "unprocessed": 8,
+        "outcome": "partial",
+        "errors": []
+      },
+      {
+        "case_id": "B-03",
+        "hits": 4,
+        "relevant": 7,
+        "false_positives": 0,
+        "local_score": 8.571428571428571,
+        "missed": [
+          "study_70a09756f953.pdf",
+          "study_957497669e42.pdf",
+          "study_bed2f18ea583.pdf"
+        ],
+        "extra": [],
+        "seconds": 146.587,
+        "calls": 6,
+        "format_pass": true,
+        "decided": 40,
+        "unprocessed": 8,
+        "outcome": "partial",
+        "errors": [
+          {
+            "stage": "plan",
+            "error": "model transport failure (APITimeoutError) after retries"
+          }
+        ]
+      }
+    ],
+    "gold_source": "Controlled fixture construction",
+    "historical_gold_correction_documented": false
+  },
+  {
+    "run": "b6-release-public-20261031",
+    "image_id": "sha256:23c2ce558c773a5c93d69db0f14be292a89f09808e2b1e7036d37cb81113b3d1",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "hits": 5,
+        "relevant": 5,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 57.228,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": []
+      },
+      {
+        "case_id": "B-02",
+        "hits": 2,
+        "relevant": 2,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 54.723,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": [
+          {
+            "stage": "plan",
+            "error": "model transport failure (APITimeoutError) after retries"
+          }
+        ]
+      },
+      {
+        "case_id": "B-03",
+        "hits": 4,
+        "relevant": 4,
+        "false_positives": 0,
+        "local_score": 15,
+        "missed": [],
+        "extra": [],
+        "seconds": 41.613,
+        "calls": 3,
+        "format_pass": true,
+        "decided": 5,
+        "unprocessed": 0,
+        "outcome": "complete",
+        "errors": []
+      }
+    ],
+    "gold_source": "Public-paper manually reviewed developer gold",
+    "historical_gold_correction_documented": true
+  },
+  {
+    "run": "b6-release-controlled-20261031",
+    "image_id": "sha256:23c2ce558c773a5c93d69db0f14be292a89f09808e2b1e7036d37cb81113b3d1",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "hits": 6,
+        "relevant": 12,
+        "false_positives": 0,
+        "local_score": 7.5,
+        "missed": [
+          "study_06453d0f8d46.pdf",
+          "study_0e3f0eb070d6.pdf",
+          "study_726ac8383b4a.pdf",
+          "study_7e96a40e79ae.pdf",
+          "study_bc27ab5d4345.pdf",
+          "study_fdd69986fcbc.pdf"
+        ],
+        "extra": [],
+        "seconds": 155.363,
+        "calls": 6,
+        "format_pass": true,
+        "decided": 32,
+        "unprocessed": 8,
+        "outcome": "partial",
+        "errors": [
+          {
+            "stage": "plan",
+            "error": "model transport failure (APITimeoutError) after retries"
+          },
+          {
+            "stage": "retrieve",
+            "round": 0,
+            "batch": 4,
+            "error": "model transport failure (APITimeoutError) after retries"
+          }
+        ]
+      },
+      {
+        "case_id": "B-02",
+        "hits": 6,
+        "relevant": 8,
+        "false_positives": 0,
+        "local_score": 11.25,
+        "missed": [
+          "study_7e96a40e79ae.pdf",
+          "study_bc27ab5d4345.pdf"
+        ],
+        "extra": [],
+        "seconds": 134.289,
+        "calls": 6,
+        "format_pass": true,
+        "decided": 32,
+        "unprocessed": 16,
+        "outcome": "partial",
+        "errors": []
+      },
+      {
+        "case_id": "B-03",
+        "hits": 4,
+        "relevant": 7,
+        "false_positives": 0,
+        "local_score": 8.571428571428571,
+        "missed": [
+          "study_70a09756f953.pdf",
+          "study_957497669e42.pdf",
+          "study_bed2f18ea583.pdf"
+        ],
+        "extra": [],
+        "seconds": 155.287,
+        "calls": 7,
+        "format_pass": true,
+        "decided": 40,
+        "unprocessed": 0,
+        "outcome": "partial",
+        "errors": [
+          {
+            "stage": "plan",
+            "error": "model transport failure (APITimeoutError) after retries"
+          },
+          {
+            "stage": "retrieve",
+            "round": 0,
+            "batch": 5,
+            "error": "model transport failure (APITimeoutError) after retries"
+          }
+        ]
+      }
+    ],
+    "gold_source": "Controlled fixture construction",
+    "historical_gold_correction_documented": false
+  }
+]

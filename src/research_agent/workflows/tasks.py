@@ -65,6 +65,9 @@ class TaskHandlers(ReportWorkflow):
             evidence = [asdict(c) for c in retriever.per_document(QueryPlan(case.input), 3)] if case.materials else []
             value = self.llm.json("chat", {"task": case.to_dict(), "evidence": evidence}, max_tokens=2200)
             return {"case_id": case.case_id, "answer": value.get("answer"), "clarifying_question": value.get("clarifying_question")}
+        if case.function == "Literature_Retrieval":
+            from .b_workflow import retrieve
+            return retrieve(self, case, retriever)
         if case.function == "Literature_Retrieval" and not retriever.chunks:
             self.retrieval_trace = {"candidates": [], "reason": "empty_authorized_library"}
             return {"case_id": case.case_id, "papers": []}

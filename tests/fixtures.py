@@ -47,6 +47,14 @@ def papers(root):
 class FakeLLM:
     usage = []
     def json(self, stage, data, **kwargs):
+        if data.get('b_protocol') == 'conditions-v1':
+            if stage == 'query':
+                from research_agent.workflows.b_conditions import fallback_plan
+                return fallback_plan(data['task'])
+            if stage == 'retrieve':
+                return {'papers':[{'filename':r['filename'],'reason':'Fixture evidence matches the specified research conditions.',
+                    'status':'relevant','evidence_ids':[r['chunks'][0]['chunk_id']],
+                    'targets':[t['id'] for t in data['search_targets']]} for r in data['candidates']]}
         if stage == "chat":
             return {"answer": "关联需要通过控制混杂因素的实验进一步检验。", "clarifying_question": "研究对象的范围是什么？"}
         if stage == "query":

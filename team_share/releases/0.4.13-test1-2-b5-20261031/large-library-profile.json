@@ -1,0 +1,13 @@
+{
+  "documents": 300,
+  "chunks": 10217,
+  "page_limit": 2,
+  "parse_seconds": 55.515,
+  "total_seconds": 55.697,
+  "max_rss_mib": 119.4,
+  "candidates": 24,
+  "material_errors": [],
+  "network": false,
+  "model_calls": 0,
+  "note": "Performance only; not recall accuracy validation"
+}

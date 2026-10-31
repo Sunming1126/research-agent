@@ -1,0 +1,532 @@
+{
+  "development": [
+    {
+      "run": "b5-baseline-valid-20261031",
+      "image_id": "sha256:e708156c5f1d912063e7b6a7f8c0529f385e8eddad50d362e98a98a5f84b587a",
+      "rows": [
+        {
+          "case_id": "B-01",
+          "H": 1,
+          "N": 5,
+          "U": 0,
+          "score": 3.0,
+          "precision": 1.0,
+          "recall": 0.2,
+          "false_positives": [],
+          "missed": [
+            "2005.11401-rag.pdf",
+            "2007.01282-fid.pdf",
+            "2112.04426-retro.pdf",
+            "2310.11511-self-rag.pdf"
+          ],
+          "format_and_files_passed": true,
+          "seconds": 29.863,
+          "llm_calls": 2
+        },
+        {
+          "case_id": "B-02",
+          "H": 1,
+          "N": 2,
+          "U": 0,
+          "score": 7.5,
+          "precision": 1.0,
+          "recall": 0.5,
+          "false_positives": [],
+          "missed": [
+            "2310.11511-self-rag.pdf"
+          ],
+          "format_and_files_passed": true,
+          "seconds": 23.274,
+          "llm_calls": 2
+        },
+        {
+          "case_id": "B-03",
+          "H": 4,
+          "N": 4,
+          "U": 0,
+          "score": 15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positives": [],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 36.944,
+          "llm_calls": 2
+        }
+      ],
+      "mean_score": 8.5,
+      "note": "Developer-authored public tests, not official scores; N=0 is an empty-set test without applying the nonzero-N formula."
+    },
+    {
+      "run": "b5-first-20261031",
+      "image_id": "sha256:1c1c56365be24e15275aba099df159bddb66d87e7ff09645eaac29a072afc709",
+      "rows": [
+        {
+          "case_id": "B-01",
+          "H": 0,
+          "N": 5,
+          "U": 0,
+          "score": 0,
+          "precision": 0,
+          "recall": 0.0,
+          "false_positives": [],
+          "missed": [
+            "2004.04906-dpr.pdf",
+            "2005.11401-rag.pdf",
+            "2007.01282-fid.pdf",
+            "2112.04426-retro.pdf",
+            "2310.11511-self-rag.pdf"
+          ],
+          "format_and_files_passed": false,
+          "seconds": 104.848,
+          "llm_calls": 3
+        },
+        {
+          "case_id": "B-02",
+          "H": 0,
+          "N": 2,
+          "U": 0,
+          "score": 0,
+          "precision": 0,
+          "recall": 0.0,
+          "false_positives": [],
+          "missed": [
+            "2004.04906-dpr.pdf",
+            "2310.11511-self-rag.pdf"
+          ],
+          "format_and_files_passed": false,
+          "seconds": 103.525,
+          "llm_calls": 3
+        },
+        {
+          "case_id": "B-03",
+          "H": 0,
+          "N": 4,
+          "U": 0,
+          "score": 0,
+          "precision": 0,
+          "recall": 0.0,
+          "false_positives": [],
+          "missed": [
+            "2005.11401-rag.pdf",
+            "2007.01282-fid.pdf",
+            "2112.04426-retro.pdf",
+            "2310.11511-self-rag.pdf"
+          ],
+          "format_and_files_passed": false,
+          "seconds": 100.244,
+          "llm_calls": 3
+        }
+      ],
+      "mean_score": 0.0,
+      "note": "Developer-authored public tests, not official scores; N=0 is an empty-set test without applying the nonzero-N formula."
+    },
+    {
+      "run": "b5-second-20261031",
+      "image_id": "sha256:d6091be34d59f73bce24eaf0ef23ce6a9fb037f05810589c0d0cbe483bf0e030",
+      "rows": [
+        {
+          "case_id": "B-01",
+          "H": 1,
+          "N": 5,
+          "U": 0,
+          "score": 3.0,
+          "precision": 1.0,
+          "recall": 0.2,
+          "false_positives": [],
+          "missed": [
+            "2004.04906-dpr.pdf",
+            "2005.11401-rag.pdf",
+            "2007.01282-fid.pdf",
+            "2112.04426-retro.pdf"
+          ],
+          "format_and_files_passed": true,
+          "seconds": 121.037,
+          "llm_calls": 5
+        },
+        {
+          "case_id": "B-02",
+          "H": 0,
+          "N": 2,
+          "U": 0,
+          "score": 0,
+          "precision": 0,
+          "recall": 0.0,
+          "false_positives": [],
+          "missed": [
+            "2004.04906-dpr.pdf",
+            "2310.11511-self-rag.pdf"
+          ],
+          "format_and_files_passed": false,
+          "seconds": 140.648,
+          "llm_calls": 6
+        },
+        {
+          "case_id": "B-03",
+          "H": 3,
+          "N": 4,
+          "U": 0,
+          "score": 11.25,
+          "precision": 1.0,
+          "recall": 0.75,
+          "false_positives": [],
+          "missed": [
+            "2007.01282-fid.pdf"
+          ],
+          "format_and_files_passed": true,
+          "seconds": 81.339,
+          "llm_calls": 4
+        }
+      ],
+      "mean_score": 4.75,
+      "note": "Developer-authored public tests, not official scores; N=0 is an empty-set test without applying the nonzero-N formula."
+    },
+    {
+      "run": "b5-third-20261031",
+      "image_id": "sha256:184954fa01d8c945291b3f531a9a5cbefc51757f1aeb74b55b5b89889725e66a",
+      "rows": [
+        {
+          "case_id": "B-01",
+          "H": 3,
+          "N": 5,
+          "U": 0,
+          "score": 9.0,
+          "precision": 1.0,
+          "recall": 0.6,
+          "false_positives": [],
+          "missed": [
+            "2005.11401-rag.pdf",
+            "2007.01282-fid.pdf"
+          ],
+          "format_and_files_passed": true,
+          "seconds": 85.371,
+          "llm_calls": 3
+        },
+        {
+          "case_id": "B-02",
+          "H": 1,
+          "N": 2,
+          "U": 1,
+          "score": 6.75,
+          "precision": 0.5,
+          "recall": 0.5,
+          "false_positives": [
+            "2005.11401-rag.pdf"
+          ],
+          "missed": [
+            "2004.04906-dpr.pdf"
+          ],
+          "format_and_files_passed": true,
+          "seconds": 106.997,
+          "llm_calls": 4
+        },
+        {
+          "case_id": "B-03",
+          "H": 4,
+          "N": 4,
+          "U": 0,
+          "score": 15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positives": [],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 113.608,
+          "llm_calls": 4
+        }
+      ],
+      "mean_score": 10.25,
+      "note": "Developer-authored public tests, not official scores; N=0 is an empty-set test without applying the nonzero-N formula."
+    },
+    {
+      "run": "b5-final-20261031",
+      "image_id": "sha256:ecb8142dfc175a7189064cefac5be26b49d335ef05210213a9545deecb34603c",
+      "rows": [
+        {
+          "case_id": "B-01",
+          "H": 3,
+          "N": 5,
+          "U": 0,
+          "score": 9.0,
+          "precision": 1.0,
+          "recall": 0.6,
+          "false_positives": [],
+          "missed": [
+            "2005.11401-rag.pdf",
+            "2007.01282-fid.pdf"
+          ],
+          "format_and_files_passed": true,
+          "seconds": 70.396,
+          "llm_calls": 3
+        },
+        {
+          "case_id": "B-02",
+          "H": 2,
+          "N": 2,
+          "U": 0,
+          "score": 15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positives": [],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 108.201,
+          "llm_calls": 6
+        },
+        {
+          "case_id": "B-03",
+          "H": 4,
+          "N": 4,
+          "U": 0,
+          "score": 15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positives": [],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 60.416,
+          "llm_calls": 3
+        }
+      ],
+      "mean_score": 13.0,
+      "note": "Developer-authored public tests, not official scores; N=0 is an empty-set test without applying the nonzero-N formula."
+    },
+    {
+      "run": "b5-verified-20261031",
+      "image_id": "sha256:d246d0954376bd708da2d6793042fe8bc6400874913808a8f1a8db7a99a7dea7",
+      "rows": [
+        {
+          "case_id": "B-01",
+          "H": 3,
+          "N": 5,
+          "U": 0,
+          "score": 9.0,
+          "precision": 1.0,
+          "recall": 0.6,
+          "false_positives": [],
+          "missed": [
+            "2005.11401-rag.pdf",
+            "2007.01282-fid.pdf"
+          ],
+          "format_and_files_passed": true,
+          "seconds": 89.081,
+          "llm_calls": 4
+        },
+        {
+          "case_id": "B-02",
+          "H": 2,
+          "N": 2,
+          "U": 0,
+          "score": 15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positives": [],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 90.542,
+          "llm_calls": 5
+        },
+        {
+          "case_id": "B-03",
+          "H": 4,
+          "N": 4,
+          "U": 0,
+          "score": 15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positives": [],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 55.48,
+          "llm_calls": 3
+        }
+      ],
+      "mean_score": 13.0,
+      "note": "Developer-authored public tests, not official scores; N=0 is an empty-set test without applying the nonzero-N formula."
+    },
+    {
+      "run": "b5-release-check-20261031",
+      "image_id": "sha256:e6569ff96c1483123c6a3cb9a62ba7e4a18dc747e238aa492f8ffb3bbe8649a4",
+      "rows": [
+        {
+          "case_id": "B-01",
+          "H": 3,
+          "N": 5,
+          "U": 0,
+          "score": 9.0,
+          "precision": 1.0,
+          "recall": 0.6,
+          "false_positives": [],
+          "missed": [
+            "2005.11401-rag.pdf",
+            "2007.01282-fid.pdf"
+          ],
+          "format_and_files_passed": true,
+          "seconds": 85.022,
+          "llm_calls": 4
+        },
+        {
+          "case_id": "B-02",
+          "H": 2,
+          "N": 2,
+          "U": 0,
+          "score": 15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positives": [],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 94.854,
+          "llm_calls": 5
+        },
+        {
+          "case_id": "B-03",
+          "H": 4,
+          "N": 4,
+          "U": 0,
+          "score": 15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positives": [],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 68.309,
+          "llm_calls": 3
+        }
+      ],
+      "mean_score": 13.0,
+      "note": "Developer-authored public tests, not official scores; N=0 is an empty-set test without applying the nonzero-N formula."
+    }
+  ],
+  "scope_regressions": [
+    {
+      "run": "b5-holdout-20261031",
+      "image_id": "sha256:d246d0954376bd708da2d6793042fe8bc6400874913808a8f1a8db7a99a7dea7",
+      "rows": [
+        {
+          "case_id": "B-01",
+          "H": 1,
+          "N": 1,
+          "U": 0,
+          "score": 15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positives": [],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 72.196,
+          "llm_calls": 4
+        },
+        {
+          "case_id": "B-02",
+          "H": 0,
+          "N": 2,
+          "U": 0,
+          "score": 0,
+          "precision": 0,
+          "recall": 0.0,
+          "false_positives": [],
+          "missed": [
+            "2007.01282-fid.pdf",
+            "2112.04426-retro.pdf"
+          ],
+          "format_and_files_passed": false,
+          "seconds": 77.533,
+          "llm_calls": 5
+        },
+        {
+          "case_id": "B-03",
+          "H": 0,
+          "N": 0,
+          "U": 0,
+          "score": null,
+          "precision": 1,
+          "recall": null,
+          "false_positives": [],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 43.564,
+          "llm_calls": 3
+        }
+      ],
+      "mean_score": 7.5,
+      "note": "Developer-authored public tests, not official scores; N=0 is an empty-set test without applying the nonzero-N formula."
+    },
+    {
+      "run": "b5-scope-recheck-20261031",
+      "image_id": "sha256:e6569ff96c1483123c6a3cb9a62ba7e4a18dc747e238aa492f8ffb3bbe8649a4",
+      "rows": [
+        {
+          "case_id": "B-02",
+          "H": 2,
+          "N": 2,
+          "U": 1,
+          "score": 14.25,
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "false_positives": [
+            "2310.11511-self-rag.pdf"
+          ],
+          "missed": [],
+          "format_and_files_passed": true,
+          "seconds": 67.889,
+          "llm_calls": 5
+        }
+      ],
+      "mean_score": 14.25,
+      "note": "Developer-authored public tests, not official scores; N=0 is an empty-set test without applying the nonzero-N formula."
+    }
+  ],
+  "heldout": {
+    "run": "b5-fresh-20261031",
+    "image_id": "sha256:e6569ff96c1483123c6a3cb9a62ba7e4a18dc747e238aa492f8ffb3bbe8649a4",
+    "rows": [
+      {
+        "case_id": "B-01",
+        "H": 2,
+        "N": 2,
+        "U": 1,
+        "score": 14.25,
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "false_positives": [
+          "2007.01282-fid.pdf"
+        ],
+        "missed": [],
+        "format_and_files_passed": true,
+        "seconds": 98.181,
+        "llm_calls": 6
+      },
+      {
+        "case_id": "B-02",
+        "H": 1,
+        "N": 1,
+        "U": 0,
+        "score": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positives": [],
+        "missed": [],
+        "format_and_files_passed": true,
+        "seconds": 109.095,
+        "llm_calls": 5
+      },
+      {
+        "case_id": "B-03",
+        "H": 1,
+        "N": 1,
+        "U": 0,
+        "score": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positives": [],
+        "missed": [],
+        "format_and_files_passed": true,
+        "seconds": 72.889,
+        "llm_calls": 5
+      }
+    ],
+    "mean_score": 14.75,
+    "note": "Developer-authored public tests, not official scores; N=0 is an empty-set test without applying the nonzero-N formula."
+  }
+}
