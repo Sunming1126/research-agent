@@ -22,8 +22,43 @@ def _number(value):
     return type(value) in {int, float} and math.isfinite(value)
 
 
+class ContractViolation(ValueError):
+    """Structured C/E wire differences; never stores the submitted values."""
+    def __init__(self, issues):
+        self.issues = issues
+        super().__init__('C/E output schema violation: ' + ', '.join(item['code'] for item in issues))
+
+
+def validate_ce_wire_fields(case, result):
+    required = {'case_id', 'path', 'markdown'}
+    issues = []
+    if not isinstance(result, dict):
+        raise ContractViolation([{'code': 'nested_structure', 'pointer': '',
+                                  'expected': 'JSON object', 'actual_type': type(result).__name__}])
+    for key in sorted(required - set(result)):
+        issues.append({'code': 'missing_field', 'pointer': '/' + key, 'expected': 'nonempty string'})
+    for key in sorted(set(result) - required, key=str):
+        pointer = '/' + str(key).replace('~', '~0').replace('/', '~1')
+        issues.append({'code': 'extra_field', 'pointer': pointer, 'expected': 'field absent'})
+    for key in sorted(required & set(result)):
+        value = result[key]
+        if not isinstance(value, str):
+            issues.append({'code': 'type_error', 'pointer': '/' + key,
+                           'expected': 'nonempty string', 'actual_type': type(value).__name__})
+        elif not value.strip():
+            issues.append({'code': 'content_constraint', 'pointer': '/' + key,
+                           'expected': 'nonempty string', 'actual_type': 'empty_string'})
+    if isinstance(result.get('case_id'), str) and result['case_id'] != case.case_id:
+        issues.append({'code': 'identity_mismatch', 'pointer': '/case_id', 'expected': 'current case identity'})
+    if issues:
+        raise ContractViolation(issues)
+    return result
+
+
 def validate_wire_fields(case, result):
     """纯函数：检查最终 HTTP 答卷，不依赖已经结束的 SDK 工具上下文。"""
+    if case.function in {'Survey', 'Idea'}:
+        return validate_ce_wire_fields(case, result)
     fields = {
         "Chat": ("case_id", "answer", "clarifying_question"),
         "Literature_Retrieval": ("case_id", "papers"),

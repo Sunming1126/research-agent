@@ -147,9 +147,18 @@ class ResearchRequestAdapter:
                         headers.append((b'x-research-error-type', str(outcome['error_type']).encode('ascii')))
                     if outcome.get('diagnostic_path'):
                         headers.append((b'x-research-diagnostic-path', quote(outcome['diagnostic_path'], safe='/').encode('ascii')))
-            except (ValueError, KeyError, TypeError, UnicodeError):
+            except (ValueError, KeyError, TypeError, UnicodeError) as exc:
                 # SDK 成功但无法转成合法答卷时显式失败，不能泄漏包装体作为成功输出。
-                return await JSONResponse({"detail": "invalid research answer from runtime"}, status_code=502)(scope, adapted_receive, send)
+                failure = {"detail": "invalid research answer from runtime"}
+                failure_headers = {}
+                if case.function in {'Survey', 'Idea'}:
+                    failure['contract_errors'] = getattr(exc, 'issues', None) or [
+                        {'code': 'platform_adapter', 'pointer': '', 'expected': 'valid SDK research answer',
+                         'cause_type': type(exc).__name__}]
+                    for key, value in headers:
+                        if key.lower() in {b'x-agenthack-trace-id', b'x-agenthack-session-id'}:
+                            failure_headers[key.decode('latin-1')] = value.decode('latin-1')
+                return await JSONResponse(failure, status_code=502, headers=failure_headers)(scope, adapted_receive, send)
             headers = [(key, value) for key, value in headers if key.lower() != b"content-length"]
             await send(dict(start, status=status, headers=headers + [(b"content-length", str(len(body)).encode("ascii"))]))
             await send({"type": "http.response.body", "body": body, "more_body": False})

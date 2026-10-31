@@ -214,9 +214,12 @@ class ResearchAgentEngine:
                                                                    "evidence_audit": handler.evidence_audit,
                                                                    "report_trace": handler.report_trace,
                                                                   "draft": handler.last_draft})
-            write_json(confined(work, "error.json"), {"case_id": case.case_id, "error_type": type(exc).__name__,
-                                                    "message": str(exc)[:1000], "usage": getattr(llm, "usage", []),
-                                                    "model_response_failures": getattr(llm, 'response_failures', [])})
+            error = {"case_id": case.case_id, "error_type": type(exc).__name__,
+                     "message": str(exc)[:1000], "usage": getattr(llm, "usage", []),
+                     "model_response_failures": getattr(llm, 'response_failures', [])}
+            if getattr(exc, 'issues', None):
+                error['schema_diff'] = exc.issues
+            write_json(confined(work, "error.json"), error)
             write_json(confined(work, "session.json"), session.snapshot())
             raise
 
