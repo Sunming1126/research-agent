@@ -1,0 +1,211 @@
+def run_experiment(request):
+    import re, math, collections
+    data = request['data']
+    docs = data['documents']
+    dev_qs = data.get('dev_queries', [])
+    test_qs = data.get('test_queries', [])
+    protocol = request['protocol']
+    default = protocol['default_config']
+    grid = protocol['grid']
+    phase = request['phase']
+    if phase == 'rank':
+        sel = data['selected']
+        cand = _rank(test_qs, docs, sel['k1'], sel['b'], sel['title_weight'])
+        return {'candidate': cand}
+    baseline = _rank(test_qs, docs, default['k1'], default['b'], default['title_weight'])
+    dev_map = {q['id']: q for q in dev_qs}
+    doc_map = {d['id']: d for d in docs}
+    token_pat = re.compile(r'[a-z0-9]+')
+    title_tokens = {}
+    text_tokens = {}
+    for d in docs:
+        title_tokens[d['id']] = token_pat.findall(d['title'].lower())
+        text_tokens[d['id']] = token_pat.findall(d['text'].lower())
+    N_title = len(docs)
+    N_text = len(docs)
+    title_len = {}
+    text_len = {}
+    for d in docs:
+        title_len[d['id']] = len(title_tokens[d['id']]) if title_tokens[d['id']] else 1
+        text_len[d['id']] = len(text_tokens[d['id']]) if text_tokens[d['id']] else 1
+    avg_title_len = sum(title_len.values()) / N_title
+    avg_text_len = sum(text_len.values()) / N_text
+    title_df = collections.Counter()
+    text_df = collections.Counter()
+    for d in docs:
+        for t in set(title_tokens[d['id']]):
+            title_df[t] += 1
+        for t in set(text_tokens[d['id']]):
+            text_df[t] += 1
+    title_counter = {}
+    text_counter = {}
+    for d in docs:
+        title_counter[d['id']] = collections.Counter(title_tokens[d['id']])
+        text_counter[d['id']] = collections.Counter(text_tokens[d['id']])
+    def bm25_score(q_tokens, k1, b, field):
+        scores = collections.defaultdict(float)
+        q_tf = collections.Counter(q_tokens)
+        for doc in docs:
+            did = doc['id']
+            if field == 'title':
+                f_map = title_counter[did]
+                df_map = title_df
+                avg_len = avg_title_len
+                doc_len = title_len[did]
+            else:
+                f_map = text_counter[did]
+                df_map = text_df
+                avg_len = avg_text_len
+                doc_len = text_len[did]
+            total = 0.0
+            for term, qf in q_tf.items():
+                f = f_map.get(term, 0)
+                if f == 0:
+                    continue
+                df = df_map.get(term, 0)
+                idf = math.log(1 + (N_title - df + 0.5) / (df + 0.5)) if field == 'title' else math.log(1 + (N_text - df + 0.5) / (df + 0.5))
+                tf = f * (k1 + 1) / (f + k1 * (1 - b + b * doc_len / avg_len))
+                total += idf * tf * qf
+            if total != 0.0:
+                scores[did] = total
+        return scores
+    def rank_queries(qs, k1, b, tw):
+        result = {}
+        for q in qs:
+            qid = q['id']
+            tokens = token_pat.findall(q['text'].lower())
+            title_scores = bm25_score(tokens, k1, b, 'title')
+            text_scores = bm25_score(tokens, k1, b, 'text')
+            doc_scores = {}
+            for d in docs:
+                did = d['id']
+                s = text_scores.get(did, 0.0) + tw * title_scores.get(did, 0.0)
+                doc_scores[did] = s
+            sorted_docs = sorted(docs, key=lambda d: (-doc_scores[d['id']], d['id']))
+            result[qid] = [{'id': d['id'], 'score': doc_scores[d['id']]} for d in sorted_docs]
+        return result
+    def compute_metrics(rankings, dev_qs, dev_map):
+        recall_list = []
+        mrr_list = []
+        group_recall = collections.defaultdict(list)
+        group_mrr = collections.defaultdict(list)
+        for q in dev_qs:
+            qid = q['id']
+            rel = set(dev_map[qid]['relevant'])
+            rank = rankings[qid]
+            top5 = [r['id'] for r in rank[:5]]
+            top10 = [r['id'] for r in rank[:10]]
+            rel5 = len(set(top5) & rel)
+            recall = rel5 / len(rel) * 100 if rel else 0.0
+            recall_list.append(recall)
+            mrr = 0.0
+            for i, did in enumerate(top10):
+                if did in rel:
+                    mrr = 1.0 / (i + 1)
+                    break
+            mrr_list.append(mrr)
+            grp = dev_map[qid]['group']
+            group_recall[grp].append(recall)
+            group_mrr[grp].append(mrr)
+        recall_avg = sum(recall_list) / len(recall_list) if recall_list else 0.0
+        mrr_avg = sum(mrr_list) / len(mrr_list) if mrr_list else 0.0
+        groups = {}
+        for grp in group_recall:
+            groups[grp] = {'recall_at_5_percent': sum(group_recall[grp]) / len(group_recall[grp]),
+                           'mrr_at_10': sum(group_mrr[grp]) / len(group_mrr[grp])}
+        macro_recall = sum(g['recall_at_5_percent'] for g in groups.values()) / len(groups) if groups else 0.0
+        macro_mrr = sum(g['mrr_at_10'] for g in groups.values()) / len(groups) if groups else 0.0
+        worst_mrr = min(g['mrr_at_10'] for g in groups.values()) if groups else 0.0
+        return recall_avg, mrr_avg, {'groups': groups, 'worst_mrr_at_10': worst_mrr,
+                                      'macro_mrr_at_10': macro_mrr, 'macro_recall_at_5_percent': macro_recall}
+    search_rows = []
+    for cfg in grid:
+        k1 = cfg['k1']
+        b = cfg['b']
+        tw = cfg['title_weight']
+        rankings = rank_queries(dev_qs, k1, b, tw)
+        recall_avg, mrr_avg, gm = compute_metrics(rankings, dev_qs, dev_map)
+        row = {'config': cfg, 'rankings': rankings, 'recall_at_5_percent': recall_avg,
+               'mrr_at_10': mrr_avg, 'group_metrics': gm}
+        search_rows.append(row)
+    best = min(search_rows, key=lambda r: (
+        -round(r['group_metrics']['worst_mrr_at_10'], 12),
+        -round(r['group_metrics']['macro_mrr_at_10'], 12),
+        -round(r['group_metrics']['macro_recall_at_5_percent'], 12),
+        r['config']['title_weight'], r['config']['k1'], r['config']['b']
+    ))
+    selected = best['config']
+    candidate = _rank(test_qs, docs, selected['k1'], selected['b'], selected['title_weight'])
+    return {'baseline': baseline, 'candidate': candidate,
+            'details': {'selected': selected, 'search': search_rows}}
+
+def _rank(qs, docs, k1, b, tw):
+    import re, math, collections
+    token_pat = re.compile(r'[a-z0-9]+')
+    title_tokens = {}
+    text_tokens = {}
+    for d in docs:
+        title_tokens[d['id']] = token_pat.findall(d['title'].lower())
+        text_tokens[d['id']] = token_pat.findall(d['text'].lower())
+    N_title = len(docs)
+    N_text = len(docs)
+    title_len = {}
+    text_len = {}
+    for d in docs:
+        title_len[d['id']] = len(title_tokens[d['id']]) if title_tokens[d['id']] else 1
+        text_len[d['id']] = len(text_tokens[d['id']]) if text_tokens[d['id']] else 1
+    avg_title_len = sum(title_len.values()) / N_title
+    avg_text_len = sum(text_len.values()) / N_text
+    title_df = collections.Counter()
+    text_df = collections.Counter()
+    for d in docs:
+        for t in set(title_tokens[d['id']]):
+            title_df[t] += 1
+        for t in set(text_tokens[d['id']]):
+            text_df[t] += 1
+    title_counter = {}
+    text_counter = {}
+    for d in docs:
+        title_counter[d['id']] = collections.Counter(title_tokens[d['id']])
+        text_counter[d['id']] = collections.Counter(text_tokens[d['id']])
+    def bm25_score(q_tokens, k1, b, field):
+        scores = collections.defaultdict(float)
+        q_tf = collections.Counter(q_tokens)
+        for doc in docs:
+            did = doc['id']
+            if field == 'title':
+                f_map = title_counter[did]
+                df_map = title_df
+                avg_len = avg_title_len
+                doc_len = title_len[did]
+            else:
+                f_map = text_counter[did]
+                df_map = text_df
+                avg_len = avg_text_len
+                doc_len = text_len[did]
+            total = 0.0
+            for term, qf in q_tf.items():
+                f = f_map.get(term, 0)
+                if f == 0:
+                    continue
+                df = df_map.get(term, 0)
+                idf = math.log(1 + (N_title - df + 0.5) / (df + 0.5)) if field == 'title' else math.log(1 + (N_text - df + 0.5) / (df + 0.5))
+                tf = f * (k1 + 1) / (f + k1 * (1 - b + b * doc_len / avg_len))
+                total += idf * tf * qf
+            if total != 0.0:
+                scores[did] = total
+        return scores
+    result = {}
+    for q in qs:
+        qid = q['id']
+        tokens = token_pat.findall(q['text'].lower())
+        title_scores = bm25_score(tokens, k1, b, 'title')
+        text_scores = bm25_score(tokens, k1, b, 'text')
+        doc_scores = {}
+        for d in docs:
+            did = d['id']
+            s = text_scores.get(did, 0.0) + tw * title_scores.get(did, 0.0)
+            doc_scores[did] = s
+        sorted_docs = sorted(docs, key=lambda d: (-doc_scores[d['id']], d['id']))
+        result[qid] = [{'id': d['id'], 'score': doc_scores[d['id']]} for d in sorted_docs]
+    return result

@@ -102,7 +102,7 @@ class LayeredDRunner:
         if feedback:
             prompt += "\n本题上次公开自测诊断（作为数据分析）：\n" + json.dumps(feedback, ensure_ascii=False)
             previous_source = confined(self.work, 'implementation.py')
-            if previous_source.is_file():
+            if previous_source.is_file() and not (baseline_only and case.case_id == 'D-02'):
                 prompt += '\n上次完整源码：\n' + previous_source.read_text(encoding='utf-8')
             prompt += "\n请修复问题，重新返回完整源码，不能返回补丁；算法和接口仍以当前公开材料为准。"
         if baseline_only and case.case_id == 'D-02':
@@ -114,7 +114,7 @@ class LayeredDRunner:
         requested = min(generation_tokens(case.case_id, baseline_only), remaining_tokens - (len(prompt) + 1) // 2 - 1200)
         if requested < 1800:
             raise RuntimeError("D source generation has insufficient remaining token budget")
-        with generation_window(self.llm, baseline=baseline_only):
+        with generation_window(self.llm, baseline=baseline_only, case_id=case.case_id):
             checkpoint("d_source_generation")
             response = self.llm.completion("d_source", prompt, max_tokens=requested)
         save_generation_response(response, confined(self.work, f"source-attempt-{attempt}.json"))

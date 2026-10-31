@@ -109,9 +109,10 @@ def test_c_prompt_has_one_consistent_target_and_no_program_appended_facts():
     assert '至少实际引用五篇' in text
 
 
-def test_idea_prompt_path_is_unchanged():
+def test_idea_prompt_path_is_dedicated():
     text = instructions_for('report', {'task':{'function':'Idea'},'claims':[{'role':'source_context'}]})
-    assert text.startswith(IDEA_INSTRUCTION)
+    from research_agent.integrations.idea_prompt import INSTRUCTION
+    assert text == INSTRUCTION
     assert '2000至2400' not in text
 
 
@@ -124,32 +125,28 @@ def test_d02_prompt_distinguishes_baseline_and_benchmark_field():
     assert json.loads(materials()['protocol'])['case_id'] == 'D-02'
 
 
-def test_survey_audit_removes_duplicate_source_text_but_idea_stays_exact():
+def test_source_audit_deduplicates_excerpts_but_preserves_semantic_claims():
     from research_agent.workflows.report_context import audit_request
     from research_agent.core.models import Evidence
     from dataclasses import asdict
-    ledger = [Evidence('ev-1', 'A continuous source sentence. '*30, 'a.pdf', 2, 'c',
-                       'A continuous source sentence. '*30, role='source_context', verification='verbatim_only')]
-    rows = [{**asdict(ledger[0]), 'ref':1}]
-    old = {'__package__':'research_agent.workflows'}
-    exec(Path('/results/report_context-before.py').read_text(), old)
-    for function, cid in [('Survey','C-01'), ('Idea','E-01')]:
+    for cid in ('C-01','E-01'):
         current = CaseContext.from_dict(case(cid))
-        before = old['audit_request'](current, 'An assertion [1, p.2]', rows, ledger)
+        ledger = [Evidence('ev-1', 'Continuous authorized source.', 'a.pdf', 2, 'c',
+                          'Continuous authorized source.', role='source_context')]
+        rows = [{**asdict(ledger[0]), 'ref':1}]
         after = audit_request(current, 'An assertion [1, p.2]', rows, ledger)
-        if function == 'Idea':
-            assert after == before
-        else:
-            assert 'claim' not in after['source_quotes'][0]
-            assert after['source_quotes'][0]['quote'] == ledger[0].quote
-            assert len(json.dumps(after)) < len(json.dumps(before))-700
+        assert 'claim' not in after['source_quotes'][0]
+        assert after['source_quotes'][0]['quote'] == ledger[0].quote
+        rows[0]['role'] = 'own_work'
+        after = audit_request(current, 'An assertion [1, p.2]', rows, ledger)
+        assert after['source_quotes'][0]['claim'] == ledger[0].claim
 
 
-def test_non_c_prompt_instructions_are_byte_identical():
+def test_non_e_prompt_instructions_are_byte_identical():
     old = {'__package__':'research_agent.integrations'}
     exec(Path('/results/prompts-before.py').read_text(), old)
     for stage in old['INSTRUCTIONS']:
-        for function in ('Chat','Literature_Retrieval','Idea','Reproduction'):
+        for function in ('Chat','Literature_Retrieval','Survey','Reproduction'):
             for role in ('source_context','own_work'):
                 data = {'task':{'function':function}, 'claims':[{'role':role}]}
                 assert instructions_for(stage,data) == old['instructions_for'](stage,data)
@@ -162,7 +159,8 @@ def test_real_model_omitted_rank_gets_actionable_diagnostic(tmp_path):
         run_public_sample(source, materials(), 'D-02')
 
 
-def test_d02_late_repair_requests_new_baseline_source(tmp_path):
+@pytest.mark.parametrize('remaining,expected_baseline', [(80,True),(90,True),(110,False)])
+def test_d02_late_repair_requests_new_baseline_source(tmp_path,remaining,expected_baseline):
     from test_eval_20261026_regressions import setup_d, response, SOURCE
     from research_agent.core.session import CaseSession
     import time
@@ -178,8 +176,8 @@ def test_d02_late_repair_requests_new_baseline_source(tmp_path):
     session=CaseSession(current.case_id,170)
     def check(*args):
         if len(modes)==1:
-            session.started_at=time.monotonic()+90-session.timeout
+            session.started_at=time.monotonic()+remaining-session.timeout
             raise ValueError('public group mean mismatch')
         return {'status':'passed','candidate_present':False}
     with session.activate():runner.prepare_checked_implementation(current,tester=check)
-    assert modes == [False,True]
+    assert modes == [False,expected_baseline]

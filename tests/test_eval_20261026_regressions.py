@@ -27,6 +27,8 @@ class DirectLLM(FakeLLM):
 
     def json(self, stage, data, **kwargs):
         self.stages.append(stage)
+        if stage == 'extract_batch' and data.get('purpose') == 'idea_plan':
+            return {'source_facts': []}  # 可选规划无有效证据，仍须允许生成真实正文。
         assert stage not in {'query', 'extract', 'extract_batch', 'verify_claims'}
         if stage == 'report':
             assert all(row['verification'] == 'verbatim_only' for row in data['claims'])
@@ -49,7 +51,7 @@ def test_first_call_writes_body_and_optional_review_cannot_remove_valid_files(tm
     settings = Settings(tmp_path, tmp_path/'out', 'injected-workspace', [tmp_path/'papers'])
     llm = DirectLLM()
     result = ResearchAgentEngine(settings, lambda: llm).solve_sync(case(case_id, names))
-    assert llm.stages == ['report', 'audit']
+    assert llm.stages == ['report','audit']
     assert set(result) == {'case_id', 'path', 'markdown'}
     assert json.loads((settings.output/f'data/injected-workspace/{case_id}.json').read_text()) == result
     assert (settings.output/result['path']).read_text() == result['markdown']
@@ -193,8 +195,13 @@ def run_experiment(request):
     events = []
     for j in data['jobs']:
         heapq.heappush(events, (j['arrival_ms'], j))
-    value = {'trace': [], 'served_ms': {f:0 for f in data['flow_weights']},
-             'dropped': [{'id':j['id'], 'reason':'horizon'} for j in data['jobs']]}
+    trace,served,now=[],{f:0 for f in data['flow_weights']},0
+    for j in sorted(data['jobs'],key=lambda j:(j['arrival_ms'],j['id'])):
+        now=max(now,j['arrival_ms'])
+        trace.append(dict(j,server=0,dispatch_ms=now,setup_ms=0,start_ms=now,
+                          end_ms=now+j['service_ms'],wait_ms=now-j['arrival_ms']))
+        now+=j['service_ms'];served[j['flow']]+=j['service_ms']
+    value = {'trace':trace,'served_ms':served,'dropped':[]}
     return {'baseline':value,'candidate':None,'details':{}}
 ''')
     request = {'case_id':'D-05','phase':'run','data':{

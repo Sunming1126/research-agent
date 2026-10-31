@@ -158,6 +158,15 @@ INSTRUCTIONS["extract_batch"] = (
 
 def instructions_for(stage, data):
     """C/E 分别规划，预算估算和实际请求必须使用相同的提示词。"""
+    if isinstance(data, dict) and isinstance(data.get('task'), dict) and data['task'].get('function') == 'Idea':
+        from .idea_prompt import INSTRUCTION, AUDIT_INSTRUCTION, REPAIR_INSTRUCTION, PLAN_INSTRUCTION
+        if stage == 'extract_batch' and data.get('purpose') == 'idea_plan':
+            return PLAN_INSTRUCTION
+        if stage == 'repair' and not any(isinstance(p, dict) for p in data.get('paragraphs', [])):
+            return INSTRUCTIONS[stage]
+        dedicated = {'report': INSTRUCTION, 'audit': AUDIT_INSTRUCTION, 'repair': REPAIR_INSTRUCTION}
+        if stage in dedicated:
+            return dedicated[stage]
     if stage == 'audit' and isinstance(data, dict) and data.get('task', {}).get('function') == 'Survey':
         from .survey_prompt import AUDIT_INSTRUCTION
         return AUDIT_INSTRUCTION

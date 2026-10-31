@@ -43,6 +43,11 @@ class ReportWorkflow:
         if direct:
             # 首次在线调用就写正文，避免55秒提取超时后没有任何答卷。
             limits.update(report=(135, 25), repair=(32, 10), audit=(22, 8))
+            if function == 'Idea':
+                # E的八项审查比单纯引文审查长；首稿后留出完整修订窗口。
+                limits.update(extract_batch=(32, 110), report=(75, 45), repair=(38, 12), audit=(32, 8))
+                if stage == 'report' and self.last_draft:
+                    limits['report'] = (60, 12)
         session = current_session()
         if previous is not None and session and function in {'Survey', 'Idea'}:
             cap, reserve = limits.get(stage, (40, 10))
@@ -186,6 +191,9 @@ class ReportWorkflow:
             if case.function == 'Survey':
                 from .survey_sources import survey_ledger
                 self.ledger, self.selected_chunks = survey_ledger(case, retriever, plan, chunks)
+            elif case.function == 'Idea':
+                from .idea_sources import idea_ledger
+                self.ledger, self.selected_chunks = idea_ledger(case, retriever, chunks)
             else:
                 self.ledger = source_ledger(case, chunks, retriever.chunks)
             self.coverage = coverage_matrix(self.ledger)
@@ -220,6 +228,9 @@ class ReportWorkflow:
     def compose_report(self, case):
         """写作阶段只消费本题已核验台账，可单独定向验证。"""
         self._report_function = case.function
+        if case.function == 'Idea' and getattr(self, '_source_report', False):
+            from .idea_workflow import compose_idea
+            return compose_idea(self, case)
         filenames = sorted({e.filename for e in self.ledger})
         if not filenames or (case.function == "Survey" and len(filenames) < 5):
             raise EvidenceError("insufficient supported papers for report (Survey requires at least five)")
@@ -227,6 +238,10 @@ class ReportWorkflow:
         evidence = [{**asdict(e), "ref": refs[e.filename]} for e in self.ledger]
         model_evidence = model_evidence_rows(evidence)
         direct = getattr(self, '_source_report', False)
+        idea_plan = None
+        if direct and case.function == 'Idea' and getattr(self.llm, 'supports_source_reports', False):
+            from .idea_plan import prepare_plan
+            idea_plan = prepare_plan(self, case, model_evidence)
         core = survey_core_facts(self.ledger) if case.function == "Survey" and not direct else []
         anchor, anchor_ids = render_claim_ledger_section(core, refs) if core else ("", [])
         feedback, history, previous_used, repair_targets = [], [], [], []
@@ -248,6 +263,11 @@ class ReportWorkflow:
                     # 首稿已整篇审查过；只修正出错段，不重复生成和审查整篇事实。
                     paragraphs = repair_targets or repair_paragraphs(self.last_draft, feedback)
                     repair_data = repair_context(self.last_draft, paragraphs, feedback, model_evidence, case=case)
+                    if direct and case.function == 'Idea':
+                        from .idea_repair import indexed_paragraphs
+                        repair_data['paragraphs'] = indexed_paragraphs(paragraphs)
+                        if idea_plan is not None:
+                            repair_data['design_plan'] = idea_plan
                     # 按预计替换范围与当前全文计算复审成本，不能再用固定 4200。
                     planned_patches = [{"original": p, "replacement": p} for p in paragraphs]
                     next_audit = audit_request(case, self.last_draft, model_evidence, self.ledger,
@@ -259,10 +279,16 @@ class ReportWorkflow:
                         # next-audit estimate must not prevent correcting known errors.
                         affordable = max(0, self.llm.remaining_tokens - self.llm.input_tokens('repair', repair_data) - 1400)
                         reserve = min(reserve, affordable)
+                    if case.function == 'Idea' and hasattr(self.llm, 'input_tokens'):
+                        affordable = max(0, self.llm.remaining_tokens - self.llm.input_tokens('repair', repair_data) - 1400)
+                        reserve = min(reserve, affordable)
                     repaired = self._model_step("repair", repair_data, 1400, reserve=reserve)
                     if self.report_trace:
                         self.report_trace[-1].setdefault('repair_responses', []).append(repaired)
                     patches = repaired.get("patches", [])
+                    if direct and case.function == "Idea":
+                        from .idea_repair import resolve_patches
+                        patches = resolve_patches(patches, paragraphs)
                     revised = apply_report_patches(self.last_draft, patches)
                     value = {"markdown": revised, "used_evidence_ids": previous_used}
                 else:
@@ -279,6 +305,12 @@ class ReportWorkflow:
                         data['output_limits']['target_body_characters'] = 2200
                         data['response_fields'] = {'markdown': '完整报告正文字符串，不能省略或嵌套',
                                                    'used_evidence_ids': '实际使用的证据ID数组'}
+                    if idea_plan is not None:
+                        data['design_plan'] = idea_plan
+                    if case.function == 'Idea':
+                        from ..integrations.idea_prompt import REQUIREMENTS
+                        data['coverage_requirements'] = REQUIREMENTS
+                        data['output_limits']['target_body_characters'] = 2800
                     if direct and case.function == 'Survey':
                         data['output_limits'].update(target_body_characters=2200, model_citation_instances=30)
                     # 哈希、偏移等核验元数据留在磁盘；为审查和一次修订保留实际模型预算。
@@ -385,11 +417,17 @@ class ReportWorkflow:
                     # 修订请求发出前仍会按实际问题、替换范围重新核算完整复审成本。
                     affordable = max(0, self.llm.remaining_tokens - self.llm.input_tokens("audit", audit_data) - 1000)
                     reserve = min(reserve, affordable)
-                audit = self._model_step("audit", audit_data, 1000, reserve=reserve)
+                audit = self._model_step("audit", audit_data, 1500 if case.function == "Idea" else 1000, reserve=reserve)
                 if (type(audit.get("ok")) is not bool or not isinstance(audit.get("issues"), list)
                         or any(not isinstance(issue, str) for issue in audit["issues"])):
                     raise EvidenceError("invalid semantic audit response")
                 history.append({"attempt": attempt + 1, "stage": "audit", "audit": dict(audit)})
+                if direct and case.function == 'Idea':
+                    from ..integrations.idea_prompt import audit_gaps
+                    gaps = audit_gaps(audit, markdown)
+                    if gaps:
+                        audit = {**audit, 'reported_ok': audit['ok'], 'ok': False,
+                                 'issues': list(audit['issues']) + gaps}
                 if audit["ok"] and audit["issues"]:
                     # 保留模型原始结论，但不能把仍有问题的正文当成通过。
                     audit = {**audit, "reported_ok": True, "ok": False}

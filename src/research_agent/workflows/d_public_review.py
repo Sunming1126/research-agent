@@ -139,3 +139,5 @@ def review_public_result(case_id, request, result):
         check_retrieval(request['data'], request['protocol'], result)
     elif case_id == 'D-05':
         check_schedule(request['data'], result)
+        from .d05_review import check_dispatch_policy
+        check_dispatch_policy(request['data'], result)

@@ -9,7 +9,7 @@ def test_survey_and_idea_have_separate_report_instructions():
     survey = instructions_for("report", {"task": {"function": "Survey"}})
     idea = instructions_for("report", {"task": {"function": "Idea"}})
     assert "本题是Survey" in survey and "本题是Idea" not in survey
-    assert "本题是Idea" in idea and "初始建议" in idea
+    assert "本题Idea" in idea and "待验证" in idea
     assert "不附加Idea" in survey
 
 

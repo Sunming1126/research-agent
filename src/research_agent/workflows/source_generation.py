@@ -85,6 +85,9 @@ def read_generation_materials(case_id: str, roots: list[Path]) -> dict[str, str]
 
 def build_source_prompt(case, materials: dict[str, str]) -> str:
     """生成只要求完整源码的提示词；题目材料作为待分析内容传入。"""
+    if case.case_id == 'D-05':
+        from .d05_policy import source_prompt
+        return source_prompt(case, materials)
     guidance = {
         'D-01': (
             '本次从训练数据重新建立词表和类别的字典序；统计df时一篇文档内重复词只算一次。'
@@ -100,19 +103,7 @@ def build_source_prompt(case, materials: dict[str, str]) -> str:
             '选参依次最大化round(最差组MRR,12)、round(组宏MRR,12)、round(组宏Recall,12)，'
             '最后最小化(title_weight,k1,b)。测试无标签，绝不参与选参。'
             'rank只使用data.selected并返回candidate排名，不再搜索；baseline也必须支持rank。'),
-        'D-05': (
-            '基线FIFO和公平候选共用事件推进函数，策略仅决定选哪个等待任务。服务器只有1至3个，'
-            '用已排序任务的下标、等待列表、free_at与last_flow两个服务器数组及分流预留量即可。'
-            '不要事件堆、active集合或多层完成事件循环，以免空闲事件反复入队导致死循环。'
-            '当前派发处理后，只从严格大于now的下一到达时刻和忙服务器结束时刻中取最小值推进。'
-            '没有未来任务且没有等待任务即退出；到horizon立即停止派发。不要将时间或权重强转整数。'
-            '为每个服务器分别保存空闲时刻和上次流，即使空闲也不清除上次流。'
-            '每轮先处理当前时刻：完成释放、所有到达入队、过期待办丢弃后，按服务器编号派发。发现到达事件后不能直接continue跳过派发；有空闲服务器和等待任务时不能先跳到下一个事件。所有当前派发完成后才推进时钟。'
-            '公平优先级每次选择重新按累计已分配服务/权重计算；派发立即预留。'
-            '仅比较数值和稳定id，不让堆比较任务字典。选中后先判start>=deadline，再判end>horizon；'
-            '丢弃后同服务器继续选：外层按服务器编号，内层持续处理等待任务，直到该服务器成功派发或队列为空；不能用外层for的continue代替。失败任务不更新上次流和预留量。end==horizon允许完成。'
-            '到窗口后剩余任务记horizon。每个任务恰好在trace或dropped出现一次；'
-            'served_ms含全部声明流，零服务保留。每次请求从空状态开始。'),
+
     }
     boundary = guidance.get(case.case_id, '') + '\n'
     return (

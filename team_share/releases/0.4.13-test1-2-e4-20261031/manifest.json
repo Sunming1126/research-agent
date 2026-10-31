@@ -1,0 +1,1144 @@
+{
+  "branch": "test1-2",
+  "base_commit": "04216cf",
+  "change_scope": "E-specific processing only; C/D frozen against pre-E de3 image",
+  "base_image": "research-assistant:0.4.13-test1-2-de3-20261031",
+  "base_image_id": "sha256:c1630fab1cd837ccec0e1cc123498c38631fd4d8765f7be068a6851c27655420",
+  "image": "research-assistant:0.4.13-test1-2-e4-20261031",
+  "image_id": "sha256:e708156c5f1d912063e7b6a7f8c0529f385e8eddad50d362e98a98a5f84b587a",
+  "base_layers_preserved": true,
+  "changed_existing": [
+    "research_agent/integrations/idea_prompt.py",
+    "research_agent/workflows/reports.py"
+  ],
+  "new_files": [
+    "research_agent/workflows/idea_workflow.py"
+  ],
+  "unchanged_existing_count": 51,
+  "source_matches_workspace": true,
+  "source_hashes": {
+    "my_agent.py": "57116a14018aad25f1efd75ef061439c7160e3022f2acdd5ed6464d37d3dbde1",
+    "._my_agent.py": "0d545cf8c88d829c9aa4ab88ef179be533fe3aa9baa2368195044861dbdf47c9",
+    ".___main__.py": "0d545cf8c88d829c9aa4ab88ef179be533fe3aa9baa2368195044861dbdf47c9",
+    "__main__.py": "74bde54a74412ed5544d21c7002d658c99b97ccea091f35be166a9a703a26b48",
+    "research_agent/__init__.py": "138cde180413ca2b468acdf6daf4c4ae8cfb5c186809a5292165d4823fc492e7",
+    "research_agent/__main__.py": "9a3cf72f632eb36445b835d6e09371e64ae01971f5faba67ba5c18f5f45a0050",
+    "research_agent/evidence/attribution.py": "f7d52fe06da0261217440e16cfe472813c034c5af7975860717d018ccb98d6f2",
+    "research_agent/evidence/__init__.py": "979dd63615e748d9495a63bd2aa6cdd3fd99dec79eeccf654a6b4363a1758e90",
+    "research_agent/evidence/ledger.py": "12a1d30f5bc843596141102382a76c034438283047a242697256d8d23cda3807",
+    "research_agent/evidence/reporting.py": "15d82a345b0ef427b427175caaa7531ae8bc4847d15ea401cef4b229d93c98a0",
+    "research_agent/contracts/validation.py": "d4fab95bbc19e542ab19a045bdb5a7d5f29ddd1df3d859a088aca326edb8d14f",
+    "research_agent/contracts/__init__.py": "dd2711c33ea154a33c9407feab03c7c38fc05743e25c5b0a7a6660dd08d50d1a",
+    "research_agent/core/dispatch.py": "9e818ff0f2ced29cb15163c6f7141bb21e02fb774e9de9b9bd8aa1dfd4290951",
+    "research_agent/core/b_submission.py": "adab84f3d31d65c49022b6b3446f72f524a418828f44833631f05804b551489d",
+    "research_agent/core/session.py": "7806535a2028cfb692f55ca0d494304e4e737a9cc119c41b247ba73e6c5b2336",
+    "research_agent/core/utils.py": "918bc11a84e2a1be6b87bb50fcdf908567e713fe01cbbce38c050d27ecabc246",
+    "research_agent/core/__init__.py": "dfd1517d38f7486703dca5d5acdbbaa0442f3cf1d017700998e9e9e2f2f32ffa",
+    "research_agent/core/models.py": "ba3d9d4e498cb8da661827912f9f41e6bd02bd0b67d5765bc3a064bc477e735b",
+    "research_agent/core/dispatch_plan.py": "d5e35e00965a82e400dceacc01b957fffe4e9db907f412a4111aff8e1c772c71",
+    "research_agent/core/engine.py": "9686553105330db35ad1cfca9f1bfb5617ff0b9192e67a78f3ffdf7397ca64ff",
+    "research_agent/core/config.py": "ff7d23235da8d36a42d935bd6335d633929e512bdd2dd6e8e0bf4f3c0c447266",
+    "research_agent/workflows/layered_d_runner.py": "8c546750434a79a9e6221b8671c421d09e7cc69f38215b87f26f961385eddd32",
+    "research_agent/workflows/tasks.py": "78012157e4cf079e36e44c4565c4d30b889747ae9d385d9a9fc94fe046cf8051",
+    "research_agent/workflows/reports.py": "564886eb35aaecc8e20d9fb168559630f2febb009e04369c8c445b5da5d7b16d",
+    "research_agent/workflows/source_reports.py": "52ac1e553cfe5f18e6de5cc9b0f8b734c681a3076ec7623e1b2bc25ac3ef87c0",
+    "research_agent/workflows/__init__.py": "336b2baed92d4297655def8e9c7fa414c76d4461286c316878ce53014ac27729",
+    "research_agent/workflows/source_generation.py": "8cd0765d04bd92165c89547df88888eb1142b1b51b1383d69920b8c2cd660221",
+    "research_agent/workflows/sample_worker.py": "dc0f5f0e78427cad46f685e10a1063863c000f4af731088df3687ad323e233fd",
+    "research_agent/workflows/report_context.py": "465cf40c68f8fdf264566afe124adb1d50b341aa117144e7cd8d3601b5484f84",
+    "research_agent/workflows/experiments.py": "4738c5a30a9c28e576e6abcca98bf5232f42526a826afb7bb83c630f67b18037",
+    "research_agent/workflows/sample_validation.py": "44109e2c6f7a20357098218e018e09a4fabebf366ff08141c7915fba59395746",
+    "research_agent/workflows/idea_workflow.py": "f79a557bf3647b8d3469b209212d35d041a4d9f52c9a956d3242736f3232fe88",
+    "research_agent/workflows/idea_plan.py": "f9fc68a14b50b208b08b0ff9398f3ba512261eecc1dca23ece0ae7a22013cd75",
+    "research_agent/workflows/idea_sources.py": "5fb0b287e60ea23f9c045dc24afe5a0d0a2f6ae4c1f9a998522d028d44a0d6bb",
+    "research_agent/workflows/d02_policy.py": "f0f76c27f540157e433cfcf0224637428683ba16b70364e600aa5a6b0673ac14",
+    "research_agent/workflows/d_generation_policy.py": "0286b1a955131d23f95085aff68f9eba4321bb84515d9743aa5d6854f66da600",
+    "research_agent/workflows/d05_review.py": "c78c2ec77760dc8fb1259cea4eb276e132d471fae65571abce13462ce0ca38f3",
+    "research_agent/workflows/d05_policy.py": "205593f9af88f9ffb47d734a9dbad034bd3a60830067f25124fdde5fb701f915",
+    "research_agent/workflows/d_public_review.py": "f19b1d2418a4ea148ae66961579c5a236df37c691e54a2b7c95ffc0f201cf042",
+    "research_agent/workflows/d_boundary_cases.py": "da0177cbfeb344003c79698d706cb758747559790f4c00eda94dd5a92ee437a2",
+    "research_agent/workflows/idea_repair.py": "956ec36c05015e8c8a04a22c22564aae20e655e2cc00de9e07833775d58dde1c",
+    "research_agent/workflows/survey_sources.py": "a6667e7c7e0a1e2609f45e8b44011f2c5cc148b4079f0b28b254b3ec9279b95b",
+    "research_agent/rag/materials.py": "a2d66acedd6449fb463367f92d80c6d92f8cba5fccbf5c7edbeacd108f7706a6",
+    "research_agent/rag/__init__.py": "326c733d09db3000559f367dbb3b85ee519989d9365a8431dd4bb59ead7a952b",
+    "research_agent/rag/report_selection.py": "d56d880587cca46fcc32294c77d95690598768d29160364a2bc97f3da88ac35d",
+    "research_agent/rag/paper_selection.py": "854793ab338afa39aa2ba35325a386da8a2710f35595ee5435928cf2b1d0fa5b",
+    "research_agent/rag/retrieval.py": "a58b5aeea134e38823ab7ff1a54a5aec7ee1ca6c130285dd105574aec09d63df",
+    "research_agent/integrations/http_runtime.py": "587569da3db63d3887d48e7b9a9051b4858effab9a77b8c9a94a575788a3eaf2",
+    "research_agent/integrations/prompts.py": "f0371b5ce21c1e013335cdc7eefc38afb1b092b3aff9c68681ef7a84c4d758ef",
+    "research_agent/integrations/instrumentation.py": "6f14706265b8d0e493848bd4ab76e0d111d71d913a7092811000fe1c4331daaf",
+    "research_agent/integrations/__init__.py": "4f7da132b5504eb2eee2e52b75cf94b148d32d091594375e8cfbf856d8710e9a",
+    "research_agent/integrations/llm.py": "82b79e9f400c2f4d79e0fbc4785a85abb869fdb4351e99e34bcc58b6d930e677",
+    "research_agent/integrations/idea_prompt.py": "072c207043602eb04f90b5c77f18c1b316aa6e25bcf1867da4e9ea841403a4f5",
+    "research_agent/integrations/survey_prompt.py": "84fe5e9d6ff3d6acd1e06dcc1d88d84e6d2133881c1cf4af1d02f3faa9ac0d63"
+  },
+  "sdk_adapter_files_unchanged": {
+    "my_agent.py": "57116a14018aad25f1efd75ef061439c7160e3022f2acdd5ed6464d37d3dbde1",
+    "._my_agent.py": "0d545cf8c88d829c9aa4ab88ef179be533fe3aa9baa2368195044861dbdf47c9",
+    ".___main__.py": "0d545cf8c88d829c9aa4ab88ef179be533fe3aa9baa2368195044861dbdf47c9",
+    "__main__.py": "74bde54a74412ed5544d21c7002d658c99b97ccea091f35be166a9a703a26b48"
+  },
+  "runtime_config_unchanged": true,
+  "no_prebuilt_d_algorithms": true,
+  "artifact": {
+    "tar_path": "C:\\Users\\sun\\Desktop\\anic\\team_share\\image\\research-assistant-0.4.13-test1-2-e4-20261031.tar",
+    "bytes": 295667712,
+    "sha256": "662106ce724ccc9c5c92c3c98160e3e7d0c80e2fe1fe435c63025c80bb7ef5c8",
+    "docker_load_verified": true,
+    "image_id": "sha256:e708156c5f1d912063e7b6a7f8c0529f385e8eddad50d362e98a98a5f84b587a"
+  },
+  "tests": {
+    "isolation-final.xml": 63,
+    "linux-final.xml": 120,
+    "http-final.xml": 20
+  },
+  "unique_tests": 203,
+  "real_model_runs": [
+    {
+      "run": "e4-first-20261031",
+      "image_id": "sha256:81043d9dce43e5bedb71947458c9b9072e00dac198dccffc4071a7a5dac7a3a0",
+      "directory": "C:\\Users\\sun\\Desktop\\anic\\output\\e4-first-20261031",
+      "cases": [
+        {
+          "case_id": "E-01",
+          "http_status": 200,
+          "seconds": 141.219,
+          "llm_calls": 4,
+          "total_tokens": 20241,
+          "body_characters": 2823,
+          "format_and_files_passed": true,
+          "local_session_trace_received": true,
+          "semantic_audits": [
+            {
+              "ok": false,
+              "mode": "model_report_needs_review",
+              "local_validation": true,
+              "model_issues": [
+                "原文p2称“RAG-Sequence模型将同一检索文档作为全局隐变量，对所有token使用相同上下文，缺乏对生成内容逐句验证的能力”，但RAG论文[1, p.3]仅描述RAG-Sequence使用同一文档生成完整序列，未提及“缺乏逐句验证能力”这一归因，该句属于作者推断而非原文事实，需改为明确标注为拟议观察或删除归因。",
+                "原文p3“模块3（引用验证器，新增）……检查每个实体是否出现在D中至少一个文档的对应段落”未说明“对应段落”如何确定，且未提供NER工具的具体选择或训练步骤，导致该模块输入输出不完整，需补充实体提取与段落匹配的详细规则。",
+                "原文p8“瓶颈1：Self-RAG批评模型依赖GPT-4离线标注，本方案无法复现该标注过程（[2, p.2]）”中，Self-RAG论文[2, p.2]明确说明批评模型使用GPT-4收集数据，但未提供公开训练数据或代码，因此该瓶颈应列为“启动前核查事项”而非“无法复现”，需调整表述以符合材料覆盖范围。",
+                "E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。",
+                "E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。",
+                "E要点bottleneck仍不完整，需补足：复现瓶颈反思：根据task的具体观察或论文方法条件，给出瓶颈原因、处理措施和诊断实验；资料覆盖不足只列为启动前核查事项。"
+              ],
+              "history": [
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "原文p2称“Self-RAG论文指出，即使检索到相关文档，模型仍可能生成无依据的引用（[2, p.3]）”，但引用的[2, p.3]内容为反思令牌控制检索与自我评估，未提及“检索相关而引用仍无依据”这一观察，该观察属于task而非论文证据，需明确归属为task观察。",
+                      "原文p3“使用RAG的Dense Passage Retriever”未在授权材料中找到该具体检索器名称，RAG论文使用DPR但未在摘录中明确提及，需补充引用或改为通用描述。",
+                      "原文p8“资料未提供批评模型训练数据与代码”属于推测，材料中未明确说明未提供，应改为“材料未覆盖批评模型训练数据与代码的获取步骤，需列为启动前核查事项”。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p2"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p3"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p5"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p6"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p7"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p8"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p9"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p10"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 1
+                },
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "原文p2称“RAG-Sequence模型将同一检索文档作为全局隐变量，对所有token使用相同上下文，缺乏对生成内容逐句验证的能力”，但RAG论文[1, p.3]仅描述RAG-Sequence使用同一文档生成完整序列，未提及“缺乏逐句验证能力”这一归因，该句属于作者推断而非原文事实，需改为明确标注为拟议观察或删除归因。",
+                      "原文p3“模块3（引用验证器，新增）……检查每个实体是否出现在D中至少一个文档的对应段落”未说明“对应段落”如何确定，且未提供NER工具的具体选择或训练步骤，导致该模块输入输出不完整，需补充实体提取与段落匹配的详细规则。",
+                      "原文p8“瓶颈1：Self-RAG批评模型依赖GPT-4离线标注，本方案无法复现该标注过程（[2, p.2]）”中，Self-RAG论文[2, p.2]明确说明批评模型使用GPT-4收集数据，但未提供公开训练数据或代码，因此该瓶颈应列为“启动前核查事项”而非“无法复现”，需调整表述以符合材料覆盖范围。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p2"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p3"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p5"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p6"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p7"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p8"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p9"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p10"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "E-02",
+          "http_status": 500,
+          "seconds": 145.749,
+          "llm_calls": 2,
+          "total_tokens": 0,
+          "body_characters": null,
+          "format_and_files_passed": false,
+          "local_session_trace_received": true,
+          "semantic_audits": []
+        }
+      ]
+    },
+    {
+      "run": "e4-final-20261031",
+      "image_id": "sha256:30451cd7679fd6c099a926e5a8976e1c62cc9a1e48f84d5ffe1819a82dcd358c",
+      "directory": "C:\\Users\\sun\\Desktop\\anic\\output\\e4-final-20261031",
+      "cases": [
+        {
+          "case_id": "E-01",
+          "http_status": 500,
+          "seconds": 146.111,
+          "llm_calls": 2,
+          "total_tokens": 0,
+          "body_characters": null,
+          "format_and_files_passed": false,
+          "local_session_trace_received": true,
+          "semantic_audits": []
+        },
+        {
+          "case_id": "E-02",
+          "http_status": 500,
+          "seconds": 146.03,
+          "llm_calls": 2,
+          "total_tokens": 0,
+          "body_characters": null,
+          "format_and_files_passed": false,
+          "local_session_trace_received": true,
+          "semantic_audits": []
+        }
+      ]
+    },
+    {
+      "run": "e4-short-20261031",
+      "image_id": "sha256:8197aa6c9db284900a7ee8d3c45730c05e3e41f33e33d3cc3a546f6a2ee01fbc",
+      "directory": "C:\\Users\\sun\\Desktop\\anic\\output\\e4-short-20261031",
+      "cases": [
+        {
+          "case_id": "E-02",
+          "http_status": 200,
+          "seconds": 122.246,
+          "llm_calls": 4,
+          "total_tokens": 20602,
+          "body_characters": 2591,
+          "format_and_files_passed": true,
+          "local_session_trace_received": true,
+          "semantic_audits": [
+            {
+              "ok": false,
+              "mode": "model_report_needs_review",
+              "local_validation": true,
+              "model_issues": [
+                "原文“DPR检索段落长度限制（100 tokens）[1, p.8]”中，引用[1, p.8]的摘录（ev-5）仅提到“100 tokens”是DPR的输入长度，并未明确说明这是段落长度限制或截断机制，因此该瓶颈的归因缺乏原文支持。",
+                "原文“FiD编码器独立处理段落[2, p.3]”的摘录（ev-7）仅说明编码器独立处理段落，但未提及FiD期望完整段落，因此“FiD期望完整段落”这一归因缺乏原文支持。",
+                "原文“原始FiD对所有检索段落平等处理[2, p.2]”的摘录（ev-8）仅说明FiD将检索段落作为输入，但未明确提及“平等处理”或“不区分权重”，因此该归因缺乏原文支持。",
+                "E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。",
+                "E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。",
+                "E要点bottleneck仍不完整，需补足：复现瓶颈反思：根据task的具体观察或论文方法条件，给出瓶颈原因、处理措施和诊断实验；资料覆盖不足只列为启动前核查事项。",
+                "E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。"
+              ],
+              "history": [
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "p2 中“题面观察：在多段检索场景中，不同段落可能包含相互矛盾的证据”未在授权材料中找到对应原文支持，属于题面观察但未引用论文或题面明确描述。",
+                      "p4 中“使用预训练句子编码器（如Sentence-BERT）计算语义相似度”未在授权材料中提及，且未说明该模块的代码可用性或来源，属于原创设计但缺乏可行性依据。",
+                      "p8 中“采样：从原始训练集随机采样10%作为快速验证（若资源不足）”未在授权材料中提及，且未说明采样后数据集的代表性或验证步骤，属于原创设计但描述不充分。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p2"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p3",
+                          "p4"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p6",
+                          "p7"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p8"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p9",
+                          "p10"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p11",
+                          "p12"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p13"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p14"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 1
+                },
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "原文“DPR检索段落长度限制（100 tokens）[1, p.8]”中，引用[1, p.8]的摘录（ev-5）仅提到“100 tokens”是DPR的输入长度，并未明确说明这是段落长度限制或截断机制，因此该瓶颈的归因缺乏原文支持。",
+                      "原文“FiD编码器独立处理段落[2, p.3]”的摘录（ev-7）仅说明编码器独立处理段落，但未提及FiD期望完整段落，因此“FiD期望完整段落”这一归因缺乏原文支持。",
+                      "原文“原始FiD对所有检索段落平等处理[2, p.2]”的摘录（ev-8）仅说明FiD将检索段落作为输入，但未明确提及“平等处理”或“不区分权重”，因此该归因缺乏原文支持。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p2"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p3",
+                          "p4"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p6",
+                          "p7"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p8"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p9",
+                          "p10"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p11",
+                          "p12"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p13"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p14"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "e4-release-20261031",
+      "image_id": "sha256:a428ee691179463618f6a8dc2b772fb7790ab8fd5e4858ac6be797d481953451",
+      "directory": "C:\\Users\\sun\\Desktop\\anic\\output\\e4-release-20261031",
+      "cases": [
+        {
+          "case_id": "E-01",
+          "http_status": 200,
+          "seconds": 137.391,
+          "llm_calls": 3,
+          "total_tokens": 13452,
+          "body_characters": 1950,
+          "format_and_files_passed": true,
+          "local_session_trace_received": true,
+          "semantic_audits": [
+            {
+              "ok": false,
+              "mode": "model_report_needs_review",
+              "local_validation": true,
+              "model_issues": [
+                "原文“RAG的检索器与生成器未对齐，导致生成器忽略检索文档[1, p.1]”中，引用的[1, p.1]并未提及“生成器忽略检索文档”这一归因，属于错误归因，应删除或修正。",
+                "原文“Self-RAG的反思令牌可能未覆盖引用验证[2, p.2]”中，引用的[2, p.2]未提及“引用验证”概念，属于无依据推测，应删除或修正。",
+                "原文“引用验证模块：输入为生成答案、引用标记和检索文档，输出为验证结果（通过/失败）。计算每个引用与对应文档的语义相似度（使用Sentence-BERT），阈值设为0.7。”中，Sentence-BERT模型未在授权材料中引用，且阈值0.7无来源依据，属于原创设计但未明确标注为拟议参数，需补充说明为拟议设计。",
+                "E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。",
+                "E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。",
+                "E要点bottleneck仍不完整，需补足：复现瓶颈反思：根据task的具体观察或论文方法条件，给出瓶颈原因、处理措施和诊断实验；资料覆盖不足只列为启动前核查事项。",
+                "E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。"
+              ],
+              "history": [
+                {
+                  "stage": "draft_failed",
+                  "attempt": 1,
+                  "issues": [
+                    "numeric bracket token '[0,1]': reference 0 has no used evidence at this page; allowed pages: []. If these are parameter values, use braces; if these are mathematical closed intervals, use full-width brackets ［a,b］ to preserve meaning. Replace each offending token in the supplied passages; do not change valid citations or invent references."
+                  ]
+                },
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "原文“RAG的检索器与生成器未对齐，导致生成器忽略检索文档[1, p.1]”中，引用的[1, p.1]并未提及“生成器忽略检索文档”这一归因，属于错误归因，应删除或修正。",
+                      "原文“Self-RAG的反思令牌可能未覆盖引用验证[2, p.2]”中，引用的[2, p.2]未提及“引用验证”概念，属于无依据推测，应删除或修正。",
+                      "原文“引用验证模块：输入为生成答案、引用标记和检索文档，输出为验证结果（通过/失败）。计算每个引用与对应文档的语义相似度（使用Sentence-BERT），阈值设为0.7。”中，Sentence-BERT模型未在授权材料中引用，且阈值0.7无来源依据，属于原创设计但未明确标注为拟议参数，需补充说明为拟议设计。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p2"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p3"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p4"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p5"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p6"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p7"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p8"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p9"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "E-02",
+          "http_status": 200,
+          "seconds": 146.417,
+          "llm_calls": 4,
+          "total_tokens": 21232,
+          "body_characters": 2484,
+          "format_and_files_passed": true,
+          "local_session_trace_received": true,
+          "semantic_audits": [
+            {
+              "ok": false,
+              "mode": "model_report_needs_review",
+              "local_validation": true,
+              "model_issues": [
+                "原文p2称“DPR（Karpukhin et al., 2020）通过双编码器将问题和段落映射至稠密向量空间，以点积排序检索，支持最多100个段落输入FiD阅读器[1, p.8]”，但引用的[1, p.8]原文仅提到DPR处理最多100个段落，并未明确说明“支持最多100个段落输入FiD阅读器”，该连接缺乏原文支持，属于事实归因错误。",
+                "原文p3冲突检测模块中“使用预训练句子编码器（如Sentence-BERT，若不可用则替换为基于TF-IDF的余弦相似度）”和“通过预训练NER模型如SpaCy提取，若不可用则替换为基于正则表达式的实体匹配”均未在授权论文中出现，且未标注为拟议设计，属于未标明来源的既有事实陈述。",
+                "原文p7瓶颈一引用[1, p.8]称“计算复杂度随段落长度超线性增长”，但[1, p.8]原文仅提及“computational complexity is super-linear in passage length”，未明确关联到FiD延迟，且该瓶颈未提供基于论文或题面观察的明确原因，处理措施和诊断实验缺乏原文依据。",
+                "E要点motivation仍不完整，需补足：研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。",
+                "E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。",
+                "E要点experiment仍不完整，需补足：实验设计：选择有理由的基线；无新增机制/单模块/组合的消融；共用划分、种子、资源；支持/否定/证据不足三种判断。",
+                "E要点bottleneck仍不完整，需补足：复现瓶颈反思：根据task的具体观察或论文方法条件，给出瓶颈原因、处理措施和诊断实验；资料覆盖不足只列为启动前核查事项。",
+                "E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。",
+                "E要点feasibility仍不完整，需补足：场景与落地：题目约束下的资源上限、运行规模、获得数据条件、失败边界、停止或降级办法。"
+              ],
+              "history": [
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "原文p2称“FiD（Izacard & Grave, 2020）采用编码器独立处理各段落、解码器联合融合的架构”，但引用[2, p.2]仅提到“Processing passages independently in the encoder allows to scale to large number of contexts”和“processing passages jointly in the decoder allows to”，未明确提及“解码器联合融合”这一完整表述，且p2未提供支持“FiD”方法名称的原文引用，导致方法归属证据不足。",
+                      "原文p3冲突检测模块中“使用预训练句子编码器（如Sentence-BERT）计算语义相似度”和“通过命名实体识别提取”均无论文或题面依据，属于原创设计但未明确标注为拟议，且未说明这些组件在给定材料中的可用性或替代方案，导致可行性缺口。",
+                      "原文p7瓶颈一称“解码器联合处理时计算复杂度随段落数超线性增长”，但引用[1, p.8]仅提到“computational complexity is super-linear in passage length”，未明确提及解码器，且p7未提供支持该归因的原文引用，导致归因与证据矛盾。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p2"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p3"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p4"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p5"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p6"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p7"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p8"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p9"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 1
+                },
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "原文p2称“DPR（Karpukhin et al., 2020）通过双编码器将问题和段落映射至稠密向量空间，以点积排序检索，支持最多100个段落输入FiD阅读器[1, p.8]”，但引用的[1, p.8]原文仅提到DPR处理最多100个段落，并未明确说明“支持最多100个段落输入FiD阅读器”，该连接缺乏原文支持，属于事实归因错误。",
+                      "原文p3冲突检测模块中“使用预训练句子编码器（如Sentence-BERT，若不可用则替换为基于TF-IDF的余弦相似度）”和“通过预训练NER模型如SpaCy提取，若不可用则替换为基于正则表达式的实体匹配”均未在授权论文中出现，且未标注为拟议设计，属于未标明来源的既有事实陈述。",
+                      "原文p7瓶颈一引用[1, p.8]称“计算复杂度随段落长度超线性增长”，但[1, p.8]原文仅提及“computational complexity is super-linear in passage length”，未明确关联到FiD延迟，且该瓶颈未提供基于论文或题面观察的明确原因，处理措施和诊断实验缺乏原文依据。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p2"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p3"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p4"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p5"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p6"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p7"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p8"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p9"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "e4-verified-20261031",
+      "image_id": "sha256:e708156c5f1d912063e7b6a7f8c0529f385e8eddad50d362e98a98a5f84b587a",
+      "directory": "C:\\Users\\sun\\Desktop\\anic\\output\\e4-verified-20261031",
+      "cases": [
+        {
+          "case_id": "E-01",
+          "http_status": 200,
+          "seconds": 126.157,
+          "llm_calls": 4,
+          "total_tokens": 24265,
+          "body_characters": 2776,
+          "format_and_files_passed": true,
+          "local_session_trace_received": true,
+          "semantic_audits": [
+            {
+              "ok": false,
+              "mode": "model_report_needs_review",
+              "local_validation": true,
+              "model_issues": [
+                "p10 中“引用验证模块采用一个轻量级自然语言推理（NLI）模型”未说明该NLI模型如何与RAG/ Self-RAG的生成器输出对齐，且未指定NLI模型的具体输入格式（如句子与文档片段的配对方式），导致技术路线中模块接口不完整。",
+                "p32 中“重新检索Top-1文档并提示生成器重写该句”未说明重写后如何再次验证，且未定义重写失败（仍无依据）时的终止条件，导致回退策略不完整。",
+                "p20 中“PubHealth和ARC-Challenge的具体划分数字需在后续步骤中从官方数据源获取和核查”未提供可执行的获取步骤（如具体Hugging Face数据集名称、划分字段），导致数据准备部分不可执行。",
+                "E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。",
+                "E要点data仍不完整，需补足：基准数据集：证据中的具体名称及其适配；拟议采样、划分单位和防泄漏。资料不足时给出可执行的获取、核查和替代步骤。",
+                "E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。"
+              ],
+              "history": [
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "p10 中“引用验证模块采用一个轻量级自然语言推理（NLI）模型”未在授权论文中提及，且未说明该NLI模型的具体来源或训练数据，导致技术方案不可执行。",
+                      "p20 中“PubHealth：约10万/1.4万/2.7万；ARC-Challenge：约1.1万/0.1万/0.1万”的划分数字未在授权论文中找到对应，属于编造数据。",
+                      "p32 中“重新检索Top-1文档并提示生成器重写该句”的回退策略未说明如何提示生成器，且未验证该操作是否可行，导致回退机制不完整。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p3",
+                          "p4"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p7",
+                          "p10"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p13",
+                          "p14"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p18",
+                          "p20"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p21",
+                          "p22"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p24",
+                          "p25"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p29",
+                          "p32"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p34"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 1
+                },
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "p10 中“引用验证模块采用一个轻量级自然语言推理（NLI）模型”未说明该NLI模型如何与RAG/ Self-RAG的生成器输出对齐，且未指定NLI模型的具体输入格式（如句子与文档片段的配对方式），导致技术路线中模块接口不完整。",
+                      "p32 中“重新检索Top-1文档并提示生成器重写该句”未说明重写后如何再次验证，且未定义重写失败（仍无依据）时的终止条件，导致回退策略不完整。",
+                      "p20 中“PubHealth和ARC-Challenge的具体划分数字需在后续步骤中从官方数据源获取和核查”未提供可执行的获取步骤（如具体Hugging Face数据集名称、划分字段），导致数据准备部分不可执行。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p3",
+                          "p4"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p7",
+                          "p8"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p13",
+                          "p14"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p18",
+                          "p20"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p21",
+                          "p22"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p24",
+                          "p25"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p29",
+                          "p32"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p34"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "E-02",
+          "http_status": 200,
+          "seconds": 100.002,
+          "llm_calls": 4,
+          "total_tokens": 18746,
+          "body_characters": 1889,
+          "format_and_files_passed": true,
+          "local_session_trace_received": true,
+          "semantic_audits": [
+            {
+              "ok": false,
+              "mode": "model_report_needs_review",
+              "local_validation": true,
+              "model_issues": [
+                "原文p3中“使用预训练的蕴含分类器（如基于BERT的NLI模型）判断语义关系”未在授权论文中提及，且未说明该分类器的来源、训练数据或是否需额外预训练，导致冲突检测模块不可执行。需补充该分类器的获取方式（如使用现有公开模型）或替换为论文已有方法。",
+                "原文p8中“利用DPR的嵌入计算相似度”与p3中“使用预训练的蕴含分类器”矛盾，且DPR嵌入用于点积检索而非蕴含判断，未说明如何从DPR嵌入得到语义冲突标记。需统一检测规则并明确接口传递。",
+                "原文p5中“若缺失则使用SQuAD v1.1作为替代”未提供SQuAD v1.1在本题中的适配理由或划分防泄漏步骤，且SQuAD非开放域数据集，与NQ任务不匹配。需补充替代数据集的获取、核查和划分说明。",
+                "E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。",
+                "E要点data仍不完整，需补足：基准数据集：证据中的具体名称及其适配；拟议采样、划分单位和防泄漏。资料不足时给出可执行的获取、核查和替代步骤。",
+                "E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。"
+              ],
+              "history": [
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "原文“冲突分数c_i = max_{j≠i} S_{ij}。若c_i > 阈值τ（初始设为0.8），标记pi为冲突段落”中，仅凭最大余弦相似度大于阈值无法区分“冲突”与“一致”——高相似度也可能表示语义一致而非矛盾，该检测规则存在归因错误，需修正为基于语义矛盾（如蕴含关系或答案不一致）的检测逻辑。",
+                      "原文“加权后的表示h'_i = w_i * hi，输入FiD解码器”未说明加权表示如何与解码器交叉注意力机制兼容：FiD解码器对编码器输出进行交叉注意力，而加权后的向量维度不变但数值缩放，可能破坏注意力分布，需补充具体融合方式（如加权后拼接或门控）。",
+                      "原文“若所有段落均冲突，则退化为原始FiD（权重全1）”中，回退条件与检测规则矛盾：若所有段落均被标记为冲突，加权后权重全为0.5而非1，实际并未退化为原始FiD，需修正回退逻辑或明确退化条件。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p2"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p3"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p4"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p5"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p6"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p7"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p8"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p9"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 1
+                },
+                {
+                  "stage": "audit",
+                  "audit": {
+                    "ok": false,
+                    "issues": [
+                      "原文p3中“使用预训练的蕴含分类器（如基于BERT的NLI模型）判断语义关系”未在授权论文中提及，且未说明该分类器的来源、训练数据或是否需额外预训练，导致冲突检测模块不可执行。需补充该分类器的获取方式（如使用现有公开模型）或替换为论文已有方法。",
+                      "原文p8中“利用DPR的嵌入计算相似度”与p3中“使用预训练的蕴含分类器”矛盾，且DPR嵌入用于点积检索而非蕴含判断，未说明如何从DPR嵌入得到语义冲突标记。需统一检测规则并明确接口传递。",
+                      "原文p5中“若缺失则使用SQuAD v1.1作为替代”未提供SQuAD v1.1在本题中的适配理由或划分防泄漏步骤，且SQuAD非开放域数据集，与NQ任务不匹配。需补充替代数据集的获取、核查和划分说明。"
+                    ],
+                    "coverage": [
+                      {
+                        "key": "motivation",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p2"
+                        ]
+                      },
+                      {
+                        "key": "route",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p3"
+                        ]
+                      },
+                      {
+                        "key": "experiment",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p4"
+                        ]
+                      },
+                      {
+                        "key": "data",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p5"
+                        ]
+                      },
+                      {
+                        "key": "metrics",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p6"
+                        ]
+                      },
+                      {
+                        "key": "bottleneck",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p7"
+                        ]
+                      },
+                      {
+                        "key": "complementarity",
+                        "status": "partial",
+                        "paragraph_ids": [
+                          "p8"
+                        ]
+                      },
+                      {
+                        "key": "feasibility",
+                        "status": "supported",
+                        "paragraph_ids": [
+                          "p9"
+                        ]
+                      }
+                    ]
+                  },
+                  "attempt": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "official_report": "eval-20261031-df15922d",
+  "official_root_cause_confirmed": false,
+  "final_model_audit_is_not_official_score": true,
+  "git_changes_committed": false,
+  "git_changes_pushed": false,
+  "limitations": [
+    "官方报告不含原始答卷和运行日志，无法确认唯一线上根因。",
+    "公开论文和自拟题的本地真实模型测试不是官方隐藏题评测。",
+    "本地早期候选出现过连续正文超时，全部保留；最终输出成功也不能保证上游永不超时。",
+    "最终模型审查仍有内容意见，不能宣称已提分或已满分。",
+    "本次没有重新向真实模型发送 C/D 题目；其源码及配置冻结，相关回归通过。"
+  ]
+}

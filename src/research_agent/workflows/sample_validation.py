@@ -111,7 +111,11 @@ def validate_sample_output(case_id, request, result):
                         "worst_mrr_at_10", "macro_mrr_at_10", "macro_recall_at_5_percent")) + tuple(
                         config[k] for k in ("title_weight", "k1", "b"))
                 if search and min(search, key=selection_key)["config"] != details["selected"]:
-                    raise ValueError("D-02 selected config does not follow the public group-robust selection rule")
+                    raise ValueError("D-02 selected config does not follow the public group-robust selection rule; "
+                                     + "public expected=" + json.dumps(min(search,key=selection_key)["config"],sort_keys=True)
+                                     + "; actual=" + json.dumps(details["selected"],sort_keys=True)
+                                     + "; maximize rounded worst/macro MRR and macro Recall, then MINIMIZE title_weight,k1,b; "
+                                     + "a max tuple must negate the last three parameters")
         elif case_id == "D-05":
             if not isinstance(value, dict) or set(value) != {"trace", "served_ms", "dropped"}:
                 raise ValueError("D-05 run requires trace/served_ms/dropped")
@@ -270,6 +274,16 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8, _edge_chec
             except (ValueError, RuntimeError) as exc:
                 raise ValueError(name + ': ' + str(exc)) from exc
         report['derived_public_checks'] = [name for name, _ in checks]
+    if _edge_check and case_id in {'D-02', 'D-05'}:
+        from .d_boundary_cases import boundary_cases
+        for name, edge in boundary_cases(case_id, request):
+            try:
+                run_public_sample(source, {**materials, 'sample': json.dumps(edge)}, case_id,
+                                  timeout=timeout, _edge_check=False, _deadline=_deadline)
+            except (ValueError, RuntimeError) as exc:
+                raise ValueError(name + ': ' + str(exc) + '; public input='
+                                 + json.dumps(edge['data'], ensure_ascii=False)[:4500]) from exc
+            report.setdefault('derived_public_checks', []).append(name)
     if case_id == 'D-05':
         report['public_trace_ids'] = {
             kind: None if body['result'][kind] is None else

@@ -5,7 +5,7 @@ from ..core.session import current_session
 
 
 @contextmanager
-def generation_window(llm, *, baseline):
+def generation_window(llm, *, baseline, case_id=None):
     cap = 60 if baseline else 95
     session = current_session()
     if session:
@@ -19,7 +19,7 @@ def generation_window(llm, *, baseline):
         llm.deadline = min(old, deadline) if old is not None else deadline
         llm.REQUEST_TIMEOUT_CAP = cap
         llm.RETRY_ATTEMPTS = 1
-        llm.thinking_override = 'disabled'
+        llm.thinking_override = 'enabled' if case_id == 'D-02' and not baseline else 'disabled'
         yield
     finally:
         for name, (present, value) in previous.items():

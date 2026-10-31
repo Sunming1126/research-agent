@@ -1,0 +1,160 @@
+import re, math, collections
+
+def run_experiment(request):
+    data = request['data']
+    protocol = request['protocol']
+    phase = request['phase']
+    docs = data['documents']
+    dev_qs = data.get('dev_queries', [])
+    test_qs = data['test_queries']
+    grid = protocol['grid']
+    default = protocol['default_config']
+    tokenizer = re.compile(r'[a-z0-9]+')
+    doc_ids = [d['id'] for d in docs]
+    title_tokens = []
+    text_tokens = []
+    title_len = []
+    text_len = []
+    for d in docs:
+        tt = tokenizer.findall(d['title'].lower())
+        tx = tokenizer.findall(d['text'].lower())
+        title_tokens.append(tt)
+        text_tokens.append(tx)
+        title_len.append(len(tt))
+        text_len.append(len(tx))
+    N = len(docs)
+    title_df = collections.Counter()
+    for t in title_tokens:
+        for w in set(t):
+            title_df[w] += 1
+    text_df = collections.Counter()
+    for t in text_tokens:
+        for w in set(t):
+            text_df[w] += 1
+    avg_title_len = sum(title_len) / N if N > 0 else 0
+    avg_text_len = sum(text_len) / N if N > 0 else 0
+    if avg_title_len == 0:
+        avg_title_len = 1
+    if avg_text_len == 0:
+        avg_text_len = 1
+
+    def rank_one(query_text, k1, b, title_weight):
+        q_tokens = tokenizer.findall(query_text.lower())
+        q_tf = collections.Counter(q_tokens)
+        scores = []
+        for i, did in enumerate(doc_ids):
+            score = 0.0
+            tf_text = collections.Counter(text_tokens[i])
+            for w, qf in q_tf.items():
+                f = tf_text.get(w, 0)
+                if f == 0:
+                    continue
+                df = text_df.get(w, 0)
+                idf = math.log(1 + (N - df + 0.5) / (df + 0.5))
+                tf_component = f * (k1 + 1) / (f + k1 * (1 - b + b * text_len[i] / avg_text_len))
+                score += qf * idf * tf_component
+            tf_title = collections.Counter(title_tokens[i])
+            for w, qf in q_tf.items():
+                f = tf_title.get(w, 0)
+                if f == 0:
+                    continue
+                df = title_df.get(w, 0)
+                idf = math.log(1 + (N - df + 0.5) / (df + 0.5))
+                tf_component = f * (k1 + 1) / (f + k1 * (1 - b + b * title_len[i] / avg_title_len))
+                score += qf * title_weight * idf * tf_component
+            scores.append((-score, did))
+        scores.sort()
+        return [{'id': did, 'score': -s} for s, did in scores]
+
+    def compute_metrics(rankings, relevant):
+        top5 = set(r['id'] for r in rankings[:5])
+        rel_set = set(relevant)
+        recall = len(top5 & rel_set) / len(rel_set) if rel_set else 0.0
+        mrr = 0.0
+        for rank, r in enumerate(rankings[:10], 1):
+            if r['id'] in rel_set:
+                mrr = 1.0 / rank
+                break
+        return recall * 100, mrr
+
+    if phase == 'rank':
+        sel = data['selected']
+        cand = {}
+        for q in test_qs:
+            cand[q['id']] = rank_one(q['text'], sel['k1'], sel['b'], sel['title_weight'])
+        return {'candidate': cand}
+
+    base_cfg = default
+    baseline = {}
+    for q in test_qs:
+        baseline[q['id']] = rank_one(q['text'], base_cfg['k1'], base_cfg['b'], base_cfg['title_weight'])
+
+    dev_groups = {}
+    for q in dev_qs:
+        dev_groups.setdefault(q['group'], []).append(q)
+
+    search_rows = []
+    for cfg in grid:
+        k1 = cfg['k1']
+        b = cfg['b']
+        tw = cfg['title_weight']
+        dev_rankings = {}
+        for q in dev_qs:
+            dev_rankings[q['id']] = rank_one(q['text'], k1, b, tw)
+        q_recalls = []
+        q_mrrs = []
+        group_metrics = {}
+        for gname, gqs in dev_groups.items():
+            g_rec = []
+            g_mrr = []
+            for q in gqs:
+                r = dev_rankings[q['id']]
+                rec, mrr = compute_metrics(r, q['relevant'])
+                q_recalls.append(rec)
+                q_mrrs.append(mrr)
+                g_rec.append(rec)
+                g_mrr.append(mrr)
+            group_metrics[gname] = {
+                'recall_at_5_percent': sum(g_rec) / len(g_rec) if g_rec else 0.0,
+                'mrr_at_10': sum(g_mrr) / len(g_mrr) if g_mrr else 0.0
+            }
+        recall_mean = sum(q_recalls) / len(q_recalls) if q_recalls else 0.0
+        mrr_mean = sum(q_mrrs) / len(q_mrrs) if q_mrrs else 0.0
+        groups_list = list(group_metrics.values())
+        macro_recall = sum(g['recall_at_5_percent'] for g in groups_list) / len(groups_list) if groups_list else 0.0
+        macro_mrr = sum(g['mrr_at_10'] for g in groups_list) / len(groups_list) if groups_list else 0.0
+        worst_mrr = min(g['mrr_at_10'] for g in groups_list) if groups_list else 0.0
+        row = {
+            'config': cfg,
+            'rankings': dev_rankings,
+            'recall_at_5_percent': recall_mean,
+            'mrr_at_10': mrr_mean,
+            'group_metrics': {
+                'groups': group_metrics,
+                'worst_mrr_at_10': worst_mrr,
+                'macro_mrr_at_10': macro_mrr,
+                'macro_recall_at_5_percent': macro_recall
+            }
+        }
+        search_rows.append(row)
+
+    def sort_key(row):
+        gm = row['group_metrics']
+        return (round(gm['worst_mrr_at_10'], 12),
+                round(gm['macro_mrr_at_10'], 12),
+                round(gm['macro_recall_at_5_percent'], 12),
+                row['config']['title_weight'],
+                row['config']['k1'],
+                row['config']['b'])
+    best_row = max(search_rows, key=sort_key)
+    best_cfg = best_row['config']
+
+    candidate = {}
+    for q in test_qs:
+        candidate[q['id']] = rank_one(q['text'], best_cfg['k1'], best_cfg['b'], best_cfg['title_weight'])
+
+    details = {
+        'selected': best_cfg,
+        'search': search_rows
+    }
+    return {'baseline': baseline, 'candidate': candidate, 'details': details}

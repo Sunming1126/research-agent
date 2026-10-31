@@ -1,0 +1,98 @@
+def run_experiment(request):
+    data = request['data']
+    jobs = data['jobs']
+    flow_weights = data['flow_weights']
+    servers = data['servers']
+    setup_ms = data['setup_ms']
+    horizon_ms = data['horizon_ms']
+    all_flows = list(flow_weights.keys())
+    def run_single(strategy):
+        tasks = []
+        for j in jobs:
+            tasks.append([j['id'], j['flow'], j['arrival_ms'], j['service_ms'], j['deadline_ms']])
+        tasks.sort(key=lambda x: (x[2], x[0]))
+        n = len(tasks)
+        idx = 0
+        now = 0.0
+        free_at = [0.0] * servers
+        last_flow = [''] * servers
+        assigned = {f: 0.0 for f in all_flows}
+        wait_queue = []
+        trace = []
+        dropped = []
+        served_ms = {f: 0.0 for f in all_flows}
+        def dispatch(server_id, task):
+            nonlocal now
+            id_, flow, arr, serv, dead = task
+            setup = 0.0 if last_flow[server_id] == '' or last_flow[server_id] == flow else setup_ms
+            start = now + setup
+            wait = start - arr
+            if start >= dead:
+                dropped.append({'id': id_, 'reason': 'deadline'})
+                return False
+            end = start + serv
+            if end > horizon_ms:
+                dropped.append({'id': id_, 'reason': 'horizon'})
+                return False
+            trace.append({'id': id_, 'flow': flow, 'arrival_ms': arr, 'service_ms': serv, 'deadline_ms': dead, 'server': server_id, 'dispatch_ms': now, 'setup_ms': setup, 'start_ms': start, 'end_ms': end, 'wait_ms': wait})
+            free_at[server_id] = end
+            last_flow[server_id] = flow
+            assigned[flow] += serv
+            served_ms[flow] += serv
+            return True
+        while True:
+            while idx < n and tasks[idx][2] <= now:
+                t = tasks[idx]
+                wait_queue.append(t)
+                idx += 1
+            wait_queue = [t for t in wait_queue if t[4] > now]
+            if not wait_queue and idx >= n:
+                break
+            dispatched = False
+            for sid in range(servers):
+                while True:
+                    if not wait_queue:
+                        break
+                    if strategy == 'fifo':
+                        cand = wait_queue.pop(0)
+                    else:
+                        best = None
+                        best_key = None
+                        for i, t in enumerate(wait_queue):
+                            f = t[1]
+                            key = (assigned.get(f, 0.0) / flow_weights[f], t[2], t[0])
+                            if best_key is None or key < best_key:
+                                best_key = key
+                                best = i
+                        cand = wait_queue.pop(best)
+                    if dispatch(sid, cand):
+                        dispatched = True
+                        break
+            if not dispatched:
+                next_time = float('inf')
+                if idx < n:
+                    next_time = tasks[idx][2]
+                for sid in range(servers):
+                    if free_at[sid] > now:
+                        next_time = min(next_time, free_at[sid])
+                if next_time == float('inf'):
+                    break
+                now = next_time
+            else:
+                next_time = float('inf')
+                if idx < n:
+                    next_time = tasks[idx][2]
+                for sid in range(servers):
+                    if free_at[sid] > now:
+                        next_time = min(next_time, free_at[sid])
+                if next_time == float('inf'):
+                    break
+                now = next_time
+        for t in wait_queue:
+            dropped.append({'id': t[0], 'reason': 'horizon'})
+        trace.sort(key=lambda x: (x['dispatch_ms'], x['server']))
+        dropped.sort(key=lambda x: x['id'])
+        return {'trace': trace, 'served_ms': served_ms, 'dropped': dropped}
+    baseline = run_single('fifo')
+    candidate = run_single('fair')
+    return {'baseline': baseline, 'candidate': candidate, 'details': {}}
