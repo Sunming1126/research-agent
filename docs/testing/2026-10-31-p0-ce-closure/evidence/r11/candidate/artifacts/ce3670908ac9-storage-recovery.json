@@ -1,0 +1,14 @@
+{
+  "case_id": "E-01",
+  "scope": "current_request_staging_only",
+  "attempts": [
+    {
+      "action": "R3_retry_staging",
+      "attempt": 1,
+      "path": "submission-stage/data/expert/E-01-灵感Idea报告-synthetic-workspace.md",
+      "value_sha256": "8628c860241712124c0959d7c90c4943af60855b8c772f0c7a01fe9c5693d151",
+      "error_type": "OSError",
+      "errno": 5
+    }
+  ]
+}

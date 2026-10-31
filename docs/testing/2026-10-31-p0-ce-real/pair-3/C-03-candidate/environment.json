@@ -1,0 +1,27 @@
+{
+  "sha256": "fb5a9be9048e71304ed298104300de47eb9e313815b532b642019d8f23cbf4f7",
+  "fields": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "versions": {
+      "agenthack": "metadata_unavailable",
+      "fastapi": "0.162.0",
+      "starlette": "1.10.0",
+      "PyMuPDF": "1.24.14",
+      "openai": "1.109.1"
+    },
+    "sdk_runtime_sha256": "9737fb4c1fc3ed0a2c46ac9467468ee1e75b37076c948f621d19700357a6729c",
+    "provider": "magic",
+    "model": "deepseek-v4.1-flash",
+    "route_sha256": "530af31f7f46668eb57ab7c3de2eebb26029e2623da9821a9e0edbbcb29e1836",
+    "case_budget": {
+      "timeout_seconds": 180,
+      "calls": 30,
+      "tokens": 40000
+    },
+    "telemetry": "local_InMemorySpanExporter",
+    "container_limits_enforced": false,
+    "platform_assigned_verified": false,
+    "thinking_env_override": null
+  }
+}

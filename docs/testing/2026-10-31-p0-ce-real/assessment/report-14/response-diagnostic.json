@@ -1,0 +1,9 @@
+{
+  "finish_reason": "stop",
+  "raw_response_sha256": "2761d922a25f5b89d2a2692c36c9196b8cbd799541e0e60eff4f19db23fb5ea5",
+  "content_chars": 6555,
+  "raw_response_retained_local_and_D": true,
+  "valid_json": true,
+  "facts_count": 13,
+  "fact_count_within_frozen_limit": false
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "original": "output/data/expert/C-01-综述-offline-ce-fixed.md",
+    "exported": "artifacts/88364e83ea53.md",
+    "sha256": "5934b1b61709b7ba7b9e1694167a9cdb1e7382e98ded8245dd8e85dee0184b20"
+  },
+  {
+    "original": "output/data/expert/C-03-综述-offline-ce-fixed.md",
+    "exported": "artifacts/799a3b4a5f6d.md",
+    "sha256": "5934b1b61709b7ba7b9e1694167a9cdb1e7382e98ded8245dd8e85dee0184b20"
+  },
+  {
+    "original": "output/data/expert/E-01-灵感Idea报告-offline-ce-fixed.md",
+    "exported": "artifacts/2633684cb8f0.md",
+    "sha256": "5934b1b61709b7ba7b9e1694167a9cdb1e7382e98ded8245dd8e85dee0184b20"
+  },
+  {
+    "original": "output/data/expert/E-02-灵感Idea报告-offline-ce-fixed.md",
+    "exported": "artifacts/77182b2a4671.md",
+    "sha256": "5934b1b61709b7ba7b9e1694167a9cdb1e7382e98ded8245dd8e85dee0184b20"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/C-01.json",
+    "exported": "artifacts/cb8ea9e5d10c.json",
+    "sha256": "b774157d226d836ace96f9ad891d8ea00fc66643663289ee9bc7af4734b741aa"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/C-03.json",
+    "exported": "artifacts/84e5ec95a7e4.json",
+    "sha256": "d96d469eb02ff34fe76f99f458aa1728d5935704ab6e42764cdfe5cabddc49c3"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/E-01.json",
+    "exported": "artifacts/b4a4eb2750b4.json",
+    "sha256": "b9d5622153abb81b59e8da6c4059e2793348358ef949a6dd6e691ba350630269"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/E-02.json",
+    "exported": "artifacts/d1853ef3af52.json",
+    "sha256": "bbf1ae0e75d7912bf414e75d2819763de1ae3d584c5daa6882d6d41c0183dc49"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/receipts/C-01.json",
+    "exported": "artifacts/a49c52fcf34b.json",
+    "sha256": "6b9017b75bb640f20ca72cf63420693c1582dec33acff7d6d2353a61a1587982"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/receipts/C-03.json",
+    "exported": "artifacts/6639af9783b1.json",
+    "sha256": "4c25c33003986741143a54334c7a0df88665882647527435c1ff54fb8e842c7f"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/receipts/E-01.json",
+    "exported": "artifacts/302817e5ca5c.json",
+    "sha256": "baf838537b98622f1c54fad15fa860e781433d4e9800b4dd2c6ab297417ece16"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/receipts/E-02.json",
+    "exported": "artifacts/3660b8124965.json",
+    "sha256": "08af71149e341556904d94c172d9547c0960fcef7e70f7ad87983ebdc40f5952"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/E-02/11aa0b61907944b0b100fb341316b120/evidence.json",
+    "exported": "artifacts/2f91d46f45de.json",
+    "sha256": "89c3e3092e7daef6f4108826861afab915031f696ab0031373ea1950b26016d2"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/E-02/11aa0b61907944b0b100fb341316b120/receipt.json",
+    "exported": "artifacts/97be140e2a65.json",
+    "sha256": "fe7d149c92c1c5a875d1cc59236d3c61fc7a0a5819b32d0dd3ba38ceb2161703"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/E-01/fe3c5d17a25d419285bc4ee197e91b13/evidence.json",
+    "exported": "artifacts/2b5fbffa0a93.json",
+    "sha256": "376e287abe3cdd5534d0773952a4f0492b7a1874d782db26e6dd03a5bbb76062"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/E-01/fe3c5d17a25d419285bc4ee197e91b13/receipt.json",
+    "exported": "artifacts/f4feea04f818.json",
+    "sha256": "4e3cbc50684c49661bc70cd2789cf93e297f87a92054084478adb880e587007b"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/C-03/a3ab97fd39e6422e93ae816887a43a34/evidence.json",
+    "exported": "artifacts/377a072fadae.json",
+    "sha256": "fa7c383dbd194376b528d53465697950c4c3c41adbdf226aa2eb0c6c2fc67f74"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/C-03/a3ab97fd39e6422e93ae816887a43a34/receipt.json",
+    "exported": "artifacts/e411ef366b69.json",
+    "sha256": "c8a8191846dc86bac07a02028c8792abb083a98e2da75a6ea3ed6b28d37a18c6"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/C-03/a3ab97fd39e6422e93ae816887a43a34/storage-recovery.json",
+    "exported": "artifacts/598d4fc2a5c2.json",
+    "sha256": "995c6ac39d2ef94ec4312e973595c13a1c473614216a8318f6b3c519ee34785c"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/C-01/e103655ddbe34ed5ba56489e74ee8573/evidence.json",
+    "exported": "artifacts/b85609feb28d.json",
+    "sha256": "09850b55c8ec724fb862857ba20ee94c8b6255efc270c7f1a6eed65085dc0683"
+  },
+  {
+    "original": "output/data/offline-ce-fixed/work/C-01/e103655ddbe34ed5ba56489e74ee8573/receipt.json",
+    "exported": "artifacts/eac90c30d133.json",
+    "sha256": "c5ddcbbc9d813d81d2a3340f90a25b92a7f741fd24157b0176ca97b72580b506"
+  }
+]

@@ -1,5 +1,9 @@
 # 科研助手 Agent · 0.4.20 协作候选
 
+> 2026-10-31按用户最新要求已整理本轮提交候选：`research-assistant-0.4.20-p0-ce-a5fa363-20261031.tar`（约282MiB），本地与D盘完整文件已校验。41份Python逐字匹配真实模型候选，SDK/依赖层不变；Docker引擎启动失败，**该镜像的Linux运行未验收，P0整体仍未放行**。GitHub草稿已保存源码/说明，大tar上传连接中断，暂不能从附件下载完整镜像。[提交包状态与校验](docs/testing/2026-10-31-p0-submission/交接状态.md)。
+
+> 2026-10-31 P0候选（应用`91d15f8`）：四项独立离线修复及439项回归后，已在原Harness总控/magic完成真实模型三轮固定C/E对照，旧11/12、新12/12交付，候选本组无schema违约；生成Token增加15.2%，内容正确率提升尚未证实。来源核查5份完整、10份部分、8份失败，方法归属风险待修。**P0整体不放行**，Linux重启/持久幂等/平台验收仍缺，不进入D/B、不合main、不发新镜像；下方旧tar不含四项改动。[真实模型证据与阶段决策](docs/testing/2026-10-31-p0-ce-real/P0真实模型重复验证与阶段决策.md) · [此前单因素离线闭环](docs/testing/2026-10-31-p0-ce-closure/P0四项修复闭环.md)。
+
 2026-10-30按用户要求将当前优化成果同步到main，供队友开发与复测。主线保持“授权材料检索 → 原文证据核验 → 生成 → 校验落盘”。当前平台复测与正式成绩待完成。
 
 [队友交接与优势说明](docs/队友交接-0.4.20-20261030.md) · [C修复PR #12](https://github.com/Sunming1126/research-agent/pull/12) · [完整候选镜像](https://github.com/Sunming1126/research-agent/releases/tag/untagged-f8c44d80dbfefafe393f)

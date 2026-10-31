@@ -1,0 +1,15 @@
+{
+  "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+  "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+  "study": "p0-ce-real-20261031-160502-8957e1",
+  "stage": "pair",
+  "round": 1,
+  "native_tool_seq": 2124,
+  "native_tool_name": "pwsh",
+  "native_tool_call_sha256": "fbb95057bca1e7f81465c26043b0eac46480661292ff4d89a529902888a08fa9",
+  "model_config_header_seq": 2053,
+  "model_config_inherited": true,
+  "native_tool_execution_verified": true,
+  "magic_selection_verified": true,
+  "ui_binding_sha256": "45b18fb6658da2a2b6adb8ed1953204bac2b4877096bdeaffc1107b97a99f4a7"
+}

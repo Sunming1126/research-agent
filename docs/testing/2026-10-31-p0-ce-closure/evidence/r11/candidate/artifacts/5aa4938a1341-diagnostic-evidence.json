@@ -1,0 +1,257 @@
+{
+  "claims": [
+    {
+      "evidence_id": "ev-1",
+      "claim": "The synthetic study compares vegetation and temperature.",
+      "filename": "Study_1.pdf",
+      "page": 2,
+      "chunk_id": "99ea89c62a2cd32c76e3",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature. This\nsynthetic fixture describes association, not causation.",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unspecified",
+      "verification": "quote_only"
+    },
+    {
+      "evidence_id": "ev-2",
+      "claim": "The synthetic study compares vegetation and temperature.",
+      "filename": "Study_2.pdf",
+      "page": 2,
+      "chunk_id": "f27a404de3910725b25c",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature. This\nsynthetic fixture describes association, not causation.",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unspecified",
+      "verification": "quote_only"
+    },
+    {
+      "evidence_id": "ev-3",
+      "claim": "The synthetic study compares vegetation and temperature.",
+      "filename": "Study_3.pdf",
+      "page": 2,
+      "chunk_id": "7001da76629e3ef3f9c2",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature. This\nsynthetic fixture describes association, not causation.",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unspecified",
+      "verification": "quote_only"
+    },
+    {
+      "evidence_id": "ev-4",
+      "claim": "The synthetic study compares vegetation and temperature.",
+      "filename": "Study_4.pdf",
+      "page": 2,
+      "chunk_id": "f0ed921defca3ae374a6",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature. This\nsynthetic fixture describes association, not causation.",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unspecified",
+      "verification": "quote_only"
+    },
+    {
+      "evidence_id": "ev-5",
+      "claim": "The synthetic study compares vegetation and temperature.",
+      "filename": "Study_5.pdf",
+      "page": 2,
+      "chunk_id": "80ab95fadc5d33d99d8e",
+      "quote": "Remote sensing observations compare urban vegetation and surface temperature. This\nsynthetic fixture describes association, not causation.",
+      "kind": "paper_claim",
+      "facet": "unspecified",
+      "role": "unspecified",
+      "verification": "quote_only"
+    }
+  ],
+  "material_diagnostics": [],
+  "rejected_claims": [],
+  "retrieval_trace": {},
+  "query_plan_status": "model",
+  "audit": {
+    "ok": true,
+    "issues": [],
+    "history": [
+      {
+        "attempt": 1,
+        "stage": "audit",
+        "audit": {
+          "ok": true,
+          "issues": []
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "papers": {
+      "Study_1.pdf": {
+        "unspecified": [
+          "ev-1"
+        ]
+      },
+      "Study_2.pdf": {
+        "unspecified": [
+          "ev-2"
+        ]
+      },
+      "Study_3.pdf": {
+        "unspecified": [
+          "ev-3"
+        ]
+      },
+      "Study_4.pdf": {
+        "unspecified": [
+          "ev-4"
+        ]
+      },
+      "Study_5.pdf": {
+        "unspecified": [
+          "ev-5"
+        ]
+      }
+    },
+    "gaps": [
+      {
+        "filename": "Study_1.pdf",
+        "facet": "method"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_1.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "method"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_2.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "method"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_3.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "method"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_4.pdf",
+        "facet": "limitation"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "method"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "data"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "metric"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "result"
+      },
+      {
+        "filename": "Study_5.pdf",
+        "facet": "limitation"
+      }
+    ],
+    "scope": "gaps mean missing verified evidence, not that the paper omitted the topic",
+    "targeted_queries": []
+  },
+  "evidence_audit": {},
+  "report_trace": [
+    {
+      "attempt": 1,
+      "raw_markdown": "# Synthetic fixture report\n\n## 证据比较\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[1, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[2, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[3, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[4, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[5, p.2]\n\n## 研究动机与边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 技术路线\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 基线与数据集\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 实验设计与消融\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 量化指标\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 多文献互补\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可行性与失败边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可证伪方式\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n",
+      "raw_response": {
+        "markdown": "# Synthetic fixture report\n\n## 证据比较\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[1, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[2, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[3, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[4, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[5, p.2]\n\n## 研究动机与边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 技术路线\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 基线与数据集\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 实验设计与消融\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 量化指标\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 多文献互补\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可行性与失败边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可证伪方式\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n",
+        "used_evidence_ids": [
+          "ev-1",
+          "ev-2",
+          "ev-3",
+          "ev-4",
+          "ev-5"
+        ]
+      },
+      "used_evidence_ids": [
+        "ev-1",
+        "ev-2",
+        "ev-3",
+        "ev-4",
+        "ev-5"
+      ],
+      "patches": [],
+      "source_task": {
+        "case_id": "E-01",
+        "function": "Idea",
+        "title": "Synthetic research fixture",
+        "input": "Compare urban vegetation and surface temperature using remote sensing; exclude plant taxonomy only.",
+        "materials": [
+          "Study_1.pdf",
+          "Study_2.pdf",
+          "Study_3.pdf",
+          "Study_4.pdf",
+          "Study_5.pdf"
+        ],
+        "constraints": [],
+        "expected_output": "Idea",
+        "output_schema_ref": "Idea"
+      }
+    }
+  ],
+  "draft": "# Synthetic fixture report\n\n## 证据比较\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[1, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[2, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[3, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[4, p.2]\n\n本文材料是测试使用的合成文档。遥感观察比较了城市植被与地表温度，作者限定了结果的解释范围，不能据此建立因果关系。[5, p.2]\n\n## 研究动机与边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 技术路线\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 基线与数据集\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 实验设计与消融\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 量化指标\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 多文献互补\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可行性与失败边界\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。\n\n## 可证伪方式\n\n以下内容是待验证的研究设计建议。建议在相同观察窗口内比较城市区域，明确研究对象、采样单位及可获得的数据。建议设定基线与对照条件，固定划分方式并保留独立测试集。建议记录成本、误差与不确定性，通过消融检验各组成部分。如果预注册指标不能稳定改善，应该否定相应假设并分析失败边界。"
+}

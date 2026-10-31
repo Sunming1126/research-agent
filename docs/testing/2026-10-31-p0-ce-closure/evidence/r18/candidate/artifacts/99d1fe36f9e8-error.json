@@ -1,0 +1,15 @@
+{
+  "case_id": "C-01",
+  "error_type": "ContractViolation",
+  "message": "C/E output schema violation: type_error",
+  "usage": [],
+  "model_response_failures": [],
+  "schema_diff": [
+    {
+      "code": "type_error",
+      "pointer": "/markdown",
+      "expected": "nonempty string",
+      "actual_type": "NoneType"
+    }
+  ]
+}

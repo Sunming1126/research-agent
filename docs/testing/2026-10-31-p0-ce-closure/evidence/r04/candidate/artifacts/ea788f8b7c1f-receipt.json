@@ -1,0 +1,141 @@
+{
+  "case_id": "E-01",
+  "artifacts": [
+    {
+      "path": "data/synthetic-workspace/E-01.json",
+      "kind": "json",
+      "bytes": 4653,
+      "sha256": "8b5e45ceda6cc382095d10fc9f0af5cab435b9e8bbeb7e261c3ff0c38e395177"
+    },
+    {
+      "path": "data/expert/E-01-灵感Idea报告-synthetic-workspace.md",
+      "kind": "md",
+      "bytes": 4489,
+      "sha256": "8628c860241712124c0959d7c90c4943af60855b8c772f0c7a01fe9c5693d151"
+    }
+  ],
+  "filenames": [
+    "Study_1.pdf",
+    "Study_2.pdf",
+    "Study_3.pdf",
+    "Study_4.pdf",
+    "Study_5.pdf"
+  ],
+  "specs": null,
+  "proof": null,
+  "usage": [],
+  "session": {
+    "case_id": "E-01",
+    "timeout_seconds": 170,
+    "elapsed_seconds": 0.157,
+    "stage": "persist_and_readback",
+    "stages": [
+      {
+        "stage": "material_resolution",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 0.047
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 0.063
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 0.063
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 0.063
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 0.079
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 0.079
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 0.079
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 0.079
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 0.079
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 0.094
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 0.094
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 0.094
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 0.11
+      },
+      {
+        "stage": "document_parsing",
+        "elapsed_seconds": 0.11
+      },
+      {
+        "stage": "document_chunking",
+        "elapsed_seconds": 0.11
+      },
+      {
+        "stage": "retrieval",
+        "elapsed_seconds": 0.11
+      },
+      {
+        "stage": "report_extract",
+        "elapsed_seconds": 0.125
+      },
+      {
+        "stage": "report_report",
+        "elapsed_seconds": 0.125
+      },
+      {
+        "stage": "report_audit",
+        "elapsed_seconds": 0.125
+      },
+      {
+        "stage": "submission_validation",
+        "elapsed_seconds": 0.125
+      },
+      {
+        "stage": "persist_and_readback",
+        "elapsed_seconds": 0.125
+      }
+    ],
+    "cancelled": false,
+    "publication_state": "active"
+  },
+  "source_case": {
+    "case_id": "E-01",
+    "function": "Idea",
+    "title": "Synthetic research fixture",
+    "input": "Compare urban vegetation and surface temperature using remote sensing; exclude plant taxonomy only.",
+    "materials": [
+      "Study_1.pdf",
+      "Study_2.pdf",
+      "Study_3.pdf",
+      "Study_4.pdf",
+      "Study_5.pdf"
+    ],
+    "constraints": [],
+    "expected_output": "Idea",
+    "output_schema_ref": "Idea"
+  }
+}

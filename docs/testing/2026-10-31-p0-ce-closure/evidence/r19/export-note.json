@@ -1,0 +1,150 @@
+{
+  "id": "r19",
+  "original_run": "p0-ce-wire-regression-20261031-115359-a0bd1e",
+  "original_run_preserved": true,
+  "summary": {
+    "stage": "regression",
+    "suite": "wire",
+    "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-wire-regression-20261031-115359-a0bd1e",
+    "baseline_revision": "eb42a3934972548af3e784e8d2a362c5e6654cf2",
+    "application_source_unchanged_during_run": true,
+    "source_files": 45,
+    "target_model_calls": 0,
+    "native_harness_execution": false,
+    "result": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 57.654,
+      "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "tests": 435,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 7,
+      "passed": 428
+    }
+  },
+  "selected_artifact_map": [
+    {
+      "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_C-2_.json",
+      "exported": "regression/cases/case-8650b606d2b8.json",
+      "sha256": "091c127c5aeaf456b9d9b5bc074d392bd199605b0e3cbdab4a1c449dd64b39f2"
+    },
+    {
+      "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_E-3_.json",
+      "exported": "regression/cases/case-3301661c70f7.json",
+      "sha256": "298c29b45839d40a746650b962de9ee2e496276b71a13ec3d69962bcd32a5003"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-C_.json",
+      "exported": "regression/cases/case-20cd70913704.json",
+      "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-E_.json",
+      "exported": "regression/cases/case-a493ed73212a.json",
+      "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-C_.json",
+      "exported": "regression/cases/case-e133f632272a.json",
+      "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-E_.json",
+      "exported": "regression/cases/case-2ec9e9a58c9e.json",
+      "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-C_.json",
+      "exported": "regression/cases/case-826154f5d43d.json",
+      "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-E_.json",
+      "exported": "regression/cases/case-68c2bd787919.json",
+      "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-C_.json",
+      "exported": "regression/cases/case-58ef698ddc51.json",
+      "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-E_.json",
+      "exported": "regression/cases/case-4465d06059db.json",
+      "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-C_.json",
+      "exported": "regression/cases/case-b9fb93e25ea2.json",
+      "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-E_.json",
+      "exported": "regression/cases/case-50419437d1c6.json",
+      "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-C_.json",
+      "exported": "regression/cases/case-fcca83761d4b.json",
+      "sha256": "1ca840a7f79bbd8b3e8e2a4155319a2d15ea820b171df4ca2f054ac7000b2f55"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-E_.json",
+      "exported": "regression/cases/case-b56f7a1dc68a.json",
+      "sha256": "c54c3e85aa162f2cecad4ee3b34df64a79e0f42c8e18a5d65a91a48a32b2c0fd"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-C_.json",
+      "exported": "regression/cases/case-041ed6488bfe.json",
+      "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-E_.json",
+      "exported": "regression/cases/case-77694f0d2be6.json",
+      "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-C_.json",
+      "exported": "regression/cases/case-eac4a262484b.json",
+      "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+    },
+    {
+      "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-E_.json",
+      "exported": "regression/cases/case-fcfccad85a1e.json",
+      "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+    },
+    {
+      "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_C_.json",
+      "exported": "regression/cases/case-be4e720c5774.json",
+      "sha256": "fba26e5900ebe3fa6386541497ceb78bc5b496d0ae80119c993e13c7cd8f651c"
+    },
+    {
+      "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_E_.json",
+      "exported": "regression/cases/case-2820fb3d1a0d.json",
+      "sha256": "bd86946ce1de8f1e0b268582172b22d7646da0498d6758d0c502dc029bdd8848"
+    },
+    {
+      "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_C_.json",
+      "exported": "regression/cases/case-52a9c3e34b73.json",
+      "sha256": "8ce853ab5a5db4d47abcab0364dd6c118c19d4773ce7bd789f439f588082bb21"
+    },
+    {
+      "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_E_.json",
+      "exported": "regression/cases/case-f4afc2fe8e37.json",
+      "sha256": "9a91a4dafebd1c6575ca804f6182609b3b34f4f350e2c388e002a871b6041448"
+    },
+    {
+      "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_C_.json",
+      "exported": "regression/cases/case-d22382adcd66.json",
+      "sha256": "03f0a1450c207ad1c1580d8e97e3cbb730fb9c7cf860b93839ab2873c79bf876"
+    },
+    {
+      "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_E_.json",
+      "exported": "regression/cases/case-72d2a6a17555.json",
+      "sha256": "3f6d9ce148431ee86b83d729267270643557f5179941f910730866d9dc5fd2fd"
+    }
+  ]
+}

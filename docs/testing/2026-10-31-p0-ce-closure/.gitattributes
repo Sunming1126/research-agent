@@ -1,0 +1,2 @@
+# Preserve the bytes referenced by evidence-sha256.json.
+* -text -filter

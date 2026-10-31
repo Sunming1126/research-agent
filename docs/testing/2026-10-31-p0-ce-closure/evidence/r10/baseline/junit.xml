@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="6" time="1.647" timestamp="2026-10-31T12:01:04.282953+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="" name="test_transient_staging_failure_retries_same_answer_without_regeneration[C]" time="0.225"><failure message="OSError: [Errno 5] injected transient staging sync failure">kind = 'C'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-retry-baseline-20261031-120103-aebd3b/baseline/temp/test_transient_staging_failure0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001D677ED8170&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_transient_staging_failure_retries_same_answer_without_regeneration(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        model = CountedModel()
+        engine.llm_factory = lambda: model
+        actual = utils.os.fsync
+        calls = []
+        def once(fd):
+            calls.append(fd)
+            if len(calls) == 1:
+                raise OSError(errno.EIO, 'injected transient staging sync failure')
+            actual(fd)
+        monkeypatch.setattr(utils.os, 'fsync', once)
+&gt;       result = engine.solve_sync(task)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_staging_retry.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\research_agent\core\engine.py:75: in solve_sync
+    return self._solve_one(payload, cancelled, received_at, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\research_agent\core\engine.py:114: in _solve_one
+    return self._execute_one(case)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+src\research_agent\core\engine.py:183: in _execute_one
+    self._persist(case, result, work, filenames, specs, proof, handler, llm)
+src\research_agent\core\engine.py:236: in _persist
+    atomic_text(staged_markdown, result["markdown"], durable=durable)
+src\research_agent\core\utils.py:65: in atomic_text
+    os.fsync(handle.fileno())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+fd = 11
+
+    def once(fd):
+        calls.append(fd)
+        if len(calls) == 1:
+&gt;           raise OSError(errno.EIO, 'injected transient staging sync failure')
+E           OSError: [Errno 5] injected transient staging sync failure
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_staging_retry.py:30: OSError</failure></testcase><testcase classname="" name="test_transient_staging_failure_retries_same_answer_without_regeneration[E]" time="0.195"><failure message="OSError: [Errno 5] injected transient staging sync failure">kind = 'E'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-retry-baseline-20261031-120103-aebd3b/baseline/temp/test_transient_staging_failure1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001D677ED9100&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_transient_staging_failure_retries_same_answer_without_regeneration(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        model = CountedModel()
+        engine.llm_factory = lambda: model
+        actual = utils.os.fsync
+        calls = []
+        def once(fd):
+            calls.append(fd)
+            if len(calls) == 1:
+                raise OSError(errno.EIO, 'injected transient staging sync failure')
+            actual(fd)
+        monkeypatch.setattr(utils.os, 'fsync', once)
+&gt;       result = engine.solve_sync(task)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_staging_retry.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\research_agent\core\engine.py:75: in solve_sync
+    return self._solve_one(payload, cancelled, received_at, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\research_agent\core\engine.py:114: in _solve_one
+    return self._execute_one(case)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+src\research_agent\core\engine.py:183: in _execute_one
+    self._persist(case, result, work, filenames, specs, proof, handler, llm)
+src\research_agent\core\engine.py:236: in _persist
+    atomic_text(staged_markdown, result["markdown"], durable=durable)
+src\research_agent\core\utils.py:65: in atomic_text
+    os.fsync(handle.fileno())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+fd = 11
+
+    def once(fd):
+        calls.append(fd)
+        if len(calls) == 1:
+&gt;           raise OSError(errno.EIO, 'injected transient staging sync failure')
+E           OSError: [Errno 5] injected transient staging sync failure
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_staging_retry.py:30: OSError</failure></testcase><testcase classname="" name="test_permanent_staging_io_failure_stops_after_one_retry[C]" time="0.196"><failure message="assert 1 == 2&#10; +  where 1 = len([11])">kind = 'C'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-retry-baseline-20261031-120103-aebd3b/baseline/temp/test_permanent_staging_io_fail0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001D678F41BB0&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_permanent_staging_io_failure_stops_after_one_retry(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        calls = []
+        def fail(fd):
+            calls.append(fd)
+            raise OSError(errno.EIO, 'injected persistent staging sync failure')
+        monkeypatch.setattr(utils.os, 'fsync', fail)
+        with pytest.raises(OSError, match='persistent staging'):
+            engine.solve_sync(task)
+&gt;       assert len(calls) == 2
+E       assert 1 == 2
+E        +  where 1 = len([11])
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_staging_retry.py:54: AssertionError</failure></testcase><testcase classname="" name="test_permanent_staging_io_failure_stops_after_one_retry[E]" time="0.205"><failure message="assert 1 == 2&#10; +  where 1 = len([11])">kind = 'E'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-retry-baseline-20261031-120103-aebd3b/baseline/temp/test_permanent_staging_io_fail1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001D677F28080&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_permanent_staging_io_failure_stops_after_one_retry(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        calls = []
+        def fail(fd):
+            calls.append(fd)
+            raise OSError(errno.EIO, 'injected persistent staging sync failure')
+        monkeypatch.setattr(utils.os, 'fsync', fail)
+        with pytest.raises(OSError, match='persistent staging'):
+            engine.solve_sync(task)
+&gt;       assert len(calls) == 2
+E       assert 1 == 2
+E        +  where 1 = len([11])
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_staging_retry.py:54: AssertionError</failure></testcase><testcase classname="" name="test_permission_failure_is_not_retried[C]" time="0.190" /><testcase classname="" name="test_permission_failure_is_not_retried[E]" time="0.212" /></testsuite></testsuites>

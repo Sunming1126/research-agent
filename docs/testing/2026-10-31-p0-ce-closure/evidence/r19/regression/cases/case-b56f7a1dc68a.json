@@ -1,0 +1,18 @@
+{
+  "kind": "synthetic_SDK_wire_failure_injection",
+  "fault": "none",
+  "sdk_identifiers_are_fixture_values": true,
+  "target_model_calls": 0,
+  "http_status": 200,
+  "body": {
+    "case_id": "E-01",
+    "path": "data/expert/E-01-灵感Idea报告-synthetic-workspace.md",
+    "markdown": "Synthetic wire-only string; complete content is checked separately by the engine."
+  },
+  "headers": {
+    "x-agenthack-trace-id": "fixture-sdk-trace",
+    "x-agenthack-session-id": "fixture-sdk-session",
+    "x-agenthack-metadata": "{\"trace_id\":\"fixture-sdk-trace\",\"session_id\":\"fixture-sdk-session\"}",
+    "content-length": "184"
+  }
+}

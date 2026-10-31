@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 1,
+  "model_issues": [
+    "正文称“RETRO 以冻结 BERT 检索器从万亿级 token 数据库按连续块检索”，但证据 ev-23 与 ev-25 只支持“2 trillion token database”和“retrieving from a database with trillions of tokens”，未给出“万亿级”这一具体规模表述；应改为证据支持的“2 万亿 token 数据库”或“数万亿 token 数据库”，并保留页码[4, p.1][4, p.2]。; 正文称“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LLM，部分指标超过 ChatGPT[5, p.8]”，ev-34 支持“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，但正文“部分指标超过 ChatGPT”未限定为 Rouge 和 MAUVE，弱化了原文条件；应补明“在 ASQA 的 Rouge 与 MAUVE 指标上”或类似限定。; 正文称“FiD 在 Natural Questions 与 TriviaQA 上报告新最优，且性能随检索段落数增加而显著提升[3, p.2][3, p.4]”，ev-18 支持“sets new state-of-the-art results on the TriviaQA and NaturalQuestions benchmarks”及“performance ... significantly improves when the number of retrieved passages increases”，但该句将“新最优”与“随段落数增加显著提升”合并引用[3, p.2][3, p.4]，而 ev-19 仅支持“outperforms existing work on the NaturalQuestion and TriviaQA benchmarks”，未直接支持“新最优”措辞；应改为“优于现有工作”或明确“新最优”出自 ev-18 的表述。",
+    "insufficient reserved budget for repair"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“RETRO 以冻结 BERT 检索器从万亿级 token 数据库按连续块检索”，但证据 ev-23 与 ev-25 只支持“2 trillion token database”和“retrieving from a database with trillions of tokens”，未给出“万亿级”这一具体规模表述；应改为证据支持的“2 万亿 token 数据库”或“数万亿 token 数据库”，并保留页码[4, p.1][4, p.2]。",
+          "正文称“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LLM，部分指标超过 ChatGPT[5, p.8]”，ev-34 支持“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，但正文“部分指标超过 ChatGPT”未限定为 Rouge 和 MAUVE，弱化了原文条件；应补明“在 ASQA 的 Rouge 与 MAUVE 指标上”或类似限定。",
+          "正文称“FiD 在 Natural Questions 与 TriviaQA 上报告新最优，且性能随检索段落数增加而显著提升[3, p.2][3, p.4]”，ev-18 支持“sets new state-of-the-art results on the TriviaQA and NaturalQuestions benchmarks”及“performance ... significantly improves when the number of retrieved passages increases”，但该句将“新最优”与“随段落数增加显著提升”合并引用[3, p.2][3, p.4]，而 ev-19 仅支持“outperforms existing work on the NaturalQuestion and TriviaQA benchmarks”，未直接支持“新最优”措辞；应改为“优于现有工作”或明确“新最优”出自 ev-18 的表述。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "正文称“RETRO 以冻结 BERT 检索器从万亿级 token 数据库按连续块检索”，但证据 ev-23 与 ev-25 只支持“2 trillion token database”和“retrieving from a database with trillions of tokens”，未给出“万亿级”这一具体规模表述；应改为证据支持的“2 万亿 token 数据库”或“数万亿 token 数据库”，并保留页码[4, p.1][4, p.2]。; 正文称“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LLM，部分指标超过 ChatGPT[5, p.8]”，ev-34 支持“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，但正文“部分指标超过 ChatGPT”未限定为 Rouge 和 MAUVE，弱化了原文条件；应补明“在 ASQA 的 Rouge 与 MAUVE 指标上”或类似限定。; 正文称“FiD 在 Natural Questions 与 TriviaQA 上报告新最优，且性能随检索段落数增加而显著提升[3, p.2][3, p.4]”，ev-18 支持“sets new state-of-the-art results on the TriviaQA and NaturalQuestions benchmarks”及“performance ... significantly improves when the number of retrieved passages increases”，但该句将“新最优”与“随段落数增加显著提升”合并引用[3, p.2][3, p.4]，而 ev-19 仅支持“outperforms existing work on the NaturalQuestion and TriviaQA benchmarks”，未直接支持“新最优”措辞；应改为“优于现有工作”或明确“新最优”出自 ev-18 的表述。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "report",
+      "issues": [
+        "insufficient reserved budget for repair"
+      ]
+    }
+  ]
+}

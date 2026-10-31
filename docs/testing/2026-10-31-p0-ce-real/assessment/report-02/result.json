@@ -1,0 +1,175 @@
+{
+  "blind_id": "report-02",
+  "status": "assessed",
+  "report_sha256": "91341b149e72730e08e02060eaf453cc82e2f0751b120be436ad7fdcac8febb1",
+  "ledger_sha256": "a92cee5bec0ca8cf6767e373e4fc89e2884598e73d04dc0b5a00d680b2668cc3",
+  "checked_facts": [
+    {
+      "fact": {
+        "sentence": "DPR 将检索实现为稠密双编码器：用编码器把段落映射为 d 维实向量并建索引[1, p.2]，训练数据为问题、正段落与若干负段落，以正段落的负对数似然为损失[1, p.3]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-7",
+          "ev-8"
+        ],
+        "source_quote": "Our dense passage retriever (DPR) uses a dense\nencoder EP (·) which maps any text passage to a d-\ndimensional real-valued vectors and builds an index\nfor all the M passages that we will use for retrieval.",
+        "reason": "ev-7逐字支持“编码器把段落映射为d维实向量并建索引”；ev-8逐字支持训练数据含问题、正段落与负段落并以正段落负对数似然为损失。该句合并两处连续引文，各分句均有对应来源。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "DPR 的消融显示，分别训练强检索器与阅读器的流水线在 Natural Questions 上取得 39.8 EM，并优于可比的联合训练方案[1, p.8]；因此不能把 DPR 描述为联合训练检索器与阅读器。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-6"
+        ],
+        "source_quote": "trained, following Lee et al. (2019). This approach\nobtains a score of 39.8 EM, which suggests that our\nstrategy of training a strong retriever and reader in\nisolation can leverage effectively available supervi-\nsion, while outperforming a comparable joint train-\ning approach with a simpler design (Appendix D).",
+        "reason": "ev-6逐字给出39.8 EM、分别训练强检索器与阅读器、优于可比联合训练方案，直接支持该句及其推论。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "RAG 把参数记忆（预训练 seq2seq）与非参数记忆（维基百科稠密向量索引）结合[2, p.1]，将检索文档视为隐变量，端到端训练检索器与生成器[2, p.3]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-9",
+          "ev-15"
+        ],
+        "source_quote": "To train the retriever and generator end-to-end, we treat the retrieved document as a latent variable.",
+        "reason": "ev-9逐字支持参数记忆为预训练seq2seq、非参数记忆为维基百科稠密向量索引；ev-15逐字支持将检索文档视为隐变量并端到端训练检索器与生成器。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "它给出 RAG-Sequence（各目标词共用同一文档）与 RAG-Token（各词可用不同文档）两种边缘化变体[2, p.3]，并在 FEVER 上不使用检索证据监督[2, p.5]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-15",
+          "ev-13"
+        ],
+        "source_quote": "In one approach, RAG-Sequence, the model uses the same document\nto predict each target token. The second approach, RAG-Token, can predict each target token based\non a different document.",
+        "reason": "ev-15逐字支持两种变体的定义；ev-13逐字支持FEVER上不使用检索证据监督（“we do not use supervision on retrieved evidence”）。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "FiD 采用两步流程：先检索支持段落，再由 seq2seq 生成答案[3, p.2]；编码器独立处理各段落，解码器联合融合，故称 Fusion-in-Decoder[3, p.3]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-20",
+          "ev-22"
+        ],
+        "source_quote": "It proceeds in two\nsteps, ﬁrst retrieving support passages before pro-\ncessing them with a sequence to sequence model.",
+        "reason": "ev-20逐字支持两步流程；ev-22逐字支持编码器独立处理段落、解码器联合融合并称Fusion-in-Decoder。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "RETRO 以冻结 BERT 检索器从万亿级 token 数据库按连续块检索，键为冻结 BERT 嵌入、值为原始文本块[4, p.2]；通过分块交叉注意力注入检索文本，复杂度随检索量线性增长[4, p.2]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-25",
+          "ev-29"
+        ],
+        "source_quote": "Our method ﬁrst\nconstructs a key-value database, where values store raw chunks of text tokens and keys are frozen\nBert embedddings (Devlin et al., 2019).",
+        "reason": "ev-25逐字支持按连续块检索、键为冻结BERT嵌入、值为原始文本块；ev-29逐字支持分块交叉注意力注入检索文本且时间复杂度随检索数据量线性增长。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "Self-RAG 让任意 LM 生成反思标记，与检索段落交错训练，反思标记由批评模型离线插入语料[5, p.2]；其目标是按需检索，而非固定数量段落[5, p.1]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-37",
+          "ev-31"
+        ],
+        "source_quote": "SELF-RAG trains an arbitrary LM to generate text with reflection tokens by unifying them as the\nnext token prediction from the expanded model vocabulary. We train our generator LM on a diverse\ncollection of text interleaved with reflection tokens and retrieved passages. Reflection tokens, inspired\nby reward models used in reinforcement learning (Ziegler et al., 2019; Ouyang et al., 2022), are\ninserted offline into the original corpus by a trained critic model.",
+        "reason": "ev-37逐字支持任意LM生成反思标记、与检索段落交错训练、反思标记由批评模型离线插入；ev-31逐字支持按需检索而非固定数量段落的目标。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "RAG 除 QA 外还研究开放域问题生成，提出更难的 Jeopardy 问题生成任务[2, p.5]；其 TriviaQA 采用 DPR 的数据划分，即公开 Web 开发集，而非官方维基测试集[2, p.18]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-11",
+          "ev-14"
+        ],
+        "source_quote": "For TriviaQA, this test dataset is the public\nTriviaQA Web Development split. Roberts et al. [52] used the TriviaQA ofﬁcial Wikipedia test set\ninstead.",
+        "reason": "ev-11逐字支持提出更难的Jeopardy问题生成任务；ev-14逐字支持TriviaQA采用公开Web开发集而非官方维基测试集。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "FiD 在 Natural Questions 与 TriviaQA 上报告新最优，且性能随检索段落数增加而显著提升[3, p.2][3, p.4]；NQ 开放域版本丢弃超过 5 个 token 的答案[3, p.3]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-18",
+          "ev-21"
+        ],
+        "source_quote": "While\nconceptually simple, this method sets new state-of-\nthe-art results on the TriviaQA and NaturalQues-\ntions benchmarks. In particular, we show that the\nperformance of our method signiﬁcantly improves\nwhen the number of retrieved passages increases.",
+        "reason": "ev-18逐字支持在TriviaQA与NQ上取得新最优且性能随检索段落数增加显著提升；ev-21逐字支持NQ开放域版本丢弃超过5个token的答案。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "RETRO 在 Pile 上以 25 倍更少参数取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]，并提出考虑测试文档与训练集邻近度的评测以处理泄漏[4, p.2]，在泄漏水平低至 α=12.5% 时仍优于基线[4, p.15]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-23",
+          "ev-30",
+          "ev-27"
+        ],
+        "source_quote": "On the other hand, Retro outperforms baseline models at all leakage levels, down to 𝛼= 12.5%.",
+        "reason": "ev-23逐字支持Pile上25倍更少参数取得与GPT-3、Jurassic-1可比性能；ev-30逐字支持提出考虑测试文档与训练集邻近度的泄漏评测；ev-27逐字支持在泄漏水平低至α=12.5%时仍优于基线。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LLM，部分指标超过 ChatGPT[5, p.8]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-34"
+        ],
+        "source_quote": "Our SELF-RAG (bottom two rows) demonstrates a substantial performance advantage\nover supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA,\nbiography generations, and ASQA (Rouge and MAUVE).",
+        "reason": "ev-34逐字支持Self-RAG在所有任务上优于监督微调LLM，并在PubHealth、PopQA、传记生成与ASQA上超过ChatGPT。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "DPR 在多个开放域 QA 数据集上评测稠密检索器[1, p.1]，并讨论 SQuAD 因缺少段落上下文而不理想[1, p.4]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-2",
+          "ev-5"
+        ],
+        "source_quote": "Although SQuAD\nhas been used previously for open-domain QA re-\nsearch, it is not ideal because many questions lack\ncontext in absence of the provided paragraph.",
+        "reason": "ev-2逐字支持在广泛开放域QA数据集上评测稠密检索器；ev-5逐字支持SQuAD因缺少段落上下文而不理想。"
+      },
+      "validation_issues": []
+    }
+  ],
+  "valid_facts": 12,
+  "rejected_facts": 0,
+  "verdict_counts": {
+    "supported": 12,
+    "contradicted": 0,
+    "not_in_evidence": 0,
+    "uncertain": 0
+  },
+  "limits": "same-provider sampled excerpt review, not human gold or exhaustive correctness",
+  "target_real_model_calls": 1,
+  "total_tokens": 8720,
+  "quota_exhausted": false
+}

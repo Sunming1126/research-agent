@@ -1,0 +1,69 @@
+{
+  "id": "r09",
+  "original_run": "p0-ce-regression-20261031-114751-fbbff3",
+  "original_run_preserved": true,
+  "summary": {
+    "stage": "regression",
+    "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-regression-20261031-114751-fbbff3",
+    "baseline_revision": "316c2d2c1b5c96c59b09fe906356f18d8d0364d8",
+    "application_source_unchanged_during_run": true,
+    "source_files": 45,
+    "target_model_calls": 0,
+    "native_harness_execution": false,
+    "result": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 69.662,
+      "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "tests": 417,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 7,
+      "passed": 410
+    }
+  },
+  "selected_artifact_map": [
+    {
+      "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_C-2_.json",
+      "exported": "regression/cases/case-8650b606d2b8.json",
+      "sha256": "091c127c5aeaf456b9d9b5bc074d392bd199605b0e3cbdab4a1c449dd64b39f2"
+    },
+    {
+      "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_E-3_.json",
+      "exported": "regression/cases/case-3301661c70f7.json",
+      "sha256": "298c29b45839d40a746650b962de9ee2e496276b71a13ec3d69962bcd32a5003"
+    },
+    {
+      "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_C_.json",
+      "exported": "regression/cases/case-be4e720c5774.json",
+      "sha256": "fba26e5900ebe3fa6386541497ceb78bc5b496d0ae80119c993e13c7cd8f651c"
+    },
+    {
+      "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_E_.json",
+      "exported": "regression/cases/case-2820fb3d1a0d.json",
+      "sha256": "bd86946ce1de8f1e0b268582172b22d7646da0498d6758d0c502dc029bdd8848"
+    },
+    {
+      "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_C_.json",
+      "exported": "regression/cases/case-52a9c3e34b73.json",
+      "sha256": "8ce853ab5a5db4d47abcab0364dd6c118c19d4773ce7bd789f439f588082bb21"
+    },
+    {
+      "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_E_.json",
+      "exported": "regression/cases/case-f4afc2fe8e37.json",
+      "sha256": "9a91a4dafebd1c6575ca804f6182609b3b34f4f350e2c388e002a871b6041448"
+    },
+    {
+      "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_C_.json",
+      "exported": "regression/cases/case-d22382adcd66.json",
+      "sha256": "03f0a1450c207ad1c1580d8e97e3cbb730fb9c7cf860b93839ab2873c79bf876"
+    },
+    {
+      "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_E_.json",
+      "exported": "regression/cases/case-72d2a6a17555.json",
+      "sha256": "3f6d9ce148431ee86b83d729267270643557f5179941f910730866d9dc5fd2fd"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "r03",
+  "original_run": "p0-ce-durability-baseline-20261031-115712-e239d9",
+  "original_run_preserved": true,
+  "summary": {
+    "stage": "baseline",
+    "suite": "durability",
+    "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-durability-baseline-20261031-115712-e239d9",
+    "baseline_revision": "6145a5cc151f02f587585e918a75a3716c70c0a5",
+    "application_source_unchanged_during_run": true,
+    "source_files": 45,
+    "target_model_calls": 0,
+    "native_harness_execution": false,
+    "result": {
+      "returncode": 1,
+      "timed_out": false,
+      "seconds": 1.995,
+      "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "tests": 5,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    }
+  },
+  "selected_artifact_map": [
+    {
+      "original": "baseline/temp/test_staging_sync_failure_cann1/output/data/synthetic-workspace/work/E-01/f66aa081dd1c4801818f9d369e5aaa8f/receipt.json",
+      "exported": "baseline/artifacts/12b5af36cedb-receipt.json",
+      "sha256": "b4ff6e516ca59d8a925688911bbe466e40d215a5ea045d7bd8fc2d4c6cdc43fe"
+    },
+    {
+      "original": "baseline/temp/test_staging_sync_failure_cann0/output/data/synthetic-workspace/work/C-01/2c5d23962aa2478b85f337cde9fd7785/receipt.json",
+      "exported": "baseline/artifacts/e49cd29839ab-receipt.json",
+      "sha256": "68b5cc29717c3f6c18bc50dd755061500840e39c24318b6e82d776707ea2e314"
+    },
+    {
+      "original": "baseline/temp/test_report_staging_syncs_all_1/output/data/synthetic-workspace/work/E-01/949de9b59b68488ba7f35a5b55be9b0c/receipt.json",
+      "exported": "baseline/artifacts/da789ebb1ae4-receipt.json",
+      "sha256": "8ad677ca70dbd066a0cfe68a768b1ca9e5c3ad2c3a5f193a3550b710c74c01ac"
+    },
+    {
+      "original": "baseline/temp/test_report_staging_syncs_all_0/output/data/synthetic-workspace/work/C-01/8f617433f1a148bfb4ede15f1c0d6da6/receipt.json",
+      "exported": "baseline/artifacts/ad16c5c36455-receipt.json",
+      "sha256": "5390bd802bdd9982de68f610673fb83036562608fe6f508194d69648be2eda1a"
+    }
+  ]
+}

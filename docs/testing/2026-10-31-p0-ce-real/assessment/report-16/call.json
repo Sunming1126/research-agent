@@ -1,0 +1,27 @@
+{
+  "provider": "magic",
+  "model": "deepseek-v4.1-flash",
+  "backend": "Existing magic API; native Harness workspace orchestration",
+  "real_model_call": true,
+  "requested_max_tokens": 3000,
+  "thinking": {
+    "type": "disabled"
+  },
+  "credentials_logged": false,
+  "profile_modified": false,
+  "native_orchestrator_session_id": null,
+  "seconds": 8.869,
+  "usage": {
+    "completion_tokens": 2653,
+    "prompt_tokens": 7767,
+    "total_tokens": 10420,
+    "prompt_tokens_details": {
+      "cached_tokens": 256
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "finish_reason": "stop",
+  "http_status": 200
+}

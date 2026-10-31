@@ -1,0 +1,16 @@
+{
+  "study": "p0-ce-real-20261031-160502-8957e1",
+  "script_sha256": "8defb7f1e20243ae8d1940b75726398843bbb7796b0ddfc3f3de3f8f89887149",
+  "system": "你是单独执行的事实核查员，不知道生成版本，不看生成器自审。只依据sources，不联网、不凭常识补证据。从report逐字摘出8至12条可检验的论文事实，尽量覆盖所有引用论文，优先核对方法归属、训练与推理、实验条件和量化结论。每条sentence必须为报告中连续原句。原创待验证方案与拟议参数不是论文实测，不能仅因尚未实验判假。verdict仅为supported/contradicted/not_in_evidence/uncertain。缺少摘录支持只表示not_in_evidence，不能据此断言原论文没做。supported/contradicted必须提供source_ids及一段逐字连续的source_quote，并解释支持/反驳关系；source_quote须完整包含在其中一个source_id的quote中，不要用省略号拼接。区分相关工作与作者贡献、否定、比较对象与条件。只输出JSON对象facts数组；每项sentence,verdict,source_ids,source_quote,reason。不得输出整体分数、满分或合格保证。",
+  "reports": "every completed report in all three paired rounds, no cherry-picking",
+  "sources": "complete per-report authorized evidence ledger; no source facts or self-audit",
+  "blinding": "payload has no variant, round, score, self-audit, paths or version",
+  "max_calls_per_report": 1,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 75,
+  "max_reports": 24,
+  "quote_validation": "NFKC and whitespace only; continuous exact text",
+  "assessment_errors": "retain raw response; reject invalid facts; never auto-rewrite",
+  "limits": "same-provider sampled excerpt review, not human gold or exhaustive correctness",
+  "official_score": null
+}

@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 1,
+  "model_issues": [
+    "正文称“RETRO 主要在 Pile 上以 2 万亿 token 数据库、较 GPT-3 少 25 倍参数取得可比表现[4, p.1]”，但证据 ev-23 原文是“With a 2 trillion token database... obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，2 万亿 token 指检索数据库规模而非“在 Pile 上”的语料，且可比对象含 Jurassic-1；该句把数据库规模与评测语料混同并漏掉比较对象，应改为“以 2 万亿 token 数据库、在 Pile 上较 GPT-3 与 Jurassic-1 少 25 倍参数取得可比表现”。; 正文称“RETRO 用分块交叉注意力注入检索文本，复杂度随检索量线性增长[4, p.2]”，证据 ev-29 原文为“chunked cross-attention module to incorporate the retrieved text (§2.4), with time complexity linear in the amount of retrieved data”，与正文一致；但同段前句“RETRO 则相反：键为冻结 BERT 嵌入，按连续 token 块检索，避免周期性重训检索器[4, p.2]”所引 ev-25 原文为“keys are frozen Bert embedddings... We use a frozen model to avoid having to periodically”，句子在“periodically”处截断，未出现“重训检索器”字样，属对截断引文的补全推断，应改为“避免周期性更新（原文截断处为 periodically）”，或补充完整引文后再断言。; 正文称“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LM，部分指标超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，即在这四项上超过 ChatGPT，而非“部分指标”；正文弱化为“部分指标”与原文范围不符，应改为“在上述四项任务上（ASQA 为 Rouge 与 MAUVE 指标）超过 ChatGPT”。",
+    "insufficient reserved budget for repair"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“RETRO 主要在 Pile 上以 2 万亿 token 数据库、较 GPT-3 少 25 倍参数取得可比表现[4, p.1]”，但证据 ev-23 原文是“With a 2 trillion token database... obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，2 万亿 token 指检索数据库规模而非“在 Pile 上”的语料，且可比对象含 Jurassic-1；该句把数据库规模与评测语料混同并漏掉比较对象，应改为“以 2 万亿 token 数据库、在 Pile 上较 GPT-3 与 Jurassic-1 少 25 倍参数取得可比表现”。",
+          "正文称“RETRO 用分块交叉注意力注入检索文本，复杂度随检索量线性增长[4, p.2]”，证据 ev-29 原文为“chunked cross-attention module to incorporate the retrieved text (§2.4), with time complexity linear in the amount of retrieved data”，与正文一致；但同段前句“RETRO 则相反：键为冻结 BERT 嵌入，按连续 token 块检索，避免周期性重训检索器[4, p.2]”所引 ev-25 原文为“keys are frozen Bert embedddings... We use a frozen model to avoid having to periodically”，句子在“periodically”处截断，未出现“重训检索器”字样，属对截断引文的补全推断，应改为“避免周期性更新（原文截断处为 periodically）”，或补充完整引文后再断言。",
+          "正文称“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LM，部分指标超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，即在这四项上超过 ChatGPT，而非“部分指标”；正文弱化为“部分指标”与原文范围不符，应改为“在上述四项任务上（ASQA 为 Rouge 与 MAUVE 指标）超过 ChatGPT”。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "正文称“RETRO 主要在 Pile 上以 2 万亿 token 数据库、较 GPT-3 少 25 倍参数取得可比表现[4, p.1]”，但证据 ev-23 原文是“With a 2 trillion token database... obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，2 万亿 token 指检索数据库规模而非“在 Pile 上”的语料，且可比对象含 Jurassic-1；该句把数据库规模与评测语料混同并漏掉比较对象，应改为“以 2 万亿 token 数据库、在 Pile 上较 GPT-3 与 Jurassic-1 少 25 倍参数取得可比表现”。; 正文称“RETRO 用分块交叉注意力注入检索文本，复杂度随检索量线性增长[4, p.2]”，证据 ev-29 原文为“chunked cross-attention module to incorporate the retrieved text (§2.4), with time complexity linear in the amount of retrieved data”，与正文一致；但同段前句“RETRO 则相反：键为冻结 BERT 嵌入，按连续 token 块检索，避免周期性重训检索器[4, p.2]”所引 ev-25 原文为“keys are frozen Bert embedddings... We use a frozen model to avoid having to periodically”，句子在“periodically”处截断，未出现“重训检索器”字样，属对截断引文的补全推断，应改为“避免周期性更新（原文截断处为 periodically）”，或补充完整引文后再断言。; 正文称“Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 等任务上优于监督微调 LM，部分指标超过 ChatGPT[5, p.8]”，证据 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，即在这四项上超过 ChatGPT，而非“部分指标”；正文弱化为“部分指标”与原文范围不符，应改为“在上述四项任务上（ASQA 为 Rouge 与 MAUVE 指标）超过 ChatGPT”。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "report",
+      "issues": [
+        "insufficient reserved budget for repair"
+      ]
+    }
+  ]
+}

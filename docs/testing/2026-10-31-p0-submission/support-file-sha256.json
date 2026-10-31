@@ -1,0 +1,54 @@
+{
+  "delivery-manifest.json": {
+    "sha256": "1bd8449cd467e2b7c6d223b08a74a4dc6d8036e6b28a240dec97187d83b1a0cc",
+    "bytes": 2740
+  },
+  "SHA256SUMS.txt": {
+    "sha256": "e4a5e9b70140460ce459d9b334d169fc7b973d1a74aecb88e2acd2b66a63c2c5",
+    "bytes": 120
+  },
+  "提交说明.md": {
+    "sha256": "437b9bffa5b2409ede7f6d199c848f7800007986610708f6f2d21d218aba8977",
+    "bytes": 3664
+  },
+  "请先阅读.txt": {
+    "sha256": "198f985587017db97fed690f2d28bddcd7afb4a6aadd48cf4ecbee2544e24dc9",
+    "bytes": 527
+  },
+  "队内交接/build-context-sha256.json": {
+    "sha256": "3982c8841da405702361a4ba70c1c95839298e780a8f95d71dd78b465a4729dc",
+    "bytes": 5015
+  },
+  "队内交接/independent-static-audit.json": {
+    "sha256": "d8e63f74ebac6ba8762719e53b22babdb4b147c5a3d47f7fe76663d8d5820392",
+    "bytes": 991
+  },
+  "队内交接/metrics.json": {
+    "sha256": "89b27cf5aadbc9c00f816a77ebf087d7c3e35f81517f76fcfcb62e8e855efd95",
+    "bytes": 4724
+  },
+  "队内交接/P0四项修复闭环.md": {
+    "sha256": "aa755ae0d7de322e3012792ea05f5250ff36c18601e443d7818c7f2b54bb5cad",
+    "bytes": 8193
+  },
+  "队内交接/P0真实模型重复验证与阶段决策.md": {
+    "sha256": "54fa6582c7b05b7ee4431148b785ae7413d0dbb5d74c301370129c8f417acf29",
+    "bytes": 8320
+  },
+  "队内交接/research-agent-a5fa363-exact-build-context.zip": {
+    "sha256": "7e5aa283c6eea055ca267b4b38c4dc32ed3d7c0dbf8e7c5b0d6d6ddf7a562e4c",
+    "bytes": 134797
+  },
+  "队内交接/research-agent-a5fa363-source-tests.zip": {
+    "sha256": "788daaab6bb3e1e90589a6a1838ba1d123f6d181ae60c23604fc663007356029",
+    "bytes": 234144
+  },
+  "队内交接/source-sha256.json": {
+    "sha256": "ca3cfcdb0d775b0efc0495f587735c8ba2c18eb7e7712aaaea27c4d4f9d87f26",
+    "bytes": 4842
+  },
+  "队内交接/定向内容复核.md": {
+    "sha256": "f3b308187c915efb95d0c8d86a8c931c80d9fe092927bfdcb605ca4b09ae23a4",
+    "bytes": 2286
+  }
+}

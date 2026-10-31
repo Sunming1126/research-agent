@@ -1,0 +1,23 @@
+{
+  "stage": "candidate",
+  "suite": "wire",
+  "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-wire-candidate-20261031-115354-30d0b5",
+  "baseline_revision": "eb42a3934972548af3e784e8d2a362c5e6654cf2",
+  "application_source_unchanged_during_run": true,
+  "source_files": 45,
+  "target_model_calls": 0,
+  "native_harness_execution": false,
+  "result": {
+    "returncode": 0,
+    "timed_out": false,
+    "seconds": 1.36,
+    "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+    "native_harness_execution": false,
+    "target_model_calls": 0,
+    "tests": 18,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 18
+  }
+}

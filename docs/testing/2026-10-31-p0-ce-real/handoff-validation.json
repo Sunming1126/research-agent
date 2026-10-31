@@ -1,0 +1,11 @@
+{
+  "execution": "Codex offline artifact validation, not another Agent regression",
+  "json_files_parsed": 279,
+  "real_jobs_verified": 24,
+  "fresh_native_tool_proofs_verified": 5,
+  "target_call_sum_verified": 91,
+  "target_token_sum_verified": 785961,
+  "pattern_scan_passed": true,
+  "full_requests_pdfs_profiles_excluded": true,
+  "model_calls_from_this_validator": 0
+}

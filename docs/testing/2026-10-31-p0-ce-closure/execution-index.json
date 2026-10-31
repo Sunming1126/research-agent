@@ -1,0 +1,1585 @@
+{
+  "runs": [
+    {
+      "id": "r01",
+      "original_run": "p0-ce-baseline-20261031-114142-d5ffaa",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "baseline",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-baseline-20261031-114142-d5ffaa",
+        "baseline_revision": "316c2d2c1b5c96c59b09fe906356f18d8d0364d8",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 1,
+          "seconds": 2.175,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 8,
+          "failures": 4,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 4
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "baseline/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_C-2_.json",
+          "exported": "baseline/cases/case-8650b606d2b8.json",
+          "sha256": "083d5c9bd2d41d95325ae9fc1c8290d30744ff240e1fe035572bc0239be083b1"
+        },
+        {
+          "original": "baseline/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_E-3_.json",
+          "exported": "baseline/cases/case-3301661c70f7.json",
+          "sha256": "319c8348973a711165c69167bb91437f4b1298f4bc12f4bc9fbfb0501d5181a0"
+        },
+        {
+          "original": "baseline/cases/test_current_valid_draft_survives_later_audit_timeout_C_.json",
+          "exported": "baseline/cases/case-be4e720c5774.json",
+          "sha256": "fba26e5900ebe3fa6386541497ceb78bc5b496d0ae80119c993e13c7cd8f651c"
+        },
+        {
+          "original": "baseline/cases/test_current_valid_draft_survives_later_audit_timeout_E_.json",
+          "exported": "baseline/cases/case-2820fb3d1a0d.json",
+          "sha256": "bd86946ce1de8f1e0b268582172b22d7646da0498d6758d0c502dc029bdd8848"
+        },
+        {
+          "original": "baseline/cases/test_legal_800_character_boundary_uses_no_additional_generation_C_.json",
+          "exported": "baseline/cases/case-52a9c3e34b73.json",
+          "sha256": "8ce853ab5a5db4d47abcab0364dd6c118c19d4773ce7bd789f439f588082bb21"
+        },
+        {
+          "original": "baseline/cases/test_legal_800_character_boundary_uses_no_additional_generation_E_.json",
+          "exported": "baseline/cases/case-f4afc2fe8e37.json",
+          "sha256": "9a91a4dafebd1c6575ca804f6182609b3b34f4f350e2c388e002a871b6041448"
+        },
+        {
+          "original": "baseline/cases/test_short_first_draft_recovers_within_existing_attempt_limit_C_.json",
+          "exported": "baseline/cases/case-d22382adcd66.json",
+          "sha256": "5722559f3600c631ace63f90872d8458044b3d52578cee3c5241634fe5b9cd83"
+        },
+        {
+          "original": "baseline/cases/test_short_first_draft_recovers_within_existing_attempt_limit_E_.json",
+          "exported": "baseline/cases/case-72d2a6a17555.json",
+          "sha256": "2dbda507efd15aa208a5d54e8ba664a92313a9d29d6bfc6ae2c3fa92de132b9d"
+        }
+      ]
+    },
+    {
+      "id": "r02",
+      "original_run": "p0-ce-candidate-20261031-114250-1b828b",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "candidate",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-candidate-20261031-114250-1b828b",
+        "baseline_revision": "316c2d2c1b5c96c59b09fe906356f18d8d0364d8",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 0,
+          "seconds": 1.341,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 8
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "candidate/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_C-2_.json",
+          "exported": "candidate/cases/case-8650b606d2b8.json",
+          "sha256": "091c127c5aeaf456b9d9b5bc074d392bd199605b0e3cbdab4a1c449dd64b39f2"
+        },
+        {
+          "original": "candidate/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_E-3_.json",
+          "exported": "candidate/cases/case-3301661c70f7.json",
+          "sha256": "298c29b45839d40a746650b962de9ee2e496276b71a13ec3d69962bcd32a5003"
+        },
+        {
+          "original": "candidate/cases/test_current_valid_draft_survives_later_audit_timeout_C_.json",
+          "exported": "candidate/cases/case-be4e720c5774.json",
+          "sha256": "fba26e5900ebe3fa6386541497ceb78bc5b496d0ae80119c993e13c7cd8f651c"
+        },
+        {
+          "original": "candidate/cases/test_current_valid_draft_survives_later_audit_timeout_E_.json",
+          "exported": "candidate/cases/case-2820fb3d1a0d.json",
+          "sha256": "bd86946ce1de8f1e0b268582172b22d7646da0498d6758d0c502dc029bdd8848"
+        },
+        {
+          "original": "candidate/cases/test_legal_800_character_boundary_uses_no_additional_generation_C_.json",
+          "exported": "candidate/cases/case-52a9c3e34b73.json",
+          "sha256": "8ce853ab5a5db4d47abcab0364dd6c118c19d4773ce7bd789f439f588082bb21"
+        },
+        {
+          "original": "candidate/cases/test_legal_800_character_boundary_uses_no_additional_generation_E_.json",
+          "exported": "candidate/cases/case-f4afc2fe8e37.json",
+          "sha256": "9a91a4dafebd1c6575ca804f6182609b3b34f4f350e2c388e002a871b6041448"
+        },
+        {
+          "original": "candidate/cases/test_short_first_draft_recovers_within_existing_attempt_limit_C_.json",
+          "exported": "candidate/cases/case-d22382adcd66.json",
+          "sha256": "03f0a1450c207ad1c1580d8e97e3cbb730fb9c7cf860b93839ab2873c79bf876"
+        },
+        {
+          "original": "candidate/cases/test_short_first_draft_recovers_within_existing_attempt_limit_E_.json",
+          "exported": "candidate/cases/case-72d2a6a17555.json",
+          "sha256": "3f6d9ce148431ee86b83d729267270643557f5179941f910730866d9dc5fd2fd"
+        }
+      ]
+    },
+    {
+      "id": "r03",
+      "original_run": "p0-ce-durability-baseline-20261031-115712-e239d9",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "baseline",
+        "suite": "durability",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-durability-baseline-20261031-115712-e239d9",
+        "baseline_revision": "6145a5cc151f02f587585e918a75a3716c70c0a5",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 1.995,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 5,
+          "failures": 4,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 1
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "baseline/temp/test_staging_sync_failure_cann1/output/data/synthetic-workspace/work/E-01/f66aa081dd1c4801818f9d369e5aaa8f/receipt.json",
+          "exported": "baseline/artifacts/12b5af36cedb-receipt.json",
+          "sha256": "b4ff6e516ca59d8a925688911bbe466e40d215a5ea045d7bd8fc2d4c6cdc43fe"
+        },
+        {
+          "original": "baseline/temp/test_staging_sync_failure_cann0/output/data/synthetic-workspace/work/C-01/2c5d23962aa2478b85f337cde9fd7785/receipt.json",
+          "exported": "baseline/artifacts/e49cd29839ab-receipt.json",
+          "sha256": "68b5cc29717c3f6c18bc50dd755061500840e39c24318b6e82d776707ea2e314"
+        },
+        {
+          "original": "baseline/temp/test_report_staging_syncs_all_1/output/data/synthetic-workspace/work/E-01/949de9b59b68488ba7f35a5b55be9b0c/receipt.json",
+          "exported": "baseline/artifacts/da789ebb1ae4-receipt.json",
+          "sha256": "8ad677ca70dbd066a0cfe68a768b1ca9e5c3ad2c3a5f193a3550b710c74c01ac"
+        },
+        {
+          "original": "baseline/temp/test_report_staging_syncs_all_0/output/data/synthetic-workspace/work/C-01/8f617433f1a148bfb4ede15f1c0d6da6/receipt.json",
+          "exported": "baseline/artifacts/ad16c5c36455-receipt.json",
+          "sha256": "5390bd802bdd9982de68f610673fb83036562608fe6f508194d69648be2eda1a"
+        }
+      ]
+    },
+    {
+      "id": "r04",
+      "original_run": "p0-ce-durability-candidate-20261031-115740-53b6ee",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "candidate",
+        "suite": "durability",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-durability-candidate-20261031-115740-53b6ee",
+        "baseline_revision": "6145a5cc151f02f587585e918a75a3716c70c0a5",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 1.764,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 5
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "candidate/temp/test_staging_sync_failure_cann1/output/data/synthetic-workspace/work/E-01/1cb2e1ef8be945278927eb1b2ac0a753/diagnostic-evidence.json",
+          "exported": "candidate/artifacts/40a9b73335c9-diagnostic-evidence.json",
+          "sha256": "5218c94bb578470a39b928385ca0cb6e95366a2aa85967bb5439d9cbceee594f"
+        },
+        {
+          "original": "candidate/temp/test_staging_sync_failure_cann1/output/data/synthetic-workspace/work/E-01/1cb2e1ef8be945278927eb1b2ac0a753/error.json",
+          "exported": "candidate/artifacts/64e12fde9feb-error.json",
+          "sha256": "ab4a62fa0a5f05485dc79da94a4a30207d5dc45b385f533d32efa46f7085707f"
+        },
+        {
+          "original": "candidate/temp/test_staging_sync_failure_cann1/output/data/synthetic-workspace/work/E-01/1cb2e1ef8be945278927eb1b2ac0a753/session.json",
+          "exported": "candidate/artifacts/0b5072392b60-session.json",
+          "sha256": "7f480def93ecf4248de8f12fcd14ccd4451ce11e6f7df85270087edf75b3c8d6"
+        },
+        {
+          "original": "candidate/temp/test_staging_sync_failure_cann0/output/data/synthetic-workspace/work/C-01/cd022cf3c5d848dab313e4007835faf2/diagnostic-evidence.json",
+          "exported": "candidate/artifacts/d940766a63b3-diagnostic-evidence.json",
+          "sha256": "f3448280b325792118ac68a930f6d7b8273379d2ba416f115d32760783566d23"
+        },
+        {
+          "original": "candidate/temp/test_staging_sync_failure_cann0/output/data/synthetic-workspace/work/C-01/cd022cf3c5d848dab313e4007835faf2/error.json",
+          "exported": "candidate/artifacts/056e5ad30da3-error.json",
+          "sha256": "fae28aa0fd8a33ec3c92f0cfe989b0f183b67c7c393ad32517c331368d1c942b"
+        },
+        {
+          "original": "candidate/temp/test_staging_sync_failure_cann0/output/data/synthetic-workspace/work/C-01/cd022cf3c5d848dab313e4007835faf2/session.json",
+          "exported": "candidate/artifacts/74bd1c8972ba-session.json",
+          "sha256": "b44df53990cf1bec10df6500d1f3b6d4d742a7c5787e1abec4e4afd421915673"
+        },
+        {
+          "original": "candidate/temp/test_report_staging_syncs_all_1/output/data/synthetic-workspace/work/E-01/b95829f7849f40eabbf0f933d3616903/receipt.json",
+          "exported": "candidate/artifacts/ea788f8b7c1f-receipt.json",
+          "sha256": "f38bbd315b9662ffad620146e3c3cd9dbc60d625412c021ffc3755a388e6278c"
+        },
+        {
+          "original": "candidate/temp/test_report_staging_syncs_all_0/output/data/synthetic-workspace/work/C-01/9995137998d64099b01411fc99ad5cdc/receipt.json",
+          "exported": "candidate/artifacts/b3179e378ae4-receipt.json",
+          "sha256": "2b7a1752eeece375e80661794557b34e43f7318c8985c656aa19fdb6ea8f493a"
+        }
+      ]
+    },
+    {
+      "id": "r05",
+      "original_run": "p0-ce-durability-regression-20261031-115825-97fd2e",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "regression",
+        "suite": "durability",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-durability-regression-20261031-115825-97fd2e",
+        "baseline_revision": "6145a5cc151f02f587585e918a75a3716c70c0a5",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 61.116,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 440,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 7,
+          "passed": 433
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_C-2_.json",
+          "exported": "regression/cases/case-8650b606d2b8.json",
+          "sha256": "091c127c5aeaf456b9d9b5bc074d392bd199605b0e3cbdab4a1c449dd64b39f2"
+        },
+        {
+          "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_E-3_.json",
+          "exported": "regression/cases/case-3301661c70f7.json",
+          "sha256": "298c29b45839d40a746650b962de9ee2e496276b71a13ec3d69962bcd32a5003"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-C_.json",
+          "exported": "regression/cases/case-20cd70913704.json",
+          "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-E_.json",
+          "exported": "regression/cases/case-a493ed73212a.json",
+          "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-C_.json",
+          "exported": "regression/cases/case-e133f632272a.json",
+          "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-E_.json",
+          "exported": "regression/cases/case-2ec9e9a58c9e.json",
+          "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-C_.json",
+          "exported": "regression/cases/case-826154f5d43d.json",
+          "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-E_.json",
+          "exported": "regression/cases/case-68c2bd787919.json",
+          "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-C_.json",
+          "exported": "regression/cases/case-58ef698ddc51.json",
+          "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-E_.json",
+          "exported": "regression/cases/case-4465d06059db.json",
+          "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-C_.json",
+          "exported": "regression/cases/case-b9fb93e25ea2.json",
+          "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-E_.json",
+          "exported": "regression/cases/case-50419437d1c6.json",
+          "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-C_.json",
+          "exported": "regression/cases/case-fcca83761d4b.json",
+          "sha256": "1ca840a7f79bbd8b3e8e2a4155319a2d15ea820b171df4ca2f054ac7000b2f55"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-E_.json",
+          "exported": "regression/cases/case-b56f7a1dc68a.json",
+          "sha256": "c54c3e85aa162f2cecad4ee3b34df64a79e0f42c8e18a5d65a91a48a32b2c0fd"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-C_.json",
+          "exported": "regression/cases/case-041ed6488bfe.json",
+          "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-E_.json",
+          "exported": "regression/cases/case-77694f0d2be6.json",
+          "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-C_.json",
+          "exported": "regression/cases/case-eac4a262484b.json",
+          "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-E_.json",
+          "exported": "regression/cases/case-fcfccad85a1e.json",
+          "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+        },
+        {
+          "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_C_.json",
+          "exported": "regression/cases/case-be4e720c5774.json",
+          "sha256": "fba26e5900ebe3fa6386541497ceb78bc5b496d0ae80119c993e13c7cd8f651c"
+        },
+        {
+          "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_E_.json",
+          "exported": "regression/cases/case-2820fb3d1a0d.json",
+          "sha256": "bd86946ce1de8f1e0b268582172b22d7646da0498d6758d0c502dc029bdd8848"
+        },
+        {
+          "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_C_.json",
+          "exported": "regression/cases/case-52a9c3e34b73.json",
+          "sha256": "8ce853ab5a5db4d47abcab0364dd6c118c19d4773ce7bd789f439f588082bb21"
+        },
+        {
+          "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_E_.json",
+          "exported": "regression/cases/case-f4afc2fe8e37.json",
+          "sha256": "9a91a4dafebd1c6575ca804f6182609b3b34f4f350e2c388e002a871b6041448"
+        },
+        {
+          "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_C_.json",
+          "exported": "regression/cases/case-d22382adcd66.json",
+          "sha256": "03f0a1450c207ad1c1580d8e97e3cbb730fb9c7cf860b93839ab2873c79bf876"
+        },
+        {
+          "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_E_.json",
+          "exported": "regression/cases/case-72d2a6a17555.json",
+          "sha256": "3f6d9ce148431ee86b83d729267270643557f5179941f910730866d9dc5fd2fd"
+        }
+      ]
+    },
+    {
+      "id": "r08",
+      "original_run": "p0-ce-regression-20261031-114300-3122cc",
+      "original_run_preserved": true,
+      "status": "timed_out_in_restricted_environment",
+      "timeout_seconds": 600,
+      "completed_tests": null,
+      "note": "Coordinator v1 raised TimeoutExpired before writing execution summary; no completed JUnit. Not passed.",
+      "selected_artifact_map": []
+    },
+    {
+      "id": "r09",
+      "original_run": "p0-ce-regression-20261031-114751-fbbff3",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "regression",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-regression-20261031-114751-fbbff3",
+        "baseline_revision": "316c2d2c1b5c96c59b09fe906356f18d8d0364d8",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 69.662,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 417,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 7,
+          "passed": 410
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_C-2_.json",
+          "exported": "regression/cases/case-8650b606d2b8.json",
+          "sha256": "091c127c5aeaf456b9d9b5bc074d392bd199605b0e3cbdab4a1c449dd64b39f2"
+        },
+        {
+          "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_E-3_.json",
+          "exported": "regression/cases/case-3301661c70f7.json",
+          "sha256": "298c29b45839d40a746650b962de9ee2e496276b71a13ec3d69962bcd32a5003"
+        },
+        {
+          "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_C_.json",
+          "exported": "regression/cases/case-be4e720c5774.json",
+          "sha256": "fba26e5900ebe3fa6386541497ceb78bc5b496d0ae80119c993e13c7cd8f651c"
+        },
+        {
+          "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_E_.json",
+          "exported": "regression/cases/case-2820fb3d1a0d.json",
+          "sha256": "bd86946ce1de8f1e0b268582172b22d7646da0498d6758d0c502dc029bdd8848"
+        },
+        {
+          "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_C_.json",
+          "exported": "regression/cases/case-52a9c3e34b73.json",
+          "sha256": "8ce853ab5a5db4d47abcab0364dd6c118c19d4773ce7bd789f439f588082bb21"
+        },
+        {
+          "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_E_.json",
+          "exported": "regression/cases/case-f4afc2fe8e37.json",
+          "sha256": "9a91a4dafebd1c6575ca804f6182609b3b34f4f350e2c388e002a871b6041448"
+        },
+        {
+          "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_C_.json",
+          "exported": "regression/cases/case-d22382adcd66.json",
+          "sha256": "03f0a1450c207ad1c1580d8e97e3cbb730fb9c7cf860b93839ab2873c79bf876"
+        },
+        {
+          "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_E_.json",
+          "exported": "regression/cases/case-72d2a6a17555.json",
+          "sha256": "3f6d9ce148431ee86b83d729267270643557f5179941f910730866d9dc5fd2fd"
+        }
+      ]
+    },
+    {
+      "id": "r10",
+      "original_run": "p0-ce-retry-baseline-20261031-120103-aebd3b",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "baseline",
+        "suite": "retry",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-retry-baseline-20261031-120103-aebd3b",
+        "baseline_revision": "c9c079d3c0c0371d0b369400ed9892096b05939d",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 2.409,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 6,
+          "failures": 4,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 2
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "baseline/temp/test_transient_staging_failure1/output/data/synthetic-workspace/work/E-01/b5df1ec459f74072ba7576ea26b77f6d/diagnostic-evidence.json",
+          "exported": "baseline/artifacts/9a58a4fe5ba8-diagnostic-evidence.json",
+          "sha256": "e45787930ae684c837346a68350e5ad6426f11fa8450b5a985ac7e2d05c3ee49"
+        },
+        {
+          "original": "baseline/temp/test_transient_staging_failure1/output/data/synthetic-workspace/work/E-01/b5df1ec459f74072ba7576ea26b77f6d/error.json",
+          "exported": "baseline/artifacts/d6ca56ef9382-error.json",
+          "sha256": "712319b9e83637d38b03f97f48d65ee003ea23c13f4b0371a0a1653eae340fe6"
+        },
+        {
+          "original": "baseline/temp/test_transient_staging_failure1/output/data/synthetic-workspace/work/E-01/b5df1ec459f74072ba7576ea26b77f6d/session.json",
+          "exported": "baseline/artifacts/dbd03ffd3d91-session.json",
+          "sha256": "48cdabe9ca56644862fb9df856aeed8fcb9980688837c388ad01ade0d40c419b"
+        },
+        {
+          "original": "baseline/temp/test_transient_staging_failure0/output/data/synthetic-workspace/work/C-01/6fa7876f52c04694b375995195a45ae8/diagnostic-evidence.json",
+          "exported": "baseline/artifacts/dd8fbde988fd-diagnostic-evidence.json",
+          "sha256": "70f9188f45b109da94f5bbc0207758b71b4c18a8e224188d6b1ea0329463dad5"
+        },
+        {
+          "original": "baseline/temp/test_transient_staging_failure0/output/data/synthetic-workspace/work/C-01/6fa7876f52c04694b375995195a45ae8/error.json",
+          "exported": "baseline/artifacts/189145852c90-error.json",
+          "sha256": "bc3a1f0cde1d9646867e7dfabdae741f9f0668a31e7228f0d73102df3f8f7c81"
+        },
+        {
+          "original": "baseline/temp/test_transient_staging_failure0/output/data/synthetic-workspace/work/C-01/6fa7876f52c04694b375995195a45ae8/session.json",
+          "exported": "baseline/artifacts/26ea31d725de-session.json",
+          "sha256": "65cd5819ad8242b4fa9de6953913c088182de7a3832fb2db1179d3489960620b"
+        },
+        {
+          "original": "baseline/temp/test_permission_failure_is_not1/output/data/synthetic-workspace/work/E-01/c0e7087666d442df96480843354bb465/diagnostic-evidence.json",
+          "exported": "baseline/artifacts/fe599e859912-diagnostic-evidence.json",
+          "sha256": "3cbb82ec627371862beb6d66f8d2e60b98d0e307e889a9c7477d078f57df2923"
+        },
+        {
+          "original": "baseline/temp/test_permission_failure_is_not1/output/data/synthetic-workspace/work/E-01/c0e7087666d442df96480843354bb465/error.json",
+          "exported": "baseline/artifacts/a3725aa00fe4-error.json",
+          "sha256": "8cf088b16fe2d35328c3bb132145f03319575587ddc0d72d467a7b3ed1358419"
+        },
+        {
+          "original": "baseline/temp/test_permission_failure_is_not1/output/data/synthetic-workspace/work/E-01/c0e7087666d442df96480843354bb465/session.json",
+          "exported": "baseline/artifacts/ce877d1ef91b-session.json",
+          "sha256": "b52d1f12897a1f50657dc7206903247292ae0cb87c3dd0a7168f544b1946c2af"
+        },
+        {
+          "original": "baseline/temp/test_permission_failure_is_not0/output/data/synthetic-workspace/work/C-01/1174ed5b75f146e4bf8b11154d9787d4/diagnostic-evidence.json",
+          "exported": "baseline/artifacts/ffd9860ec38c-diagnostic-evidence.json",
+          "sha256": "2b84e92447de20743764091fb325cd0e33adb60651a93643de0c4c22eb2778e8"
+        },
+        {
+          "original": "baseline/temp/test_permission_failure_is_not0/output/data/synthetic-workspace/work/C-01/1174ed5b75f146e4bf8b11154d9787d4/error.json",
+          "exported": "baseline/artifacts/6174f1224dd0-error.json",
+          "sha256": "14bd3d8203a71db0a026a90693f14d4cfc006985098dda55bd25ec97a92f7cd8"
+        },
+        {
+          "original": "baseline/temp/test_permission_failure_is_not0/output/data/synthetic-workspace/work/C-01/1174ed5b75f146e4bf8b11154d9787d4/session.json",
+          "exported": "baseline/artifacts/b9b64b6c328b-session.json",
+          "sha256": "1279b21ddbc8ab3616968a04683d1353a1fb99a7fbfbceefde64340be3de81a7"
+        },
+        {
+          "original": "baseline/temp/test_permanent_staging_io_fail1/output/data/synthetic-workspace/work/E-01/c5869f63a9934a8486286aa16eaf319e/diagnostic-evidence.json",
+          "exported": "baseline/artifacts/07ed9a5b8387-diagnostic-evidence.json",
+          "sha256": "95ac2adb1b6a8fc3297a1e4d4d90d5c78b5454bf1cfec99c0020ecc2d101333e"
+        },
+        {
+          "original": "baseline/temp/test_permanent_staging_io_fail1/output/data/synthetic-workspace/work/E-01/c5869f63a9934a8486286aa16eaf319e/error.json",
+          "exported": "baseline/artifacts/d440537f0a51-error.json",
+          "sha256": "979fd0101b7f11a0afbbd21c4c9f7ede85e6439f25ec0016fa3cf89363c4e6af"
+        },
+        {
+          "original": "baseline/temp/test_permanent_staging_io_fail1/output/data/synthetic-workspace/work/E-01/c5869f63a9934a8486286aa16eaf319e/session.json",
+          "exported": "baseline/artifacts/2eed1754de96-session.json",
+          "sha256": "5d3168288c2a33405b4b77a27e1766b7ce5d033e538bbfe65d2ddd47625a8b57"
+        },
+        {
+          "original": "baseline/temp/test_permanent_staging_io_fail0/output/data/synthetic-workspace/work/C-01/00bddc5aeb6d4a8fa52ade19b2f8ddd8/diagnostic-evidence.json",
+          "exported": "baseline/artifacts/e42f260f032a-diagnostic-evidence.json",
+          "sha256": "8d017258d5bd85b3f83ba72f2b3fa3ca4fe7a347a7ff0c4301aebaa81ceccf79"
+        },
+        {
+          "original": "baseline/temp/test_permanent_staging_io_fail0/output/data/synthetic-workspace/work/C-01/00bddc5aeb6d4a8fa52ade19b2f8ddd8/error.json",
+          "exported": "baseline/artifacts/353860d2083e-error.json",
+          "sha256": "a324829baf3d083ce73e8142e9f659c3f7429699d56d48a2949f000c502ff930"
+        },
+        {
+          "original": "baseline/temp/test_permanent_staging_io_fail0/output/data/synthetic-workspace/work/C-01/00bddc5aeb6d4a8fa52ade19b2f8ddd8/session.json",
+          "exported": "baseline/artifacts/d583b9aab390-session.json",
+          "sha256": "5c865724f741d278cf51ae425bd8dbfc98c8392ec19b3ab03c9fa9d1d26dc1a3"
+        }
+      ]
+    },
+    {
+      "id": "r11",
+      "original_run": "p0-ce-retry-candidate-20261031-120139-fa5b0a",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "candidate",
+        "suite": "retry",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-retry-candidate-20261031-120139-fa5b0a",
+        "baseline_revision": "c9c079d3c0c0371d0b369400ed9892096b05939d",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 2.146,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 6
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "candidate/temp/test_transient_staging_failure1/output/data/synthetic-workspace/work/E-01/1e91e07f8a124988ba9afd5cd110a6aa/receipt.json",
+          "exported": "candidate/artifacts/f756911a72b1-receipt.json",
+          "sha256": "9ba29463827aec9be3568125cd605ec0eef5633cb98a9bb88a132bfe2817b36b"
+        },
+        {
+          "original": "candidate/temp/test_transient_staging_failure1/output/data/synthetic-workspace/work/E-01/1e91e07f8a124988ba9afd5cd110a6aa/storage-recovery.json",
+          "exported": "candidate/artifacts/44f9064be232-storage-recovery.json",
+          "sha256": "b4ff371f2f2d397b7a3d1a92d711c76fb6d77768a8f01d01a19f87acb47b2878"
+        },
+        {
+          "original": "candidate/temp/test_transient_staging_failure0/output/data/synthetic-workspace/work/C-01/59bb216aac3d4b559b047897bd0f1585/receipt.json",
+          "exported": "candidate/artifacts/c5ac96162a09-receipt.json",
+          "sha256": "be24165e842d5fa29c5d092187a7238367a46c7c4fa695bad3b205399d53a353"
+        },
+        {
+          "original": "candidate/temp/test_transient_staging_failure0/output/data/synthetic-workspace/work/C-01/59bb216aac3d4b559b047897bd0f1585/storage-recovery.json",
+          "exported": "candidate/artifacts/9930caf63208-storage-recovery.json",
+          "sha256": "4770b5e6984b145bfb414ba40d451970936d9cdb73793c653f70962a0abf170f"
+        },
+        {
+          "original": "candidate/temp/test_permission_failure_is_not1/output/data/synthetic-workspace/work/E-01/e1292a3d6ce6439891b5c60b2d882940/diagnostic-evidence.json",
+          "exported": "candidate/artifacts/5aa4938a1341-diagnostic-evidence.json",
+          "sha256": "e738b25c33dd5587ca20f4ca9879b286d0f610224042a8dc05721a8f9997e4e5"
+        },
+        {
+          "original": "candidate/temp/test_permission_failure_is_not1/output/data/synthetic-workspace/work/E-01/e1292a3d6ce6439891b5c60b2d882940/error.json",
+          "exported": "candidate/artifacts/b16da02bbb66-error.json",
+          "sha256": "8cf088b16fe2d35328c3bb132145f03319575587ddc0d72d467a7b3ed1358419"
+        },
+        {
+          "original": "candidate/temp/test_permission_failure_is_not1/output/data/synthetic-workspace/work/E-01/e1292a3d6ce6439891b5c60b2d882940/session.json",
+          "exported": "candidate/artifacts/fec10c30e42d-session.json",
+          "sha256": "37d9571e47f1543bdb5432b8bdead0cd3edcb57739bc8671c5dfda63db4edc3a"
+        },
+        {
+          "original": "candidate/temp/test_permission_failure_is_not0/output/data/synthetic-workspace/work/C-01/ea7feab8f7814c858deb75a46e6d3c25/diagnostic-evidence.json",
+          "exported": "candidate/artifacts/fb4fac917d85-diagnostic-evidence.json",
+          "sha256": "7a5044c1d93eb0293ced513b0db26cec3d0ca5355b28bc40b816b92cb8cae594"
+        },
+        {
+          "original": "candidate/temp/test_permission_failure_is_not0/output/data/synthetic-workspace/work/C-01/ea7feab8f7814c858deb75a46e6d3c25/error.json",
+          "exported": "candidate/artifacts/756e9ef0f0f2-error.json",
+          "sha256": "14bd3d8203a71db0a026a90693f14d4cfc006985098dda55bd25ec97a92f7cd8"
+        },
+        {
+          "original": "candidate/temp/test_permission_failure_is_not0/output/data/synthetic-workspace/work/C-01/ea7feab8f7814c858deb75a46e6d3c25/session.json",
+          "exported": "candidate/artifacts/342e0a124cbe-session.json",
+          "sha256": "b424e3f8d52fa78d0d2f3be7d9541e32c8ec44d88d923027298dfc49001529b5"
+        },
+        {
+          "original": "candidate/temp/test_permanent_staging_io_fail1/output/data/synthetic-workspace/work/E-01/80c2a2d964144005a7ed5e13ffda8a09/diagnostic-evidence.json",
+          "exported": "candidate/artifacts/071a3dc3bf9d-diagnostic-evidence.json",
+          "sha256": "5f8a25d4208df5333881c4b3bfa7beb9d23e1afd422a8199bcce8e29b4216c40"
+        },
+        {
+          "original": "candidate/temp/test_permanent_staging_io_fail1/output/data/synthetic-workspace/work/E-01/80c2a2d964144005a7ed5e13ffda8a09/error.json",
+          "exported": "candidate/artifacts/53f61408e8b1-error.json",
+          "sha256": "979fd0101b7f11a0afbbd21c4c9f7ede85e6439f25ec0016fa3cf89363c4e6af"
+        },
+        {
+          "original": "candidate/temp/test_permanent_staging_io_fail1/output/data/synthetic-workspace/work/E-01/80c2a2d964144005a7ed5e13ffda8a09/session.json",
+          "exported": "candidate/artifacts/a2f230934a3f-session.json",
+          "sha256": "a889f30452e5a359206df2e64d87f72cbb9dc1c54fe2c377814171fadb8727b9"
+        },
+        {
+          "original": "candidate/temp/test_permanent_staging_io_fail1/output/data/synthetic-workspace/work/E-01/80c2a2d964144005a7ed5e13ffda8a09/storage-recovery.json",
+          "exported": "candidate/artifacts/ce3670908ac9-storage-recovery.json",
+          "sha256": "b4ff371f2f2d397b7a3d1a92d711c76fb6d77768a8f01d01a19f87acb47b2878"
+        },
+        {
+          "original": "candidate/temp/test_permanent_staging_io_fail0/output/data/synthetic-workspace/work/C-01/94f0c16362e44a38ad62f3bb99f598bc/diagnostic-evidence.json",
+          "exported": "candidate/artifacts/f4866a2cb449-diagnostic-evidence.json",
+          "sha256": "bb6d5a5d4f30e667c2a7c6a9d7ac81f8f87f570a90cddb1692b3881b269257a7"
+        },
+        {
+          "original": "candidate/temp/test_permanent_staging_io_fail0/output/data/synthetic-workspace/work/C-01/94f0c16362e44a38ad62f3bb99f598bc/error.json",
+          "exported": "candidate/artifacts/bef0e73ede5e-error.json",
+          "sha256": "a324829baf3d083ce73e8142e9f659c3f7429699d56d48a2949f000c502ff930"
+        },
+        {
+          "original": "candidate/temp/test_permanent_staging_io_fail0/output/data/synthetic-workspace/work/C-01/94f0c16362e44a38ad62f3bb99f598bc/session.json",
+          "exported": "candidate/artifacts/f58e5247bc3c-session.json",
+          "sha256": "02249d0192968e5edf0c1888d2608b122548d5f7d1fa046bd0a9e9c176e6f5b0"
+        },
+        {
+          "original": "candidate/temp/test_permanent_staging_io_fail0/output/data/synthetic-workspace/work/C-01/94f0c16362e44a38ad62f3bb99f598bc/storage-recovery.json",
+          "exported": "candidate/artifacts/1d3cc4d7dad9-storage-recovery.json",
+          "sha256": "4770b5e6984b145bfb414ba40d451970936d9cdb73793c653f70962a0abf170f"
+        }
+      ]
+    },
+    {
+      "id": "r12",
+      "original_run": "p0-ce-retry-regression-20261031-120145-aa5e27",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "regression",
+        "suite": "retry",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-retry-regression-20261031-120145-aa5e27",
+        "baseline_revision": "c9c079d3c0c0371d0b369400ed9892096b05939d",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 60.058,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 446,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 7,
+          "passed": 439
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_C-2_.json",
+          "exported": "regression/cases/case-8650b606d2b8.json",
+          "sha256": "091c127c5aeaf456b9d9b5bc074d392bd199605b0e3cbdab4a1c449dd64b39f2"
+        },
+        {
+          "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_E-3_.json",
+          "exported": "regression/cases/case-3301661c70f7.json",
+          "sha256": "298c29b45839d40a746650b962de9ee2e496276b71a13ec3d69962bcd32a5003"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-C_.json",
+          "exported": "regression/cases/case-20cd70913704.json",
+          "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-E_.json",
+          "exported": "regression/cases/case-a493ed73212a.json",
+          "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-C_.json",
+          "exported": "regression/cases/case-e133f632272a.json",
+          "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-E_.json",
+          "exported": "regression/cases/case-2ec9e9a58c9e.json",
+          "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-C_.json",
+          "exported": "regression/cases/case-826154f5d43d.json",
+          "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-E_.json",
+          "exported": "regression/cases/case-68c2bd787919.json",
+          "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-C_.json",
+          "exported": "regression/cases/case-58ef698ddc51.json",
+          "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-E_.json",
+          "exported": "regression/cases/case-4465d06059db.json",
+          "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-C_.json",
+          "exported": "regression/cases/case-b9fb93e25ea2.json",
+          "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-E_.json",
+          "exported": "regression/cases/case-50419437d1c6.json",
+          "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-C_.json",
+          "exported": "regression/cases/case-fcca83761d4b.json",
+          "sha256": "1ca840a7f79bbd8b3e8e2a4155319a2d15ea820b171df4ca2f054ac7000b2f55"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-E_.json",
+          "exported": "regression/cases/case-b56f7a1dc68a.json",
+          "sha256": "c54c3e85aa162f2cecad4ee3b34df64a79e0f42c8e18a5d65a91a48a32b2c0fd"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-C_.json",
+          "exported": "regression/cases/case-041ed6488bfe.json",
+          "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-E_.json",
+          "exported": "regression/cases/case-77694f0d2be6.json",
+          "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-C_.json",
+          "exported": "regression/cases/case-eac4a262484b.json",
+          "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-E_.json",
+          "exported": "regression/cases/case-fcfccad85a1e.json",
+          "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+        },
+        {
+          "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_C_.json",
+          "exported": "regression/cases/case-be4e720c5774.json",
+          "sha256": "fba26e5900ebe3fa6386541497ceb78bc5b496d0ae80119c993e13c7cd8f651c"
+        },
+        {
+          "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_E_.json",
+          "exported": "regression/cases/case-2820fb3d1a0d.json",
+          "sha256": "bd86946ce1de8f1e0b268582172b22d7646da0498d6758d0c502dc029bdd8848"
+        },
+        {
+          "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_C_.json",
+          "exported": "regression/cases/case-52a9c3e34b73.json",
+          "sha256": "8ce853ab5a5db4d47abcab0364dd6c118c19d4773ce7bd789f439f588082bb21"
+        },
+        {
+          "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_E_.json",
+          "exported": "regression/cases/case-f4afc2fe8e37.json",
+          "sha256": "9a91a4dafebd1c6575ca804f6182609b3b34f4f350e2c388e002a871b6041448"
+        },
+        {
+          "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_C_.json",
+          "exported": "regression/cases/case-d22382adcd66.json",
+          "sha256": "03f0a1450c207ad1c1580d8e97e3cbb730fb9c7cf860b93839ab2873c79bf876"
+        },
+        {
+          "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_E_.json",
+          "exported": "regression/cases/case-72d2a6a17555.json",
+          "sha256": "3f6d9ce148431ee86b83d729267270643557f5179941f910730866d9dc5fd2fd"
+        }
+      ]
+    },
+    {
+      "id": "r13",
+      "original_run": "p0-ce-sdk-diagnostic-20261031-114729-5351e5",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "sdk-diagnostic",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-sdk-diagnostic-20261031-114729-5351e5",
+        "baseline_revision": "316c2d2c1b5c96c59b09fe906356f18d8d0364d8",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 4.073,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 1
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "sdk-diagnostic/temp/test_one_unusable_or_non_pdf_f0/output/data/platform-workspace/work/B-01/0ace4d41f68e461c95507368e62f4b87/receipt.json",
+          "exported": "sdk-diagnostic/artifacts/38250d88ecde-receipt.json",
+          "sha256": "211cc9406c9f1f4f4ee860fb3571d3a38b0cdb9f9f50a00e19fdd8c6f85369b9"
+        }
+      ]
+    },
+    {
+      "id": "r14",
+      "original_run": "p0-ce-wire-baseline-20261031-115048-1ba297",
+      "original_run_preserved": true,
+      "status": "stopped_in_restricted_environment",
+      "completed_tests": null,
+      "note": "Owned blocked wire baseline stopped after same baseline completed with normal permissions; not passed.",
+      "selected_artifact_map": []
+    },
+    {
+      "id": "r15",
+      "original_run": "p0-ce-wire-baseline-20261031-115127-a439c6",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "baseline",
+        "suite": "wire",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-wire-baseline-20261031-115127-a439c6",
+        "baseline_revision": "eb42a3934972548af3e784e8d2a362c5e6654cf2",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 1.569,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 16,
+          "failures": 14,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 2
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-C_.json",
+          "exported": "baseline/cases/case-20cd70913704.json",
+          "sha256": "6d6a3c4ff2b69b113813a19d19071621702b6167cd8b3a5f7c0a0edb9a21079c"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-E_.json",
+          "exported": "baseline/cases/case-a493ed73212a.json",
+          "sha256": "cce0a8c8e5494da3478922c3229667aa1e34047ed8853cdc208841d5034364f0"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-C_.json",
+          "exported": "baseline/cases/case-e133f632272a.json",
+          "sha256": "0d94eba92b8a2c0a74ab7fc4e0d3dbdd93f7fb5aeb8a35d524e9675274c17621"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-E_.json",
+          "exported": "baseline/cases/case-2ec9e9a58c9e.json",
+          "sha256": "0d94eba92b8a2c0a74ab7fc4e0d3dbdd93f7fb5aeb8a35d524e9675274c17621"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-C_.json",
+          "exported": "baseline/cases/case-826154f5d43d.json",
+          "sha256": "c7383559f207fcec5d174d20221b8a027fde9ae0bf50000ffb3e6fe831f17fa3"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-E_.json",
+          "exported": "baseline/cases/case-68c2bd787919.json",
+          "sha256": "9e4ca145391eaa0dd8981bbc0dc740eced2ec0cf7bc870d9ec9718636c4b2e5e"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-C_.json",
+          "exported": "baseline/cases/case-58ef698ddc51.json",
+          "sha256": "75beb5e76cba4130d4f3ede15a7d2da8598305acebcd3ff13487b90c285e803a"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-E_.json",
+          "exported": "baseline/cases/case-4465d06059db.json",
+          "sha256": "75beb5e76cba4130d4f3ede15a7d2da8598305acebcd3ff13487b90c285e803a"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-C_.json",
+          "exported": "baseline/cases/case-b9fb93e25ea2.json",
+          "sha256": "9a5961b6eece17ca2f93c8b627fbdc7b0be16b56ca0bb6ba5262dfda46a0397e"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-E_.json",
+          "exported": "baseline/cases/case-50419437d1c6.json",
+          "sha256": "9a5961b6eece17ca2f93c8b627fbdc7b0be16b56ca0bb6ba5262dfda46a0397e"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-C_.json",
+          "exported": "baseline/cases/case-fcca83761d4b.json",
+          "sha256": "1ca840a7f79bbd8b3e8e2a4155319a2d15ea820b171df4ca2f054ac7000b2f55"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-E_.json",
+          "exported": "baseline/cases/case-b56f7a1dc68a.json",
+          "sha256": "c54c3e85aa162f2cecad4ee3b34df64a79e0f42c8e18a5d65a91a48a32b2c0fd"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-C_.json",
+          "exported": "baseline/cases/case-041ed6488bfe.json",
+          "sha256": "76e39bccaddf577c94644f528405047e3887aa09618ae74c2457b546b6176533"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-E_.json",
+          "exported": "baseline/cases/case-77694f0d2be6.json",
+          "sha256": "a5f9a647508c775d2749c232b99cf0d26255a0f012acf8e95bf263da7033858e"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-C_.json",
+          "exported": "baseline/cases/case-eac4a262484b.json",
+          "sha256": "cac83184393c7d64211ba5b53103083237d1b4c43a454ab3dfc5251cc15e5d2c"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-E_.json",
+          "exported": "baseline/cases/case-fcfccad85a1e.json",
+          "sha256": "cac83184393c7d64211ba5b53103083237d1b4c43a454ab3dfc5251cc15e5d2c"
+        }
+      ]
+    },
+    {
+      "id": "r16",
+      "original_run": "p0-ce-wire-baseline-20261031-115336-76e02e",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "baseline",
+        "suite": "wire",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-wire-baseline-20261031-115336-76e02e",
+        "baseline_revision": "eb42a3934972548af3e784e8d2a362c5e6654cf2",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 1.927,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 18,
+          "failures": 16,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 2
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-C_.json",
+          "exported": "baseline/cases/case-20cd70913704.json",
+          "sha256": "6d6a3c4ff2b69b113813a19d19071621702b6167cd8b3a5f7c0a0edb9a21079c"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-E_.json",
+          "exported": "baseline/cases/case-a493ed73212a.json",
+          "sha256": "cce0a8c8e5494da3478922c3229667aa1e34047ed8853cdc208841d5034364f0"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-C_.json",
+          "exported": "baseline/cases/case-e133f632272a.json",
+          "sha256": "0d94eba92b8a2c0a74ab7fc4e0d3dbdd93f7fb5aeb8a35d524e9675274c17621"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-E_.json",
+          "exported": "baseline/cases/case-2ec9e9a58c9e.json",
+          "sha256": "0d94eba92b8a2c0a74ab7fc4e0d3dbdd93f7fb5aeb8a35d524e9675274c17621"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-C_.json",
+          "exported": "baseline/cases/case-826154f5d43d.json",
+          "sha256": "c7383559f207fcec5d174d20221b8a027fde9ae0bf50000ffb3e6fe831f17fa3"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-E_.json",
+          "exported": "baseline/cases/case-68c2bd787919.json",
+          "sha256": "9e4ca145391eaa0dd8981bbc0dc740eced2ec0cf7bc870d9ec9718636c4b2e5e"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-C_.json",
+          "exported": "baseline/cases/case-58ef698ddc51.json",
+          "sha256": "75beb5e76cba4130d4f3ede15a7d2da8598305acebcd3ff13487b90c285e803a"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-E_.json",
+          "exported": "baseline/cases/case-4465d06059db.json",
+          "sha256": "75beb5e76cba4130d4f3ede15a7d2da8598305acebcd3ff13487b90c285e803a"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-C_.json",
+          "exported": "baseline/cases/case-b9fb93e25ea2.json",
+          "sha256": "9a5961b6eece17ca2f93c8b627fbdc7b0be16b56ca0bb6ba5262dfda46a0397e"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-E_.json",
+          "exported": "baseline/cases/case-50419437d1c6.json",
+          "sha256": "9a5961b6eece17ca2f93c8b627fbdc7b0be16b56ca0bb6ba5262dfda46a0397e"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-C_.json",
+          "exported": "baseline/cases/case-fcca83761d4b.json",
+          "sha256": "1ca840a7f79bbd8b3e8e2a4155319a2d15ea820b171df4ca2f054ac7000b2f55"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-E_.json",
+          "exported": "baseline/cases/case-b56f7a1dc68a.json",
+          "sha256": "c54c3e85aa162f2cecad4ee3b34df64a79e0f42c8e18a5d65a91a48a32b2c0fd"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-C_.json",
+          "exported": "baseline/cases/case-041ed6488bfe.json",
+          "sha256": "76e39bccaddf577c94644f528405047e3887aa09618ae74c2457b546b6176533"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-E_.json",
+          "exported": "baseline/cases/case-77694f0d2be6.json",
+          "sha256": "a5f9a647508c775d2749c232b99cf0d26255a0f012acf8e95bf263da7033858e"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-C_.json",
+          "exported": "baseline/cases/case-eac4a262484b.json",
+          "sha256": "cac83184393c7d64211ba5b53103083237d1b4c43a454ab3dfc5251cc15e5d2c"
+        },
+        {
+          "original": "baseline/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-E_.json",
+          "exported": "baseline/cases/case-fcfccad85a1e.json",
+          "sha256": "cac83184393c7d64211ba5b53103083237d1b4c43a454ab3dfc5251cc15e5d2c"
+        },
+        {
+          "original": "baseline/temp/test_engine_keeps_structured_c1/output/data/synthetic-workspace/work/E-01/0987b98456294285a16b9345a5ecdd36/diagnostic-evidence.json",
+          "exported": "baseline/artifacts/9a306b014908-diagnostic-evidence.json",
+          "sha256": "34ca749545b535a015294088a127bdcb2f0f21e7ef50760130fc357021fed32e"
+        },
+        {
+          "original": "baseline/temp/test_engine_keeps_structured_c1/output/data/synthetic-workspace/work/E-01/0987b98456294285a16b9345a5ecdd36/error.json",
+          "exported": "baseline/artifacts/a99aaf47e8df-error.json",
+          "sha256": "9d4a9b24d280dfdb8b96e23b1b7e031b3b45e2e3e98987d6edd11d7c2b406108"
+        },
+        {
+          "original": "baseline/temp/test_engine_keeps_structured_c1/output/data/synthetic-workspace/work/E-01/0987b98456294285a16b9345a5ecdd36/session.json",
+          "exported": "baseline/artifacts/eaf70e8b6fb8-session.json",
+          "sha256": "cf6674d526975c2a60bcfd6725e0108818230860f9307190bfafc406fa0019cd"
+        },
+        {
+          "original": "baseline/temp/test_engine_keeps_structured_c0/output/data/synthetic-workspace/work/C-01/49272af719774b9ba484794a8b0faa7a/diagnostic-evidence.json",
+          "exported": "baseline/artifacts/b76265ab5988-diagnostic-evidence.json",
+          "sha256": "34ca749545b535a015294088a127bdcb2f0f21e7ef50760130fc357021fed32e"
+        },
+        {
+          "original": "baseline/temp/test_engine_keeps_structured_c0/output/data/synthetic-workspace/work/C-01/49272af719774b9ba484794a8b0faa7a/error.json",
+          "exported": "baseline/artifacts/1394429f40f5-error.json",
+          "sha256": "9be9b1bfa98e4601b65e62cec9865220e9122010d33734ee04b61906e981c053"
+        },
+        {
+          "original": "baseline/temp/test_engine_keeps_structured_c0/output/data/synthetic-workspace/work/C-01/49272af719774b9ba484794a8b0faa7a/session.json",
+          "exported": "baseline/artifacts/7a684fa3fc9e-session.json",
+          "sha256": "b0ba68a6b501a9ea4f191e2be0104c60e9166ea681f1790a8aea190a02fd0ba8"
+        }
+      ]
+    },
+    {
+      "id": "r17",
+      "original_run": "p0-ce-wire-candidate-20261031-115211-8fe573",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "candidate",
+        "suite": "wire",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-wire-candidate-20261031-115211-8fe573",
+        "baseline_revision": "eb42a3934972548af3e784e8d2a362c5e6654cf2",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 1.046,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 16,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 16
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-C_.json",
+          "exported": "candidate/cases/case-20cd70913704.json",
+          "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-E_.json",
+          "exported": "candidate/cases/case-a493ed73212a.json",
+          "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-C_.json",
+          "exported": "candidate/cases/case-e133f632272a.json",
+          "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-E_.json",
+          "exported": "candidate/cases/case-2ec9e9a58c9e.json",
+          "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-C_.json",
+          "exported": "candidate/cases/case-826154f5d43d.json",
+          "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-E_.json",
+          "exported": "candidate/cases/case-68c2bd787919.json",
+          "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-C_.json",
+          "exported": "candidate/cases/case-58ef698ddc51.json",
+          "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-E_.json",
+          "exported": "candidate/cases/case-4465d06059db.json",
+          "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-C_.json",
+          "exported": "candidate/cases/case-b9fb93e25ea2.json",
+          "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-E_.json",
+          "exported": "candidate/cases/case-50419437d1c6.json",
+          "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-C_.json",
+          "exported": "candidate/cases/case-fcca83761d4b.json",
+          "sha256": "1ca840a7f79bbd8b3e8e2a4155319a2d15ea820b171df4ca2f054ac7000b2f55"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-E_.json",
+          "exported": "candidate/cases/case-b56f7a1dc68a.json",
+          "sha256": "c54c3e85aa162f2cecad4ee3b34df64a79e0f42c8e18a5d65a91a48a32b2c0fd"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-C_.json",
+          "exported": "candidate/cases/case-041ed6488bfe.json",
+          "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-E_.json",
+          "exported": "candidate/cases/case-77694f0d2be6.json",
+          "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-C_.json",
+          "exported": "candidate/cases/case-eac4a262484b.json",
+          "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-E_.json",
+          "exported": "candidate/cases/case-fcfccad85a1e.json",
+          "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+        }
+      ]
+    },
+    {
+      "id": "r18",
+      "original_run": "p0-ce-wire-candidate-20261031-115354-30d0b5",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "candidate",
+        "suite": "wire",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-wire-candidate-20261031-115354-30d0b5",
+        "baseline_revision": "eb42a3934972548af3e784e8d2a362c5e6654cf2",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 1.36,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 18,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 18
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-C_.json",
+          "exported": "candidate/cases/case-20cd70913704.json",
+          "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-E_.json",
+          "exported": "candidate/cases/case-a493ed73212a.json",
+          "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-C_.json",
+          "exported": "candidate/cases/case-e133f632272a.json",
+          "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-E_.json",
+          "exported": "candidate/cases/case-2ec9e9a58c9e.json",
+          "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-C_.json",
+          "exported": "candidate/cases/case-826154f5d43d.json",
+          "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-E_.json",
+          "exported": "candidate/cases/case-68c2bd787919.json",
+          "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-C_.json",
+          "exported": "candidate/cases/case-58ef698ddc51.json",
+          "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-E_.json",
+          "exported": "candidate/cases/case-4465d06059db.json",
+          "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-C_.json",
+          "exported": "candidate/cases/case-b9fb93e25ea2.json",
+          "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-E_.json",
+          "exported": "candidate/cases/case-50419437d1c6.json",
+          "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-C_.json",
+          "exported": "candidate/cases/case-fcca83761d4b.json",
+          "sha256": "1ca840a7f79bbd8b3e8e2a4155319a2d15ea820b171df4ca2f054ac7000b2f55"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-E_.json",
+          "exported": "candidate/cases/case-b56f7a1dc68a.json",
+          "sha256": "c54c3e85aa162f2cecad4ee3b34df64a79e0f42c8e18a5d65a91a48a32b2c0fd"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-C_.json",
+          "exported": "candidate/cases/case-041ed6488bfe.json",
+          "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-E_.json",
+          "exported": "candidate/cases/case-77694f0d2be6.json",
+          "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-C_.json",
+          "exported": "candidate/cases/case-eac4a262484b.json",
+          "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+        },
+        {
+          "original": "candidate/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-E_.json",
+          "exported": "candidate/cases/case-fcfccad85a1e.json",
+          "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+        },
+        {
+          "original": "candidate/temp/test_engine_keeps_structured_c1/output/data/synthetic-workspace/work/E-01/939736d92d75490387bce36545258259/diagnostic-evidence.json",
+          "exported": "candidate/artifacts/782861a55b4e-diagnostic-evidence.json",
+          "sha256": "34ca749545b535a015294088a127bdcb2f0f21e7ef50760130fc357021fed32e"
+        },
+        {
+          "original": "candidate/temp/test_engine_keeps_structured_c1/output/data/synthetic-workspace/work/E-01/939736d92d75490387bce36545258259/error.json",
+          "exported": "candidate/artifacts/8dbfd212fd02-error.json",
+          "sha256": "4f9ea8a6abfbeae78db0f6742c670b4fb11bfe0b36e719084798280d6257d67c"
+        },
+        {
+          "original": "candidate/temp/test_engine_keeps_structured_c1/output/data/synthetic-workspace/work/E-01/939736d92d75490387bce36545258259/session.json",
+          "exported": "candidate/artifacts/f0a22ccf918f-session.json",
+          "sha256": "4211cb8c54c25d5c099c7259d946a256ee9763573893d3c3e5c3d9e6eeecb906"
+        },
+        {
+          "original": "candidate/temp/test_engine_keeps_structured_c0/output/data/synthetic-workspace/work/C-01/05034422409c43bf8f9bb77298aadfe1/diagnostic-evidence.json",
+          "exported": "candidate/artifacts/3f9efd22012a-diagnostic-evidence.json",
+          "sha256": "34ca749545b535a015294088a127bdcb2f0f21e7ef50760130fc357021fed32e"
+        },
+        {
+          "original": "candidate/temp/test_engine_keeps_structured_c0/output/data/synthetic-workspace/work/C-01/05034422409c43bf8f9bb77298aadfe1/error.json",
+          "exported": "candidate/artifacts/99d1fe36f9e8-error.json",
+          "sha256": "a39c7f466d7a35204c2f70b3b1d2d8731e6f6c63f11b43bbfa04efb754f8dd91"
+        },
+        {
+          "original": "candidate/temp/test_engine_keeps_structured_c0/output/data/synthetic-workspace/work/C-01/05034422409c43bf8f9bb77298aadfe1/session.json",
+          "exported": "candidate/artifacts/46033af46080-session.json",
+          "sha256": "265be7d5eec4de655b87fea262a077eafc9c9aa65b00929e6d60a6c196c6c530"
+        }
+      ]
+    },
+    {
+      "id": "r19",
+      "original_run": "p0-ce-wire-regression-20261031-115359-a0bd1e",
+      "original_run_preserved": true,
+      "summary": {
+        "stage": "regression",
+        "suite": "wire",
+        "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-wire-regression-20261031-115359-a0bd1e",
+        "baseline_revision": "eb42a3934972548af3e784e8d2a362c5e6654cf2",
+        "application_source_unchanged_during_run": true,
+        "source_files": 45,
+        "target_model_calls": 0,
+        "native_harness_execution": false,
+        "result": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 57.654,
+          "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+          "native_harness_execution": false,
+          "target_model_calls": 0,
+          "tests": 435,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 7,
+          "passed": 428
+        }
+      },
+      "selected_artifact_map": [
+        {
+          "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_C-2_.json",
+          "exported": "regression/cases/case-8650b606d2b8.json",
+          "sha256": "091c127c5aeaf456b9d9b5bc074d392bd199605b0e3cbdab4a1c449dd64b39f2"
+        },
+        {
+          "original": "regression/cases/test_all_short_drafts_are_rejected_without_a_fake_fallback_E-3_.json",
+          "exported": "regression/cases/case-3301661c70f7.json",
+          "sha256": "298c29b45839d40a746650b962de9ee2e496276b71a13ec3d69962bcd32a5003"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-C_.json",
+          "exported": "regression/cases/case-20cd70913704.json",
+          "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_empty_markdown-content_constraint-E_.json",
+          "exported": "regression/cases/case-a493ed73212a.json",
+          "sha256": "0d3c7f7a37a9660f752bb6eb292fca6079a93cc118b942c482f101a43e14b916"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-C_.json",
+          "exported": "regression/cases/case-e133f632272a.json",
+          "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_extra-extra_field-E_.json",
+          "exported": "regression/cases/case-2ec9e9a58c9e.json",
+          "sha256": "eff8878fee2a1f066fbee5a545fb90113843777f38d0b6f08286b04280d1c0f1"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-C_.json",
+          "exported": "regression/cases/case-826154f5d43d.json",
+          "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_markdown_null-type_error-E_.json",
+          "exported": "regression/cases/case-68c2bd787919.json",
+          "sha256": "b75511c407cab0dc554c218cdaba045586e1c90d56862b575124802d9d2bd653"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-C_.json",
+          "exported": "regression/cases/case-58ef698ddc51.json",
+          "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_missing-missing_field-E_.json",
+          "exported": "regression/cases/case-4465d06059db.json",
+          "sha256": "e0e4e62699d89f379465dd19db3b63d3e13f5af61d4e49074fe8a450e06b8ddc"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-C_.json",
+          "exported": "regression/cases/case-b9fb93e25ea2.json",
+          "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_nested-nested_structure-E_.json",
+          "exported": "regression/cases/case-50419437d1c6.json",
+          "sha256": "66a83d109e389b1e512e5e9e4ed5b8993cb7b58ef103556aa7a3578fc8c97da6"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-C_.json",
+          "exported": "regression/cases/case-fcca83761d4b.json",
+          "sha256": "1ca840a7f79bbd8b3e8e2a4155319a2d15ea820b171df4ca2f054ac7000b2f55"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_none-None-E_.json",
+          "exported": "regression/cases/case-b56f7a1dc68a.json",
+          "sha256": "c54c3e85aa162f2cecad4ee3b34df64a79e0f42c8e18a5d65a91a48a32b2c0fd"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-C_.json",
+          "exported": "regression/cases/case-041ed6488bfe.json",
+          "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_path_array-type_error-E_.json",
+          "exported": "regression/cases/case-77694f0d2be6.json",
+          "sha256": "42eb4bcabe334d3f50e16296bf24216e109dc7caadb098e074cc9011af4b959e"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-C_.json",
+          "exported": "regression/cases/case-eac4a262484b.json",
+          "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+        },
+        {
+          "original": "regression/cases/test_ce_corrupt_wire_is_rejected_with_typed_diff_and_original_sdk_metadata_wrong_case-identity_mismatch-E_.json",
+          "exported": "regression/cases/case-fcfccad85a1e.json",
+          "sha256": "ffc9db475f3c6c4c0b6a71dcb6fd12e1d07877c179c46d58174c551996695375"
+        },
+        {
+          "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_C_.json",
+          "exported": "regression/cases/case-be4e720c5774.json",
+          "sha256": "fba26e5900ebe3fa6386541497ceb78bc5b496d0ae80119c993e13c7cd8f651c"
+        },
+        {
+          "original": "regression/cases/test_current_valid_draft_survives_later_audit_timeout_E_.json",
+          "exported": "regression/cases/case-2820fb3d1a0d.json",
+          "sha256": "bd86946ce1de8f1e0b268582172b22d7646da0498d6758d0c502dc029bdd8848"
+        },
+        {
+          "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_C_.json",
+          "exported": "regression/cases/case-52a9c3e34b73.json",
+          "sha256": "8ce853ab5a5db4d47abcab0364dd6c118c19d4773ce7bd789f439f588082bb21"
+        },
+        {
+          "original": "regression/cases/test_legal_800_character_boundary_uses_no_additional_generation_E_.json",
+          "exported": "regression/cases/case-f4afc2fe8e37.json",
+          "sha256": "9a91a4dafebd1c6575ca804f6182609b3b34f4f350e2c388e002a871b6041448"
+        },
+        {
+          "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_C_.json",
+          "exported": "regression/cases/case-d22382adcd66.json",
+          "sha256": "03f0a1450c207ad1c1580d8e97e3cbb730fb9c7cf860b93839ab2873c79bf876"
+        },
+        {
+          "original": "regression/cases/test_short_first_draft_recovers_within_existing_attempt_limit_E_.json",
+          "exported": "regression/cases/case-72d2a6a17555.json",
+          "sha256": "3f6d9ce148431ee86b83d729267270643557f5179941f910730866d9dc5fd2fd"
+        }
+      ]
+    }
+  ],
+  "e2e_sets": [
+    {
+      "original_run": "p0-ce-e2e-20261031-120539-82d944",
+      "evidence": "e2e/set-1"
+    },
+    {
+      "original_run": "p0-ce-e2e-20261031-120710-a8b67b",
+      "evidence": "e2e/set-2"
+    }
+  ],
+  "failures_retained": true,
+  "native_harness_execution": false,
+  "target_model_calls": 0
+}

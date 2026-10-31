@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 1,
+  "model_issues": [
+    "正文称“RETRO 在 Pile 上以少 25 倍参数取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，但证据 ev-23 原文为“With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，其中“25× fewer parameters”指参数少 25 倍，而非“少 25 倍参数”所暗示的规模；且该句未说明比较条件（如是否同规模、同评测设置），应改为“参数少 25 倍”并保留原文比较条件。; 正文称“Self-RAG 在多个任务上优于监督微调 LLM，并在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上超过 ChatGPT[5, p.8]”，但证据 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，其中“ASQA (Rouge and MAUVE)”仅指 ASQA 任务使用 Rouge 与 MAUVE 指标，并非“PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上”全部超过；应改为“在 PubHealth、PopQA、传记生成与 ASQA（Rouge 与 MAUVE）上超过 ChatGPT”。; 正文称“DPR 以问题、正段落与 n 个负段落构成训练实例，优化正段落的负对数似然[1, p.3]”，证据 ev-8 支持该描述；但同段称“其消融显示，在 Natural Questions 上分别训练强检索器与阅读器可得 39.8 EM，作者据此认为该策略能有效利用可用监督，并以更简单设计优于可比的联合训练方案[1, p.8]”，证据 ev-6 原文为“This approach obtains a score of 39.8 EM, which suggests that our strategy of training a strong retriever and reader in isolation can leverage effectively available supervision, while outperforming a comparable joint training approach with a simpler design (Appendix D)”，其中“in isolation”指分别训练，但正文“分别训练强检索器与阅读器”未明确“in isolation”与“pipeline training approach”的对应关系，且“可比的联合训练方案”应保留原文“comparable joint training approach”的比较条件；建议改为“分别训练强检索器与阅读器的流水线策略可得 39.8 EM，作者据此认为该策略能有效利用可用监督，并以更简单设计优于可比的联合训练方案”。",
+    "insufficient reserved budget for repair"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“RETRO 在 Pile 上以少 25 倍参数取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，但证据 ev-23 原文为“With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，其中“25× fewer parameters”指参数少 25 倍，而非“少 25 倍参数”所暗示的规模；且该句未说明比较条件（如是否同规模、同评测设置），应改为“参数少 25 倍”并保留原文比较条件。",
+          "正文称“Self-RAG 在多个任务上优于监督微调 LLM，并在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上超过 ChatGPT[5, p.8]”，但证据 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，其中“ASQA (Rouge and MAUVE)”仅指 ASQA 任务使用 Rouge 与 MAUVE 指标，并非“PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上”全部超过；应改为“在 PubHealth、PopQA、传记生成与 ASQA（Rouge 与 MAUVE）上超过 ChatGPT”。",
+          "正文称“DPR 以问题、正段落与 n 个负段落构成训练实例，优化正段落的负对数似然[1, p.3]”，证据 ev-8 支持该描述；但同段称“其消融显示，在 Natural Questions 上分别训练强检索器与阅读器可得 39.8 EM，作者据此认为该策略能有效利用可用监督，并以更简单设计优于可比的联合训练方案[1, p.8]”，证据 ev-6 原文为“This approach obtains a score of 39.8 EM, which suggests that our strategy of training a strong retriever and reader in isolation can leverage effectively available supervision, while outperforming a comparable joint training approach with a simpler design (Appendix D)”，其中“in isolation”指分别训练，但正文“分别训练强检索器与阅读器”未明确“in isolation”与“pipeline training approach”的对应关系，且“可比的联合训练方案”应保留原文“comparable joint training approach”的比较条件；建议改为“分别训练强检索器与阅读器的流水线策略可得 39.8 EM，作者据此认为该策略能有效利用可用监督，并以更简单设计优于可比的联合训练方案”。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "正文称“RETRO 在 Pile 上以少 25 倍参数取得与 GPT-3、Jurassic-1 可比的性能[4, p.1]”，但证据 ev-23 原文为“With a 2 trillion token database, our Retrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1 on the Pile, despite using 25× fewer parameters”，其中“25× fewer parameters”指参数少 25 倍，而非“少 25 倍参数”所暗示的规模；且该句未说明比较条件（如是否同规模、同评测设置），应改为“参数少 25 倍”并保留原文比较条件。; 正文称“Self-RAG 在多个任务上优于监督微调 LLM，并在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上超过 ChatGPT[5, p.8]”，但证据 ev-34 原文为“outperforms ChatGPT in PubHealth, PopQA, biography generations, and ASQA (Rouge and MAUVE)”，其中“ASQA (Rouge and MAUVE)”仅指 ASQA 任务使用 Rouge 与 MAUVE 指标，并非“PubHealth、PopQA、传记生成与 ASQA 的 Rouge、MAUVE 上”全部超过；应改为“在 PubHealth、PopQA、传记生成与 ASQA（Rouge 与 MAUVE）上超过 ChatGPT”。; 正文称“DPR 以问题、正段落与 n 个负段落构成训练实例，优化正段落的负对数似然[1, p.3]”，证据 ev-8 支持该描述；但同段称“其消融显示，在 Natural Questions 上分别训练强检索器与阅读器可得 39.8 EM，作者据此认为该策略能有效利用可用监督，并以更简单设计优于可比的联合训练方案[1, p.8]”，证据 ev-6 原文为“This approach obtains a score of 39.8 EM, which suggests that our strategy of training a strong retriever and reader in isolation can leverage effectively available supervision, while outperforming a comparable joint training approach with a simpler design (Appendix D)”，其中“in isolation”指分别训练，但正文“分别训练强检索器与阅读器”未明确“in isolation”与“pipeline training approach”的对应关系，且“可比的联合训练方案”应保留原文“comparable joint training approach”的比较条件；建议改为“分别训练强检索器与阅读器的流水线策略可得 39.8 EM，作者据此认为该策略能有效利用可用监督，并以更简单设计优于可比的联合训练方案”。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "report",
+      "issues": [
+        "insufficient reserved budget for repair"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "blind_id": "report-10",
+  "status": "assessed",
+  "report_sha256": "88eea1bbf18f71f6f0e29473a5eb823531e599b6cbca337a55b29ce230c64b54",
+  "ledger_sha256": "579830242ebd8a2b0d5bfe3e0010acc849c0332997c3cf5f649023f5e3f39641",
+  "checked_facts": [
+    {
+      "fact": {
+        "sentence": "DPR 将检索与阅读分离：用稠密编码器把段落映射为向量并建索引[1, p.2]，以问题、正段落与负段落构成训练实例，用正段落的负对数似然优化[1, p.3]；其动机是稀疏 TF-IDF/BM25 为事实标准，而稠密表示可补足同义改写匹配[1, p.1]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-7",
+          "ev-8",
+          "ev-1"
+        ],
+        "source_quote": "Our dense passage retriever (DPR) uses a dense\nencoder EP (·) which maps any text passage to a d-\ndimensional real-valued vectors and builds an index\nfor all the M passages that we will use for retrieval.",
+        "reason": "ev-7逐字支持稠密编码器映射段落并建索引；ev-8逐字支持训练实例含问题、正段落与负段落并以正段落负对数似然优化；ev-1逐字支持TF-IDF/BM25为事实标准且稠密表示可补足同义改写匹配。三处引文分别对应报告该句的三个分句。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "DPR 报告在 Natural Questions 上隔离训练强检索器与阅读器的流水线策略得 39.8 EM，并称该策略可更简单有效地利用监督，且优于可比的联合训练消融[1, p.8]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-6"
+        ],
+        "source_quote": "trained, following Lee et al. (2019). This approach\nobtains a score of 39.8 EM, which suggests that our\nstrategy of training a strong retriever and reader in\nisolation can leverage effectively available supervi-\nsion, while outperforming a comparable joint train-\ning approach with a simpler design (Appendix D).",
+        "reason": "ev-6逐字给出39.8 EM、隔离训练强检索器与阅读器、更简单设计且优于可比联合训练消融，直接支持该句。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "RAG 把检索文档视为潜变量，端到端训练检索器与生成器，并提出 RAG-Sequence（同一文档预测所有目标词）与 RAG-Token（不同目标词可用不同文档）两种边缘化方式[2, p.3]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-15"
+        ],
+        "source_quote": "To train the retriever and generator end-to-end, we treat the retrieved document as a latent variable.\nWe propose two models that marginalize over the latent documents in different ways to produce a\ndistribution over generated text. In one approach, RAG-Sequence, the model uses the same document\nto predict each target token. The second approach, RAG-Token, can predict each target token based\non a different document.",
+        "reason": "ev-15逐字支持端到端训练、检索文档为潜变量、RAG-Sequence同一文档预测所有目标词、RAG-Token不同目标词可用不同文档。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "其参数记忆为预训练 seq2seq，非参数记忆为 Wikipedia 稠密向量索引[2, p.1]；动机是纯参数模型难以扩展或修订记忆、缺乏可解释性且可能幻觉[2, p.1]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-9",
+          "ev-10"
+        ],
+        "source_quote": "We introduce RAG models where the parametric\nmemory is a pre-trained seq2seq model and the non-parametric memory is a dense\nvector index of Wikipedia, accessed with a p",
+        "reason": "ev-9逐字支持参数记忆为预训练seq2seq、非参数记忆为Wikipedia稠密向量索引；ev-10逐字支持纯参数模型难以扩展或修订记忆、不能直接提供预测洞见且可能产生幻觉。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "在 FEVER 上它把分类标签映射为单 token 直接训练，且不使用检索证据监督[2, p.5]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-13"
+        ],
+        "source_quote": "We map FEVER\nclass labels (supports, refutes, or not enough info) to single output tokens and directly train with\nclaim-class pairs. Crucially, unlike most other approaches to FEVER, we do not use supervision on\nretrieved evidence.",
+        "reason": "ev-13逐字支持FEVER标签映射为单token直接训练且不使用检索证据监督。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "FiD 是两步流程：先检索支持段落，再由 seq2seq 生成答案[3, p.2]；编码器独立处理各段落、解码器联合融合，故称 Fusion-in-Decoder，可扩展到大量上下文[3, p.3]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-20",
+          "ev-22"
+        ],
+        "source_quote": "In this section, we describe our approach to open\ndomain question answering. It proceeds in two\nsteps, ﬁrst retrieving support passages before pro-\ncessing them with a sequence to sequence model.",
+        "reason": "ev-20逐字支持两步流程：先检索支持段落再由seq2seq处理；ev-22逐字支持编码器独立处理段落、解码器联合融合、称Fusion-in-Decoder并可扩展到大量上下文。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "它报告随检索段落数增加性能显著提升，并认为生成模型擅长聚合多段证据[3, p.2]；在 NaturalQuestions 与 TriviaQA 上超过既有方法[3, p.4]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-18",
+          "ev-19"
+        ],
+        "source_quote": "While\nconceptually simple, this method sets new state-of-\nthe-art results on the TriviaQA and NaturalQues-\ntions benchmarks. In particular, we show that the\nperformance of our method signiﬁcantly improves\nwhen the number of retrieved passages increases.\nWe believe that this is evidence that generative mod-\nels are good at combining evidence from multiple",
+        "reason": "ev-18逐字支持随检索段落数增加性能显著提升且生成模型擅长聚合多段证据；ev-19逐字支持在NaturalQuestions与TriviaQA上超过既有方法。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "RETRO 在语言建模层面耦合：以冻结 BERT 嵌入为键、原始文本块为值构建键值库，按前文 token 的局部相似性检索块[4, p.1][4, p.2]；用块级交叉注意力注入检索文本，复杂度随检索量线性增长，且冻结检索器免去训练更新[4, p.2]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-23",
+          "ev-25",
+          "ev-29"
+        ],
+        "source_quote": "We enhance auto-regressive language models by conditioning on document chunks retrieved from a\nlarge corpus, based on local similarity with preceding tokens.",
+        "reason": "ev-23逐字支持按前文token局部相似性检索文档块；ev-25逐字支持键值库中值为原始文本块、键为冻结BERT嵌入；ev-29逐字支持块级交叉注意力、复杂度随检索数据量线性增长且冻结检索器免去训练更新。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "RETRO 在 Pile 上以 2 万亿 token 数据库取得与 GPT-3、Jurassic-1 可比的表现，且其参数规模比 GPT-3、Jurassic-1 少 25 倍[4, p.1]，并在泄漏水平低至 12.5% 时仍优于基线[4, p.15]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-23",
+          "ev-27"
+        ],
+        "source_quote": "With a 2 trillion token database, our\nRetrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1\non the Pile, despite using 25× fewer parameters.",
+        "reason": "ev-23逐字支持2万亿token数据库、在Pile上与GPT-3和Jurassic-1可比且参数少25倍；ev-27逐字支持在泄漏水平低至α=12.5%时仍优于基线。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "Self-RAG 在 PubHealth、PopQA、传记生成与 ASQA 上优于监督微调 LLM，并在 PubHealth、PopQA、传记生成与 ASQA 的 Rouge 和 MAUVE 指标上超过 ChatGPT[5, p.8]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-34"
+        ],
+        "source_quote": "Our SELF-RAG (bottom two rows) demonstrates a substantial performance advantage\nover supervised fine-tuned LLMs in all tasks and even outperforms ChatGPT in PubHealth, PopQA,\nbiography generations, and ASQA (Rouge and MAUVE).",
+        "reason": "ev-34逐字支持Self-RAG在所有任务上优于监督微调LLM，并在PubHealth、PopQA、传记生成与ASQA的Rouge和MAUVE上超过ChatGPT。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "Self-RAG 让任意 LM 学习按需检索，并以反思 token 统一为扩展词表的下一词预测；反思 token 由训练好的 critic 模型离线插入语料[5, p.2]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-37"
+        ],
+        "source_quote": "SELF-RAG trains an arbitrary LM to generate text with reflection tokens by unifying them as the\nnext token prediction from the expanded model vocabulary. We train our generator LM on a diverse\ncollection of text interleaved with reflection tokens and retrieved passages. Reflection tokens, inspired\nby reward models used in reinforcement learning (Ziegler et al., 2019; Ouyang et al., 2022), are\ninserted offline into the original corpus by a trained critic model.",
+        "reason": "ev-37逐字支持任意LM、反思token统一为扩展词表下一词预测、反思token由训练好的critic模型离线插入语料。"
+      },
+      "validation_issues": []
+    },
+    {
+      "fact": {
+        "sentence": "FiD 的 NaturalQuestions 开放域版本丢弃超过 5 token 的答案[3, p.3]。",
+        "verdict": "supported",
+        "source_ids": [
+          "ev-21"
+        ],
+        "source_quote": "• NaturalQuestions (Kwiatkowski et al., 2019)\ncontains questions corresponding to Google\nsearch queries. The open-domain version of\nthis dataset is obtained by discarding answers\nwith more than 5 tokens.",
+        "reason": "ev-21逐字支持NaturalQuestions开放域版本丢弃超过5 token的答案。"
+      },
+      "validation_issues": []
+    }
+  ],
+  "valid_facts": 12,
+  "rejected_facts": 0,
+  "verdict_counts": {
+    "supported": 12,
+    "contradicted": 0,
+    "not_in_evidence": 0,
+    "uncertain": 0
+  },
+  "limits": "same-provider sampled excerpt review, not human gold or exhaustive correctness",
+  "target_real_model_calls": 1,
+  "total_tokens": 8878,
+  "quota_exhausted": false
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="5" time="1.310" timestamp="2026-10-31T11:57:13.300554+08:00" hostname="LAPTOP-C06RFDMD"><testcase classname="" name="test_report_staging_syncs_all_submission_files[C]" time="0.230"><failure message="AssertionError: MD, JSON, evidence, receipt and pointer must be synced before publication&#10;assert 0 &gt;= 5&#10; +  where 0 = len([])">kind = 'C'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-durability-baseline-20261031-115712-e239d9/baseline/temp/test_report_staging_syncs_all_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002C6076A3DA0&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_report_staging_syncs_all_submission_files(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        actual_sync = utils.os.fsync
+        calls = []
+        def counted(fd):
+            actual_sync(fd)
+            calls.append(fd)
+        monkeypatch.setattr(utils.os, 'fsync', counted)
+        result = engine.solve_sync(task)
+&gt;       assert len(calls) &gt;= 5, 'MD, JSON, evidence, receipt and pointer must be synced before publication'
+E       AssertionError: MD, JSON, evidence, receipt and pointer must be synced before publication
+E       assert 0 &gt;= 5
+E        +  where 0 = len([])
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_durable_staging.py:30: AssertionError</failure></testcase><testcase classname="" name="test_report_staging_syncs_all_submission_files[E]" time="0.251"><failure message="AssertionError: MD, JSON, evidence, receipt and pointer must be synced before publication&#10;assert 0 &gt;= 5&#10; +  where 0 = len([])">kind = 'E'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-durability-baseline-20261031-115712-e239d9/baseline/temp/test_report_staging_syncs_all_1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002C607730350&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_report_staging_syncs_all_submission_files(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        actual_sync = utils.os.fsync
+        calls = []
+        def counted(fd):
+            actual_sync(fd)
+            calls.append(fd)
+        monkeypatch.setattr(utils.os, 'fsync', counted)
+        result = engine.solve_sync(task)
+&gt;       assert len(calls) &gt;= 5, 'MD, JSON, evidence, receipt and pointer must be synced before publication'
+E       AssertionError: MD, JSON, evidence, receipt and pointer must be synced before publication
+E       assert 0 &gt;= 5
+E        +  where 0 = len([])
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_durable_staging.py:30: AssertionError</failure></testcase><testcase classname="" name="test_staging_sync_failure_cannot_publish_a_success[C]" time="0.226"><failure message="Failed: DID NOT RAISE &lt;class 'OSError'&gt;">kind = 'C'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-durability-baseline-20261031-115712-e239d9/baseline/temp/test_staging_sync_failure_cann0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002C6076A4B30&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_staging_sync_failure_cannot_publish_a_success(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        def fail(fd):
+            raise OSError(errno.EIO, 'injected staging fsync failure')
+        monkeypatch.setattr(utils.os, 'fsync', fail)
+&gt;       with pytest.raises(OSError, match='injected staging fsync failure'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE &lt;class 'OSError'&gt;
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_durable_staging.py:41: Failed</failure></testcase><testcase classname="" name="test_staging_sync_failure_cannot_publish_a_success[E]" time="0.212"><failure message="Failed: DID NOT RAISE &lt;class 'OSError'&gt;">kind = 'E'
+tmp_path = WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/p0-ce-durability-baseline-20261031-115712-e239d9/baseline/temp/test_staging_sync_failure_cann1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002C60773E510&gt;
+
+    @pytest.mark.parametrize('kind', ['C', 'E'])
+    def test_staging_sync_failure_cannot_publish_a_success(kind, tmp_path, monkeypatch):
+        engine, task = engine_for(kind, tmp_path)
+        def fail(fd):
+            raise OSError(errno.EIO, 'injected staging fsync failure')
+        monkeypatch.setattr(utils.os, 'fsync', fail)
+&gt;       with pytest.raises(OSError, match='injected staging fsync failure'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE &lt;class 'OSError'&gt;
+
+..\..\..\..\协同开发\research-agent-stability-20261027\tests\test_ce_durable_staging.py:41: Failed</failure></testcase><testcase classname="" name="test_default_atomic_writer_retains_its_previous_behavior" time="0.010" /></testsuite></testsuites>

@@ -1,0 +1,34 @@
+{
+  "id": "r13",
+  "original_run": "p0-ce-sdk-diagnostic-20261031-114729-5351e5",
+  "original_run_preserved": true,
+  "summary": {
+    "stage": "sdk-diagnostic",
+    "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-sdk-diagnostic-20261031-114729-5351e5",
+    "baseline_revision": "316c2d2c1b5c96c59b09fe906356f18d8d0364d8",
+    "application_source_unchanged_during_run": true,
+    "source_files": 45,
+    "target_model_calls": 0,
+    "native_harness_execution": false,
+    "result": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 4.073,
+      "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    }
+  },
+  "selected_artifact_map": [
+    {
+      "original": "sdk-diagnostic/temp/test_one_unusable_or_non_pdf_f0/output/data/platform-workspace/work/B-01/0ace4d41f68e461c95507368e62f4b87/receipt.json",
+      "exported": "sdk-diagnostic/artifacts/38250d88ecde-receipt.json",
+      "sha256": "211cc9406c9f1f4f4ee860fb3571d3a38b0cdb9f9f50a00e19fdd8c6f85369b9"
+    }
+  ]
+}

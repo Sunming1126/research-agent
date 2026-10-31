@@ -1,0 +1,6 @@
+{
+  "parser_only_no_models": true,
+  "inherited_actual_header_accepted": true,
+  "wrong_provider_rejected": true,
+  "stale_tool_rejected": true
+}

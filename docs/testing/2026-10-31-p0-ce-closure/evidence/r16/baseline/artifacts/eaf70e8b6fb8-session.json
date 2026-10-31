@@ -1,0 +1,78 @@
+{
+  "case_id": "E-01",
+  "timeout_seconds": 170,
+  "elapsed_seconds": 0.141,
+  "stage": "submission_validation",
+  "stages": [
+    {
+      "stage": "material_resolution",
+      "elapsed_seconds": 0.016
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.063
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.063
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.063
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.078
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.078
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.078
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.094
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.094
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.094
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.094
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.11
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.11
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.11
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.11
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.11
+    },
+    {
+      "stage": "submission_validation",
+      "elapsed_seconds": 0.125
+    }
+  ],
+  "cancelled": false,
+  "publication_state": "active"
+}

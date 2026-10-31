@@ -1,0 +1,36 @@
+...s..................s................................................. [ 17%]
+........................................................................ [ 34%]
+...........................s............................................ [ 51%]
+........................................................................ [ 69%]
+....s........................s......................x................... [ 86%]
+........................................................                 [100%]
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+..\..\镜像测试\runtime\py312-windows\fastapi\testclient.py:1
+  C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runtime\py312-windows\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\p0-ce-regression-20261031-114751-fbbff3\regression\junit.xml -
+============================ slowest 10 durations =============================
+33.35s call     tests/test_agent_core.py::CoreTests::test_full_25_case_batch_with_real_d
+3.86s call     tests/test_agent_core.py::CoreTests::test_metric_identity_not_relabelled
+2.90s call     tests/test_quality_counterexamples.py::test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers
+0.82s setup    tests/test_b_runtime_failures.py::test_one_unusable_or_non_pdf_file_does_not_abort_b[bad_pdf]
+0.80s call     tests/test_agent_core.py::CoreTests::test_handlers_and_report_readback
+0.70s call     tests/test_agent_core.py::CoreTests::test_http_health_solve_and_sdk_adapter
+0.70s call     tests/test_b_runtime_failures.py::test_b_corrupt_cache_is_rebuilt_from_authorized_pdf
+0.52s call     tests/test_http_runtime.py::test_real_b_workflow_writes_platform_directory_and_matches_http
+0.51s call     tests/test_agent_core.py::CoreTests::test_dispatch_hash_and_ownership
+0.46s call     tests/test_runtime_publication_faults.py::test_json_publish_failure_retracts_markdown_and_receipt
+410 passed, 6 skipped, 1 xfailed, 6 warnings in 68.33s (0:01:08)

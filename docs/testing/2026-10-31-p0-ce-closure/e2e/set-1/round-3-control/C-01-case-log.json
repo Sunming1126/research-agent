@@ -1,0 +1,39 @@
+{
+  "case_id": "C-01",
+  "input": {
+    "case_id": "C-01",
+    "function": "Survey",
+    "title": "Synthetic research fixture",
+    "input": "Compare urban vegetation and surface temperature using remote sensing; exclude plant taxonomy only.",
+    "materials": [
+      "Study_1.pdf",
+      "Study_2.pdf",
+      "Study_3.pdf",
+      "Study_4.pdf",
+      "Study_5.pdf"
+    ],
+    "constraints": [],
+    "expected_output": "Survey",
+    "output_schema_ref": "Survey"
+  },
+  "input_sha256": "9700b51546c590edbac9da8c0dcce59402c0f9c07f4d5ca3951f0059456b74ed",
+  "transport_task_id": "068b2ad4-92db-5c5e-bbe5-e868b49eed3c",
+  "http_status": 500,
+  "seconds": 0.109,
+  "wire_fields_valid": false,
+  "json_matches_response": false,
+  "markdown_matches_response": false,
+  "delivered": false,
+  "sdk_trace_id": "b63562e29f5d3e8564bd65f8cff9d520",
+  "sdk_trace_present_in_local_exporter": true,
+  "native_harness_proof": false,
+  "target_model_calls": 0,
+  "logical_fixture_model_stages": [
+    "query",
+    "report",
+    "repair"
+  ],
+  "logical_fixture_report_calls": 1,
+  "staging_write_attempts_for_injected_file": 0,
+  "fault": "first_report_799_characters"
+}

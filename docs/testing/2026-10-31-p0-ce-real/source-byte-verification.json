@@ -1,0 +1,32 @@
+{
+  "frozen_source_files_per_variant": 45,
+  "exact_frozen_hashes_unchanged_during_calls": true,
+  "all_frozen_files_equal_pinned_git_blobs_after_CRLF_to_LF": true,
+  "candidate_worktree_differences": [
+    {
+      "file": "src/research_agent/core/citations.py",
+      "difference": "CRLF_vs_LF_only",
+      "worktree_sha256": "4a33b97cd954169eb35522f52627f28f86fda5a061afbd1d85a3b56ae6f8c1e3",
+      "frozen_sha256": "71e2039a6affbae7396d89dcfebf03273c0eedb6a8e595b5a3bc268037a98a54"
+    },
+    {
+      "file": "src/research_agent/rag/deep_probe.py",
+      "difference": "CRLF_vs_LF_only",
+      "worktree_sha256": "9b18178bf172d8992183b049d7ad516ff2c0cc964d9e181dea2c5a7aba3f33b5",
+      "frozen_sha256": "33b59b9cdcc05024e17e79837393a56b9767283c3a043738252b8b57046dbd44"
+    },
+    {
+      "file": "src/research_agent/rag/evidence_selection.py",
+      "difference": "CRLF_vs_LF_only",
+      "worktree_sha256": "34cfd7e35266b49ff0948e9a69a50fb8066f1c979d134cff41eaf4d88c0c99e8",
+      "frozen_sha256": "7170b804aa0ed74364ff0dec9e7e392de6af04b7ad83094a0bd88b7de872d21a"
+    },
+    {
+      "file": "src/research_agent/rag/materials.py",
+      "difference": "CRLF_vs_LF_only",
+      "worktree_sha256": "620d7c3cc8b907133808fd9b2d92ece6cdce76a5156c6af1996370a61961e25f",
+      "frozen_sha256": "a5c577f3b7f1a68e32bfcd4c77dfae4a9f91f6bc2f84f861c412703555d9fea4"
+    }
+  ],
+  "note": "Do not call different newline bytes identical hashes; no code difference after newline normalization"
+}

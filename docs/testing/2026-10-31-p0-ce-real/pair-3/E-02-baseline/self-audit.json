@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 1,
+  "model_issues": [
+    "原文“若完整方案在主指标上相对固定两轮基线的配对区间下限低于−δ，或触发率>0.8导致成本接近全量，则判定H1不成立并回退到单轮基线”与H1证伪条件“若区间含零，只能判为证据不足，不得宣称无效”不一致：失败判据以区间下限低于−δ直接判定H1不成立，属于据统计区间否定假设，应改为仅当区间整体低于−δ且不含零时才判H1不成立，否则记为证据不足。; 原文“RAG将检索文档视为隐变量并端到端训练[2, p.3]”与“冲突点：RAG的端到端联合训练与DPR报告的‘分别训练强检索器与阅读器’策略存在张力，后者在Natural Questions上取得39.8 EM并优于可比联合训练[1, p.8]”中，39.8 EM的归因需核对：ev-6原文为“This approach obtains a score of 39.8 EM, which suggests that our strategy of training a strong retriever and reader in isolation can leverage effectively available supervision, while outperforming a comparable joint training approach”，该句支持分别训练优于可比联合训练，但“在Natural Questions上”需由同页上下文确认；当前引用页码p.8与ev-3、ev-6一致，暂不判为错误，但建议在正文中明确39.8 EM对应的是分别训练策略而非联合训练，避免归因歧义。; 原文“拟议使用Natural Questions开放域版本（丢弃答案超过5个token的样本）[3, p.3]与TriviaQA Web开发集[2, p.18]”中，TriviaQA Web开发集引用[2, p.18]的ev-14原文为“For TriviaQA, this test dataset is the public TriviaQA Web Development split”，支持该命名数据集；但正文未说明该数据集规模或标注属性，按规则不要求补充。此处不构成问题。另需核查“泄漏防护参照Retro的邻近度评估思路[4, p.2]：对测试段落计算与训练集最近块的连续重叠token数，重叠≥8即标记为高泄漏并单独报告[4, p.15]”：ev-27原文为“less than 8 contiguous tokens shared with the closest matching chunk in the training dataset—this is a reasonable level of overlap at which we consider that there is no local leakage”，即<8视为无局部泄漏，正文“重叠≥8即标记为高泄漏”与原文阈值方向一致，但原文并未将≥8直接定义为“高泄漏”，而是以<8为无泄漏的合理水平；建议改为“重叠≥8视为可能泄漏并单独报告”，避免将原文的“无泄漏阈值”反向表述为“高泄漏定义”时产生过度归因。",
+    "insufficient reserved budget for repair"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "原文“若完整方案在主指标上相对固定两轮基线的配对区间下限低于−δ，或触发率>0.8导致成本接近全量，则判定H1不成立并回退到单轮基线”与H1证伪条件“若区间含零，只能判为证据不足，不得宣称无效”不一致：失败判据以区间下限低于−δ直接判定H1不成立，属于据统计区间否定假设，应改为仅当区间整体低于−δ且不含零时才判H1不成立，否则记为证据不足。",
+          "原文“RAG将检索文档视为隐变量并端到端训练[2, p.3]”与“冲突点：RAG的端到端联合训练与DPR报告的‘分别训练强检索器与阅读器’策略存在张力，后者在Natural Questions上取得39.8 EM并优于可比联合训练[1, p.8]”中，39.8 EM的归因需核对：ev-6原文为“This approach obtains a score of 39.8 EM, which suggests that our strategy of training a strong retriever and reader in isolation can leverage effectively available supervision, while outperforming a comparable joint training approach”，该句支持分别训练优于可比联合训练，但“在Natural Questions上”需由同页上下文确认；当前引用页码p.8与ev-3、ev-6一致，暂不判为错误，但建议在正文中明确39.8 EM对应的是分别训练策略而非联合训练，避免归因歧义。",
+          "原文“拟议使用Natural Questions开放域版本（丢弃答案超过5个token的样本）[3, p.3]与TriviaQA Web开发集[2, p.18]”中，TriviaQA Web开发集引用[2, p.18]的ev-14原文为“For TriviaQA, this test dataset is the public TriviaQA Web Development split”，支持该命名数据集；但正文未说明该数据集规模或标注属性，按规则不要求补充。此处不构成问题。另需核查“泄漏防护参照Retro的邻近度评估思路[4, p.2]：对测试段落计算与训练集最近块的连续重叠token数，重叠≥8即标记为高泄漏并单独报告[4, p.15]”：ev-27原文为“less than 8 contiguous tokens shared with the closest matching chunk in the training dataset—this is a reasonable level of overlap at which we consider that there is no local leakage”，即<8视为无局部泄漏，正文“重叠≥8即标记为高泄漏”与原文阈值方向一致，但原文并未将≥8直接定义为“高泄漏”，而是以<8为无泄漏的合理水平；建议改为“重叠≥8视为可能泄漏并单独报告”，避免将原文的“无泄漏阈值”反向表述为“高泄漏定义”时产生过度归因。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "原文“若完整方案在主指标上相对固定两轮基线的配对区间下限低于−δ，或触发率>0.8导致成本接近全量，则判定H1不成立并回退到单轮基线”与H1证伪条件“若区间含零，只能判为证据不足，不得宣称无效”不一致：失败判据以区间下限低于−δ直接判定H1不成立，属于据统计区间否定假设，应改为仅当区间整体低于−δ且不含零时才判H1不成立，否则记为证据不足。; 原文“RAG将检索文档视为隐变量并端到端训练[2, p.3]”与“冲突点：RAG的端到端联合训练与DPR报告的‘分别训练强检索器与阅读器’策略存在张力，后者在Natural Questions上取得39.8 EM并优于可比联合训练[1, p.8]”中，39.8 EM的归因需核对：ev-6原文为“This approach obtains a score of 39.8 EM, which suggests that our strategy of training a strong retriever and reader in isolation can leverage effectively available supervision, while outperforming a comparable joint training approach”，该句支持分别训练优于可比联合训练，但“在Natural Questions上”需由同页上下文确认；当前引用页码p.8与ev-3、ev-6一致，暂不判为错误，但建议在正文中明确39.8 EM对应的是分别训练策略而非联合训练，避免归因歧义。; 原文“拟议使用Natural Questions开放域版本（丢弃答案超过5个token的样本）[3, p.3]与TriviaQA Web开发集[2, p.18]”中，TriviaQA Web开发集引用[2, p.18]的ev-14原文为“For TriviaQA, this test dataset is the public TriviaQA Web Development split”，支持该命名数据集；但正文未说明该数据集规模或标注属性，按规则不要求补充。此处不构成问题。另需核查“泄漏防护参照Retro的邻近度评估思路[4, p.2]：对测试段落计算与训练集最近块的连续重叠token数，重叠≥8即标记为高泄漏并单独报告[4, p.15]”：ev-27原文为“less than 8 contiguous tokens shared with the closest matching chunk in the training dataset—this is a reasonable level of overlap at which we consider that there is no local leakage”，即<8视为无局部泄漏，正文“重叠≥8即标记为高泄漏”与原文阈值方向一致，但原文并未将≥8直接定义为“高泄漏”，而是以<8为无泄漏的合理水平；建议改为“重叠≥8视为可能泄漏并单独报告”，避免将原文的“无泄漏阈值”反向表述为“高泄漏定义”时产生过度归因。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "report",
+      "issues": [
+        "insufficient reserved budget for repair"
+      ]
+    }
+  ]
+}

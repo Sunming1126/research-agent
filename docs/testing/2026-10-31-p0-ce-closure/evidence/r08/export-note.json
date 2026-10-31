@@ -1,0 +1,10 @@
+{
+  "id": "r08",
+  "original_run": "p0-ce-regression-20261031-114300-3122cc",
+  "original_run_preserved": true,
+  "status": "timed_out_in_restricted_environment",
+  "timeout_seconds": 600,
+  "completed_tests": null,
+  "note": "Coordinator v1 raised TimeoutExpired before writing execution summary; no completed JUnit. Not passed.",
+  "selected_artifact_map": []
+}

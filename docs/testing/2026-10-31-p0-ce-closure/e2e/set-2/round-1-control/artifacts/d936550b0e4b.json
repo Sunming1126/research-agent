@@ -1,0 +1,86 @@
+{
+  "case_id": "C-01",
+  "timeout_seconds": 170,
+  "elapsed_seconds": 0.109,
+  "stage": "report_repair",
+  "stages": [
+    {
+      "stage": "material_resolution",
+      "elapsed_seconds": 0.016
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.031
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.031
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.031
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.062
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.062
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.062
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.062
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.062
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.062
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.078
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.078
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.078
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.078
+    },
+    {
+      "stage": "document_parsing",
+      "elapsed_seconds": 0.094
+    },
+    {
+      "stage": "document_chunking",
+      "elapsed_seconds": 0.094
+    },
+    {
+      "stage": "retrieval",
+      "elapsed_seconds": 0.094
+    },
+    {
+      "stage": "report_report",
+      "elapsed_seconds": 0.094
+    },
+    {
+      "stage": "report_repair",
+      "elapsed_seconds": 0.094
+    }
+  ],
+  "cancelled": false,
+  "publication_state": "active"
+}

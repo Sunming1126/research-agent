@@ -1,0 +1,33 @@
+{
+  "case_id": "C-03",
+  "variant": "candidate",
+  "phase": "pair",
+  "round": 1,
+  "status": "completed",
+  "http_status": 200,
+  "wire_fields_valid": true,
+  "disk_matches": true,
+  "markdown_matches": true,
+  "sdk_trace_id": "4e1efd4802b1cc0540c11a49ed454830",
+  "sdk_trace_linked": true,
+  "sdk_span_count": 48,
+  "sdk_tool_spans": 44,
+  "error_type": null,
+  "seconds": 11.485,
+  "target_real_model_calls": 2,
+  "known_total_tokens": 18078,
+  "total_tokens": 18078,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "sdk_recorded_llm_calls": 2,
+  "sdk_llm_call_count_matches": true,
+  "model_stages": [
+    "report",
+    "audit"
+  ],
+  "native_harness_orchestrated": true,
+  "native_session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+  "official_score": null,
+  "linux_acceptance": false,
+  "input_sha256": "9480c73544674f1cba572ad0f4a249fdc8f454e17271ebcbe8fbbe3a71872ad3"
+}

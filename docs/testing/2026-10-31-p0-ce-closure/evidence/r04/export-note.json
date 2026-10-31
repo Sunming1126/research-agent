@@ -1,0 +1,70 @@
+{
+  "id": "r04",
+  "original_run": "p0-ce-durability-candidate-20261031-115740-53b6ee",
+  "original_run_preserved": true,
+  "summary": {
+    "stage": "candidate",
+    "suite": "durability",
+    "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-durability-candidate-20261031-115740-53b6ee",
+    "baseline_revision": "6145a5cc151f02f587585e918a75a3716c70c0a5",
+    "application_source_unchanged_during_run": true,
+    "source_files": 45,
+    "target_model_calls": 0,
+    "native_harness_execution": false,
+    "result": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 1.764,
+      "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 5
+    }
+  },
+  "selected_artifact_map": [
+    {
+      "original": "candidate/temp/test_staging_sync_failure_cann1/output/data/synthetic-workspace/work/E-01/1cb2e1ef8be945278927eb1b2ac0a753/diagnostic-evidence.json",
+      "exported": "candidate/artifacts/40a9b73335c9-diagnostic-evidence.json",
+      "sha256": "5218c94bb578470a39b928385ca0cb6e95366a2aa85967bb5439d9cbceee594f"
+    },
+    {
+      "original": "candidate/temp/test_staging_sync_failure_cann1/output/data/synthetic-workspace/work/E-01/1cb2e1ef8be945278927eb1b2ac0a753/error.json",
+      "exported": "candidate/artifacts/64e12fde9feb-error.json",
+      "sha256": "ab4a62fa0a5f05485dc79da94a4a30207d5dc45b385f533d32efa46f7085707f"
+    },
+    {
+      "original": "candidate/temp/test_staging_sync_failure_cann1/output/data/synthetic-workspace/work/E-01/1cb2e1ef8be945278927eb1b2ac0a753/session.json",
+      "exported": "candidate/artifacts/0b5072392b60-session.json",
+      "sha256": "7f480def93ecf4248de8f12fcd14ccd4451ce11e6f7df85270087edf75b3c8d6"
+    },
+    {
+      "original": "candidate/temp/test_staging_sync_failure_cann0/output/data/synthetic-workspace/work/C-01/cd022cf3c5d848dab313e4007835faf2/diagnostic-evidence.json",
+      "exported": "candidate/artifacts/d940766a63b3-diagnostic-evidence.json",
+      "sha256": "f3448280b325792118ac68a930f6d7b8273379d2ba416f115d32760783566d23"
+    },
+    {
+      "original": "candidate/temp/test_staging_sync_failure_cann0/output/data/synthetic-workspace/work/C-01/cd022cf3c5d848dab313e4007835faf2/error.json",
+      "exported": "candidate/artifacts/056e5ad30da3-error.json",
+      "sha256": "fae28aa0fd8a33ec3c92f0cfe989b0f183b67c7c393ad32517c331368d1c942b"
+    },
+    {
+      "original": "candidate/temp/test_staging_sync_failure_cann0/output/data/synthetic-workspace/work/C-01/cd022cf3c5d848dab313e4007835faf2/session.json",
+      "exported": "candidate/artifacts/74bd1c8972ba-session.json",
+      "sha256": "b44df53990cf1bec10df6500d1f3b6d4d742a7c5787e1abec4e4afd421915673"
+    },
+    {
+      "original": "candidate/temp/test_report_staging_syncs_all_1/output/data/synthetic-workspace/work/E-01/b95829f7849f40eabbf0f933d3616903/receipt.json",
+      "exported": "candidate/artifacts/ea788f8b7c1f-receipt.json",
+      "sha256": "f38bbd315b9662ffad620146e3c3cd9dbc60d625412c021ffc3755a388e6278c"
+    },
+    {
+      "original": "candidate/temp/test_report_staging_syncs_all_0/output/data/synthetic-workspace/work/C-01/9995137998d64099b01411fc99ad5cdc/receipt.json",
+      "exported": "candidate/artifacts/b3179e378ae4-receipt.json",
+      "sha256": "2b7a1752eeece375e80661794557b34e43f7318c8985c656aa19fdb6ea8f493a"
+    }
+  ]
+}

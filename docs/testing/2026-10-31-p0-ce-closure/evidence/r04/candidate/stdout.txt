@@ -1,0 +1,23 @@
+.....                                                                    [100%]
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\lenovo\Desktop\Agent挑战赛\镜像测试\runs\p0-ce-durability-candidate-20261031-115740-53b6ee\candidate\junit.xml -
+============================ slowest 10 durations =============================
+0.23s call     tests/test_ce_durable_staging.py::test_report_staging_syncs_all_submission_files[C]
+0.21s call     tests/test_ce_durable_staging.py::test_staging_sync_failure_cannot_publish_a_success[C]
+0.21s call     tests/test_ce_durable_staging.py::test_report_staging_syncs_all_submission_files[E]
+0.19s call     tests/test_ce_durable_staging.py::test_staging_sync_failure_cannot_publish_a_success[E]
+
+(6 durations < 0.005s hidden.  Use -vv to show these durations.)
+5 passed, 5 warnings in 1.15s

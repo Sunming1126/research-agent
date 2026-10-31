@@ -1,0 +1,49 @@
+{
+  "ok": false,
+  "mode": "model_report_needs_review",
+  "local_validation": true,
+  "delivered_attempt": 2,
+  "model_issues": [
+    "正文称“TriviaQA 采用公开 Web Development 划分[2, p.18]”，但证据 ev-14 出自 RAG 论文（ref 2），原文是“We report our results using the datasets splits used in DPR... For TriviaQA, this test dataset is the public TriviaQA Web Development split”，即 RAG 报告自身采用该划分，而非 TriviaQA 数据集本身“采用”该划分；该句把 RAG 的实验设置归因为数据集属性，属归因不精确，应改为“RAG 在 TriviaQA 上使用公开 Web Development 划分[2, p.18]”。; 正文称“NQ 开放域版本丢弃多于 5 个 token 的答案[3, p.3]”，证据 ev-21 确为 FiD 原文“discarding answers with more than 5 tokens”，归属与页码一致，但“多于 5 个 token”与原文“more than 5 tokens”一致，此句本身无误；然而同段“SQuAD 因缺段落时问题不自足而不理想但仍纳入比较[1, p.4]”与 ev-5 一致，问题在于该段将 DPR 论文中关于 SQuAD 的表述与 FiD 论文中关于 NQ 的表述并列于同一“论文事实”句，未标明各事实分属不同论文，易被读作同一论文的连续陈述，需按论文分别标注来源。; 正文称“RETRO 提出按测试文档与训练集邻近度分层评估泄漏[4, p.2]，并在泄漏水平低至 α=12.5%（该水平对应与训练集最近匹配块共享少于 8 个连续 token）时仍优于基线[4, p.15]”，ev-27 原文为“Retro outperforms baseline models at all leakage levels, down to 𝛼= 12.5%”，且该水平“loss is computed on chunks with less than 8 contiguous tokens shared with the closest matching chunk in the training dataset”；正文将“less than 8 contiguous tokens”表述为“共享少于 8 个连续 token”基本忠实，但原文限定的是“loss 计算所用块”与最近匹配块的关系，正文省略了“loss 计算所用块”这一限定，条件表述不完整，应补全为“该水平下损失在与其训练集最近匹配块共享少于 8 个连续 token 的块上计算”。"
+  ],
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“DPR 使用 Natural Questions、TriviaQA 等开放域 QA 数据，SQuAD 因缺段落时问题不自足而不理想但仍纳入比较[1, p.4]”，但所给证据 ev-5 仅逐字支持 SQuAD 的描述与纳入比较，未逐字支持“DPR 使用 Natural Questions、TriviaQA 等开放域 QA 数据”这一并列断言；该句把有证据与无证据的事实合并陈述，需拆分或删除未获支持部分。",
+          "正文称“NQ 开放域版本丢弃超过 5 个 token 的答案[3, p.3]”，证据 ev-21 原文为“discarding answers with more than 5 tokens”，即丢弃“多于 5 个 token”的答案，而非“超过 5 个 token”可作同义，但正文将其归为论文事实且引用 FiD 页码，需确认该句确为 FiD 原文而非 DPR 数据描述；若无法确认归属，应降为待核查。",
+          "正文称“RETRO 提出按测试文档与训练集邻近度分层评估泄漏[4, p.2]，并在重叠低至 α=12.5% 时仍报告增益[4, p.15]”，证据 ev-30 支持邻近度分层评估，ev-27 支持 α=12.5% 时仍优于基线；但正文将“重叠低至 α=12.5%”表述为“重叠”而原文为“leakage levels”，且 ev-27 说明该水平对应“less than 8 contiguous tokens shared”，正文未说明该口径，属归因与条件表述不精确，需按原文改写。"
+        ]
+      }
+    },
+    {
+      "attempt": 1,
+      "stage": "validation",
+      "issues": [
+        "正文称“DPR 使用 Natural Questions、TriviaQA 等开放域 QA 数据，SQuAD 因缺段落时问题不自足而不理想但仍纳入比较[1, p.4]”，但所给证据 ev-5 仅逐字支持 SQuAD 的描述与纳入比较，未逐字支持“DPR 使用 Natural Questions、TriviaQA 等开放域 QA 数据”这一并列断言；该句把有证据与无证据的事实合并陈述，需拆分或删除未获支持部分。; 正文称“NQ 开放域版本丢弃超过 5 个 token 的答案[3, p.3]”，证据 ev-21 原文为“discarding answers with more than 5 tokens”，即丢弃“多于 5 个 token”的答案，而非“超过 5 个 token”可作同义，但正文将其归为论文事实且引用 FiD 页码，需确认该句确为 FiD 原文而非 DPR 数据描述；若无法确认归属，应降为待核查。; 正文称“RETRO 提出按测试文档与训练集邻近度分层评估泄漏[4, p.2]，并在重叠低至 α=12.5% 时仍报告增益[4, p.15]”，证据 ev-30 支持邻近度分层评估，ev-27 支持 α=12.5% 时仍优于基线；但正文将“重叠低至 α=12.5%”表述为“重叠”而原文为“leakage levels”，且 ev-27 说明该水平对应“less than 8 contiguous tokens shared”，正文未说明该口径，属归因与条件表述不精确，需按原文改写。"
+      ]
+    },
+    {
+      "attempt": 2,
+      "stage": "audit",
+      "audit": {
+        "ok": false,
+        "issues": [
+          "正文称“TriviaQA 采用公开 Web Development 划分[2, p.18]”，但证据 ev-14 出自 RAG 论文（ref 2），原文是“We report our results using the datasets splits used in DPR... For TriviaQA, this test dataset is the public TriviaQA Web Development split”，即 RAG 报告自身采用该划分，而非 TriviaQA 数据集本身“采用”该划分；该句把 RAG 的实验设置归因为数据集属性，属归因不精确，应改为“RAG 在 TriviaQA 上使用公开 Web Development 划分[2, p.18]”。",
+          "正文称“NQ 开放域版本丢弃多于 5 个 token 的答案[3, p.3]”，证据 ev-21 确为 FiD 原文“discarding answers with more than 5 tokens”，归属与页码一致，但“多于 5 个 token”与原文“more than 5 tokens”一致，此句本身无误；然而同段“SQuAD 因缺段落时问题不自足而不理想但仍纳入比较[1, p.4]”与 ev-5 一致，问题在于该段将 DPR 论文中关于 SQuAD 的表述与 FiD 论文中关于 NQ 的表述并列于同一“论文事实”句，未标明各事实分属不同论文，易被读作同一论文的连续陈述，需按论文分别标注来源。",
+          "正文称“RETRO 提出按测试文档与训练集邻近度分层评估泄漏[4, p.2]，并在泄漏水平低至 α=12.5%（该水平对应与训练集最近匹配块共享少于 8 个连续 token）时仍优于基线[4, p.15]”，ev-27 原文为“Retro outperforms baseline models at all leakage levels, down to 𝛼= 12.5%”，且该水平“loss is computed on chunks with less than 8 contiguous tokens shared with the closest matching chunk in the training dataset”；正文将“less than 8 contiguous tokens”表述为“共享少于 8 个连续 token”基本忠实，但原文限定的是“loss 计算所用块”与最近匹配块的关系，正文省略了“loss 计算所用块”这一限定，条件表述不完整，应补全为“该水平下损失在与其训练集最近匹配块共享少于 8 个连续 token 的块上计算”。"
+        ]
+      }
+    },
+    {
+      "attempt": 2,
+      "stage": "validation",
+      "issues": [
+        "正文称“TriviaQA 采用公开 Web Development 划分[2, p.18]”，但证据 ev-14 出自 RAG 论文（ref 2），原文是“We report our results using the datasets splits used in DPR... For TriviaQA, this test dataset is the public TriviaQA Web Development split”，即 RAG 报告自身采用该划分，而非 TriviaQA 数据集本身“采用”该划分；该句把 RAG 的实验设置归因为数据集属性，属归因不精确，应改为“RAG 在 TriviaQA 上使用公开 Web Development 划分[2, p.18]”。; 正文称“NQ 开放域版本丢弃多于 5 个 token 的答案[3, p.3]”，证据 ev-21 确为 FiD 原文“discarding answers with more than 5 tokens”，归属与页码一致，但“多于 5 个 token”与原文“more than 5 tokens”一致，此句本身无误；然而同段“SQuAD 因缺段落时问题不自足而不理想但仍纳入比较[1, p.4]”与 ev-5 一致，问题在于该段将 DPR 论文中关于 SQuAD 的表述与 FiD 论文中关于 NQ 的表述并列于同一“论文事实”句，未标明各事实分属不同论文，易被读作同一论文的连续陈述，需按论文分别标注来源。; 正文称“RETRO 提出按测试文档与训练集邻近度分层评估泄漏[4, p.2]，并在泄漏水平低至 α=12.5%（该水平对应与训练集最近匹配块共享少于 8 个连续 token）时仍优于基线[4, p.15]”，ev-27 原文为“Retro outperforms baseline models at all leakage levels, down to 𝛼= 12.5%”，且该水平“loss is computed on chunks with less than 8 contiguous tokens shared with the closest matching chunk in the training dataset”；正文将“less than 8 contiguous tokens”表述为“共享少于 8 个连续 token”基本忠实，但原文限定的是“loss 计算所用块”与最近匹配块的关系，正文省略了“loss 计算所用块”这一限定，条件表述不完整，应补全为“该水平下损失在与其训练集最近匹配块共享少于 8 个连续 token 的块上计算”。"
+      ]
+    }
+  ]
+}

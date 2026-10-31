@@ -1,0 +1,304 @@
+{
+  "status": "four_offline_substeps_closed_P0_overall_in_progress",
+  "experiments": [
+    {
+      "factor": "recovery",
+      "fix_commit": "eb42a3934972548af3e784e8d2a362c5e6654cf2",
+      "baseline_evidence": "r01",
+      "candidate_evidence": "r02",
+      "baseline": {
+        "returncode": 1,
+        "seconds": 2.175,
+        "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "tests": 8,
+        "failures": 4,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4
+      },
+      "candidate": {
+        "returncode": 0,
+        "seconds": 1.341,
+        "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 8
+      },
+      "tests": 8
+    },
+    {
+      "factor": "wire",
+      "fix_commit": "6145a5cc151f02f587585e918a75a3716c70c0a5",
+      "baseline_evidence": "r16",
+      "candidate_evidence": "r18",
+      "baseline": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 1.927,
+        "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "tests": 18,
+        "failures": 16,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 2
+      },
+      "candidate": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 1.36,
+        "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 18
+      },
+      "tests": 18
+    },
+    {
+      "factor": "durability",
+      "fix_commit": "c9c079d3c0c0371d0b369400ed9892096b05939d",
+      "baseline_evidence": "r03",
+      "candidate_evidence": "r04",
+      "baseline": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 1.995,
+        "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "tests": 5,
+        "failures": 4,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 1
+      },
+      "candidate": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 1.764,
+        "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 5
+      },
+      "tests": 5
+    },
+    {
+      "factor": "retry",
+      "fix_commit": "91d15f80d720476c9aee1f96a6320b97ecc97dea",
+      "baseline_evidence": "r10",
+      "candidate_evidence": "r11",
+      "baseline": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 2.409,
+        "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "tests": 6,
+        "failures": 4,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 2
+      },
+      "candidate": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 2.146,
+        "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+        "native_harness_execution": false,
+        "target_model_calls": 0,
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 6
+      },
+      "tests": 6
+    }
+  ],
+  "final_regression": {
+    "stage": "regression",
+    "suite": "retry",
+    "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-retry-regression-20261031-120145-aa5e27",
+    "baseline_revision": "c9c079d3c0c0371d0b369400ed9892096b05939d",
+    "application_source_unchanged_during_run": true,
+    "source_files": 45,
+    "target_model_calls": 0,
+    "native_harness_execution": false,
+    "result": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 60.058,
+      "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+      "native_harness_execution": false,
+      "target_model_calls": 0,
+      "tests": 446,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 7,
+      "passed": 439
+    }
+  },
+  "skipped_or_xfailed": [
+    {
+      "name": "tests.test_d_official_client_flow",
+      "class": "",
+      "message": "collection skipped"
+    },
+    {
+      "name": "test_case_insensitive_duplicate_selection",
+      "class": "tests.test_agent_core.CoreTests",
+      "type": "pytest.skip",
+      "message": "case-insensitive filesystem cannot hold both filenames"
+    },
+    {
+      "name": "test_symlink_escape",
+      "class": "tests.test_agent_core.CoreTests",
+      "type": "pytest.skip",
+      "message": "Windows symlink privilege is unavailable"
+    },
+    {
+      "name": "test_absolute_authorized_file_still_rejects_symlinks_and_traversal",
+      "class": "tests.test_contract_044",
+      "type": "pytest.skip",
+      "message": "symlink unavailable"
+    },
+    {
+      "name": "test_scanned_page_does_not_hide_text_pages",
+      "class": "tests.test_mixed_text_pdf.MixedTextPdfTests",
+      "type": "pytest.skip",
+      "message": "300-paper local benchmark not installed"
+    },
+    {
+      "name": "test_default_library_rejects_symlink_escape",
+      "class": "tests.test_platform_defaults",
+      "type": "pytest.skip",
+      "message": "symlink creation unavailable"
+    },
+    {
+      "name": "test_default_page_budget_is_redistributed_from_short_to_long_authorized_papers",
+      "class": "tests.test_quality_counterexamples",
+      "type": "pytest.xfail",
+      "message": "Known quota underutilization remains: full-page reallocation prototype did not pass timed retrieval gate; retained as an open defect, not a passed test"
+    }
+  ],
+  "end_to_end": {
+    "control": {
+      "delivered": 3,
+      "total": 12,
+      "delivery_rate": 0.25,
+      "hard_failure_rate": 0.75,
+      "per_case": {
+        "C-01": {
+          "delivered": 0,
+          "total": 3
+        },
+        "C-03": {
+          "delivered": 0,
+          "total": 3
+        },
+        "E-01": {
+          "delivered": 0,
+          "total": 3
+        },
+        "E-02": {
+          "delivered": 3,
+          "total": 3
+        }
+      },
+      "local_sdk_trace_linked": 12,
+      "http_seconds_per_four_cases": [
+        0.344,
+        0.328,
+        0.313
+      ],
+      "http_seconds_p50": 0.328,
+      "http_seconds_p95": 0.344,
+      "real_model_tokens": null,
+      "target_model_calls": 0,
+      "official_total_score_p50": null,
+      "official_total_score_p95": null,
+      "scope": "Synthetic replies; HTTP time excludes process startup; no platform assigned/collector/grader"
+    },
+    "candidate": {
+      "delivered": 12,
+      "total": 12,
+      "delivery_rate": 1.0,
+      "hard_failure_rate": 0.0,
+      "per_case": {
+        "C-01": {
+          "delivered": 3,
+          "total": 3
+        },
+        "C-03": {
+          "delivered": 3,
+          "total": 3
+        },
+        "E-01": {
+          "delivered": 3,
+          "total": 3
+        },
+        "E-02": {
+          "delivered": 3,
+          "total": 3
+        }
+      },
+      "local_sdk_trace_linked": 12,
+      "http_seconds_per_four_cases": [
+        0.437,
+        0.45299999999999996,
+        0.437
+      ],
+      "http_seconds_p50": 0.437,
+      "http_seconds_p95": 0.45299999999999996,
+      "real_model_tokens": null,
+      "target_model_calls": 0,
+      "official_total_score_p50": null,
+      "official_total_score_p95": null,
+      "scope": "Synthetic replies; HTTP time excludes process startup; no platform assigned/collector/grader"
+    }
+  },
+  "wire_invalid_interception": {
+    "baseline": {
+      "invalid_fixtures": 14,
+      "rejected_non_200": 8,
+      "incorrectly_emitted_http_200": 6
+    },
+    "candidate": {
+      "invalid_fixtures": 14,
+      "rejected_non_200": 14,
+      "incorrectly_emitted_http_200": 0
+    }
+  },
+  "e2e_environment_sha256": "8c5b65c2c01a49d76ce4c4023bf7b4b45fdfdf0b997c5bcd3a332a2925d0689b",
+  "e2e_input_fingerprints_match": true,
+  "first_e2e_set_not_pooled": true,
+  "target_model_calls": 0,
+  "native_harness_execution": false,
+  "new_platform_evaluations": 0,
+  "official_scores": null,
+  "unresolved": [
+    "historical_private_C01_root_cause",
+    "Linux_directory_fsync_and_crash_restart_recovery",
+    "persistent_transport_idempotency_and_remote_ack",
+    "real_model_repeated_accuracy_cost",
+    "P1_D_deterministic_policy_and_score_variance",
+    "P2_B_retrieval"
+  ]
+}

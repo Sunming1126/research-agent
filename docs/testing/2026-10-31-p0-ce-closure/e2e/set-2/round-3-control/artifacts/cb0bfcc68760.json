@@ -1,0 +1,7 @@
+{
+  "case_id": "E-01",
+  "error_type": "EvidenceError",
+  "message": "Idea model report failed validation: report body shorter than 800 characters; report patch does not match a unique current passage",
+  "usage": [],
+  "model_response_failures": []
+}

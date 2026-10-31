@@ -1,0 +1,7 @@
+{
+  "raw_evidence_sha256": "9606b174290ae23f329146f58939cd0ff301737099d4321659e724bcae6f46b1",
+  "claims": 37,
+  "ledger_published": false,
+  "reason": "Full authorized source excerpts retained locally and D only",
+  "claims_sha256": "78fc095673cc56f8d706e1ba6af6cc46ed3a7432174ed932d420c6f21ddf60a1"
+}

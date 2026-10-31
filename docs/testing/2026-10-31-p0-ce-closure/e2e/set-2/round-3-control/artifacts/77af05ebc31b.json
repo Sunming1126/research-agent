@@ -1,0 +1,38 @@
+{
+  "case_id": "C-03",
+  "timeout_seconds": 170,
+  "elapsed_seconds": 0.046,
+  "stage": "persist_and_readback",
+  "stages": [
+    {
+      "stage": "material_resolution",
+      "elapsed_seconds": 0.0
+    },
+    {
+      "stage": "document_index",
+      "elapsed_seconds": 0.015
+    },
+    {
+      "stage": "retrieval",
+      "elapsed_seconds": 0.031
+    },
+    {
+      "stage": "report_report",
+      "elapsed_seconds": 0.031
+    },
+    {
+      "stage": "report_audit",
+      "elapsed_seconds": 0.031
+    },
+    {
+      "stage": "submission_validation",
+      "elapsed_seconds": 0.031
+    },
+    {
+      "stage": "persist_and_readback",
+      "elapsed_seconds": 0.031
+    }
+  ],
+  "cancelled": false,
+  "publication_state": "active"
+}

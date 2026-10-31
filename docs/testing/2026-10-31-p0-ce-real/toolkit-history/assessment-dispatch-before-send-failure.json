@@ -1,0 +1,7 @@
+{
+  "stage": "assessment_dispatch",
+  "exception": "KeyError_seq",
+  "native_message_sent": false,
+  "target_model_calls": 0,
+  "cause": "native log preamble lacks seq; use get seq default zero"
+}

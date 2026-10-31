@@ -1,0 +1,81 @@
+{
+  "case_id": "E-02",
+  "artifacts": [
+    {
+      "path": "data/offline-ce-fixed/E-02.json",
+      "kind": "json",
+      "bytes": 4650,
+      "sha256": "bbf1ae0e75d7912bf414e75d2819763de1ae3d584c5daa6882d6d41c0183dc49"
+    },
+    {
+      "path": "data/expert/E-02-灵感Idea报告-offline-ce-fixed.md",
+      "kind": "md",
+      "bytes": 4489,
+      "sha256": "5934b1b61709b7ba7b9e1694167a9cdb1e7382e98ded8245dd8e85dee0184b20"
+    }
+  ],
+  "filenames": [
+    "Study_1.pdf",
+    "Study_2.pdf",
+    "Study_3.pdf",
+    "Study_4.pdf",
+    "Study_5.pdf"
+  ],
+  "specs": null,
+  "proof": null,
+  "usage": [],
+  "session": {
+    "case_id": "E-02",
+    "timeout_seconds": 170,
+    "elapsed_seconds": 0.078,
+    "stage": "persist_and_readback",
+    "stages": [
+      {
+        "stage": "material_resolution",
+        "elapsed_seconds": 0.015
+      },
+      {
+        "stage": "document_index",
+        "elapsed_seconds": 0.031
+      },
+      {
+        "stage": "retrieval",
+        "elapsed_seconds": 0.031
+      },
+      {
+        "stage": "report_report",
+        "elapsed_seconds": 0.031
+      },
+      {
+        "stage": "report_audit",
+        "elapsed_seconds": 0.031
+      },
+      {
+        "stage": "submission_validation",
+        "elapsed_seconds": 0.031
+      },
+      {
+        "stage": "persist_and_readback",
+        "elapsed_seconds": 0.031
+      }
+    ],
+    "cancelled": false,
+    "publication_state": "active"
+  },
+  "source_case": {
+    "case_id": "E-02",
+    "function": "Idea",
+    "title": "Synthetic research fixture",
+    "input": "Compare urban vegetation and surface temperature using remote sensing; exclude plant taxonomy only.",
+    "materials": [
+      "Study_1.pdf",
+      "Study_2.pdf",
+      "Study_3.pdf",
+      "Study_4.pdf",
+      "Study_5.pdf"
+    ],
+    "constraints": [],
+    "expected_output": "Idea",
+    "output_schema_ref": "Idea"
+  }
+}

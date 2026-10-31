@@ -1,0 +1,33 @@
+{
+  "case_id": "C-03",
+  "variant": "baseline",
+  "phase": "pair",
+  "round": 2,
+  "status": "failed",
+  "http_status": 500,
+  "wire_fields_valid": false,
+  "disk_matches": false,
+  "markdown_matches": false,
+  "sdk_trace_id": "921eb8b51f69c1f1de21ead0ea950e2c",
+  "sdk_trace_linked": true,
+  "sdk_span_count": 44,
+  "sdk_tool_spans": 40,
+  "error_type": "EvidenceError",
+  "seconds": 13.937,
+  "target_real_model_calls": 2,
+  "known_total_tokens": 14830,
+  "total_tokens": 14830,
+  "unknown_usage_calls": 0,
+  "quota_exhausted": false,
+  "sdk_recorded_llm_calls": 2,
+  "sdk_llm_call_count_matches": true,
+  "model_stages": [
+    "report",
+    "repair"
+  ],
+  "native_harness_orchestrated": true,
+  "native_session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+  "official_score": null,
+  "linux_acceptance": false,
+  "input_sha256": "9480c73544674f1cba572ad0f4a249fdc8f454e17271ebcbe8fbbe3a71872ad3"
+}

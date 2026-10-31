@@ -1,0 +1,23 @@
+{
+  "stage": "regression",
+  "suite": "retry",
+  "run": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\p0-ce-retry-regression-20261031-120145-aa5e27",
+  "baseline_revision": "c9c079d3c0c0371d0b369400ed9892096b05939d",
+  "application_source_unchanged_during_run": true,
+  "source_files": 45,
+  "target_model_calls": 0,
+  "native_harness_execution": false,
+  "result": {
+    "returncode": 0,
+    "timed_out": false,
+    "seconds": 60.058,
+    "execution": "Codex offline with explicit 2026-10-31 C/E authorization",
+    "native_harness_execution": false,
+    "target_model_calls": 0,
+    "tests": 446,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 7,
+    "passed": 439
+  }
+}
