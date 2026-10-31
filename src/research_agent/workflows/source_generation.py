@@ -85,20 +85,36 @@ def read_generation_materials(case_id: str, roots: list[Path]) -> dict[str, str]
 
 def build_source_prompt(case, materials: dict[str, str]) -> str:
     """生成只要求完整源码的提示词；题目材料作为待分析内容传入。"""
-    boundary = ''
-    if case.case_id == 'D-01':
-        boundary = ('基线必须是训练标签的多数类常量预测；最高频并列时选字典序最小的标签，'
-                    '为data.texts中每条文本重复该标签。禁止用输入顺序、Counter首次出现顺序或候选预测代替基线。\n')
-    elif case.case_id == 'D-05':
-        boundary = ('公开协议边界核对：同一时刻先处理所有到达/完成事件，再按服务器编号派发；'
-                    '优先队列的时间相同时必须有可比较的稳定标识，绝不能让Python比较任务dict。'
-                    '拒绝任务后该空闲服务器继续尝试等待任务，不能直接跳过服务器；'
-                    '公平累计在派发时预留；无任务和空闲间隔能正常退出/推进。'
-                    'baseline和candidate共享一个清晰的状态推进函数，避免重复事件和多套矛盾状态。\n')
-    elif case.case_id == 'D-02':
-        boundary = ('接口边界核对：run的baseline/candidate仅包含test_queries；'
-                    'dev_queries排名只存details.search，不混入正式预测。rank按data.selected排序，不能重选参。'
-                    '每个query完整排列所有documents；开发搜索逐项覆盖protocol.grid并按method的字典序规则打破并列。\n')
+    guidance = {
+        'D-01': (
+            '本次从训练数据重新建立词表和类别的字典序；统计df时一篇文档内重复词只算一次。'
+            '训练集之外的词不能进入词表。使用协议中的epochs/lr/penalty，零初始化、全批量更新；'
+            '每一轮先累计所有样本梯度再更新，bias也正则化。softmax先减最大logit。'
+            'TF-IDF归一化后再附bias，空文本仍有bias；返回真实classes/vocabulary/idf/weights。'
+            '基线始终使用训练标签多数类，并列选字典序最小，不能复用候选预测。'),
+        'D-02': (
+            '把分词、标题/正文词频、df、长度预先计算一次，在各配置和查询间复用；'
+            '空标题也计入N，两个字段分别算平均长度和df，重复查询词按次数贡献。'
+            'run中完整遍历protocol.grid；search记录开发查询排名、普通均值和分组统计。'
+            '先算每个组内查询均值，再将组等权平均，不能按组大小加权。'
+            '选参依次最大化round(最差组MRR,12)、round(组宏MRR,12)、round(组宏Recall,12)，'
+            '最后最小化(title_weight,k1,b)。测试无标签，绝不参与选参。'
+            'rank只使用data.selected并返回candidate排名，不再搜索；baseline也必须支持rank。'),
+        'D-05': (
+            '基线FIFO和公平候选共用事件推进函数，策略仅决定选哪个等待任务。服务器只有1至3个，'
+            '用已排序任务的下标、等待列表、free_at与last_flow两个服务器数组及分流预留量即可。'
+            '不要事件堆、active集合或多层完成事件循环，以免空闲事件反复入队导致死循环。'
+            '当前派发处理后，只从严格大于now的下一到达时刻和忙服务器结束时刻中取最小值推进。'
+            '没有未来任务且没有等待任务即退出；到horizon立即停止派发。不要将时间或权重强转整数。'
+            '为每个服务器分别保存空闲时刻和上次流，即使空闲也不清除上次流。'
+            '每轮先处理当前时刻：完成释放、所有到达入队、过期待办丢弃后，按服务器编号派发。发现到达事件后不能直接continue跳过派发；有空闲服务器和等待任务时不能先跳到下一个事件。所有当前派发完成后才推进时钟。'
+            '公平优先级每次选择重新按累计已分配服务/权重计算；派发立即预留。'
+            '仅比较数值和稳定id，不让堆比较任务字典。选中后先判start>=deadline，再判end>horizon；'
+            '丢弃后同服务器继续选：外层按服务器编号，内层持续处理等待任务，直到该服务器成功派发或队列为空；不能用外层for的continue代替。失败任务不更新上次流和预留量。end==horizon允许完成。'
+            '到窗口后剩余任务记horizon。每个任务恰好在trace或dropped出现一次；'
+            'served_ms含全部声明流，零服务保留。每次请求从空状态开始。'),
+    }
+    boundary = guidance.get(case.case_id, '') + '\n'
     return (
         "请根据下面当前题目的公开方法、协议、样例和输入，实现一个完整的 Python 3.9 标准库算法。\n"
         "只返回一个完整的 ```python 代码块，不要解释、不要省略函数、不要返回补丁、不要拆成多个版本。\n"
@@ -106,7 +122,7 @@ def build_source_prompt(case, materials: dict[str, str]) -> str:
         "仅使用算法所需标准库，如math、collections、re、heapq、itertools、random、statistics、time；"
         "不使用动态加载、反射、私有运行时属性或第三方包。\n"
         "严格遵守 protocol.response_schema；这是算法内部返回，不是最终 Reproduction 答卷。\n\n"
-        "生成时间受限：源码目标不超过1800 token、100行，省略注释、类型注解和重复包装；"
+        "生成时间受限：源码保持紧凑，D-01/D-05目标约2200 token，D-02约2600 token；不要注释、类型注解、解释或重复包装；"
         "使用共享小函数实现基线和候选，仍须覆盖协议所有阶段和边界。"
         "优先保证baseline和完整输出结构；候选确实无法完成时按协议返回candidate=null，不能伪造轨迹或预测。\n"
         + boundary +

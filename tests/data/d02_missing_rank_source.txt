@@ -1,0 +1,199 @@
+import re
+import math
+from collections import Counter
+
+def run_experiment(request):
+    data = request['data']
+    docs = data['documents']
+    dev_qs = data['dev_queries']
+    test_qs = data['test_queries']
+    protocol = request['protocol']
+    default_config = protocol['default_config']
+    grid = protocol['grid']
+    token_pat = re.compile(r'[a-z0-9]+')
+    doc_ids = [d['id'] for d in docs]
+    N = len(docs)
+    title_texts = [d['title'] for d in docs]
+    body_texts = [d['text'] for d in docs]
+    title_tokens = [token_pat.findall(t.lower()) for t in title_texts]
+    body_tokens = [token_pat.findall(b.lower()) for b in body_texts]
+    title_counter_list = [Counter(t) for t in title_tokens]
+    body_counter_list = [Counter(b) for b in body_tokens]
+    title_df = Counter()
+    body_df = Counter()
+    for c in title_counter_list:
+        for w in c:
+            title_df[w] += 1
+    for c in body_counter_list:
+        for w in c:
+            body_df[w] += 1
+    title_lengths = [sum(c.values()) for c in title_counter_list]
+    body_lengths = [sum(c.values()) for c in body_counter_list]
+    avg_title_len = sum(title_lengths) / N if N > 0 else 1.0
+    avg_body_len = sum(body_lengths) / N if N > 0 else 1.0
+    if avg_title_len == 0:
+        avg_title_len = 1.0
+    if avg_body_len == 0:
+        avg_body_len = 1.0
+
+    def bm25_score(query_tokens, k1, b, field_type):
+        scores = [0.0] * N
+        qtf = Counter(query_tokens)
+        if field_type == 'title':
+            counter_list = title_counter_list
+            df_dict = title_df
+            lengths = title_lengths
+            avg_len = avg_title_len
+        else:
+            counter_list = body_counter_list
+            df_dict = body_df
+            lengths = body_lengths
+            avg_len = avg_body_len
+        for word, qf in qtf.items():
+            df = df_dict.get(word, 0)
+            if df == 0:
+                continue
+            idf = math.log(1.0 + (N - df + 0.5) / (df + 0.5))
+            for i in range(N):
+                f = counter_list[i].get(word, 0)
+                if f == 0:
+                    continue
+                len_norm = 1.0 - b + b * lengths[i] / avg_len if avg_len > 0 else 1.0
+                denom = f + k1 * len_norm
+                if denom == 0:
+                    continue
+                contrib = idf * f * (k1 + 1.0) / denom
+                scores[i] += qf * contrib
+        return scores
+
+    def rank_docs(query_text, k1, b, title_weight):
+        tokens = token_pat.findall(query_text.lower())
+        body_scores = bm25_score(tokens, k1, b, 'body')
+        title_scores = bm25_score(tokens, k1, b, 'title')
+        total = [body_scores[i] + title_weight * title_scores[i] for i in range(N)]
+        ranked = sorted([(i, total[i]) for i in range(N)], key=lambda x: (-x[1], doc_ids[x[0]]))
+        return [{'id': doc_ids[idx], 'score': sc} for idx, sc in ranked]
+
+    def compute_metrics(rankings, relevant_set):
+        rec5 = 0.0
+        mrr10 = 0.0
+        if not relevant_set:
+            return 0.0, 0.0
+        found5 = 0
+        for pos, item in enumerate(rankings[:5]):
+            if item['id'] in relevant_set:
+                found5 += 1
+        rec5 = found5 / len(relevant_set) * 100.0
+        for pos, item in enumerate(rankings[:10]):
+            if item['id'] in relevant_set:
+                mrr10 = 1.0 / (pos + 1)
+                break
+        return rec5, mrr10
+
+    dev_rel = {q['id']: set(q['relevant']) for q in dev_qs}
+    dev_groups = {q['id']: q['group'] for q in dev_qs}
+    test_ids = [q['id'] for q in test_qs]
+
+    baseline_rankings = {}
+    for q in test_qs:
+        baseline_rankings[q['id']] = rank_docs(q['text'], default_config['k1'], default_config['b'], default_config['title_weight'])
+
+    search_rows = []
+    best_config = None
+    best_worst = -1.0
+    best_macro_mrr = -1.0
+    best_macro_recall = -1.0
+    best_tw = None
+    best_k1 = None
+    best_b = None
+
+    for cfg in grid:
+        tw = cfg['title_weight']
+        k1 = cfg['k1']
+        b = cfg['b']
+        dev_rankings = {}
+        for q in dev_qs:
+            dev_rankings[q['id']] = rank_docs(q['text'], k1, b, tw)
+        group_metrics = {}
+        group_recalls = {}
+        group_mrrs = {}
+        for q in dev_qs:
+            g = dev_groups[q['id']]
+            rec, mrr = compute_metrics(dev_rankings[q['id']], dev_rel[q['id']])
+            if g not in group_metrics:
+                group_metrics[g] = {'recalls': [], 'mrrs': []}
+            group_metrics[g]['recalls'].append(rec)
+            group_metrics[g]['mrrs'].append(mrr)
+        groups_out = {}
+        for g, vals in group_metrics.items():
+            avg_rec = sum(vals['recalls']) / len(vals['recalls'])
+            avg_mrr = sum(vals['mrrs']) / len(vals['mrrs'])
+            groups_out[g] = {'recall_at_5_percent': avg_rec, 'mrr_at_10': avg_mrr}
+            group_recalls[g] = avg_rec
+            group_mrrs[g] = avg_mrr
+        worst_mrr = min(group_mrrs.values())
+        macro_mrr = sum(group_mrrs.values()) / len(group_mrrs)
+        macro_recall = sum(group_recalls.values()) / len(group_recalls)
+        row = {
+            'config': cfg,
+            'rankings': dev_rankings,
+            'recall_at_5_percent': sum([compute_metrics(dev_rankings[q['id']], dev_rel[q['id']])[0] for q in dev_qs]) / len(dev_qs),
+            'mrr_at_10': sum([compute_metrics(dev_rankings[q['id']], dev_rel[q['id']])[1] for q in dev_qs]) / len(dev_qs),
+            'group_metrics': {
+                'groups': groups_out,
+                'worst_mrr_at_10': worst_mrr,
+                'macro_mrr_at_10': macro_mrr,
+                'macro_recall_at_5_percent': macro_recall
+            }
+        }
+        search_rows.append(row)
+        cand = (round(worst_mrr, 12), round(macro_mrr, 12), round(macro_recall, 12), tw, k1, b)
+        if best_config is None:
+            best_config = cfg
+            best_worst = round(worst_mrr, 12)
+            best_macro_mrr = round(macro_mrr, 12)
+            best_macro_recall = round(macro_recall, 12)
+            best_tw = tw
+            best_k1 = k1
+            best_b = b
+        else:
+            if cand[0] > best_worst:
+                best_config = cfg
+                best_worst = cand[0]
+                best_macro_mrr = cand[1]
+                best_macro_recall = cand[2]
+                best_tw = tw
+                best_k1 = k1
+                best_b = b
+            elif cand[0] == best_worst:
+                if cand[1] > best_macro_mrr:
+                    best_config = cfg
+                    best_macro_mrr = cand[1]
+                    best_macro_recall = cand[2]
+                    best_tw = tw
+                    best_k1 = k1
+                    best_b = b
+                elif cand[1] == best_macro_mrr:
+                    if cand[2] > best_macro_recall:
+                        best_config = cfg
+                        best_macro_recall = cand[2]
+                        best_tw = tw
+                        best_k1 = k1
+                        best_b = b
+                    elif cand[2] == best_macro_recall:
+                        if tw < best_tw or (tw == best_tw and k1 < best_k1) or (tw == best_tw and k1 == best_k1 and b < best_b):
+                            best_config = cfg
+                            best_tw = tw
+                            best_k1 = k1
+                            best_b = b
+
+    candidate_rankings = {}
+    for q in test_qs:
+        candidate_rankings[q['id']] = rank_docs(q['text'], best_config['k1'], best_config['b'], best_config['title_weight'])
+
+    details = {
+        'selected': {'k1': best_config['k1'], 'b': best_config['b'], 'title_weight': best_config['title_weight']},
+        'search': search_rows
+    }
+
+    return {'baseline': baseline_rankings, 'candidate': candidate_rankings, 'details': details}

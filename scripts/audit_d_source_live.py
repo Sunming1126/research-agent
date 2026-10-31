@@ -14,7 +14,7 @@ from research_agent.core.utils import sha256_file, write_json
 root = Path('/data/experiments')
 output = Path('/audit')
 rows = []
-for case_id in ('D-01','D-02','D-05'):
+for case_id in os.environ.get('AUDIT_CASE_IDS', 'D-05,D-01,D-02').split(','):
     protocol = json.loads((root/case_id/'protocol.json').read_text())
     text = '按照当前公开方法和协议实现实验。核心指标：' + '；'.join(m['name']+'（'+m['unit']+'）' for m in protocol['metrics'])
     case = CaseContext.from_dict(dict(case_id=case_id,function='Reproduction',title='Public sample audit',input=text,

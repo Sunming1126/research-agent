@@ -183,7 +183,11 @@ class ReportWorkflow:
         if getattr(self.llm, 'supports_source_reports', False):
             from .source_reports import source_ledger
             self._source_report = True
-            self.ledger = source_ledger(case, chunks, retriever.chunks)
+            if case.function == 'Survey':
+                from .survey_sources import survey_ledger
+                self.ledger, self.selected_chunks = survey_ledger(case, retriever, plan, chunks)
+            else:
+                self.ledger = source_ledger(case, chunks, retriever.chunks)
             self.coverage = coverage_matrix(self.ledger)
             self.evidence_audit = {'mode': 'authorized_source_context',
                                    'semantic_claims_verified': False}
@@ -250,6 +254,11 @@ class ReportWorkflow:
                                               patches=planned_patches, feedback=feedback,
                                               full_review=not any(h.get("stage") == "audit" for h in history))
                     reserve = self.llm.input_tokens("audit", next_audit) + 1500 if hasattr(self.llm, "input_tokens") else 4200
+                    if direct and case.function == 'Survey' and hasattr(self.llm, 'input_tokens'):
+                        # Keep the real repair affordable. An optional, pessimistic
+                        # next-audit estimate must not prevent correcting known errors.
+                        affordable = max(0, self.llm.remaining_tokens - self.llm.input_tokens('repair', repair_data) - 1400)
+                        reserve = min(reserve, affordable)
                     repaired = self._model_step("repair", repair_data, 1400, reserve=reserve)
                     if self.report_trace:
                         self.report_trace[-1].setdefault('repair_responses', []).append(repaired)
@@ -271,7 +280,7 @@ class ReportWorkflow:
                         data['response_fields'] = {'markdown': '完整报告正文字符串，不能省略或嵌套',
                                                    'used_evidence_ids': '实际使用的证据ID数组'}
                     if direct and case.function == 'Survey':
-                        data['output_limits'].update(target_body_characters=1600, model_citation_instances=25)
+                        data['output_limits'].update(target_body_characters=2200, model_citation_instances=30)
                     # 哈希、偏移等核验元数据留在磁盘；为审查和一次修订保留实际模型预算。
                     remaining = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
                     requested = min(4200, remaining - len(json.dumps(data, ensure_ascii=False)) // 2 - 2000)
@@ -291,7 +300,7 @@ class ReportWorkflow:
                         available = max(0, self.llm.remaining_tokens - self.llm.input_tokens("report", data)
                                         - (3000 if case.function == "Survey" else 4200))
                         reserve = min(reserve, available)
-                    value = self._model_step("report", data, min(3000 if case.function == "Survey" else 4200, requested),
+                    value = self._model_step("report", data, min((3600 if direct else 3000) if case.function == "Survey" else 4200, requested),
                                              reserve=reserve, minimum=1600)
             except (ModelError, EvidenceError, TimeoutError) as exc:
                 history.append({"attempt": attempt + 1, "stage": "report", "issues": [str(exc)]})

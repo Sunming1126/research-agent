@@ -7,10 +7,12 @@ import os
 import subprocess
 import sys
 import re
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 
 from ..core.session import checkpoint, current_session, remaining_timeout
+from .d_public_review import review_public_result
 
 
 def _finite(value):
@@ -75,7 +77,10 @@ def validate_sample_output(case_id, request, result):
             queries = {q["id"] for q in data["test_queries"]}
             documents = {d["id"] for d in data["documents"]}
             if not isinstance(value, dict) or set(value) != queries:
-                raise ValueError("D-02 rankings must cover every test query")
+                raise ValueError("D-02 " + name + " rankings must cover every test query: expected="
+                                 + repr(sorted(queries)) + "; actual="
+                                 + repr(sorted(value) if isinstance(value, dict) else type(value).__name__)
+                                 + "; dev query rankings belong only in details.search")
             for ranking in value.values():
                 if (not isinstance(ranking, list) or any(not isinstance(row, dict) or set(row) != {"id", "score"}
                     or type(row["score"]) not in {int, float} for row in ranking)):
@@ -146,21 +151,25 @@ def validate_sample_output(case_id, request, result):
             "candidate_present": result["candidate"] is not None}
 
 
-def run_public_sample(source: Path, materials, case_id, *, timeout=8, _edge_check=True):
+def run_public_sample(source: Path, materials, case_id, *, timeout=8, _edge_check=True, _deadline=None):
+    # One wall-clock allowance for the entire public-check bundle, including children.
+    if _deadline is None:
+        _deadline = time.monotonic() + remaining_timeout(timeout, reserve=35)
     protocol, request = json.loads(materials["protocol"]), json.loads(materials["sample"])
     if request.get("case_id") != case_id or protocol.get("case_id") != case_id:
         raise ValueError("public sample or protocol belongs to another case")
     request = dict(request, protocol=protocol)
     checkpoint("d_public_sample")
-    timeout = remaining_timeout(timeout, reserve=35)
+    timeout = min(remaining_timeout(timeout, reserve=35), _deadline - time.monotonic())
+    if timeout <= 0:
+        raise RuntimeError('public self-test bundle budget exhausted')
     message = {"source": source.read_text(encoding="utf-8"), "request": request, "seconds": max(1, int(timeout))}
     # 子进程不继承模型凭据、平台会话或用户 PYTHONPATH；-I/-S 禁止加载用户包。
     env = {key: os.environ[key] for key in ("SYSTEMROOT", "WINDIR", "PATH") if key in os.environ}
     command = [sys.executable, "-I", "-S", "-X", "utf8", str(Path(__file__).with_name("sample_worker.py"))]
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                text=True, encoding="utf-8", env=env, cwd=source.parent)
-    import time
-    deadline = time.monotonic() + timeout
+    deadline = min(_deadline, time.monotonic() + timeout)
     payload = json.dumps(message, ensure_ascii=False)
     try:
         while True:
@@ -177,17 +186,51 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8, _edge_chec
         process.communicate()
         raise
     if process.returncode:
-        raise ValueError("public sample execution failed: " + (stdout.strip() or stderr.strip())[:1800])
+        detail = (stdout.strip() or stderr.strip())[:1300]
+        if not detail:
+            detail = ('worker exited without JSON; returncode=' + str(process.returncode)
+                      + '; check termination/time advancement and resource limits; public input='
+                      + json.dumps(request['data'], ensure_ascii=False)[:1200])
+        raise ValueError("public sample execution failed: " + detail)
     body = json.loads(stdout)
     report = validate_sample_output(case_id, request, body["result"])
-    if case_id == "D-02" and body["result"]["candidate"] is not None:
-        repeated = body.get("rank_result")
-        identity = lambda rankings: {qid: [row["id"] for row in ranking] for qid, ranking in rankings.items()}
-        if (not isinstance(repeated, dict) or set(repeated) != {"candidate"} or not _finite(repeated)
-                or identity(repeated["candidate"]) != identity(body["result"]["candidate"])):
-            raise ValueError("D-02 rank must reuse the selected configuration and reproduce run rankings")
+    review_public_result(case_id, request, body["result"])
+    if case_id == "D-02":
+        selected = body["result"]["details"].get("selected") or protocol["default_config"]
+        expected = body["result"]["candidate"]
+        if expected is None:
+            expected = body["result"]["baseline"]
+        for field, config, rankings in (
+            ("rank_result", selected, expected),
+            ("baseline_rank_result", protocol["default_config"], body["result"]["baseline"]),
+        ):
+            repeated = body.get(field)
+            if not isinstance(repeated, dict) or set(repeated) != {"candidate"}:
+                raise ValueError("D-02 rank must return exactly candidate, including baseline-only sources")
+            # Validate IDs and actual BM25 scores, including the default benchmark.
+            rank_request = dict(request, protocol=dict(protocol, default_config=config))
+            checked = {"baseline": repeated["candidate"], "candidate": None, "details": {}}
+            validate_sample_output(case_id, rank_request, checked)
+            review_public_result(case_id, rank_request, checked)
+            identity = lambda values: {qid: [row["id"] for row in ranking] for qid, ranking in values.items()}
+            if identity(repeated["candidate"]) != identity(rankings):
+                raise ValueError("D-02 rank must reuse the selected configuration and reproduce run rankings")
         report["rank_consistent"] = True
+        report["baseline_rank_consistent"] = True
     report["isolation"] = body["isolation"]
+    if case_id == 'D-02' and _edge_check:
+        import copy
+        edge = copy.deepcopy(request)
+        for document in edge['data']['documents']:
+            document['title'] = ''
+        for query in edge['data']['test_queries']:
+            query['text'] = query['text'] + ' ' + query['text'] + ' unknown9841'
+        if edge['data']['dev_queries']:
+            first = edge['data']['dev_queries'][0]
+            edge['data']['dev_queries'].append(dict(first, id=first['id']+'_extra_public'))
+        run_public_sample(source, {**materials, 'sample': json.dumps(edge)}, case_id,
+                          timeout=timeout, _edge_check=False, _deadline=_deadline)
+        report['derived_public_checks'] = ['empty_titles_repeated_unknown_terms_unequal_groups']
     if case_id == 'D-05' and _edge_check:
         # 由当前公开样例派生，不使用隐藏实例或参考答案。首个样例不含
         # 同时到达时，heap(time, kind, dict)的比较错误过去会漏过自检。
@@ -197,11 +240,39 @@ def run_public_sample(source: Path, materials, case_id, *, timeout=8, _edge_chec
             job['arrival_ms'] = 0
         empty = copy.deepcopy(request)
         empty['data']['jobs'] = []
-        for name, edge in (('simultaneous_public_arrivals', simultaneous), ('empty_public_jobs', empty)):
+        # A rejected job must not consume the server's opportunity to dispatch.
+        rejection = copy.deepcopy(request)
+        rejection['data'] = {
+            'servers': 1, 'setup_ms': 0, 'horizon_ms': 5, 'flow_weights': {'A': 1},
+            'jobs': [{'id': 'a', 'flow': 'A', 'arrival_ms': 0, 'service_ms': 6, 'deadline_ms': 20},
+                     {'id': 'b', 'flow': 'A', 'arrival_ms': 0, 'service_ms': 1, 'deadline_ms': 20}]}
+        reserved = copy.deepcopy(request)
+        reserved['data'] = {
+            'servers': 2, 'setup_ms': 0, 'horizon_ms': 10, 'flow_weights': {'A': 1, 'B': 1},
+            'jobs': [{'id': 'a', 'flow': 'A', 'arrival_ms': 0, 'service_ms': 2, 'deadline_ms': 20},
+                     {'id': 'b', 'flow': 'A', 'arrival_ms': 0, 'service_ms': 2, 'deadline_ms': 20},
+                     {'id': 'c', 'flow': 'B', 'arrival_ms': 0, 'service_ms': 2, 'deadline_ms': 20}]}
+        checks = [('simultaneous_public_arrivals', simultaneous), ('empty_public_jobs', empty),
+                  ('retry_same_server_after_rejection', rejection), ('reserve_fair_service_on_dispatch', reserved)]
+        for name, edge in checks:
             try:
-                run_public_sample(source, {**materials, 'sample': json.dumps(edge)}, case_id,
-                                  timeout=timeout, _edge_check=False)
+                edge_report = run_public_sample(source, {**materials, 'sample': json.dumps(edge)}, case_id,
+                                               timeout=timeout, _edge_check=False, _deadline=_deadline)
+                traces = edge_report['public_trace_ids']
+                for kind in ('baseline', 'candidate'):
+                    if traces[kind] is None:
+                        continue
+                    if name == 'retry_same_server_after_rejection' and traces[kind] != [['b', 0, 0]]:
+                        raise ValueError('after rejecting a at horizon, server 0 must dispatch b at time 0; actual=' + repr(traces[kind]))
+                if name == 'reserve_fair_service_on_dispatch' and traces['candidate'] is not None:
+                    if traces['candidate'][:2] != [['a', 0, 0], ['c', 0, 1]]:
+                        raise ValueError('server 1 must select flow B after server 0 reserves flow A; actual=' + repr(traces['candidate']))
             except (ValueError, RuntimeError) as exc:
                 raise ValueError(name + ': ' + str(exc)) from exc
-        report['derived_public_checks'] = ['simultaneous_public_arrivals', 'empty_public_jobs']
+        report['derived_public_checks'] = [name for name, _ in checks]
+    if case_id == 'D-05':
+        report['public_trace_ids'] = {
+            kind: None if body['result'][kind] is None else
+            [[row['id'], row['dispatch_ms'], row['server']] for row in body['result'][kind]['trace']]
+            for kind in ('baseline', 'candidate')}
     return report

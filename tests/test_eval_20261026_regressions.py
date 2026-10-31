@@ -168,7 +168,7 @@ def test_without_complete_source_d_never_submits_a_stub(tmp_path):
     assert not (runner.work/'implementation.py').exists()
 
 
-def test_failed_candidate_upgrade_keeps_verified_baseline_and_its_own_response(tmp_path):
+def test_honest_baseline_source_is_retained_without_mandatory_second_generation(tmp_path):
     runner, current = setup_d(tmp_path, [response(), response('def run_experiment(request):\n    return {}\n')])
     def validate(path, *args):
         if path.read_text() != SOURCE:
@@ -179,7 +179,8 @@ def test_failed_candidate_upgrade_keeps_verified_baseline_and_its_own_response(t
     assert selected.read_text() == SOURCE
     audit = json.loads((runner.work/'public-selftest.json').read_text())
     assert audit['public_selftest_passed'] is True and audit['selected_attempt'] == 1
-    assert audit['attempts'][1]['status'] == 'failed'
+    assert len(audit['attempts']) == 1
+    assert not (runner.work/'source-attempt-2.json').exists()
     assert json.loads((runner.work/'generation-response.json').read_text()) == response()
 
 
@@ -193,7 +194,7 @@ def run_experiment(request):
     for j in data['jobs']:
         heapq.heappush(events, (j['arrival_ms'], j))
     value = {'trace': [], 'served_ms': {f:0 for f in data['flow_weights']},
-             'dropped': [{'id':j['id']} for j in data['jobs']]}
+             'dropped': [{'id':j['id'], 'reason':'horizon'} for j in data['jobs']]}
     return {'baseline':value,'candidate':None,'details':{}}
 ''')
     request = {'case_id':'D-05','phase':'run','data':{

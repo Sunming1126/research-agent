@@ -107,12 +107,27 @@ def main():
     exec(code, module.__dict__)
     result = module.run_experiment(request)
     rank_result = None
-    if request.get("case_id") == "D-02" and isinstance(result, dict) and result.get("candidate") is not None:
-        selected = result.get("details", {}).get("selected")
+    baseline_rank_result = None
+    if request.get("case_id") == "D-02" and isinstance(result, dict) :
+        selected = result.get("details", {}).get("selected") or request["protocol"]["default_config"]
         rank_request = dict(request, phase="rank", data=dict(request["data"], selected=selected))
-        rank_result = module.run_experiment(rank_request)
+        try:
+            rank_result = module.run_experiment(rank_request)
+        except Exception as exc:
+            raise ValueError('D-02 phase=rank selected-config failed: ' + str(exc)
+                             + '; rank must branch before dev search, use data.selected and return only candidate') from exc
+        if not isinstance(rank_result, dict) or set(rank_result) != {'candidate'}:
+            raise ValueError('D-02 phase=rank ignored or wrong schema: return exactly {candidate: test rankings}; '
+                             'branch before development search and use data.selected, do not run grid again')
+        baseline_request = dict(request, phase="rank", data=dict(request["data"],
+                                selected=request["protocol"]["default_config"], dev_queries=[]))
+        try:
+            baseline_rank_result = module.run_experiment(baseline_request)
+        except Exception as exc:
+            raise ValueError('D-02 phase=rank default-config with no dev labels failed: ' + str(exc)
+                             + '; rank must branch before dev search and depend only on documents/test_queries/selected') from exc
     # 标准 JSON 禁止 NaN/Infinity，限制输出避免不正常结果耗尽父进程内存。
-    encoded = json.dumps({"result": result, "rank_result": rank_result, "isolation": isolation}, ensure_ascii=False, allow_nan=False)
+    encoded = json.dumps({"result": result, "rank_result": rank_result, "baseline_rank_result": baseline_rank_result, "isolation": isolation}, ensure_ascii=False, allow_nan=False)
     if len(encoded.encode("utf-8")) > 1024 * 1024:
         raise ValueError("sample result exceeds one MiB")
     print(encoded)

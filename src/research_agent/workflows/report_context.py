@@ -58,7 +58,7 @@ def audit_request(case, markdown, rows, ledger, *, used=(), patches=(), feedback
         selected_ids = set(used) | {e["evidence_id"] for e in cited_evidence(markdown, rows)}
         selected = [e for e in rows if e["evidence_id"] in selected_ids] or rows
     known = {e["evidence_id"] for e in selected}
-    return {
+    result = {
         "task": report_task(case),
         "markdown": changed if partial else markdown,
         "full_document": context, "document_view": view,
@@ -70,6 +70,14 @@ def audit_request(case, markdown, rows, ledger, *, used=(), patches=(), feedback
                           for row in compact_claims(selected) if row["evidence_id"] in known],
         "papers": {str(e["ref"]): e["filename"] for e in selected},
     }
+
+    if case.function == 'Survey':
+        # Direct source excerpts formerly appeared twice (claim == quote),
+        # inflating audit/repair reservations until valid corrections could not run.
+        for row in result['source_quotes']:
+            if row.get('role') == 'source_context' and row.get('claim') == row.get('quote'):
+                row.pop('claim')
+    return result
 
 
 def repair_context(markdown, paragraphs, feedback, rows, *, case=None):

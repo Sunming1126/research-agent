@@ -1,0 +1,320 @@
+{
+  "image": "research-assistant:0.4.13-test1-2-d1-20261030",
+  "image_id": "sha256:041b937e658842a596b6a6ce12ad89bc139b5f50e61156628e19352ab08b8a29",
+  "branch": "test1-2",
+  "base_commit": "5656fd52e0eaa32bc5b253dee226488a6449a22b",
+  "changed_production_files": [
+    "src/research_agent/workflows/d_generation_policy.py",
+    "src/research_agent/workflows/d_public_review.py",
+    "src/research_agent/workflows/layered_d_runner.py",
+    "src/research_agent/workflows/sample_validation.py",
+    "src/research_agent/workflows/source_generation.py"
+  ],
+  "protected_file_count": 42,
+  "dependencies_and_sdk_layers_preserved": true,
+  "runtime_configuration_unchanged": true,
+  "c_replay_scenarios": 20,
+  "c_replay_identical": true,
+  "c_replay_expected_failures": 8,
+  "regressions_passed": 77,
+  "live_d": [
+    {
+      "case_id": "D-05",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:041b937e658842a596b6a6ce12ad89bc139b5f50e61156628e19352ab08b8a29",
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "6fc1629df10afe3a9ea9672e8e0c773e0b51210c66d4855e3b2c2b6aef0122c8",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            },
+            "derived_public_checks": [
+              "simultaneous_public_arrivals",
+              "empty_public_jobs",
+              "retry_same_server_after_rejection",
+              "reserve_fair_service_on_dispatch"
+            ],
+            "public_trace_ids": {
+              "baseline": [
+                [
+                  "a",
+                  0.0,
+                  0
+                ]
+              ],
+              "candidate": [
+                [
+                  "a",
+                  0.0,
+                  0
+                ]
+              ]
+            }
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      },
+      "source_sha256": "6fc1629df10afe3a9ea9672e8e0c773e0b51210c66d4855e3b2c2b6aef0122c8",
+      "source_matches_current_response": true,
+      "seconds": 28.552,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 3277,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v20-complete-survey-task",
+          "requested_output_tokens": 5200,
+          "estimated_input_tokens": 3214,
+          "reserved_for_later": 0,
+          "seconds": 28.081
+        }
+      ]
+    },
+    {
+      "case_id": "D-01",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:041b937e658842a596b6a6ce12ad89bc139b5f50e61156628e19352ab08b8a29",
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "204582e1d35b496e81ad25b014e1d717e6c1fdb21772310d3ad9bfe47e55fe32",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            }
+          }
+        ],
+        "selected_attempt": 1,
+        "public_selftest_passed": true
+      },
+      "source_sha256": "204582e1d35b496e81ad25b014e1d717e6c1fdb21772310d3ad9bfe47e55fe32",
+      "source_matches_current_response": true,
+      "seconds": 34.228,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 3222,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v20-complete-survey-task",
+          "requested_output_tokens": 5200,
+          "estimated_input_tokens": 3702,
+          "reserved_for_later": 0,
+          "seconds": 34.037
+        }
+      ]
+    },
+    {
+      "case_id": "D-02",
+      "official_model_api": true,
+      "formal_platform_session": false,
+      "image_id": "sha256:041b937e658842a596b6a6ce12ad89bc139b5f50e61156628e19352ab08b8a29",
+      "status": "passed_public_sample",
+      "public_selftest": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "source_sha256": "9b717319b2d6cf8f125d0d65eeb01837e5d0c04a8334a0161951dd59cb5961a7",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": false,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            }
+          },
+          {
+            "attempt": 2,
+            "source_sha256": "469ff39069fe9e8fc323d119501ce86eb67e7e8c4c6ef2f2c1293da0741ed612",
+            "status": "passed",
+            "scope": "public_sample_structure_and_invariants",
+            "candidate_present": true,
+            "rank_consistent": true,
+            "isolation": {
+              "resource_limits": true,
+              "syscall_filter": true
+            }
+          }
+        ],
+        "selected_attempt": 2,
+        "public_selftest_passed": true
+      },
+      "source_sha256": "469ff39069fe9e8fc323d119501ce86eb67e7e8c4c6ef2f2c1293da0741ed612",
+      "source_matches_current_response": true,
+      "seconds": 91.328,
+      "usage": [
+        {
+          "stage": "d_source",
+          "tokens": 4611,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v20-complete-survey-task",
+          "requested_output_tokens": 2000,
+          "estimated_input_tokens": 5740,
+          "reserved_for_later": 0,
+          "seconds": 27.452
+        },
+        {
+          "stage": "d_source",
+          "tokens": 6794,
+          "usage_source": "gateway",
+          "model": "deepseek_v4",
+          "finish_reason": "stop",
+          "outcome": "returned_complete_response",
+          "prompt_version": "20261026-v20-complete-survey-task",
+          "requested_output_tokens": 4200,
+          "estimated_input_tokens": 7299,
+          "reserved_for_later": 0,
+          "seconds": 63.554
+        }
+      ]
+    }
+  ],
+  "official_worker": {
+    "all_passed": true,
+    "run_cases": 14,
+    "rank_cases": 4,
+    "cases": [
+      {
+        "case_id": "D-01",
+        "scenario": "empty_unknown_repeated_text",
+        "source_sha256": "204582e1d35b496e81ad25b014e1d717e6c1fdb21772310d3ad9bfe47e55fe32",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-01",
+        "scenario": "public_sample",
+        "source_sha256": "204582e1d35b496e81ad25b014e1d717e6c1fdb21772310d3ad9bfe47e55fe32",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-01",
+        "scenario": "training_order",
+        "source_sha256": "204582e1d35b496e81ad25b014e1d717e6c1fdb21772310d3ad9bfe47e55fe32",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "public_sample",
+        "source_sha256": "469ff39069fe9e8fc323d119501ce86eb67e7e8c4c6ef2f2c1293da0741ed612",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "repeated_query_words",
+        "source_sha256": "469ff39069fe9e8fc323d119501ce86eb67e7e8c4c6ef2f2c1293da0741ed612",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "unequal_group_sizes",
+        "source_sha256": "469ff39069fe9e8fc323d119501ce86eb67e7e8c4c6ef2f2c1293da0741ed612",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-02",
+        "scenario": "unknown_query",
+        "source_sha256": "469ff39069fe9e8fc323d119501ce86eb67e7e8c4c6ef2f2c1293da0741ed612",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "empty_jobs",
+        "source_sha256": "6fc1629df10afe3a9ea9672e8e0c773e0b51210c66d4855e3b2c2b6aef0122c8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "exact_window",
+        "source_sha256": "6fc1629df10afe3a9ea9672e8e0c773e0b51210c66d4855e3b2c2b6aef0122c8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "public_sample",
+        "source_sha256": "6fc1629df10afe3a9ea9672e8e0c773e0b51210c66d4855e3b2c2b6aef0122c8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "rejected_then_short",
+        "source_sha256": "6fc1629df10afe3a9ea9672e8e0c773e0b51210c66d4855e3b2c2b6aef0122c8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "simultaneous_servers_1",
+        "source_sha256": "6fc1629df10afe3a9ea9672e8e0c773e0b51210c66d4855e3b2c2b6aef0122c8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "simultaneous_servers_2",
+        "source_sha256": "6fc1629df10afe3a9ea9672e8e0c773e0b51210c66d4855e3b2c2b6aef0122c8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      },
+      {
+        "case_id": "D-05",
+        "scenario": "simultaneous_servers_3",
+        "source_sha256": "6fc1629df10afe3a9ea9672e8e0c773e0b51210c66d4855e3b2c2b6aef0122c8",
+        "worker_sha256": "0ff2a5606a07501bdc1019046fe3f0c0b309bd245f6744da20c8675686d24403",
+        "python": "3.9.25 (main, Oct 31 2025, 23:16:49) \n[GCC 14.2.0]",
+        "passed": true
+      }
+    ],
+    "scope": "unmodified public worker, public/derived inputs, local method checks; not hidden evaluation"
+  },
+  "official_platform_tested": false,
+  "tar": "C:\\Users\\sun\\.codex\\worktrees\\from-0-4-13\\anic\\team_share\\image\\research-assistant-0.4.13-test1-2-d1-20261030.tar",
+  "sha256": "0136c5a448bff9564ff36b8c79a0c263e566b718bf3ff88240315f342e8eeba8",
+  "bytes": 295563264,
+  "docker_load_verified": true
+}
