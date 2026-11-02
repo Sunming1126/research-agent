@@ -117,7 +117,7 @@ def test_direct_timeout_uses_case_budget_instead_of_sdk_thirty_seconds(runtime):
         assert client.post("/solve", json=question()).status_code == 200
         engine.settings.case_timeout = 600
         assert client.post("/solve", json=question()).status_code == 200
-    assert timeouts == [75, 180]
+    assert timeouts == [75, 540]
 
 
 def test_legacy_sdk_envelope_still_returns_metadata(runtime):

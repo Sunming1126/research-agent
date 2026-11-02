@@ -1502,6 +1502,1087 @@
         "native_tool_execution_verified": true
       },
       "failures": []
+    },
+    {
+      "run": "score-time-baseline-20261102-211455-4f58d",
+      "files": {
+        "result.json": {
+          "sha256": "19c35a4a94ab337b331e679659ab21f62e59466175be63b26651151fe4192fbe",
+          "bytes": 301
+        },
+        "plan.json": {
+          "sha256": "37e10ce631c75590a6e6ac13ee417c60282760148da54d5f7d7ba5c0537fe85f",
+          "bytes": 484
+        },
+        "source-files.json": {
+          "sha256": "22a3e46d1de4848e5566a2c425cf746f60036e2ea43959032c76d4484ba9a606",
+          "bytes": 7093
+        },
+        "junit.xml": {
+          "sha256": "ee1acb0855b8c5727c50a0d1f5104eee73f7763ba8a8359c39c0c39f9f855abe",
+          "bytes": 46800
+        },
+        "stdout.txt": {
+          "sha256": "055c006ef9f87fe9d9c4c3b318ec96c0a3cb10709c691049beedd20dd3f257c8",
+          "bytes": 40165
+        },
+        "stderr.txt": {
+          "sha256": "fb3a9e7e8f08a76da0f3dc1a138aeaa9c59614b508c8e29e2155d1371c1c0bd6",
+          "bytes": 81
+        },
+        "permission-preflight.json": {
+          "sha256": "3a95fdcc88a437333f9e4df2e233dbc35491de97fac9e430259b12d7553895bb",
+          "bytes": 129
+        },
+        "network-guard.json": {
+          "sha256": "b141e7bbf16888af758835c9ba6ecbd8919973f39041687c94435c74d210877a",
+          "bytes": 94
+        }
+      },
+      "result": {
+        "returncode": 1,
+        "seconds": 2.019,
+        "execution": "Original Harness native coordinator, no target model",
+        "native_harness_execution": true,
+        "platform_acceptance": false,
+        "target_model_calls": 0,
+        "tests": 33,
+        "failures": 23,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 10
+      },
+      "native_attestation": {
+        "request_id": "68148e6cf0a647d5a43f36280be6cc74",
+        "stage": "time-paired",
+        "native_tool_seq": 2449,
+        "native_tool_call_sha256": "1d16c9cbb59cf4ae0b05ab7bda5c624b6c2948c01d0b8b86c5f1d43aa457831d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      },
+      "failures": [
+        {
+          "name": ".test_default_global_ceiling_does_not_truncate_any_formal_category",
+          "message": "AssertionError: assert 180 == 1800\n +  where 180 = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/score-time-baseline-20261102-211455-4f58d/t...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False).case_tim"
+        },
+        {
+          "name": ".test_env_default_and_explicit_smaller_configuration",
+          "message": "AssertionError: assert 180 == 1800\n +  where 180 = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/审核/score-compat-20261102-08b28f0/source'), outpu...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False).case_tim"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-A-05-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'A-05', 'constraints': [], 'expected_output': 'Chat', 'function': 'Chat', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000024DD452D0D0>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-B-02-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'B-02', 'constraints': [], 'expected_output': 'Literature_Retrieval', 'function': 'Literature_Retrieval', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000024DD452D310>"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-C-05-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'C-05', 'constraints': [], 'expected_output': 'Survey', 'function': 'Survey', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000024DD452DD00>._case_timeout\n +    and   {"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-D-05-1800]",
+          "message": "AssertionError: assert 170 == (1800 - 10)\n +  where 170 = _case_timeout({'case_id': 'D-05', 'constraints': [], 'expected_output': 'Reproduction', 'function': 'Reproduction', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000024DD452EB70>._case_timeout\n"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-E-04-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'E-04', 'constraints': [], 'expected_output': 'Idea', 'function': 'Idea', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000024DD452F920>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-A-05-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'A-05', 'constraints': [], 'expected_output': 'Chat', 'function': 'Chat', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000024DD4533D40>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-B-02-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'B-02', 'constraints': [], 'expected_output': 'Literature_Retrieval', 'function': 'Literature_Retrieval', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000024DD4533230>"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-C-05-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'C-05', 'constraints': [], 'expected_output': 'Survey', 'function': 'Survey', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000024DD45316D0>._case_timeout\n +    and   {"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-D-05-1800]",
+          "message": "AssertionError: assert 170 == (1800 - 10)\n +  where 170 = _case_timeout({'case_id': 'D-05', 'constraints': [], 'expected_output': 'Reproduction', 'function': 'Reproduction', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000024DD45302F0>._case_timeout\n"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-E-04-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'E-04', 'constraints': [], 'expected_output': 'Idea', 'function': 'Idea', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000024DD45320F0>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-A-05-540]",
+          "message": "assert 180000 == (540 * 1000)\n +  where 540 = min(540, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-B-02-540]",
+          "message": "assert 180000 == (540 * 1000)\n +  where 540 = min(540, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-C-05-900]",
+          "message": "assert 180000 == (900 * 1000)\n +  where 900 = min(900, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-D-05-1800]",
+          "message": "assert 180000 == (1800 * 1000)\n +  where 1800 = min(1800, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-E-04-900]",
+          "message": "assert 180000 == (900 * 1000)\n +  where 900 = min(900, 7200)"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[B-02-400]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[C-05-600]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[D-05-1000]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[E-04-600]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_d_formal_client_uses_remaining_deadline_not_old_175_second_cap[0]",
+          "message": "assert [175] == [1785]\n  \n  At index 0 diff: 175 != 1785\n  Use -v to get more diff"
+        },
+        {
+          "name": ".test_d_formal_client_uses_remaining_deadline_not_old_175_second_cap[600]",
+          "message": "assert [175] == [1185]\n  \n  At index 0 diff: 175 != 1185\n  Use -v to get more diff"
+        }
+      ]
+    },
+    {
+      "run": "score-time-baseline-20261102-211801-b6f1f",
+      "files": {
+        "result.json": {
+          "sha256": "e265f481d3a31bc2c5fffd4b9fb5f823ba51b49342c50f5be8bc64c066870521",
+          "bytes": 301
+        },
+        "plan.json": {
+          "sha256": "37e10ce631c75590a6e6ac13ee417c60282760148da54d5f7d7ba5c0537fe85f",
+          "bytes": 484
+        },
+        "source-files.json": {
+          "sha256": "22a3e46d1de4848e5566a2c425cf746f60036e2ea43959032c76d4484ba9a606",
+          "bytes": 7093
+        },
+        "junit.xml": {
+          "sha256": "8fe9ffe48d8750cf29a3389a17390be019555ca8a9f93ea0ba9a39bbc23644e3",
+          "bytes": 46800
+        },
+        "stdout.txt": {
+          "sha256": "ca9d168e865cd05f917f654f27bfe90ea7c8e4a67e4530ed1a9c94e2eb956df8",
+          "bytes": 40179
+        },
+        "stderr.txt": {
+          "sha256": "fb3a9e7e8f08a76da0f3dc1a138aeaa9c59614b508c8e29e2155d1371c1c0bd6",
+          "bytes": 81
+        },
+        "permission-preflight.json": {
+          "sha256": "3a95fdcc88a437333f9e4df2e233dbc35491de97fac9e430259b12d7553895bb",
+          "bytes": 129
+        },
+        "network-guard.json": {
+          "sha256": "b141e7bbf16888af758835c9ba6ecbd8919973f39041687c94435c74d210877a",
+          "bytes": 94
+        }
+      },
+      "result": {
+        "returncode": 1,
+        "seconds": 1.313,
+        "execution": "Original Harness native coordinator, no target model",
+        "native_harness_execution": true,
+        "platform_acceptance": false,
+        "target_model_calls": 0,
+        "tests": 33,
+        "failures": 23,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 10
+      },
+      "native_attestation": {
+        "request_id": "925a6b378d634bbf84382c731c97420a",
+        "stage": "time-paired",
+        "native_tool_seq": 2478,
+        "native_tool_call_sha256": "34bfc9d7b14bacd18d1d71ec591260ae3fc36049f6fcbbe676f343c126dadb8d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      },
+      "failures": [
+        {
+          "name": ".test_default_global_ceiling_does_not_truncate_any_formal_category",
+          "message": "AssertionError: assert 180 == 1800\n +  where 180 = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/score-time-baseline-20261102-211801-b6f1f/t...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False).case_tim"
+        },
+        {
+          "name": ".test_env_default_and_explicit_smaller_configuration",
+          "message": "AssertionError: assert 180 == 1800\n +  where 180 = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/审核/score-compat-20261102-08b28f0/source'), outpu...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False).case_tim"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-A-05-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'A-05', 'constraints': [], 'expected_output': 'Chat', 'function': 'Chat', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000020C41959370>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-B-02-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'B-02', 'constraints': [], 'expected_output': 'Literature_Retrieval', 'function': 'Literature_Retrieval', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000020C41959DC0>"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-C-05-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'C-05', 'constraints': [], 'expected_output': 'Survey', 'function': 'Survey', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000020C4195A750>._case_timeout\n +    and   {"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-D-05-1800]",
+          "message": "AssertionError: assert 170 == (1800 - 10)\n +  where 170 = _case_timeout({'case_id': 'D-05', 'constraints': [], 'expected_output': 'Reproduction', 'function': 'Reproduction', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000020C4195B890>._case_timeout\n"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-E-04-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'E-04', 'constraints': [], 'expected_output': 'Idea', 'function': 'Idea', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000020C4195EB10>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-A-05-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'A-05', 'constraints': [], 'expected_output': 'Chat', 'function': 'Chat', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000020C4195F6E0>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-B-02-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'B-02', 'constraints': [], 'expected_output': 'Literature_Retrieval', 'function': 'Literature_Retrieval', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000020C4195CCB0>"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-C-05-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'C-05', 'constraints': [], 'expected_output': 'Survey', 'function': 'Survey', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000020C4195D220>._case_timeout\n +    and   {"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-D-05-1800]",
+          "message": "AssertionError: assert 170 == (1800 - 10)\n +  where 170 = _case_timeout({'case_id': 'D-05', 'constraints': [], 'expected_output': 'Reproduction', 'function': 'Reproduction', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000020C4195E120>._case_timeout\n"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-E-04-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'E-04', 'constraints': [], 'expected_output': 'Idea', 'function': 'Idea', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000020C4195FEC0>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-A-05-540]",
+          "message": "assert 180000 == (540 * 1000)\n +  where 540 = min(540, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-B-02-540]",
+          "message": "assert 180000 == (540 * 1000)\n +  where 540 = min(540, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-C-05-900]",
+          "message": "assert 180000 == (900 * 1000)\n +  where 900 = min(900, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-D-05-1800]",
+          "message": "assert 180000 == (1800 * 1000)\n +  where 1800 = min(1800, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-E-04-900]",
+          "message": "assert 180000 == (900 * 1000)\n +  where 900 = min(900, 7200)"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[B-02-400]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[C-05-600]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[D-05-1000]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[E-04-600]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_d_formal_client_uses_remaining_deadline_not_old_175_second_cap[0]",
+          "message": "assert [175] == [1785]\n  \n  At index 0 diff: 175 != 1785\n  Use -v to get more diff"
+        },
+        {
+          "name": ".test_d_formal_client_uses_remaining_deadline_not_old_175_second_cap[600]",
+          "message": "assert [175] == [1185]\n  \n  At index 0 diff: 175 != 1185\n  Use -v to get more diff"
+        }
+      ]
+    },
+    {
+      "run": "score-time-baseline-20261102-211808-d3d59",
+      "files": {
+        "result.json": {
+          "sha256": "363c0627551862cf12f1ecf76962970ea279ddbcec85e0a52f14a9a40adc5a45",
+          "bytes": 300
+        },
+        "plan.json": {
+          "sha256": "37e10ce631c75590a6e6ac13ee417c60282760148da54d5f7d7ba5c0537fe85f",
+          "bytes": 484
+        },
+        "source-files.json": {
+          "sha256": "22a3e46d1de4848e5566a2c425cf746f60036e2ea43959032c76d4484ba9a606",
+          "bytes": 7093
+        },
+        "junit.xml": {
+          "sha256": "84adbbf50649c86be4ed10141787cadd2f6e6a39b91a9ecf3d182322857ec0a0",
+          "bytes": 46800
+        },
+        "stdout.txt": {
+          "sha256": "aea83f2483e26beca562435c157b93b6c6d049b267e3f856a1a9c14d51263591",
+          "bytes": 40334
+        },
+        "stderr.txt": {
+          "sha256": "fb3a9e7e8f08a76da0f3dc1a138aeaa9c59614b508c8e29e2155d1371c1c0bd6",
+          "bytes": 81
+        },
+        "permission-preflight.json": {
+          "sha256": "3a95fdcc88a437333f9e4df2e233dbc35491de97fac9e430259b12d7553895bb",
+          "bytes": 129
+        },
+        "network-guard.json": {
+          "sha256": "b141e7bbf16888af758835c9ba6ecbd8919973f39041687c94435c74d210877a",
+          "bytes": 94
+        }
+      },
+      "result": {
+        "returncode": 1,
+        "seconds": 1.39,
+        "execution": "Original Harness native coordinator, no target model",
+        "native_harness_execution": true,
+        "platform_acceptance": false,
+        "target_model_calls": 0,
+        "tests": 33,
+        "failures": 23,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 10
+      },
+      "native_attestation": {
+        "request_id": "925a6b378d634bbf84382c731c97420a",
+        "stage": "time-paired",
+        "native_tool_seq": 2478,
+        "native_tool_call_sha256": "34bfc9d7b14bacd18d1d71ec591260ae3fc36049f6fcbbe676f343c126dadb8d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      },
+      "failures": [
+        {
+          "name": ".test_default_global_ceiling_does_not_truncate_any_formal_category",
+          "message": "AssertionError: assert 180 == 1800\n +  where 180 = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/score-time-baseline-20261102-211808-d3d59/t...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False).case_tim"
+        },
+        {
+          "name": ".test_env_default_and_explicit_smaller_configuration",
+          "message": "AssertionError: assert 180 == 1800\n +  where 180 = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/审核/score-compat-20261102-08b28f0/source'), outpu...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False).case_tim"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-A-05-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'A-05', 'constraints': [], 'expected_output': 'Chat', 'function': 'Chat', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000028C86B09580>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-B-02-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'B-02', 'constraints': [], 'expected_output': 'Literature_Retrieval', 'function': 'Literature_Retrieval', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000028C86B0A5A0>"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-C-05-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'C-05', 'constraints': [], 'expected_output': 'Survey', 'function': 'Survey', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000028C86B0ADB0>._case_timeout\n +    and   {"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-D-05-1800]",
+          "message": "AssertionError: assert 170 == (1800 - 10)\n +  where 170 = _case_timeout({'case_id': 'D-05', 'constraints': [], 'expected_output': 'Reproduction', 'function': 'Reproduction', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000028C86B0BC20>._case_timeout\n"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-E-04-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'E-04', 'constraints': [], 'expected_output': 'Idea', 'function': 'Idea', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000028C86B12A80>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-A-05-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'A-05', 'constraints': [], 'expected_output': 'Chat', 'function': 'Chat', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000028C86B13560>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-B-02-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'B-02', 'constraints': [], 'expected_output': 'Literature_Retrieval', 'function': 'Literature_Retrieval', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000028C86B13260>"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-C-05-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'C-05', 'constraints': [], 'expected_output': 'Survey', 'function': 'Survey', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000028C86B10320>._case_timeout\n +    and   {"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-D-05-1800]",
+          "message": "AssertionError: assert 170 == (1800 - 10)\n +  where 170 = _case_timeout({'case_id': 'D-05', 'constraints': [], 'expected_output': 'Reproduction', 'function': 'Reproduction', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000028C86B12390>._case_timeout\n"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-E-04-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'E-04', 'constraints': [], 'expected_output': 'Idea', 'function': 'Idea', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000028C86B13E60>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-A-05-540]",
+          "message": "assert 180000 == (540 * 1000)\n +  where 540 = min(540, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-B-02-540]",
+          "message": "assert 180000 == (540 * 1000)\n +  where 540 = min(540, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-C-05-900]",
+          "message": "assert 180000 == (900 * 1000)\n +  where 900 = min(900, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-D-05-1800]",
+          "message": "assert 180000 == (1800 * 1000)\n +  where 1800 = min(1800, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-E-04-900]",
+          "message": "assert 180000 == (900 * 1000)\n +  where 900 = min(900, 7200)"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[B-02-400]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[C-05-600]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[D-05-1000]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[E-04-600]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_d_formal_client_uses_remaining_deadline_not_old_175_second_cap[0]",
+          "message": "assert [175] == [1785]\n  \n  At index 0 diff: 175 != 1785\n  Use -v to get more diff"
+        },
+        {
+          "name": ".test_d_formal_client_uses_remaining_deadline_not_old_175_second_cap[600]",
+          "message": "assert [175] == [1185]\n  \n  At index 0 diff: 175 != 1185\n  Use -v to get more diff"
+        }
+      ]
+    },
+    {
+      "run": "score-time-baseline-20261102-211810-1672d",
+      "files": {
+        "result.json": {
+          "sha256": "94ac98352f398981bc6a6a0911fbf8b116d9b92ebce5c4db17e69926d697ca6f",
+          "bytes": 300
+        },
+        "plan.json": {
+          "sha256": "37e10ce631c75590a6e6ac13ee417c60282760148da54d5f7d7ba5c0537fe85f",
+          "bytes": 484
+        },
+        "source-files.json": {
+          "sha256": "22a3e46d1de4848e5566a2c425cf746f60036e2ea43959032c76d4484ba9a606",
+          "bytes": 7093
+        },
+        "junit.xml": {
+          "sha256": "e1d0714787e678466cfddfbe3d1709ecfe67080ccc913cf0c163ec119f22de3d",
+          "bytes": 46800
+        },
+        "stdout.txt": {
+          "sha256": "21a26f842fe8ecf0ddb3d0b279192858e8d93db6a458d21e342ed563a37d92be",
+          "bytes": 40249
+        },
+        "stderr.txt": {
+          "sha256": "fb3a9e7e8f08a76da0f3dc1a138aeaa9c59614b508c8e29e2155d1371c1c0bd6",
+          "bytes": 81
+        },
+        "permission-preflight.json": {
+          "sha256": "3a95fdcc88a437333f9e4df2e233dbc35491de97fac9e430259b12d7553895bb",
+          "bytes": 129
+        },
+        "network-guard.json": {
+          "sha256": "b141e7bbf16888af758835c9ba6ecbd8919973f39041687c94435c74d210877a",
+          "bytes": 94
+        }
+      },
+      "result": {
+        "returncode": 1,
+        "seconds": 1.27,
+        "execution": "Original Harness native coordinator, no target model",
+        "native_harness_execution": true,
+        "platform_acceptance": false,
+        "target_model_calls": 0,
+        "tests": 33,
+        "failures": 23,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 10
+      },
+      "native_attestation": {
+        "request_id": "925a6b378d634bbf84382c731c97420a",
+        "stage": "time-paired",
+        "native_tool_seq": 2478,
+        "native_tool_call_sha256": "34bfc9d7b14bacd18d1d71ec591260ae3fc36049f6fcbbe676f343c126dadb8d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      },
+      "failures": [
+        {
+          "name": ".test_default_global_ceiling_does_not_truncate_any_formal_category",
+          "message": "AssertionError: assert 180 == 1800\n +  where 180 = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/score-time-baseline-20261102-211810-1672d/t...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False).case_tim"
+        },
+        {
+          "name": ".test_env_default_and_explicit_smaller_configuration",
+          "message": "AssertionError: assert 180 == 1800\n +  where 180 = Settings(workspace=WindowsPath('C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/审核/score-compat-20261102-08b28f0/source'), outpu...hon='', experiment_protocol='auto', ocr=False, llm_calls=30, llm_tokens=40000, case_timeout=180, verify_assigned=False).case_tim"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-A-05-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'A-05', 'constraints': [], 'expected_output': 'Chat', 'function': 'Chat', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000018E69639100>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-B-02-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'B-02', 'constraints': [], 'expected_output': 'Literature_Retrieval', 'function': 'Literature_Retrieval', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000018E69639EB0>"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-C-05-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'C-05', 'constraints': [], 'expected_output': 'Survey', 'function': 'Survey', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000018E6963A6C0>._case_timeout\n +    and   {"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-D-05-1800]",
+          "message": "AssertionError: assert 170 == (1800 - 10)\n +  where 170 = _case_timeout({'case_id': 'D-05', 'constraints': [], 'expected_output': 'Reproduction', 'function': 'Reproduction', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000018E6963B800>._case_timeout\n"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[None-E-04-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'E-04', 'constraints': [], 'expected_output': 'Idea', 'function': 'Idea', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000018E69642A50>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-A-05-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'A-05', 'constraints': [], 'expected_output': 'Chat', 'function': 'Chat', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000018E69642720>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-B-02-540]",
+          "message": "AssertionError: assert 170 == (540 - 10)\n +  where 170 = _case_timeout({'case_id': 'B-02', 'constraints': [], 'expected_output': 'Literature_Retrieval', 'function': 'Literature_Retrieval', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000018E69640500>"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-C-05-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'C-05', 'constraints': [], 'expected_output': 'Survey', 'function': 'Survey', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000018E69640E00>._case_timeout\n +    and   {"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-D-05-1800]",
+          "message": "AssertionError: assert 170 == (1800 - 10)\n +  where 170 = _case_timeout({'case_id': 'D-05', 'constraints': [], 'expected_output': 'Reproduction', 'function': 'Reproduction', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000018E69642060>._case_timeout\n"
+        },
+        {
+          "name": ".test_engine_caps_and_explicit_smaller_deadline[7200-E-04-900]",
+          "message": "AssertionError: assert 170 == (900 - 10)\n +  where 170 = _case_timeout({'case_id': 'E-04', 'constraints': [], 'expected_output': 'Idea', 'function': 'Idea', ...})\n +    where _case_timeout = <research_agent.core.engine.ResearchAgentEngine object at 0x0000018E69643E00>._case_timeout\n +    and   {'cas"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-A-05-540]",
+          "message": "assert 180000 == (540 * 1000)\n +  where 540 = min(540, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-B-02-540]",
+          "message": "assert 180000 == (540 * 1000)\n +  where 540 = min(540, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-C-05-900]",
+          "message": "assert 180000 == (900 * 1000)\n +  where 900 = min(900, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-D-05-1800]",
+          "message": "assert 180000 == (1800 * 1000)\n +  where 1800 = min(1800, 7200)"
+        },
+        {
+          "name": ".test_http_passes_same_category_ceiling_into_sdk[7200-E-04-900]",
+          "message": "assert 180000 == (900 * 1000)\n +  where 900 = min(900, 7200)"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[B-02-400]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[C-05-600]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[D-05-1000]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_valid_work_is_not_cancelled_at_old_180_second_boundary[E-04-600]",
+          "message": "TimeoutError: case deadline exceeded"
+        },
+        {
+          "name": ".test_d_formal_client_uses_remaining_deadline_not_old_175_second_cap[0]",
+          "message": "assert [175] == [1785]\n  \n  At index 0 diff: 175 != 1785\n  Use -v to get more diff"
+        },
+        {
+          "name": ".test_d_formal_client_uses_remaining_deadline_not_old_175_second_cap[600]",
+          "message": "assert [175] == [1185]\n  \n  At index 0 diff: 175 != 1185\n  Use -v to get more diff"
+        }
+      ]
+    },
+    {
+      "run": "score-time-candidate-20261102-211803-8f37f",
+      "files": {
+        "result.json": {
+          "sha256": "609e40e8bf06b3b62b4d1c73b6b3aa7102c6535ccf0c922a55b88c072fbb9b46",
+          "bytes": 300
+        },
+        "plan.json": {
+          "sha256": "10e9b4c00e2d7338bc09ed00d90e334cee60a6f9b0a5852baaaf25aad7deb336",
+          "bytes": 473
+        },
+        "source-files.json": {
+          "sha256": "a3ff0ac2c90fe8a8f34aafc1aa3b002490dd94c607ecf2c1e209c7883384b3f2",
+          "bytes": 7206
+        },
+        "junit.xml": {
+          "sha256": "2187eeb4ffa26da1f61c4e930c25b58ef6bbbaad5785e50ce1ae20a851280052",
+          "bytes": 4815
+        },
+        "stdout.txt": {
+          "sha256": "6499fed2ee7e168829672d4fe670e03d6d19f3075d613a2147ec0c761578b826",
+          "bytes": 1648
+        },
+        "stderr.txt": {
+          "sha256": "fb3a9e7e8f08a76da0f3dc1a138aeaa9c59614b508c8e29e2155d1371c1c0bd6",
+          "bytes": 81
+        },
+        "permission-preflight.json": {
+          "sha256": "3a95fdcc88a437333f9e4df2e233dbc35491de97fac9e430259b12d7553895bb",
+          "bytes": 129
+        },
+        "network-guard.json": {
+          "sha256": "b141e7bbf16888af758835c9ba6ecbd8919973f39041687c94435c74d210877a",
+          "bytes": 94
+        }
+      },
+      "result": {
+        "returncode": 0,
+        "seconds": 1.059,
+        "execution": "Original Harness native coordinator, no target model",
+        "native_harness_execution": true,
+        "platform_acceptance": false,
+        "target_model_calls": 0,
+        "tests": 33,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 33
+      },
+      "native_attestation": {
+        "request_id": "925a6b378d634bbf84382c731c97420a",
+        "stage": "time-paired",
+        "native_tool_seq": 2478,
+        "native_tool_call_sha256": "34bfc9d7b14bacd18d1d71ec591260ae3fc36049f6fcbbe676f343c126dadb8d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      },
+      "failures": []
+    },
+    {
+      "run": "score-time-candidate-20261102-211805-92075",
+      "files": {
+        "result.json": {
+          "sha256": "36469664c5145088ec14fcc5b1e475684152689a5b335446fe17467019d21efe",
+          "bytes": 300
+        },
+        "plan.json": {
+          "sha256": "10e9b4c00e2d7338bc09ed00d90e334cee60a6f9b0a5852baaaf25aad7deb336",
+          "bytes": 473
+        },
+        "source-files.json": {
+          "sha256": "a3ff0ac2c90fe8a8f34aafc1aa3b002490dd94c607ecf2c1e209c7883384b3f2",
+          "bytes": 7206
+        },
+        "junit.xml": {
+          "sha256": "c545887477b011927d068ac7fbb84dc06046480657b559e16ccb14894c5bd1f4",
+          "bytes": 4815
+        },
+        "stdout.txt": {
+          "sha256": "f88552998f86e102b8be063e92745ee818b9890fdfa0ea63f6e95581f2630f80",
+          "bytes": 1416
+        },
+        "stderr.txt": {
+          "sha256": "fb3a9e7e8f08a76da0f3dc1a138aeaa9c59614b508c8e29e2155d1371c1c0bd6",
+          "bytes": 81
+        },
+        "permission-preflight.json": {
+          "sha256": "3a95fdcc88a437333f9e4df2e233dbc35491de97fac9e430259b12d7553895bb",
+          "bytes": 129
+        },
+        "network-guard.json": {
+          "sha256": "b141e7bbf16888af758835c9ba6ecbd8919973f39041687c94435c74d210877a",
+          "bytes": 94
+        }
+      },
+      "result": {
+        "returncode": 0,
+        "seconds": 1.296,
+        "execution": "Original Harness native coordinator, no target model",
+        "native_harness_execution": true,
+        "platform_acceptance": false,
+        "target_model_calls": 0,
+        "tests": 33,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 33
+      },
+      "native_attestation": {
+        "request_id": "925a6b378d634bbf84382c731c97420a",
+        "stage": "time-paired",
+        "native_tool_seq": 2478,
+        "native_tool_call_sha256": "34bfc9d7b14bacd18d1d71ec591260ae3fc36049f6fcbbe676f343c126dadb8d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      },
+      "failures": []
+    },
+    {
+      "run": "score-time-candidate-20261102-211812-e35c5",
+      "files": {
+        "result.json": {
+          "sha256": "f20fe8aeca22db0b674eecec835c4f6a64e87825e4167e71d844838708818191",
+          "bytes": 300
+        },
+        "plan.json": {
+          "sha256": "10e9b4c00e2d7338bc09ed00d90e334cee60a6f9b0a5852baaaf25aad7deb336",
+          "bytes": 473
+        },
+        "source-files.json": {
+          "sha256": "a3ff0ac2c90fe8a8f34aafc1aa3b002490dd94c607ecf2c1e209c7883384b3f2",
+          "bytes": 7206
+        },
+        "junit.xml": {
+          "sha256": "b6b5b3a5386d6bb390fe50f6c75a2e81ec4eaeedaa1281bfdef21c9e9a0a2dfc",
+          "bytes": 4815
+        },
+        "stdout.txt": {
+          "sha256": "a8187c1ac7c77995835d4ce6af948b5ab7144fca7656e1b07ba94963d3c994a4",
+          "bytes": 1533
+        },
+        "stderr.txt": {
+          "sha256": "fb3a9e7e8f08a76da0f3dc1a138aeaa9c59614b508c8e29e2155d1371c1c0bd6",
+          "bytes": 81
+        },
+        "permission-preflight.json": {
+          "sha256": "3a95fdcc88a437333f9e4df2e233dbc35491de97fac9e430259b12d7553895bb",
+          "bytes": 129
+        },
+        "network-guard.json": {
+          "sha256": "b141e7bbf16888af758835c9ba6ecbd8919973f39041687c94435c74d210877a",
+          "bytes": 94
+        }
+      },
+      "result": {
+        "returncode": 0,
+        "seconds": 1.054,
+        "execution": "Original Harness native coordinator, no target model",
+        "native_harness_execution": true,
+        "platform_acceptance": false,
+        "target_model_calls": 0,
+        "tests": 33,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 33
+      },
+      "native_attestation": {
+        "request_id": "925a6b378d634bbf84382c731c97420a",
+        "stage": "time-paired",
+        "native_tool_seq": 2478,
+        "native_tool_call_sha256": "34bfc9d7b14bacd18d1d71ec591260ae3fc36049f6fcbbe676f343c126dadb8d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      },
+      "failures": []
+    },
+    {
+      "run": "score-time-full-regression-20261102-211814-a1c24",
+      "files": {
+        "result.json": {
+          "sha256": "2e015ea969187aff24a3098485fc9983fece5c35c918775ff1da38ae6ea1c9ff",
+          "bytes": 303
+        },
+        "plan.json": {
+          "sha256": "8d00df59745664037cbe95fb89df176b84726bd7b8b8d1bccd4dd66823dff893",
+          "bytes": 450
+        },
+        "source-files.json": {
+          "sha256": "a3ff0ac2c90fe8a8f34aafc1aa3b002490dd94c607ecf2c1e209c7883384b3f2",
+          "bytes": 7206
+        },
+        "junit.xml": {
+          "sha256": "728beb9ef4c21f928dbf8f60d08ba58797c3e932c79c1866c84f8c746a2ae8c0",
+          "bytes": 73877
+        },
+        "stdout.txt": {
+          "sha256": "90ae2e9f665b616bd58423e7ef7b7f3a6107d83daed30b6c23e478d48f5baab3",
+          "bytes": 5021
+        },
+        "stderr.txt": {
+          "sha256": "fb3a9e7e8f08a76da0f3dc1a138aeaa9c59614b508c8e29e2155d1371c1c0bd6",
+          "bytes": 81
+        },
+        "permission-preflight.json": {
+          "sha256": "3a95fdcc88a437333f9e4df2e233dbc35491de97fac9e430259b12d7553895bb",
+          "bytes": 129
+        },
+        "network-guard.json": {
+          "sha256": "b141e7bbf16888af758835c9ba6ecbd8919973f39041687c94435c74d210877a",
+          "bytes": 94
+        }
+      },
+      "result": {
+        "returncode": 1,
+        "seconds": 63.362,
+        "execution": "Original Harness native coordinator, no target model",
+        "native_harness_execution": true,
+        "platform_acceptance": false,
+        "target_model_calls": 0,
+        "tests": 520,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 6,
+        "passed": 513
+      },
+      "native_attestation": {
+        "request_id": "925a6b378d634bbf84382c731c97420a",
+        "stage": "time-paired",
+        "native_tool_seq": 2478,
+        "native_tool_call_sha256": "34bfc9d7b14bacd18d1d71ec591260ae3fc36049f6fcbbe676f343c126dadb8d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      },
+      "failures": [
+        {
+          "name": "tests.test_contract_044.test_output_mounted_library_is_selected_without_searching_team_directories",
+          "message": "research_agent.rag.materials.MaterialError: materials must use relative paths or configured aliases"
+        }
+      ]
+    },
+    {
+      "run": "score-time-paired-20261102-211453-fdb42",
+      "files": {
+        "batch.json": {
+          "sha256": "48499c5964a0bd44b950ecdd95acf7c13e278353fd8ce16a913514e801214603",
+          "bytes": 257
+        }
+      },
+      "batch": {
+        "status": "coordinator_failed",
+        "error": "GBK child stdout decoded as UTF-8; no candidate or full regression executed",
+        "completed_child": "score-time-baseline-20261102-211455-4f58d",
+        "target_model_calls": 0,
+        "platform_acceptance": false
+      },
+      "incomplete": true,
+      "native_attestation": {
+        "request_id": "68148e6cf0a647d5a43f36280be6cc74",
+        "stage": "time-paired",
+        "native_tool_seq": 2449,
+        "native_tool_call_sha256": "1d16c9cbb59cf4ae0b05ab7bda5c624b6c2948c01d0b8b86c5f1d43aa457831d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      }
+    },
+    {
+      "run": "score-time-paired-20261102-211801-f5386",
+      "files": {
+        "batch.json": {
+          "sha256": "a7d68a46e3230a308963bd42415a44b66e8d7c082c0f4d192b2be5bd2cdfa865",
+          "bytes": 4973
+        }
+      },
+      "batch": {
+        "status": "completed",
+        "baseline": "08b28f01bfe759dc3d7bd1d46d026bbd87005878",
+        "order": [
+          "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-baseline-20261102-211801-b6f1f",
+          "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-candidate-20261102-211803-8f37f",
+          "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-candidate-20261102-211805-92075",
+          "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-baseline-20261102-211808-d3d59",
+          "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-baseline-20261102-211810-1672d",
+          "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-candidate-20261102-211812-e35c5",
+          "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-full-regression-20261102-211814-a1c24",
+          "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-sdk-20261102-211918-0dcda"
+        ],
+        "results": [
+          {
+            "directory": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-baseline-20261102-211801-b6f1f",
+            "returncode": 1,
+            "seconds": 1.313,
+            "execution": "Original Harness native coordinator, no target model",
+            "native_harness_execution": true,
+            "platform_acceptance": false,
+            "target_model_calls": 0,
+            "tests": 33,
+            "failures": 23,
+            "errors": 0,
+            "skipped": 0,
+            "passed": 10
+          },
+          {
+            "directory": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-candidate-20261102-211803-8f37f",
+            "returncode": 0,
+            "seconds": 1.059,
+            "execution": "Original Harness native coordinator, no target model",
+            "native_harness_execution": true,
+            "platform_acceptance": false,
+            "target_model_calls": 0,
+            "tests": 33,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "passed": 33
+          },
+          {
+            "directory": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-candidate-20261102-211805-92075",
+            "returncode": 0,
+            "seconds": 1.296,
+            "execution": "Original Harness native coordinator, no target model",
+            "native_harness_execution": true,
+            "platform_acceptance": false,
+            "target_model_calls": 0,
+            "tests": 33,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "passed": 33
+          },
+          {
+            "directory": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-baseline-20261102-211808-d3d59",
+            "returncode": 1,
+            "seconds": 1.39,
+            "execution": "Original Harness native coordinator, no target model",
+            "native_harness_execution": true,
+            "platform_acceptance": false,
+            "target_model_calls": 0,
+            "tests": 33,
+            "failures": 23,
+            "errors": 0,
+            "skipped": 0,
+            "passed": 10
+          },
+          {
+            "directory": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-baseline-20261102-211810-1672d",
+            "returncode": 1,
+            "seconds": 1.27,
+            "execution": "Original Harness native coordinator, no target model",
+            "native_harness_execution": true,
+            "platform_acceptance": false,
+            "target_model_calls": 0,
+            "tests": 33,
+            "failures": 23,
+            "errors": 0,
+            "skipped": 0,
+            "passed": 10
+          },
+          {
+            "directory": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-candidate-20261102-211812-e35c5",
+            "returncode": 0,
+            "seconds": 1.054,
+            "execution": "Original Harness native coordinator, no target model",
+            "native_harness_execution": true,
+            "platform_acceptance": false,
+            "target_model_calls": 0,
+            "tests": 33,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "passed": 33
+          },
+          {
+            "directory": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-full-regression-20261102-211814-a1c24",
+            "returncode": 1,
+            "seconds": 63.362,
+            "execution": "Original Harness native coordinator, no target model",
+            "native_harness_execution": true,
+            "platform_acceptance": false,
+            "target_model_calls": 0,
+            "tests": 520,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 6,
+            "passed": 513
+          },
+          {
+            "directory": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-time-sdk-20261102-211918-0dcda",
+            "returncode": 0,
+            "seconds": 7.835,
+            "execution": "Original Harness native coordinator, no target model",
+            "native_harness_execution": true,
+            "platform_acceptance": false,
+            "target_model_calls": 0,
+            "tests": 12,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "passed": 12
+          }
+        ],
+        "target_model_calls": 0,
+        "platform_acceptance": false
+      },
+      "incomplete": false,
+      "native_attestation": {
+        "request_id": "925a6b378d634bbf84382c731c97420a",
+        "stage": "time-paired",
+        "native_tool_seq": 2478,
+        "native_tool_call_sha256": "34bfc9d7b14bacd18d1d71ec591260ae3fc36049f6fcbbe676f343c126dadb8d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      }
+    },
+    {
+      "run": "score-time-sdk-20261102-211918-0dcda",
+      "files": {
+        "result.json": {
+          "sha256": "540f23403da16c380eb2ff41a9710904af05e6fb7a374b37f35ab5c0e67d3610",
+          "bytes": 300
+        },
+        "plan.json": {
+          "sha256": "621f8e81f78f4a11036618c57a2e9930793f1b2d48bca0ca0cf71ad4a98894c0",
+          "bytes": 705
+        },
+        "source-files.json": {
+          "sha256": "a3ff0ac2c90fe8a8f34aafc1aa3b002490dd94c607ecf2c1e209c7883384b3f2",
+          "bytes": 7206
+        },
+        "junit.xml": {
+          "sha256": "8e8a84c472862bf2c6d016059d228847fc28b7688ac6234b75c568a3efedb589",
+          "bytes": 1671
+        },
+        "stdout.txt": {
+          "sha256": "9be6b5ac2b409c84cdd2e2bf4f54ab2a68d2c074e0324ae53da013a9ddd1bc05",
+          "bytes": 2084
+        },
+        "stderr.txt": {
+          "sha256": "fb3a9e7e8f08a76da0f3dc1a138aeaa9c59614b508c8e29e2155d1371c1c0bd6",
+          "bytes": 81
+        },
+        "permission-preflight.json": {
+          "sha256": "3a95fdcc88a437333f9e4df2e233dbc35491de97fac9e430259b12d7553895bb",
+          "bytes": 129
+        },
+        "network-guard.json": {
+          "sha256": "b141e7bbf16888af758835c9ba6ecbd8919973f39041687c94435c74d210877a",
+          "bytes": 94
+        }
+      },
+      "result": {
+        "returncode": 0,
+        "seconds": 7.835,
+        "execution": "Original Harness native coordinator, no target model",
+        "native_harness_execution": true,
+        "platform_acceptance": false,
+        "target_model_calls": 0,
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 12
+      },
+      "native_attestation": {
+        "request_id": "925a6b378d634bbf84382c731c97420a",
+        "stage": "time-paired",
+        "native_tool_seq": 2478,
+        "native_tool_call_sha256": "34bfc9d7b14bacd18d1d71ec591260ae3fc36049f6fcbbe676f343c126dadb8d",
+        "config_header_seq": 2310,
+        "native_tool_execution_verified": true
+      },
+      "failures": []
     }
   ]
 }

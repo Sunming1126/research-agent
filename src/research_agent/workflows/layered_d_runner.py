@@ -10,6 +10,7 @@ from pathlib import Path
 
 from ..core.utils import confined, sha256_file, write_json, atomic_text
 from ..core.session import checkpoint, current_session, remaining_timeout
+from ..core.time_limits import wire_timeout
 from .source_generation import build_source_prompt, read_generation_materials, save_generation_response, save_source
 from .sample_validation import run_public_sample
 from .d_generation_policy import generation_window, generation_tokens, platform_service_error, PlatformExperimentUnavailable
@@ -196,7 +197,7 @@ class LayeredDRunner:
                        RESEARCH_WORKSPACE_TEAM=self.settings.team)
             checkpoint("d_formal_execution")
             completed = subprocess.run(command, capture_output=True, encoding="utf-8", errors="replace",
-                                       timeout=remaining_timeout(min(175, self.settings.case_timeout), reserve=5), env=env, check=False)
+                                       timeout=remaining_timeout(wire_timeout('Reproduction', self.settings.case_timeout), reserve=5), env=env, check=False)
             atomic_text(confined(self.work, "experiment.stdout.jsonl"), completed.stdout)
             atomic_text(confined(self.work, "experiment.stderr.log"), completed.stderr)
             if completed.returncode:

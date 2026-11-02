@@ -15,12 +15,49 @@ ALLOWED = {
     'src/research_agent/evidence/reporting.py': ({'report_requirements'}, {}),
     'src/research_agent/integrations/idea_prompt.py': (set(), {}),
     'src/research_agent/workflows/idea_workflow.py': (set(), {}),
+    'src/research_agent/core/config.py': (set(), {}),
+    'src/research_agent/core/engine.py': (set(), {}),
+    'src/research_agent/integrations/http_runtime.py': (set(), {}),
+    'src/research_agent/workflows/layered_d_runner.py': (set(), {}),
 }
 
 
 def baseline_projection(name, content, root):
     functions, imports = ALLOWED[name]
     baseline = subprocess.check_output(['git', 'show', 'cd733b2:' + name], cwd=root).decode('utf-8')
+    if name == 'src/research_agent/core/config.py':
+        added = 'from .time_limits import DEFAULT_CASE_TIMEOUT\n'
+        assert content.count(added) == 1
+        content = content.replace(added, '')
+        assert content.count('DEFAULT_CASE_TIMEOUT') == 2
+        content = content.replace('DEFAULT_CASE_TIMEOUT', '180')
+    if name == 'src/research_agent/core/engine.py':
+        added = 'from .time_limits import wire_timeout\n'
+        assert content.count(added) == 1
+        content = content.replace(added, '')
+        new = '''        function = payload.get("function") if isinstance(payload, dict) else None
+        wire = wire_timeout(function, self.settings.case_timeout)
+        # 在题型上限内保留落盘和原生 SDK 导出余量；排队仍消耗同一截止预算。
+'''
+        old = '''        limit = self.settings.case_timeout
+        if isinstance(payload, dict) and payload.get("function") == "Reproduction" and self.settings.experiment_mode == "platform":
+            limit = min(limit, 180)
+        # 最后保留10秒用于产物落盘与原生SDK导出，避免答卷卡在外层180秒边界。
+        wire = min(limit, 180)
+'''
+        assert content.count(new) == 1
+        content = content.replace(new, old)
+    if name in {'src/research_agent/integrations/http_runtime.py',
+                'src/research_agent/workflows/layered_d_runner.py'}:
+        added = 'from ..core.time_limits import wire_timeout\n'
+        assert content.count(added) == 1
+        content = content.replace(added, '')
+        if name.endswith('http_runtime.py'):
+            new, old = 'wire_timeout(case.function, self.timeout_supplier())', 'min(self.timeout_supplier(), 180)'
+        else:
+            new, old = "wire_timeout('Reproduction', self.settings.case_timeout)", 'min(175, self.settings.case_timeout)'
+        assert content.count(new) == 1
+        content = content.replace(new, old)
     if name == 'src/research_agent/workflows/idea_workflow.py':
         added = 'from ..contracts.report_rules import body_character_limit\n'
         assert content.count(added) == 1

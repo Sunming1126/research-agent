@@ -1,0 +1,13 @@
+{
+  "returncode": 1,
+  "seconds": 63.362,
+  "execution": "Original Harness native coordinator, no target model",
+  "native_harness_execution": true,
+  "platform_acceptance": false,
+  "target_model_calls": 0,
+  "tests": 520,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 6,
+  "passed": 513
+}

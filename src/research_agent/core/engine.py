@@ -1,4 +1,5 @@
 from __future__ import annotations
+from .time_limits import wire_timeout
 
 import asyncio
 import os
@@ -79,11 +80,9 @@ class ResearchAgentEngine:
         return failure_submission(self.settings, case, error_type)
 
     def _case_timeout(self, payload):
-        limit = self.settings.case_timeout
-        if isinstance(payload, dict) and payload.get("function") == "Reproduction" and self.settings.experiment_mode == "platform":
-            limit = min(limit, 180)
-        # 最后保留10秒用于产物落盘与原生SDK导出，避免答卷卡在外层180秒边界。
-        wire = min(limit, 180)
+        function = payload.get("function") if isinstance(payload, dict) else None
+        wire = wire_timeout(function, self.settings.case_timeout)
+        # 在题型上限内保留落盘和原生 SDK 导出余量；排队仍消耗同一截止预算。
         return wire - min(10, wire * .1)
 
     @tool(name="run_assigned_case")
