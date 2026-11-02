@@ -1,0 +1,247 @@
+{
+  "rows": [
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "引用实例不超过40": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "local_validation": true,
+          "delivered_attempt": 2,
+          "model_issues": [
+            "正文称“DPR处理最多100个段落，阅读器可将所有段落放入单张32GB GPU的一个batch中，延迟与单段落情况几乎相同（约20ms）”，但原文[1, p.8]明确该延迟是“the latency remains almost identical to the single passage case (around 20ms)”，即延迟与单段落情况几乎相同，但未给出单段落延迟数值，且“约20ms”在原文中仅针对单段落情况，而非批量处理100个段落的延迟。; 正文称“RAG在TriviaQA上使用了DPR所用的公开开发集（TriviaQA Web Development split）”，但原文[2, p.18]仅说明RAG使用了DPR所用的公开开发集（TriviaQA Web Development split），而DPR原文未明确使用该开发集，因此“DPR所用的”表述缺乏直接证据支持。; 正文称“评论家部分基于通过提示专有LM（即GPT-4）收集的输入、输出及对应反射标记数据集进行监督训练”，但原文[5, p.2]明确评论家模型“in part, is supervised on a dataset of input, output, and corresponding reflection tokens collected by prompting a propriety LM (i.e., GPT-4)”，即评论家部分基于GPT-4提示收集的数据监督训练，但未明确说明该数据集包含“输入、输出及对应反射标记”，表述与原文不完全一致。"
+          ],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "正文称“DPR处理最多100个段落，阅读器可在单张32GB GPU上批量处理，延迟约20ms”，但原文[1, p.8]明确该延迟是“single passage case (around 20ms)”，而非批量处理100个段落的延迟。原文仅说明阅读器可将100个段落放入一个batch，但未给出该batch的延迟数值。",
+                  "正文称“RAG在TriviaQA上使用DPR相同的公开开发集，并额外报告官方Wikipedia测试集结果以公平比较”，但原文[2, p.18]仅说明RAG使用了DPR所用的公开开发集（TriviaQA Web Development split），并额外报告了Roberts et al.使用的官方Wikipedia测试集结果，并未提及“与DPR相同的公开开发集”这一表述，且DPR原文未明确使用该开发集。",
+                  "正文称“Self-RAG的评论家部分基于GPT-4生成的反馈数据监督训练”，但原文[5, p.2]明确评论家模型“in part, is supervised on a dataset of input, output, and corresponding reflection tokens collected by prompting a propriety LM (i.e., GPT-4)”，即评论家部分基于GPT-4提示收集的数据监督训练，而非“基于GPT-4生成的反馈数据监督训练”，表述不准确。"
+                ]
+              }
+            },
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "正文称“DPR处理最多100个段落，阅读器可在单张32GB GPU上批量处理，延迟约20ms”，但原文[1, p.8]明确该延迟是“single passage case (around 20ms)”，而非批量处理100个段落的延迟。原文仅说明阅读器可将100个段落放入一个batch，但未给出该batch的延迟数值。; 正文称“RAG在TriviaQA上使用DPR相同的公开开发集，并额外报告官方Wikipedia测试集结果以公平比较”，但原文[2, p.18]仅说明RAG使用了DPR所用的公开开发集（TriviaQA Web Development split），并额外报告了Roberts et al.使用的官方Wikipedia测试集结果，并未提及“与DPR相同的公开开发集”这一表述，且DPR原文未明确使用该开发集。; 正文称“Self-RAG的评论家部分基于GPT-4生成的反馈数据监督训练”，但原文[5, p.2]明确评论家模型“in part, is supervised on a dataset of input, output, and corresponding reflection tokens collected by prompting a propriety LM (i.e., GPT-4)”，即评论家部分基于GPT-4提示收集的数据监督训练，而非“基于GPT-4生成的反馈数据监督训练”，表述不准确。"
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "正文称“DPR处理最多100个段落，阅读器可将所有段落放入单张32GB GPU的一个batch中，延迟与单段落情况几乎相同（约20ms）”，但原文[1, p.8]明确该延迟是“the latency remains almost identical to the single passage case (around 20ms)”，即延迟与单段落情况几乎相同，但未给出单段落延迟数值，且“约20ms”在原文中仅针对单段落情况，而非批量处理100个段落的延迟。",
+                  "正文称“RAG在TriviaQA上使用了DPR所用的公开开发集（TriviaQA Web Development split）”，但原文[2, p.18]仅说明RAG使用了DPR所用的公开开发集（TriviaQA Web Development split），而DPR原文未明确使用该开发集，因此“DPR所用的”表述缺乏直接证据支持。",
+                  "正文称“评论家部分基于通过提示专有LM（即GPT-4）收集的输入、输出及对应反射标记数据集进行监督训练”，但原文[5, p.2]明确评论家模型“in part, is supervised on a dataset of input, output, and corresponding reflection tokens collected by prompting a propriety LM (i.e., GPT-4)”，即评论家部分基于GPT-4提示收集的数据监督训练，但未明确说明该数据集包含“输入、输出及对应反射标记”，表述与原文不完全一致。"
+                ]
+              }
+            },
+            {
+              "attempt": 2,
+              "stage": "validation",
+              "issues": [
+                "正文称“DPR处理最多100个段落，阅读器可将所有段落放入单张32GB GPU的一个batch中，延迟与单段落情况几乎相同（约20ms）”，但原文[1, p.8]明确该延迟是“the latency remains almost identical to the single passage case (around 20ms)”，即延迟与单段落情况几乎相同，但未给出单段落延迟数值，且“约20ms”在原文中仅针对单段落情况，而非批量处理100个段落的延迟。; 正文称“RAG在TriviaQA上使用了DPR所用的公开开发集（TriviaQA Web Development split）”，但原文[2, p.18]仅说明RAG使用了DPR所用的公开开发集（TriviaQA Web Development split），而DPR原文未明确使用该开发集，因此“DPR所用的”表述缺乏直接证据支持。; 正文称“评论家部分基于通过提示专有LM（即GPT-4）收集的输入、输出及对应反射标记数据集进行监督训练”，但原文[5, p.2]明确评论家模型“in part, is supervised on a dataset of input, output, and corresponding reflection tokens collected by prompting a propriety LM (i.e., GPT-4)”，即评论家部分基于GPT-4提示收集的数据监督训练，但未明确说明该数据集包含“输入、输出及对应反射标记”，表述与原文不完全一致。"
+              ]
+            }
+          ]
+        }
+      ],
+      "body_characters": 2021,
+      "citation_instances": 27,
+      "label": "C-01-five-real-papers",
+      "case_id": "C-01",
+      "function": "Survey",
+      "http_status": 200,
+      "seconds": 103.311,
+      "transport_error": null,
+      "llm_calls": 4,
+      "total_tokens": 29331,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 4,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 26681,
+        "total_output_tokens": 2650,
+        "tool_call_count": 63,
+        "unique_tool_count": 10,
+        "parallel_tool_count": 3,
+        "session_id": "5122c0141804484596fab253db7fefe6",
+        "trace_id": "00000000000000000000000048000001",
+        "llm_calls": 4,
+        "total_tokens": 29331,
+        "duration_ms": 103307.564658,
+        "tools_used": [
+          "build_authorized_index",
+          "chunk_pages",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "read_document_pages",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    },
+    {
+      "checks": {
+        "HTTP 200": true,
+        "JSON对象且无围栏/前缀": true,
+        "顶层字段与题型完全一致": true,
+        "case_id与输入一致": true,
+        "结果JSON实际存在": true,
+        "落盘JSON与HTTP答卷相同": true,
+        "报告相对路径及命名": true,
+        "markdown为非空字符串": true,
+        "唯一参考文献章节": true,
+        "正文至少800字符": true,
+        "正文不超过4500/6000上限": true,
+        "引用实例不超过40": true,
+        "足量真实PDF参考文献": true,
+        "引用编号与参考文献匹配": true,
+        "Markdown实际存在且逐字一致": true
+      },
+      "failures": [],
+      "format_and_files_passed": true,
+      "expected_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "actual_fields": [
+        "case_id",
+        "markdown",
+        "path"
+      ],
+      "diagnostics": [],
+      "report_audits": [
+        {
+          "ok": false,
+          "mode": "model_report_needs_review",
+          "local_validation": true,
+          "delivered_attempt": 2,
+          "model_issues": [
+            "正文第2节称“RAG 在 TriviaQA 上报告了两种测试集的结果，以与不同工作公平比较”，但 source_quotes ev-9 原文为“We report results on both test sets to enable fair comparison to both approaches”，未提及“TriviaQA”作为测试集名称，且 ev-9 未明确说明两种测试集的具体名称或来源，存在证据矛盾。; 正文第3节称“FiD 使用预训练的 T5 模型初始化”，但 source_quotes ev-14 原文为“We initialize our models with the pretrained T5 models”，未提及“预训练的 T5 模型初始化”的具体描述，且 ev-14 未明确说明初始化方式，存在证据缺失。; 正文第5节称“Self-RAG 使用 top-5 文档从 Contriever-MS MARCO 检索”，但 source_quotes ev-28 原文为“By default, we use the top five documents from Contriever-MS MARCO”，未提及“使用”一词，且 ev-28 未明确说明该设置是否为默认，存在证据矛盾。"
+          ],
+          "history": [
+            {
+              "attempt": 1,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "正文第2节称“RAG 在 TriviaQA 上报告了两种测试集结果，以与不同工作公平比较”，但 source_quotes ev-9 原文为“We report results on both test sets to enable fair comparison to both approaches”，未提及“TriviaQA”作为测试集名称，且 ev-9 未明确说明两种测试集的具体名称或来源，存在证据矛盾。",
+                  "正文第3节称“FiD 使用 T5 模型初始化，考虑 base（220M）和 large（770M）两种规模”，但 source_quotes ev-14 原文为“We consider two model sizes, base and large, containing respectively 220M and 770M parameters”，未提及“T5 模型初始化”的具体描述，且 ev-14 未明确说明初始化方式，存在证据缺失。",
+                  "正文第5节称“Self-RAG 默认使用 Contriever-MS MARCO 检索 top-5 文档”，但 source_quotes ev-28 原文为“By default, we use the top five documents from Contriever-MS MARCO (Izacard et al., 2022a)”，未提及“默认”一词，且 ev-28 未明确说明该设置是否为默认，存在证据矛盾。"
+                ]
+              }
+            },
+            {
+              "attempt": 1,
+              "stage": "validation",
+              "issues": [
+                "正文第2节称“RAG 在 TriviaQA 上报告了两种测试集结果，以与不同工作公平比较”，但 source_quotes ev-9 原文为“We report results on both test sets to enable fair comparison to both approaches”，未提及“TriviaQA”作为测试集名称，且 ev-9 未明确说明两种测试集的具体名称或来源，存在证据矛盾。; 正文第3节称“FiD 使用 T5 模型初始化，考虑 base（220M）和 large（770M）两种规模”，但 source_quotes ev-14 原文为“We consider two model sizes, base and large, containing respectively 220M and 770M parameters”，未提及“T5 模型初始化”的具体描述，且 ev-14 未明确说明初始化方式，存在证据缺失。; 正文第5节称“Self-RAG 默认使用 Contriever-MS MARCO 检索 top-5 文档”，但 source_quotes ev-28 原文为“By default, we use the top five documents from Contriever-MS MARCO (Izacard et al., 2022a)”，未提及“默认”一词，且 ev-28 未明确说明该设置是否为默认，存在证据矛盾。"
+              ]
+            },
+            {
+              "attempt": 2,
+              "stage": "audit",
+              "audit": {
+                "ok": false,
+                "issues": [
+                  "正文第2节称“RAG 在 TriviaQA 上报告了两种测试集的结果，以与不同工作公平比较”，但 source_quotes ev-9 原文为“We report results on both test sets to enable fair comparison to both approaches”，未提及“TriviaQA”作为测试集名称，且 ev-9 未明确说明两种测试集的具体名称或来源，存在证据矛盾。",
+                  "正文第3节称“FiD 使用预训练的 T5 模型初始化”，但 source_quotes ev-14 原文为“We initialize our models with the pretrained T5 models”，未提及“预训练的 T5 模型初始化”的具体描述，且 ev-14 未明确说明初始化方式，存在证据缺失。",
+                  "正文第5节称“Self-RAG 使用 top-5 文档从 Contriever-MS MARCO 检索”，但 source_quotes ev-28 原文为“By default, we use the top five documents from Contriever-MS MARCO”，未提及“使用”一词，且 ev-28 未明确说明该设置是否为默认，存在证据矛盾。"
+                ]
+              }
+            },
+            {
+              "attempt": 2,
+              "stage": "validation",
+              "issues": [
+                "正文第2节称“RAG 在 TriviaQA 上报告了两种测试集的结果，以与不同工作公平比较”，但 source_quotes ev-9 原文为“We report results on both test sets to enable fair comparison to both approaches”，未提及“TriviaQA”作为测试集名称，且 ev-9 未明确说明两种测试集的具体名称或来源，存在证据矛盾。; 正文第3节称“FiD 使用预训练的 T5 模型初始化”，但 source_quotes ev-14 原文为“We initialize our models with the pretrained T5 models”，未提及“预训练的 T5 模型初始化”的具体描述，且 ev-14 未明确说明初始化方式，存在证据缺失。; 正文第5节称“Self-RAG 使用 top-5 文档从 Contriever-MS MARCO 检索”，但 source_quotes ev-28 原文为“By default, we use the top five documents from Contriever-MS MARCO”，未提及“使用”一词，且 ev-28 未明确说明该设置是否为默认，存在证据矛盾。"
+              ]
+            }
+          ]
+        }
+      ],
+      "body_characters": 2641,
+      "citation_instances": 31,
+      "label": "C-03-five-real-papers",
+      "case_id": "C-03",
+      "function": "Survey",
+      "http_status": 200,
+      "seconds": 100.016,
+      "transport_error": null,
+      "llm_calls": 4,
+      "total_tokens": 28983,
+      "local_session_trace_received": true,
+      "sdk_metadata": {
+        "llm_call_count": 4,
+        "max_depth": 4,
+        "retry_count_total": 0,
+        "total_input_tokens": 26057,
+        "total_output_tokens": 2926,
+        "tool_call_count": 53,
+        "unique_tool_count": 8,
+        "parallel_tool_count": 3,
+        "session_id": "c97c0297261249cb9661b01bb66a0abe",
+        "trace_id": "00000000000000000000000048000002",
+        "llm_calls": 4,
+        "total_tokens": 28983,
+        "duration_ms": 100012.260458,
+        "tools_used": [
+          "build_authorized_index",
+          "compose_and_check_report",
+          "hybrid_retrieve",
+          "resolve_authorized_materials",
+          "run_assigned_case",
+          "validate_case_artifacts",
+          "write_and_readback_submission",
+          "write_evidence_backed_report"
+        ]
+      }
+    }
+  ],
+  "uses_official_model_api": true,
+  "inputs_are_official_hidden_questions": false,
+  "independent_spec_validation": true
+}

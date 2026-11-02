@@ -108,7 +108,8 @@ def test_e_call_restores_shared_instance_and_class_after_failure():
 def test_e4_freezes_all_d_and_c_specific_files():
     import hashlib
     before=json.loads((ROOT/'tests/fixtures/e4-protected-source-hashes.json').read_text())
-    allowed={'src/research_agent/workflows/reports.py','src/research_agent/integrations/idea_prompt.py'}
+    allowed={'src/research_agent/workflows/reports.py','src/research_agent/integrations/idea_prompt.py',
+             'src/research_agent/integrations/survey_prompt.py'}
     for name,digest in before.items():
         if name not in allowed:
             content=(ROOT/name).read_text(encoding='utf-8')
@@ -116,18 +117,19 @@ def test_e4_freezes_all_d_and_c_specific_files():
                 'src/research_agent/workflows/tasks.py': '        if case.function == "Literature_Retrieval":\n            from .b_workflow import retrieve\n            return retrieve(self, case, retriever)\n',
                 'src/research_agent/integrations/prompts.py': "    if isinstance(data, dict) and data.get('b_protocol') == 'conditions-v1' and data.get('task', {}).get('function') == 'Literature_Retrieval' and stage in ('query', 'retrieve'):\n        from .b_prompt import QUERY, RETRIEVE\n        return QUERY if stage == 'query' else RETRIEVE\n",
             }.get(name)
+            if name == 'src/research_agent/integrations/prompts.py':
+                from test_c200_recovery import C_PROMPT_GUARD
+                assert content.count(C_PROMPT_GUARD) == 1
+                content = content.replace(C_PROMPT_GUARD, '')
             if b_guard:
                 assert content.count(b_guard)==1
                 content=content.replace(b_guard,'')
             assert hashlib.sha256(content.encode()).hexdigest()==digest,name
 
 
-def test_shared_reports_diff_is_only_e_dispatch():
-    import hashlib
-    before=json.loads((ROOT/'tests/fixtures/e4-protected-source-hashes.json').read_text())['src/research_agent/workflows/reports.py']
-    after=(ROOT/'src/research_agent/workflows/reports.py').read_text(encoding='utf-8')
-    guard="        if case.function == 'Idea' and getattr(self, '_source_report', False):\n            from .idea_workflow import compose_idea\n            return compose_idea(self, case)\n"
-    assert after.count(guard)==1 and hashlib.sha256(after.replace(guard,'').encode()).hexdigest()==before
+def test_shared_reports_keeps_non_c_methods_and_e_dispatch():
+    from test_c200_recovery import assert_report_isolation
+    assert_report_isolation()
 
 
 def test_no_second_draft_when_only_fifty_seconds_remain():

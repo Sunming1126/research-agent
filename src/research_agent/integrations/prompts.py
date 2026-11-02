@@ -170,6 +170,10 @@ def instructions_for(stage, data):
         dedicated = {'report': INSTRUCTION, 'audit': AUDIT_INSTRUCTION, 'repair': REPAIR_INSTRUCTION}
         if stage in dedicated:
             return dedicated[stage]
+    if (stage == 'repair' and isinstance(data, dict) and data.get('task', {}).get('function') == 'Survey'
+            and any(isinstance(p, dict) for p in data.get('paragraphs', []))):
+        from .survey_prompt import REPAIR_INSTRUCTION
+        return REPAIR_INSTRUCTION
     if stage == 'audit' and isinstance(data, dict) and data.get('task', {}).get('function') == 'Survey':
         from .survey_prompt import AUDIT_INSTRUCTION
         return AUDIT_INSTRUCTION

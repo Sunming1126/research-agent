@@ -1,0 +1,44 @@
+{
+  "version": "2.0.1-c1",
+  "base_commit": "96ed32d828640084ee5da81bff70d3599da68ac2",
+  "branch": "test1-2",
+  "image": "research-assistant:2.0.1-c1",
+  "image_id": "sha256:09e4eef9cfc7be8d145d02dbda3bd435c9c1e94d638fd8eb540d9acfa36445db",
+  "tar": "C:\\Users\\sun\\Desktop\\anic\\team_share\\image\\research-assistant-2.0.1-c1.tar",
+  "tar_bytes": 295728640,
+  "tar_sha256": "541f8cc5ffd3572164d9ac61e9e979f048ef225480360e5f4680c3915edcbfea",
+  "tar_load_verified": true,
+  "tests": {
+    "host": 178,
+    "sdk_http": 29
+  },
+  "official_submission_performed": false,
+  "source_committed": false,
+  "public_model_tests": [
+    {
+      "case_id": "C-01",
+      "http_status": 200,
+      "seconds": 103.311,
+      "format_and_files_passed": true,
+      "audit_ok": [
+        false
+      ]
+    },
+    {
+      "case_id": "C-03",
+      "http_status": 200,
+      "seconds": 100.016,
+      "format_and_files_passed": true,
+      "audit_ok": [
+        false
+      ]
+    }
+  ],
+  "limitation": "No original official answer/stack trace; semantic audit issues remain in self-authored live tests.",
+  "files": {
+    "src\\research_agent\\integrations\\prompts.py": "026cb1848bab69ab28de9d294e9ce9dd8141977c953a6acdba65a3cbaacdd7be",
+    "src\\research_agent\\integrations\\survey_prompt.py": "52f9994cf9d8cb39a59dd5e2bcc1023d1080a2bfabfc0ce7aeec713d6e4e3817",
+    "src\\research_agent\\workflows\\reports.py": "3fba38f1d37fa241e59643897f6b91b27f76233712287fe31992d9b00ea2ecbb",
+    "src\\research_agent\\workflows\\survey_repair.py": "df26867e9c6727df8a3950b442dcf239789f3c96833719f7a124e947106a165a"
+  }
+}

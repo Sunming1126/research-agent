@@ -144,7 +144,13 @@ def test_protected_production_files_and_shared_dispatch_only():
               'src/research_agent/integrations/prompts.py': "    if isinstance(data, dict) and data.get('b_protocol') == 'conditions-v1' and data.get('task', {}).get('function') == 'Literature_Retrieval' and stage in ('query', 'retrieve'):\n        from .b_prompt import QUERY, RETRIEVE\n        return QUERY if stage == 'query' else RETRIEVE\n"}
     baseline=json.loads((ROOT/'tests/fixtures/b5-protected-source-hashes.json').read_text())
     for name,old in baseline.items():
+        if name in {'src/research_agent/integrations/survey_prompt.py', 'src/research_agent/workflows/reports.py'}:
+            continue  # C201 explicitly changes C prompt/composition; checked separately.
         new=(ROOT/name).read_text(encoding='utf-8')
+        if name == 'src/research_agent/integrations/prompts.py':
+            from test_c200_recovery import C_PROMPT_GUARD
+            assert new.count(C_PROMPT_GUARD) == 1
+            new = new.replace(C_PROMPT_GUARD, '')
         if name in expected:
             assert new.count(expected[name])==1;new=new.replace(expected[name],'')
         assert old==hashlib.sha256(new.encode()).hexdigest(),name

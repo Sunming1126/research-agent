@@ -249,7 +249,14 @@ class ReportWorkflow:
         deliverable_attempt = None
         # E可先修一次格式，再修一次语义；两次语义审查仍不通过就结束。
         # 全流程继续受本题时间和Token预算约束，不能靠重复重试超时。
-        for attempt in range(3 if case.function == 'Idea' else 2):
+        survey_recovery = direct and case.function == 'Survey'
+        attempts = 3 if case.function == 'Idea' or survey_recovery else 2
+        for attempt in range(attempts):
+            if survey_recovery and attempt:
+                session = current_session()
+                if session is not None and session.remaining() < 40:
+                    history.append({'stage': 'recovery_skipped', 'issues': ['insufficient remaining recovery time']})
+                    break
             if sum(item.get('stage') == 'audit' for item in history) >= 2:
                 break
             patches = []
@@ -282,14 +289,22 @@ class ReportWorkflow:
                     if case.function == 'Idea' and hasattr(self.llm, 'input_tokens'):
                         affordable = max(0, self.llm.remaining_tokens - self.llm.input_tokens('repair', repair_data) - 1400)
                         reserve = min(reserve, affordable)
+                    if survey_recovery:
+                        from .survey_repair import repair_request
+                        repair_data = repair_request(repair_data, self.last_draft)
+                        reserve = 0  # optional audit must not block a known format correction
                     repaired = self._model_step("repair", repair_data, 1400, reserve=reserve)
                     if self.report_trace:
                         self.report_trace[-1].setdefault('repair_responses', []).append(repaired)
-                    patches = repaired.get("patches", [])
+                    patches = repaired.get("patches", []) if isinstance(repaired, dict) else []
                     if direct and case.function == "Idea":
                         from .idea_repair import resolve_patches
                         patches = resolve_patches(patches, paragraphs)
-                    revised = apply_report_patches(self.last_draft, patches)
+                    if survey_recovery:
+                        from .survey_repair import apply_repair
+                        revised, patches = apply_repair(self.last_draft, repaired, repair_data)
+                    else:
+                        revised = apply_report_patches(self.last_draft, patches)
                     value = {"markdown": revised, "used_evidence_ids": previous_used}
                 else:
                     data = {"task": report_task(case),
@@ -332,8 +347,12 @@ class ReportWorkflow:
                         available = max(0, self.llm.remaining_tokens - self.llm.input_tokens("report", data)
                                         - (3000 if case.function == "Survey" else 4200))
                         reserve = min(reserve, available)
-                    value = self._model_step("report", data, min((3600 if direct else 3000) if case.function == "Survey" else 4200, requested),
-                                             reserve=reserve, minimum=1600)
+                    if survey_recovery:
+                        from .survey_repair import generate
+                        value = generate(self, data, min(3600, requested), reserve, retry=bool(attempt))
+                    else:
+                        value = self._model_step("report", data, min((3600 if direct else 3000) if case.function == "Survey" else 4200, requested),
+                                                 reserve=reserve, minimum=1600)
             except (ModelError, EvidenceError, TimeoutError) as exc:
                 history.append({"attempt": attempt + 1, "stage": "report", "issues": [str(exc)]})
                 feedback = feedback + [str(exc)]
@@ -342,11 +361,30 @@ class ReportWorkflow:
                 # 网络超时、额度拒绝不重试；不得用占位正文伪装成功。
                 retry_format = isinstance(exc, ModelError) and any(message in str(exc) for message in
                     ('model returned invalid JSON', 'model response incomplete'))
-                if (direct and case.function == 'Survey' and attempt == 0 and deliverable is None
+                if (direct and case.function == 'Survey' and attempt < attempts - 1 and deliverable is None
                         and retry_format and (session is None or session.remaining() >= 45)):
                     self.last_draft = ''
                     continue
+                if (survey_recovery and attempt < attempts - 1 and deliverable is None
+                        and isinstance(exc, EvidenceError)
+                        and (session is None or session.remaining() >= 40)):
+                    self.last_draft = ''
+                    continue
                 break
+            if survey_recovery:
+                from .survey_repair import normalize_response
+                self.report_trace.append({'attempt': attempt + 1, 'stage': 'raw_survey_response',
+                                          'raw_response': value, 'source_task': report_task(case)})
+                try:
+                    value = normalize_response(value, evidence)
+                except EvidenceError as exc:
+                    feedback = [str(exc)]
+                    repair_targets = getattr(exc, 'passages', [])
+                    self.last_draft = value.get('markdown', '') if isinstance(value, dict) else ''
+                    if not isinstance(self.last_draft, str):
+                        self.last_draft = ''
+                    history.append({'attempt': attempt + 1, 'stage': 'response_normalization', 'issues': feedback})
+                    continue
             markdown = value.get("markdown", "")
             used = value.get("used_evidence_ids", [])
             self.report_trace.append({"attempt": attempt + 1, "raw_markdown": markdown, "raw_response": value,
@@ -369,6 +407,9 @@ class ReportWorkflow:
                 continue
             if bound_ids:
                 used = list(dict.fromkeys((previous_used if patches else []) + bound_ids))
+            if survey_recovery:
+                from .survey_repair import cited_ids
+                used = cited_ids(markdown, evidence)
             markdown = markdown.split("## 参考文献")[0].strip()
             # 只修正与唯一授权 arXiv 编号相差一位的排版笔误。
             markdown = correct_paper_ids(markdown, filenames)
@@ -418,6 +459,8 @@ class ReportWorkflow:
                     affordable = max(0, self.llm.remaining_tokens - self.llm.input_tokens("audit", audit_data) - 1000)
                     reserve = min(reserve, affordable)
                 audit = self._model_step("audit", audit_data, 1500 if case.function == "Idea" else 1000, reserve=reserve)
+                if survey_recovery and not isinstance(audit, dict):
+                    raise EvidenceError("invalid semantic audit response: expected object")
                 if (type(audit.get("ok")) is not bool or not isinstance(audit.get("issues"), list)
                         or any(not isinstance(issue, str) for issue in audit["issues"])):
                     raise EvidenceError("invalid semantic audit response")
@@ -446,6 +489,8 @@ class ReportWorkflow:
                 feedback = [str(exc)]
                 repair_targets = getattr(exc, "passages", [])
                 history.append({"attempt": attempt + 1, "stage": "validation", "issues": list(feedback)})
+                if survey_recovery and len(re.sub(r"\s", "", self.last_draft)) < 800:
+                    self.last_draft = ""  # incomplete bodies need generation, not tiny patches
         if case.function == "Survey" and not direct:
             # 自由长文多次审查失败时，只拼接已经进入证据台账的事实。
             markdown, used = deterministic_survey(case.input, self.ledger)
