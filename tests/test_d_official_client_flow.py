@@ -3,10 +3,12 @@ import json
 import os
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
+import socketserver
+import pytest
+if not hasattr(socketserver, 'UnixStreamServer'):
+    pytest.skip('Official Unix-domain client test requires POSIX socketserver; not a Windows pass', allow_module_level=True)
 from socketserver import UnixStreamServer
 from threading import Thread
-
-import pytest
 
 from fixtures import case
 from research_agent.core.config import Settings

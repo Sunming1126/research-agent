@@ -106,6 +106,12 @@ def test_d_client_partial_result_is_preserved(tmp_path, monkeypatch):
     from PIL import Image
     settings = Settings(tmp_path/'data', tmp_path/'out', 'platform-id')
     runner = LayeredDRunner(settings, tmp_path/'work')
+    # Current production preflight requires the public generation materials,
+    # even when the source generator and official client are mocked below.
+    from public_material_paths import experiment_root
+    import shutil
+    shutil.copytree(experiment_root() / 'D-01', settings.workspace / 'experiments/D-01')
+    settings.material_roots.append(settings.workspace / 'experiments/D-01')
     script = Path('/data/experiments/run_experiment.py')
     original_exists = Path.is_file
     monkeypatch.setattr(Path, 'is_file', lambda p: True if p == script else original_exists(p))
@@ -147,9 +153,13 @@ def test_d_postprocessing_error_keeps_platform_result(tmp_path, monkeypatch):
     from research_agent.workflows.layered_d_runner import LayeredDRunner
     from research_agent.workflows.experiments import failed_result
     runner = LayeredDRunner(Settings(tmp_path/'data',tmp_path/'output'),tmp_path/'work')
+    from public_material_paths import experiment_root
+    import shutil
+    shutil.copytree(experiment_root() / 'D-01', runner.settings.workspace / 'experiments/D-01')
+    runner.settings.material_roots.append(runner.settings.workspace / 'experiments/D-01')
     monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE','D-01')
     real = Path.is_file
-    monkeypatch.setattr(Path,'is_file',lambda p: True if str(p)=='/data/experiments/run_experiment.py' else real(p))
+    monkeypatch.setattr(Path,'is_file',lambda p: True if p == Path('/data/experiments/run_experiment.py') else real(p))
     monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: tmp_path/'source.py')
     original = failed_result('D-01',METRICS,'failed')
     original['metrics'][0]['name'] = 'Wrong metric'

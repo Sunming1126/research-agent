@@ -1,0 +1,13 @@
+{
+  "returncode": 1,
+  "seconds": 19.753,
+  "execution": "Codex offline; existing scoped C/E source regression authorization",
+  "native_harness_execution": false,
+  "platform_acceptance": false,
+  "target_model_calls": 0,
+  "tests": 182,
+  "failures": 2,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 180
+}

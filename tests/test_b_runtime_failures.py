@@ -24,7 +24,9 @@ from research_agent.integrations.http_runtime import install_research_protocol
 def b_runtime(tmp_path):
     library = tmp_path / 'papers'
     library.mkdir()
-    shutil.copyfile('/real-papers/2004.04906-DPR.pdf', library / 'valid.pdf')
+    import os
+    real_root = Path(os.environ.get('RESEARCH_TEST_PAPERS', str(Path(__file__).resolve().parents[1] / 'team_share/papers')))
+    shutil.copyfile(real_root / '2004.04906-DPR.pdf', library / 'valid.pdf')
     settings = Settings(tmp_path, tmp_path / 'output', 'platform-workspace', [library])
     settings.material_aliases = {'本地论文文件夹内的 PDF': ['papers']}
     exporter = InMemorySpanExporter()

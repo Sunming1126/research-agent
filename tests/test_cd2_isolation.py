@@ -14,7 +14,8 @@ from research_agent.workflows.survey_sources import survey_ledger, excerpt
 from research_agent.integrations.prompts import instructions_for, IDEA_INSTRUCTION
 from research_agent.workflows.d02_policy import source_prompt
 
-ROOT = Path('/materials/D-02')
+from public_material_paths import experiment_root
+ROOT = experiment_root() / 'D-02'
 
 
 def materials():
@@ -144,7 +145,12 @@ def test_source_audit_deduplicates_excerpts_but_preserves_semantic_claims():
 
 def test_non_e_prompt_instructions_are_byte_identical():
     old = {'__package__':'research_agent.integrations'}
-    exec(Path('/results/prompts-before.py').read_text(), old)
+    # The former /results file was a build-host artifact, not a tracked input.
+    # Keep the actual committed pre-CD2 baseline so this check is reproducible.
+    import subprocess
+    committed = subprocess.check_output(['git', 'show', '04216cf:src/research_agent/integrations/prompts.py'],
+                                       cwd=Path(__file__).resolve().parents[1]).decode('utf-8')
+    exec(committed, old)
     for stage in old['INSTRUCTIONS']:
         for function in ('Chat','Literature_Retrieval','Survey','Reproduction'):
             for role in ('source_context','own_work'):
