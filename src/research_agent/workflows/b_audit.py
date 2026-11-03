@@ -50,7 +50,7 @@ def assess_audit(row,candidate,task,plan):
     return decision
 
 
-def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candidate_names=()):
+def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candidate_names=(),evidence_plan=None):
     approved=[n for n,d in decisions.items() if d['accepted']]
     expanded=set(trace.get('expanded_documents',[]))
     # 先审入选者防止误收扣分，再审没有补读过的排除者，避免只反复检查同一小组。
@@ -62,6 +62,8 @@ def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candi
     empty=not approved
     # 空集合终审回到原题，避免沿用规划阶段可能误拆的AND/OR或加强后的目标。
     audit_plan=fallback_plan(task) if empty else plan
+    # 判定目标和取证查询都回到原题；旧条件不能继续控制补读片段。
+    selection_plan=evidence_plan or audit_plan
     names=list(dict.fromkeys(approved+missing+uncertain+negatives))[:24 if empty else 12]
     budget=min(260 if empty else 130,max(0,remaining()-40))
     trace['audit']={'requested':names,'checked':[],'errors':[],'empty_result_review':empty,'original_task_only':empty,'budget_seconds':budget}
@@ -82,7 +84,7 @@ def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candi
         rows=[]
         for name in names[start:start+4]:
             hits={c.chunk_id:(0,c) for c in index.chunks if c.filename==name}
-            rows.append(compact_evidence({'filename':name,'hits':hits},plan,more=True,audit=True))
+            rows.append(compact_evidence({'filename':name,'hits':hits},selection_plan,more=True,audit=True))
         before=time.monotonic()
         try:
             response=call(workflow.llm,'retrieve',{'task':task,'search_targets':audit_plan['targets'],

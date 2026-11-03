@@ -149,7 +149,8 @@ def evidence(row, plan, *, more=False):
 
 def compact_evidence(row,plan,*,more=False,audit=False):
     """Bound per-document context, retaining complementary contiguous source windows."""
-    queries=[c['query'] for c in plan['criteria']]+plan.get('queries',[])
+    # 排除属性不应占据正向取证预算；最终模型仍接收完整原题核验排除条件。
+    queries=[c['query'] for c in plan['criteria'] if c['kind']=='must']+plan.get('queries',[])
     facets=[set(tokenize(q)) for q in queries];covered=[set() for _ in facets]
     hits=sorted(row['hits'].values(),key=lambda h:(-h[0],h[1].start))
     chunks=[];seen=set();budget=4000 if audit else 3200 if more else 1800

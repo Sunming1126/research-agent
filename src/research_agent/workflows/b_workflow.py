@@ -67,7 +67,7 @@ def assess_screen(row,candidate,plan):
 
 def retrieve(workflow,case,index):
     task=case.to_dict();task.pop('materials',None)
-    trace={'version':'b11-empty-result-recovery','rounds':[],'errors':[],'decisions':{},'unprocessed':[]}
+    trace={'version':'b12-query-evidence-recovery','rounds':[],'errors':[],'decisions':{},'unprocessed':[]}
     workflow.retrieval_trace=trace
     document_expander=workflow.document_expander
     if not index.chunks:
@@ -104,6 +104,11 @@ def retrieve(workflow,case,index):
         library_documents=len(index.documents),fusion='document_rrf_k60_normalized_B_terms',
         outside_candidate_pool=max(0,len(index.documents)-len(pool)))
     decisions={};pending={};evidence_pending=set();attempted=set();stopped=False;last_error=None
+    # 召回决定论文优先级，不限制取证只能看命中关键词的段落。
+    for row in pool:
+        for pos in index.documents.get(row['filename'], []):
+            chunk=index.chunks[pos]
+            row['hits'].setdefault(chunk.chunk_id,(0,chunk))
     candidates=[compact_evidence(r,plan) for r in pool]
     def batches(rows):
         result=[];batch=[]
@@ -166,11 +171,21 @@ def retrieve(workflow,case,index):
                 trace['initial_stop']='reserve_followup_tokens'
                 break
         review_batch(batch,0,i)
+    recovery = None
+    if not stopped and decisions and not any(d['accepted'] for d in decisions.values()):
+        from .b_recovery import recovery_plan
+        recovery = recovery_plan(task, plan, decisions, workflow.llm, call, remaining, trace)
+    evidence_plan = recovery or plan
     unresolved=[n for n,d in decisions.items() if d['status']=='uncertain']
     negatives=[n for n,d in decisions.items() if d['status']=='irrelevant'] if remaining()>=45 else []
     unseen=[c['filename'] for c in candidates if c['filename'] not in attempted]
     alternated=[n for pair in zip_longest(negatives,unseen) for n in pair if n is not None]
     names=list(dict.fromkeys([*pending,*unresolved,*alternated]))[:16]
+    if (recovery is not None and trace['query_recovery']['state']=='replanned'
+            and not pending and not unresolved and remaining() >= 100):
+        # 空结果已安排原题全文终审，不再先用旧目标重筛同一批负例。
+        # 为新查询召回和更完整的取证保留时间，传输失败仍走原有恢复。
+        names=[]
     trace['negative_review_candidates']=[n for n in names if n in negatives]
     if names and not stopped and remaining()>=30:
         expand_names=[n for n in names if n in evidence_pending or n in unresolved or n in unseen or n in negatives]
@@ -184,7 +199,7 @@ def retrieve(workflow,case,index):
         followup=[]
         for name in names:
             hits={c.chunk_id:(0,c) for c in index.chunks if c.filename==name}
-            c=compact_evidence({'filename':name,'hits':hits},plan,more=True)
+            c=compact_evidence({'filename':name,'hits':hits},evidence_plan,more=True)
             previous=decisions.get(name,{})
             c['review_note']={'previous_status':previous.get('status'),'previous_reason':previous.get('reason'),
                 'instruction':'重新核对原题与本文方法。旧结论可能额外要求组件原创、误将关注重点作为必须条件、或把未看到证据当成不存在。只纠正有依据的错误；明确不符仍须排除。'}
@@ -196,10 +211,11 @@ def retrieve(workflow,case,index):
     # 无批准结果时，扩大一次候选范围，避免只在同一48篇里重复复核。
     if not stopped and not any(d['accepted'] for d in decisions.values()) and remaining()>100:
         seen={c['filename'] for c in candidates}
-        extra=[r for r in recall(index,first_channels,min(256,len(index.documents))) if r['filename'] not in seen][:8]
+        from .b_recovery import rescue_candidates
+        extra=rescue_candidates(index,task,evidence_plan,seen)
         trace['outside_rescue']=[r['filename'] for r in extra]
         if extra:
-            extra_rows=[compact_evidence(r,plan,more=True) for r in extra]
+            extra_rows=[compact_evidence(r,evidence_plan,more=True) for r in extra]
             candidates.extend(extra_rows)
             trace['outside_candidate_pool']=max(0,trace['outside_candidate_pool']-len(extra_rows))
             for i,batch in enumerate(batches(extra_rows)):
@@ -208,7 +224,7 @@ def retrieve(workflow,case,index):
     from .b_audit import audit
     if not stopped:
         audit(workflow,task,plan,index,decisions,trace,document_expander,remaining,call,
-              candidate_names=[c['filename'] for c in candidates])
+              candidate_names=[c['filename'] for c in candidates], evidence_plan=evidence_plan)
     for name,decision in decisions.items():
         if decision.get('requirements') and decision['status']!='uncertain':
             pending.pop(name,None);attempted.add(name)
