@@ -46,3 +46,17 @@ def rescue_candidates(index, task, plan, seen, limit=8):
     # 新查询能改变候选名单；不扩大授权材料范围，也不按文件名猜答案。
     return [row for row in recall(index, channels(task, plan), min(256, len(index.documents)))
             if row['filename'] not in seen][:limit]
+
+
+def uncovered_plan(plan, decisions):
+    """Only explicit independent targets; no inferred quota of papers per target."""
+    accepted = [d for d in decisions.values() if d.get('accepted')]
+    if not accepted or len(plan['targets']) < 2:
+        return None
+    covered = {t for d in accepted for t in d.get('targets', [])}
+    missing = [t for t in plan['targets'] if t['id'] not in covered]
+    if not missing:
+        return None
+    ids = {t['id'] for t in missing}
+    return {'targets': missing, 'criteria': [c for c in plan['criteria'] if c['scope'] in ids | {'common'}],
+            'queries': [t.get('query', t['text']) for t in missing]}

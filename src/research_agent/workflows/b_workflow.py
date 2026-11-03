@@ -171,6 +171,24 @@ def retrieve(workflow,case,index):
                 trace['initial_stop']='reserve_followup_tokens'
                 break
         review_batch(batch,0,i)
+    # Nonempty answers can still miss an entire OR target. Search this gap before
+    # spending the remaining time reviewing already covered targets again.
+    from .b_recovery import uncovered_plan, rescue_candidates
+    gap = uncovered_plan(plan, decisions)
+    if gap and not stopped and remaining() >= 180:
+        extras = rescue_candidates(index, task, gap, {c['filename'] for c in candidates}, limit=4)
+        trace['target_gap_rescue'] = {'targets': [t['id'] for t in gap['targets']],
+                                      'candidates': [r['filename'] for r in extras]}
+        for r in extras:
+            for pos in index.documents.get(r['filename'], []):
+                chunk = index.chunks[pos]
+                r['hits'].setdefault(chunk.chunk_id, (0, chunk))
+        rows = [compact_evidence(r, gap, more=True) for r in extras]
+        candidates.extend(rows)
+        trace['outside_candidate_pool'] = max(0, trace['outside_candidate_pool']-len(rows))
+        for i, batch in enumerate(batches(rows)):
+            if stopped or remaining() < 100: break
+            review_batch(batch, 3, i)
     recovery = None
     if not stopped and decisions and not any(d['accepted'] for d in decisions.values()):
         from .b_recovery import recovery_plan
