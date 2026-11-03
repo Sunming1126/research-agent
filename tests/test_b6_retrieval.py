@@ -34,7 +34,7 @@ def test_pdf_lexical_normalization_is_symmetric_and_shared_index_unchanged():
 def test_all_40_documents_are_reviewed_in_five_calls_not_14():
     m=ScreeningModel();h,r=run(m,[chunk(f'{i}.pdf','Urban cooling remote sensing original study.') for i in range(40)])
     assert len(r['papers'])==40
-    assert len([s for s,_ in m.calls if s=='retrieve'])==5
+    assert len([s for s,d in m.calls if s=='retrieve' and not d.get('verification')])==5
     assert h.retrieval_trace['screened_documents']==40
 
 

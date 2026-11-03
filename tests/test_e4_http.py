@@ -57,5 +57,5 @@ def test_e_http_recovery_and_real_failure_status(tmp_path,mode,status):
             assert llm.drafts==2
         else:
             assert not saved.exists()
-            assert llm.drafts==(1 if mode=='quota' else 2)
+            assert llm.drafts==(1 if mode=='quota' else 3)
     finally:provider.shutdown()

@@ -24,7 +24,7 @@ def remaining():
 
 @contextmanager
 def call_window(llm, stage, *, retry=False):
-    caps = {'report': (55, 15) if retry else (95, 60), 'audit': (28, 18), 'repair': (38, 15)}
+    caps = {'report': (180, 90) if retry else (240, 180), 'audit': (60, 30), 'repair': (120, 30)}
     cap, reserve = caps[stage]
     session = current_session()
     names = ('deadline', 'REQUEST_TIMEOUT_CAP', 'RETRY_ATTEMPTS', 'thinking_override')
@@ -34,6 +34,7 @@ def call_window(llm, stage, *, retry=False):
         if saved['deadline'][1] is not None:
             deadline = min(deadline, saved['deadline'][1])
         if session:
+            reserve = min(reserve, max(15, session.remaining() * .2))
             deadline = min(deadline, session.deadline-reserve)
         if deadline <= time.monotonic():
             raise TimeoutError('insufficient Idea stage time')
@@ -114,7 +115,7 @@ def normalize(value, evidence):
 def retryable(exc):
     if isinstance(exc, ModelQuotaError):
         return False
-    if isinstance(exc, EvidenceError):
+    if isinstance(exc, (EvidenceError, TypeError, KeyError)):
         return True
     return any(word in str(exc).lower() for word in ('timeout', 'timed out', 'transport failure',
                'invalid json', 'incomplete', 'empty', 'nonempty', 'response needs',
@@ -152,7 +153,8 @@ def compose_idea(workflow, case):
     format_candidate = None
     repair_used = False
     # 首先生成完整报告，不再耗时调用可选规划。
-    for attempt in range(2):
+    attempts = 3 if current_session() and remaining() >= 300 else 2
+    for attempt in range(attempts):
         data = {'task': report_task(case), 'claims': compact_claims(rows), 'papers': refs,
                 'coverage_requirements': REQUIREMENTS, 'repair_issues': feedback,
                 'output_limits': {'minimum_body_characters':800, 'model_body_characters':6000,
@@ -161,7 +163,7 @@ def compose_idea(workflow, case):
         start = len(getattr(workflow.llm, 'response_failures', []))
         value = None
         try:
-            if attempt and format_candidate is not None:
+            if attempt == 1 and format_candidate is not None:
                 repair_used = True
                 revised, repaired, patches = patch_draft(workflow, case, format_candidate, feedback, rows)
                 value = {'markdown':revised}
@@ -169,7 +171,7 @@ def compose_idea(workflow, case):
                     'raw_markdown':revised,'patches':patches,'stage':'format_repair'})
             else:
                 try:
-                    value = call(workflow, 'report', data, 2500 if attempt else 3100, retry=bool(attempt))
+                    value = call(workflow, 'report', data, 3600 if attempt else 4200, retry=bool(attempt))
                 except ModelError as exc:
                     if isinstance(exc, ModelQuotaError): raise
                     value = complete_markdown(getattr(workflow.llm, 'response_failures', [])[start:])
@@ -180,7 +182,7 @@ def compose_idea(workflow, case):
             body, used, ambiguities = normalize(value, evidence)
             workflow.last_draft = body
             break
-        except (ModelError, EvidenceError, TimeoutError, ValueError) as exc:
+        except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
             feedback = [str(exc)]
             history.append({'stage':'draft_failed','attempt':attempt+1,'issues':feedback})
             # 完整稿仅数学区间/数字引用格式不合格时，让模型局部改字；程序不代写正文。
@@ -193,7 +195,7 @@ def compose_idea(workflow, case):
                         format_candidate = raw
                     except ValueError:
                         pass
-            if attempt or not retryable(exc) or remaining() < 55:
+            if attempt == attempts-1 or not retryable(exc) or remaining() < (180 if attempt else 90):
                 workflow.audit = {'ok':False,'mode':'model_report_failed','history':history,'model_issues':feedback}
                 raise EvidenceError('Idea has no valid complete model report: '+str(exc)) from exc
     if body is None:
@@ -216,7 +218,7 @@ def compose_idea(workflow, case):
                 workflow.audit = {**audit,'history':history,'local_validation':True}
                 return workflow._report_result(case, body, filenames, refs)
             feedback = feedback or ['semantic audit rejected without details']
-        except (ModelError, EvidenceError, TimeoutError, ValueError) as exc:
+        except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
             feedback = [str(exc)]; history.append({'stage':'audit_unavailable','issues':feedback})
             break
         if review or repair_used or remaining() < 42:
@@ -228,7 +230,7 @@ def compose_idea(workflow, case):
             body, used, ambiguities = candidate, candidate_used, candidate_ambiguities
             workflow.last_draft = body
             workflow.report_trace.append({'attempt':review+2,'raw_response':repaired,'raw_markdown':body,'patches':patches})
-        except (ModelError, EvidenceError, TimeoutError, ValueError) as exc:
+        except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
             history.append({'stage':'repair_unavailable','issues':[str(exc)]})
             break
     workflow.audit = {'ok':False,'mode':'model_report_needs_review','local_validation':True,

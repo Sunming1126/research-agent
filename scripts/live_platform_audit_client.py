@@ -42,7 +42,7 @@ def main():
             request = urllib.request.Request('http://127.0.0.1:8080/solve',
                 json.dumps(payload, ensure_ascii=False).encode('utf-8'), headers)
             try:
-                with urllib.request.urlopen(request, timeout=180) as response:
+                with urllib.request.urlopen(request, timeout={"A":540,"B":540,"C":900,"D":1800,"E":900}[payload["case_id"][0]]) as response:
                     status, raw, response_headers = response.status, response.read(), dict(response.headers.items())
             except urllib.error.HTTPError as exc:
                 status, raw, response_headers = exc.code, exc.read(), dict(exc.headers.items())
@@ -50,7 +50,7 @@ def main():
                 transport = type(exc).__name__
             seconds = round(time.monotonic() - started, 3)
             if transport:
-                time.sleep(2)  # 只等取诊断，不将180秒后的产物算作及时答卷。
+                time.sleep(2)  # 只等取诊断，不将该题官方时限后的产物算作及时答卷。
             (directory / 'response.raw.txt').write_text(audit.redact(raw.decode('utf-8', errors='replace')), encoding='utf-8')
             try:
                 body = json.loads(raw)

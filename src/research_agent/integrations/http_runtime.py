@@ -50,6 +50,15 @@ class ResearchRequestAdapter:
             headers = {key.decode("latin-1").lower(): value.decode("latin-1")
                        for key, value in scope.get("headers", [])}
             timeout = min(self.timeout_supplier(), 180)
+            if case.function == 'Reproduction':
+                from ..workflows.d_generation_policy import formal_timeout
+                timeout = formal_timeout()
+            elif case.function == 'Literature_Retrieval':
+                from ..workflows.b_budget import retrieval_timeout
+                timeout = retrieval_timeout()
+            elif case.function == 'Idea':
+                from ..workflows.idea_budget import idea_timeout
+                timeout = idea_timeout()
             envelope = {
                 "task_id": (headers.get("x-research-task-id") or headers.get("idempotency-key")
                             or headers.get("x-task-id") or headers.get("x-agenthack-task-id")

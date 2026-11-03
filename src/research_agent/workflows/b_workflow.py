@@ -2,6 +2,7 @@
 import json
 import os
 import time
+from itertools import zip_longest
 from contextlib import contextmanager
 from ..core.session import current_session, checkpoint
 from ..integrations.llm import ModelError, ModelQuotaError
@@ -17,7 +18,7 @@ def remaining():
 
 @contextmanager
 def window(llm,stage):
-    cap,reserve=(20,75) if stage=='query' else (45,15)
+    cap,reserve=(40,90) if stage=='query' else (90,15)
     names=('deadline','REQUEST_TIMEOUT_CAP','RETRY_ATTEMPTS','thinking_override')
     saved={n:(n in vars(llm),getattr(llm,n,None)) for n in names}
     try:
@@ -66,8 +67,9 @@ def assess_screen(row,candidate,plan):
 
 def retrieve(workflow,case,index):
     task=case.to_dict();task.pop('materials',None)
-    trace={'version':'b6-document-review','rounds':[],'errors':[],'decisions':{},'unprocessed':[]}
+    trace={'version':'b11-empty-result-recovery','rounds':[],'errors':[],'decisions':{},'unprocessed':[]}
     workflow.retrieval_trace=trace
+    document_expander=workflow.document_expander
     if not index.chunks:
         trace['outcome']='empty_authorized_library';return {'case_id':case.case_id,'papers':[]}
     proposed=None
@@ -101,7 +103,7 @@ def retrieve(workflow,case,index):
     trace.update(candidate_limit=ceiling,candidates=[r['filename'] for r in pool],
         library_documents=len(index.documents),fusion='document_rrf_k60_normalized_B_terms',
         outside_candidate_pool=max(0,len(index.documents)-len(pool)))
-    decisions={};pending={};attempted=set();stopped=False;last_error=None
+    decisions={};pending={};evidence_pending=set();attempted=set();stopped=False;last_error=None
     candidates=[compact_evidence(r,plan) for r in pool]
     def batches(rows):
         result=[];batch=[]
@@ -115,6 +117,14 @@ def retrieve(workflow,case,index):
         return result
     def review_batch(batch,round_index,batch_index):
         nonlocal stopped,last_error
+        # A full-text batch may no longer fit the remaining token allowance.
+        # Split before calling; a too-large batch must not discard all smaller candidates.
+        payload={'b_protocol':'conditions-v1','task':task,'search_targets':plan['targets'],'candidates':batch}
+        if len(batch)>1 and hasattr(workflow.llm,'output_capacity') and workflow.llm.output_capacity('retrieve',payload,maximum=3000)<1000:
+            mid=len(batch)//2
+            review_batch(batch[:mid],round_index,batch_index)
+            if not stopped:review_batch(batch[mid:],round_index,batch_index)
+            return
         attempted.update(c['filename'] for c in batch)
         try:
             value=call(workflow.llm,'retrieve',{'task':task,'search_targets':plan['targets'],'candidates':batch},3000)
@@ -128,8 +138,9 @@ def retrieve(workflow,case,index):
                 name=c['filename']
                 try:
                     if name in duplicates or name not in rows:raise ModelError('B duplicate or omitted candidate')
-                    decisions[name]=assess_screen(rows[name],c,plan);pending.pop(name,None)
+                    decisions[name]=assess_screen(rows[name],c,plan);pending.pop(name,None);evidence_pending.discard(name)
                 except ModelError as exc:
+                    evidence_pending.add(name)
                     if not (round_index and name in decisions and decisions[name]['status']=='irrelevant'):pending[name]=c
                     last_error=exc
                     trace['errors'].append({'stage':'evidence','filename':name,'error':str(exc)})
@@ -147,13 +158,22 @@ def retrieve(workflow,case,index):
         uncertain=bool(pending or any(d['status']=='uncertain' for d in decisions.values()))
         reserve=65 if uncertain and len(attempted)>=24 else 30
         if stopped or remaining()<reserve:break
+        # Reserve one targeted follow-up before the initial screening spends every token.
+        needs_review=bool(pending or any(d['status']=='uncertain' for d in decisions.values()) or not any(d['accepted'] for d in decisions.values()))
+        if needs_review and len(attempted)>=16 and hasattr(workflow.llm,'output_capacity'):
+            payload={'b_protocol':'conditions-v1','task':task,'search_targets':plan['targets'],'candidates':batch}
+            if workflow.llm.output_capacity('retrieve',payload,reserve=10000,maximum=3000)<3000:
+                trace['initial_stop']='reserve_followup_tokens'
+                break
         review_batch(batch,0,i)
     unresolved=[n for n,d in decisions.items() if d['status']=='uncertain']
     negatives=[n for n,d in decisions.items() if d['status']=='irrelevant'] if remaining()>=45 else []
-    names=list(dict.fromkeys([*pending,*unresolved,*negatives]))[:8]
+    unseen=[c['filename'] for c in candidates if c['filename'] not in attempted]
+    alternated=[n for pair in zip_longest(negatives,unseen) for n in pair if n is not None]
+    names=list(dict.fromkeys([*pending,*unresolved,*alternated]))[:16]
     trace['negative_review_candidates']=[n for n in names if n in negatives]
     if names and not stopped and remaining()>=30:
-        expand_names=[n for n in names if n in unresolved or n in negatives]
+        expand_names=[n for n in names if n in evidence_pending or n in unresolved or n in unseen or n in negatives]
         if workflow.document_expander is not None and expand_names and remaining()>38:
             expander,workflow.document_expander=workflow.document_expander,None
             try:
@@ -173,6 +193,25 @@ def retrieve(workflow,case,index):
         for i,batch in enumerate(second):
             if stopped or remaining()<25:break
             review_batch(batch,1,i)
+    # 无批准结果时，扩大一次候选范围，避免只在同一48篇里重复复核。
+    if not stopped and not any(d['accepted'] for d in decisions.values()) and remaining()>100:
+        seen={c['filename'] for c in candidates}
+        extra=[r for r in recall(index,first_channels,min(256,len(index.documents))) if r['filename'] not in seen][:8]
+        trace['outside_rescue']=[r['filename'] for r in extra]
+        if extra:
+            extra_rows=[compact_evidence(r,plan,more=True) for r in extra]
+            candidates.extend(extra_rows)
+            trace['outside_candidate_pool']=max(0,trace['outside_candidate_pool']-len(extra_rows))
+            for i,batch in enumerate(batches(extra_rows)):
+                if remaining()<65 or stopped:break
+                review_batch(batch,2,i)
+    from .b_audit import audit
+    if not stopped:
+        audit(workflow,task,plan,index,decisions,trace,document_expander,remaining,call,
+              candidate_names=[c['filename'] for c in candidates])
+    for name,decision in decisions.items():
+        if decision.get('requirements') and decision['status']!='uncertain':
+            pending.pop(name,None);attempted.add(name)
     approved={n:d for n,d in decisions.items() if d['accepted']}
     trace.update(decisions=decisions,pending=list(pending),approved=list(approved),
         unprocessed=[c['filename'] for c in candidates if c['filename'] not in attempted],

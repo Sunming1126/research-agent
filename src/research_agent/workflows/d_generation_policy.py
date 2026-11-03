@@ -6,10 +6,10 @@ from ..core.session import current_session
 
 @contextmanager
 def generation_window(llm, *, baseline, case_id=None):
-    cap = 60 if baseline else 95
+    cap = 420
     session = current_session()
     if session:
-        cap = min(cap, session.remaining(reserve=45))
+        cap = min(cap, session.remaining(reserve=300))
     names = ('deadline', 'REQUEST_TIMEOUT_CAP', 'RETRY_ATTEMPTS', 'thinking_override')
     # Preserve attribute presence as well as value (class defaults remain inherited).
     previous = {name: (name in vars(llm), getattr(llm, name, None)) for name in names}
@@ -19,7 +19,7 @@ def generation_window(llm, *, baseline, case_id=None):
         llm.deadline = min(old, deadline) if old is not None else deadline
         llm.REQUEST_TIMEOUT_CAP = cap
         llm.RETRY_ATTEMPTS = 1
-        llm.thinking_override = 'enabled' if case_id == 'D-02' and not baseline else 'disabled'
+        llm.thinking_override = 'enabled'
         yield
     finally:
         for name, (present, value) in previous.items():
@@ -30,7 +30,7 @@ def generation_window(llm, *, baseline, case_id=None):
 
 
 def generation_tokens(case_id, baseline):
-    return 2000 if baseline else (4200 if case_id == 'D-02' else 5200)
+    return 24000
 
 
 class PlatformExperimentUnavailable(RuntimeError):
@@ -45,3 +45,9 @@ def platform_service_error(stderr):
     if any(marker in last for marker in ('HTTP Error 503:', 'HTTP 503', 'status=503', 'status_code=503')):
         return 'HTTP_503'
     return None
+
+
+def formal_timeout():
+    """D-only official wall-time cap; local overrides may shorten it."""
+    import os
+    return max(30, min(1800, int(os.environ.get('RESEARCH_D_CASE_TIMEOUT', '1800'))))

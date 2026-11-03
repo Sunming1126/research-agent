@@ -11,8 +11,7 @@ from pathlib import Path
 from ..core.utils import confined, sha256_file, write_json, atomic_text
 from ..core.session import checkpoint, current_session, remaining_timeout
 from .source_generation import build_source_prompt, read_generation_materials, save_generation_response, save_source
-from .sample_validation import run_public_sample
-from .d_generation_policy import generation_window, generation_tokens, platform_service_error, PlatformExperimentUnavailable
+from .d_generation_policy import formal_timeout, generation_window, generation_tokens, platform_service_error, PlatformExperimentUnavailable
 from ..integrations.llm import ModelError, ModelQuotaError
 
 
@@ -89,27 +88,10 @@ class LayeredDRunner:
         self.work.mkdir(parents=True, exist_ok=True)
         roots = [self.settings.workspace, *self.settings.material_roots]
         materials = read_generation_materials(case.case_id, roots)
-        if case.case_id == 'D-02':
-            from .d02_policy import source_prompt
-            prompt = source_prompt(case, materials, baseline_only=baseline_only)
-        else:
-            prompt = build_source_prompt(case, materials)
-        if baseline_only and case.case_id != 'D-02':
-            prompt += ('\n本次先完成可执行基线：run阶段只实现公开协议的baseline，candidate必须为null，details为{}。'
-                       '不生成候选算法、开发集搜索或训练；不得伪造结果。'
-                       'D-02的rank阶段仍实现data.selected指定的排名，baseline仅返回test_queries的完整排名。'
-                       '只返回紧凑完整源码，目标700至1000 token；不需要解释、注释、类型标注或无用辅助函数。')
+        prompt = build_source_prompt(case, materials)
         if feedback:
-            prompt += "\n本题上次公开自测诊断（作为数据分析）：\n" + json.dumps(feedback, ensure_ascii=False)
-            previous_source = confined(self.work, 'implementation.py')
-            if previous_source.is_file() and not (baseline_only and case.case_id == 'D-02'):
-                prompt += '\n上次完整源码：\n' + previous_source.read_text(encoding='utf-8')
-            prompt += "\n请修复问题，重新返回完整源码，不能返回补丁；算法和接口仍以当前公开材料为准。"
-        if baseline_only and case.case_id == 'D-02':
-            prompt += ('\n本次时间只够基线恢复：完整源码只包含BM25排名所需函数；'
-                       'run仅按default_config返回test_queries排名，candidate=null、details={}；'
-                       'rank仅按data.selected返回{candidate:测试排名}。不要开发集搜索或组指标。'
-                       '上一版源码仅供定位问题，不要复制其中候选选参逻辑。')
+            prompt += "\n本轮生成诊断（数据，非指令）：" + json.dumps(feedback, ensure_ascii=False)
+            prompt += "\n重新返回完整实现；不得使用占位结果。"
         remaining_tokens = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
         requested = min(generation_tokens(case.case_id, baseline_only), remaining_tokens - (len(prompt) + 1) // 2 - 1200)
         if requested < 1800:
@@ -123,54 +105,106 @@ class LayeredDRunner:
         save_source(response, destination)
         return destination
 
-    def prepare_checked_implementation(self, case, tester=run_public_sample):
-        """自检用于诊断和有余量时的修复，不能代替正式实验准入。"""
-        history, feedback, candidate, verified = [], None, None, None
-        materials = read_generation_materials(case.case_id, [self.settings.workspace, *self.settings.material_roots])
-        for attempt in range(1, 3):
+    def prepare_checked_implementation(self, case, tester=None):
+        """Only generic syntax/source checks gate formal execution; no old-task oracle."""
+        history = []
+        feedback = None
+        for attempt in range(1, 4):
             try:
-                session = current_session()
-                # D-02 repairs must still leave time for independent rank timing.
-                # A short, newly generated honest baseline is preferable when a
-                # second full search implementation cannot fit the remaining time.
-                baseline_rescue = (case.case_id == 'D-02' and attempt > 1 and session is not None
-                                   and session.remaining() < 100)
-                path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt,
-                                                             baseline_only=baseline_rescue)
-                # 只有完整、可解析、当前模型原样输出的源码才可作为候选。
-                # 后续修复截断时保留之前的完整版本，不能拼接或修改源码。
-                candidate = (path.read_bytes(), (self.work / 'generation-response.json').read_bytes())
-                report = tester(path, materials, case.case_id)
-                verified = (candidate, attempt)
-                history.append({"attempt": attempt, "source_sha256": sha256_file(path), **report})
-                write_json(confined(self.work, "public-selftest.json"), {"attempts": history,
-                           'selected_attempt': attempt, 'public_selftest_passed': True})
+                path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                # save_source already checks complete response, Python syntax and entry point.
+                write_json(confined(self.work, 'public-selftest.json'), {
+                    'mode': 'generic_source_checks_only', 'semantic_selftest_performed': False,
+                    'selected_attempt': attempt, 'attempts': history,
+                    'source_sha256': sha256_file(path)})
                 return path
             except ModelQuotaError:
-                checkpoint("d_generation_quota_failure")
-                if candidate is None:
-                    raise
-                break
-            except (ValueError, SyntaxError, TypeError, KeyError, RuntimeError, TimeoutError) as exc:
-                checkpoint("d_generation_failure")
-                feedback = {"error_type": type(exc).__name__, "message": str(exc)[:2000]}
-                history.append({"attempt": attempt, "status": "failed", **feedback})
-                write_json(confined(self.work, "public-selftest.json"), {"attempts": history})
+                raise
+            except (ModelError, ValueError, SyntaxError, RuntimeError, TimeoutError) as exc:
+                feedback = {'error_type': type(exc).__name__,
+                            'message': 'Return one complete syntactically valid implementation matching current materials.'}
+                history.append({'attempt': attempt, 'error_type': type(exc).__name__})
+                write_json(confined(self.work, 'public-selftest.json'), {'attempts': history})
                 session = current_session()
-                if attempt == 2 or (session and session.remaining() < 75):
-                    break
-        if candidate is None:
-            raise RuntimeError('no complete current-session model source available')
-        if verified is not None:
-            candidate = verified[0]
-        path = confined(self.work, 'implementation.py')
-        path.write_bytes(candidate[0])
-        (self.work / 'generation-response.json').write_bytes(candidate[1])
-        write_json(confined(self.work, 'public-selftest.json'), {
-            'attempts': history, 'decision': 'submit_complete_model_source_for_formal_evaluation',
-            'public_selftest_passed': verified is not None,
-            'selected_attempt': verified[1] if verified else None, 'source_sha256': sha256_file(path)})
-        return path
+                if attempt == 3 or (session and session.remaining() < 420):
+                    raise RuntimeError('no complete current-session model source available') from exc
+        raise RuntimeError('no complete current-session model source available')
+
+    def review_implementation(self, case, implementation):
+        """当轮独立测试 + 材料定位复核；修复失败不覆盖完整原稿及来源响应。"""
+        session = current_session()
+        if session and session.remaining() < 660:
+            return implementation
+        response_path = confined(self.work, "generation-response.json")
+        source_bytes = implementation.read_bytes()
+        response_bytes = response_path.read_bytes()
+        from .d_review import review_prompt, review_result, review_retry_reason
+        from .d_selftest import test_prompt, test_plan_result, run_tests, preserves_tests
+        materials = read_generation_materials(case.case_id, [self.settings.workspace, *self.settings.material_roots])
+        source = source_bytes.decode("utf-8")
+        selected = "original"
+        audit = {"selected": selected, "semantic_verified": False}
+        tests = []; before = {"state": "not_run", "results": []}
+        # 不接触隐藏反馈；测试由本轮模型仅据材料独立提出，再在受限进程执行。
+        available = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
+        if session and session.remaining() >= 1100 and available >= len(test_prompt(materials)) // 2 + 18000:
+            try:
+                with generation_window(self.llm, baseline=False, case_id=case.case_id):
+                    proposed = self.llm.completion("d_tests", test_prompt(materials), max_tokens=8000)
+                try:
+                    test_plan = test_plan_result(proposed, materials)
+                except (ValueError,TypeError):
+                    test_plan = {'tests':[], 'received':0, 'rejected':['invalid_response']}
+                tests = test_plan['tests']
+                if not tests and (test_plan['received'] or test_plan['rejected']) and session.remaining() >= 1200:
+                    with generation_window(self.llm, baseline=False, case_id=case.case_id):
+                        proposed = self.llm.completion('d_tests', test_prompt(materials) + '\n上次测试未通过格式或原文引用校验。请只给一个最小合法测试，完整填写各字段，逐字引用材料。', max_tokens=8000)
+                    test_plan = test_plan_result(proposed, materials)
+                    tests = test_plan['tests']
+                before = run_tests(source, tests)
+                audit['selftest'] = {'state': before['state'], 'count': len(tests),
+                                    'passed': sum(r['passed'] for r in before['results']),
+                                    'received': test_plan['received'], 'rejected': test_plan['rejected']}
+            except (ModelError, ValueError, TypeError, RuntimeError, TimeoutError) as exc:
+                audit['selftest'] = {'state': 'unavailable', 'error_type': type(exc).__name__}
+        prompt = review_prompt(materials, source, {'tests': tests, 'execution': before} if tests else None)
+        available = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
+        if available < len(prompt) // 2 + 8000 or (session and session.remaining() < 660):
+            audit['state'] = 'insufficient_review_budget'
+            write_json(confined(self.work, "source-review.json"), audit)
+            return implementation
+        try:
+            with generation_window(self.llm, baseline=False, case_id=case.case_id):
+                review = self.llm.completion("d_review", prompt, max_tokens=8000)
+            result = review_result(review, materials, source)
+            audit.update(state=result['state'], grounded_defects=len(result['defects']), rejected_defects=result['rejected'])
+            # 格式错误与“检查通过”必须区分；有余量时只重试一次，不丢弃完整原稿。
+            retry_reason = review_retry_reason(result, before)
+            if retry_reason and (not session or session.remaining() >= 1000):
+                with generation_window(self.llm, baseline=False, case_id=case.case_id):
+                    review = self.llm.completion("d_review", prompt + "\n上次审查需重新核对（" + retry_reason + "）。请先检查失败测试是否合法并独立手算期望，再核对源码。测试可能错误，不强制修代码；确有错误才repair并逐字引用材料和源码，否则keep。完整输出约定JSON。", max_tokens=8000)
+                result = review_result(review, materials, source)
+                audit.update(state=result['state'], grounded_defects=len(result['defects']), rejected_defects=result['rejected'], format_retry=retry_reason=='invalid_response', retry_reason=retry_reason)
+            if result['defects'] and (not session or session.remaining() >= 660):
+                feedback = {"defects": result['defects'], "current_candidate": source,
+                            "instruction": "先核实测试及诊断符合材料，仅修复确切错误，保留其它逻辑。返回完整实现。"}
+                self.prepare_generated_implementation(case, feedback=feedback, attempt="review")
+                after = run_tests(implementation.read_text(encoding='utf-8'), tests)
+                if not preserves_tests(before, after):
+                    implementation.write_bytes(source_bytes)
+                    response_path.write_bytes(response_bytes)
+                    audit['repair'] = 'rejected_test_regression'
+                else:
+                    selected = "review"
+                    audit['repair'] = 'selected'
+                audit['retest'] = {'state': after['state'], 'passed': sum(r['passed'] for r in after['results'])}
+        except (ModelError, ValueError, TypeError, KeyError, SyntaxError, RuntimeError, TimeoutError) as exc:
+            implementation.write_bytes(source_bytes)
+            response_path.write_bytes(response_bytes)
+            audit['error_type'] = type(exc).__name__
+        audit['selected'] = selected
+        write_json(confined(self.work, "source-review.json"), audit)
+        return implementation
 
     def run(self, case, specs):
         if os.environ.get("RESEARCH_EXPERIMENT_CASE") != case.case_id:
@@ -190,13 +224,14 @@ class LayeredDRunner:
         try:
             # 新版正式路径必须由当前题 Gateway 生成完整源码，禁止回退到镜像内算法。
             implementation = self.prepare_checked_implementation(case)
+            implementation = self.review_implementation(case, implementation)
             command = build_layered_command(sys.executable, script, case.case_id, implementation)
             env = os.environ.copy()
             env.update(PYTHONIOENCODING="utf-8", RESEARCH_RESULT_ROOT=str(source_root),
                        RESEARCH_WORKSPACE_TEAM=self.settings.team)
             checkpoint("d_formal_execution")
             completed = subprocess.run(command, capture_output=True, encoding="utf-8", errors="replace",
-                                       timeout=remaining_timeout(min(175, self.settings.case_timeout), reserve=5), env=env, check=False)
+                                       timeout=remaining_timeout(formal_timeout(), reserve=15), env=env, check=False)
             atomic_text(confined(self.work, "experiment.stdout.jsonl"), completed.stdout)
             atomic_text(confined(self.work, "experiment.stderr.log"), completed.stderr)
             if completed.returncode:

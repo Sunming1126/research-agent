@@ -100,7 +100,7 @@ def test_e_call_restores_shared_instance_and_class_after_failure():
     with CaseSession('E-01',170).activate() as session:
         with pytest.raises(RuntimeError):
             with call_window(model,'report'):
-                assert model.deadline<=session.deadline-60 and model.RETRY_ATTEMPTS==1
+                assert model.deadline<=session.deadline-15 and model.RETRY_ATTEMPTS==1
                 raise RuntimeError('test')
     assert vars(model)==before and Model.RETRY_ATTEMPTS==2
 

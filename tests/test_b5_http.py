@@ -53,5 +53,5 @@ def test_b_contract_and_failure_trace(tmp_path,mode):
         else:
             assert len(body['papers'])==5
             assert spans[-1].attributes['success'] is True
-        assert model.count=={'normal':1,'transient':2,'quota':1,'bad_evidence':2}[mode]
+        assert model.count=={'normal':3,'transient':4,'quota':1,'bad_evidence':4}[mode]
     finally:provider.shutdown()

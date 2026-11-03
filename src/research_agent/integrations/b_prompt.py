@@ -36,3 +36,16 @@ RETRIEVE = (
     '仅看到相关工作不能证明本文没有使用，应当uncertain；正文明确实际使用则属于采用。不得将主要关注另一任务等同于未研究题目中的任务。'
     '若复核认为原排除正确，说明原题中的具体必要条件与本篇的冲突；不能为扩充结果而纳入明确不符论文。'
 )
+
+RETRIEVE += (
+    '当verification=true时进行独立终审：前面的结论不作为依据，核对原题与更完整的本文正文。'
+    '每个papers条目额外返回requirements数组，每项{task_id,verdict,evidence_ids}。'
+    'task_id选择task_segments中对应原题条件的id，不要重新抄写或改写条件；这些片段只是原题索引，不能把所有片段当硬条件。'
+    'verdict为met、not_met、unknown、preference。'
+    '逐项覆盖该篇所匹配目标的全部必要条件及共同排除条件；独立目标只需满足一个，不能把其它目标强加本篇。'
+    '题面的重点关注/优先等软偏好标preference，不参与否决。对于排除条件，met表示符合排除要求即本文没有被排除属性。'
+    'met/not_met必须关联本文提供的原文编号；不能因为未见某词就判not_met，应判unknown。'
+    '原文仅介绍/引用别人的方法不代表本文使用；本文实际采用不要求该组件也是本文原创。'
+    '只有必要条件全部有支持才relevant；明确违反必要条件才irrelevant；证据不足uncertain。'
+    '必须返回正常的filename/status/reason/evidence_ids/targets字段，reason写具体证据，不要写终审流程。'
+)

@@ -147,13 +147,13 @@ def evidence(row, plan, *, more=False):
     return {'filename':row['filename'],'chunks':spans}
 
 
-def compact_evidence(row,plan,*,more=False):
+def compact_evidence(row,plan,*,more=False,audit=False):
     """Bound per-document context, retaining complementary contiguous source windows."""
     queries=[c['query'] for c in plan['criteria']]+plan.get('queries',[])
     facets=[set(tokenize(q)) for q in queries];covered=[set() for _ in facets]
     hits=sorted(row['hits'].values(),key=lambda h:(-h[0],h[1].start))
-    chunks=[];seen=set();budget=3200 if more else 1800
-    while hits and budget>100 and len(chunks)<(6 if more else 4):
+    chunks=[];seen=set();budget=4000 if audit else 3200 if more else 1800
+    while hits and budget>100 and len(chunks)<(6 if audit else 6 if more else 4):
         def gain(hit):
             terms=set(tokenize(hit[1].text))
             return (sum(len((terms&f)-old)/max(1,len(f)) for f,old in zip(facets,covered)),hit[0],-hit[1].start)
@@ -166,7 +166,7 @@ def compact_evidence(row,plan,*,more=False):
             h[1].text,re.I)]
         choices=front if not chunks and front else owned if len(chunks)==1 and owned else hits
         hit=max(choices,key=gain);hits.remove(hit)
-        chunk=hit[1];text=window(chunk.text,queries,min(budget,900 if not chunks else 600))
+        chunk=hit[1];text=window(chunk.text,queries,min(budget,1100 if audit else 900 if not chunks else 600))
         key=re.sub(r'\s+','',text)
         if key in seen:continue
         seen.add(key);budget-=len(text)

@@ -9,3 +9,11 @@ src/**/__pycache__/
 src/**/*.pyc
 # 正式 D 类不把本地公开算法夹具放进镜像；平台要求当前题 Gateway 生成源码。
 src/research_agent/workflows/d_algorithms/**
+
+# Formal D: no practice-task prompts or semantic validators in build context.
+src/research_agent/workflows/d02_policy.py
+src/research_agent/workflows/d05_policy.py
+src/research_agent/workflows/d05_review.py
+src/research_agent/workflows/d_public_review.py
+src/research_agent/workflows/d_boundary_cases.py
+src/research_agent/workflows/sample_validation.py

@@ -109,7 +109,7 @@ def test_first_batch_timeout_has_one_recovery_round():
     def behavior(m,data):
         if m.calls.count('retrieve')==1:raise ModelError('model transport timeout')
         return {'papers':[judge(c,data['condition_plan']) for c in data['candidates']]}
-    m=Model(behavior);h,r=run(m,[chunk('a.pdf','urban cooling remote sensing original experimental evidence.')]);assert r['papers'] and m.calls==['query','retrieve','retrieve']
+    m=Model(behavior);h,r=run(m,[chunk('a.pdf','urban cooling remote sensing original experimental evidence.')]);assert r['papers'] and m.calls==['query','retrieve','retrieve','retrieve']
 
 def test_later_quota_preserves_only_verified_papers():
     def behavior(m,data):
@@ -122,7 +122,8 @@ def test_later_quota_preserves_only_verified_papers():
 def test_no_valid_draft_does_not_disguise_failure_as_no_matches():
     m=Model(lambda m,d: {'papers':[]})
     with pytest.raises(ModelError):run(m,[chunk('a.pdf','urban cooling remote sensing method under test.')])
-    assert m.calls.count('retrieve')==2
+    # 首筛、补读、终审均无有效答卷时仍如实失败，不能伪装成确无匹配。
+    assert m.calls.count('retrieve')==3
 
 def test_unknown_condition_triggers_fulltext_read_once():
     calls=[]
@@ -168,12 +169,16 @@ def test_compact_document_judgment_does_not_grow_with_condition_count():
 
 
 def test_transport_recovery_does_not_expand_already_loaded_evidence():
-    def expand(names):raise AssertionError('Transport failure does not establish a missing-source condition')
+    expanded=[]
+    def expand(names):
+        expanded.append(names)
+        return [chunk('a.pdf','urban cooling remote sensing original experimental evidence.')]
     def behavior(m,data):
         if m.calls.count('retrieve')==1:raise ModelError('model transport timeout')
         return {'papers':[judge(c,data['condition_plan']) for c in data['candidates']]}
     h,r=run(Model(behavior),[chunk('a.pdf','urban cooling remote sensing original experimental evidence.')],expander=expand)
-    assert r['papers'] and 'expanded_documents' not in h.retrieval_trace
+    assert r['papers'] and expanded==[['a.pdf']]
+    assert h.retrieval_trace['audit']['requested']==['a.pdf']  # Expansion belongs to the independent final audit.
 
 
 def test_target_local_order_is_not_overridden_by_common_query_popularity(monkeypatch):

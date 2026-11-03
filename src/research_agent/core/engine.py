@@ -30,7 +30,10 @@ class ResearchAgentEngine:
     """串联单题处理、结果落盘和整轮预检查。"""
     def __init__(self, settings=None, llm_factory=None):
         self.settings = settings or Settings.from_env()
-        self.llm_factory = llm_factory or (lambda: GatewayLLM(self.settings.llm_calls, self.settings.llm_tokens, self.settings.case_timeout))
+        self.llm_factory = llm_factory or (lambda: GatewayLLM(self.settings.llm_calls,
+            float("inf") if current_session() and current_session().case_id.startswith(("B-", "D-", "E-")) else self.settings.llm_tokens,
+            current_session().remaining() if current_session() and current_session().case_id.startswith(('D-', 'B-', 'E-'))
+            else self.settings.case_timeout))
         self.lock = threading.Lock()
 
     async def solve(self, payload):
@@ -80,8 +83,15 @@ class ResearchAgentEngine:
 
     def _case_timeout(self, payload):
         limit = self.settings.case_timeout
+        if isinstance(payload, dict) and payload.get("function") == "Idea":
+            from ..workflows.idea_budget import idea_timeout
+            return idea_timeout() - 15
+        if isinstance(payload, dict) and payload.get("function") == "Literature_Retrieval":
+            from ..workflows.b_budget import retrieval_timeout
+            return retrieval_timeout() - 10
         if isinstance(payload, dict) and payload.get("function") == "Reproduction" and self.settings.experiment_mode == "platform":
-            limit = min(limit, 180)
+            from ..workflows.d_generation_policy import formal_timeout
+            return formal_timeout() - 20
         # 最后保留10秒用于产物落盘与原生SDK导出，避免答卷卡在外层180秒边界。
         wire = min(limit, 180)
         return wire - min(10, wire * .1)
