@@ -1,0 +1,1416 @@
+[
+  {
+    "case": "B-01",
+    "expected": [
+      "2007.01282-FiD.pdf"
+    ],
+    "returned": [
+      "2007.01282-FiD.pdf"
+    ],
+    "missing": [],
+    "extra": [],
+    "exact": true,
+    "answer": {
+      "case_id": "B-01",
+      "papers": [
+        {
+          "filename": "2007.01282-FiD.pdf",
+          "reason": "本文提出Fusion-in-Decoder，将问题与每个证据段落拼接后独立编码，再通过单一解码器联合解码，满足联合解码机制要求。"
+        }
+      ]
+    },
+    "trace": {
+      "version": "b12-query-evidence-recovery",
+      "rounds": [
+        {
+          "round": 0,
+          "batch_sizes": [
+            7
+          ]
+        },
+        {
+          "round": 1,
+          "batch_sizes": [
+            4,
+            2
+          ]
+        }
+      ],
+      "errors": [],
+      "decisions": {
+        "2007.01282-FiD.pdf": {
+          "filename": "2007.01282-FiD.pdf",
+          "status": "relevant",
+          "accepted": true,
+          "reason": "本文提出Fusion-in-Decoder，将问题与每个证据段落拼接后独立编码，再通过单一解码器联合解码，满足联合解码机制要求。",
+          "targets": [
+            "T1"
+          ],
+          "evidence": [
+            {
+              "chunk_id": "2007.01282-FiD.pdf:1:1400",
+              "page": 1,
+              "quote": "le approach to open domain question\nanswering. First, it retrieves support text passages from\nan external source of knowledge such as Wikipedia.\nThen, a generative encoder-decoder model produces\nthe answer, conditioned on the question and the re-\ntrieved passages. This approach scales well with the\nnumber of retrieved passages, as the performance keeps\nimproving when retrieving up to one hundred passages.\nsupport documents, before extracting the answer\nfrom these documents. Different retrieval tech-\nniques have been considered, either using sparse\nrepresentations based on TF/IDF or using dense\nembeddings (Guu et al., 2020; Karpukhin et al.,\n2020). The models which extract the answers are\noften based on contextualized word representations\nsuch as ELMo or BERT (Peters et al., 2018; De-\nvlin et al., 2019), and predict a span as answer.\nAggregating and combining evidence from mul-\ntiple pass"
+            },
+            {
+              "chunk_id": "2007.01282-FiD.pdf:4:1400",
+              "page": 4,
+              "quote": "cate them to 250 word\npieces. Following the results of Karpukhin et al.\n(2020), passages are retrieved with DPR for NQ\nand TriviaQA, and with BM25 for SQuAD. We\ngenerate answers by using greedy decoding.\nComparison to state-of-the-art.\nIn table 1, we\ncompare the results obtained by Fusion-in-Decoder"
+            }
+          ]
+        },
+        "2004.04906-DPR.pdf": {
+          "filename": "2004.04906-DPR.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "本文提出密集段落检索器，不涉及将问题与段落拼接后独立编码再联合解码的生成机制。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2004.04906-DPR.pdf:1:0",
+              "page": 1,
+              "quote": "Dense Passage Retrieval for Open-Domain Question Answering\nVladimir Karpukhin∗, Barlas O˘guz∗, Sewon Min†, Patrick Lewis,\nLedell Wu, Sergey Edunov, Danqi Chen‡, Wen-tau Yih\nFacebook AI\n†University of Washington\n‡Princeton University\n{vladk, barlaso, plewis, ledell, edunov, scottyih}@fb.com\nsewon@cs.washington.edu\ndanqic@cs.princeton.edu\nAbstract\nOpen-domain question answering relies on ef-\nﬁcient passage retrieval to select candidate\ncontexts, where traditional sparse vector space\nmodels, such as TF-IDF or BM25, are the de\nfacto method.\nIn this work, we show that\nretrieval can be practically implemented us-\ning dense representations alone, where em-\nbeddings are learned from a small number\nof questions and passages by a simple dual-\nencoder framework.\nWhen evaluated on a\nwide range of open-domain QA datasets, our\ndense retriever outperforms a strong Lucene-\nBM25 system greatly by 9%-19% absolute in\nterms of top-20 passage retrieval accuracy, and\nhelps our end-to-end QA system establish new\nstate-of-the-art on multiple open-domain QA\nbenchmarks.1\n1\nIntroduction\nOpen-domain question an"
+            }
+          ],
+          "requirements": [
+            {
+              "task_quote": "找问答研究：将问题分别与每个证据段落拼接后独立编码，",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "再将这些表示共同交给单一生成解码器。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "必须实际使用这一联合解码机制；",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "重点关注多证据整合，",
+              "verdict": "preference",
+              "evidence_ids": []
+            }
+          ],
+          "rejected_requirements": [
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence"
+          ]
+        },
+        "2104.08663-BEIR.pdf": {
+          "filename": "2104.08663-BEIR.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "本文是检索基准，不涉及将问题与段落拼接后独立编码再联合解码的问答生成机制。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2104.08663-BEIR.pdf:1:1400",
+              "page": 1,
+              "quote": "ﬁrst step to ﬁnd relevant information. Challenging problems include open-domain\nquestion-answering [8], claim-veriﬁcation [60], duplicate question detection [78], and many more.\nTraditionally, retrieval has been dominated by lexical approaches like TF-IDF or BM25 [55]. How-\never, these approaches suffer from lexical gap [5] and are able to only retrieve documents containing\nkeywords present within the query. Further, lexical approaches treat queries and documents as\nbag-of-words by not taking word ordering into consideration.\nRecently, deep learning and in particular pre-trained Transformer models like BERT [12] have\nbecome popular in information retrieval [37]. These neural retrieval systems can be used in many\nfundamentally different ways to improve retrieval performance. We provide an brief overview of the\nsystems in Section 2.1. Many prior work train neural retrieval systems on large datasets like Natural\nQuestions (NQ) [34] (133k training examples) or MS MARCO [45] (533k training examples), which\nboth focus on passage retrieval given a question or short keyword-based query. In m"
+            }
+          ],
+          "requirements": [
+            {
+              "task_quote": "找问答研究：将问题分别与每个证据段落拼接后独立编码，",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2104.08663-BEIR.pdf:1:1400"
+              ]
+            },
+            {
+              "task_quote": "再将这些表示共同交给单一生成解码器。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2104.08663-BEIR.pdf:1:1400"
+              ]
+            },
+            {
+              "task_quote": "必须实际使用这一联合解码机制；",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2104.08663-BEIR.pdf:1:1400"
+              ]
+            },
+            {
+              "task_quote": "重点关注多证据整合，",
+              "verdict": "preference",
+              "evidence_ids": []
+            }
+          ],
+          "rejected_requirements": [
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence"
+          ]
+        },
+        "2005.11401-RAG.pdf": {
+          "filename": "2005.11401-RAG.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "本文提出RAG模型，使用检索增强生成，但未采用将问题与每个证据段落独立编码后由单一解码器联合解码的机制。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2005.11401-RAG.pdf:1:0",
+              "page": 1,
+              "quote": "remain open research problems. Pre-\ntrained models with a differentiable access mechanism to explicit non-parametric\nmemory have so far been only investigated for extractive downstream tasks. We\nexplore a general-purpose ﬁne-tuning recipe for retrieval-augmented generation\n(RAG) — models which combine pre-trained parametric and non-parametric mem-\nory for language generation. We introduce RAG models where the parametric\nmemory is a pre-trained seq2seq model and the non-parametric memory is a dense\nvector index of Wikipedia, accessed with a pre-trained neural retriever. We com-\npare two RAG formulations, one which conditions on the same retrieved passages\nacross the whole generated sequence, and another which can use different passages\nper token. We ﬁne-tune and evaluate our models on a wide range of knowledge-\nintensive NLP tasks and set the state of the art on three open domain QA tasks"
+            },
+            {
+              "chunk_id": "2005.11401-RAG.pdf:4:0",
+              "page": 4,
+              "quote": "ndex) ﬁxed, only ﬁne-tuning the query encoder BERTq and the BART generator.\n2.5\nDecoding\nAt test time, RAG-Sequence and RAG-Token require different ways to approximate arg maxy p(y|x).\nRAG-Token\nThe RAG-Token model can be seen as a standard, autoregressive seq2seq genera-\ntor with transition probability: p′\nθ(yi|x, y1:i−1) = P\nz∈top-k(p(·|x)) pη(zi|x)pθ(yi|x, zi, y1:i−1) To\ndecode, we can plug p′\nθ(yi|x, y1:i−1) into a standard beam decoder.\nRAG-Sequence\nFor RAG-Sequence, the likelihood p(y|x) does not break into a conventional per-\ntoken likelihood, hence we cannot solve it with a single beam"
+            }
+          ]
+        },
+        "2310.11511-Self-RAG.pdf": {
+          "filename": "2310.11511-Self-RAG.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "本文提出Self-RAG框架，通过自反思和检索增强生成，但未采用问题与每个证据段落独立编码后联合解码的机制。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2310.11511-Self-RAG.pdf:1:0",
+              "page": 1,
+              "quote": "sages are\nrelevant, diminishes LM versatility or can lead to unhelpful response generation.\nWe introduce a new framework called Self-Reflective Retrieval-Augmented Gen-\neration (SELF-RAG) that enhances an LM’s quality and factuality through retrieval\nand self-reflection. Our framework trains a single arbitrary LM that adaptively\nretrieves passages on-demand, and generates and reflects on retrieved passages\nand its own generations using special tokens, called reflection tokens. Generating\nreflection tokens makes the LM controllable during the inference phase, enabling it\nto tailor its behavior to diverse task requirements. Experiments show that SELF-\nRAG (7B and 13B parameters) significantly outperforms state-of-the-art LLMs\nand retrieval-augmented models on a diverse set of tasks. Specifically, SELF-RAG\noutperforms ChatGPT and retrieval-augmented Llama2-chat on Open-domain QA,\nreasoning "
+            },
+            {
+              "chunk_id": "2310.11511-Self-RAG.pdf:6:1400",
+              "page": 6,
+              "quote": "ignated threshold, we trigger retrieval (details in Appendix Section A.3).\nTree-decoding with critique tokens. At each segment step t, when retrieval is required, based either\non hard or soft conditions, R retrieves K passages, and the generator M processes each passage in\nparallel and outputs K different continuation candidates. We conduct a segment-level beam search\n(with the beam size=B) to obtain the top-B segment continuations at each timestamp t, and return\nthe best sequence at the end of generation. The score of each segment yt with respect to passage d is\nupdated with a critic score S "
+            }
+          ]
+        },
+        "2112.04426-RETRO.pdf": {
+          "filename": "2112.04426-RETRO.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "本文是语言模型增强，使用分块交叉注意力，并非将问题与每个证据段落拼接后独立编码再联合解码。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2112.04426-RETRO.pdf:5:0",
+              "page": 5,
+              "quote": " fully-connected layer Ffw, the standard sequence-level self-attention\nlayer Attn, and a chunked cross-attention layer Cca(·, 𝐸) that incorporates information from the\nretrieval encoder:\nRetro (𝐻, 𝐸) ≜Ffw (Cca (Attn (𝐻) , 𝐸)) ,\nand\nLm(𝐻) ≜Ffw(Attn(𝐻))\n(2)\nSince Ffw, Attn and Cca are all autoregressive operators whose output at position 𝑖only\ndepends on (ℎ𝑗) 𝑗⩽𝑖, any succession of Retro and lm layers, followed by a token classiﬁcation\nhead deﬁnes an autoregressive log-likelihood (1). An overview of the model architecture is given in\nAlgorithm 1 and in Fig. 2. We next describe the retrieval encoder and the chunked cross-attention\nlayer in more detail, and explain how to sample from Retro.\nEncoding retrieval neighbours.\nFor each chunk 𝐶𝑢, the 𝑘retrieval neighbours Ret(𝐶𝑢) are fed into\na bi-directional transformer Encoder, yielding the outputs 𝐸𝑗\n𝑢≜Encoder(Ret(𝐶𝑢) 𝑗, 𝐻𝑢) ∈ℝ𝑟×𝑑′,\nwhere 𝑗∈[1, 𝑘] indexes each neighbour. The retrieval encoder is a non-causal transformer. It\nis conditioned on 𝐻𝑢, the activations of chunk 𝐶𝑢, through cross-attention layers; this allows the\nrepresentations of t"
+            }
+          ],
+          "requirements": [
+            {
+              "task_quote": "找问答研究：将问题分别与每个证据段落拼接后独立编码，",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2112.04426-RETRO.pdf:5:0"
+              ]
+            },
+            {
+              "task_quote": "再将这些表示共同交给单一生成解码器。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2112.04426-RETRO.pdf:5:0"
+              ]
+            },
+            {
+              "task_quote": "必须实际使用这一联合解码机制；",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2112.04426-RETRO.pdf:5:0"
+              ]
+            },
+            {
+              "task_quote": "重点关注多证据整合，",
+              "verdict": "preference",
+              "evidence_ids": []
+            }
+          ],
+          "rejected_requirements": [
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence"
+          ]
+        },
+        "2203.02155-InstructGPT.pdf": {
+          "filename": "2203.02155-InstructGPT.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "本文研究基于人类反馈的指令微调，不涉及问答中的多证据联合解码机制。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2203.02155-InstructGPT.pdf:1:1400",
+              "page": 1,
+              "quote": "r, InstructGPT models show improvements in truthfulness and reductions\nin toxic output generation while having minimal performance regressions on public\nNLP datasets. Even though InstructGPT still makes simple mistakes, our results\nshow that ﬁne-tuning with human feedback is a promising direction for aligning\nlanguage models with human intent.\n1\nIntroduction\nLarge language models (LMs) can be “prompted” to perform a range of natural language process-\ning (NLP) tasks, given some examples of the task as input. However, these models often express\nunintended behaviors such as making up facts, generating biased or toxic text, or simply not following\nuser instructions (Bender et al., 2021; Bommasani et al., 2021; Kenton et al., 2021; Weidinger et al.,\n2021; Tamkin et al., 2021; Gehman et al., 2020). This is because the language modeling objective\n∗Primary authors. This was a joint project of t"
+            },
+            {
+              "chunk_id": "2203.02155-InstructGPT.pdf:10:2800",
+              "page": 10,
+              "quote": "ddle of the pack. Additionally, we ask labelers to judge the overall quality of each response on a\n1-7 Likert scale and collect a range of metadata for each model output (see Table 3).\nEvaluations on public NLP datasets.\nWe evaluate on two types of public datasets: those that\ncapture an aspect of language model safety, particularly truthfulness, toxicity, and bias, and those that\ncapture zero-shot performance on traditional NLP tasks like question answering, reading comprehen-\nsion, and summarization. We also conduct human evaluations of toxicity on the RealToxicityPrompts\ndataset (Gehman et a"
+            }
+          ]
+        }
+      },
+      "unprocessed": [],
+      "condition_plan": {
+        "targets": [
+          {
+            "id": "T1",
+            "text": "问答研究",
+            "source_quote": "找问答研究",
+            "query": "question answering"
+          }
+        ],
+        "criteria": [
+          {
+            "id": "C1",
+            "text": "研究类型为问答研究",
+            "kind": "must",
+            "scope": "common",
+            "source_quote": "找问答研究",
+            "query": "question answering"
+          },
+          {
+            "id": "C2",
+            "text": "将问题与每个证据段落拼接后独立编码",
+            "kind": "must",
+            "scope": "common",
+            "source_quote": "将问题分别与每个证据段落拼接后独立编码",
+            "query": "concatenate question with each evidence passage and encode independently"
+          },
+          {
+            "id": "C3",
+            "text": "将独立编码的表示共同交给单一生成解码器",
+            "kind": "must",
+            "scope": "common",
+            "source_quote": "再将这些表示共同交给单一生成解码器",
+            "query": "representations fed to a single generation decoder"
+          },
+          {
+            "id": "C4",
+            "text": "实际使用联合解码机制",
+            "kind": "must",
+            "scope": "common",
+            "source_quote": "必须实际使用这一联合解码机制",
+            "query": "joint decoding mechanism"
+          },
+          {
+            "id": "C5",
+            "text": "排除仅对各证据分别生成再混合概率的方法",
+            "kind": "exclude",
+            "scope": "common",
+            "source_quote": "只对各证据分别生成并混合概率不满足",
+            "query": "separate generation per evidence then mix probabilities"
+          },
+          {
+            "id": "C6",
+            "text": "重点关注多证据整合",
+            "kind": "must",
+            "scope": "common",
+            "source_quote": "重点关注多证据整合",
+            "query": "multi-evidence integration"
+          },
+          {
+            "id": "C7",
+            "text": "不要求提出新的检索器",
+            "kind": "exclude",
+            "scope": "common",
+            "source_quote": "不要求提出新的检索器",
+            "query": "new retriever"
+          }
+        ],
+        "queries": [
+          "question answering concatenate question with each evidence passage encode independently joint decoding",
+          "multi-evidence QA with independent encoding and single decoder",
+          "joint decoding for multi-passage question answering",
+          "question answering joint decoder multiple evidence passages"
+        ]
+      },
+      "query_plan_status": "condition_plan",
+      "requested_limit": null,
+      "candidate_limit": 48,
+      "candidates": [
+        "2007.01282-FiD.pdf",
+        "2004.04906-DPR.pdf",
+        "2104.08663-BEIR.pdf",
+        "2005.11401-RAG.pdf",
+        "2310.11511-Self-RAG.pdf",
+        "2112.04426-RETRO.pdf",
+        "2203.02155-InstructGPT.pdf"
+      ],
+      "library_documents": 7,
+      "fusion": "document_rrf_k60_normalized_B_terms",
+      "outside_candidate_pool": 0,
+      "negative_review_candidates": [
+        "2004.04906-DPR.pdf",
+        "2104.08663-BEIR.pdf",
+        "2005.11401-RAG.pdf",
+        "2310.11511-Self-RAG.pdf",
+        "2112.04426-RETRO.pdf",
+        "2203.02155-InstructGPT.pdf"
+      ],
+      "expanded_documents": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2104.08663-BEIR.pdf",
+        "2112.04426-RETRO.pdf",
+        "2203.02155-InstructGPT.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "audit": {
+        "requested": [
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf",
+          "2104.08663-BEIR.pdf",
+          "2005.11401-RAG.pdf",
+          "2310.11511-Self-RAG.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ],
+        "checked": [
+          {
+            "filename": "2112.04426-RETRO.pdf",
+            "previous_status": "uncertain",
+            "status": "irrelevant",
+            "rejected_requirements": [
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence"
+            ]
+          },
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "previous_status": "irrelevant",
+            "status": "irrelevant",
+            "rejected_requirements": [
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence"
+            ]
+          },
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "previous_status": "irrelevant",
+            "status": "irrelevant",
+            "rejected_requirements": [
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence"
+            ]
+          }
+        ],
+        "errors": [
+          {
+            "filename": "2007.01282-FiD.pdf",
+            "error": "B audit requirement lacks evidence",
+            "received": {
+              "filename": "2007.01282-FiD.pdf",
+              "status": "relevant",
+              "reason": "本文提出Fusion-in-Decoder，将问题与每个段落拼接后独立编码，再在解码器中对所有表示进行联合注意力，满足联合解码机制。",
+              "evidence_ids": [
+                "2007.01282-FiD.pdf:3:1400"
+              ],
+              "targets": [
+                "T1"
+              ],
+              "requirements": [
+                {
+                  "task_id": "q2",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2007.01282-FiD.pdf:3:1400"
+                  ]
+                },
+                {
+                  "task_id": "q3",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2007.01282-FiD.pdf:3:1400"
+                  ]
+                },
+                {
+                  "task_id": "q4",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2007.01282-FiD.pdf:3:1400"
+                  ]
+                },
+                {
+                  "task_id": "q5",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2007.01282-FiD.pdf:3:1400"
+                  ]
+                },
+                {
+                  "task_id": "q6",
+                  "verdict": "preference",
+                  "evidence_ids": []
+                },
+                {
+                  "task_id": "q7",
+                  "verdict": "met",
+                  "evidence_ids": []
+                }
+              ]
+            }
+          },
+          {
+            "filename": "2005.11401-RAG.pdf",
+            "error": "B audit omitted requirements",
+            "received": {
+              "filename": "2005.11401-RAG.pdf",
+              "status": "irrelevant",
+              "reason": "本文RAG模型将问题与检索段落拼接后编码，但解码时每个token可依赖不同段落，未使用将多个段落表示共同交给单一解码器的联合解码机制。",
+              "evidence_ids": [
+                "2005.11401-RAG.pdf:1:0"
+              ],
+              "targets": []
+            }
+          },
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "error": "B audit omitted requirements",
+            "received": {
+              "filename": "2310.11511-Self-RAG.pdf",
+              "status": "irrelevant",
+              "reason": "本文SELF-RAG对每个检索段落独立生成候选，并通过树解码和批评令牌选择，未将多个段落表示共同交给单一生成解码器。",
+              "evidence_ids": [
+                "2310.11511-Self-RAG.pdf:6:1400"
+              ],
+              "targets": []
+            }
+          },
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "error": "B audit omitted requirements",
+            "received": {
+              "filename": "2203.02155-InstructGPT.pdf",
+              "status": "irrelevant",
+              "reason": "本文研究基于人类反馈的微调，不涉及将问题与多个证据段落拼接后独立编码再共同解码的机制，且非问答研究。",
+              "evidence_ids": [
+                "2203.02155-InstructGPT.pdf:1:1400"
+              ],
+              "targets": []
+            }
+          }
+        ],
+        "empty_result_review": false,
+        "original_task_only": false,
+        "budget_seconds": 130
+      },
+      "pending": [],
+      "approved": [
+        "2007.01282-FiD.pdf"
+      ],
+      "screened_documents": 7,
+      "attempted_documents": 7,
+      "uncertain": [],
+      "outcome": "complete"
+    },
+    "seconds": 184.38,
+    "calls": 6,
+    "tokens": 28573
+  },
+  {
+    "case": "B-02",
+    "expected": [
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "returned": [
+      "2104.08663-BEIR.pdf",
+      "2310.11511-Self-RAG.pdf"
+    ],
+    "missing": [],
+    "extra": [],
+    "exact": true,
+    "answer": {
+      "case_id": "B-02",
+      "papers": [
+        {
+          "filename": "2310.11511-Self-RAG.pdf",
+          "reason": "论文提出Self-RAG，学习反思符号（critique tokens）决定检索时机并判断生成是否有证据支持，满足目标（二）。"
+        },
+        {
+          "filename": "2104.08663-BEIR.pdf",
+          "reason": "论文提出BEIR基准，在多个领域零样本评估检索系统性能，满足目标（一）的通用检索基准系统比较不同领域零样本迁移能力。"
+        }
+      ]
+    },
+    "trace": {
+      "version": "b12-query-evidence-recovery",
+      "rounds": [
+        {
+          "round": 0,
+          "batch_sizes": [
+            7
+          ]
+        },
+        {
+          "round": 1,
+          "batch_sizes": [
+            4,
+            1
+          ]
+        }
+      ],
+      "errors": [
+        {
+          "stage": "plan",
+          "error": "B plan needs bounded targets and criteria"
+        }
+      ],
+      "decisions": {
+        "2310.11511-Self-RAG.pdf": {
+          "filename": "2310.11511-Self-RAG.pdf",
+          "status": "relevant",
+          "accepted": true,
+          "reason": "论文提出Self-RAG，学习反思符号（critique tokens）决定检索时机并判断生成是否有证据支持，满足目标（二）。",
+          "targets": [
+            "t0"
+          ],
+          "evidence": [
+            {
+              "chunk_id": "2310.11511-Self-RAG.pdf:1:0",
+              "page": 1,
+              "quote": "Preprint.\nSELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND\nCRITIQUE THROUGH SELF-REFLECTION\nAkari Asai†, Zeqiu Wu†, Yizhong Wang†§, Avirup Sil‡, Hannaneh Hajishirzi†§\n†University of Washington\n§Allen Institute for AI\n‡IBM Research AI\n{akari,zeqiuwu,yizhongw,hannaneh}@cs.washington.edu, avi@us.ibm.com\nABSTRACT\nDespite their remarkable capabilities, large language models (LLMs) often produce\nresponses containing factual inaccuracies due to their sole reliance on the paramet-\nric knowledge they encapsulate. Retrieval-Augmented Generation (RAG), an ad\nhoc approach that augments LMs with retrieval of relevant knowledge, decreases\nsuch issues. However, indiscriminately retrieving and incorporating a fixed number\nof retrieved passages, regardless of whether retrieval is necessary, or passages are\nrelevant, diminishes LM versatility or can lead to unhelpful response generation.\nWe introduce a new f"
+            },
+            {
+              "chunk_id": "2310.11511-Self-RAG.pdf:2:2800",
+              "page": 2,
+              "quote": "f input, output, and corresponding reflection tokens collected by prompting a propriety LM (i.e.,\nGPT-4; OpenAI 2023). While we draw inspiration from studies that use control tokens to start and\nguide text generation (Lu et al., 2022; Keskar et al., 2019), our trained LM uses critique tokens to\nasse"
+            }
+          ]
+        },
+        "2104.08663-BEIR.pdf": {
+          "filename": "2104.08663-BEIR.pdf",
+          "status": "relevant",
+          "accepted": true,
+          "reason": "论文提出BEIR基准，在多个领域零样本评估检索系统性能，满足目标（一）的通用检索基准系统比较不同领域零样本迁移能力。",
+          "targets": [
+            "t0"
+          ],
+          "evidence": [
+            {
+              "chunk_id": "2104.08663-BEIR.pdf:1:1400",
+              "page": 1,
+              "quote": "abilities. We hope this framework allows us to better evaluate\nand understand existing retrieval systems, and contributes to accelerating progress\ntowards better robust and generalizable systems in the future. BEIR is publicly\navailable at https://github.com/UKPLab/beir.\n1\nIntroduction\nMajor natural language processing (NLP) problems rely on a practical and efﬁcient retrieval com-\nponent as a ﬁrst step to ﬁnd relevant information. Challenging problems include open-domain\nquestion-answering [8], claim-veriﬁcation [60], duplicate question detection [78], and many more.\nTraditionally, retrieval has been dominated by lexical approaches like TF-IDF or BM25 [55]. How-\never, these approaches suffer from lexical gap [5] and are able to only retrieve documents containing\nkeywords present within the query. Further, lexical approaches treat queries and documents as\nbag-of-words by not taking word o"
+            },
+            {
+              "chunk_id": "2104.08663-BEIR.pdf:8:0",
+              "page": 8,
+              "quote": "BM25\n+CE\ndocT5-\nquery\nColBERT\nTAS-B\nGenQ\nANCE\nSPARTA\nDPR\nDeepCT\n-20\n-10\nBM25\n10\n20\n16\n12\n9\n8\n6\n4\n2\n1\n0\n-2\n-6\n-9\n-10\n-12\n-14\n-16\n-17\n-18\nFigure 3: Comparison of zero-shot neural retrieval per-\nformances with BM25. Re-ranking based models, i.e.,\nBM25+CE and sparse model: docT5query outperform\nBM25 on "
+            }
+          ]
+        },
+        "2004.04906-DPR.pdf": {
+          "filename": "2004.04906-DPR.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "论文聚焦于开放域问答的密集段落检索，未涉及通用检索基准系统比较不同领域的零样本迁移能力，也未学习特殊反思符号决定检索时机。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2004.04906-DPR.pdf:1:0",
+              "page": 1,
+              "quote": "Dense Passage Retrieval for Open-Domain Question Answering\nVladimir Karpukhin∗, Barlas O˘guz∗, Sewon Min†, Patrick Lewis,\nLedell Wu, Sergey Edunov, Danqi Chen‡, Wen-tau Yih\nFacebook AI\n†University of Washington\n‡Princeton University\n{vladk, barlaso, plewis, ledell, edunov, scottyih}@fb.com\nsewon@cs.washington.edu\ndanqic@cs.princeton.edu\nAbstract\nOpen-domain question answering relies on ef-\nﬁcient passage retrieval to select candidate\ncontexts, where traditional sparse vector space\nmodels, such as TF-IDF or BM25, are the de\nfacto method.\nIn this work, we show that\nretrieval can be practically implemented us-\ning dense representations alone, where em-\nbeddings are learned from a small number\nof questions and passages by a simple dual-\nencoder framework.\nWhen evaluated on a\nwide range of open-domain QA datasets, our\ndense retriever outperforms a strong Lucene-\nBM25 system greatly by 9%-19% absolute in\nterms of top-20 passage retrieval accuracy, and\nhelps our end-to-end QA system establish new\nstate-of-the-art on multiple open-domain QA\nbenchmarks.1\n1\nIntroduction\nOpen-domain question an"
+            }
+          ],
+          "requirements": [
+            {
+              "task_quote": "Public independently specified retrieval",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "分别寻找两个目标，",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "任一目标满足即可：（一）以通用检索基准系统比较不同领域的零样本迁移能力；",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "（二）学习特殊反思符号来决定检索时机并判断生成是否有证据支持。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "各目标内部描述须同时满足。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "排除仅作相关工作引用而没有实际研究该机制的论文，",
+              "verdict": "met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            }
+          ],
+          "rejected_requirements": [
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence"
+          ]
+        },
+        "2005.11401-RAG.pdf": {
+          "filename": "2005.11401-RAG.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "论文提出RAG模型用于知识密集型NLP任务，未涉及通用检索基准系统比较不同领域的零样本迁移能力，也未学习特殊反思符号决定检索时机。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2005.11401-RAG.pdf:1:0",
+              "page": 1,
+              "quote": "Retrieval-Augmented Generation for\nKnowledge-Intensive NLP Tasks\nPatrick Lewis†‡, Ethan Perez⋆,\nAleksandra Piktus†, Fabio Petroni†, Vladimir Karpukhin†, Naman Goyal†, Heinrich Küttler†,\nMike Lewis†, Wen-tau Yih†, Tim Rocktäschel†‡, Sebastian Riedel†‡, Douwe Kiela†\n†Facebook AI Research; ‡University College London; ⋆New York University;\nplewis@fb.com\nAbstract\nLarge pre-trained language models have been shown to store factual knowledge\nin their parameters, and achieve state-of-the-art results when ﬁne-tuned on down-\nstream NLP tasks. However, their ability to access and precisely manipulate knowl-\nedge is still limited, and hence on knowledge-intensive tasks, their performance\nlags behind task-speciﬁc architectures. Additionally, providing provenance for their\ndecisions and updating their world knowledge remain open research problems. Pre-\ntrained models with a differentiable access mechanism to explicit non-parametric\nmemory have so far been only investigated for extractive downstream tasks. We\nexplore a general-purpose ﬁne-tuning recipe for retrieval-augmented generation\n(RAG) — mode"
+            }
+          ],
+          "requirements": [
+            {
+              "task_quote": "Public independently specified retrieval",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2005.11401-RAG.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "分别寻找两个目标，",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2005.11401-RAG.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "任一目标满足即可：（一）以通用检索基准系统比较不同领域的零样本迁移能力；",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2005.11401-RAG.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "（二）学习特殊反思符号来决定检索时机并判断生成是否有证据支持。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2005.11401-RAG.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "各目标内部描述须同时满足。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2005.11401-RAG.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "排除仅作相关工作引用而没有实际研究该机制的论文，",
+              "verdict": "met",
+              "evidence_ids": [
+                "2005.11401-RAG.pdf:1:0"
+              ]
+            }
+          ],
+          "rejected_requirements": [
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence"
+          ]
+        },
+        "2007.01282-FiD.pdf": {
+          "filename": "2007.01282-FiD.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "论文研究Fusion-in-Decoder用于开放域问答，未涉及零样本跨领域迁移比较或反思符号机制。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2007.01282-FiD.pdf:1:0",
+              "page": 1,
+              "quote": "Leveraging Passage Retrieval with Generative Models\nfor Open Domain Question Answering\nGautier Izacard1,2,3\nEdouard Grave1\n1 Facebook AI Research, Paris\n2 ENS, PSL University, Paris\n3 Inria, Paris\ngizacard|egrave@fb.com\nAbstract\nGenerative models for open domain question\nanswering have proven to be competitive, with-\nout resorting to external knowledge.\nWhile\npromising, this approach requires to use mod-\nels with billions of parameters, which are ex-\npensive to train and query. In this paper, we\ninvestigate how much these models can ben-\neﬁt from retrieving text passages, potentially\ncontaining evidence. We obtain state-of-the-\nart results on the Natural Questions and Triv-\niaQA open benchmarks. Interestingly, we ob-\nserve that the performance of this method sig-\nniﬁcantly improves when increasing the num-\nber of retrieved passages. This is evidence that\nsequence-to-sequence models offer"
+            },
+            {
+              "chunk_id": "2007.01282-FiD.pdf:2:0",
+              "page": 2,
+              "quote": "Question + Passage 1\nencoder\nQuestion + Passage 2\nencoder\nQuestion + Passage N\nencoder\ndecoder\nAnswer\nconcat\n…\n…\n…\n…\nFigure 2: Architecture of the Fusion-in-Decoder method.\nrepresentations.\nThen, a sequence-to-sequence\nmodel generates the answer, taking as input the re-\ntrieved passages in addition to the question. While\nconceptually simple, this method sets new state-of-\nthe-art results on the TriviaQA and NaturalQues-\ntions benchmarks. In particular, we show that the\nperformance of our method signiﬁcantly improves\nwhen the number of retrieved passages increases.\nWe believe that this is evide"
+            }
+          ]
+        },
+        "2112.04426-RETRO.pdf": {
+          "filename": "2112.04426-RETRO.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "论文提出Retro模型增强语言模型，未比较不同领域零样本迁移能力，也未学习反思符号决定检索时机。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2112.04426-RETRO.pdf:1:0",
+              "page": 1,
+              "quote": "Improving language models by retrieving\nfrom trillions of tokens\nSebastian Borgeaud†, Arthur Mensch†, Jordan Hoﬀmann†, Trevor Cai, Eliza Rutherford, Katie Millican,\nGeorge van den Driessche, Jean-Baptiste Lespiau, Bogdan Damoc, Aidan Clark, Diego de Las Casas,\nAurelia Guy, Jacob Menick, Roman Ring, Tom Hennigan, Saﬀron Huang, Loren Maggiore, Chris Jones,\nAlbin Cassirer, Andy Brock, Michela Paganini, Geoﬀrey Irving, Oriol Vinyals, Simon Osindero,\nKaren Simonyan, Jack W. Rae‡, Erich Elsen‡ and Laurent Sifre†,‡\nAll authors from DeepMind, †Equal contributions, ‡Equal senior authorship\nWe enhance auto-regressive language models by conditioning on document chunks retrieved from a\nlarge corpus, based on local similarity with preceding tokens. With a 2 trillion token database, our\nRetrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1\non the Pile, despite u"
+            },
+            {
+              "chunk_id": "2112.04426-RETRO.pdf:3:0",
+              "page": 3,
+              "quote": "Improving language models by retrieving from trillions of tokens\nCCA\nFFW\nTransformer \nEncoder\nRetrieval\ndataset\nFrozen kNN Retriever\nK\nV\nRETRO block (x L) \nNeighbours\nInput \ntokens\nChunked cross-attention (CCA)\nBERT\nBERT\nCondition\nAttending chunks\nEncoded neighbours\nCA\nCA\nATTN\nQ\nEMB\nREAD\nAttend\nEncoded neighbours\nC1\nC2\nC3\nH1\nH2\nH3\nH\nH1\n+\nH2\n+\nE1\nE2\nE1\nE2\nCA(H1\n+, E1)\nCA(H2\n+, E2)\nCCA(H, E)\nX\nFigure 2 | Retro architecture. Left: simpliﬁed version where a sequence of length 𝑛= 12 is split\ninto 𝑙= 3 chunks of size 𝑚= 4. For each chunk, we retrieve 𝑘= 2 neighbours of 𝑟= 5 tokens each. The\nretrieva"
+            }
+          ]
+        },
+        "2203.02155-InstructGPT.pdf": {
+          "filename": "2203.02155-InstructGPT.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "论文研究通过人类反馈微调语言模型，未涉及通用检索基准系统比较零样本迁移能力，也未学习特殊反思符号决定检索时机。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2203.02155-InstructGPT.pdf:1:0",
+              "page": 1,
+              "quote": "Training language models to follow instructions\nwith human feedback\nLong Ouyang∗\nJeff Wu∗\nXu Jiang∗\nDiogo Almeida∗\nCarroll L. Wainwright∗\nPamela Mishkin∗\nChong Zhang\nSandhini Agarwal\nKatarina Slama\nAlex Ray\nJohn Schulman\nJacob Hilton\nFraser Kelton\nLuke Miller\nMaddie Simens\nAmanda Askell†\nPeter Welinder\nPaul Christiano∗†\nJan Leike∗\nRyan Lowe∗\nOpenAI\nAbstract\nMaking language models bigger does not inherently make them better at following\na user’s intent. For example, large language models can generate outputs that\nare untruthful, toxic, or simply not helpful to the user. In other words, these\nmodels are not aligned with their users. In this paper, we show an avenue for\naligning language models with user intent on a wide range of tasks by ﬁne-tuning\nwith human feedback. Starting with a set of labeler-written prompts and prompts\nsubmitted through the OpenAI API, we collect a dataset of label"
+            },
+            {
+              "chunk_id": "2203.02155-InstructGPT.pdf:3:0",
+              "page": 3,
+              "quote": "Figure 2: A diagram illustrating the three steps of our method: (1) supervised ﬁne-tuning (SFT), (2)\nreward model (RM) training, and (3) reinforcement learning via proximal policy optimization (PPO)\non this reward model. Blue arrows indicate that this data is used to train one of our models. In Step 2,\nboxes A-D are samples from our models that get ranked by labelers. See Section 3 for more details\non our method.\nsizes (1.3B, 6B, and 175B parameters), and all of our models use the GPT-3 architecture. Our main\nﬁndings are as follows:\nLabelers signiﬁcantly prefer InstructGPT outputs over outputs"
+            }
+          ]
+        }
+      },
+      "unprocessed": [],
+      "condition_plan": {
+        "targets": [
+          {
+            "id": "t0",
+            "text": "按完整题面判断",
+            "query": "分别寻找两个目标，任一目标满足即可：（一）以通用检索基准系统比较不同领域的零样本迁移能力；（二）学习特殊反思符号来决定检索时机并判断生成是否有证据支持。各目标内部描述须同时满足。排除仅作相关工作引用而没有实际研究该机制的论文，不限篇数。",
+            "source_quote": "Public independently specified retrieval\n分别寻找两个目标，任一目标满足即可：（一）以通用检索基准系统比较不同领域的零样本迁移能力；（二）学习特殊反思符号来决定检索时机并判断生成是否有证据支持。各目标内部描述须同时满足。排除仅作相关工作引用而没有实际研究该机制的论文，不限篇数。\nReturn filenames and specific reasons"
+          }
+        ],
+        "criteria": [
+          {
+            "id": "r0",
+            "text": "Public independently specified retrieval\n分别寻找两个目标，任一目标满足即可：（一）以通用检索基准系统比较不同领域的零样本迁移能力；（二）学习特殊反思符号来决定检索时机并判断生成是否有证据支持。各目标内部描述须同时满足。排除仅作相关工作引用而没有实际研究该机制的论文，不限篇数。\nReturn filenames and specific reasons",
+            "kind": "must",
+            "scope": "common",
+            "query": "分别寻找两个目标，任一目标满足即可：（一）以通用检索基准系统比较不同领域的零样本迁移能力；（二）学习特殊反思符号来决定检索时机并判断生成是否有证据支持。各目标内部描述须同时满足。排除仅作相关工作引用而没有实际研究该机制的论文，不限篇数。",
+            "source_quote": "Public independently specified retrieval\n分别寻找两个目标，任一目标满足即可：（一）以通用检索基准系统比较不同领域的零样本迁移能力；（二）学习特殊反思符号来决定检索时机并判断生成是否有证据支持。各目标内部描述须同时满足。排除仅作相关工作引用而没有实际研究该机制的论文，不限篇数。\nReturn filenames and specific reasons"
+          }
+        ],
+        "queries": []
+      },
+      "query_plan_status": "original_conditions_fallback",
+      "requested_limit": null,
+      "candidate_limit": 48,
+      "candidates": [
+        "2310.11511-Self-RAG.pdf",
+        "2104.08663-BEIR.pdf",
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2112.04426-RETRO.pdf",
+        "2203.02155-InstructGPT.pdf"
+      ],
+      "library_documents": 7,
+      "fusion": "document_rrf_k60_normalized_B_terms",
+      "outside_candidate_pool": 0,
+      "negative_review_candidates": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2112.04426-RETRO.pdf",
+        "2203.02155-InstructGPT.pdf"
+      ],
+      "expanded_documents": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2104.08663-BEIR.pdf",
+        "2112.04426-RETRO.pdf",
+        "2203.02155-InstructGPT.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "audit": {
+        "requested": [
+          "2310.11511-Self-RAG.pdf",
+          "2104.08663-BEIR.pdf",
+          "2004.04906-DPR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2112.04426-RETRO.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ],
+        "checked": [
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "previous_status": "irrelevant",
+            "status": "irrelevant",
+            "rejected_requirements": [
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence"
+            ]
+          },
+          {
+            "filename": "2005.11401-RAG.pdf",
+            "previous_status": "irrelevant",
+            "status": "irrelevant",
+            "rejected_requirements": [
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence"
+            ]
+          }
+        ],
+        "errors": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "error": "B audit requirement lacks evidence",
+            "received": {
+              "filename": "2310.11511-Self-RAG.pdf",
+              "status": "relevant",
+              "reason": "论文提出SELF-RAG框架，训练LM学习特殊反思符号（Retrieve、ISREL、ISSUP、ISUSE）来决定检索时机并判断生成是否有证据支持，满足目标（二）。",
+              "evidence_ids": [
+                "2310.11511-Self-RAG.pdf:1:0",
+                "2310.11511-Self-RAG.pdf:4:0"
+              ],
+              "targets": [
+                "t0"
+              ],
+              "requirements": [
+                {
+                  "task_id": "q1",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2310.11511-Self-RAG.pdf:1:0"
+                  ]
+                },
+                {
+                  "task_id": "q2",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2310.11511-Self-RAG.pdf:1:0"
+                  ]
+                },
+                {
+                  "task_id": "q3",
+                  "verdict": "unknown",
+                  "evidence_ids": []
+                },
+                {
+                  "task_id": "q4",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2310.11511-Self-RAG.pdf:1:0",
+                    "2310.11511-Self-RAG.pdf:4:0"
+                  ]
+                },
+                {
+                  "task_id": "q5",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2310.11511-Self-RAG.pdf:1:0",
+                    "2310.11511-Self-RAG.pdf:4:0"
+                  ]
+                },
+                {
+                  "task_id": "q6",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2310.11511-Self-RAG.pdf:1:0"
+                  ]
+                },
+                {
+                  "task_id": "q7",
+                  "verdict": "met",
+                  "evidence_ids": []
+                },
+                {
+                  "task_id": "q8",
+                  "verdict": "met",
+                  "evidence_ids": []
+                }
+              ]
+            }
+          },
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "error": "B audit requirement lacks evidence",
+            "received": {
+              "filename": "2104.08663-BEIR.pdf",
+              "status": "relevant",
+              "reason": "论文提出BEIR基准，包含18个数据集和10种检索系统，用于零样本评估不同领域和任务的检索模型，满足目标（一）的通用检索基准系统比较不同领域的零样本迁移能力。",
+              "evidence_ids": [
+                "2104.08663-BEIR.pdf:1:0",
+                "2104.08663-BEIR.pdf:2:0"
+              ],
+              "targets": [
+                "t0"
+              ],
+              "requirements": [
+                {
+                  "task_id": "q1",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2104.08663-BEIR.pdf:1:0"
+                  ]
+                },
+                {
+                  "task_id": "q2",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2104.08663-BEIR.pdf:1:0"
+                  ]
+                },
+                {
+                  "task_id": "q3",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2104.08663-BEIR.pdf:1:0",
+                    "2104.08663-BEIR.pdf:2:0"
+                  ]
+                },
+                {
+                  "task_id": "q4",
+                  "verdict": "unknown",
+                  "evidence_ids": []
+                },
+                {
+                  "task_id": "q5",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2104.08663-BEIR.pdf:1:0"
+                  ]
+                },
+                {
+                  "task_id": "q6",
+                  "verdict": "met",
+                  "evidence_ids": [
+                    "2104.08663-BEIR.pdf:1:0"
+                  ]
+                },
+                {
+                  "task_id": "q7",
+                  "verdict": "met",
+                  "evidence_ids": []
+                },
+                {
+                  "task_id": "q8",
+                  "verdict": "met",
+                  "evidence_ids": []
+                }
+              ]
+            }
+          }
+        ],
+        "empty_result_review": false,
+        "original_task_only": false,
+        "budget_seconds": 130
+      },
+      "pending": [],
+      "approved": [
+        "2310.11511-Self-RAG.pdf",
+        "2104.08663-BEIR.pdf"
+      ],
+      "screened_documents": 7,
+      "attempted_documents": 7,
+      "uncertain": [],
+      "outcome": "complete"
+    },
+    "seconds": 162.68,
+    "calls": 5,
+    "tokens": 24085
+  },
+  {
+    "case": "B-03",
+    "expected": [],
+    "returned": [],
+    "missing": [],
+    "extra": [],
+    "exact": true,
+    "answer": {
+      "case_id": "B-03",
+      "papers": []
+    },
+    "trace": {
+      "version": "b12-query-evidence-recovery",
+      "rounds": [
+        {
+          "round": 0,
+          "batch_sizes": [
+            7
+          ]
+        }
+      ],
+      "errors": [
+        {
+          "stage": "plan",
+          "error": "invalid B criterion/source"
+        }
+      ],
+      "decisions": {
+        "2310.11511-Self-RAG.pdf": {
+          "filename": "2310.11511-Self-RAG.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "论文研究自反思检索增强生成，未涉及卫星热红外观测、城市树冠覆盖率或地表温度。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2310.11511-Self-RAG.pdf:1:0",
+              "page": 1,
+              "quote": "Preprint.\nSELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND\nCRITIQUE THROUGH SELF-REFLECTION\nAkari Asai†, Zeqiu Wu†, Yizhong Wang†§, Avirup Sil‡, Hannaneh Hajishirzi†§\n†University of Washington\n§Allen Institute for AI\n‡IBM Research AI\n{akari,zeqiuwu,yizhongw,hannaneh}@cs.washington.edu, avi@us.ibm.com\nABSTRACT\nDespite their remarkable capabilities, large language models (LLMs) often produce\nresponses containing factual inaccuracies due to their sole reliance on the paramet-\nric knowledge they encapsulate. Retrieval-Augmented Generation (RAG), an ad\nhoc approach that augments LMs with retrieval of relevant knowledge, decreases\nsuch issues. However, indiscriminately retrieving and incorporating a fixed number\nof retrieved passages, regardless of whether retrieval is necessary, or passages are\nrelevant, diminishes LM versatility or can lead to unhelpful response generation.\nWe introduce a new framework called Self-Reflective Retrieval-Augmented Gen-\neration (SELF-RAG) that enhances an LM’s quality and factuality through retrieval\nand self-reflection. Our framework trains a single arbitrary "
+            }
+          ],
+          "requirements": [
+            {
+              "task_quote": "Public independently specified retrieval",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2310.11511-Self-RAG.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "查找使用卫星热红外观测实测城市树冠覆盖率与地表温度关系的原创研究。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2310.11511-Self-RAG.pdf:1:0"
+              ]
+            }
+          ],
+          "rejected_requirements": [
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence"
+          ]
+        },
+        "2112.04426-RETRO.pdf": {
+          "filename": "2112.04426-RETRO.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "论文研究检索增强语言模型，未涉及卫星热红外观测、城市树冠覆盖率或地表温度。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2112.04426-RETRO.pdf:1:0",
+              "page": 1,
+              "quote": "Improving language models by retrieving\nfrom trillions of tokens\nSebastian Borgeaud†, Arthur Mensch†, Jordan Hoﬀmann†, Trevor Cai, Eliza Rutherford, Katie Millican,\nGeorge van den Driessche, Jean-Baptiste Lespiau, Bogdan Damoc, Aidan Clark, Diego de Las Casas,\nAurelia Guy, Jacob Menick, Roman Ring, Tom Hennigan, Saﬀron Huang, Loren Maggiore, Chris Jones,\nAlbin Cassirer, Andy Brock, Michela Paganini, Geoﬀrey Irving, Oriol Vinyals, Simon Osindero,\nKaren Simonyan, Jack W. Rae‡, Erich Elsen‡ and Laurent Sifre†,‡\nAll authors from DeepMind, †Equal contributions, ‡Equal senior authorship\nWe enhance auto-regressive language models by conditioning on document chunks retrieved from a\nlarge corpus, based on local similarity with preceding tokens. With a 2 trillion token database, our\nRetrieval-Enhanced Transformer (Retro) obtains comparable performance to GPT-3 and Jurassic-1\non the Pile, despite using 25× fewer parameters. After ﬁne-tuning, Retro performance translates to\ndownstream knowledge-intensive tasks such as question answering. Retro combines a frozen Bert\nretriever, a diﬀerentiable en"
+            }
+          ],
+          "requirements": [
+            {
+              "task_quote": "Public independently specified retrieval",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2112.04426-RETRO.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "查找使用卫星热红外观测实测城市树冠覆盖率与地表温度关系的原创研究。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2112.04426-RETRO.pdf:1:0"
+              ]
+            }
+          ],
+          "rejected_requirements": [
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence"
+          ]
+        },
+        "2004.04906-DPR.pdf": {
+          "filename": "2004.04906-DPR.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "论文研究密集段落检索用于开放域问答，未涉及卫星热红外观测、城市树冠覆盖率或地表温度。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2004.04906-DPR.pdf:1:0",
+              "page": 1,
+              "quote": "Dense Passage Retrieval for Open-Domain Question Answering\nVladimir Karpukhin∗, Barlas O˘guz∗, Sewon Min†, Patrick Lewis,\nLedell Wu, Sergey Edunov, Danqi Chen‡, Wen-tau Yih\nFacebook AI\n†University of Washington\n‡Princeton University\n{vladk, barlaso, plewis, ledell, edunov, scottyih}@fb.com\nsewon@cs.washington.edu\ndanqic@cs.princeton.edu\nAbstract\nOpen-domain question answering relies on ef-\nﬁcient passage retrieval to select candidate\ncontexts, where traditional sparse vector space\nmodels, such as TF-IDF or BM25, are the de\nfacto method.\nIn this work, we show that\nretrieval can be practically implemented us-\ning dense representations alone, where em-\nbeddings are learned from a small number\nof questions and passages by a simple dual-\nencoder framework.\nWhen evaluated on a\nwide range of open-domain QA datasets, our\ndense retriever outperforms a strong Lucene-\nBM25 system greatly by 9%-19% absolute in\nterms of top-20 passage retrieval accuracy, and\nhelps our end-to-end QA system establish new\nstate-of-the-art on multiple open-domain QA\nbenchmarks.1\n1\nIntroduction\nOpen-domain question an"
+            }
+          ],
+          "requirements": [
+            {
+              "task_quote": "Public independently specified retrieval",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "查找使用卫星热红外观测实测城市树冠覆盖率与地表温度关系的原创研究。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2004.04906-DPR.pdf:1:0"
+              ]
+            }
+          ],
+          "rejected_requirements": [
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence"
+          ]
+        },
+        "2104.08663-BEIR.pdf": {
+          "filename": "2104.08663-BEIR.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "论文提出信息检索基准BEIR，未涉及卫星热红外观测、城市树冠覆盖率或地表温度。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2104.08663-BEIR.pdf:1:0",
+              "page": 1,
+              "quote": "BEIR: A Heterogeneous Benchmark for Zero-shot\nEvaluation of Information Retrieval Models\nNandan Thakur, Nils Reimers, Andreas Rücklé∗, Abhishek Srivastava, Iryna Gurevych\nUbiquitous Knowledge Processing Lab (UKP-TUDA)\nDepartment of Computer Science, Technische Universität Darmstadt\nwww.ukp.tu-darmstadt.de\nAbstract\nExisting neural information retrieval (IR) models have often been studied in ho-\nmogeneous and narrow settings, which has considerably limited insights into their\nout-of-distribution (OOD) generalization capabilities. To address this, and to facili-\ntate researchers to broadly evaluate the effectiveness of their models, we introduce\nBenchmarking-IR (BEIR), a robust and heterogeneous evaluation benchmark for\ninformation retrieval. We leverage a careful selection of 18 publicly available\ndatasets from diverse text retrieval tasks and domains and evaluate 10 state-of-the-\nart retrieval systems including lexical, sparse, dense, late-interaction and re-ranking\narchitectures on the BEIR benchmark. Our results show BM25 is a robust baseline\nand re-ranking and late-interaction base"
+            }
+          ],
+          "requirements": [
+            {
+              "task_quote": "Public independently specified retrieval",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2104.08663-BEIR.pdf:1:0"
+              ]
+            },
+            {
+              "task_quote": "查找使用卫星热红外观测实测城市树冠覆盖率与地表温度关系的原创研究。",
+              "verdict": "not_met",
+              "evidence_ids": [
+                "2104.08663-BEIR.pdf:1:0"
+              ]
+            }
+          ],
+          "rejected_requirements": [
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence",
+            "B audit requirement lacks evidence"
+          ]
+        },
+        "2005.11401-RAG.pdf": {
+          "filename": "2005.11401-RAG.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "研究RAG模型用于知识密集型NLP任务，不涉及卫星热红外观测、城市树冠覆盖率或地表温度。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2005.11401-RAG.pdf:1:0",
+              "page": 1,
+              "quote": "Retrieval-Augmented Generation for\nKnowledge-Intensive NLP Tasks\nPatrick Lewis†‡, Ethan Perez⋆,\nAleksandra Piktus†, Fabio Petroni†, Vladimir Karpukhin†, Naman Goyal†, Heinrich Küttler†,\nMike Lewis†, Wen-tau Yih†, Tim Rocktäschel†‡, Sebastian Riedel†‡, Douwe Kiela†\n†Facebook AI Research; ‡University College London; ⋆New York University;\nplewis@fb.com\nAbstract\nLarge pre-trained language models have been shown to store factual knowledge\nin their parameters, and achieve state-of-the-art results when ﬁne-tuned on down-\nstream NLP tasks. However, their ability to access and precisely manipulate knowl-\nedge is still limited, and hence on knowledge-intensive tasks, their performance\nlags behind task-speciﬁc architectures. Additionally, providing provenance for their\ndecisions and updating their world knowledge remain open research problems. Pre-\ntrained models with a differentiable access mechan"
+            }
+          ]
+        },
+        "2007.01282-FiD.pdf": {
+          "filename": "2007.01282-FiD.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "研究FiD模型用于开放域问答，不涉及卫星热红外观测、城市树冠覆盖率或地表温度。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2007.01282-FiD.pdf:1:1400",
+              "page": 1,
+              "quote": "en\ndomain question answering. Without relying on\nexternal knowledge, this method obtained compet-\nitive results on several benchmarks. However, it\nrequires models containing billions of parameters,\nsince all the information needs to be stored in the\nweights. This makes models expensive to query\nand train. In this paper, we investigate how much\nthis method could beneﬁt from having access to an\nexternal source of knowledge, such as Wikipedia.\nRetrieval based approaches were previously con-\nsidered in the context of open domain question\nanswering with extractive models (Chen et al.,\n2017). In that case, systems start by retrieving\nAlan Turing \nwas a British \ncomputer \nscientist. \nBorn in Maida \nVale, London…\nWhere was Alan \nTuring born?\nGenerative\nseq2seq model\nMaida Vale, \nLondon\nFigure 1: A simple approach to open domain question\nanswering. First, it retrieves support text passages from\na"
+            }
+          ]
+        },
+        "2203.02155-InstructGPT.pdf": {
+          "filename": "2203.02155-InstructGPT.pdf",
+          "status": "irrelevant",
+          "accepted": false,
+          "reason": "研究InstructGPT训练方法，不涉及卫星热红外观测、城市树冠覆盖率或地表温度。",
+          "targets": [],
+          "evidence": [
+            {
+              "chunk_id": "2203.02155-InstructGPT.pdf:1:0",
+              "page": 1,
+              "quote": "Training language models to follow instructions\nwith human feedback\nLong Ouyang∗\nJeff Wu∗\nXu Jiang∗\nDiogo Almeida∗\nCarroll L. Wainwright∗\nPamela Mishkin∗\nChong Zhang\nSandhini Agarwal\nKatarina Slama\nAlex Ray\nJohn Schulman\nJacob Hilton\nFraser Kelton\nLuke Miller\nMaddie Simens\nAmanda Askell†\nPeter Welinder\nPaul Christiano∗†\nJan Leike∗\nRyan Lowe∗\nOpenAI\nAbstract\nMaking language models bigger does not inherently make them better at following\na user’s intent. For example, large language models can generate outputs that\nare untruthful, toxic, or simply not helpful to the user. In other words, these\nmodels are not aligned with their users. In this paper, we show an avenue for\naligning language models with user intent on a wide range of tasks by ﬁne-tuning\nwith human feedback. Starting with a set of labeler-written prompts and prompts\nsubmitted through the OpenAI API, we collect a dataset of label"
+            }
+          ]
+        }
+      },
+      "unprocessed": [],
+      "condition_plan": {
+        "targets": [
+          {
+            "id": "t0",
+            "text": "按完整题面判断",
+            "query": "查找使用卫星热红外观测实测城市树冠覆盖率与地表温度关系的原创研究。只讨论自然语言检索或文本生成不符合。不限篇数。",
+            "source_quote": "Public independently specified retrieval\n查找使用卫星热红外观测实测城市树冠覆盖率与地表温度关系的原创研究。只讨论自然语言检索或文本生成不符合。不限篇数。\nReturn filenames and specific reasons"
+          }
+        ],
+        "criteria": [
+          {
+            "id": "r0",
+            "text": "Public independently specified retrieval\n查找使用卫星热红外观测实测城市树冠覆盖率与地表温度关系的原创研究。只讨论自然语言检索或文本生成不符合。不限篇数。\nReturn filenames and specific reasons",
+            "kind": "must",
+            "scope": "common",
+            "query": "查找使用卫星热红外观测实测城市树冠覆盖率与地表温度关系的原创研究。只讨论自然语言检索或文本生成不符合。不限篇数。",
+            "source_quote": "Public independently specified retrieval\n查找使用卫星热红外观测实测城市树冠覆盖率与地表温度关系的原创研究。只讨论自然语言检索或文本生成不符合。不限篇数。\nReturn filenames and specific reasons"
+          }
+        ],
+        "queries": [
+          "satellite thermal infrared urban tree canopy cover land surface temperature relationship",
+          "thermal infrared remote sensing tree canopy cover land surface temperature urban",
+          "urban tree canopy cover land surface temperature satellite thermal infrared study",
+          "satellite thermal infrared measured tree canopy cover land surface temperature correlation"
+        ]
+      },
+      "query_plan_status": "original_conditions_fallback",
+      "requested_limit": null,
+      "candidate_limit": 48,
+      "candidates": [
+        "2310.11511-Self-RAG.pdf",
+        "2112.04426-RETRO.pdf",
+        "2004.04906-DPR.pdf",
+        "2104.08663-BEIR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2203.02155-InstructGPT.pdf"
+      ],
+      "library_documents": 7,
+      "fusion": "document_rrf_k60_normalized_B_terms",
+      "outside_candidate_pool": 0,
+      "query_recovery": {
+        "state": "replanned",
+        "queries": [
+          "satellite thermal infrared urban tree canopy cover land surface temperature",
+          "thermal infrared remote sensing tree canopy cover LST urban",
+          "urban tree canopy cover land surface temperature satellite thermal infrared",
+          "satellite thermal infrared measured tree canopy cover land surface temperature correlation",
+          "urban tree canopy cover LST satellite thermal infrared observation",
+          "satellite thermal infrared urban tree cover land surface temperature relationship"
+        ]
+      },
+      "negative_review_candidates": [],
+      "outside_rescue": [],
+      "audit": {
+        "requested": [
+          "2310.11511-Self-RAG.pdf",
+          "2112.04426-RETRO.pdf",
+          "2004.04906-DPR.pdf",
+          "2104.08663-BEIR.pdf",
+          "2005.11401-RAG.pdf",
+          "2007.01282-FiD.pdf",
+          "2203.02155-InstructGPT.pdf"
+        ],
+        "checked": [
+          {
+            "filename": "2310.11511-Self-RAG.pdf",
+            "previous_status": "irrelevant",
+            "status": "irrelevant",
+            "rejected_requirements": [
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence"
+            ]
+          },
+          {
+            "filename": "2112.04426-RETRO.pdf",
+            "previous_status": "irrelevant",
+            "status": "irrelevant",
+            "rejected_requirements": [
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence"
+            ]
+          },
+          {
+            "filename": "2004.04906-DPR.pdf",
+            "previous_status": "irrelevant",
+            "status": "irrelevant",
+            "rejected_requirements": [
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence"
+            ]
+          },
+          {
+            "filename": "2104.08663-BEIR.pdf",
+            "previous_status": "irrelevant",
+            "status": "irrelevant",
+            "rejected_requirements": [
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence",
+              "B audit requirement lacks evidence"
+            ]
+          }
+        ],
+        "errors": [
+          {
+            "filename": "2005.11401-RAG.pdf",
+            "error": "B audit omitted requirements",
+            "received": {
+              "filename": "2005.11401-RAG.pdf",
+              "status": "irrelevant",
+              "reason": "论文研究检索增强生成（RAG）用于NLP任务，未涉及卫星热红外观测、城市树冠覆盖率或地表温度。",
+              "evidence_ids": [
+                "2005.11401-RAG.pdf:1:0"
+              ],
+              "targets": []
+            }
+          },
+          {
+            "filename": "2007.01282-FiD.pdf",
+            "error": "B audit omitted requirements",
+            "received": {
+              "filename": "2007.01282-FiD.pdf",
+              "status": "irrelevant",
+              "reason": "论文研究开放域问答的Fusion-in-Decoder方法，未涉及卫星热红外观测、城市树冠覆盖率或地表温度。",
+              "evidence_ids": [
+                "2007.01282-FiD.pdf:1:0"
+              ],
+              "targets": []
+            }
+          },
+          {
+            "filename": "2203.02155-InstructGPT.pdf",
+            "error": "B audit omitted requirements",
+            "received": {
+              "filename": "2203.02155-InstructGPT.pdf",
+              "status": "irrelevant",
+              "reason": "论文研究通过人类反馈训练语言模型遵循指令，未涉及卫星热红外观测、城市树冠覆盖率或地表温度。",
+              "evidence_ids": [
+                "2203.02155-InstructGPT.pdf:1:0"
+              ],
+              "targets": []
+            }
+          }
+        ],
+        "empty_result_review": true,
+        "original_task_only": true,
+        "budget_seconds": 260
+      },
+      "expanded_documents": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2104.08663-BEIR.pdf",
+        "2112.04426-RETRO.pdf",
+        "2203.02155-InstructGPT.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "pending": [],
+      "approved": [],
+      "screened_documents": 7,
+      "attempted_documents": 7,
+      "uncertain": [],
+      "outcome": "complete"
+    },
+    "seconds": 125.61,
+    "calls": 5,
+    "tokens": 20902
+  }
+]

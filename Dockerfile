@@ -6,9 +6,9 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY --chown=agent:agent src /app/src
 COPY --chown=agent:agent agent.py README.md /app/
 RUN mkdir -p /output && chown agent:agent /output
-ENV PYTHONPATH=/app/src RESEARCH_WORKSPACE_ROOT=/data RESEARCH_RESULT_ROOT=/output AGENT_VERSION=2.0.8-bd5
-LABEL org.agenthack.version="2.0.8-bd5"
-LABEL org.agenthack.prompt_version="20261102-db-runtime-tests-audit"
+ENV PYTHONPATH=/app/src RESEARCH_WORKSPACE_ROOT=/data RESEARCH_RESULT_ROOT=/output AGENT_VERSION=2.0.9-bd6
+LABEL org.agenthack.version="2.0.9-bd6"
+LABEL org.agenthack.prompt_version="20261103-b-query-recovery-d-refinement"
 LABEL org.agenthack.protocol="layered-d-v3-source-v1"
 USER agent
 EXPOSE 8080

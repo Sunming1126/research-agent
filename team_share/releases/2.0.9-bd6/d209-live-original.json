@@ -1,0 +1,621 @@
+{
+  "initial": {
+    "state": "tested",
+    "results": [
+      {
+        "name": "heldout-0",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "a",
+              "points": [
+                {
+                  "time": 1,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 3,
+                  "value": 6.0,
+                  "weight": 3.0
+                },
+                {
+                  "time": 5,
+                  "value": 4.0,
+                  "weight": 1.0
+                }
+              ]
+            },
+            {
+              "group": "b",
+              "points": [
+                {
+                  "time": 4,
+                  "value": 20.0,
+                  "weight": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-1",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "a",
+              "points": [
+                {
+                  "time": 1,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 3,
+                  "value": 6.0,
+                  "weight": 3.0
+                },
+                {
+                  "time": 5,
+                  "value": 4.0,
+                  "weight": 1.0
+                }
+              ]
+            },
+            {
+              "group": "b",
+              "points": [
+                {
+                  "time": 4,
+                  "value": 20.0,
+                  "weight": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-2",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "a",
+              "points": [
+                {
+                  "time": 1,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 3,
+                  "value": 6.0,
+                  "weight": 3.0
+                },
+                {
+                  "time": 5,
+                  "value": 4.0,
+                  "weight": 1.0
+                }
+              ]
+            },
+            {
+              "group": "b",
+              "points": [
+                {
+                  "time": 4,
+                  "value": 20.0,
+                  "weight": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-3",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "a",
+              "points": [
+                {
+                  "time": 1,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 3,
+                  "value": 4.5,
+                  "weight": 4.0
+                },
+                {
+                  "time": 5,
+                  "value": 5.5,
+                  "weight": 4.0
+                }
+              ]
+            },
+            {
+              "group": "b",
+              "points": [
+                {
+                  "time": 4,
+                  "value": 20.0,
+                  "weight": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-4",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "a",
+              "points": [
+                {
+                  "time": 1,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 3,
+                  "value": 4.5,
+                  "weight": 4.0
+                },
+                {
+                  "time": 5,
+                  "value": 4.4,
+                  "weight": 5.0
+                }
+              ]
+            },
+            {
+              "group": "b",
+              "points": [
+                {
+                  "time": 4,
+                  "value": 20.0,
+                  "weight": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-5",
+        "passed": true,
+        "actual": {
+          "groups": []
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-6",
+        "passed": false,
+        "actual": {
+          "groups": []
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-7",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "x",
+              "points": [
+                {
+                  "time": -2,
+                  "value": -2.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 0,
+                  "value": 2.5,
+                  "weight": 4.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      }
+    ]
+  },
+  "final": {
+    "state": "tested",
+    "results": [
+      {
+        "name": "heldout-0",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "a",
+              "points": [
+                {
+                  "time": 1,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 2,
+                  "value": null,
+                  "weight": 0.0
+                },
+                {
+                  "time": 3,
+                  "value": 6.0,
+                  "weight": 3.0
+                },
+                {
+                  "time": 4,
+                  "value": null,
+                  "weight": 0.0
+                },
+                {
+                  "time": 5,
+                  "value": 4.0,
+                  "weight": 1.0
+                }
+              ]
+            },
+            {
+              "group": "b",
+              "points": [
+                {
+                  "time": 4,
+                  "value": 20.0,
+                  "weight": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-1",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "a",
+              "points": [
+                {
+                  "time": 1,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 2,
+                  "value": null,
+                  "weight": 0.0
+                },
+                {
+                  "time": 3,
+                  "value": 6.0,
+                  "weight": 3.0
+                },
+                {
+                  "time": 4,
+                  "value": null,
+                  "weight": 0.0
+                },
+                {
+                  "time": 5,
+                  "value": 4.0,
+                  "weight": 1.0
+                }
+              ]
+            },
+            {
+              "group": "b",
+              "points": [
+                {
+                  "time": 4,
+                  "value": 20.0,
+                  "weight": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-2",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "a",
+              "points": [
+                {
+                  "time": 1,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 2,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 3,
+                  "value": 6.0,
+                  "weight": 3.0
+                },
+                {
+                  "time": 4,
+                  "value": 6.0,
+                  "weight": 3.0
+                },
+                {
+                  "time": 5,
+                  "value": 4.0,
+                  "weight": 1.0
+                }
+              ]
+            },
+            {
+              "group": "b",
+              "points": [
+                {
+                  "time": 4,
+                  "value": 20.0,
+                  "weight": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-3",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "a",
+              "points": [
+                {
+                  "time": 1,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 2,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 3,
+                  "value": 4.5,
+                  "weight": 4.0
+                },
+                {
+                  "time": 4,
+                  "value": 6.0,
+                  "weight": 3.0
+                },
+                {
+                  "time": 5,
+                  "value": 5.5,
+                  "weight": 4.0
+                }
+              ]
+            },
+            {
+              "group": "b",
+              "points": [
+                {
+                  "time": 4,
+                  "value": 20.0,
+                  "weight": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-4",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "a",
+              "points": [
+                {
+                  "time": 1,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 2,
+                  "value": 0.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 3,
+                  "value": 4.5,
+                  "weight": 4.0
+                },
+                {
+                  "time": 4,
+                  "value": 4.5,
+                  "weight": 4.0
+                },
+                {
+                  "time": 5,
+                  "value": 4.4,
+                  "weight": 5.0
+                }
+              ]
+            },
+            {
+              "group": "b",
+              "points": [
+                {
+                  "time": 4,
+                  "value": 20.0,
+                  "weight": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-5",
+        "passed": true,
+        "actual": {
+          "groups": []
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-6",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "x",
+              "points": [
+                {
+                  "time": -2,
+                  "value": null,
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "heldout-7",
+        "passed": false,
+        "actual": {
+          "groups": [
+            {
+              "group": "x",
+              "points": [
+                {
+                  "time": -2,
+                  "value": -2.0,
+                  "weight": 1.0
+                },
+                {
+                  "time": 0,
+                  "value": 2.5,
+                  "weight": 4.0
+                }
+              ]
+            }
+          ]
+        },
+        "error": null
+      }
+    ]
+  },
+  "review": {
+    "selected": "review",
+    "semantic_verified": false,
+    "selftest": {
+      "state": "tested",
+      "count": 6,
+      "passed": 5,
+      "received": 6,
+      "rejected": []
+    },
+    "state": "repair",
+    "grounded_defects": 2,
+    "rejected_defects": 1,
+    "repair": "selected",
+    "retest": {
+      "state": "tested",
+      "passed": 6
+    },
+    "followup": {
+      "selected": false,
+      "state": "not_needed"
+    }
+  },
+  "usage": [
+    {
+      "stage": "d_source",
+      "tokens": 1791,
+      "usage_source": "gateway",
+      "model": "deepseek_v4",
+      "finish_reason": "stop",
+      "outcome": "returned_complete_response",
+      "prompt_version": "20261026-v20-complete-survey-task",
+      "requested_output_tokens": 24000,
+      "estimated_input_tokens": 1242,
+      "reserved_for_later": 0,
+      "seconds": 45.538
+    },
+    {
+      "stage": "d_tests",
+      "tokens": 2288,
+      "usage_source": "gateway",
+      "model": "deepseek_v4",
+      "finish_reason": "stop",
+      "outcome": "returned_complete_response",
+      "prompt_version": "20261026-v20-complete-survey-task",
+      "requested_output_tokens": 8000,
+      "estimated_input_tokens": 1180,
+      "reserved_for_later": 0,
+      "seconds": 63.413
+    },
+    {
+      "stage": "d_review",
+      "tokens": 5296,
+      "usage_source": "gateway",
+      "model": "deepseek_v4",
+      "finish_reason": "stop",
+      "outcome": "returned_complete_response",
+      "prompt_version": "20261026-v20-complete-survey-task",
+      "requested_output_tokens": 8000,
+      "estimated_input_tokens": 7199,
+      "reserved_for_later": 0,
+      "seconds": 50.3
+    },
+    {
+      "stage": "d_source",
+      "tokens": 4120,
+      "usage_source": "gateway",
+      "model": "deepseek_v4",
+      "finish_reason": "stop",
+      "outcome": "returned_complete_response",
+      "prompt_version": "20261026-v20-complete-survey-task",
+      "requested_output_tokens": 24000,
+      "estimated_input_tokens": 5866,
+      "reserved_for_later": 0,
+      "seconds": 36.241
+    }
+  ],
+  "seconds": 195.97
+}
