@@ -1,17 +1,29 @@
 {
-  "status": "waiting_original_native_docker_approval",
-  "request_id": "e371e332ea224e2287528ec80e3bb073",
-  "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
-  "native_approval_id": "6c527928-6eba-4073-8b1c-fe39a2e15543",
-  "native_tool_seq": 2690,
+  "status": "diagnosis_completed_not_formal_fix",
+  "run": "d05-diagnosis-20261103-133231-48a4d",
+  "source_commit": "d85ec7162a19e4da93ee29d76743db20ed94c84c",
   "models_called": 0,
-  "d05_tests_executed": 0,
+  "d05_replays_executed": 54,
   "production_algorithm_changed": false,
-  "planned_input_cases": 27,
-  "planned_saved_sources": 2,
+  "counts": {
+    "saved-A": {
+      "passed": 27,
+      "failed": 0
+    },
+    "saved-B": {
+      "passed": 26,
+      "failed": 1
+    }
+  },
+  "standard_cases_per_source": 26,
+  "extension_probe_count_per_source": 1,
   "official_score": null,
-  "coordinator_sha256": {
-    "d05_diagnosis_20261103.py": "f5b4a44418d150f22a0f236715dcfceb6c4cd18c4095d308dfe4c25239287b82",
-    "d05_linux_replay_worker_20261103.py": "7af55b0b3f18a4b49acea8950a6ea48f2e94760a6c17abe2f168d366deef83d6"
+  "native_attestation": {
+    "request_id": "e371e332ea224e2287528ec80e3bb073",
+    "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+    "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+    "native_tool_seq": 2689,
+    "native_tool_call_sha256": "31d579c1fff38cded3e09baaf90b1c9b591174ce59485e51842a12f9a2d9c7d4",
+    "native_tool_execution_verified": true
   }
 }
