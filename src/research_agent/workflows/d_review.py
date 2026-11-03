@@ -79,7 +79,7 @@ def review_result(response, materials, source):
         sq=row['source_quote']
         material=material_reference(row,materials)
         code=bound_quote(sq,source)
-        if len(sq.strip())<8 or material is None or code is None:
+        if len(sq.strip())<2 or material is None or code is None:
             rejected+=1;continue
         verified.append({**{k:row[k] for k in keys},'material_quote':material,'source_quote':code})
     return {'state':'repair' if verified else 'ungrounded','defects':verified,'rejected':rejected}

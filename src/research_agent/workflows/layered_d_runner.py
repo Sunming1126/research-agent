@@ -207,6 +207,11 @@ class LayeredDRunner:
             implementation.write_bytes(source_bytes)
             response_path.write_bytes(response_bytes)
             audit['error_type'] = type(exc).__name__
+        if selected != 'original':
+            from .d_holdout import validate_revision
+            audit['independent_validation'] = validate_revision(self, case, implementation, materials, tests, source_bytes, response_bytes)
+            if audit['independent_validation']['reverted']:
+                selected = 'original'
         audit['selected'] = selected
         write_json(confined(self.work, "source-review.json"), audit)
         return implementation
