@@ -1,5 +1,5 @@
 {
-  "written_at": "2026-11-03T12:47:55.699483+08:00",
+  "written_at": "2026-11-03T13:04:31.098084+08:00",
   "scope": "Real target public-input studies and separate official observations; no invented score delta",
   "canary_official_score": null,
   "studies": [
@@ -7,6 +7,8 @@
     "score-target-d02-pair-20261102-222441-52484"
   ],
   "files": {
+    "current-source-fingerprints.json": "d00a508e0febcb2baec2792e4a358d81e9fc1350de756e33304a03513cb9d457",
+    "current-source-regression.json": "8c9eb09aaa5f0099dd0518db40a25b5906a0c0043a52775c011c981d2ac17532",
     "official-canary-blocker.json": "e55cb39531b642094ddd36da6a13bbfcbe29ea446fe8812c228d06096d5f10cb",
     "official-observations.json": "a2e09d3158db1dd86f094a84af33f1ceb47581ce03fa2f870fc4794b36c3c6af",
     "score-target-d02-pair-20261102-222441-52484.json": "92f681315cab39d1bbc60f2e9edf1a88defc8e53307831623fb59dee5e0c9291",
