@@ -11,12 +11,15 @@ from .d_review import response_json, material_segments, material_reference
 def test_prompt(materials):
     return (
         '仅根据当前授权材料设计独立的小输入单元测试。你看不到候选实现，不能迎合它。'
-        '返回JSON {tests:[{name,material_id,derivation,request,expected}]}，最多3个测试。'
+        '返回JSON {tests:[{name,material_id,derivation,request,expected}]}，最多6个测试。'
         'request是可直接传给run_experiment的完整合法对象，expected是该函数完整JSON返回值。'
         'material_id选择下列material_segments中主要规则的编号，不要抄写或改写编号；derivation逐步手算期望值，不能复制格式占位符。'
         '覆盖不同阶段、非默认参数、并列/空输入/状态更新等材料实际允许的情况；禁止编造无效输入。'
         '使用极小数据使手算可行，正确填入当轮协议要求的字段，不猜测旧题规则。'
         '先做最简单的合法正常例，再做一个材料明确允许的边界例；每例完整手算，不追求复杂数据。'
+        '先梳理材料中的不同执行阶段和分支，为每个阶段选择能区分正确实现与常见误实现的极小例子。'
+        '预算内优先覆盖尚未覆盖的阶段、参数覆盖默认值、阈值恰好相等和多步状态更新，避免六个测试重复同一简单分支。'
+        '浮点结果按公式实际计算，不提前四舍五入；如果手算精度不足，不提供猜测的精确期望值。'
         '可选字段未给出时应省略，不可擅自用null代替；期望中的字段和值必须由当前规则导出。'
         '若无法独立推导精确输出则省略该测试，可返回空数组。不能访问隐藏标签。\n'
         +json.dumps({'material_segments':material_segments(materials)},ensure_ascii=False)

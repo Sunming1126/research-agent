@@ -198,6 +198,11 @@ class LayeredDRunner:
                     selected = "review"
                     audit['repair'] = 'selected'
                 audit['retest'] = {'state': after['state'], 'passed': sum(r['passed'] for r in after['results'])}
+                if selected == 'review':
+                    from .d_refinement import refine_remaining
+                    audit['followup'] = refine_remaining(self, case, implementation, materials, tests, after)
+                    if audit['followup']['selected']:
+                        selected = 'review-2'
         except (ModelError, ValueError, TypeError, KeyError, SyntaxError, RuntimeError, TimeoutError) as exc:
             implementation.write_bytes(source_bytes)
             response_path.write_bytes(response_bytes)
