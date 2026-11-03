@@ -35,3 +35,10 @@ def test_independent_validation_preserves_source_pair(tmp_path,monkeypatch,mode)
 def test_short_comparison_defect_is_not_discarded():
     r=review_result(reply({'decision':'repair','defects':[{'material_id':'method:1','source_quote':'x<y','explanation':'Must include equality','counterexample':'x=y should pass'}]}),{'method':'Use inclusive comparison.'},'return x<y')
     assert r['state']=='repair'
+
+def test_holdout_reserves_time_before_reading_or_calling(tmp_path):
+    def forbidden(*a,**kw):raise AssertionError('late optional call')
+    runner=SimpleNamespace(llm=SimpleNamespace(supports_source_reports=True,completion=forbidden),work=tmp_path)
+    with CaseSession('D-02',899).activate():
+        r=d_holdout.validate_revision(runner,SimpleNamespace(case_id='D-02'),tmp_path/'absent',{},[],b'old',b'receipt')
+    assert r=={'state':'not_started','reverted':False}
