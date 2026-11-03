@@ -19,12 +19,46 @@ ALLOWED = {
     'src/research_agent/core/engine.py': (set(), {}),
     'src/research_agent/integrations/http_runtime.py': (set(), {}),
     'src/research_agent/workflows/layered_d_runner.py': (set(), {}),
+    'src/research_agent/rag/materials.py': (set(), {}),
+    'src/research_agent/workflows/d_generation_policy.py': (set(), {}),
+    'src/research_agent/__init__.py': (set(), {}),
 }
 
 
 def baseline_projection(name, content, root):
     functions, imports = ALLOWED[name]
     baseline = subprocess.check_output(['git', 'show', 'cd733b2:' + name], cwd=root).decode('utf-8')
+    if name == 'src/research_agent/__init__.py':
+        new = '__version__ = "2.0.2-score-canary-20261102"'
+        assert content.count(new) == 1
+        content = content.replace(new, '__version__ = "0.4.13"')
+    if name == 'src/research_agent/rag/materials.py':
+        added = 'import os\n'
+        assert content.count(added) == 1
+        content = content.replace(added, '')
+        new = '''        native_absolute = bool(item) and os.name == 'nt' and Path(item).is_absolute()
+        if not item or (("\\\\" in item or ":" in item) and not native_absolute):
+            raise MaterialError("materials must use relative paths or configured aliases")
+        if native_absolute and (item.startswith(('\\\\\\\\?\\\\', '\\\\\\\\.\\\\')) or
+                                any(':' in part for part in Path(item).parts[1:])):
+            raise MaterialError("device paths and alternate data streams are forbidden")
+'''
+        old = '''        if not item or "\\\\" in item or ":" in item:
+            raise MaterialError("materials must use relative paths or configured aliases")
+'''
+        assert content.count(new) == 1
+        content = content.replace(new, old)
+        new = 'if native_absolute or item.startswith("/"):'
+        assert content.count(new) == 1
+        content = content.replace(new, 'if item.startswith("/"):')
+    if name == 'src/research_agent/workflows/d_generation_policy.py':
+        new = '''        # A complete executable must fit the same bounded output allowance.
+        # D-02 enabled reasoning exhausted all 4200 tokens twice with no code.
+        llm.thinking_override = 'disabled'
+'''
+        old = "        llm.thinking_override = 'enabled' if case_id == 'D-02' and not baseline else 'disabled'\n"
+        assert content.count(new) == 1
+        content = content.replace(new, old)
     if name == 'src/research_agent/core/config.py':
         added = 'from .time_limits import DEFAULT_CASE_TIMEOUT\n'
         assert content.count(added) == 1
