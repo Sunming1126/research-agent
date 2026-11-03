@@ -1,0 +1,80 @@
+[
+  {
+    "run_id": "eval-20261102-975b53cf",
+    "at": "2026-11-03T12:38:14.3087476+08:00",
+    "url": "http://aiagent-anic.com/runs/eval-20261102-975b53cf",
+    "source": "normal logged-in website UI; user-visible results only",
+    "version_attribution": "unconfirmed; not this canary score",
+    "official_total": [
+      "本次自动得分 75.8 / 100。已计入初赛自动榜。 不是未经复核的最终比赛成绩。"
+    ],
+    "case_scores": [
+      "A-01已评分得分：5",
+      "B-01已评分得分：14.25",
+      "B-02已评分 · 0 分得分：0",
+      "B-03已评分得分：12.75",
+      "C-03已评分得分：24.27",
+      "C-05已评分得分：25",
+      "D-01已评分得分：40",
+      "D-02已评分得分：39",
+      "D-05已评分得分：18.5025641025641",
+      "E-01已评分得分：9.38",
+      "E-04已评分 · 0 分得分：0"
+    ],
+    "case_usage": [
+      "01A-01Single协议有效Agent 模型调用1 次Agent Token420模型耗时10.8s纯处理耗时1.1s",
+      "02B-01Single协议有效Agent 模型调用15 次Agent Token96,088模型耗时7m53s纯处理耗时39.2s",
+      "03B-02Single协议有效Agent 模型调用16 次Agent Token108,866模型耗时7m13s纯处理耗时33.3s",
+      "04B-03Single协议有效Agent 模型调用15 次Agent Token97,715模型耗时8m34s纯处理耗时4.1s",
+      "05C-03Single协议有效Agent 模型调用4 次Agent Token31,254模型耗时2m3s纯处理耗时2.7s",
+      "06C-05Single协议有效Agent 模型调用4 次Agent Token31,073模型耗时1m53s纯处理耗时2.4s",
+      "07D-01Single协议有效Agent 模型调用4 次Agent Token21,963模型耗时5m56s纯处理耗时59.0s",
+      "08D-02Single协议有效Agent 模型调用3 次Agent Token34,061模型耗时6m39s纯处理耗时1m50s",
+      "09D-05Single协议有效Agent 模型调用4 次Agent Token30,990模型耗时7m11s纯处理耗时42.7s",
+      "10E-01Single协议有效Agent 模型调用3 次Agent Token19,323模型耗时2m24s纯处理耗时0ms",
+      "11E-04Single异常Agent 模型调用2 次Agent Token17,888模型耗时2m59s纯处理耗时0msAgent /solve 调用失败，请检查接口实现和运行日志"
+    ],
+    "errors": [
+      "【输出字段结构错误】E-04：提交内容缺少必填字段或字段类型不符合赛题输出规范。"
+    ],
+    "local_ui_receipt_sha256": "0bb1b3f7a5c4775be26faccf4436f9be8f63c75ba16dd754c87ee49109382985"
+  },
+  {
+    "run_id": "eval-20261102-9f89e189",
+    "at": "2026-11-03T12:37:01.8804162+08:00",
+    "url": "http://aiagent-anic.com/runs/eval-20261102-9f89e189",
+    "source": "normal logged-in website UI; user-visible results only",
+    "version_attribution": "unconfirmed; not this canary score",
+    "official_total": [
+      "本次自动得分 62.2 / 100。已计入初赛自动榜。 不是未经复核的最终比赛成绩。"
+    ],
+    "case_scores": [
+      "A-04已评分得分：5",
+      "B-01已评分得分：13.5",
+      "B-02已评分 · 0 分得分：0",
+      "B-03已评分得分：14.25",
+      "C-03已评分得分：24.3",
+      "C-05已评分得分：25",
+      "D-01已评分得分：11.1",
+      "D-02已评分得分：40",
+      "D-05已评分 · 0 分得分：0",
+      "E-01已评分得分：6.38",
+      "E-04已评分得分：6.06"
+    ],
+    "case_usage": [
+      "01A-04Single协议有效Agent 模型调用1 次Agent Token445模型耗时9.2s纯处理耗时288ms",
+      "02B-01Single协议有效Agent 模型调用15 次Agent Token85,922模型耗时5m16s纯处理耗时36.4s",
+      "03B-02Single协议有效Agent 模型调用11 次Agent Token56,799模型耗时4m17s纯处理耗时19.0s",
+      "04B-03Single协议有效Agent 模型调用14 次Agent Token78,702模型耗时5m8s纯处理耗时24.4s",
+      "05C-03Single协议有效Agent 模型调用4 次Agent Token34,619模型耗时1m39s纯处理耗时2.7s",
+      "06C-05Single协议有效Agent 模型调用2 次Agent Token16,510模型耗时1m3s纯处理耗时2.9s",
+      "07D-01Single协议有效Agent 模型调用4 次Agent Token22,404模型耗时2m56s纯处理耗时43.8s",
+      "08D-02Single协议有效Agent 模型调用4 次Agent Token53,719模型耗时8m53s纯处理耗时1m10s",
+      "09D-05Single协议有效Agent 模型调用3 次Agent Token14,018模型耗时1m29s纯处理耗时34.8s",
+      "10E-01Single协议有效Agent 模型调用4 次Agent Token23,380模型耗时2m3s纯处理耗时1.7s",
+      "11E-04Single协议有效Agent 模型调用4 次Agent Token26,457模型耗时1m49s纯处理耗时2.2s"
+    ],
+    "errors": [],
+    "local_ui_receipt_sha256": "5d3bd21451cf7cc28c965b14bcb473f3e0ddb4e569d4cd703487b7f140dc89e1"
+  }
+]

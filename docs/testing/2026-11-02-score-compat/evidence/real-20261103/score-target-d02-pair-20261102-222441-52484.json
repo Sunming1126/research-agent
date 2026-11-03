@@ -1,0 +1,623 @@
+{
+  "name": "score-target-d02-pair-20261102-222441-52484",
+  "input_scope": "self-authored public-material fixtures; not private platform assigned inputs",
+  "input_sha256": {
+    "A-05": "b26d40ec0fdefbfb7b42d4de68cf091a3d45c907f3ed594afac46c230fb4c479",
+    "B-01": "fe69d29fdbceac9e13adefc9a92463aa5bed817c6e76bb7a5bd171e8362224d6",
+    "B-02": "a2d2157ace7b52d53346a1374a92d3baa5849c4a2863220724b9fe61847ad5ac",
+    "B-03": "1bd0f128819ace1f9581fb20d71ae12cc51f2852f513393b93c3f8618d6b08b6",
+    "C-03": "715ae7b78b031d23b4dc5ac7b50ed071624191c2a3a652fbd376db1490b194b1",
+    "C-05": "7e0d1a221f665d48c07acdc0bfaebf56780798d05d5d786d4509bc07377037aa",
+    "E-01": "e49ee1c6c59bfdb3ae38e70c6574abbdf92e0a914a253ad77ab0da5b9de410a8",
+    "E-04": "699fb0a3af7cb6c66ea0e5e3606207ff74af89ff3427badf356a9c4b8a6c70eb",
+    "D-01": "ae0459b0e586b66875b903f2f27b79e7bbc4eb40dcd97f9136f50bc47081875a",
+    "D-02": "8c2384ec07176d204f1abed5f78a598bb31e0178c73baef07be0a6439316f6ef",
+    "D-05": "58d2d22b2fc5d18d046081238916ab5e1095815ff94de5528cd3bf47df912c56"
+  },
+  "materials_sha256": {
+    "2004.04906-DPR.pdf": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f",
+    "2005.11401-RAG.pdf": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+    "2007.01282-FiD.pdf": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953",
+    "2104.08663-BEIR.pdf": "1925755aeb627123d1a63c66f02e5aa2432f7e92751a02bea7c8c3b6bbb6ec33",
+    "2112.04426-RETRO.pdf": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+    "2203.02155-InstructGPT.pdf": "c1984bb50a5b90fddb895fdc3a0f72e5bc977148c9f63ef6040cbe7a3e1f0d98",
+    "2310.11511-Self-RAG.pdf": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+  },
+  "source_refs": {
+    "baseline": "95b8e6d655a093dd7274252e7458d7147ff5e981",
+    "candidate": "089e657312c5b28e5a13c77ab1a84c814359ab7f"
+  },
+  "source_file_sha256": {
+    "baseline": {
+      "agent.py": "bd0be854dc9ea00cd8f4cecfd43589f72869889a62cba9ad301820ebcc0857db",
+      "src/research_agent/__init__.py": "138cde180413ca2b468acdf6daf4c4ae8cfb5c186809a5292165d4823fc492e7",
+      "src/research_agent/__main__.py": "9a3cf72f632eb36445b835d6e09371e64ae01971f5faba67ba5c18f5f45a0050",
+      "src/research_agent/contracts/__init__.py": "dd2711c33ea154a33c9407feab03c7c38fc05743e25c5b0a7a6660dd08d50d1a",
+      "src/research_agent/contracts/report_rules.py": "be54a42f74fe4fb7cda665a982d4ba9cadca2e321b4c56f251319725f1e37edc",
+      "src/research_agent/contracts/validation.py": "13b050dbea8797baa8e7c0d46b36ed606689a4f877c171246295444661614f2e",
+      "src/research_agent/core/__init__.py": "dfd1517d38f7486703dca5d5acdbbaa0442f3cf1d017700998e9e9e2f2f32ffa",
+      "src/research_agent/core/b_submission.py": "adab84f3d31d65c49022b6b3446f72f524a418828f44833631f05804b551489d",
+      "src/research_agent/core/config.py": "80ed4293f6f7fbaf79b54f5b468f8f35a0b3ea835c99e507d0c30a888f03a9c5",
+      "src/research_agent/core/dispatch.py": "9e818ff0f2ced29cb15163c6f7141bb21e02fb774e9de9b9bd8aa1dfd4290951",
+      "src/research_agent/core/dispatch_plan.py": "d5e35e00965a82e400dceacc01b957fffe4e9db907f412a4111aff8e1c772c71",
+      "src/research_agent/core/engine.py": "35aef8e233c93680e3d739e5f671d4c4f4d975fc5906a771654a7fe99033e7e7",
+      "src/research_agent/core/models.py": "ba3d9d4e498cb8da661827912f9f41e6bd02bd0b67d5765bc3a064bc477e735b",
+      "src/research_agent/core/session.py": "7806535a2028cfb692f55ca0d494304e4e737a9cc119c41b247ba73e6c5b2336",
+      "src/research_agent/core/time_limits.py": "a4329acedfbf62def24e836f7ae17806e57033a6b82051fff096950491ff07de",
+      "src/research_agent/core/utils.py": "918bc11a84e2a1be6b87bb50fcdf908567e713fe01cbbce38c050d27ecabc246",
+      "src/research_agent/evidence/__init__.py": "979dd63615e748d9495a63bd2aa6cdd3fd99dec79eeccf654a6b4363a1758e90",
+      "src/research_agent/evidence/attribution.py": "f7d52fe06da0261217440e16cfe472813c034c5af7975860717d018ccb98d6f2",
+      "src/research_agent/evidence/ledger.py": "12a1d30f5bc843596141102382a76c034438283047a242697256d8d23cda3807",
+      "src/research_agent/evidence/reporting.py": "34645c6408e31aa46020c396a6bcf8ba3676073afe8a2802c6be544470a133a6",
+      "src/research_agent/integrations/__init__.py": "4f7da132b5504eb2eee2e52b75cf94b148d32d091594375e8cfbf856d8710e9a",
+      "src/research_agent/integrations/b_prompt.py": "16d3a165ef14b5f7e6970dfab89c5de81509016e9b1b7a7999e26e9cd5d689d6",
+      "src/research_agent/integrations/http_runtime.py": "53336bf0b2ba26be54e5249bb35ee5e4dfdcbba5f74f2571631d097fc5418697",
+      "src/research_agent/integrations/idea_prompt.py": "dc16c36c3fdc3aec15cc6201dcba3ecb7b288fa2335de49261d4d1ece29e68dd",
+      "src/research_agent/integrations/instrumentation.py": "6f14706265b8d0e493848bd4ab76e0d111d71d913a7092811000fe1c4331daaf",
+      "src/research_agent/integrations/llm.py": "82b79e9f400c2f4d79e0fbc4785a85abb869fdb4351e99e34bcc58b6d930e677",
+      "src/research_agent/integrations/prompts.py": "026cb1848bab69ab28de9d294e9ce9dd8141977c953a6acdba65a3cbaacdd7be",
+      "src/research_agent/integrations/survey_prompt.py": "a84ad522589d991093533baed33c88012040ed94bd382820cf03c705aba57e36",
+      "src/research_agent/rag/__init__.py": "326c733d09db3000559f367dbb3b85ee519989d9365a8431dd4bb59ead7a952b",
+      "src/research_agent/rag/materials.py": "a2d66acedd6449fb463367f92d80c6d92f8cba5fccbf5c7edbeacd108f7706a6",
+      "src/research_agent/rag/paper_selection.py": "854793ab338afa39aa2ba35325a386da8a2710f35595ee5435928cf2b1d0fa5b",
+      "src/research_agent/rag/report_selection.py": "d56d880587cca46fcc32294c77d95690598768d29160364a2bc97f3da88ac35d",
+      "src/research_agent/rag/retrieval.py": "a58b5aeea134e38823ab7ff1a54a5aec7ee1ca6c130285dd105574aec09d63df",
+      "src/research_agent/workflows/__init__.py": "336b2baed92d4297655def8e9c7fa414c76d4461286c316878ce53014ac27729",
+      "src/research_agent/workflows/b_conditions.py": "2a566aa974aa13ca8700c3ec88b92162d496b7298f2a992bdcf51283ee8c46c0",
+      "src/research_agent/workflows/b_evidence.py": "f806b7056726f7222c43358cc24f9f777e2ecddbe7ea3d27c41a714244ba9435",
+      "src/research_agent/workflows/b_workflow.py": "fae85d976b4477a3c862c7f0f7cd177d22b411493162f00ef10001389ac5054b",
+      "src/research_agent/workflows/d02_policy.py": "f0f76c27f540157e433cfcf0224637428683ba16b70364e600aa5a6b0673ac14",
+      "src/research_agent/workflows/d05_policy.py": "205593f9af88f9ffb47d734a9dbad034bd3a60830067f25124fdde5fb701f915",
+      "src/research_agent/workflows/d05_review.py": "c78c2ec77760dc8fb1259cea4eb276e132d471fae65571abce13462ce0ca38f3",
+      "src/research_agent/workflows/d_algorithms/__init__.py": "e18e39ccb960f057958ff607fe0027941efa245f186c264824521f6a57398906",
+      "src/research_agent/workflows/d_algorithms/d01.py": "372279f7169a8fba01881ffff4b32f0f1cc5729a226b8ebad86a7d5d6b63157e",
+      "src/research_agent/workflows/d_algorithms/d02.py": "75fa4bcccbe7039f03eda82d03cbd2e5732a0012e2b281245fa5a2620883112d",
+      "src/research_agent/workflows/d_algorithms/d05.py": "133491efb0283f748cbf357fadf065bac55ac21d6f37b4209d84b9849baa2262",
+      "src/research_agent/workflows/d_boundary_cases.py": "da0177cbfeb344003c79698d706cb758747559790f4c00eda94dd5a92ee437a2",
+      "src/research_agent/workflows/d_generation_policy.py": "0286b1a955131d23f95085aff68f9eba4321bb84515d9743aa5d6854f66da600",
+      "src/research_agent/workflows/d_public_review.py": "f19b1d2418a4ea148ae66961579c5a236df37c691e54a2b7c95ffc0f201cf042",
+      "src/research_agent/workflows/experiments.py": "4738c5a30a9c28e576e6abcca98bf5232f42526a826afb7bb83c630f67b18037",
+      "src/research_agent/workflows/idea_plan.py": "f9fc68a14b50b208b08b0ff9398f3ba512261eecc1dca23ece0ae7a22013cd75",
+      "src/research_agent/workflows/idea_repair.py": "956ec36c05015e8c8a04a22c22564aae20e655e2cc00de9e07833775d58dde1c",
+      "src/research_agent/workflows/idea_sources.py": "5fb0b287e60ea23f9c045dc24afe5a0d0a2f6ae4c1f9a998522d028d44a0d6bb",
+      "src/research_agent/workflows/idea_workflow.py": "d6d9d382e335f62f374d47547ce0568ad3f52ac343e163675f295e2af4ae643b",
+      "src/research_agent/workflows/layered_d_runner.py": "af7a2af27b453ab4ffe2fd2c8ed8a9d29347602e78d8aee13994938179aad9f0",
+      "src/research_agent/workflows/report_context.py": "465cf40c68f8fdf264566afe124adb1d50b341aa117144e7cd8d3601b5484f84",
+      "src/research_agent/workflows/reports.py": "f41cb06ecc81264c05e4e5f6e2e4fea3c9d777510420b67699f88f1baae62000",
+      "src/research_agent/workflows/sample_validation.py": "44109e2c6f7a20357098218e018e09a4fabebf366ff08141c7915fba59395746",
+      "src/research_agent/workflows/sample_worker.py": "dc0f5f0e78427cad46f685e10a1063863c000f4af731088df3687ad323e233fd",
+      "src/research_agent/workflows/source_generation.py": "8cd0765d04bd92165c89547df88888eb1142b1b51b1383d69920b8c2cd660221",
+      "src/research_agent/workflows/source_reports.py": "52ac1e553cfe5f18e6de5cc9b0f8b734c681a3076ec7623e1b2bc25ac3ef87c0",
+      "src/research_agent/workflows/survey_repair.py": "df26867e9c6727df8a3950b442dcf239789f3c96833719f7a124e947106a165a",
+      "src/research_agent/workflows/survey_sources.py": "a6667e7c7e0a1e2609f45e8b44011f2c5cc148b4079f0b28b254b3ec9279b95b",
+      "src/research_agent/workflows/tasks.py": "b97919c787d5f6df5759af2132daa6ace03bfb37adc05a653481510f914b4e3c"
+    },
+    "candidate": {
+      "agent.py": "bd0be854dc9ea00cd8f4cecfd43589f72869889a62cba9ad301820ebcc0857db",
+      "src/research_agent/__init__.py": "138cde180413ca2b468acdf6daf4c4ae8cfb5c186809a5292165d4823fc492e7",
+      "src/research_agent/__main__.py": "9a3cf72f632eb36445b835d6e09371e64ae01971f5faba67ba5c18f5f45a0050",
+      "src/research_agent/contracts/__init__.py": "dd2711c33ea154a33c9407feab03c7c38fc05743e25c5b0a7a6660dd08d50d1a",
+      "src/research_agent/contracts/report_rules.py": "be54a42f74fe4fb7cda665a982d4ba9cadca2e321b4c56f251319725f1e37edc",
+      "src/research_agent/contracts/validation.py": "13b050dbea8797baa8e7c0d46b36ed606689a4f877c171246295444661614f2e",
+      "src/research_agent/core/__init__.py": "dfd1517d38f7486703dca5d5acdbbaa0442f3cf1d017700998e9e9e2f2f32ffa",
+      "src/research_agent/core/b_submission.py": "adab84f3d31d65c49022b6b3446f72f524a418828f44833631f05804b551489d",
+      "src/research_agent/core/config.py": "80ed4293f6f7fbaf79b54f5b468f8f35a0b3ea835c99e507d0c30a888f03a9c5",
+      "src/research_agent/core/dispatch.py": "9e818ff0f2ced29cb15163c6f7141bb21e02fb774e9de9b9bd8aa1dfd4290951",
+      "src/research_agent/core/dispatch_plan.py": "d5e35e00965a82e400dceacc01b957fffe4e9db907f412a4111aff8e1c772c71",
+      "src/research_agent/core/engine.py": "35aef8e233c93680e3d739e5f671d4c4f4d975fc5906a771654a7fe99033e7e7",
+      "src/research_agent/core/models.py": "ba3d9d4e498cb8da661827912f9f41e6bd02bd0b67d5765bc3a064bc477e735b",
+      "src/research_agent/core/session.py": "7806535a2028cfb692f55ca0d494304e4e737a9cc119c41b247ba73e6c5b2336",
+      "src/research_agent/core/time_limits.py": "a4329acedfbf62def24e836f7ae17806e57033a6b82051fff096950491ff07de",
+      "src/research_agent/core/utils.py": "918bc11a84e2a1be6b87bb50fcdf908567e713fe01cbbce38c050d27ecabc246",
+      "src/research_agent/evidence/__init__.py": "979dd63615e748d9495a63bd2aa6cdd3fd99dec79eeccf654a6b4363a1758e90",
+      "src/research_agent/evidence/attribution.py": "f7d52fe06da0261217440e16cfe472813c034c5af7975860717d018ccb98d6f2",
+      "src/research_agent/evidence/ledger.py": "12a1d30f5bc843596141102382a76c034438283047a242697256d8d23cda3807",
+      "src/research_agent/evidence/reporting.py": "34645c6408e31aa46020c396a6bcf8ba3676073afe8a2802c6be544470a133a6",
+      "src/research_agent/integrations/__init__.py": "4f7da132b5504eb2eee2e52b75cf94b148d32d091594375e8cfbf856d8710e9a",
+      "src/research_agent/integrations/b_prompt.py": "16d3a165ef14b5f7e6970dfab89c5de81509016e9b1b7a7999e26e9cd5d689d6",
+      "src/research_agent/integrations/http_runtime.py": "53336bf0b2ba26be54e5249bb35ee5e4dfdcbba5f74f2571631d097fc5418697",
+      "src/research_agent/integrations/idea_prompt.py": "dc16c36c3fdc3aec15cc6201dcba3ecb7b288fa2335de49261d4d1ece29e68dd",
+      "src/research_agent/integrations/instrumentation.py": "6f14706265b8d0e493848bd4ab76e0d111d71d913a7092811000fe1c4331daaf",
+      "src/research_agent/integrations/llm.py": "82b79e9f400c2f4d79e0fbc4785a85abb869fdb4351e99e34bcc58b6d930e677",
+      "src/research_agent/integrations/prompts.py": "026cb1848bab69ab28de9d294e9ce9dd8141977c953a6acdba65a3cbaacdd7be",
+      "src/research_agent/integrations/survey_prompt.py": "a84ad522589d991093533baed33c88012040ed94bd382820cf03c705aba57e36",
+      "src/research_agent/rag/__init__.py": "326c733d09db3000559f367dbb3b85ee519989d9365a8431dd4bb59ead7a952b",
+      "src/research_agent/rag/materials.py": "0e78d048a685d82bce3315dfb183e74a677111446d41c2a551ada380d4ffd0d5",
+      "src/research_agent/rag/paper_selection.py": "854793ab338afa39aa2ba35325a386da8a2710f35595ee5435928cf2b1d0fa5b",
+      "src/research_agent/rag/report_selection.py": "d56d880587cca46fcc32294c77d95690598768d29160364a2bc97f3da88ac35d",
+      "src/research_agent/rag/retrieval.py": "a58b5aeea134e38823ab7ff1a54a5aec7ee1ca6c130285dd105574aec09d63df",
+      "src/research_agent/workflows/__init__.py": "336b2baed92d4297655def8e9c7fa414c76d4461286c316878ce53014ac27729",
+      "src/research_agent/workflows/b_conditions.py": "2a566aa974aa13ca8700c3ec88b92162d496b7298f2a992bdcf51283ee8c46c0",
+      "src/research_agent/workflows/b_evidence.py": "f806b7056726f7222c43358cc24f9f777e2ecddbe7ea3d27c41a714244ba9435",
+      "src/research_agent/workflows/b_workflow.py": "fae85d976b4477a3c862c7f0f7cd177d22b411493162f00ef10001389ac5054b",
+      "src/research_agent/workflows/d02_policy.py": "f0f76c27f540157e433cfcf0224637428683ba16b70364e600aa5a6b0673ac14",
+      "src/research_agent/workflows/d05_policy.py": "205593f9af88f9ffb47d734a9dbad034bd3a60830067f25124fdde5fb701f915",
+      "src/research_agent/workflows/d05_review.py": "c78c2ec77760dc8fb1259cea4eb276e132d471fae65571abce13462ce0ca38f3",
+      "src/research_agent/workflows/d_algorithms/__init__.py": "e18e39ccb960f057958ff607fe0027941efa245f186c264824521f6a57398906",
+      "src/research_agent/workflows/d_algorithms/d01.py": "372279f7169a8fba01881ffff4b32f0f1cc5729a226b8ebad86a7d5d6b63157e",
+      "src/research_agent/workflows/d_algorithms/d02.py": "75fa4bcccbe7039f03eda82d03cbd2e5732a0012e2b281245fa5a2620883112d",
+      "src/research_agent/workflows/d_algorithms/d05.py": "133491efb0283f748cbf357fadf065bac55ac21d6f37b4209d84b9849baa2262",
+      "src/research_agent/workflows/d_boundary_cases.py": "da0177cbfeb344003c79698d706cb758747559790f4c00eda94dd5a92ee437a2",
+      "src/research_agent/workflows/d_generation_policy.py": "789f6c1cc998533791c7e9527cf44316b5e2bfe8e009b3ad4e04bbf4029a35d6",
+      "src/research_agent/workflows/d_public_review.py": "f19b1d2418a4ea148ae66961579c5a236df37c691e54a2b7c95ffc0f201cf042",
+      "src/research_agent/workflows/experiments.py": "4738c5a30a9c28e576e6abcca98bf5232f42526a826afb7bb83c630f67b18037",
+      "src/research_agent/workflows/idea_plan.py": "f9fc68a14b50b208b08b0ff9398f3ba512261eecc1dca23ece0ae7a22013cd75",
+      "src/research_agent/workflows/idea_repair.py": "956ec36c05015e8c8a04a22c22564aae20e655e2cc00de9e07833775d58dde1c",
+      "src/research_agent/workflows/idea_sources.py": "5fb0b287e60ea23f9c045dc24afe5a0d0a2f6ae4c1f9a998522d028d44a0d6bb",
+      "src/research_agent/workflows/idea_workflow.py": "d6d9d382e335f62f374d47547ce0568ad3f52ac343e163675f295e2af4ae643b",
+      "src/research_agent/workflows/layered_d_runner.py": "af7a2af27b453ab4ffe2fd2c8ed8a9d29347602e78d8aee13994938179aad9f0",
+      "src/research_agent/workflows/report_context.py": "465cf40c68f8fdf264566afe124adb1d50b341aa117144e7cd8d3601b5484f84",
+      "src/research_agent/workflows/reports.py": "f41cb06ecc81264c05e4e5f6e2e4fea3c9d777510420b67699f88f1baae62000",
+      "src/research_agent/workflows/sample_validation.py": "44109e2c6f7a20357098218e018e09a4fabebf366ff08141c7915fba59395746",
+      "src/research_agent/workflows/sample_worker.py": "dc0f5f0e78427cad46f685e10a1063863c000f4af731088df3687ad323e233fd",
+      "src/research_agent/workflows/source_generation.py": "8cd0765d04bd92165c89547df88888eb1142b1b51b1383d69920b8c2cd660221",
+      "src/research_agent/workflows/source_reports.py": "52ac1e553cfe5f18e6de5cc9b0f8b734c681a3076ec7623e1b2bc25ac3ef87c0",
+      "src/research_agent/workflows/survey_repair.py": "df26867e9c6727df8a3950b442dcf239789f3c96833719f7a124e947106a165a",
+      "src/research_agent/workflows/survey_sources.py": "a6667e7c7e0a1e2609f45e8b44011f2c5cc148b4079f0b28b254b3ec9279b95b",
+      "src/research_agent/workflows/tasks.py": "b97919c787d5f6df5759af2132daa6ace03bfb37adc05a653481510f914b4e3c"
+    }
+  },
+  "native_attestation": {
+    "request_id": "e6b7a8cbab974c219c10952806b50816",
+    "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+    "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+    "stage": "e2e-d02",
+    "native_tool_seq": 2574,
+    "native_tool_call_sha256": "c3f572cdb780afca1336fb02b6ec6edafeadc6b8cbaffc3df7e8505d6d6a2dc8",
+    "native_tool_execution_verified": true
+  },
+  "official_score": null,
+  "complete": true,
+  "jobs": [
+    {
+      "status": "failed",
+      "official_score": null,
+      "native_harness_orchestrated": true,
+      "error_type": "RuntimeError",
+      "error": "no complete current-session model source available",
+      "seconds": 38.859,
+      "model_calls": 2,
+      "total_tokens": 15079,
+      "quota_exhausted": false,
+      "stages": [
+        "d_source",
+        "d_source"
+      ],
+      "platform_acceptance": false,
+      "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "case_id": "D-02",
+      "variant": "baseline",
+      "job": "D-02-baseline-0",
+      "result_sha256": "39503dd869072f36db33545dc4ab9d71f36ff82eb8e50f71261f66bd0f0627c6",
+      "calls": [
+        {
+          "provider": "magic",
+          "model": "deepseek-v4.1-flash",
+          "real_model_call": true,
+          "requested_max_tokens": 4200,
+          "thinking": {
+            "type": "enabled"
+          },
+          "seconds": 20.0,
+          "usage": {
+            "completion_tokens": 4200,
+            "prompt_tokens": 3310,
+            "total_tokens": 7510,
+            "prompt_tokens_details": {
+              "cached_tokens": 3200
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 4200
+            }
+          },
+          "finish_reason": "length",
+          "http_status": 200,
+          "files": {
+            "call.json": "5a450d67bc6e8da6daf5cf827b1ce9035d5ac1dc67f244182eec59e3c31b9512",
+            "request.json": "e65f11b6fe04e268bfb22dae62e07cd22877c53f2e04438c13d4d3676fb55bdb",
+            "response.json": "d4826c8257a14cf9f3f6e6acb9a37968539de70b00bfc3e701f4036ab53ebcdf"
+          },
+          "assistant_content_characters": [
+            0
+          ]
+        },
+        {
+          "provider": "magic",
+          "model": "deepseek-v4.1-flash",
+          "real_model_call": true,
+          "requested_max_tokens": 4200,
+          "thinking": {
+            "type": "enabled"
+          },
+          "seconds": 18.156,
+          "usage": {
+            "completion_tokens": 4200,
+            "prompt_tokens": 3369,
+            "total_tokens": 7569,
+            "prompt_tokens_details": {
+              "cached_tokens": 3328
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 4200
+            }
+          },
+          "finish_reason": "length",
+          "http_status": 200,
+          "files": {
+            "call.json": "5efedea08a3d0ae539bf409114762973a015d3edf0831445cf0ebae3c625d7c9",
+            "request.json": "9e10e2f564f83217b756e5c4b28392a42965f36b2a560f6f29f8c429ddf0cc7d",
+            "response.json": "27690a09b414725ecb57e5ed3a495569a303bdf8019a8fca24bb1b275c7f83f2"
+          },
+          "assistant_content_characters": [
+            0
+          ]
+        }
+      ],
+      "output/experiment/public-selftest.json": {
+        "sha256": "c34274d71cb07194c1b98c3f11d0c1c11ce399168c08edbd3517cec05043eb07",
+        "evidence": {
+          "attempts": [
+            {
+              "attempt": 1,
+              "status": "failed",
+              "error_type": "ValueError",
+              "message": "expected exactly one complete source with finish_reason=stop"
+            },
+            {
+              "attempt": 2,
+              "status": "failed",
+              "error_type": "ValueError",
+              "message": "expected exactly one complete source with finish_reason=stop"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "official_score": null,
+      "native_harness_orchestrated": true,
+      "public_algorithm_validation": true,
+      "implementation_sha256": "36f006adee62ed647ecb3a3470f73bbbe839779c6612d22b42c93639a062d802",
+      "scope": "actual model source + real public/derived execution; no platform RPC or official score",
+      "seconds": 14.109,
+      "model_calls": 2,
+      "total_tokens": 12170,
+      "quota_exhausted": false,
+      "stages": [
+        "d_source",
+        "d_source"
+      ],
+      "platform_acceptance": false,
+      "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "case_id": "D-02",
+      "variant": "candidate",
+      "job": "D-02-candidate-1",
+      "result_sha256": "4f363c1ee92d66ea120f41f9f038080b3686eea01a966e1b5cc5148fd5e7681d",
+      "calls": [
+        {
+          "provider": "magic",
+          "model": "deepseek-v4.1-flash",
+          "real_model_call": true,
+          "requested_max_tokens": 4200,
+          "thinking": {
+            "type": "disabled"
+          },
+          "seconds": 5.39,
+          "usage": {
+            "completion_tokens": 1838,
+            "prompt_tokens": 3285,
+            "total_tokens": 5123,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "finish_reason": "stop",
+          "http_status": 200,
+          "files": {
+            "call.json": "8ad52c2b4b9049a799fbf3bbf2cbbc004a036c4a6f3d4272e5bc84b00c9ca816",
+            "request.json": "bc3279391bad1c0c0d7b5c37db1e034234db83d2054d440c252c6c4a57559e9b",
+            "response.json": "2e38a94f4c36a502e83258b7aee932f2e4f817e835ed53d4e22c1564b8787280"
+          },
+          "assistant_content_characters": [
+            6269
+          ]
+        },
+        {
+          "provider": "magic",
+          "model": "deepseek-v4.1-flash",
+          "real_model_call": true,
+          "requested_max_tokens": 4200,
+          "thinking": {
+            "type": "disabled"
+          },
+          "seconds": 5.0,
+          "usage": {
+            "completion_tokens": 1846,
+            "prompt_tokens": 5201,
+            "total_tokens": 7047,
+            "prompt_tokens_details": {
+              "cached_tokens": 3200
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "finish_reason": "stop",
+          "http_status": 200,
+          "files": {
+            "call.json": "790b18535e24de931feec35e7728fcf6b16fed2883d812e525e792965c2c2173",
+            "request.json": "a61b6e3a05b7470d7c8ed38e0d4b79471b0f01fd1ac1b0bf53d73427708a09ae",
+            "response.json": "9929da762071eea54d86574992e7fbeef9245df129ba1c9dc7af6b9ab60a9d3b"
+          },
+          "assistant_content_characters": [
+            6208
+          ]
+        }
+      ],
+      "d-public-validation.json": {
+        "sha256": "87c592fbf77236600ad9a371d11cff25ca2f40a9208b12afd7d1c4bab73356b1",
+        "evidence": {
+          "status": "passed",
+          "scope": "public_sample_structure_and_invariants",
+          "candidate_present": true,
+          "rank_consistent": true,
+          "baseline_rank_consistent": true,
+          "isolation": {
+            "resource_limits": false,
+            "syscall_filter": false
+          },
+          "derived_public_checks": [
+            "empty_titles_repeated_unknown_terms_unequal_groups",
+            "field_conflict_cutoffs_unequal_groups",
+            "empty_body_independent_title"
+          ]
+        }
+      },
+      "output/experiment/public-selftest.json": {
+        "sha256": "c68a76f759b73f09243e3bbdb3ea5948e4e61d8d8875cb11d495a3c69d6d4067",
+        "evidence": {
+          "attempts": [
+            {
+              "attempt": 1,
+              "status": "failed",
+              "error_type": "ValueError",
+              "message": "D-02 BM25 q02/r01: public expected=10.319372126894669, got=4.443727938236801"
+            },
+            {
+              "attempt": 2,
+              "source_sha256": "36f006adee62ed647ecb3a3470f73bbbe839779c6612d22b42c93639a062d802",
+              "status": "passed",
+              "scope": "public_sample_structure_and_invariants",
+              "candidate_present": true,
+              "rank_consistent": true,
+              "baseline_rank_consistent": true,
+              "isolation": {
+                "resource_limits": false,
+                "syscall_filter": false
+              },
+              "derived_public_checks": [
+                "empty_titles_repeated_unknown_terms_unequal_groups",
+                "field_conflict_cutoffs_unequal_groups",
+                "empty_body_independent_title"
+              ]
+            }
+          ],
+          "selected_attempt": 2,
+          "public_selftest_passed": true
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "official_score": null,
+      "native_harness_orchestrated": true,
+      "public_algorithm_validation": true,
+      "implementation_sha256": "3292ab65c8b42a039e157d6ed05bae9a667ccae5bd74d213bb24cb7b043c100b",
+      "scope": "actual model source + real public/derived execution; no platform RPC or official score",
+      "seconds": 10.469,
+      "model_calls": 1,
+      "total_tokens": 5047,
+      "quota_exhausted": false,
+      "stages": [
+        "d_source"
+      ],
+      "platform_acceptance": false,
+      "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "case_id": "D-02",
+      "variant": "candidate",
+      "job": "D-02-candidate-2",
+      "result_sha256": "028ea991d07a1833734f82a1744fb7424729c4db3918666254b516eec46849cb",
+      "calls": [
+        {
+          "provider": "magic",
+          "model": "deepseek-v4.1-flash",
+          "real_model_call": true,
+          "requested_max_tokens": 4200,
+          "thinking": {
+            "type": "disabled"
+          },
+          "seconds": 7.0,
+          "usage": {
+            "completion_tokens": 1762,
+            "prompt_tokens": 3285,
+            "total_tokens": 5047,
+            "prompt_tokens_details": {
+              "cached_tokens": 3200
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "finish_reason": "stop",
+          "http_status": 200,
+          "files": {
+            "call.json": "1e24100f0f2f4ce1cc57b488982bf92f7d335a7389651657bf13ff7022792e72",
+            "request.json": "bc3279391bad1c0c0d7b5c37db1e034234db83d2054d440c252c6c4a57559e9b",
+            "response.json": "f83592971d552a0eb1f41770155dfe4ab2d6f2f851ea663b7ffb66ff4b1cc810"
+          },
+          "assistant_content_characters": [
+            5797
+          ]
+        }
+      ],
+      "d-public-validation.json": {
+        "sha256": "87c592fbf77236600ad9a371d11cff25ca2f40a9208b12afd7d1c4bab73356b1",
+        "evidence": {
+          "status": "passed",
+          "scope": "public_sample_structure_and_invariants",
+          "candidate_present": true,
+          "rank_consistent": true,
+          "baseline_rank_consistent": true,
+          "isolation": {
+            "resource_limits": false,
+            "syscall_filter": false
+          },
+          "derived_public_checks": [
+            "empty_titles_repeated_unknown_terms_unequal_groups",
+            "field_conflict_cutoffs_unequal_groups",
+            "empty_body_independent_title"
+          ]
+        }
+      },
+      "output/experiment/public-selftest.json": {
+        "sha256": "7ab66d17510c22a23d1c870e0bf51b82deda057182320969dff35a6b0d75d2be",
+        "evidence": {
+          "attempts": [
+            {
+              "attempt": 1,
+              "source_sha256": "3292ab65c8b42a039e157d6ed05bae9a667ccae5bd74d213bb24cb7b043c100b",
+              "status": "passed",
+              "scope": "public_sample_structure_and_invariants",
+              "candidate_present": true,
+              "rank_consistent": true,
+              "baseline_rank_consistent": true,
+              "isolation": {
+                "resource_limits": false,
+                "syscall_filter": false
+              },
+              "derived_public_checks": [
+                "empty_titles_repeated_unknown_terms_unequal_groups",
+                "field_conflict_cutoffs_unequal_groups",
+                "empty_body_independent_title"
+              ]
+            }
+          ],
+          "selected_attempt": 1,
+          "public_selftest_passed": true
+        }
+      }
+    },
+    {
+      "status": "failed",
+      "official_score": null,
+      "native_harness_orchestrated": true,
+      "error_type": "RuntimeError",
+      "error": "no complete current-session model source available",
+      "seconds": 35.86,
+      "model_calls": 2,
+      "total_tokens": 15079,
+      "quota_exhausted": false,
+      "stages": [
+        "d_source",
+        "d_source"
+      ],
+      "platform_acceptance": false,
+      "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "case_id": "D-02",
+      "variant": "baseline",
+      "job": "D-02-baseline-3",
+      "result_sha256": "55f5ccd0ab2c1d687b6ca8c4c2dd36b06934781e23ddd292b13e6b9299c25213",
+      "calls": [
+        {
+          "provider": "magic",
+          "model": "deepseek-v4.1-flash",
+          "real_model_call": true,
+          "requested_max_tokens": 4200,
+          "thinking": {
+            "type": "enabled"
+          },
+          "seconds": 17.375,
+          "usage": {
+            "completion_tokens": 4200,
+            "prompt_tokens": 3310,
+            "total_tokens": 7510,
+            "prompt_tokens_details": {
+              "cached_tokens": 3200
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 4200
+            }
+          },
+          "finish_reason": "length",
+          "http_status": 200,
+          "files": {
+            "call.json": "cd4be35c243ce72c652e497d385edc6f584ae113b2165a2107ff90aa2db5768e",
+            "request.json": "e65f11b6fe04e268bfb22dae62e07cd22877c53f2e04438c13d4d3676fb55bdb",
+            "response.json": "e1cacd11687a25cab0c83f61c5495208aa43cbde1bb50031025d08a384a3f629"
+          },
+          "assistant_content_characters": [
+            0
+          ]
+        },
+        {
+          "provider": "magic",
+          "model": "deepseek-v4.1-flash",
+          "real_model_call": true,
+          "requested_max_tokens": 4200,
+          "thinking": {
+            "type": "enabled"
+          },
+          "seconds": 17.953,
+          "usage": {
+            "completion_tokens": 4200,
+            "prompt_tokens": 3369,
+            "total_tokens": 7569,
+            "prompt_tokens_details": {
+              "cached_tokens": 3328
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 4200
+            }
+          },
+          "finish_reason": "length",
+          "http_status": 200,
+          "files": {
+            "call.json": "cd9d318cc05fb9801b87d9984d06acae69b05dd840424f8697dd610942cf804d",
+            "request.json": "9e10e2f564f83217b756e5c4b28392a42965f36b2a560f6f29f8c429ddf0cc7d",
+            "response.json": "4265a069e4d40a8350d1b535cb5d582b217f74a72076dda1e85f5c6665351603"
+          },
+          "assistant_content_characters": [
+            0
+          ]
+        }
+      ],
+      "output/experiment/public-selftest.json": {
+        "sha256": "c34274d71cb07194c1b98c3f11d0c1c11ce399168c08edbd3517cec05043eb07",
+        "evidence": {
+          "attempts": [
+            {
+              "attempt": 1,
+              "status": "failed",
+              "error_type": "ValueError",
+              "message": "expected exactly one complete source with finish_reason=stop"
+            },
+            {
+              "attempt": 2,
+              "status": "failed",
+              "error_type": "ValueError",
+              "message": "expected exactly one complete source with finish_reason=stop"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
