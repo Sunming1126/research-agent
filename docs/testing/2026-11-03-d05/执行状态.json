@@ -1,0 +1,17 @@
+{
+  "status": "waiting_original_native_docker_approval",
+  "request_id": "e371e332ea224e2287528ec80e3bb073",
+  "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+  "native_approval_id": "6c527928-6eba-4073-8b1c-fe39a2e15543",
+  "native_tool_seq": 2690,
+  "models_called": 0,
+  "d05_tests_executed": 0,
+  "production_algorithm_changed": false,
+  "planned_input_cases": 27,
+  "planned_saved_sources": 2,
+  "official_score": null,
+  "coordinator_sha256": {
+    "d05_diagnosis_20261103.py": "f5b4a44418d150f22a0f236715dcfceb6c4cd18c4095d308dfe4c25239287b82",
+    "d05_linux_replay_worker_20261103.py": "7af55b0b3f18a4b49acea8950a6ea48f2e94760a6c17abe2f168d366deef83d6"
+  }
+}
