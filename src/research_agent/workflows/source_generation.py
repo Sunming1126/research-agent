@@ -91,6 +91,8 @@ def build_source_prompt(case, materials: dict[str, str]) -> str:
         "逐项遵守当前材料中的阶段、字段、类型、参数、方法步骤和约束。内部算法输出不是最终Reproduction答卷。run_experiment接收已解析的Python字典，返回可JSON序列化的Python对象；不要对request调用json.loads，不要用json.dumps包装返回值。\n"
         "不得联网、读写文件、读取隐藏标签、访问凭据、打印日志或使用第三方库。\n"
         "按当前材料处理边界和输入；不能把格式模板或占位符当实际结果。不得用其它方法代替指定方法。\n"
+        "先在内部列出所有阶段、公式和参数覆盖关系，再逐项实现；不能只实现样例触发的分支。明确区分字段缺失、null、0和空列表，只有材料允许时才使用默认值。\n"
+        "核对各阶段共享辅助函数是否采用同一材料定义，检查多步状态是否意外原地污染，以及排序、并列规则和边界比较是否严格符合原文。不要自行增加材料未要求的处理。\n"
         "返回完整实现而非补丁；不要省略辅助函数，不要输出解释。\n"
         + json.dumps(case.to_dict(),ensure_ascii=False) + "\n"
         + json.dumps(materials,ensure_ascii=False)
