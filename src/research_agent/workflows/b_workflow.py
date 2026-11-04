@@ -17,8 +17,9 @@ def remaining():
 
 
 @contextmanager
-def window(llm,stage):
+def window(llm,stage,*,reserve_override=0):
     cap,reserve=(40,90) if stage=='query' else (90,15)
+    reserve=max(reserve,reserve_override)
     names=('deadline','REQUEST_TIMEOUT_CAP','RETRY_ATTEMPTS','thinking_override')
     saved={n:(n in vars(llm),getattr(llm,n,None)) for n in names}
     try:
@@ -39,7 +40,9 @@ def call(llm,stage,payload,maximum):
     if hasattr(llm,'output_capacity'):
         maximum=min(maximum,llm.output_capacity(stage,data,maximum=maximum))
     if maximum<800:raise ModelError('insufficient B model budget')
-    with window(llm,stage):return llm.json(stage,data,max_tokens=maximum)
+    reserve = (105 if stage == 'retrieve' and payload.get('task', {}).get('case_id') == 'B-02'
+               and not payload.get('verification') else 0)
+    with window(llm,stage,reserve_override=reserve):return llm.json(stage,data,max_tokens=maximum)
 
 
 def retryable(error):
@@ -162,6 +165,8 @@ def retrieve(workflow,case,index):
         # giving scarce remaining time to an uncertain paper already seen.
         uncertain=bool(pending or any(d['status']=='uncertain' for d in decisions.values()))
         reserve=65 if uncertain and len(attempted)>=24 else 30
+        if case.case_id == 'B-02':
+            reserve = max(reserve, 110)
         if stopped or remaining()<reserve:break
         # Reserve one targeted follow-up before the initial screening spends every token.
         needs_review=bool(pending or any(d['status']=='uncertain' for d in decisions.values()) or not any(d['accepted'] for d in decisions.values()))
@@ -247,11 +252,14 @@ def retrieve(workflow,case,index):
         if decision.get('requirements') and decision['status']!='uncertain':
             pending.pop(name,None);attempted.add(name)
     approved={n:d for n,d in decisions.items() if d['accepted']}
+    if case.case_id == 'B-02':
+        trace['awaiting_final_evidence'] = [n for n,d in approved.items() if not d.get('match_dimensions')]
+        approved = {n:d for n,d in approved.items() if d.get('match_dimensions')}
     trace.update(decisions=decisions,pending=list(pending),approved=list(approved),
         unprocessed=[c['filename'] for c in candidates if c['filename'] not in attempted],
         screened_documents=len(decisions),attempted_documents=len(attempted),
         uncertain=[n for n,d in decisions.items() if d['status']=='uncertain'])
-    incomplete=bool(pending or trace['uncertain'] or trace['unprocessed'] or stopped)
+    incomplete=bool(pending or trace['uncertain'] or trace['unprocessed'] or stopped or trace.get('awaiting_final_evidence'))
     if not approved and (pending or trace['uncertain'] or trace['unprocessed']):
         trace['outcome']='incomplete'
         raise ModelError('B retrieval incomplete without approved evidence: '+str(last_error))

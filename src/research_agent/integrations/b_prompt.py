@@ -53,4 +53,9 @@ RETRIEVE += (
     '原文仅介绍/引用别人的方法不代表本文使用；本文实际采用不要求该组件也是本文原创。'
     '只有必要条件全部有支持才relevant；明确违反必要条件才irrelevant；证据不足uncertain。'
     '必须返回正常的filename/status/reason/evidence_ids/targets字段，reason写具体证据，不要写终审流程。'
+    '仅当task.case_id为B-02且verification=true时，relevant还必须返回match_dimensions对象。'
+    '键从object（本文实际研究对象）、method（本文实际采用的核心方法）、finding（本文直接支持题目目标的发现）中选择至少两项，'
+    '值为对应的本文chunk_id数组，编号也必须出现在必要条件met的evidence_ids中。'
+    '先用标题定位，再用摘要核实研究范围，最后用方法、实验或结果段验证所列维度。只有关键词、综述概述或相关工作提及的证据不能入选。'
+    '两项是同一个完整目标的证据强度，不能替代任何原题必要条件，也不能拼接两个目标的零散条件。证据不足返回uncertain。'
 )
