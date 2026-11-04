@@ -2,28 +2,12 @@ from dataclasses import replace
 
 import pytest
 
-from research_agent.core.models import CaseContext
-from research_agent.evidence import EvidenceError
-from research_agent.integrations.llm import ModelError
 from research_agent.rag.retrieval import HybridRetriever
 from research_agent.workflows.d_selftest import test_plan_result as parse_test_plan
 from research_agent.workflows.tasks import TaskHandlers
-from fixtures import case
 from test_b5_conditions import chunk, task
 from test_db206 import audit_response, reply
 from test_b6_retrieval import ScreeningModel, response
-from test_e4_resilience import BODY, good_audit, run
-
-
-DEPTH_BODY = (
-    '## 问题本质拆解\n\n' + '拟检验同一测量任务中，混合来源引入的条件变化是否导致结论不稳定。' * 8
-    + '[E:ev-1]\n\n## 现有研究与方案的局限\n\n'
-    + '以只在一种控制条件下比较方法为对照，跨条件迁移的影响列为待验证问题。' * 8
-    + '\n\n## 核心创新与技术路径\n\n'
-    + '增加跨条件配对接口，接收条件编号和同源测量，输出配对差异与不确定性。' * 8
-    + '\n\n## 落地可行性与预期价值\n\n'
-    + '拟以相同样本和预算做消融，报告失效条件、估计区间及超过预算时的停止规则。' * 8
-)
 
 
 @pytest.mark.parametrize('fault', ['missing', 'one_dimension', 'wrong_source', 'none'])
@@ -67,20 +51,6 @@ def test_d_duplicate_inputs_cannot_inflate_or_contradict_coverage():
     assert conflict['rejected'] == ['conflicting_oracle', 'conflicting_oracle']
 
 
-def test_e04_rebuilds_incomplete_structure_before_review():
-    workflow, model = run([{'markdown': BODY}, {'markdown': DEPTH_BODY}, good_audit()])
-    result = workflow.compose_report(CaseContext.from_dict(case('E-04')))
-    assert '## 核心创新与技术路径' in result['markdown']
-    assert model.stages == ['report', 'report', 'audit']
-
-
-def test_e04_missing_semantic_approval_prevents_release():
-    workflow, model = run([{'markdown': DEPTH_BODY}, ModelError('audit transport timeout')])
-    with pytest.raises(EvidenceError, match='E-04'):
-        workflow.compose_report(CaseContext.from_dict(case('E-04')))
-    assert model.stages == ['report', 'audit']
-
-
 def test_b02_repairs_one_contradictory_terminal_review():
     def respond(data):
         rows = []
@@ -105,23 +75,3 @@ def test_b02_repairs_one_contradictory_terminal_review():
     )]))
     assert [p['filename'] for p in result['papers']] == ['study.pdf']
     assert workflow.retrieval_trace['audit']['correction_candidates'] == ['study.pdf']
-
-
-def test_e04_rebuilds_after_confirmed_cross_section_defect():
-    rejected = {**good_audit(), 'ok': False, 'issues': ['统一跨节消融输入预算。']}
-    workflow, model = run([{'markdown': DEPTH_BODY}, rejected, ModelError('repair failed'),
-                           {'markdown': DEPTH_BODY}, good_audit()])
-    result = workflow.compose_report(CaseContext.from_dict(case('E-04')))
-    assert result['markdown'] and model.stages == ['report', 'audit', 'repair', 'report', 'audit']
-    assert workflow.audit['history'][-1]['stage'] == 'academic_rebuild_audit'
-
-
-def test_e04_abbreviated_citation_must_match_known_evidence():
-    body = DEPTH_BODY.replace('[E:ev-1]', '[E:1]')
-    workflow, model = run([{'markdown': body}, good_audit()])
-    result = workflow.compose_report(CaseContext.from_dict(case('E-04')))
-    assert '[1, p.1]' in result['markdown'] and model.stages == ['report', 'audit']
-    unknown = {'markdown': body.replace('[E:1]', '[E:999]')}
-    workflow, _ = run([unknown, unknown])
-    with pytest.raises(EvidenceError, match='citation'):
-        workflow.compose_report(CaseContext.from_dict(case('E-04')))

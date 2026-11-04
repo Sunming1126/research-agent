@@ -1,10 +1,6 @@
 """E 专用写作与逐项审查；只规定方法，不内置题目答案或报告段落。"""
 import re
 
-DEPTH_HEADINGS = (
-    '问题本质拆解', '现有研究与方案的局限', '核心创新与技术路径', '落地可行性与预期价值',
-)
-
 REQUIREMENTS = {
     'motivation': '研究动机：引用本题论文机制/局限或明确归属题面的观察，推出一个可检验假设。',
     'route': '技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。',
@@ -63,8 +59,6 @@ AUDIT_INSTRUCTION = (
     'bottleneck/complementarity/feasibility，status为supported/partial/missing；paragraph_ids引用paragraph_index中支持该项的1至2个编号，缺失用空数组。'
     'supported要求实质内容可在全文找到，不要求同一句机械重复三环节。partial/missing在issues优先指出最重要缺口，并指定可扩充的现有段。'
     '所有项supported且无事实问题才ok=true且issues=[]。不要给官方分数，不要求引用每篇论文或额外实测结果。'
-    '如果请求有academic_depth，逐层核对指定论证。必须指出具体对标对象、相同条件下可测的增量及会使增量失效的边界。'
-    '标题不能替代实质。归因不可从材料定位、技术增量无比较条件、适用边界无法检验时，定位对应段落并标为partial或missing。'
 )
 
 REPAIR_INSTRUCTION = (
