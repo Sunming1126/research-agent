@@ -114,3 +114,14 @@ def test_e04_rebuilds_after_confirmed_cross_section_defect():
     result = workflow.compose_report(CaseContext.from_dict(case('E-04')))
     assert result['markdown'] and model.stages == ['report', 'audit', 'repair', 'report', 'audit']
     assert workflow.audit['history'][-1]['stage'] == 'academic_rebuild_audit'
+
+
+def test_e04_abbreviated_citation_must_match_known_evidence():
+    body = DEPTH_BODY.replace('[E:ev-1]', '[E:1]')
+    workflow, model = run([{'markdown': body}, good_audit()])
+    result = workflow.compose_report(CaseContext.from_dict(case('E-04')))
+    assert '[1, p.1]' in result['markdown'] and model.stages == ['report', 'audit']
+    unknown = {'markdown': body.replace('[E:1]', '[E:999]')}
+    workflow, _ = run([unknown, unknown])
+    with pytest.raises(EvidenceError, match='citation'):
+        workflow.compose_report(CaseContext.from_dict(case('E-04')))

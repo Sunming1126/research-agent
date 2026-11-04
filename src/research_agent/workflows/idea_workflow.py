@@ -103,6 +103,10 @@ def normalize(value, evidence, *, require_depth=False):
         raise EvidenceError('Idea response needs a complete nonempty markdown string')
     body = value['markdown'].split('## 参考文献', 1)[0].strip()
     if require_depth:
+        known = {row['evidence_id'] for row in evidence}
+        # Recover only a known ID with the exact prefix omitted, as observed in live drafts.
+        body = re.sub(r'\[E:([0-9]+)\]',
+                      lambda m: f'[E:ev-{m[1]}]' if f'ev-{m[1]}' in known else m[0], body)
         headings = list(re.finditer(r'^##[ \t]+([^\r\n]+)$', body, re.MULTILINE))
         if tuple(h[1].strip() for h in headings) != DEPTH_HEADINGS:
             raise EvidenceError('E-04 正文须依次使用四个二级标题：' + '、'.join(DEPTH_HEADINGS))
@@ -173,8 +177,11 @@ def compose_idea(workflow, case):
             '给出资源上限、失效条件、停止规则及受限范围内的预期价值。',
         ],
         'consistency_checks': [
-            '完整方案与各消融采用同一输入配额。每个消融只改变其指定组件，明确固定的前后处理。',
-            '预先写明最小有意义效应、单位和互斥的结论分支。置信区间跨过决策边界时记为证据不足。',
+            '围绕一项可隔离的最小技术增量。明确唯一信号的输入字段、计算范围、触发条件、输出字段、消费模块和中性回退值。'
+            '避免同时叠加几个由同一信号触发的改动。对照仅切换这一增量，保持候选、预算和其余处理一致。',
+            '把不同模块用于诊断和用于决策的输出分开。若诊断输出未被后续使用，只评价诊断表现，不能宣称提高最终效果。',
+            '预先写明最小有意义效应及其单位。以区间下界达到阈值为支持，上界低于阈值为未达到，跨阈值为证据不足。',
+            '原文引用只用材料给出的完整编号，如[E:ev-1]，不要缩写为[E:1]。',
         ],
         'format': '按顺序逐字使用required_h2_order中的四个二级标题。每层必须有实质正文。',
     } if require_depth else None
