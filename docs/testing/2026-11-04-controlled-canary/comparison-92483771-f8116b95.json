@@ -1,0 +1,103 @@
+{
+  "before": "eval-20261103-92483771",
+  "after": "eval-20261103-f8116b95",
+  "inference": "single pair; no component-level causal claim",
+  "comparison_class": "observational: version or input/environment not fully bound",
+  "unmatched_cases": [],
+  "cases": {
+    "A-02": {
+      "score": 0.0,
+      "tokens": 38,
+      "calls": 0,
+      "model_seconds": 0.4,
+      "processing_seconds": -1.014
+    },
+    "B-01": {
+      "score": -3.0,
+      "tokens": -17568,
+      "calls": -3,
+      "model_seconds": -63.0,
+      "processing_seconds": -22.3
+    },
+    "B-02": {
+      "score": 1.5,
+      "tokens": 1261,
+      "calls": 0,
+      "model_seconds": -22.0,
+      "processing_seconds": -5.0
+    },
+    "B-03": {
+      "score": -1.5,
+      "tokens": -11192,
+      "calls": -2,
+      "model_seconds": -77.0,
+      "processing_seconds": -10.4
+    },
+    "C-03": {
+      "score": 0.0,
+      "tokens": 8093,
+      "calls": 1,
+      "model_seconds": 23.0,
+      "processing_seconds": -0.547
+    },
+    "C-05": {
+      "score": 0.0,
+      "tokens": -16438,
+      "calls": -2,
+      "model_seconds": -47.0,
+      "processing_seconds": -3.0
+    },
+    "D-01": {
+      "score": 28.9,
+      "tokens": 2045,
+      "calls": -1,
+      "model_seconds": -163.0,
+      "processing_seconds": -48.5
+    },
+    "D-02": {
+      "score": -6.944444444444446,
+      "tokens": 77661,
+      "calls": 4,
+      "model_seconds": 491.0,
+      "processing_seconds": -69.2
+    },
+    "D-05": {
+      "score": 18.400000000000002,
+      "tokens": 21102,
+      "calls": 3,
+      "model_seconds": 316.0,
+      "processing_seconds": -134.0
+    },
+    "E-01": {
+      "score": 3.74,
+      "tokens": 3559,
+      "calls": 0,
+      "model_seconds": -5.0,
+      "processing_seconds": 0.1
+    },
+    "E-04": {
+      "score": 2.62,
+      "tokens": -923,
+      "calls": 0,
+      "model_seconds": -4.0,
+      "processing_seconds": -0.6
+    }
+  },
+  "category_score_deltas": {
+    "A": 0.0,
+    "B": -1.0,
+    "C": 0.0,
+    "D": 13.45185185,
+    "E": 3.18
+  },
+  "official_display_score_delta": 15.6,
+  "recomputed_score_delta": 15.63185185,
+  "tokens_delta": 67638,
+  "tokens_delta_ratio": 0.14477187695310834,
+  "calls_delta": 0,
+  "wall_seconds_delta": -56.0,
+  "ce_zero_delta": 0,
+  "d01_d02_observed_score_drops": [
+    "D-02"
+  ]
+}

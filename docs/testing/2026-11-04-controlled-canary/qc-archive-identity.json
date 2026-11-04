@@ -1,0 +1,18 @@
+{
+  "image_id": "sha256:fdfb5fbb2dcbfe488ee94775c53486badf6a4975c8883b562aeb22003144b728",
+  "os": "linux",
+  "architecture": "amd64",
+  "entrypoint": null,
+  "cmd": [
+    "python",
+    "agent.py"
+  ],
+  "user": "agent",
+  "ports": {
+    "8080/tcp": {}
+  },
+  "layers": 50,
+  "repo_tags": [
+    "research-assistant:2.0.2-score-canary-20261102"
+  ]
+}
