@@ -13,7 +13,7 @@ def validate_revision(runner, case, path, materials, previous_tests, original, r
     if not getattr(runner.llm, 'supports_source_reports', False) or (session and session.remaining() < 900):
         return {'state': 'not_started', 'reverted': False}
     # Test generation sees the contract and prior inputs, never either implementation.
-    prompt = test_prompt(materials) + '\n这是独立复验。避免重复以下输入，优先检验未覆盖的执行阶段与合法参数组合。不能猜测期望值。\n' + json.dumps([t['request'] for t in previous_tests], ensure_ascii=False)
+    prompt = test_prompt(materials, case_id=case.case_id) + '\n这是独立复验。避免重复以下输入，优先检验未覆盖的执行阶段与合法参数组合。不能猜测期望值。\n' + json.dumps([t['request'] for t in previous_tests], ensure_ascii=False)
     try:
         with generation_window(runner.llm, baseline=False, case_id=case.case_id):
             runner.llm.deadline = min(runner.llm.deadline, time.monotonic() + 180)

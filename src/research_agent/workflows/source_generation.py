@@ -15,6 +15,23 @@ from pathlib import Path
 
 _CODE_BLOCK = re.compile(r"^```(?:python|py)?[ \t]*\r?\n(.*?)^```[ \t]*$", re.MULTILINE | re.DOTALL)
 
+_CONTRACT_FOCUS = {
+    'D-02': (
+        '以当轮协议为准，为每个主场景列出进入条件、完整参数、必需与允许的输出字段、异常行为和后续阶段消费的数据。'
+        '用不同合法输入区分各场景，核对非默认参数和跨阶段传递。不能用第一场景的默认配置或响应结构代替第二场景。'
+    ),
+    'D-05': (
+        '如果当轮协议要求服务量统计，先从原文确定计量单位、统计范围、入账时点和排除项。'
+        '所有实际入账分支和子流程共用一套事件口径，逐节点小计与同范围总量对账。'
+        '如果协议分别定义已分配量与已完成量，分开维护。检验同一事件重复入账、零量和仅部分完成的合法场景。'
+        '不要增加协议未规定的字段或套用练习题的统计公式。'
+    ),
+}
+
+
+def contract_focus(case_id):
+    return _CONTRACT_FOCUS.get(case_id, '')
+
 
 def _normalize_source(source: str) -> str:
     """只统一换行并校验入口；不补代码、不格式化、不添加注释。"""
@@ -94,6 +111,7 @@ def build_source_prompt(case, materials: dict[str, str]) -> str:
         "先在内部列出所有阶段、公式和参数覆盖关系，再逐项实现；不能只实现样例触发的分支。明确区分字段缺失、null、0和空列表，只有材料允许时才使用默认值。\n"
         "核对各阶段共享辅助函数是否采用同一材料定义，检查多步状态是否意外原地污染，以及排序、并列规则和边界比较是否严格符合原文。不要自行增加材料未要求的处理。\n"
         "返回完整实现而非补丁；不要省略辅助函数，不要输出解释。\n"
+        + (contract_focus(case.case_id) + "\n" if contract_focus(case.case_id) else "")
         + json.dumps(case.to_dict(),ensure_ascii=False) + "\n"
         + json.dumps(materials,ensure_ascii=False)
     )

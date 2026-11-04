@@ -6,9 +6,10 @@ import subprocess
 import sys
 import tempfile
 from .d_review import response_json, material_segments, material_reference
+from .source_generation import contract_focus
 
 
-def test_prompt(materials):
+def test_prompt(materials, *, case_id=None):
     return (
         '仅根据当前授权材料设计独立的小输入单元测试。你看不到候选实现，不能迎合它。'
         '返回JSON {tests:[{name,material_id,derivation,request,expected}]}，最多6个测试。'
@@ -22,6 +23,7 @@ def test_prompt(materials):
         '浮点结果按公式实际计算，不提前四舍五入；如果手算精度不足，不提供猜测的精确期望值。'
         '可选字段未给出时应省略，不可擅自用null代替；期望中的字段和值必须由当前规则导出。'
         '若无法独立推导精确输出则省略该测试，可返回空数组。不能访问隐藏标签。\n'
+        + (contract_focus(case_id) + '\n' if contract_focus(case_id) else '')
         +json.dumps({'material_segments':material_segments(materials)},ensure_ascii=False)
     )
 
@@ -29,7 +31,7 @@ def test_prompt(materials):
 def test_plan_result(response,materials):
     value=response_json(response);tests=value.get('tests')
     if not isinstance(tests,list) or len(tests)>6:raise ValueError('invalid_test_plan')
-    result=[];rejected=[]
+    result={};rejected=[];conflicting=set()
     for row in tests:
         if not isinstance(row,dict) or not all(isinstance(row.get(k),str) and row[k].strip() for k in ('name','derivation')):
             rejected.append('missing_fields');continue
@@ -43,8 +45,22 @@ def test_plan_result(response,materials):
             rejected.append('invalid_json_value');continue
         if len(encoded)>16000:
             rejected.append('too_large');continue
-        result.append({**{k:row[k] for k in ('name','derivation','request','expected')},'material_quote':quote})
-    return {'tests':result,'received':len(tests),'rejected':rejected}
+        key = json.dumps(row['request'], sort_keys=True, ensure_ascii=False)
+        if key in conflicting:
+            rejected.append('conflicting_oracle')
+            continue
+        if key in result:
+            old = json.dumps(result[key]['expected'], sort_keys=True, ensure_ascii=False)
+            new = json.dumps(row['expected'], sort_keys=True, ensure_ascii=False)
+            if old != new:
+                del result[key]
+                conflicting.add(key)
+                rejected.append('conflicting_oracle')
+            else:
+                rejected.append('duplicate_request')
+            continue
+        result[key] = {**{k:row[k] for k in ('name','derivation','request','expected')},'material_quote':quote}
+    return {'tests':list(result.values()),'received':len(tests),'rejected':rejected}
 
 
 def parse_tests(response,materials):

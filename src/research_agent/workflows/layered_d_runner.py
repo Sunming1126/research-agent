@@ -147,10 +147,11 @@ class LayeredDRunner:
         tests = []; before = {"state": "not_run", "results": []}
         # 不接触隐藏反馈；测试由本轮模型仅据材料独立提出，再在受限进程执行。
         available = getattr(self.llm, "budget", 40000) - getattr(self.llm, "total_tokens", 0)
-        if session and session.remaining() >= 1100 and available >= len(test_prompt(materials)) // 2 + 18000:
+        tests_prompt = test_prompt(materials, case_id=case.case_id)
+        if session and session.remaining() >= 1100 and available >= len(tests_prompt) // 2 + 18000:
             try:
                 with generation_window(self.llm, baseline=False, case_id=case.case_id):
-                    proposed = self.llm.completion("d_tests", test_prompt(materials), max_tokens=8000)
+                    proposed = self.llm.completion("d_tests", tests_prompt, max_tokens=8000)
                 try:
                     test_plan = test_plan_result(proposed, materials)
                 except (ValueError,TypeError):
@@ -158,12 +159,14 @@ class LayeredDRunner:
                 tests = test_plan['tests']
                 if not tests and (test_plan['received'] or test_plan['rejected']) and session.remaining() >= 1200:
                     with generation_window(self.llm, baseline=False, case_id=case.case_id):
-                        proposed = self.llm.completion('d_tests', test_prompt(materials) + '\n上次测试未通过格式或原文引用校验。请只给一个最小合法测试，完整填写各字段，逐字引用材料。', max_tokens=8000)
+                        proposed = self.llm.completion('d_tests', tests_prompt + '\n上次测试未通过格式或原文引用校验。请只给一个最小合法测试，完整填写各字段，逐字引用材料。', max_tokens=8000)
                     test_plan = test_plan_result(proposed, materials)
                     tests = test_plan['tests']
                 before = run_tests(source, tests)
                 audit['selftest'] = {'state': before['state'], 'count': len(tests),
                                     'passed': sum(r['passed'] for r in before['results']),
+                                    'observed_phases': sorted({t['request']['phase'] for t in tests
+                                                               if isinstance(t['request'].get('phase'), str)}),
                                     'received': test_plan['received'], 'rejected': test_plan['rejected']}
             except (ModelError, ValueError, TypeError, RuntimeError, TimeoutError) as exc:
                 audit['selftest'] = {'state': 'unavailable', 'error_type': type(exc).__name__}
