@@ -150,6 +150,18 @@ def patch_draft(workflow, case, body, feedback, rows):
     return apply_report_patches(body, patches), repaired, patches
 
 
+def review_draft(workflow, case, body, used, ambiguities, rows, depth):
+    data = audit_request(case, body, rows, workflow.ledger, used=used, full_review=True)
+    if depth is not None:
+        data['academic_depth'] = depth
+    data['numeric_claims_to_classify'] = ambiguities
+    audit = call(workflow, 'audit', data, 1600)
+    if (not isinstance(audit,dict) or type(audit.get('ok')) is not bool
+            or not isinstance(audit.get('issues'),list) or not all(isinstance(x,str) for x in audit['issues'])):
+        raise EvidenceError('invalid Idea semantic audit response')
+    return audit, list(audit['issues']) + audit_gaps(audit, body)
+
+
 def compose_idea(workflow, case):
     require_depth = case.case_id == 'E-04'
     depth = {
@@ -160,8 +172,12 @@ def compose_idea(workflow, case):
             '指定可实施的对标方法，共用数据划分与资源，说明新增接口及可测增量。',
             '给出资源上限、失效条件、停止规则及受限范围内的预期价值。',
         ],
+        'consistency_checks': [
+            '完整方案与各消融采用同一输入配额。每个消融只改变其指定组件，明确固定的前后处理。',
+            '预先写明最小有意义效应、单位和互斥的结论分支。置信区间跨过决策边界时记为证据不足。',
+        ],
         'format': '按顺序逐字使用required_h2_order中的四个二级标题。每层必须有实质正文。',
-    }
+    } if require_depth else None
     filenames = sorted({e.filename for e in workflow.ledger})
     if not filenames:
         raise EvidenceError('Idea requires authorized readable source evidence')
@@ -172,6 +188,7 @@ def compose_idea(workflow, case):
     body = None
     format_candidate = None
     repair_used = False
+    reviewed = False
     # 首先生成完整报告，不再耗时调用可选规划。
     attempts = 3 if current_session() and remaining() >= 300 else 2
     for attempt in range(attempts):
@@ -182,6 +199,7 @@ def compose_idea(workflow, case):
                 'response_fields': {'markdown':'完整模型正文', 'used_evidence_ids':'实际引用的证据ID数组'}}
         if require_depth:
             data['academic_depth'] = depth
+        draft_payload = data
         start = len(getattr(workflow.llm, 'response_failures', []))
         value = None
         try:
@@ -228,21 +246,16 @@ def compose_idea(workflow, case):
             feedback = feedback + ['semantic review unavailable within remaining case budget']
             break
         try:
-            data = audit_request(case, body, rows, workflow.ledger, used=used, full_review=True)
-            if require_depth:
-                data['academic_depth'] = depth
-            data['numeric_claims_to_classify'] = ambiguities
-            audit = call(workflow, 'audit', data, 1600)
-            if (not isinstance(audit,dict) or type(audit.get('ok')) is not bool
-                    or not isinstance(audit.get('issues'),list) or not all(isinstance(x,str) for x in audit['issues'])):
-                raise EvidenceError('invalid Idea semantic audit response')
+            audit, feedback = review_draft(workflow, case, body, used, ambiguities, rows, depth)
+            reviewed = True
             history.append({'stage':'audit','audit':audit,'attempt':review+1})
-            feedback = list(audit['issues']) + audit_gaps(audit, body)
             if audit['ok'] and not feedback:
                 workflow.audit = {**audit,'history':history,'local_validation':True}
                 return workflow._report_result(case, body, filenames, refs)
             feedback = feedback or ['semantic audit rejected without details']
         except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
+            if isinstance(exc, ModelQuotaError):
+                reviewed = False
             feedback = [str(exc)]; history.append({'stage':'audit_unavailable','issues':feedback})
             break
         if review or repair_used or remaining() < 42:
@@ -256,8 +269,32 @@ def compose_idea(workflow, case):
             workflow.last_draft = body
             workflow.report_trace.append({'attempt':review+2,'raw_response':repaired,'raw_markdown':body,'patches':patches})
         except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
+            if isinstance(exc, ModelQuotaError):
+                reviewed = False
             history.append({'stage':'repair_unavailable','issues':[str(exc)]})
             break
+    if require_depth and reviewed and remaining() >= 220:
+        # A local patch cannot always reconcile a definition with distant ablations and decision rules.
+        try:
+            rebuilt = call(workflow, 'report', {**draft_payload, 'previous_draft': body,
+                'repair_issues': feedback, 'rebuild_instruction': (
+                    '按已定位的问题重构全文。统一跨节输入预算、消融变量和统计判据，保留有据事实。'
+                    '返回有四层标题的完整报告，而非局部补丁。')}, 3600, retry=True)
+            candidate, ids, ambiguous = normalize(rebuilt, evidence, require_depth=True)
+            workflow.last_draft = candidate
+            workflow.report_trace.append({'stage':'academic_rebuild','raw_response':rebuilt,'raw_markdown':candidate})
+            if remaining() >= 35:
+                audit, feedback = review_draft(workflow, case, candidate, ids, ambiguous, rows, depth)
+                history.append({'stage':'academic_rebuild_audit','audit':audit})
+                if audit['ok'] and not feedback:
+                    workflow.audit = {**audit,'history':history,'local_validation':True}
+                    return workflow._report_result(case, candidate, filenames, refs)
+                feedback = feedback or ['semantic audit rejected without details']
+            else:
+                feedback = ['semantic review unavailable after rebuilding']
+        except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
+            feedback = [str(exc)]
+            history.append({'stage':'academic_rebuild_failed','issues':feedback})
     workflow.audit = {'ok':False,'mode':'model_report_needs_review','local_validation':True,
                       'model_issues':feedback,'history':history}
     if require_depth:

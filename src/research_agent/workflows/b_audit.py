@@ -92,6 +92,29 @@ def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candi
             except (OSError,ValueError) as exc:
                 trace['audit']['errors'].append({'stage':'expand','error_type':type(exc).__name__})
     started=time.monotonic();durations=[]
+    def check_rows(rows, *, retry=False):
+        response=call(workflow.llm,'retrieve',{'task':task,'search_targets':audit_plan['targets'],
+            'verification':True,'task_segments':task_segments(task),'candidates':rows},6000)
+        values=response.get('papers') if isinstance(response,dict) else None
+        if not isinstance(values,list):raise ModelError('B audit invalid response')
+        corrections=[]
+        for candidate in rows:
+            name=candidate['filename'];matches=[r for r in values if isinstance(r,dict) and r.get('filename')==name]
+            try:
+                if len(matches)!=1:raise ModelError('B audit duplicate or missing candidate')
+                decision=assess_audit(matches[0],candidate,task,audit_plan)
+                trace['audit']['checked'].append({'filename':name,'previous_status':decisions.get(name,{}).get('status','unresolved'),'status':decision['status']})
+                if decision.get('rejected_requirements'):
+                    trace['audit']['checked'][-1]['rejected_requirements']=decision['rejected_requirements']
+                if decision['status']!='uncertain':decisions[name]=decision
+            except ModelError as exc:
+                trace['audit']['errors'].append({'filename':name,'error':str(exc),'received':matches[0] if len(matches)==1 else None})
+                if (not retry and task.get('case_id') == 'B-02' and len(matches) == 1
+                        and matches[0].get('status') == 'relevant'):
+                    corrections.append({**candidate, 'audit_feedback': str(exc)})
+        return corrections
+
+    corrections=[]
     for start in range(0,len(names),4):
         estimate=max(durations,default=40)
         if remaining()<max(45,estimate+25) or time.monotonic()-started+estimate>budget:break
@@ -101,22 +124,16 @@ def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candi
             rows.append(compact_evidence({'filename':name,'hits':hits},selection_plan,more=True,audit=True))
         before=time.monotonic()
         try:
-            response=call(workflow.llm,'retrieve',{'task':task,'search_targets':audit_plan['targets'],
-                'verification':True,'task_segments':task_segments(task),'candidates':rows},6000)
-            values=response.get('papers') if isinstance(response,dict) else None
-            if not isinstance(values,list):raise ModelError('B audit invalid response')
-            for candidate in rows:
-                name=candidate['filename'];matches=[r for r in values if isinstance(r,dict) and r.get('filename')==name]
-                try:
-                    if len(matches)!=1:raise ModelError('B audit duplicate or missing candidate')
-                    decision=assess_audit(matches[0],candidate,task,audit_plan)
-                    trace['audit']['checked'].append({'filename':name,'previous_status':decisions.get(name,{}).get('status','unresolved'),'status':decision['status']})
-                    if decision.get('rejected_requirements'):
-                        trace['audit']['checked'][-1]['rejected_requirements']=decision['rejected_requirements']
-                    # 不确定不是反证。审查缺字段/超时不能抹掉此前有原文的有效结果。
-                    if decision['status']!='uncertain':decisions[name]=decision
-                except ModelError as exc:trace['audit']['errors'].append({'filename':name,'error':str(exc),'received':matches[0] if len(matches)==1 else None})
+            corrections.extend(check_rows(rows))
         except (ModelError,TimeoutError) as exc:
             trace['audit']['errors'].append({'stage':'model','error_type':type(exc).__name__})
-            if isinstance(exc,ModelQuotaError):break
+            if isinstance(exc,ModelQuotaError):return
         finally:durations.append(time.monotonic()-before)
+    estimate=max(durations,default=40)
+    if corrections and remaining() >= max(60,estimate+25) and time.monotonic()-started+estimate <= budget:
+        batch = corrections[:4]
+        trace['audit']['correction_candidates'] = [row['filename'] for row in batch]
+        try:
+            check_rows(batch, retry=True)
+        except (ModelError,TimeoutError) as exc:
+            trace['audit']['errors'].append({'stage':'correction','error_type':type(exc).__name__})

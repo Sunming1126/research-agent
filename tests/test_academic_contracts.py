@@ -4,6 +4,7 @@ import pytest
 
 from research_agent.core.models import CaseContext
 from research_agent.evidence import EvidenceError
+from research_agent.integrations.llm import ModelError
 from research_agent.rag.retrieval import HybridRetriever
 from research_agent.workflows.d_selftest import test_plan_result as parse_test_plan
 from research_agent.workflows.tasks import TaskHandlers
@@ -74,9 +75,42 @@ def test_e04_rebuilds_incomplete_structure_before_review():
 
 
 def test_e04_missing_semantic_approval_prevents_release():
-    from research_agent.integrations.llm import ModelError
-
     workflow, model = run([{'markdown': DEPTH_BODY}, ModelError('audit transport timeout')])
     with pytest.raises(EvidenceError, match='E-04'):
         workflow.compose_report(CaseContext.from_dict(case('E-04')))
     assert model.stages == ['report', 'audit']
+
+
+def test_b02_repairs_one_contradictory_terminal_review():
+    def respond(data):
+        rows = []
+        for candidate in data['candidates']:
+            if not data.get('verification'):
+                rows.append(response(candidate))
+                continue
+            row = audit_response(candidate)
+            evidence = row['requirements'][0]['evidence_ids'][0]
+            row['match_dimensions'] = {'object': [evidence], 'method': [evidence]}
+            if not candidate.get('audit_feedback'):
+                row['requirements'].append(
+                    {'task_id': 'q2', 'verdict': 'not_met', 'evidence_ids': [evidence]})
+            rows.append(row)
+        return {'papers': rows}
+
+    workflow = TaskHandlers(ScreeningModel(respond), 'test')
+    workflow.document_expander = None
+    request = replace(task(), case_id='B-02')
+    result = workflow.handle(request, HybridRetriever([chunk(
+        'study.pdf', 'We measure urban cooling using satellite remote sensing in an original experiment.'
+    )]))
+    assert [p['filename'] for p in result['papers']] == ['study.pdf']
+    assert workflow.retrieval_trace['audit']['correction_candidates'] == ['study.pdf']
+
+
+def test_e04_rebuilds_after_confirmed_cross_section_defect():
+    rejected = {**good_audit(), 'ok': False, 'issues': ['统一跨节消融输入预算。']}
+    workflow, model = run([{'markdown': DEPTH_BODY}, rejected, ModelError('repair failed'),
+                           {'markdown': DEPTH_BODY}, good_audit()])
+    result = workflow.compose_report(CaseContext.from_dict(case('E-04')))
+    assert result['markdown'] and model.stages == ['report', 'audit', 'repair', 'report', 'audit']
+    assert workflow.audit['history'][-1]['stage'] == 'academic_rebuild_audit'

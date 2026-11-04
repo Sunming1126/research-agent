@@ -77,7 +77,7 @@ def retrieve(workflow,case,index):
         trace['outcome']='empty_authorized_library';return {'case_id':case.case_id,'papers':[]}
     proposed=None
     try:
-        proposed=call(workflow.llm,'query',{'task':task},2200)
+        proposed=call(workflow.llm,'query',{'task':task,'recovery':False},2200)
         plan=make_plan(proposed,task)
         workflow.query_plan_status='condition_plan'
     except ModelQuotaError:raise

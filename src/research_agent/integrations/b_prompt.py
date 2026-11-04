@@ -1,5 +1,6 @@
 """B 专用条件规划与证据判定提示，不包含任何赛题答案。"""
 QUERY = (
+    '只有输入JSON的recovery字段明确为true时才返回recovery_queries。recovery为false或缺省时必须返回criteria、targets、queries。'
     '若recovery=true，本次只返回JSON {recovery_queries:[{task_id,query}]}，最多6条，不返回条件表。'
     '从原题独立提炼正向研究机制、对象、步骤的英文同义表达与展开缩写，task_id绑定task_segments原句。'
     'previous_queries和observations可能含错误理解，不能把它们当新限制或事实。'
@@ -54,8 +55,10 @@ RETRIEVE += (
     '只有必要条件全部有支持才relevant；明确违反必要条件才irrelevant；证据不足uncertain。'
     '必须返回正常的filename/status/reason/evidence_ids/targets字段，reason写具体证据，不要写终审流程。'
     '仅当task.case_id为B-02且verification=true时，relevant还必须返回match_dimensions对象。'
+    '对于relevant，只列该篇满足的一个完整任选目标及共同条件。另一个任选目标不适用，不要把它作为not_met或unknown条目。'
+    '若某必要条件不满足，不能借任选关系省略它。audit_feedback列出上次证据结构错误，请独立核对后修正。'
     '键从object（本文实际研究对象）、method（本文实际采用的核心方法）、finding（本文直接支持题目目标的发现）中选择至少两项，'
-    '值为对应的本文chunk_id数组，编号也必须出现在必要条件met的evidence_ids中。'
+    '值为对应的本文chunk_id数组，编号也必须出现在必要条件met的evidence_ids中。两项有依据即够，不要凑第三项。'
     '先用标题定位，再用摘要核实研究范围，最后用方法、实验或结果段验证所列维度。只有关键词、综述概述或相关工作提及的证据不能入选。'
     '两项是同一个完整目标的证据强度，不能替代任何原题必要条件，也不能拼接两个目标的零散条件。证据不足返回uncertain。'
 )
