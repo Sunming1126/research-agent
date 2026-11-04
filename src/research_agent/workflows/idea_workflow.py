@@ -1,5 +1,6 @@
 """E 专用交付流程：先完整正文，有界恢复，再审查和原子修订。"""
 import json
+import re
 import time
 from contextlib import contextmanager
 from dataclasses import asdict
@@ -10,7 +11,7 @@ from ..evidence import EvidenceError
 from ..evidence.reporting import (render_evidence_citations, validate_citations,
     model_evidence_rows, apply_report_patches, repair_paragraphs)
 from ..integrations.llm import ModelError, ModelQuotaError
-from ..integrations.idea_prompt import REQUIREMENTS, audit_gaps
+from ..integrations.idea_prompt import DEPTH_HEADINGS, REQUIREMENTS, audit_gaps
 from .report_context import report_task, compact_claims, audit_request, cited_evidence, repair_context
 from .idea_repair import indexed_paragraphs, resolve_patches
 
@@ -97,10 +98,18 @@ def complete_markdown(failures):
     return None
 
 
-def normalize(value, evidence):
+def normalize(value, evidence, *, require_depth=False):
     if not isinstance(value, dict) or not isinstance(value.get('markdown'), str) or not value['markdown'].strip():
         raise EvidenceError('Idea response needs a complete nonempty markdown string')
     body = value['markdown'].split('## 参考文献', 1)[0].strip()
+    if require_depth:
+        headings = list(re.finditer(r'^##[ \t]+([^\r\n]+)$', body, re.MULTILINE))
+        if tuple(h[1].strip() for h in headings) != DEPTH_HEADINGS:
+            raise EvidenceError('E-04 正文须依次使用四个二级标题：' + '、'.join(DEPTH_HEADINGS))
+        for heading, following in zip(headings, [*headings[1:], None]):
+            section = body[heading.end():following.start() if following else len(body)]
+            if not any(line.strip() and not line.lstrip().startswith('#') for line in section.splitlines()):
+                raise EvidenceError('E-04 论证层缺少正文：' + heading[1])
     body, bound = render_evidence_citations(body, evidence)
     # 内部ID列表不是最终答卷字段；仅按真实正文标记回查已授权证据，不猜新引用。
     used = list(dict.fromkeys(bound + [row['evidence_id'] for row in cited_evidence(body, evidence)]))
@@ -142,6 +151,17 @@ def patch_draft(workflow, case, body, feedback, rows):
 
 
 def compose_idea(workflow, case):
+    require_depth = case.case_id == 'E-04'
+    depth = {
+        'required_h2_order': DEPTH_HEADINGS,
+        'evidence_and_comparison': [
+            '拆解题面观察、机制假设和可证伪问题。',
+            '引用原文支持的现有方法机制与适用条件；未知局限写为待验证。',
+            '指定可实施的对标方法，共用数据划分与资源，说明新增接口及可测增量。',
+            '给出资源上限、失效条件、停止规则及受限范围内的预期价值。',
+        ],
+        'format': '按顺序逐字使用required_h2_order中的四个二级标题。每层必须有实质正文。',
+    }
     filenames = sorted({e.filename for e in workflow.ledger})
     if not filenames:
         raise EvidenceError('Idea requires authorized readable source evidence')
@@ -160,6 +180,8 @@ def compose_idea(workflow, case):
                 'output_limits': {'minimum_body_characters':800, 'model_body_characters':6000,
                                   'target_body_characters':1700 if attempt else 2100},
                 'response_fields': {'markdown':'完整模型正文', 'used_evidence_ids':'实际引用的证据ID数组'}}
+        if require_depth:
+            data['academic_depth'] = depth
         start = len(getattr(workflow.llm, 'response_failures', []))
         value = None
         try:
@@ -179,7 +201,7 @@ def compose_idea(workflow, case):
                     history.append({'stage':'complete_field_recovery','attempt':attempt+1,'original_error':str(exc)})
                 workflow.report_trace.append({'attempt':attempt+1,'raw_response':value,
                     'raw_markdown':value.get('markdown') if isinstance(value,dict) else None,'source_task':report_task(case)})
-            body, used, ambiguities = normalize(value, evidence)
+            body, used, ambiguities = normalize(value, evidence, require_depth=require_depth)
             workflow.last_draft = body
             break
         except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
@@ -207,6 +229,8 @@ def compose_idea(workflow, case):
             break
         try:
             data = audit_request(case, body, rows, workflow.ledger, used=used, full_review=True)
+            if require_depth:
+                data['academic_depth'] = depth
             data['numeric_claims_to_classify'] = ambiguities
             audit = call(workflow, 'audit', data, 1600)
             if (not isinstance(audit,dict) or type(audit.get('ok')) is not bool
@@ -226,7 +250,8 @@ def compose_idea(workflow, case):
         try:
             repair_used = True
             revised, repaired, patches = patch_draft(workflow, case, body, feedback, rows)
-            candidate, candidate_used, candidate_ambiguities = normalize({'markdown':revised}, evidence)
+            candidate, candidate_used, candidate_ambiguities = normalize(
+                {'markdown':revised}, evidence, require_depth=require_depth)
             body, used, ambiguities = candidate, candidate_used, candidate_ambiguities
             workflow.last_draft = body
             workflow.report_trace.append({'attempt':review+2,'raw_response':repaired,'raw_markdown':body,'patches':patches})
@@ -235,4 +260,6 @@ def compose_idea(workflow, case):
             break
     workflow.audit = {'ok':False,'mode':'model_report_needs_review','local_validation':True,
                       'model_issues':feedback,'history':history}
+    if require_depth:
+        raise EvidenceError('E-04 尚未通过四层论证与原文依据复核：' + '；'.join(feedback))
     return workflow._report_result(case, body, filenames, refs)

@@ -7,7 +7,8 @@ from research_agent.core.session import CaseSession
 from research_agent.core.models import CaseContext
 from research_agent.integrations.llm import ModelError
 from research_agent.workflows.idea_workflow import call_window
-from test_e4_resilience import run,BODY,good_audit
+from test_e4_resilience import run,good_audit
+from test_academic_contracts import DEPTH_BODY
 from fixtures import case
 
 @pytest.mark.parametrize('cid,fn,seconds,unlimited',[
@@ -29,7 +30,7 @@ def test_e_model_failure_after_old_180_second_boundary_can_recover():
     def slow(model,stage,data):
         current_session().started_at-=185
         raise ModelError('transport timeout')
-    w,m=run([slow,ModelError('invalid JSON'),{'markdown':BODY},good_audit()])
+    w,m=run([slow,ModelError('invalid JSON'),{'markdown':DEPTH_BODY},good_audit()])
     with CaseSession('E-04',885).activate():
         result=w.compose_report(CaseContext.from_dict(case('E-04')))
     assert result['markdown'] and m.stages==['report','report','report','audit']
