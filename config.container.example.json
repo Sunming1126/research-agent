@@ -8,6 +8,6 @@
   "ocr": false,
   "llm_calls": 30,
   "llm_tokens": 40000,
-  "case_timeout": 180
+  "case_timeout": 1800
 }
 

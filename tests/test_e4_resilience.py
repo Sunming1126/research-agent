@@ -113,6 +113,11 @@ def test_e4_freezes_all_d_and_c_specific_files():
     for name,digest in before.items():
         if name not in allowed:
             content=(ROOT/name).read_text(encoding='utf-8')
+            # Only current official-rule functions may differ; keep the old hash
+            # and compare all remaining source nodes to the teammate baseline.
+            from score_policy_isolation import ALLOWED, baseline_projection
+            if name in ALLOWED:
+                content = baseline_projection(name, content, ROOT)
             b_guard = {
                 'src/research_agent/workflows/tasks.py': '        if case.function == "Literature_Retrieval":\n            from .b_workflow import retrieve\n            return retrieve(self, case, retriever)\n',
                 'src/research_agent/integrations/prompts.py': "    if isinstance(data, dict) and data.get('b_protocol') == 'conditions-v1' and data.get('task', {}).get('function') == 'Literature_Retrieval' and stage in ('query', 'retrieve'):\n        from .b_prompt import QUERY, RETRIEVE\n        return QUERY if stage == 'query' else RETRIEVE\n",

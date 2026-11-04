@@ -8,6 +8,7 @@ from urllib.parse import quote
 from starlette.responses import JSONResponse
 
 from ..core.models import CaseContext
+from ..core.time_limits import wire_timeout
 from ..contracts.validation import validate_wire_fields
 from ..core.b_submission import B_REQUEST, failure_submission
 from ..core.utils import read_json, confined
@@ -49,7 +50,7 @@ class ResearchRequestAdapter:
                 return await JSONResponse({"detail": str(exc)}, status_code=422)(scope, receive, send)
             headers = {key.decode("latin-1").lower(): value.decode("latin-1")
                        for key, value in scope.get("headers", [])}
-            timeout = min(self.timeout_supplier(), 180)
+            timeout = wire_timeout(case.function, self.timeout_supplier())
             envelope = {
                 "task_id": (headers.get("x-research-task-id") or headers.get("idempotency-key")
                             or headers.get("x-task-id") or headers.get("x-agenthack-task-id")

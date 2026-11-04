@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-04T10:47:09.526924+08:00",
+  "execution_scope": "Codex release identity checks + authorized local SDK health only",
+  "target_model_calls": 0,
+  "d_experiment_executed": false,
+  "official_evaluation_started": false,
+  "official_score": null,
+  "source_commit": "51e9514c5b9ad74ed41e94d9862477ea798907ea",
+  "documentation_head": "2f51e380a90f802ccb152ff1c242417ae1eeef01",
+  "fetched_teammate_head": "cd733b20d034ba0b02b900e65c4d7590a50d4964",
+  "status": "static_pass_runtime_pending",
+  "archive": {
+    "bytes": 295482880,
+    "sha256": "97d9583e4c7cb6981a959e7e79a5b401c9e9606d105ade1dcbdcca1bbbefc95f"
+  },
+  "archive_identity": "passed",
+  "archive_source_files_verified": 58,
+  "d05_new_diagnostics_excluded": true,
+  "local_sdk_health": "not run in static mode",
+  "platform_health": "historical Nov2 pass only; fresh upload still required"
+}

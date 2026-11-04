@@ -1,0 +1,7 @@
+{
+  "kind": "Published synthetic test source identity; not official task input fingerprints",
+  "tests": {
+    "test_current_ce_limits.py": "ca3ce1919bd2142f8b13a577ac9f947f48de8ad2c4da9b8e1c337a673fcc5795",
+    "test_current_time_limits.py": "ef57678d7b30243d72f3d05f69622fddc969661b78a1a3987e79b231d5b5eb43"
+  }
+}

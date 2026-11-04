@@ -6,6 +6,7 @@ from dataclasses import asdict
 
 from ..core.session import checkpoint, current_session
 from ..contracts.validation import validate_report_limits
+from ..contracts.report_rules import body_character_limit
 from ..evidence import EvidenceError
 from ..evidence.reporting import (render_evidence_citations, validate_citations,
     model_evidence_rows, apply_report_patches, repair_paragraphs)
@@ -155,7 +156,7 @@ def compose_idea(workflow, case):
     for attempt in range(2):
         data = {'task': report_task(case), 'claims': compact_claims(rows), 'papers': refs,
                 'coverage_requirements': REQUIREMENTS, 'repair_issues': feedback,
-                'output_limits': {'minimum_body_characters':800, 'model_body_characters':6000,
+                'output_limits': {'minimum_body_characters':800, 'model_body_characters':body_character_limit('Idea'),
                                   'target_body_characters':1700 if attempt else 2100},
                 'response_fields': {'markdown':'完整模型正文', 'used_evidence_ids':'实际引用的证据ID数组'}}
         start = len(getattr(workflow.llm, 'response_failures', []))

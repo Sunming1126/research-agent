@@ -6,6 +6,7 @@ from pathlib import Path
 
 from ..core.utils import confined, sha256_file
 from ..integrations.instrumentation import tool
+from .report_rules import body_character_limit, counted_report_body, citation_marker_count
 
 
 def _only(value, fields):
@@ -64,11 +65,11 @@ def report_citations(body):
 
 
 def validate_report_limits(markdown, function):
-    body = markdown.split("## 参考文献", 1)[0]
-    limit = 4500 if function == "Survey" else 6000
+    body = counted_report_body(markdown)
+    limit = body_character_limit(function)
     if len(body) > limit:
         raise ValueError(f"report body exceeds {limit} characters (including whitespace)")
-    if function == "Survey" and len(report_citations(body)) > 40:
+    if function == "Survey" and citation_marker_count(markdown) > 40:
         raise ValueError("Survey body exceeds 40 citation instances")
 
 

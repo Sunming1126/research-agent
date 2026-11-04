@@ -17,6 +17,7 @@ from research_agent.workflows.source_generation import build_source_prompt
 from test_eval_20261026_regressions import setup_d, response, SOURCE
 from fixtures import case
 from research_agent.core.models import CaseContext
+from public_material_paths import experiment_root
 
 
 @pytest.mark.parametrize('failure', [False, True])
@@ -129,7 +130,7 @@ def test_postprocessing_failure_never_replaces_received_platform_result(tmp_path
 
 
 def public(case_id):
-    root = Path('/materials')/case_id
+    root = experiment_root() / case_id
     request = json.loads((root/'sample.json').read_text())
     request['protocol'] = json.loads((root/'protocol.json').read_text())
     return request
@@ -179,7 +180,7 @@ def test_d05_detects_missing_flow_switch_cost():
 def test_d05_reject_then_dispatch_regression(tmp_path):
     from research_agent.workflows.sample_validation import run_public_sample
     source = Path(__file__).parent/'data/d05_rejected_job_generated_source.txt'
-    material_root = Path('/materials/D-05')
+    material_root = experiment_root() / 'D-05'
     materials = {key: (material_root/name).read_text() for key,name in
                  [('method','method.md'),('protocol','protocol.json'),('sample','sample.json')]}
     with pytest.raises(ValueError, match='retry_same_server_after_rejection'):
@@ -189,7 +190,7 @@ def test_d05_reject_then_dispatch_regression(tmp_path):
 def test_d05_arrival_event_must_not_skip_dispatch(tmp_path):
     from research_agent.workflows.sample_validation import run_public_sample
     source = Path(__file__).parent/'data/d05_delayed_dispatch_generated_source.txt'
-    root = Path('/materials/D-05')
+    root = experiment_root() / 'D-05'
     materials = {key: (root/name).read_text() for key,name in
                  [('method','method.md'),('protocol','protocol.json'),('sample','sample.json')]}
     with pytest.raises(ValueError, match='dispatch available work immediately'):
@@ -205,7 +206,7 @@ def test_d_generation_failure_then_c_uses_fresh_state(tmp_path, monkeypatch):
     from research_agent.core.session import current_session
     from research_agent.integrations.llm import ModelError
     directory = tmp_path/'data/experiments/D-01'
-    shutil.copytree('/materials/D-01', directory)
+    shutil.copytree(experiment_root() / 'D-01', directory)
     protocol = json.loads((directory/'protocol.json').read_text())
     d = case('D-01', ['data/experiments/D-01'])
     d['input'] = ';'.join('name='+row['name']+', unit='+row['unit'] for row in protocol['metrics'])

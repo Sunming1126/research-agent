@@ -1,0 +1,6 @@
+{
+  "root_digest": "sha256:fdfb5fbb2dcbfe488ee94775c53486badf6a4975c8883b562aeb22003144b728",
+  "runtime_config_digest": "sha256:84679396e1c9160116ef427b76d7394a08ce8c96196603e0620e21a5a8e2a9dc",
+  "verified_content_blobs": 45,
+  "index_and_config_are_distinct_digest_levels": true
+}

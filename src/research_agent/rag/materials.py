@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -35,8 +36,12 @@ class MaterialResolver:
         self.settings = settings
 
     def _path(self, item: str) -> Path:
-        if not item or "\\" in item or ":" in item:
+        native_absolute = bool(item) and os.name == 'nt' and Path(item).is_absolute()
+        if not item or (("\\" in item or ":" in item) and not native_absolute):
             raise MaterialError("materials must use relative paths or configured aliases")
+        if native_absolute and (item.startswith(('\\\\?\\', '\\\\.\\')) or
+                                any(':' in part for part in Path(item).parts[1:])):
+            raise MaterialError("device paths and alternate data streams are forbidden")
         # 题面使用逻辑目录 data/论文库，平台实际挂载 /data/papers。
         # 只映射已授权的唯一专用库，保留指定文件子路径；不搜索其他目录。
         roots = self.settings.material_roots
@@ -52,7 +57,7 @@ class MaterialResolver:
                     if target.is_file() or target.is_dir():
                         return target
                     raise MaterialError(f"authorized material not found: {item}")
-        if item.startswith("/"):
+        if native_absolute or item.startswith("/"):
             # 平台可传挂载后的绝对路径，但只能落在已经授权的专用根目录内。
             target = Path(item)
             for root in self.settings.material_roots:

@@ -1,0 +1,7 @@
+{
+  "status": "coordinator_failed",
+  "error": "GBK child stdout decoded as UTF-8; no candidate or full regression executed",
+  "completed_child": "score-time-baseline-20261102-211455-4f58d",
+  "target_model_calls": 0,
+  "platform_acceptance": false
+}

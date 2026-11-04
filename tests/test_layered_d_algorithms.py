@@ -6,7 +6,8 @@ from research_agent.workflows.d_algorithms.d02 import run_d02
 from research_agent.workflows.d_algorithms.d05 import run_d05
 
 
-ROOT = Path("科研助手赛题材料/x新/research-experiments")
+from public_material_paths import experiment_root
+ROOT = experiment_root()
 
 
 def _sample(name):

@@ -58,7 +58,8 @@ def test_idea_repair_and_audit_keep_input_observation_and_constraints():
     assert repair['task']['input'] == current.input and repair['task']['constraints'] == current.constraints
     prompt = instructions_for('report',{'task':{'function':'Idea'}})
     assert '1200至1800' not in prompt
-    assert '1800～3200' in prompt and '6000' in prompt
+    # Current official E body limit replaces the historical 6000-character rule.
+    assert '1800～3200' in prompt and '4500' in prompt and '6000' not in prompt
     assert '分子分母' in prompt and '回退' in prompt
     audit_prompt = instructions_for('audit', audit)
     assert '包括未带引用的代码可用性' in audit_prompt and 'ok=true必须且只能搭配issues=[]' in audit_prompt

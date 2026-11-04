@@ -1,0 +1,11 @@
+{
+  "returncode": 0,
+  "seconds": 2.779,
+  "execution": "Codex offline, not native Harness or platform acceptance",
+  "target_model_calls": 0,
+  "tests": 23,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 23
+}

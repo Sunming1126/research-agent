@@ -7,6 +7,7 @@ from dataclasses import asdict
 from collections import defaultdict
 from ..core.models import Evidence
 from ..contracts.validation import validate_report_limits, report_citations
+from ..contracts.report_rules import body_character_limit, citation_marker_count
 from ..core.utils import source_quote_matches
 from ..integrations.instrumentation import tool
 from ..integrations.llm import ModelError
@@ -310,10 +311,10 @@ class ReportWorkflow:
                     data = {"task": report_task(case),
                             "claims": compact_claims(model_evidence), "papers": refs,
                             "facts_appended_by_program": anchor_ids,
-                            "output_limits": ({"model_body_characters": max(800, 4500 - len(anchor) - 4),
-                                               "model_citation_instances": max(0, 40 - len(report_citations(anchor))),
-                                               "total_body_characters": 4500, "total_citation_instances": 40}
-                                              if case.function == "Survey" else {"model_body_characters": 6000}),
+                            "output_limits": ({"model_body_characters": max(800, body_character_limit('Survey') - len(anchor) - 4),
+                                               "model_citation_instances": max(0, 40 - citation_marker_count(anchor)),
+                                               "total_body_characters": body_character_limit('Survey'), "total_citation_instances": 40}
+                                              if case.function == "Survey" else {"model_body_characters": body_character_limit('Idea')}),
                             "coverage_requirements": report_requirements(case.function), "repair_issues": feedback,
                             "evidence_coverage": {name: list(facets) for name, facets in self.coverage.get("papers", {}).items()}}
                     if case.function == 'Idea' or direct:
@@ -434,7 +435,7 @@ class ReportWorkflow:
                 except ValueError as exc:
                     passages = []
                     if direct and 'citation instances' in str(exc):
-                        passages = sorted(markdown.split('\n\n'), key=lambda p: len(report_citations(p)), reverse=True)[:2]
+                        passages = sorted(markdown.split('\n\n'), key=citation_marker_count, reverse=True)[:2]
                     raise EvidenceError(str(exc), passages=passages) from exc
                 numeric_ambiguities = validate_citations(markdown, evidence, used,
                                                         minimum=5 if case.function == "Survey" else 1, function=case.function,

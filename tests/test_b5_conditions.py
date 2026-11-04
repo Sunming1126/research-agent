@@ -147,6 +147,9 @@ def test_protected_production_files_and_shared_dispatch_only():
         if name in {'src/research_agent/integrations/survey_prompt.py', 'src/research_agent/workflows/reports.py'}:
             continue  # C201 explicitly changes C prompt/composition; checked separately.
         new=(ROOT/name).read_text(encoding='utf-8')
+        from score_policy_isolation import ALLOWED, baseline_projection
+        if name in ALLOWED:
+            new = baseline_projection(name, new, ROOT)
         if name == 'src/research_agent/integrations/prompts.py':
             from test_c200_recovery import C_PROMPT_GUARD
             assert new.count(C_PROMPT_GUARD) == 1

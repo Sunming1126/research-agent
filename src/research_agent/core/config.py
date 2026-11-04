@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from .utils import confined, read_json, safe_relative_path
+from .time_limits import DEFAULT_CASE_TIMEOUT
 
 
 DEFAULT_WORKSPACE_TEAM = "workspace_team"  # 仅本地兜底；正式平台注入目录标识。
@@ -25,7 +26,7 @@ class Settings:
     ocr: bool = False
     llm_calls: int = 30
     llm_tokens: int = 40000
-    case_timeout: int = 180
+    case_timeout: int = DEFAULT_CASE_TIMEOUT
     verify_assigned: bool = False
 
     def __post_init__(self):
@@ -93,7 +94,7 @@ class Settings:
             experiment_protocol=os.environ.get("RESEARCH_EXPERIMENT_PROTOCOL", config.get("experiment_protocol", "auto")),
             ocr=config.get("ocr", False),
             llm_calls=config.get("llm_calls", 30), llm_tokens=config.get("llm_tokens", 40000),
-            case_timeout=config.get("case_timeout", 180),
+            case_timeout=config.get("case_timeout", DEFAULT_CASE_TIMEOUT),
             verify_assigned=bool(os.environ.get("RESEARCH_WORKSPACE_TEAM")),
         )
 

@@ -1,0 +1,12 @@
+{
+  "status": "blocked_platform_submission_permission",
+  "submitted": false,
+  "run_id": null,
+  "official_score": null,
+  "actual_blocker": "当前账号暂无评测提交权限，可先上传并检查镜像",
+  "uploaded_submission": "sub-20261102-303234b6.tar",
+  "start_precheck_failed_before_click": true,
+  "state_sha256": "f890583e6dac098e55bfd25278a9cfe6bf8e9ff9d7ca9d4aa7114c68b4ab7f9a",
+  "stderr_sha256": "6250494ddceaaedb6c84121c9063d783354d04f482a1046f55dda2e330162b39",
+  "native_tool_execution_verified": true
+}

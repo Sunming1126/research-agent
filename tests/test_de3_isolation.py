@@ -224,7 +224,7 @@ def test_e_audit_can_locate_multiple_nonadjacent_paragraphs():
     assert audit_gaps({'coverage':rows},'具体依据。\n\n其他说明。\n\n对应设计及验证。')==[]
 
 
-@pytest.mark.parametrize('cid,baseline,thinking', [('D-02',False,'enabled'),('D-02',True,'disabled'),('D-05',False,'disabled'),('D-01',False,'disabled')])
+@pytest.mark.parametrize('cid,baseline,thinking', [('D-02',False,'disabled'),('D-02',True,'disabled'),('D-05',False,'disabled'),('D-01',False,'disabled')])
 def test_d_reasoning_is_case_scoped_and_restored(cid,baseline,thinking):
     from research_agent.workflows.d_generation_policy import generation_window
     class Model:

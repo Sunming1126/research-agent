@@ -19,7 +19,9 @@ def generation_window(llm, *, baseline, case_id=None):
         llm.deadline = min(old, deadline) if old is not None else deadline
         llm.REQUEST_TIMEOUT_CAP = cap
         llm.RETRY_ATTEMPTS = 1
-        llm.thinking_override = 'enabled' if case_id == 'D-02' and not baseline else 'disabled'
+        # A complete executable must fit the same bounded output allowance.
+        # D-02 enabled reasoning exhausted all 4200 tokens twice with no code.
+        llm.thinking_override = 'disabled'
         yield
     finally:
         for name, (present, value) in previous.items():

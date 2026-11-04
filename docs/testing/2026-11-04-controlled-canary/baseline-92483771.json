@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "source": "normal competition page, user-visible fields only",
+  "run_id": "eval-20261103-92483771",
+  "url": "http://aiagent-anic.com/runs/eval-20261103-92483771",
+  "captured_at": "2026-11-04T10:43:31.8908531+08:00",
+  "raw_snapshot_sha256": "31a3f8a6fc6cea99b834bc59bf433fafd27de18eb608f4690730a226be3bf107",
+  "score_rule_label": "competition-20261016-v18",
+  "automatic_leaderboard_included": true,
+  "official_display_total": 65.3,
+  "recomputed_total": 65.25777777777778,
+  "tokens": 467204,
+  "calls": 69,
+  "wall_seconds": 4148.0,
+  "completed_at_china": "2026-11-03 14:11",
+  "identity": {
+    "upload_id": "sub-20261103-10b547cd.tar",
+    "archive_sha256": null,
+    "source_commit": null,
+    "image_id": null,
+    "input_sha256": null,
+    "environment_sha256": null
+  },
+  "dimensions": {
+    "聊天类": {
+      "displayed_score": 5.0,
+      "max_score": 5,
+      "score_rate": 1.0
+    },
+    "检索类": {
+      "displayed_score": 8.8,
+      "max_score": 15,
+      "score_rate": 0.5866666666666667
+    },
+    "综述事实类": {
+      "displayed_score": 15.0,
+      "max_score": 15,
+      "score_rate": 1.0
+    },
+    "引文溯源类": {
+      "displayed_score": 9.7,
+      "max_score": 10,
+      "score_rate": 0.97
+    },
+    "要点覆盖类": {
+      "displayed_score": 6.4,
+      "max_score": 15,
+      "score_rate": 0.4266666666666667
+    },
+    "实验流水线类": {
+      "displayed_score": 12.9,
+      "max_score": 20,
+      "score_rate": 0.645
+    },
+    "数据与图表类": {
+      "displayed_score": 7.6,
+      "max_score": 20,
+      "score_rate": 0.38
+    }
+  },
+  "categories": {
+    "A": {
+      "score_average": 5.0,
+      "max_score": 5,
+      "score_rate": 1.0,
+      "tokens": 364,
+      "token_share": 0.0007791029186393952,
+      "calls": 1,
+      "model_seconds": 7.5,
+      "processing_seconds": 1.5
+    },
+    "B": {
+      "score_average": 8.75,
+      "max_score": 15,
+      "score_rate": 0.5833333333333334,
+      "tokens": 218144,
+      "token_share": 0.4669138106694292,
+      "calls": 39,
+      "model_seconds": 1081.0,
+      "processing_seconds": 94.3
+    },
+    "C": {
+      "score_average": 24.65,
+      "max_score": 25,
+      "score_rate": 0.986,
+      "tokens": 59489,
+      "token_share": 0.1273298173817005,
+      "calls": 7,
+      "model_seconds": 248.0,
+      "processing_seconds": 4.5
+    },
+    "D": {
+      "score_average": 20.477777777777778,
+      "max_score": 40,
+      "score_rate": 0.5119444444444444,
+      "tokens": 135609,
+      "token_share": 0.29025650465321357,
+      "calls": 14,
+      "model_seconds": 1329.0,
+      "processing_seconds": 303.0
+    },
+    "E": {
+      "score_average": 6.38,
+      "max_score": 15,
+      "score_rate": 0.42533333333333334,
+      "tokens": 53598,
+      "token_share": 0.11472076437701732,
+      "calls": 8,
+      "model_seconds": 257.0,
+      "processing_seconds": 4.3
+    }
+  },
+  "cases": {
+    "A-02": {
+      "protocol_status": "协议有效",
+      "calls": 1,
+      "tokens": 364,
+      "model_seconds": 7.5,
+      "processing_seconds": 1.5,
+      "execution_note": null,
+      "score": "5",
+      "max_score": 5,
+      "score_rate": 1.0,
+      "token_share": 0.0007791029186393952,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    },
+    "B-01": {
+      "protocol_status": "协议有效",
+      "calls": 14,
+      "tokens": 80423,
+      "model_seconds": 378.0,
+      "processing_seconds": 44.1,
+      "execution_note": null,
+      "score": "12.75",
+      "max_score": 15,
+      "score_rate": 0.85,
+      "token_share": 0.17213679677400023,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    },
+    "B-02": {
+      "protocol_status": "协议有效",
+      "calls": 12,
+      "tokens": 63852,
+      "model_seconds": 322.0,
+      "processing_seconds": 22.6,
+      "execution_note": null,
+      "score": "0",
+      "max_score": 15,
+      "score_rate": 0.0,
+      "token_share": 0.13666835044220513,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    },
+    "B-03": {
+      "protocol_status": "协议有效",
+      "calls": 13,
+      "tokens": 73869,
+      "model_seconds": 381.0,
+      "processing_seconds": 27.6,
+      "execution_note": null,
+      "score": "13.5",
+      "max_score": 15,
+      "score_rate": 0.9,
+      "token_share": 0.15810866345322386,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    },
+    "C-03": {
+      "protocol_status": "协议有效",
+      "calls": 3,
+      "tokens": 26268,
+      "model_seconds": 116.0,
+      "processing_seconds": 1.5,
+      "execution_note": null,
+      "score": "24.3",
+      "max_score": 25,
+      "score_rate": 0.972,
+      "token_share": 0.05622383370005394,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    },
+    "C-05": {
+      "protocol_status": "协议有效",
+      "calls": 4,
+      "tokens": 33221,
+      "model_seconds": 132.0,
+      "processing_seconds": 3.0,
+      "execution_note": null,
+      "score": "25",
+      "max_score": 25,
+      "score_rate": 1.0,
+      "token_share": 0.07110598368164656,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    },
+    "D-01": {
+      "protocol_status": "协议有效",
+      "calls": 5,
+      "tokens": 30441,
+      "model_seconds": 370.0,
+      "processing_seconds": 70.0,
+      "execution_note": null,
+      "score": "11.1",
+      "max_score": 40,
+      "score_rate": 0.2775,
+      "token_share": 0.06515569216016986,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    },
+    "D-02": {
+      "protocol_status": "协议有效",
+      "calls": 4,
+      "tokens": 55720,
+      "model_seconds": 520.0,
+      "processing_seconds": 99.0,
+      "execution_note": null,
+      "score": "38",
+      "max_score": 40,
+      "score_rate": 0.95,
+      "token_share": 0.11926267754556896,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    },
+    "D-05": {
+      "protocol_status": "协议有效",
+      "calls": 5,
+      "tokens": 49448,
+      "model_seconds": 439.0,
+      "processing_seconds": 134.0,
+      "execution_note": null,
+      "score": "12.333333333333332",
+      "max_score": 40,
+      "score_rate": 0.3083333333333333,
+      "token_share": 0.10583813494747477,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    },
+    "E-01": {
+      "protocol_status": "协议有效",
+      "calls": 4,
+      "tokens": 24047,
+      "model_seconds": 126.0,
+      "processing_seconds": 1.3,
+      "execution_note": null,
+      "score": "6.38",
+      "max_score": 15,
+      "score_rate": 0.42533333333333334,
+      "token_share": 0.051470021660773455,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    },
+    "E-04": {
+      "protocol_status": "协议有效",
+      "calls": 4,
+      "tokens": 29551,
+      "model_seconds": 131.0,
+      "processing_seconds": 3.0,
+      "execution_note": null,
+      "score": "6.38",
+      "max_score": 15,
+      "score_rate": 0.42533333333333334,
+      "token_share": 0.06325074271624387,
+      "judge_note": null,
+      "failure_class": "not_observed_in_capture",
+      "internal_stage_seconds": null,
+      "token_prompt_completion_split": null,
+      "input_sha256": null
+    }
+  },
+  "ce_summary": {
+    "cases": 4,
+    "zero_scores": 0,
+    "visible_contract_failures": 0,
+    "unavailable": [
+      "internal validation traces",
+      "failed stage",
+      "input fingerprint"
+    ]
+  }
+}

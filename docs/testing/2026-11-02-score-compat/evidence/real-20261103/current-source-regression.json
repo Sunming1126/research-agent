@@ -1,0 +1,49 @@
+{
+  "returncode": 0,
+  "seconds": 381.997,
+  "execution": "Original Harness native coordinator, no target model",
+  "native_harness_execution": true,
+  "platform_acceptance": false,
+  "target_model_calls": 0,
+  "tests": 531,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 6,
+  "passed": 525,
+  "run_directory": "score-e2e-full-regression-20261102-125515-c3f34",
+  "skipped_cases": [
+    {
+      "test": ".tests.test_d_official_client_flow",
+      "reason": "collection skipped"
+    },
+    {
+      "test": "tests.test_agent_core.CoreTests.test_case_insensitive_duplicate_selection",
+      "reason": "case-insensitive filesystem cannot hold both filenames"
+    },
+    {
+      "test": "tests.test_agent_core.CoreTests.test_symlink_escape",
+      "reason": "Windows symlink privilege is unavailable"
+    },
+    {
+      "test": "tests.test_contract_044.test_absolute_authorized_file_still_rejects_symlinks_and_traversal",
+      "reason": "symlink unavailable"
+    },
+    {
+      "test": "tests.test_mixed_text_pdf.MixedTextPdfTests.test_scanned_page_does_not_hide_text_pages",
+      "reason": "300-paper local benchmark not installed"
+    },
+    {
+      "test": "tests.test_platform_defaults.test_default_library_rejects_symlink_escape",
+      "reason": "symlink creation unavailable"
+    }
+  ],
+  "native_attestation": {
+    "request_id": "a0748e215bcf4aa383c80d0012ee435f",
+    "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+    "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+    "native_tool_seq": 2658,
+    "native_tool_call_sha256": "4e72d7ff5ac6bc8d5bbc0f6c73128c68382e1bdf8dea6d9a3f066bd309297625",
+    "native_tool_execution_verified": true
+  },
+  "acceptance": "source regression only; 6 gaps are not credited as passing E2E or official scoring"
+}
