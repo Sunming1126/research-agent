@@ -89,7 +89,7 @@ def test_b02_removes_only_source_bound_counterevidence():
             exclusions = []
             for candidate in data['candidates']:
                 chunk_id = candidate['chunks'][0]['chunk_id']
-                exclusion = {'filename': candidate['filename'], 'task_id': 'q1',
+                exclusion = {'filename': candidate['filename'], 'task_id': 'q2',
                              'chunk_id': chunk_id, 'quote': quote, 'reason': '仅作对照。'}
                 if candidate['filename'] == 'invented.pdf':
                     exclusion['quote'] = 'The paper contains this invented sentence.'
@@ -99,6 +99,7 @@ def test_b02_removes_only_source_bound_counterevidence():
         for candidate in data['candidates']:
             row = audit_response(candidate) if data.get('verification') else response(candidate)
             if data.get('verification'):
+                row['requirements'][0]['task_quote'] = 'remote sensing'
                 ids = row['requirements'][0]['evidence_ids']
                 row['match_dimensions'] = {'object': ids, 'method': ids}
             rows.append(row)
