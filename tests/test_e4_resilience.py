@@ -86,6 +86,22 @@ def test_bad_repair_never_overwrites_previous_valid_draft(patch):
     assert workflow.audit['history'][-1]['stage']=='repair_unavailable'
 
 
+@pytest.mark.parametrize('approved', [True, False])
+def test_e04_full_rebuild_adopted_only_after_semantic_review(approved):
+    rejected = {**good_audit(), 'ok': False, 'issues': ['对照预算与指标定义不一致。']}
+    rewrite = '固定同一评测输入。' + BODY
+    workflow, model = run([
+        {'markdown': BODY}, rejected, {'patches': []},
+        {'markdown': rewrite}, good_audit() if approved else rejected,
+    ])
+    current = CaseContext.from_dict(case('E-04'))
+    with CaseSession('E-04', 850).activate():
+        result = workflow.compose_report(current)
+    assert model.stages == ['report', 'audit', 'repair', 'report', 'audit']
+    assert ('固定同一评测输入。' in result['markdown']) is approved
+    assert workflow.audit['ok'] is approved
+
+
 def test_exhausted_recovery_never_fabricates_report():
     workflow,model=run([ModelError('invalid JSON'),ModelError('invalid JSON')])
     with pytest.raises(EvidenceError):workflow.compose_report(CaseContext.from_dict(case('E-01')))

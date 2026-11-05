@@ -141,6 +141,16 @@ def patch_draft(workflow, case, body, feedback, rows):
     return apply_report_patches(body, patches), repaired, patches
 
 
+def review_draft(workflow, case, body, rows, used, ambiguities):
+    data = audit_request(case, body, rows, workflow.ledger, used=used, full_review=True)
+    data['numeric_claims_to_classify'] = ambiguities
+    audit = call(workflow, 'audit', data, 1600)
+    if (not isinstance(audit, dict) or type(audit.get('ok')) is not bool
+            or not isinstance(audit.get('issues'), list) or not all(isinstance(x, str) for x in audit['issues'])):
+        raise EvidenceError('invalid Idea semantic audit response')
+    return audit, list(audit['issues']) + audit_gaps(audit, body)
+
+
 def compose_idea(workflow, case):
     filenames = sorted({e.filename for e in workflow.ledger})
     if not filenames:
@@ -152,6 +162,7 @@ def compose_idea(workflow, case):
     body = None
     format_candidate = None
     repair_used = False
+    reviewed = False
     # 首先生成完整报告，不再耗时调用可选规划。
     attempts = 3 if current_session() and remaining() >= 300 else 2
     for attempt in range(attempts):
@@ -206,20 +217,17 @@ def compose_idea(workflow, case):
             feedback = feedback + ['semantic review unavailable within remaining case budget']
             break
         try:
-            data = audit_request(case, body, rows, workflow.ledger, used=used, full_review=True)
-            data['numeric_claims_to_classify'] = ambiguities
-            audit = call(workflow, 'audit', data, 1600)
-            if (not isinstance(audit,dict) or type(audit.get('ok')) is not bool
-                    or not isinstance(audit.get('issues'),list) or not all(isinstance(x,str) for x in audit['issues'])):
-                raise EvidenceError('invalid Idea semantic audit response')
+            audit, feedback = review_draft(workflow, case, body, rows, used, ambiguities)
+            reviewed = True
             history.append({'stage':'audit','audit':audit,'attempt':review+1})
-            feedback = list(audit['issues']) + audit_gaps(audit, body)
             if audit['ok'] and not feedback:
                 workflow.audit = {**audit,'history':history,'local_validation':True}
                 return workflow._report_result(case, body, filenames, refs)
             feedback = feedback or ['semantic audit rejected without details']
         except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
             feedback = [str(exc)]; history.append({'stage':'audit_unavailable','issues':feedback})
+            if isinstance(exc, ModelQuotaError):
+                reviewed = False
             break
         if review or repair_used or remaining() < 42:
             break
@@ -232,7 +240,30 @@ def compose_idea(workflow, case):
             workflow.report_trace.append({'attempt':review+2,'raw_response':repaired,'raw_markdown':body,'patches':patches})
         except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
             history.append({'stage':'repair_unavailable','issues':[str(exc)]})
+            if isinstance(exc, ModelQuotaError):
+                reviewed = False
             break
+    if case.case_id == 'E-04' and reviewed and remaining() >= 220:
+        try:
+            rebuilt = call(workflow, 'report', {
+                **data, 'previous_draft': body, 'repair_issues': feedback,
+                'rebuild_instruction': (
+                    '重写完整报告，保留经证据支持的文献事实。只比较一项核心机制，固定双方输入、预算、'
+                    '数据划分及种子。核对每个中间量的生产者、降级仍可用的输入和可观察的指标分子。'
+                    '跨节规则必须一致。以正文和引用完整的新JSON交付。'
+                ),
+            }, 4200, retry=True)
+            rebuilt_body, rebuilt_used, rebuilt_ambiguities = normalize(rebuilt, evidence)
+            workflow.report_trace.append({'stage':'depth_rebuild','raw_response':rebuilt,'raw_markdown':rebuilt_body})
+            rebuilt_audit, rebuilt_feedback = review_draft(
+                workflow, case, rebuilt_body, rows, rebuilt_used, rebuilt_ambiguities)
+            history.append({'stage':'depth_rebuild_audit','audit':rebuilt_audit,'issues':rebuilt_feedback})
+            if rebuilt_audit['ok'] and not rebuilt_feedback:
+                workflow.last_draft = rebuilt_body
+                workflow.audit = {**rebuilt_audit,'history':history,'local_validation':True}
+                return workflow._report_result(case, rebuilt_body, filenames, refs)
+        except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
+            history.append({'stage':'depth_rebuild_unavailable','issues':[str(exc)]})
     workflow.audit = {'ok':False,'mode':'model_report_needs_review','local_validation':True,
                       'model_issues':feedback,'history':history}
     return workflow._report_result(case, body, filenames, refs)
