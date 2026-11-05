@@ -101,6 +101,9 @@ class LayeredDRunner:
             response = self.llm.completion("d_source", prompt, max_tokens=requested)
         save_generation_response(response, confined(self.work, f"source-attempt-{attempt}.json"))
         save_generation_response(response, confined(self.work, "generation-response.json"))
+        # A late response remains audit evidence, but cancellation/deadline
+        # expiry must stop source selection and any later formal submission.
+        checkpoint("d_source_received")
         destination = confined(self.work, "implementation.py")
         save_source(response, destination)
         return destination
@@ -121,6 +124,9 @@ class LayeredDRunner:
             except ModelQuotaError:
                 raise
             except (ModelError, ValueError, SyntaxError, RuntimeError, TimeoutError) as exc:
+                # Preserve cancellation even on the final attempt. A transport
+                # timeout in an active session can still use bounded recovery.
+                checkpoint()
                 feedback = {'error_type': type(exc).__name__,
                             'message': 'Return one complete syntactically valid implementation matching current materials.'}
                 history.append({'attempt': attempt, 'error_type': type(exc).__name__})
