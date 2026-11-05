@@ -169,6 +169,26 @@ def test_e04_additional_repairs_are_bounded_and_cannot_promote_unapproved_text(a
     assert '修订3。' not in result['markdown']
 
 
+@pytest.mark.parametrize('text,valid', [
+    ('概率 p_c∈[0,1]，映射后 q∈ [−0.5, 1e0]。', True),
+    ('错误引文[0,1]。', False),
+    ('无来源引文[E:ev-999]。', False),
+])
+def test_e04_numeric_membership_preserves_values_without_weakening_citations(text, valid):
+    from dataclasses import asdict
+    from research_agent.workflows.idea_workflow import normalize
+    workflow, _ = run([])
+    evidence = [dict(asdict(workflow.ledger[0]), ref=1)]
+    value = {'markdown': BODY + text}
+    if not valid:
+        with pytest.raises(EvidenceError):
+            normalize(value, evidence, maximum_body=4500, math_intervals=True)
+    else:
+        body, used, _ = normalize(value, evidence, maximum_body=4500, math_intervals=True)
+        assert 'p_c∈［0,1］' in body and 'q∈ ［−0.5, 1e0］' in body
+        assert '[1, p.1]' in body and used == ['ev-1']
+
+
 @pytest.mark.parametrize('evidence_id,valid', [('ev-1', True), ('ev-999', False)])
 def test_e04_fullwidth_citation_retains_source_validation(evidence_id, valid):
     workflow, model = run([

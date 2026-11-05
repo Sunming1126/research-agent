@@ -106,11 +106,17 @@ def complete_markdown(failures):
     return None
 
 
-def normalize(value, evidence, *, maximum_body=6000):
+def normalize(value, evidence, *, maximum_body=6000, math_intervals=False):
     if not isinstance(value, dict) or not isinstance(value.get('markdown'), str) or not value['markdown'].strip():
         raise EvidenceError('Idea response needs a complete nonempty markdown string')
     body = value['markdown'].split('## 参考文献', 1)[0].strip()
     body = re.sub(r'［(E:\s*ev-\d+(?:\s*,\s*ev-\d+)*)\s*］', r'[\1]', body)
+    if math_intervals:
+        # Only explicit set membership with two numeric endpoints is an interval.
+        # Bare brackets remain citations and undergo the original evidence checks.
+        number = r'[+\-−]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?'
+        body = re.sub(r'(∈\s*)\[\s*' + number + r'\s*,\s*' + number + r'\s*\]',
+                      lambda m: m[0].replace('[', '［').replace(']', '］'), body)
     body, bound = render_evidence_citations(body, evidence)
     # 内部ID列表不是最终答卷字段；仅按真实正文标记回查已授权证据，不猜新引用。
     used = list(dict.fromkeys(bound + [row['evidence_id'] for row in cited_evidence(body, evidence)]))
@@ -257,7 +263,8 @@ def compose_idea(workflow, case):
                     history.append({'stage':'complete_field_recovery','attempt':attempt+1,'original_error':str(exc)})
                 workflow.report_trace.append({'attempt':attempt+1,'raw_response':value,
                     'raw_markdown':value.get('markdown') if isinstance(value,dict) else None,'source_task':report_task(case)})
-            body, used, ambiguities = normalize(value, evidence, maximum_body=body_limit)
+            body, used, ambiguities = normalize(value, evidence, maximum_body=body_limit,
+                                               math_intervals=case.case_id == 'E-04')
             workflow.last_draft = body
             break
         except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
@@ -303,7 +310,7 @@ def compose_idea(workflow, case):
             repair_used = True
             revised, repaired, patches = patch_draft(workflow, case, body, feedback, rows)
             candidate, candidate_used, candidate_ambiguities = normalize(
-                {'markdown':revised}, evidence, maximum_body=body_limit)
+                {'markdown':revised}, evidence, maximum_body=body_limit, math_intervals=case.case_id == 'E-04')
             body, used, ambiguities = candidate, candidate_used, candidate_ambiguities
             workflow.last_draft = body
             workflow.report_trace.append({'attempt':review+2,'raw_response':repaired,'raw_markdown':body,'patches':patches})
@@ -322,7 +329,8 @@ def compose_idea(workflow, case):
                     '跨节规则必须一致。以正文和引用完整的新JSON交付。'
                 ),
             }, 4200, retry=True)
-            rebuilt_body, rebuilt_used, rebuilt_ambiguities = normalize(rebuilt, evidence, maximum_body=body_limit)
+            rebuilt_body, rebuilt_used, rebuilt_ambiguities = normalize(
+                rebuilt, evidence, maximum_body=body_limit, math_intervals=case.case_id == 'E-04')
             workflow.report_trace.append({'stage':'depth_rebuild','raw_response':rebuilt,'raw_markdown':rebuilt_body})
             rebuilt_audit, rebuilt_feedback = review_draft(
                 workflow, case, rebuilt_body, rows, rebuilt_used, rebuilt_ambiguities)
@@ -339,7 +347,7 @@ def compose_idea(workflow, case):
                 revised, repaired, patches = patch_draft(
                     workflow, case, rebuilt_body, rebuilt_feedback, rows)
                 final_body, final_used, final_ambiguities = normalize(
-                    {'markdown': revised}, evidence, maximum_body=body_limit)
+                    {'markdown': revised}, evidence, maximum_body=body_limit, math_intervals=case.case_id == 'E-04')
                 if final_body == rebuilt_body:
                     history.append({'stage':'depth_repair_no_progress','round':repair_round})
                     break
