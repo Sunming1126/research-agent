@@ -69,9 +69,10 @@ def test_e04_writer_receives_verified_plan_without_calling_it_proven():
 
 
 @pytest.mark.parametrize('case_id,stage,enabled', [
-    ('E-04', 'audit', True), ('E-01', 'audit', False), ('E-04', 'report', False),
+    ('E-04', 'audit', True), ('E-01', 'audit', False), ('E-04', 'report', True),
+    ('E-04', 'repair', True), ('E-01', 'repair', False),
 ])
-def test_reasoned_audit_is_e04_only_and_restores_on_failure(case_id, stage, enabled):
+def test_reasoned_semantic_stages_are_e04_only_and_restore_on_failure(case_id, stage, enabled):
     from types import SimpleNamespace
     from research_agent.workflows.idea_workflow import call
     model = SimpleNamespace(thinking_override='disabled')

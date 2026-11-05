@@ -25,11 +25,11 @@ def remaining():
 
 
 @contextmanager
-def call_window(llm, stage, *, retry=False, reasoned_audit=False):
+def call_window(llm, stage, *, retry=False, reasoned_e04=False):
     caps = {'extract_batch': (120, 360), 'report': (180, 90) if retry else (240, 180),
             'audit': (60, 30), 'repair': (120, 30)}
     cap, reserve = caps[stage]
-    if stage == 'audit' and reasoned_audit:
+    if stage in ('audit', 'repair') and reasoned_e04:
         cap = 180
     session = current_session()
     names = ('deadline', 'REQUEST_TIMEOUT_CAP', 'RETRY_ATTEMPTS', 'thinking_override')
@@ -46,7 +46,7 @@ def call_window(llm, stage, *, retry=False, reasoned_audit=False):
         llm.deadline = deadline
         llm.REQUEST_TIMEOUT_CAP = cap
         llm.RETRY_ATTEMPTS = 1
-        llm.thinking_override = 'enabled' if stage == 'extract_batch' or reasoned_audit else 'disabled'
+        llm.thinking_override = 'enabled' if stage == 'extract_batch' or reasoned_e04 else 'disabled'
         checkpoint('idea_'+stage)
         yield
     finally:
@@ -58,11 +58,11 @@ def call_window(llm, stage, *, retry=False, reasoned_audit=False):
 
 
 def call(workflow, stage, data, maximum, *, retry=False):
-    reasoned_audit = stage == 'audit' and data.get('task', {}).get('case_id') == 'E-04'
-    if reasoned_audit:
+    reasoned_e04 = stage in ('report', 'audit', 'repair') and data.get('task', {}).get('case_id') == 'E-04'
+    if reasoned_e04:
         # 推理与JSON共享输出限额；不能沿用只够短审查正文的1600。
         maximum = max(maximum, 32768)
-    with call_window(workflow.llm, stage, retry=retry, reasoned_audit=reasoned_audit):
+    with call_window(workflow.llm, stage, retry=retry, reasoned_e04=reasoned_e04):
         return workflow._budgeted_model_step(stage, data, maximum, reserve=0, minimum=500)
 
 
