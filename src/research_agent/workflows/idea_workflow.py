@@ -208,7 +208,7 @@ def review_draft(workflow, case, body, rows, used, ambiguities):
         truncated = any(
             isinstance(f, dict) and f.get('stage') == 'audit'
             and any(isinstance(c, dict) and c.get('finish_reason') == 'length'
-                    for c in f.get('choices', []) if isinstance(f.get('choices'), list))
+                    for c in (f['choices'] if isinstance(f.get('choices'), list) else []))
             for f in getattr(workflow.llm, 'response_failures', [])[before:])
         if case.case_id != 'E-04' or isinstance(exc, ModelQuotaError) or not truncated or remaining() < 90:
             raise

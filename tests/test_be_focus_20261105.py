@@ -191,7 +191,7 @@ def test_e04_numeric_membership_preserves_values_without_weakening_citations(tex
 
 @pytest.mark.parametrize('case_id,fault,retried', [
     ('E-04', 'length', True), ('E-04', 'transport', False),
-    ('E-04', 'quota', False), ('E-01', 'length', False),
+    ('E-04', 'quota', False), ('E-01', 'length', False), ('E-04', 'malformed', False),
 ])
 def test_audit_retry_requires_recorded_truncation_and_never_retries_quota(case_id, fault, retried):
     from dataclasses import asdict
@@ -200,7 +200,8 @@ def test_audit_retry_requires_recorded_truncation_and_never_retries_quota(case_i
 
     def failure(model, stage, data):
         if fault != 'transport':
-            model.response_failures.append({'stage': stage, 'choices': [{'finish_reason': 'length'}]})
+            model.response_failures.append({'stage': stage, 'choices':
+                None if fault == 'malformed' else [{'finish_reason': 'length'}]})
         raise ModelQuotaError('quota') if fault == 'quota' else ModelError('injected incomplete audit')
 
     workflow, model = run([failure, good_audit()])
