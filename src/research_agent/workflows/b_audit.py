@@ -48,11 +48,12 @@ def assess_audit(row,candidate,task,plan):
     if task.get('case_id') == 'B-02' and decision['status'] == 'relevant':
         dimensions = row.get('match_dimensions')
         supported = {e for check in verified if check['verdict'] == 'met' for e in check['evidence_ids']}
-        if (not isinstance(dimensions, dict) or not 2 <= len(dimensions) <= 3
-                or not set(dimensions) <= {'object', 'method', 'finding'}
-                or any(not isinstance(ids, list) or not ids
-                       or any(not isinstance(e, str) or e not in supported for e in ids)
-                       for ids in dimensions.values())):
+        if not isinstance(dimensions, dict) or not set(dimensions) <= {'object', 'method', 'finding'}:
+            raise ModelError('B-02 requires two supported relevance dimensions in final review')
+        dimensions = {key: ids for key, ids in dimensions.items()
+                      if isinstance(ids, list) and ids
+                      and all(isinstance(e, str) and e in supported for e in ids)}
+        if len(dimensions) < 2:
             raise ModelError('B-02 requires two supported relevance dimensions in final review')
         decision['match_dimensions'] = dimensions
         decision['match_evidence'] = [

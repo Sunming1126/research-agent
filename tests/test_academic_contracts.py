@@ -10,7 +10,7 @@ from test_db206 import audit_response, reply
 from test_b6_retrieval import ScreeningModel, response
 
 
-@pytest.mark.parametrize('fault', ['missing', 'one_dimension', 'wrong_source', 'none'])
+@pytest.mark.parametrize('fault', ['missing', 'one_dimension', 'wrong_source', 'extra_dimension', 'none'])
 def test_b02_final_review_owns_admission(fault):
     def respond(data):
         rows = []
@@ -25,6 +25,8 @@ def test_b02_final_review_owns_admission(fault):
             row['match_dimensions'] = {'object': [evidence]}
             if fault != 'one_dimension':
                 row['match_dimensions']['method'] = ['unrelated-id' if fault == 'wrong_source' else evidence]
+            if fault == 'extra_dimension':
+                row['match_dimensions']['finding'] = ['unrelated-id']
             rows.append(row)
         return {'papers': rows}
 
@@ -34,7 +36,9 @@ def test_b02_final_review_owns_admission(fault):
     result = workflow.handle(request, HybridRetriever([chunk(
         'study.pdf', 'We measure urban cooling using satellite remote sensing in an original experiment.'
     )]))
-    assert [p['filename'] for p in result['papers']] == (['study.pdf'] if fault == 'none' else [])
+    assert [p['filename'] for p in result['papers']] == (['study.pdf'] if fault in {'none', 'extra_dimension'} else [])
+    if fault == 'extra_dimension':
+        assert set(workflow.retrieval_trace['decisions']['study.pdf']['match_dimensions']) == {'object', 'method'}
 
 
 def test_d_duplicate_inputs_cannot_inflate_or_contradict_coverage():
