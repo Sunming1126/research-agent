@@ -111,6 +111,16 @@ def test_b02_counterevidence_reasoning_is_local_and_restored(case_id, challenge,
     assert vars(model) == before
 
 
+def test_b02_requirement_segments_keep_negation_and_antecedent_together():
+    from research_agent.workflows.b_audit import task_segments
+    task = {'case_id': 'B-02', 'input':
+            '仅使用既有模块给其他任务供输入，不满足目标一；目标二独立成立，不要求同时满足目标一。'}
+    assert [r['text'] for r in task_segments(task)] == [
+        '仅使用既有模块给其他任务供输入，不满足目标一；',
+        '目标二独立成立，不要求同时满足目标一。',
+    ]
+
+
 def test_e04_long_plan_excerpt_still_requires_full_source_match():
     from dataclasses import replace
     passage = 'This continuous supplied excerpt describes the actual retrieval mechanism. ' * 4

@@ -10,7 +10,10 @@ from .b_evidence import lexical_index, compact_evidence
 
 def task_segments(task):
     # 直接切分原题，不把规划模型的解释升级为额外必要条件。
-    pieces=[p.strip() for p in re.split(r'(?<=[，。；;！？!?])|\n+',task_text(task)) if p.strip()]
+    # B-02逗号可能把“仅采用X，不满足目标一”的否定后件拆掉，导致
+    # 不采用X被错误记为必要条件not_met。保留完整分句的原始极性。
+    pattern = r'(?<=[。；;！？!?])|\n+' if task.get('case_id') == 'B-02' else r'(?<=[，。；;！？!?])|\n+'
+    pieces=[p.strip() for p in re.split(pattern,task_text(task)) if p.strip()]
     return [{'id':f'q{i+1}','text':text} for i,text in enumerate(pieces)]
 
 
