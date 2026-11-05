@@ -1,0 +1,314 @@
+{
+  "baseline_commit": "dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd",
+  "teammate_commit": "046324bae9425aa0a1aeff49b9d8128831d18479",
+  "raw_junit_sha256": "42db41c76ec5eb17a6fd67898fd64da272167fe6bb54c2826853609176db4367",
+  "baseline_summary": {
+    "commit": "dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd",
+    "steps": {
+      "engine": 0,
+      "base": 0,
+      "image-build": 0,
+      "structure": 0,
+      "health-start": 0,
+      "health": 0,
+      "health-stop": 0,
+      "test-build": 0,
+      "d-linux": 0,
+      "regression": 1,
+      "baseline-regression": 1
+    },
+    "target_model_calls": 0,
+    "d-linux": {
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "passed": 3
+    },
+    "regression": {
+      "failure": 30,
+      "error": 0,
+      "skipped": 0,
+      "passed": 601
+    },
+    "baseline_commit": "046324bae9425aa0a1aeff49b9d8128831d18479",
+    "baseline-regression": {
+      "failure": 30,
+      "error": 0,
+      "skipped": 0,
+      "passed": 554
+    },
+    "gate_passed": false
+  },
+  "cases": [
+    {
+      "id": "tests.test_b5_conditions::test_protected_production_files_and_shared_dispatch_only",
+      "category": "historical_snapshot",
+      "observed_failure": "AssertionError: src/research_agent/core/engine.py\nassert '60aa0499ccc4...58743e8230be1' == 'c5dee66861d1...b94786eabea00'\n  \n  - c5dee66861d19a47752d963514d27af1c7412c42a20843bae73b94786eabea00\n  + 60aa0499ccc483575b7a1faadd264f54bb767199e583469979158743e8230be1",
+      "hypothesis": "两份历史保护清单冻结了不同版本。以dc9完整B/E、公共代码和依赖为本轮保护基线，逐文件核对；不删除隔离护栏。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_cd2_isolation::test_d02_late_repair_requests_new_baseline_source[80-True]",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "KeyError: 'baseline_only'",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_cd2_isolation::test_d02_late_repair_requests_new_baseline_source[90-True]",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "KeyError: 'baseline_only'",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_cd2_isolation::test_d02_late_repair_requests_new_baseline_source[110-False]",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "KeyError: 'baseline_only'",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_cd_runtime_regressions::test_d_client_partial_result_is_preserved",
+      "category": "client_fixture_provenance",
+      "observed_failure": "AssertionError: assert ({'case_id': '...us': 'failed'} == {'case_id': '...us': 'failed'}\n  \n  Omitting 2 identical items, use -vv to show\n  Differing items:\n  {'figures': []} != {'figures': [{'caption': 'fixture partial', 'legend': 'baseline', 'path': 'data/figure/platform-id/D-01-partial.png', 'x_label': 'x', ...}]}\n  {'metrics': [{'name': 'Macro-F1', 'observed': None, 'reference': None, 'relative_error': None, ...}, {'name': 'Accurac...one, 'relative_error': None, ...}, {'name': '运行时间', 'observed': None, 'reference': None, 'relative_error': None, ...}]} != {'metrics': [{'name': 'Macro-F1', 'observed': 0.4, 'reference': None, 'relative_error': None, ...}, {'name': 'Accu...\n  \n  ...Full output truncated (2 lines hidden), use '-vv' to show)",
+      "hypothesis": "夹具跳过生成且没有源码/响应对，新增材料复核先失败，未到被测客户端。补齐真实格式来源对并隔离复核；保留一次调用、部分结果、异常分类和落盘断言。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_cd_runtime_regressions::test_d_postprocessing_error_keeps_platform_result",
+      "category": "client_fixture_provenance",
+      "observed_failure": "Failed: DID NOT RAISE <class 'RuntimeError'>",
+      "hypothesis": "夹具跳过生成且没有源码/响应对，新增材料复核先失败，未到被测客户端。补齐真实格式来源对并隔离复核；保留一次调用、部分结果、异常分类和落盘断言。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_d_generation_restores_every_instance_attribute_and_class_default[False]",
+      "category": "versioned_generation_policy",
+      "observed_failure": "assert 420 <= 95\n +  where 420 = <test_d_isolated_revision.test_d_generation_restores_every_instance_attribute_and_class_default.<locals>.Model object at 0x7f819d42afd0>.REQUEST_TIMEOUT_CAP",
+      "hypothesis": "旧95秒/关闭推理预期与正式1800秒不符。验证父级截止时间不扩张、420秒子窗口、实例及类属性恢复、失败恢复。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_d_generation_restores_every_instance_attribute_and_class_default[True]",
+      "category": "versioned_generation_policy",
+      "observed_failure": "assert 420 <= 95\n +  where 420 = <test_d_isolated_revision.test_d_generation_restores_every_instance_attribute_and_class_default.<locals>.Model object at 0x7f819d578210>.REQUEST_TIMEOUT_CAP",
+      "hypothesis": "旧95秒/关闭推理预期与正式1800秒不符。验证父级截止时间不扩张、420秒子窗口、实例及类属性恢复、失败恢复。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_first_generation_strategy_is_case_scoped[D-01-False]",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "KeyError: 'baseline_only'",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_first_generation_strategy_is_case_scoped[D-02-False]",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "KeyError: 'baseline_only'",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_first_generation_strategy_is_case_scoped[D-05-False]",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "KeyError: 'baseline_only'",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_cancelled_d_does_not_retry_or_submit_source",
+      "category": "cancellation_injection",
+      "observed_failure": "RuntimeError: no complete current-session model source available",
+      "hypothesis": "旧注入挂在已停用的练习题tester上，没有真正取消正式生成。改为在实际模型生成阶段注入取消，验证不重试、不提交。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_platform_service_failure_is_not_algorithm_failed[D_SOURCE_AUDIT_UNAVAILABLE]",
+      "category": "client_fixture_provenance",
+      "observed_failure": "Failed: DID NOT RAISE <class 'research_agent.workflows.d_generation_policy.PlatformExperimentUnavailable'>",
+      "hypothesis": "夹具跳过生成且没有源码/响应对，新增材料复核先失败，未到被测客户端。补齐真实格式来源对并隔离复核；保留一次调用、部分结果、异常分类和落盘断言。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_platform_service_failure_is_not_algorithm_failed[HTTP Error 503: Service Unavailable]",
+      "category": "client_fixture_provenance",
+      "observed_failure": "Failed: DID NOT RAISE <class 'research_agent.workflows.d_generation_policy.PlatformExperimentUnavailable'>",
+      "hypothesis": "夹具跳过生成且没有源码/响应对，新增材料复核先失败，未到被测客户端。补齐真实格式来源对并隔离复核；保留一次调用、部分结果、异常分类和落盘断言。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_source_rejection_returns_honest_failed_schema_without_formal_retry",
+      "category": "client_fixture_provenance",
+      "observed_failure": "assert 0 == 1\n +  where 0 = len([])",
+      "hypothesis": "夹具跳过生成且没有源码/响应对，新增材料复核先失败，未到被测客户端。补齐真实格式来源对并隔离复核；保留一次调用、部分结果、异常分类和落盘断言。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_platform_partial_measurements_and_figures_are_preserved",
+      "category": "client_fixture_provenance",
+      "observed_failure": "AssertionError: assert {'case_id': '...us': 'failed'} == {'case_id': '...us': 'failed'}\n  \n  Omitting 3 identical items, use -vv to show\n  Differing items:\n  {'metrics': [{'name': 'm1', 'observed': None, 'reference': None, 'relative_error': None, ...}, {'name': 'm2', 'observe... None, 'relative_error': None, ...}, {'name': 'm3', 'observed': None, 'reference': None, 'relative_error': None, ...}]} != {'metrics': [{'name': 'm1', 'observed': 2, 'reference': None, 'relative_error': None, ...}, {'name': 'm2', 'observed':... None, 'relative_error': None, ...}, {'name': 'm3', 'observed': None, 'reference': None, 'relative_error': None, ...}]}\n  Use -v to get more diff",
+      "hypothesis": "夹具跳过生成且没有源码/响应对，新增材料复核先失败，未到被测客户端。补齐真实格式来源对并隔离复核；保留一次调用、部分结果、异常分类和落盘断言。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_isolated_revision::test_postprocessing_failure_never_replaces_received_platform_result",
+      "category": "client_fixture_provenance",
+      "observed_failure": "Failed: DID NOT RAISE <class 'RuntimeError'>",
+      "hypothesis": "夹具跳过生成且没有源码/响应对，新增材料复核先失败，未到被测客户端。补齐真实格式来源对并隔离复核；保留一次调用、部分结果、异常分类和落盘断言。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_official_client_flow::test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-02]",
+      "category": "formal_client_current_protocol",
+      "observed_failure": "AssertionError: assert [] == ['/source', '/run']\n  \n  Right contains 2 more items, first extra item: '/source'\n  Use -v to get more diff",
+      "hypothesis": "旧170秒小于生成预留300秒，客户端未执行。采用正式1780秒并断言未改客户端/source→/run、源码配对与失败测量保留。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_d_official_client_flow::test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-05]",
+      "category": "formal_client_current_protocol",
+      "observed_failure": "AssertionError: assert [] == ['/source', '/run']\n  \n  Right contains 2 more items, first extra item: '/source'\n  Use -v to get more diff",
+      "hypothesis": "旧170秒小于生成预留300秒，客户端未执行。采用正式1780秒并断言未改客户端/source→/run、源码配对与失败测量保留。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_de3_isolation::test_d_reasoning_is_case_scoped_and_restored[D-02-True-disabled]",
+      "category": "versioned_generation_policy",
+      "observed_failure": "AssertionError: assert 'enabled' == 'disabled'\n  \n  - disabled\n  + enabled",
+      "hypothesis": "旧95秒/关闭推理预期与正式1800秒不符。验证父级截止时间不扩张、420秒子窗口、实例及类属性恢复、失败恢复。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_de3_isolation::test_d_reasoning_is_case_scoped_and_restored[D-05-False-disabled]",
+      "category": "versioned_generation_policy",
+      "observed_failure": "AssertionError: assert 'enabled' == 'disabled'\n  \n  - disabled\n  + enabled",
+      "hypothesis": "旧95秒/关闭推理预期与正式1800秒不符。验证父级截止时间不扩张、420秒子窗口、实例及类属性恢复、失败恢复。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_de3_isolation::test_d_reasoning_is_case_scoped_and_restored[D-01-False-disabled]",
+      "category": "versioned_generation_policy",
+      "observed_failure": "AssertionError: assert 'enabled' == 'disabled'\n  \n  - disabled\n  + enabled",
+      "hypothesis": "旧95秒/关闭推理预期与正式1800秒不符。验证父级截止时间不扩张、420秒子窗口、实例及类属性恢复、失败恢复。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_e4_resilience::test_e4_freezes_all_d_and_c_specific_files",
+      "category": "historical_snapshot",
+      "observed_failure": "AssertionError: src/research_agent/core/engine.py\nassert 'c5dee66861d1...b94786eabea00' == '60aa0499ccc4...58743e8230be1'\n  \n  - 60aa0499ccc483575b7a1faadd264f54bb767199e583469979158743e8230be1\n  + c5dee66861d19a47752d963514d27af1c7412c42a20843bae73b94786eabea00",
+      "hypothesis": "两份历史保护清单冻结了不同版本。以dc9完整B/E、公共代码和依赖为本轮保护基线，逐文件核对；不删除隔离护栏。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_eval_20261026_regressions::test_public_failure_retains_only_complete_current_source_for_formal_runner[second0]",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "KeyError: 'public_selftest_passed'",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_eval_20261026_regressions::test_public_failure_retains_only_complete_current_source_for_formal_runner[second1]",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "KeyError: 'public_selftest_passed'",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_eval_20261026_regressions::test_public_failure_retains_only_complete_current_source_for_formal_runner[second2]",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "KeyError: 'public_selftest_passed'",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_eval_20261026_regressions::test_without_complete_source_d_never_submits_a_stub",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "IndexError: pop from empty list",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_eval_20261026_regressions::test_honest_baseline_source_is_retained_without_mandatory_second_generation",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "RuntimeError: no complete current-session model source available",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_eval_20261026_regressions::test_failed_selftest_still_reaches_real_client_boundary",
+      "category": "formal_client_current_protocol",
+      "observed_failure": "IndexError: pop from empty list",
+      "hypothesis": "旧170秒小于生成预留300秒，客户端未执行。采用正式1780秒并断言未改客户端/source→/run、源码配对与失败测量保留。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    },
+    {
+      "id": "tests.test_public_selftest::test_model_repairs_complete_source_after_sample_failure",
+      "category": "obsolete_practice_oracle",
+      "observed_failure": "assert 'def run_expe...  return {}\\n' == \"def run_expe...red': True}\\n\"\n  \n    def run_experiment(request):\n  -     return {'repaired': True}\n  +     return {}",
+      "hypothesis": "正式路径已移除旧题语义oracle与wall-clock baseline切换。改测当轮材料、完整源码/来源响应、通用语法重试和诚实失败，不把旧公开算法恢复到正式路径。",
+      "production_defect_confirmed": false,
+      "experiment": "待原Harness执行新版契约在原生产源码上的Linux对照；修改断言之前保留原JUnit。",
+      "decision": "诊断候选；不计修复、不计提分。"
+    }
+  ]
+}
