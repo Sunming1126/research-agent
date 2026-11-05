@@ -189,6 +189,32 @@ def test_e04_numeric_membership_preserves_values_without_weakening_citations(tex
         assert '[1, p.1]' in body and used == ['ev-1']
 
 
+@pytest.mark.parametrize('case_id,fault,retried', [
+    ('E-04', 'length', True), ('E-04', 'transport', False),
+    ('E-04', 'quota', False), ('E-01', 'length', False),
+])
+def test_audit_retry_requires_recorded_truncation_and_never_retries_quota(case_id, fault, retried):
+    from dataclasses import asdict
+    from research_agent.integrations.llm import ModelError, ModelQuotaError
+    from research_agent.workflows.idea_workflow import review_draft
+
+    def failure(model, stage, data):
+        if fault != 'transport':
+            model.response_failures.append({'stage': stage, 'choices': [{'finish_reason': 'length'}]})
+        raise ModelQuotaError('quota') if fault == 'quota' else ModelError('injected incomplete audit')
+
+    workflow, model = run([failure, good_audit()])
+    rows = [dict(asdict(workflow.ledger[0]), ref=1)]
+    with CaseSession(case_id, 850).activate():
+        if retried:
+            result, issues = review_draft(workflow, CaseContext.from_dict(case(case_id)), BODY, rows, ['ev-1'], [])
+            assert result['ok'] and not issues
+        else:
+            with pytest.raises(ModelError):
+                review_draft(workflow, CaseContext.from_dict(case(case_id)), BODY, rows, ['ev-1'], [])
+    assert model.stages == ['audit'] * (2 if retried else 1)
+
+
 @pytest.mark.parametrize('evidence_id,valid', [('ev-1', True), ('ev-999', False)])
 def test_e04_fullwidth_citation_retains_source_validation(evidence_id, valid):
     workflow, model = run([

@@ -200,7 +200,27 @@ def patch_draft(workflow, case, body, feedback, rows):
 def review_draft(workflow, case, body, rows, used, ambiguities):
     data = audit_request(case, body, rows, workflow.ledger, used=used, full_review=True)
     data['numeric_claims_to_classify'] = ambiguities
-    audit = call(workflow, 'audit', data, 1600)
+    failures = getattr(workflow.llm, 'response_failures', [])
+    before = len(failures)
+    try:
+        audit = call(workflow, 'audit', data, 1600)
+    except ModelError as exc:
+        truncated = any(
+            isinstance(f, dict) and f.get('stage') == 'audit'
+            and any(isinstance(c, dict) and c.get('finish_reason') == 'length'
+                    for c in f.get('choices', []) if isinstance(f.get('choices'), list))
+            for f in getattr(workflow.llm, 'response_failures', [])[before:])
+        if case.case_id != 'E-04' or isinstance(exc, ModelQuotaError) or not truncated or remaining() < 90:
+            raise
+        workflow.evidence_audit.setdefault('idea_audit_retries', []).append({
+            'reason': 'verified_output_length_without_complete_audit', 'attempts': 1,
+        })
+        data['retry_guidance'] = (
+            '上次审查因输出长度截断，未得到完整审查JSON。本次仍检查同一全文、原文与八项要求；'
+            '聚焦最多三项实质错误，不重新设计整套方案、不扩展题目要求，及时输出完整审查JSON。'
+            '不能把截断当通过，也不能省略coverage。'
+        )
+        audit = call(workflow, 'audit', data, 1600)
     if (not isinstance(audit, dict) or type(audit.get('ok')) is not bool
             or not isinstance(audit.get('issues'), list) or not all(isinstance(x, str) for x in audit['issues'])):
         raise EvidenceError('invalid Idea semantic audit response')
