@@ -29,10 +29,10 @@ def test_e_model_failure_after_old_180_second_boundary_can_recover():
     def slow(model,stage,data):
         current_session().started_at-=185
         raise ModelError('transport timeout')
-    w,m=run([slow,ModelError('invalid JSON'),{'markdown':BODY},good_audit()])
+    w,m=run([ModelError('optional plan unavailable'), slow,ModelError('invalid JSON'),{'markdown':BODY},good_audit()])
     with CaseSession('E-04',885).activate():
         result=w.compose_report(CaseContext.from_dict(case('E-04')))
-    assert result['markdown'] and m.stages==['report','report','report','audit']
+    assert result['markdown'] and m.stages==['extract_batch','report','report','report','audit']
 
 def test_e_extended_window_restores_llm_and_does_not_extend_case_deadline():
     class L:pass
