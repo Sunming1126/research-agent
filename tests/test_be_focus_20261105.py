@@ -5,7 +5,7 @@ import pytest
 from fixtures import case
 from research_agent.core.models import CaseContext
 from research_agent.core.session import CaseSession
-from research_agent.workflows.b_audit import paper_context, scope_conflict, scope_profile
+from research_agent.workflows.b_audit import paper_context, scope_conflict, scope_profile, assess_audit
 from research_agent.workflows.idea_workflow import prepare_depth_plan
 from research_agent.evidence import EvidenceError
 from test_b5_conditions import chunk
@@ -105,6 +105,26 @@ def test_b_context_recovers_paper_contribution_outside_query_window():
     context = paper_context(SimpleNamespace(chunks=entries), 'reader.pdf')
     assert any('generative reader' in row['text'] for row in context)
     assert all(row['chunk_id'] in {c.chunk_id for c in entries} for row in context)
+
+
+def test_b02_independent_target_unknown_does_not_veto_grounded_target():
+    task = {'case_id': 'B-02', 'title': '', 'input': 'dense retrieval; reflection generation', 'constraints': []}
+    plan = {
+        'targets': [{'id': 't1', 'source_quote': 'dense retrieval'},
+                    {'id': 't2', 'source_quote': 'reflection generation'}],
+        'criteria': [{'scope': 't1', 'source_quote': 'dense retrieval'},
+                     {'scope': 't2', 'source_quote': 'reflection generation'}],
+    }
+    candidate = {'filename': 'dense.pdf', 'chunks': [
+        {'chunk_id': 'method', 'page': 1, 'text': 'We introduce a dense passage retriever.'}]}
+    row = {'filename': 'dense.pdf', 'status': 'relevant', 'reason': '核心研究为稠密段落检索。',
+           'evidence_ids': ['method'], 'targets': ['t1'],
+           'requirements': [
+               {'task_id': 'q1', 'verdict': 'met', 'evidence_ids': ['method']},
+               {'task_id': 'q2', 'verdict': 'unknown', 'evidence_ids': []}],
+           'match_dimensions': {'object': ['method'], 'method': ['method']}}
+    accepted = assess_audit(row, candidate, task, plan)
+    assert accepted['accepted'] and len(accepted['non_applicable_requirements']) == 1
 
 
 @pytest.mark.parametrize('remaining', ['met', 'unknown', 'not_met', 'malformed'])

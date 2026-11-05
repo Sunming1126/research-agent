@@ -1,5 +1,6 @@
 """B-only final evidence audit. Source checks never invent relevance or papers."""
 import re
+import json
 import time
 from ..integrations.llm import ModelError, ModelQuotaError
 from ..rag.retrieval import HybridRetriever
@@ -11,6 +12,13 @@ def task_segments(task):
     # 直接切分原题，不把规划模型的解释升级为额外必要条件。
     pieces=[p.strip() for p in re.split(r'(?<=[，。；;！？!?])|\n+',task_text(task)) if p.strip()]
     return [{'id':f'q{i+1}','text':text} for i,text in enumerate(pieces)]
+
+
+def other_target(check, plan, active):
+    quote = check['task_quote']
+    scopes = {c['scope'] for c in plan['criteria'] if source_span(c['source_quote'], quote)}
+    scopes.update(t['id'] for t in plan['targets'] if source_span(t['source_quote'], quote))
+    return bool(scopes) and 'common' not in scopes and scopes.isdisjoint(active)
 
 
 def assess_audit(row,candidate,task,plan):
@@ -37,6 +45,10 @@ def assess_audit(row,candidate,task,plan):
     for check in checks:
         try:verified.append(verify(check))
         except ModelError as exc:rejected.append(str(exc))
+    inactive = []
+    if task.get('case_id') == 'B-02' and decision['status'] == 'relevant' and decision['targets']:
+        inactive = [check for check in verified if other_target(check, plan, set(decision['targets']))]
+    verified = [check for check in verified if check not in inactive]
     # 一条有效的必要条件反证足以否决；额外条件的缺证据不能抹去反证。
     # 批准则不能忽略未通过核验的条件，继续保留上轮结果并进入错误记录。
     if rejected and decision['status']!='irrelevant':raise ModelError(rejected[0])
@@ -57,13 +69,17 @@ def assess_audit(row,candidate,task,plan):
                       for key, ids in dimensions.items() if isinstance(ids, list)}
         dimensions = {key: ids for key, ids in dimensions.items() if ids}
         if len(dimensions) < 2:
-            raise ModelError('B-02 requires two supported relevance dimensions in final review')
+            raise ModelError('B-02 requires two supported relevance dimensions in final review; '
+                             'bind each dimension to its checked topical requirement evidence_ids; '
+                             'verified topical IDs=' + json.dumps(sorted(supported)))
         decision['match_dimensions'] = dimensions
         decision['match_evidence'] = [
             {'chunk_id': eid, 'page': allowed[eid]['page'], 'quote': allowed[eid]['text']}
             for eid in dict.fromkeys(eid for ids in dimensions.values() for eid in ids)
         ]
     decision['requirements']=verified
+    if inactive:
+        decision['non_applicable_requirements'] = inactive
     if rejected:decision['rejected_requirements']=rejected
     return decision
 
