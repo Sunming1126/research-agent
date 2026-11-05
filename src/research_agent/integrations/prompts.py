@@ -159,7 +159,9 @@ INSTRUCTIONS["extract_batch"] = (
 def instructions_for(stage, data):
     """C/E 分别规划，预算估算和实际请求必须使用相同的提示词。"""
     if isinstance(data, dict) and data.get('b_protocol') == 'conditions-v1' and data.get('task', {}).get('function') == 'Literature_Retrieval' and stage in ('query', 'retrieve'):
-        from .b_prompt import QUERY, RETRIEVE
+        from .b_prompt import CHALLENGE, QUERY, RETRIEVE
+        if stage == 'retrieve' and data.get('counterevidence_review') is True:
+            return CHALLENGE
         return QUERY if stage == 'query' else RETRIEVE
     if isinstance(data, dict) and isinstance(data.get('task'), dict) and data['task'].get('function') == 'Idea':
         from .idea_prompt import INSTRUCTION, AUDIT_INSTRUCTION, REPAIR_INSTRUCTION, PLAN_INSTRUCTION

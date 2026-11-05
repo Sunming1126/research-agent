@@ -75,3 +75,39 @@ def test_b02_repairs_one_contradictory_terminal_review():
     )]))
     assert [p['filename'] for p in result['papers']] == ['study.pdf']
     assert workflow.retrieval_trace['audit']['correction_candidates'] == ['study.pdf']
+
+
+def test_b02_removes_only_source_bound_counterevidence():
+    quote = 'Remote sensing appears only as a baseline.'
+
+    def respond(data):
+        if data.get('counterevidence_review'):
+            exclusions = []
+            for candidate in data['candidates']:
+                chunk_id = candidate['chunks'][0]['chunk_id']
+                exclusion = {'filename': candidate['filename'], 'task_id': 'q1',
+                             'chunk_id': chunk_id, 'quote': quote, 'reason': '仅作对照。'}
+                if candidate['filename'] == 'invented.pdf':
+                    exclusion['quote'] = 'The paper contains this invented sentence.'
+                exclusions.append(exclusion)
+            return {'exclusions': exclusions}
+        rows = []
+        for candidate in data['candidates']:
+            row = audit_response(candidate) if data.get('verification') else response(candidate)
+            if data.get('verification'):
+                ids = row['requirements'][0]['evidence_ids']
+                row['match_dimensions'] = {'object': ids, 'method': ids}
+            rows.append(row)
+        return {'papers': rows}
+
+    workflow = TaskHandlers(ScreeningModel(respond), 'test')
+    workflow.document_expander = None
+    request = replace(task(), case_id='B-02')
+    result = workflow.handle(request, HybridRetriever([
+        chunk('baseline-only.pdf', 'Urban cooling. ' + quote),
+        chunk('invented.pdf', 'We measure urban cooling using satellite remote sensing.'),
+    ]))
+    assert [p['filename'] for p in result['papers']] == ['invented.pdf']
+    review = workflow.retrieval_trace['audit']['counterevidence']
+    assert [row['filename'] for row in review['excluded']] == ['baseline-only.pdf']
+    assert review['invalid'] == 1

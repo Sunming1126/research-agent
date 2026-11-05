@@ -64,6 +64,55 @@ def assess_audit(row,candidate,task,plan):
     return decision
 
 
+def challenge_approvals(workflow, task, decisions, reviewed, trace, remaining, call):
+    """Only an explicit, source-bound contradiction can overturn a terminal approval."""
+    segments = task_segments(task)
+    rows = []
+    for name, candidate in reviewed.items():
+        decision = decisions[name]
+        if not decision.get('match_dimensions'):
+            continue
+        met = {r['task_quote'] for r in decision['requirements'] if r['verdict'] == 'met'}
+        rows.append({**candidate, 'confirmed_requirements': [
+            s['id'] for s in segments if any(quote in s['text'] for quote in met)
+        ]})
+    audit = trace['audit']['counterevidence'] = {'checked': [], 'excluded': [], 'invalid': 0}
+    for start in range(0, len(rows), 4):
+        if remaining() < 85:
+            break
+        batch = rows[start:start+4]
+        try:
+            value = call(workflow.llm, 'retrieve', {
+                'task': task, 'verification': True, 'counterevidence_review': True,
+                'task_segments': segments, 'candidates': batch,
+            }, 2600)
+        except (ModelError, TimeoutError) as exc:
+            audit['error_type'] = type(exc).__name__
+            break
+        exclusions = value.get('exclusions') if isinstance(value, dict) else None
+        if not isinstance(exclusions, list):
+            audit['invalid'] += 1
+            continue
+        audit['checked'].extend(c['filename'] for c in batch)
+        for candidate in batch:
+            name = candidate['filename']
+            matches = [r for r in exclusions if isinstance(r, dict) and r.get('filename') == name]
+            if not matches:
+                continue
+            row = matches[0]
+            quote = row.get('quote')
+            reason = row.get('reason')
+            if (len(matches) != 1 or row.get('task_id') not in candidate['confirmed_requirements']
+                    or not isinstance(quote, str) or len(quote.strip()) < 16
+                    or not isinstance(reason, str) or not reason.strip()
+                    or not any(row.get('chunk_id') == c['chunk_id'] and quote.strip() in c['text']
+                               for c in candidate['chunks'])):
+                audit['invalid'] += 1
+                continue
+            decisions[name] = {**decisions[name], 'accepted': False, 'status': 'irrelevant'}
+            audit['excluded'].append({**row})
+
+
 def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candidate_names=(),evidence_plan=None):
     approved=[n for n,d in decisions.items() if d['accepted']]
     expanded=set(trace.get('expanded_documents',[]))
@@ -91,7 +140,7 @@ def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candi
                 expanded.update(loaded);trace['expanded_documents']=sorted(expanded)
             except (OSError,ValueError) as exc:
                 trace['audit']['errors'].append({'stage':'expand','error_type':type(exc).__name__})
-    started=time.monotonic();durations=[]
+    started=time.monotonic();durations=[];reviewed={}
     def check_rows(rows, *, retry=False):
         response=call(workflow.llm,'retrieve',{'task':task,'search_targets':audit_plan['targets'],
             'verification':True,'task_segments':task_segments(task),'candidates':rows},6000)
@@ -107,6 +156,8 @@ def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candi
                 if decision.get('rejected_requirements'):
                     trace['audit']['checked'][-1]['rejected_requirements']=decision['rejected_requirements']
                 if decision['status']!='uncertain':decisions[name]=decision
+                if decision.get('match_dimensions'):
+                    reviewed[name] = candidate
             except ModelError as exc:
                 trace['audit']['errors'].append({'filename':name,'error':str(exc),'received':matches[0] if len(matches)==1 else None})
                 if (not retry and task.get('case_id') == 'B-02' and len(matches) == 1
@@ -137,3 +188,5 @@ def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candi
             check_rows(batch, retry=True)
         except (ModelError,TimeoutError) as exc:
             trace['audit']['errors'].append({'stage':'correction','error_type':type(exc).__name__})
+    if task.get('case_id') == 'B-02' and reviewed:
+        challenge_approvals(workflow, task, decisions, reviewed, trace, remaining, call)
