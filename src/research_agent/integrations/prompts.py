@@ -164,13 +164,15 @@ def instructions_for(stage, data):
             return CHALLENGE
         return QUERY if stage == 'query' else RETRIEVE
     if isinstance(data, dict) and isinstance(data.get('task'), dict) and data['task'].get('function') == 'Idea':
-        from .idea_prompt import INSTRUCTION, AUDIT_INSTRUCTION, REPAIR_INSTRUCTION, PLAN_INSTRUCTION
+        from .idea_prompt import INSTRUCTION, AUDIT_INSTRUCTION, REPAIR_INSTRUCTION, PLAN_INSTRUCTION, E04_DEPTH
         if stage == 'extract_batch' and data.get('purpose') == 'idea_plan':
             return PLAN_INSTRUCTION
         if stage == 'repair' and not any(isinstance(p, dict) for p in data.get('paragraphs', [])):
             return INSTRUCTIONS[stage]
         dedicated = {'report': INSTRUCTION, 'audit': AUDIT_INSTRUCTION, 'repair': REPAIR_INSTRUCTION}
         if stage in dedicated:
+            if data['task'].get('case_id') == 'E-04':
+                return dedicated[stage] + E04_DEPTH[stage]
             return dedicated[stage]
     if (stage == 'repair' and isinstance(data, dict) and data.get('task', {}).get('function') == 'Survey'
             and any(isinstance(p, dict) for p in data.get('paragraphs', []))):
