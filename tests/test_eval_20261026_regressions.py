@@ -159,12 +159,14 @@ def test_public_failure_retains_only_complete_current_source_for_formal_runner(t
     saved = json.loads((runner.work/'generation-response.json').read_text())
     assert saved['choices'][0]['message']['content'] == SOURCE
     audit = json.loads((runner.work/'public-selftest.json').read_text())
-    assert audit['public_selftest_passed'] is False
-    assert audit['decision'] == 'submit_complete_model_source_for_formal_evaluation'
+    assert audit['mode'] == 'generic_source_checks_only'
+    assert audit['semantic_selftest_performed'] is False
+    assert audit['selected_attempt'] == 1
+    assert not (runner.work/'source-attempt-2.json').exists()
 
 
 def test_without_complete_source_d_never_submits_a_stub(tmp_path):
-    runner, current = setup_d(tmp_path, [response('broken', 'length'), response('broken', 'length')])
+    runner, current = setup_d(tmp_path, [response('broken', 'length') for _ in range(3)])
     with pytest.raises(RuntimeError, match='no complete'):
         runner.prepare_checked_implementation(current)
     assert not (runner.work/'implementation.py').exists()
@@ -176,12 +178,12 @@ def test_honest_baseline_source_is_retained_without_mandatory_second_generation(
         if path.read_text() != SOURCE:
             raise ValueError('candidate upgrade has invalid output')
         return {'status':'passed','candidate_present':False}
-    with CaseSession(current.case_id,170).activate():
+    with CaseSession(current.case_id,1780).activate():
         selected = runner.prepare_checked_implementation(current,tester=validate)
     assert selected.read_text() == SOURCE
     audit = json.loads((runner.work/'public-selftest.json').read_text())
-    assert audit['public_selftest_passed'] is True and audit['selected_attempt'] == 1
-    assert len(audit['attempts']) == 1
+    assert audit['semantic_selftest_performed'] is False and audit['selected_attempt'] == 1
+    assert audit['attempts'] == []
     assert not (runner.work/'source-attempt-2.json').exists()
     assert json.loads((runner.work/'generation-response.json').read_text()) == response()
 
@@ -222,6 +224,7 @@ def test_failed_selftest_still_reaches_real_client_boundary(tmp_path, monkeypatc
     def reject(*args):
         raise ValueError('public sample mismatch')
     monkeypatch.setattr(runner, 'prepare_checked_implementation', lambda c: method(c, tester=reject))
+    monkeypatch.setattr(runner, 'review_implementation', lambda c,path:path)
     monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE', current.case_id)
     script = Path('/data/experiments/run_experiment.py')
     real_exists = Path.is_file

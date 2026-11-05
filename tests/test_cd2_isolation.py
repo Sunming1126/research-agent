@@ -159,7 +159,7 @@ def test_real_model_omitted_rank_gets_actionable_diagnostic(tmp_path):
         run_public_sample(source, materials(), 'D-02')
 
 
-@pytest.mark.parametrize('remaining,expected_baseline', [(80,True),(90,True),(110,False)])
+@pytest.mark.parametrize('remaining,expected_baseline', [(80,False),(90,False),(110,False)])
 def test_d02_late_repair_requests_new_baseline_source(tmp_path,remaining,expected_baseline):
     from test_eval_20261026_regressions import setup_d, response, SOURCE
     from research_agent.core.session import CaseSession
@@ -167,17 +167,16 @@ def test_d02_late_repair_requests_new_baseline_source(tmp_path,remaining,expecte
     runner,current=setup_d(tmp_path, [])
     modes=[]
     def generate(case,**kwargs):
-        modes.append(kwargs['baseline_only'])
+        modes.append(kwargs.get('baseline_only',False))
         runner.work.mkdir(parents=True,exist_ok=True)
         p=runner.work/'implementation.py';p.write_text(SOURCE)
         (runner.work/'generation-response.json').write_text(json.dumps(response()))
         return p
     runner.prepare_generated_implementation=generate
-    session=CaseSession(current.case_id,170)
-    def check(*args):
-        if len(modes)==1:
-            session.started_at=time.monotonic()+remaining-session.timeout
-            raise ValueError('public group mean mismatch')
-        return {'status':'passed','candidate_present':False}
-    with session.activate():runner.prepare_checked_implementation(current,tester=check)
-    assert modes == [False,expected_baseline]
+    session=CaseSession(current.case_id,1780)
+    session.started_at=time.monotonic()+remaining-session.timeout
+    def forbidden(*args):
+        pytest.fail('formal execution must not invoke the retired practice oracle')
+    with session.activate():runner.prepare_checked_implementation(current,tester=forbidden)
+    # Time perturbation cannot silently request a weaker baseline implementation.
+    assert modes == [expected_baseline]

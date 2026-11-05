@@ -127,25 +127,15 @@ def test_e_call_restores_shared_instance_and_class_after_failure():
 
 
 def test_e4_freezes_all_d_and_c_specific_files():
+    # Historical testcase ID retained for the D30 cross-version evidence map.
+    # The active D phase protects the complete frozen BE/shared runtime, rather
+    # than mutually inconsistent pre-formal historical snapshots.
     import hashlib
-    before=json.loads((ROOT/'tests/fixtures/e4-protected-source-hashes.json').read_text())
-    allowed={'src/research_agent/workflows/reports.py','src/research_agent/integrations/idea_prompt.py',
-             'src/research_agent/integrations/survey_prompt.py'}
-    for name,digest in before.items():
-        if name not in allowed:
-            content=(ROOT/name).read_text(encoding='utf-8')
-            b_guard = {
-                'src/research_agent/workflows/tasks.py': '        if case.function == "Literature_Retrieval":\n            from .b_workflow import retrieve\n            return retrieve(self, case, retriever)\n',
-                'src/research_agent/integrations/prompts.py': "    if isinstance(data, dict) and data.get('b_protocol') == 'conditions-v1' and data.get('task', {}).get('function') == 'Literature_Retrieval' and stage in ('query', 'retrieve'):\n        from .b_prompt import QUERY, RETRIEVE\n        return QUERY if stage == 'query' else RETRIEVE\n",
-            }.get(name)
-            if name == 'src/research_agent/integrations/prompts.py':
-                from test_c200_recovery import C_PROMPT_GUARD
-                assert content.count(C_PROMPT_GUARD) == 1
-                content = content.replace(C_PROMPT_GUARD, '')
-            if b_guard:
-                assert content.count(b_guard)==1
-                content=content.replace(b_guard,'')
-            assert hashlib.sha256(content.encode()).hexdigest()==digest,name
+    record=json.loads((ROOT/'tests/fixtures/d-contract-protected-source-hashes.json').read_text())
+    assert record['baseline_commit']=='dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd'
+    assert record['protected']
+    for name,digest in record['protected'].items():
+        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest,name
 
 
 def test_shared_reports_keeps_non_c_methods_and_e_dispatch():

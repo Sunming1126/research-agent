@@ -30,9 +30,10 @@ def test_d_generation_restores_every_instance_attribute_and_class_default(failur
     before = vars(model).copy()
     try:
         with generation_window(model, baseline=False):
-            assert model.REQUEST_TIMEOUT_CAP <= 95
+            assert model.REQUEST_TIMEOUT_CAP == 420
+            assert model.deadline <= before['deadline']
             assert model.RETRY_ATTEMPTS == 1
-            assert model.thinking_override == 'disabled'
+            assert model.thinking_override == 'enabled'
             assert Model.REQUEST_TIMEOUT_CAP == 60
             if failure:
                 raise RuntimeError('generation fails')
@@ -49,7 +50,7 @@ def test_first_generation_strategy_is_case_scoped(tmp_path, case_id, baseline):
     current = CaseContext.from_dict(case(case_id))
     calls = []
     def generate(current, **kwargs):
-        calls.append(kwargs['baseline_only'])
+        calls.append(kwargs.get('baseline_only',False))
         runner.work.mkdir(parents=True, exist_ok=True)
         path = runner.work/'implementation.py'; path.write_text(SOURCE)
         (runner.work/'generation-response.json').write_text(json.dumps(response()))
@@ -62,12 +63,18 @@ def test_first_generation_strategy_is_case_scoped(tmp_path, case_id, baseline):
 def test_cancelled_d_does_not_retry_or_submit_source(tmp_path):
     runner, current = setup_d(tmp_path, [response(), response()])
     cancelled = threading.Event()
-    def tester(*args):
+    original = runner.llm.completion
+    calls = []
+    def cancel_generation(*args, **kwargs):
+        calls.append(args[0])
         cancelled.set()
-        raise ValueError('failed sample while cancelled')
-    with CaseSession(current.case_id, 170, cancelled=cancelled).activate():
+        raise TimeoutError('request interrupted after cancellation')
+    runner.llm.completion = cancel_generation
+    with CaseSession(current.case_id, 1780, cancelled=cancelled).activate():
         with pytest.raises(TimeoutError, match='cancelled'):
-            runner.prepare_checked_implementation(current, tester=tester)
+            runner.prepare_checked_implementation(current)
+    assert calls == ['d_source']
+    assert not (runner.work/'implementation.py').exists()
     assert not (runner.work/'source-attempt-2.json').exists()
 
 
@@ -76,7 +83,10 @@ def enable_client(monkeypatch, runner, current, reply=None, stderr='', code=0):
     original = Path.is_file
     monkeypatch.setattr(Path, 'is_file', lambda p: True if p == Path('/data/experiments/run_experiment.py') else original(p))
     source = runner.work/'implementation.py'; source.parent.mkdir(parents=True, exist_ok=True); source.write_text(SOURCE)
+    (runner.work/'generation-response.json').write_text(json.dumps(response()))
     monkeypatch.setattr(runner, 'prepare_checked_implementation', lambda c: source)
+    # This fixture tests the official-client boundary, not an extra model review.
+    monkeypatch.setattr(runner, 'review_implementation', lambda c, path: path)
     monkeypatch.setattr('research_agent.workflows.layered_d_runner.sha256_file', lambda p: 'hash')
     calls = []
     def invoke(*args, **kwargs):

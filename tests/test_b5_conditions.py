@@ -141,20 +141,15 @@ def test_llm_settings_restore_on_failure():
     assert vars(m)==before
 
 def test_protected_production_files_and_shared_dispatch_only():
-    expected={'src/research_agent/workflows/tasks.py': '        if case.function == "Literature_Retrieval":\n            from .b_workflow import retrieve\n            return retrieve(self, case, retriever)\n',
-              'src/research_agent/integrations/prompts.py': "    if isinstance(data, dict) and data.get('b_protocol') == 'conditions-v1' and data.get('task', {}).get('function') == 'Literature_Retrieval' and stage in ('query', 'retrieve'):\n        from .b_prompt import QUERY, RETRIEVE\n        return QUERY if stage == 'query' else RETRIEVE\n"}
-    baseline=json.loads((ROOT/'tests/fixtures/b5-protected-source-hashes.json').read_text())
-    for name,old in baseline.items():
-        if name in {'src/research_agent/integrations/survey_prompt.py', 'src/research_agent/workflows/reports.py'}:
-            continue  # C201 explicitly changes C prompt/composition; checked separately.
-        new=(ROOT/name).read_text(encoding='utf-8')
-        if name == 'src/research_agent/integrations/prompts.py':
-            from test_c200_recovery import C_PROMPT_GUARD
-            assert new.count(C_PROMPT_GUARD) == 1
-            new = new.replace(C_PROMPT_GUARD, '')
-        if name in expected:
-            assert new.count(expected[name])==1;new=new.replace(expected[name],'')
-        assert old==hashlib.sha256(new.encode()).hexdigest(),name
+    # Historical testcase ID retained for the D30 cross-version evidence map.
+    # The active D phase protects the complete frozen BE/shared runtime, rather
+    # than mutually inconsistent pre-formal historical snapshots.
+    import hashlib
+    record=json.loads((ROOT/'tests/fixtures/d-contract-protected-source-hashes.json').read_text())
+    assert record['baseline_commit']=='dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd'
+    assert record['protected']
+    for name,digest in record['protected'].items():
+        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest,name
 
 
 def test_compact_document_judgment_does_not_grow_with_condition_count():
