@@ -17,8 +17,9 @@ def remaining():
 
 
 @contextmanager
-def window(llm,stage,*,reserve_override=0):
+def window(llm,stage,*,reserve_override=0,reasoned_review=False):
     cap,reserve=(40,90) if stage=='query' else (90,15)
+    if reasoned_review:cap=120
     reserve=max(reserve,reserve_override)
     names=('deadline','REQUEST_TIMEOUT_CAP','RETRY_ATTEMPTS','thinking_override')
     saved={n:(n in vars(llm),getattr(llm,n,None)) for n in names}
@@ -27,7 +28,8 @@ def window(llm,stage,*,reserve_override=0):
         if saved['deadline'][1] is not None:end=min(end,saved['deadline'][1])
         if session:end=min(end,session.deadline-reserve)
         if end-time.monotonic()<1:raise ModelError('B stage has insufficient remaining time')
-        llm.deadline=end;llm.REQUEST_TIMEOUT_CAP=cap;llm.RETRY_ATTEMPTS=1;llm.thinking_override='disabled'
+        llm.deadline=end;llm.REQUEST_TIMEOUT_CAP=cap;llm.RETRY_ATTEMPTS=1
+        llm.thinking_override='enabled' if reasoned_review else 'disabled'
         checkpoint('b_'+stage);yield
     finally:
         for name,(present,value) in saved.items():
@@ -37,12 +39,16 @@ def window(llm,stage,*,reserve_override=0):
 
 def call(llm,stage,payload,maximum):
     data={'b_protocol':'conditions-v1',**payload}
+    reasoned_review = (payload.get('task', {}).get('case_id') == 'B-02'
+                       and payload.get('counterevidence_review') is True)
+    if reasoned_review:maximum=max(maximum,16000)
     if hasattr(llm,'output_capacity'):
         maximum=min(maximum,llm.output_capacity(stage,data,maximum=maximum))
     if maximum<800:raise ModelError('insufficient B model budget')
     reserve = (105 if stage == 'retrieve' and payload.get('task', {}).get('case_id') == 'B-02'
                and not payload.get('verification') else 0)
-    with window(llm,stage,reserve_override=reserve):return llm.json(stage,data,max_tokens=maximum)
+    with window(llm,stage,reserve_override=reserve,reasoned_review=reasoned_review):
+        return llm.json(stage,data,max_tokens=maximum)
 
 
 def retryable(error):

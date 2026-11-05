@@ -89,6 +89,28 @@ def test_reasoned_audit_is_e04_only_and_restores_on_failure(case_id, stage, enab
     assert vars(model) == {'thinking_override': 'disabled'}
 
 
+@pytest.mark.parametrize('case_id,challenge,enabled', [
+    ('B-02', True, True), ('B-02', False, False), ('B-01', True, False),
+])
+def test_b02_counterevidence_reasoning_is_local_and_restored(case_id, challenge, enabled):
+    from types import SimpleNamespace
+    from research_agent.workflows.b_workflow import call
+    model = SimpleNamespace(thinking_override='disabled')
+
+    def fail(stage, data, max_tokens):
+        assert (model.thinking_override == 'enabled') is enabled
+        assert max_tokens == (16000 if enabled else 6000)
+        raise RuntimeError('injected transport failure')
+
+    model.json = fail
+    before = vars(model).copy()
+    with CaseSession(case_id, 530).activate():
+        with pytest.raises(RuntimeError, match='injected'):
+            call(model, 'retrieve', {'task': {'case_id': case_id},
+                 'counterevidence_review': challenge}, 6000)
+    assert vars(model) == before
+
+
 def test_e04_long_plan_excerpt_still_requires_full_source_match():
     from dataclasses import replace
     passage = 'This continuous supplied excerpt describes the actual retrieval mechanism. ' * 4
