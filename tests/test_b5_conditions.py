@@ -149,7 +149,7 @@ def test_protected_production_files_and_shared_dispatch_only():
     assert record['baseline_commit']=='dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd'
     assert record['protected']
     for name,digest in record['protected'].items():
-        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest,name
+        assert hashlib.sha256((ROOT/name).read_text(encoding='utf-8').encode('utf-8')).hexdigest()==digest,name
 
 
 def test_compact_document_judgment_does_not_grow_with_condition_count():

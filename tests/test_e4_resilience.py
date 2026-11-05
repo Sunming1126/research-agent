@@ -135,7 +135,7 @@ def test_e4_freezes_all_d_and_c_specific_files():
     assert record['baseline_commit']=='dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd'
     assert record['protected']
     for name,digest in record['protected'].items():
-        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest,name
+        assert hashlib.sha256((ROOT/name).read_text(encoding='utf-8').encode('utf-8')).hexdigest()==digest,name
 
 
 def test_shared_reports_keeps_non_c_methods_and_e_dispatch():
