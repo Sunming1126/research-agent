@@ -79,7 +79,7 @@ def test_reasoned_audit_is_e04_only_and_restores_on_failure(case_id, stage, enab
     def fail(actual_stage, data, maximum, **kwargs):
         assert actual_stage == stage
         assert (model.thinking_override == 'enabled') is enabled
-        assert maximum == (12000 if enabled else 1600)
+        assert maximum == (32768 if enabled else 1600)
         raise RuntimeError('injected model failure')
 
     workflow = SimpleNamespace(llm=model, _budgeted_model_step=fail)
