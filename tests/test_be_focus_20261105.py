@@ -7,6 +7,7 @@ from research_agent.core.models import CaseContext
 from research_agent.core.session import CaseSession
 from research_agent.workflows.b_audit import paper_context, scope_conflict, scope_profile
 from research_agent.workflows.idea_workflow import prepare_depth_plan
+from research_agent.evidence import EvidenceError
 from test_b5_conditions import chunk
 from test_e4_resilience import BODY, good_audit, run
 
@@ -52,6 +53,48 @@ def test_e04_writer_receives_verified_plan_without_calling_it_proven():
         result = workflow.compose_report(CaseContext.from_dict(case('E-04')))
     assert result['markdown'] and workflow.audit['ok']
     assert model.stages == ['extract_batch', 'report', 'audit']
+
+
+def test_e04_long_plan_excerpt_still_requires_full_source_match():
+    from dataclasses import replace
+    passage = 'This continuous supplied excerpt describes the actual retrieval mechanism. ' * 4
+    plan = mechanism_plan()
+    plan['source_facts'][0]['quote'] = passage
+    workflow, model = run([plan])
+    workflow.ledger[0] = replace(workflow.ledger[0], quote=passage, claim=passage)
+    with CaseSession('E-04', 850).activate():
+        assert prepare_depth_plan(workflow, CaseContext.from_dict(case('E-04')), []) == plan
+
+
+def test_e04_final_local_repair_requires_fresh_semantic_acceptance():
+    from research_agent.integrations.llm import ModelError
+    rejected = {**good_audit(), 'ok': False, 'issues': ['需补训练和冻结划分。']}
+    workflow, model = run([
+        ModelError('optional plan unavailable'), {'markdown': BODY}, rejected, {'patches': []},
+        {'markdown': BODY}, rejected,
+        {'patches': [{'paragraph_id': 'p1', 'replacement': '拟议训练与校准后冻结。' + BODY}]},
+        good_audit(),
+    ])
+    with CaseSession('E-04', 850).activate():
+        result = workflow.compose_report(CaseContext.from_dict(case('E-04')))
+    assert workflow.audit['ok'] and '拟议训练与校准后冻结。' in result['markdown']
+    assert workflow.audit['history'][-1]['stage'] == 'depth_final_audit'
+
+
+@pytest.mark.parametrize('evidence_id,valid', [('ev-1', True), ('ev-999', False)])
+def test_e04_fullwidth_citation_retains_source_validation(evidence_id, valid):
+    workflow, model = run([
+        mechanism_plan(), {'markdown': BODY.replace('[E:ev-1]', '［E:' + evidence_id + '］')},
+        good_audit() if valid else {'markdown': 'invalid'},
+        {'markdown': 'invalid'},
+    ])
+    with CaseSession('E-04', 850).activate():
+        if valid:
+            result = workflow.compose_report(CaseContext.from_dict(case('E-04')))
+            assert '[1, p.1]' in result['markdown']
+        else:
+            with pytest.raises(EvidenceError):
+                workflow.compose_report(CaseContext.from_dict(case('E-04')))
 
 
 def test_b_context_recovers_paper_contribution_outside_query_window():

@@ -6,7 +6,7 @@ from ..evidence import EvidenceError
 from .report_context import report_task, compact_claims
 
 
-def validate_source_plan(value, ledger):
+def validate_source_plan(value, ledger, *, maximum_quote=220):
     if not isinstance(value, dict):
         raise EvidenceError('Idea plan needs a JSON object')
     known = {row.evidence_id: row for row in ledger}
@@ -17,7 +17,7 @@ def validate_source_plan(value, ledger):
     for row in facts:
         entry = known.get(row.get('evidence_id')) if isinstance(row, dict) and isinstance(row.get('evidence_id'), str) else None
         quote = row.get('quote') if isinstance(row, dict) else None
-        if (entry is None or not isinstance(quote, str) or not 12 <= len(quote) <= 220
+        if (entry is None or not isinstance(quote, str) or not 12 <= len(quote) <= maximum_quote
                 or not source_quote_matches(quote, entry.quote)):
             raise EvidenceError('Idea plan quote is not a continuous authorized excerpt')
         if not isinstance(row.get('meaning'), str) or not row['meaning'].strip():

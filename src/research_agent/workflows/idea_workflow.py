@@ -1,5 +1,6 @@
 """E 专用交付流程：先完整正文，有界恢复，再审查和原子修订。"""
 import json
+import re
 import time
 from contextlib import contextmanager
 from dataclasses import asdict
@@ -103,6 +104,7 @@ def normalize(value, evidence, *, maximum_body=6000):
     if not isinstance(value, dict) or not isinstance(value.get('markdown'), str) or not value['markdown'].strip():
         raise EvidenceError('Idea response needs a complete nonempty markdown string')
     body = value['markdown'].split('## 参考文献', 1)[0].strip()
+    body = re.sub(r'［(E:\s*ev-\d+(?:\s*,\s*ev-\d+)*)\s*］', r'[\1]', body)
     body, bound = render_evidence_citations(body, evidence)
     # 内部ID列表不是最终答卷字段；仅按真实正文标记回查已授权证据，不猜新引用。
     used = list(dict.fromkeys(bound + [row['evidence_id'] for row in cited_evidence(body, evidence)]))
@@ -139,7 +141,7 @@ def prepare_depth_plan(workflow, case, rows):
         value = call(workflow, 'extract_batch', {
             'task':report_task(case), 'purpose':'idea_plan', 'claims':compact_claims(rows),
         }, 4000)
-        validate_source_plan(value, workflow.ledger)
+        validate_source_plan(value, workflow.ledger, maximum_quote=600)
         contract = value.get('mechanism_contract')
         fields = ('shared_conditions', 'target_event', 'dataflow', 'fallback',
                   'controls', 'measurements', 'decision')
@@ -225,6 +227,11 @@ def compose_idea(workflow, case):
             data['output_limits'].update(model_body_characters=4500, target_body_characters=2800 if not attempt else 2400)
             if design_plan is not None:
                 data['design_plan'] = design_plan
+            data['citation_format'] = {
+                'syntax': '[E:ev-N]',
+                'allowed_ids': [row['evidence_id'] for row in rows],
+                'instruction': '引文使用半角方括号，保留完整ev-前缀。全角括号只用于参数区间，不能用于引用。',
+            }
         start = len(getattr(workflow.llm, 'response_failures', []))
         value = None
         try:
@@ -318,6 +325,20 @@ def compose_idea(workflow, case):
                 workflow.last_draft = rebuilt_body
                 workflow.audit = {**rebuilt_audit,'history':history,'local_validation':True}
                 return workflow._report_result(case, rebuilt_body, filenames, refs)
+            if rebuilt_feedback and remaining() >= 160:
+                revised, repaired, patches = patch_draft(
+                    workflow, case, rebuilt_body, rebuilt_feedback, rows)
+                final_body, final_used, final_ambiguities = normalize(
+                    {'markdown': revised}, evidence, maximum_body=body_limit)
+                workflow.report_trace.append({'stage':'depth_final_repair','raw_response':repaired,
+                                              'raw_markdown':final_body,'patches':patches})
+                final_audit, final_feedback = review_draft(
+                    workflow, case, final_body, rows, final_used, final_ambiguities)
+                history.append({'stage':'depth_final_audit','audit':final_audit,'issues':final_feedback})
+                if final_audit['ok'] and not final_feedback:
+                    workflow.last_draft = final_body
+                    workflow.audit = {**final_audit,'history':history,'local_validation':True}
+                    return workflow._report_result(case, final_body, filenames, refs)
         except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
             history.append({'stage':'depth_rebuild_unavailable','issues':[str(exc)]})
     workflow.audit = {'ok':False,'mode':'model_report_needs_review','local_validation':True,
