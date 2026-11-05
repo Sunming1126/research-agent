@@ -3,9 +3,11 @@ from dataclasses import replace
 import pytest
 
 from research_agent.rag.retrieval import HybridRetriever
+from research_agent.integrations.llm import ModelError
+from research_agent.workflows.b_audit import assess_audit
 from research_agent.workflows.d_selftest import test_plan_result as parse_test_plan
 from research_agent.workflows.tasks import TaskHandlers
-from test_b5_conditions import chunk, task
+from test_b5_conditions import chunk, plan, task
 from test_db206 import audit_response, reply
 from test_b6_retrieval import ScreeningModel, response
 
@@ -116,3 +118,17 @@ def test_b02_removes_only_source_bound_counterevidence():
     review = workflow.retrieval_trace['audit']['counterevidence']
     assert [row['filename'] for row in review['excluded']] == ['baseline-only.pdf']
     assert review['invalid'] == 1
+
+
+def test_b02_output_instruction_cannot_supply_a_relevance_dimension():
+    current = replace(task(), case_id='B-02').to_dict()
+    candidate = {'filename': 'benchmark.pdf', 'chunks': [
+        {'chunk_id': 'topic', 'page': 1, 'text': 'We evaluate a remote sensing baseline.'},
+        {'chunk_id': 'background', 'page': 2, 'text': 'A general introduction to satellite imagery.'},
+    ]}
+    row = audit_response(candidate)
+    row['requirements'].append({'task_quote': current['expected_output'], 'verdict': 'met',
+                                'evidence_ids': ['background']})
+    row['match_dimensions'] = {'method': ['topic'], 'object': ['background']}
+    with pytest.raises(ModelError, match='two supported relevance dimensions'):
+        assess_audit(row, candidate, current, plan())

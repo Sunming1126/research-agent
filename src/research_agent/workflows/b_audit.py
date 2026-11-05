@@ -47,7 +47,10 @@ def assess_audit(row,candidate,task,plan):
         raise ModelError('B audit rejection lacks contradiction')
     if task.get('case_id') == 'B-02' and decision['status'] == 'relevant':
         dimensions = row.get('match_dimensions')
-        supported = {e for check in verified if check['verdict'] == 'met' for e in check['evidence_ids']}
+        topic = '\n'.join(text for text in (task.get('title'), task.get('input')) if isinstance(text, str))
+        supported = {e for check in verified
+                     if check['verdict'] == 'met' and source_span(check['task_quote'], topic)
+                     for e in check['evidence_ids']}
         if not isinstance(dimensions, dict) or not set(dimensions) <= {'object', 'method', 'finding'}:
             raise ModelError('B-02 requires two supported relevance dimensions in final review')
         dimensions = {key: ids for key, ids in dimensions.items()
