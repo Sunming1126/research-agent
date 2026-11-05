@@ -13,6 +13,7 @@ from ..integrations.llm import ModelError, ModelQuotaError
 from ..integrations.idea_prompt import REQUIREMENTS, audit_gaps
 from .report_context import report_task, compact_claims, audit_request, cited_evidence, repair_context
 from .idea_repair import indexed_paragraphs, resolve_patches
+from .idea_plan import validate_source_plan
 
 
 def remaining():
@@ -24,7 +25,8 @@ def remaining():
 
 @contextmanager
 def call_window(llm, stage, *, retry=False):
-    caps = {'report': (180, 90) if retry else (240, 180), 'audit': (60, 30), 'repair': (120, 30)}
+    caps = {'extract_batch': (60, 360), 'report': (180, 90) if retry else (240, 180),
+            'audit': (60, 30), 'repair': (120, 30)}
     cap, reserve = caps[stage]
     session = current_session()
     names = ('deadline', 'REQUEST_TIMEOUT_CAP', 'RETRY_ATTEMPTS', 'thinking_override')
@@ -97,7 +99,7 @@ def complete_markdown(failures):
     return None
 
 
-def normalize(value, evidence):
+def normalize(value, evidence, *, maximum_body=6000):
     if not isinstance(value, dict) or not isinstance(value.get('markdown'), str) or not value['markdown'].strip():
         raise EvidenceError('Idea response needs a complete nonempty markdown string')
     body = value['markdown'].split('## 参考文献', 1)[0].strip()
@@ -105,6 +107,8 @@ def normalize(value, evidence):
     # 内部ID列表不是最终答卷字段；仅按真实正文标记回查已授权证据，不猜新引用。
     used = list(dict.fromkeys(bound + [row['evidence_id'] for row in cited_evidence(body, evidence)]))
     try:
+        if len(body+'\n\n') > maximum_body:
+            raise ValueError(f'report body exceeds {maximum_body} characters (including whitespace)')
         validate_report_limits(body+'\n\n', 'Idea')
     except ValueError as exc:
         raise EvidenceError(str(exc)) from exc
@@ -122,6 +126,42 @@ def retryable(exc):
                'invalid choices', 'invalid message', 'json object'))
 
 
+def prepare_depth_plan(workflow, case, rows):
+    """E-04有余时先固定机制链；仅核验出处与结构，不把规划当语义通过。"""
+    if case.case_id != 'E-04':
+        return None
+    if remaining() < 480:
+        workflow.evidence_audit['idea_plan'] = {'status':'skipped_remaining_budget'}
+        return None
+    value = None
+    try:
+        # 沿用已有idea_plan提示入口，一次有界调用，不改变公共提取/写作路径。
+        value = call(workflow, 'extract_batch', {
+            'task':report_task(case), 'purpose':'idea_plan', 'claims':compact_claims(rows),
+        }, 4000)
+        validate_source_plan(value, workflow.ledger)
+        contract = value.get('mechanism_contract')
+        fields = ('shared_conditions', 'target_event', 'dataflow', 'fallback',
+                  'controls', 'measurements', 'decision')
+        if (not isinstance(contract, dict) or any(not isinstance(contract.get(key), str)
+                or not contract[key].strip() for key in fields)):
+            raise EvidenceError('Idea mechanism plan has an incomplete mechanism contract')
+        workflow.evidence_audit['idea_plan'] = {
+            'status':'source_quotes_checked', 'semantic_claims_verified':False, 'plan':value,
+        }
+        return value
+    except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
+        workflow.evidence_audit['idea_plan'] = {'status':'unavailable', 'error':str(exc), 'raw_response':value}
+        if isinstance(exc, ModelQuotaError):
+            raise
+        return None
+
+
+def checked_plan(workflow):
+    record = workflow.evidence_audit.get('idea_plan', {})
+    return record.get('plan') if record.get('status') == 'source_quotes_checked' else None
+
+
 
 def patch_draft(workflow, case, body, feedback, rows):
     paragraphs = repair_paragraphs(body, feedback)
@@ -130,6 +170,8 @@ def patch_draft(workflow, case, body, feedback, rows):
     data = repair_context(body, paragraphs, feedback, rows, case=case)
     data['paragraphs'] = targets
     data['full_document'] = body
+    if case.case_id == 'E-04' and checked_plan(workflow) is not None:
+        data['design_plan'] = checked_plan(workflow)
     repaired = call(workflow, 'repair', data, 1800)
     if workflow.report_trace:
         workflow.report_trace[-1].setdefault('repair_responses', []).append(repaired)
@@ -163,7 +205,14 @@ def compose_idea(workflow, case):
     format_candidate = None
     repair_used = False
     reviewed = False
-    # 首先生成完整报告，不再耗时调用可选规划。
+    body_limit = 4500 if case.case_id == 'E-04' else 6000
+    # E-04仅在余量足够时先规划一次；失败仍走原有完整正文恢复，不用规划拼答卷。
+    try:
+        design_plan = prepare_depth_plan(workflow, case, rows)
+    except ModelQuotaError as exc:
+        workflow.audit = {'ok':False, 'mode':'model_report_failed', 'history':[
+            {'stage':'plan_unavailable', 'issues':[str(exc)]}], 'model_issues':[str(exc)]}
+        raise EvidenceError('Idea has no valid complete model report: '+str(exc)) from exc
     attempts = 3 if current_session() and remaining() >= 300 else 2
     for attempt in range(attempts):
         data = {'task': report_task(case), 'claims': compact_claims(rows), 'papers': refs,
@@ -171,6 +220,11 @@ def compose_idea(workflow, case):
                 'output_limits': {'minimum_body_characters':800, 'model_body_characters':6000,
                                   'target_body_characters':1700 if attempt else 2100},
                 'response_fields': {'markdown':'完整模型正文', 'used_evidence_ids':'实际引用的证据ID数组'}}
+        if case.case_id == 'E-04':
+            # 留出机制定义和对照篇幅，同时在模型调用与真实正文校验两处保留4500边界。
+            data['output_limits'].update(model_body_characters=4500, target_body_characters=2800 if not attempt else 2400)
+            if design_plan is not None:
+                data['design_plan'] = design_plan
         start = len(getattr(workflow.llm, 'response_failures', []))
         value = None
         try:
@@ -190,7 +244,7 @@ def compose_idea(workflow, case):
                     history.append({'stage':'complete_field_recovery','attempt':attempt+1,'original_error':str(exc)})
                 workflow.report_trace.append({'attempt':attempt+1,'raw_response':value,
                     'raw_markdown':value.get('markdown') if isinstance(value,dict) else None,'source_task':report_task(case)})
-            body, used, ambiguities = normalize(value, evidence)
+            body, used, ambiguities = normalize(value, evidence, maximum_body=body_limit)
             workflow.last_draft = body
             break
         except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
@@ -203,7 +257,8 @@ def compose_idea(workflow, case):
                     raw = raw.split('## 参考文献', 1)[0].strip()
                     try:
                         validate_report_limits(raw+'\n\n', 'Idea')
-                        format_candidate = raw
+                        if len(raw+'\n\n') <= body_limit:
+                            format_candidate = raw
                     except ValueError:
                         pass
             if attempt == attempts-1 or not retryable(exc) or remaining() < (180 if attempt else 90):
@@ -234,7 +289,8 @@ def compose_idea(workflow, case):
         try:
             repair_used = True
             revised, repaired, patches = patch_draft(workflow, case, body, feedback, rows)
-            candidate, candidate_used, candidate_ambiguities = normalize({'markdown':revised}, evidence)
+            candidate, candidate_used, candidate_ambiguities = normalize(
+                {'markdown':revised}, evidence, maximum_body=body_limit)
             body, used, ambiguities = candidate, candidate_used, candidate_ambiguities
             workflow.last_draft = body
             workflow.report_trace.append({'attempt':review+2,'raw_response':repaired,'raw_markdown':body,'patches':patches})
@@ -253,7 +309,7 @@ def compose_idea(workflow, case):
                     '跨节规则必须一致。以正文和引用完整的新JSON交付。'
                 ),
             }, 4200, retry=True)
-            rebuilt_body, rebuilt_used, rebuilt_ambiguities = normalize(rebuilt, evidence)
+            rebuilt_body, rebuilt_used, rebuilt_ambiguities = normalize(rebuilt, evidence, maximum_body=body_limit)
             workflow.report_trace.append({'stage':'depth_rebuild','raw_response':rebuilt,'raw_markdown':rebuilt_body})
             rebuilt_audit, rebuilt_feedback = review_draft(
                 workflow, case, rebuilt_body, rows, rebuilt_used, rebuilt_ambiguities)

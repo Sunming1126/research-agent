@@ -68,19 +68,84 @@ def assess_audit(row,candidate,task,plan):
     return decision
 
 
-def challenge_approvals(workflow, task, decisions, reviewed, trace, remaining, call):
+def paper_context(index, filename):
+    """Read the paper's self-description independently of query/approval evidence."""
+    sources = [(pos, c) for pos, c in enumerate(index.chunks) if c.filename == filename]
+    sources.sort(key=lambda item: (item[1].page or 0, item[1].start, item[0]))
+    front_pages = set(sorted({c.page for _, c in sources}, key=lambda page: page or 0)[:2])
+    front = [i for i, (_, c) in enumerate(sources) if c.page in front_pages]
+    contributions = []
+    self_description = re.compile(
+        r'\bin\s+this\s+(?:paper|work|study)\b|'
+        r'\bwe\s+(?:propose|introduce|investigate|develop|present|study)\b|'
+        r'\bour\s+(?:contributions?|work|approach|method|model|study)\b|'
+        r'本文(?:提出|研究|贡献)|我们(?:提出|研究)|本研究', re.I)
+    for i, (_, chunk) in enumerate(sources):
+        if self_description.search(chunk.text):
+            contributions.extend(range(max(0, i-1), min(len(sources), i+2)))
+    selected = set(list(dict.fromkeys(front[:8] + contributions))[:16])
+    return [{'chunk_id': c.chunk_id, 'page': c.page, 'heading': c.heading, 'text': c.text}
+            for i, (_, c) in enumerate(sources) if i in selected]
+
+
+def scope_profile(row, candidate):
+    """A research-scope objection needs two grounded paper self-descriptions."""
+    if not isinstance(row, dict):
+        return None
+    verified = {}
+    for key in ('object', 'method', 'contribution'):
+        value = row.get(key)
+        if not isinstance(value, dict) or not isinstance(value.get('summary'), str) or not value['summary'].strip():
+            continue
+        if source_quote(value, candidate):
+            verified[key] = value
+    return verified if len(verified) >= 2 else None
+
+
+def source_quote(row, candidate):
+    quote = row.get('quote')
+    return (isinstance(quote, str) and len(quote.strip()) >= 16
+            and any(row.get('chunk_id') == c['chunk_id'] and quote.strip() in c['text']
+                    for c in candidate['chunks'] + candidate.get('paper_context', [])))
+
+
+def scope_conflict(row, profile, candidate, targets, task_ids):
+    """An OR target still possibly met cannot be removed by a scope objection."""
+    checks = row.get('target_checks')
+    if not profile or not isinstance(checks, list) or len(checks) != len(targets):
+        return False
+    seen = set()
+    for check in checks:
+        if (not isinstance(check, dict) or not isinstance(check.get('target_id'), str)
+                or check['target_id'] not in targets
+                or check['target_id'] in seen or check.get('verdict') != 'not_met'
+                or not isinstance(check.get('task_id'), str) or check['task_id'] not in task_ids
+                or not isinstance(check.get('reason'), str) or not check['reason'].strip()
+                or not source_quote(check, candidate)):
+            return False
+        seen.add(check['target_id'])
+    return seen == targets
+
+
+def challenge_approvals(workflow, task, decisions, reviewed, trace, remaining, call, *, index=None, plan=None):
     """Only an explicit, source-bound contradiction can overturn a terminal approval."""
     segments = task_segments(task)
+    topic = '\n'.join(text for text in (task.get('title'), task.get('input')) if isinstance(text, str))
+    topic_ids = {s['id'] for s in segments if source_span(s['text'], topic)}
+    targets = (plan or fallback_plan(task))['targets']
+    target_ids = {t['id'] for t in targets}
     rows = []
     for name, candidate in reviewed.items():
         decision = decisions[name]
-        if not decision.get('match_dimensions'):
+        if not decision.get('accepted') or not decision.get('match_dimensions'):
             continue
         met = {r['task_quote'] for r in decision['requirements'] if r['verdict'] == 'met'}
-        rows.append({**candidate, 'confirmed_requirements': [
-            s['id'] for s in segments if any(quote in s['text'] for quote in met)
+        rows.append({**candidate,
+            'paper_context': paper_context(index, name) if index is not None else [],
+            'confirmed_requirements': [
+            s['id'] for s in segments if s['id'] in topic_ids and any(quote in s['text'] for quote in met)
         ]})
-    audit = trace['audit']['counterevidence'] = {'checked': [], 'excluded': [], 'invalid': 0}
+    audit = trace['audit']['counterevidence'] = {'checked': [], 'excluded': [], 'invalid': 0, 'scope_profiles': {}}
     for start in range(0, len(rows), 4):
         if remaining() < 85:
             break
@@ -88,8 +153,8 @@ def challenge_approvals(workflow, task, decisions, reviewed, trace, remaining, c
         try:
             value = call(workflow.llm, 'retrieve', {
                 'task': task, 'verification': True, 'counterevidence_review': True,
-                'task_segments': segments, 'candidates': batch,
-            }, 2600)
+                'task_segments': segments, 'search_targets': targets, 'candidates': batch,
+            }, 6000)
         except (ModelError, TimeoutError) as exc:
             audit['error_type'] = type(exc).__name__
             break
@@ -98,19 +163,24 @@ def challenge_approvals(workflow, task, decisions, reviewed, trace, remaining, c
             audit['invalid'] += 1
             continue
         audit['checked'].extend(c['filename'] for c in batch)
+        profiles = value.get('paper_profiles', [])
         for candidate in batch:
             name = candidate['filename']
+            profile_rows = [p for p in profiles if isinstance(p, dict) and p.get('filename') == name] if isinstance(profiles, list) else []
+            profile = scope_profile(profile_rows[0], candidate) if len(profile_rows) == 1 else None
+            if profile:
+                audit['scope_profiles'][name] = profile
             matches = [r for r in exclusions if isinstance(r, dict) and r.get('filename') == name]
             if not matches:
                 continue
             row = matches[0]
-            quote = row.get('quote')
             reason = row.get('reason')
             if (len(matches) != 1 or row.get('task_id') not in candidate['confirmed_requirements']
-                    or not isinstance(quote, str) or len(quote.strip()) < 16
                     or not isinstance(reason, str) or not reason.strip()
-                    or not any(row.get('chunk_id') == c['chunk_id'] and quote.strip() in c['text']
-                               for c in candidate['chunks'])):
+                    or not source_quote(row, candidate)
+                    or row.get('basis') not in (None, 'direct_conflict', 'research_scope')
+                    or (row.get('basis') == 'research_scope'
+                        and not scope_conflict(row, profile, candidate, target_ids, topic_ids))):
                 audit['invalid'] += 1
                 continue
             decisions[name] = {**decisions[name], 'accepted': False, 'status': 'irrelevant'}
@@ -193,4 +263,4 @@ def audit(workflow,task,plan,index,decisions,trace,expander,remaining,call,candi
         except (ModelError,TimeoutError) as exc:
             trace['audit']['errors'].append({'stage':'correction','error_type':type(exc).__name__})
     if task.get('case_id') == 'B-02' and reviewed:
-        challenge_approvals(workflow, task, decisions, reviewed, trace, remaining, call)
+        challenge_approvals(workflow, task, decisions, reviewed, trace, remaining, call, index=index, plan=audit_plan)

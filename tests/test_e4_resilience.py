@@ -91,13 +91,14 @@ def test_e04_full_rebuild_adopted_only_after_semantic_review(approved):
     rejected = {**good_audit(), 'ok': False, 'issues': ['对照预算与指标定义不一致。']}
     rewrite = '固定同一评测输入。' + BODY
     workflow, model = run([
+        ModelError('optional plan unavailable'),
         {'markdown': BODY}, rejected, {'patches': []},
         {'markdown': rewrite}, good_audit() if approved else rejected,
     ])
     current = CaseContext.from_dict(case('E-04'))
     with CaseSession('E-04', 850).activate():
         result = workflow.compose_report(current)
-    assert model.stages == ['report', 'audit', 'repair', 'report', 'audit']
+    assert model.stages == ['extract_batch', 'report', 'audit', 'repair', 'report', 'audit']
     assert ('固定同一评测输入。' in result['markdown']) is approved
     assert workflow.audit['ok'] is approved
 
