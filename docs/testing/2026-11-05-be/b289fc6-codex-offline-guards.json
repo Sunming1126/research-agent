@@ -1,0 +1,33 @@
+{
+  "executor": "Codex offline under authorized C/E exception",
+  "source_commit": "b289fc66a48efe92aae616d02b49d3fab6ca1919",
+  "target_model_calls": 0,
+  "native_harness_execution": false,
+  "linux_validation": false,
+  "platform_validation": false,
+  "returncode": 0,
+  "counts": {
+    "failure": 0,
+    "error": 0,
+    "skipped": 0,
+    "passed": 16
+  },
+  "test_ids": [
+    "test_e04_plan_requires_source_and_complete_contract[none]",
+    "test_e04_plan_requires_source_and_complete_contract[quote]",
+    "test_e04_plan_requires_source_and_complete_contract[contract]",
+    "test_e04_planning_reasoning_is_scoped_and_restored",
+    "test_e04_writer_receives_verified_plan_without_calling_it_proven",
+    "test_reasoned_semantic_stages_are_e04_only_and_restore_on_failure[E-04-audit-True]",
+    "test_reasoned_semantic_stages_are_e04_only_and_restore_on_failure[E-01-audit-False]",
+    "test_reasoned_semantic_stages_are_e04_only_and_restore_on_failure[E-04-report-True]",
+    "test_reasoned_semantic_stages_are_e04_only_and_restore_on_failure[E-04-repair-True]",
+    "test_reasoned_semantic_stages_are_e04_only_and_restore_on_failure[E-01-repair-False]",
+    "test_e04_long_plan_excerpt_still_requires_full_source_match",
+    "test_e04_final_local_repair_requires_fresh_semantic_acceptance",
+    "test_e04_additional_repairs_are_bounded_and_cannot_promote_unapproved_text[True]",
+    "test_e04_additional_repairs_are_bounded_and_cannot_promote_unapproved_text[False]",
+    "test_e04_fullwidth_citation_retains_source_validation[ev-1-True]",
+    "test_e04_fullwidth_citation_retains_source_validation[ev-999-False]"
+  ]
+}

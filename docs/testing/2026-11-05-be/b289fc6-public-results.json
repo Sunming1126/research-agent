@@ -1,0 +1,895 @@
+{
+  "scope": "native Harness, actual target model, public self-authored fixtures; no official scores",
+  "study": "score-target-academic-e-three-20261105-153615-81126",
+  "complete": true,
+  "sources": {
+    "candidate": {
+      "ref": "b289fc66a48efe92aae616d02b49d3fab6ca1919",
+      "path": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\score-target-academic-e-three-20261105-153615-81126\\source\\candidate",
+      "files": {
+        "agent.py": "bd0be854dc9ea00cd8f4cecfd43589f72869889a62cba9ad301820ebcc0857db",
+        "src/research_agent/__init__.py": "138cde180413ca2b468acdf6daf4c4ae8cfb5c186809a5292165d4823fc492e7",
+        "src/research_agent/__main__.py": "9a3cf72f632eb36445b835d6e09371e64ae01971f5faba67ba5c18f5f45a0050",
+        "src/research_agent/contracts/__init__.py": "dd2711c33ea154a33c9407feab03c7c38fc05743e25c5b0a7a6660dd08d50d1a",
+        "src/research_agent/contracts/validation.py": "d4fab95bbc19e542ab19a045bdb5a7d5f29ddd1df3d859a088aca326edb8d14f",
+        "src/research_agent/core/__init__.py": "dfd1517d38f7486703dca5d5acdbbaa0442f3cf1d017700998e9e9e2f2f32ffa",
+        "src/research_agent/core/b_submission.py": "adab84f3d31d65c49022b6b3446f72f524a418828f44833631f05804b551489d",
+        "src/research_agent/core/config.py": "ff7d23235da8d36a42d935bd6335d633929e512bdd2dd6e8e0bf4f3c0c447266",
+        "src/research_agent/core/dispatch.py": "9e818ff0f2ced29cb15163c6f7141bb21e02fb774e9de9b9bd8aa1dfd4290951",
+        "src/research_agent/core/dispatch_plan.py": "d5e35e00965a82e400dceacc01b957fffe4e9db907f412a4111aff8e1c772c71",
+        "src/research_agent/core/engine.py": "a8df4444bd0ccd32cfb7e5f9afbadc5832cc8af63b0c0d4277ab4e3795e99fd9",
+        "src/research_agent/core/models.py": "ba3d9d4e498cb8da661827912f9f41e6bd02bd0b67d5765bc3a064bc477e735b",
+        "src/research_agent/core/session.py": "7806535a2028cfb692f55ca0d494304e4e737a9cc119c41b247ba73e6c5b2336",
+        "src/research_agent/core/utils.py": "918bc11a84e2a1be6b87bb50fcdf908567e713fe01cbbce38c050d27ecabc246",
+        "src/research_agent/evidence/__init__.py": "979dd63615e748d9495a63bd2aa6cdd3fd99dec79eeccf654a6b4363a1758e90",
+        "src/research_agent/evidence/attribution.py": "f7d52fe06da0261217440e16cfe472813c034c5af7975860717d018ccb98d6f2",
+        "src/research_agent/evidence/ledger.py": "12a1d30f5bc843596141102382a76c034438283047a242697256d8d23cda3807",
+        "src/research_agent/evidence/reporting.py": "15d82a345b0ef427b427175caaa7531ae8bc4847d15ea401cef4b229d93c98a0",
+        "src/research_agent/integrations/__init__.py": "4f7da132b5504eb2eee2e52b75cf94b148d32d091594375e8cfbf856d8710e9a",
+        "src/research_agent/integrations/b_prompt.py": "52f82de662ce6eeb211d2fda7b4c9180dab463ed1124aad99e38e28e6824e24d",
+        "src/research_agent/integrations/http_runtime.py": "5014e72de4fc011cd9be9f05bef63665cd5d45482c7ef536036f573e4b1ca9f1",
+        "src/research_agent/integrations/idea_prompt.py": "8e6e51f2b2a06b2953ef78a175bd4e1790fc749fba6408b7e9d4bd1d29000d79",
+        "src/research_agent/integrations/instrumentation.py": "6f14706265b8d0e493848bd4ab76e0d111d71d913a7092811000fe1c4331daaf",
+        "src/research_agent/integrations/llm.py": "82b79e9f400c2f4d79e0fbc4785a85abb869fdb4351e99e34bcc58b6d930e677",
+        "src/research_agent/integrations/prompts.py": "d286af4b98fb638ea0c3218ee571ef7c60ce89d73350bcb7c2f7abbd2949170e",
+        "src/research_agent/integrations/survey_prompt.py": "52f9994cf9d8cb39a59dd5e2bcc1023d1080a2bfabfc0ce7aeec713d6e4e3817",
+        "src/research_agent/rag/__init__.py": "326c733d09db3000559f367dbb3b85ee519989d9365a8431dd4bb59ead7a952b",
+        "src/research_agent/rag/materials.py": "a2d66acedd6449fb463367f92d80c6d92f8cba5fccbf5c7edbeacd108f7706a6",
+        "src/research_agent/rag/paper_selection.py": "854793ab338afa39aa2ba35325a386da8a2710f35595ee5435928cf2b1d0fa5b",
+        "src/research_agent/rag/report_selection.py": "d56d880587cca46fcc32294c77d95690598768d29160364a2bc97f3da88ac35d",
+        "src/research_agent/rag/retrieval.py": "a58b5aeea134e38823ab7ff1a54a5aec7ee1ca6c130285dd105574aec09d63df",
+        "src/research_agent/workflows/__init__.py": "336b2baed92d4297655def8e9c7fa414c76d4461286c316878ce53014ac27729",
+        "src/research_agent/workflows/b_audit.py": "bbfa50009a2640f5fe74f66d6953ceabb6065aad9439bbeb56e5522912692687",
+        "src/research_agent/workflows/b_budget.py": "41c2665d8bb726684c430d28d1c85df46727337b4fa71890e5f461ad9965af48",
+        "src/research_agent/workflows/b_conditions.py": "2a566aa974aa13ca8700c3ec88b92162d496b7298f2a992bdcf51283ee8c46c0",
+        "src/research_agent/workflows/b_evidence.py": "58979fea1091553be4b7b4e5aea6d19ecdb6d2a530d7d090ceb155431959af9a",
+        "src/research_agent/workflows/b_recovery.py": "27ee98a9e3260e50fa755b225573ee3cf6688197af1ca4a1f153a76d73276df5",
+        "src/research_agent/workflows/b_workflow.py": "de55a644fa72d67210a4189e65ee83c7beb8bfa0e335df12382f331b7edb52b4",
+        "src/research_agent/workflows/d02_policy.py": "f0f76c27f540157e433cfcf0224637428683ba16b70364e600aa5a6b0673ac14",
+        "src/research_agent/workflows/d05_policy.py": "205593f9af88f9ffb47d734a9dbad034bd3a60830067f25124fdde5fb701f915",
+        "src/research_agent/workflows/d05_review.py": "c78c2ec77760dc8fb1259cea4eb276e132d471fae65571abce13462ce0ca38f3",
+        "src/research_agent/workflows/d_algorithms/__init__.py": "e18e39ccb960f057958ff607fe0027941efa245f186c264824521f6a57398906",
+        "src/research_agent/workflows/d_algorithms/d01.py": "372279f7169a8fba01881ffff4b32f0f1cc5729a226b8ebad86a7d5d6b63157e",
+        "src/research_agent/workflows/d_algorithms/d02.py": "75fa4bcccbe7039f03eda82d03cbd2e5732a0012e2b281245fa5a2620883112d",
+        "src/research_agent/workflows/d_algorithms/d05.py": "133491efb0283f748cbf357fadf065bac55ac21d6f37b4209d84b9849baa2262",
+        "src/research_agent/workflows/d_boundary_cases.py": "da0177cbfeb344003c79698d706cb758747559790f4c00eda94dd5a92ee437a2",
+        "src/research_agent/workflows/d_generation_policy.py": "6c4a9f534f03f32314919d9e349d050c635b2030af9916f81e2903209f592814",
+        "src/research_agent/workflows/d_holdout.py": "792b81eb1ff900a21baaebcb1defce47a07b5cd20bbf7f721367d1d815e4ca29",
+        "src/research_agent/workflows/d_public_review.py": "f19b1d2418a4ea148ae66961579c5a236df37c691e54a2b7c95ffc0f201cf042",
+        "src/research_agent/workflows/d_refinement.py": "542ddeb645607cba6bcf96e17223b9c23c1e6ec00fddcd4b56a8ca7df7a763f5",
+        "src/research_agent/workflows/d_review.py": "b7c9b994355e72855ae4fc37348af9022e4af0e2677b3e60a9847530f976941c",
+        "src/research_agent/workflows/d_selftest.py": "8549231e2a64f5439f4484db0b6bda0ea299c41312fb4e12b281340cb42ca0ec",
+        "src/research_agent/workflows/d_test_worker.py": "8d22ea654bfcd2bc61a214290c1c54e0a92b2d5229c807e4a31e678ee7cb9b89",
+        "src/research_agent/workflows/experiments.py": "4738c5a30a9c28e576e6abcca98bf5232f42526a826afb7bb83c630f67b18037",
+        "src/research_agent/workflows/idea_budget.py": "94d2cf7e97e26c896aa71db473b87cb25aa742226f0c691d46c597adcf08d9d6",
+        "src/research_agent/workflows/idea_plan.py": "4e583923d0932f1f502ddd553e8a6e97387c26e9de49a095291243882d61042f",
+        "src/research_agent/workflows/idea_repair.py": "956ec36c05015e8c8a04a22c22564aae20e655e2cc00de9e07833775d58dde1c",
+        "src/research_agent/workflows/idea_sources.py": "5fb0b287e60ea23f9c045dc24afe5a0d0a2f6ae4c1f9a998522d028d44a0d6bb",
+        "src/research_agent/workflows/idea_workflow.py": "ca2a69fa514b6b0effcd52390b5b2ca0f2c1fa8120852c239557f748384e9135",
+        "src/research_agent/workflows/layered_d_runner.py": "f47bf18fa59538a54d41377b4a9a11c603d5726530dabe0d0d9730b5ca62a3d9",
+        "src/research_agent/workflows/report_context.py": "465cf40c68f8fdf264566afe124adb1d50b341aa117144e7cd8d3601b5484f84",
+        "src/research_agent/workflows/reports.py": "3fba38f1d37fa241e59643897f6b91b27f76233712287fe31992d9b00ea2ecbb",
+        "src/research_agent/workflows/sample_validation.py": "44109e2c6f7a20357098218e018e09a4fabebf366ff08141c7915fba59395746",
+        "src/research_agent/workflows/sample_worker.py": "dc0f5f0e78427cad46f685e10a1063863c000f4af731088df3687ad323e233fd",
+        "src/research_agent/workflows/source_generation.py": "9a6b6e561cfc0c9a51d77d4e65e0004f57f5f5871fa7f2e1a976287a3ad1bb6c",
+        "src/research_agent/workflows/source_reports.py": "52ac1e553cfe5f18e6de5cc9b0f8b734c681a3076ec7623e1b2bc25ac3ef87c0",
+        "src/research_agent/workflows/survey_repair.py": "df26867e9c6727df8a3950b442dcf239789f3c96833719f7a124e947106a165a",
+        "src/research_agent/workflows/survey_sources.py": "a6667e7c7e0a1e2609f45e8b44011f2c5cc148b4079f0b28b254b3ec9279b95b",
+        "src/research_agent/workflows/tasks.py": "b97919c787d5f6df5759af2132daa6ace03bfb37adc05a653481510f914b4e3c"
+      }
+    }
+  },
+  "input_revision": null,
+  "public_case_inputs": [
+    {
+      "case_id": "B-02",
+      "function": "Literature_Retrieval",
+      "title": "公开真实材料端到端检验：B-02",
+      "input": "分别检索两个独立目标：一是以双编码器为核心进行段落检索的原始研究；二是通过学习反思标记按需检索并评价生成的研究。满足任一目标即可，尽量找全。",
+      "materials": [
+        "data/papers"
+      ],
+      "constraints": [
+        "只使用授权材料，不编造论文、指标或实验结果。"
+      ],
+      "expected_output": "Literature_Retrieval",
+      "output_schema_ref": "Literature_Retrieval"
+    },
+    {
+      "case_id": "E-04",
+      "function": "Idea",
+      "title": "公开真实材料端到端检验：E-04",
+      "input": "在每问题最多两轮检索、每轮十个候选段落的约束下，设计冲突证据控制方案。说明文献互补、训练推理接口、数据划分、泄漏防护、基线消融、量化指标、失败判据和资源成本。拟议实验不得当成已有结果；正文800至4500字符。",
+      "materials": [
+        "2004.04906-DPR.pdf",
+        "2005.11401-RAG.pdf",
+        "2007.01282-FiD.pdf",
+        "2112.04426-RETRO.pdf",
+        "2310.11511-Self-RAG.pdf"
+      ],
+      "constraints": [
+        "只使用授权材料，不编造论文、指标或实验结果。"
+      ],
+      "expected_output": "Idea",
+      "output_schema_ref": "Idea"
+    }
+  ],
+  "public_control_inputs": {},
+  "input_sha256": {
+    "A-05": "b26d40ec0fdefbfb7b42d4de68cf091a3d45c907f3ed594afac46c230fb4c479",
+    "B-01": "fe69d29fdbceac9e13adefc9a92463aa5bed817c6e76bb7a5bd171e8362224d6",
+    "B-02": "a2d2157ace7b52d53346a1374a92d3baa5849c4a2863220724b9fe61847ad5ac",
+    "B-03": "1bd0f128819ace1f9581fb20d71ae12cc51f2852f513393b93c3f8618d6b08b6",
+    "C-03": "715ae7b78b031d23b4dc5ac7b50ed071624191c2a3a652fbd376db1490b194b1",
+    "C-05": "7e0d1a221f665d48c07acdc0bfaebf56780798d05d5d786d4509bc07377037aa",
+    "E-01": "e49ee1c6c59bfdb3ae38e70c6574abbdf92e0a914a253ad77ab0da5b9de410a8",
+    "E-04": "699fb0a3af7cb6c66ea0e5e3606207ff74af89ff3427badf356a9c4b8a6c70eb",
+    "D-01": "ae0459b0e586b66875b903f2f27b79e7bbc4eb40dcd97f9136f50bc47081875a",
+    "D-02": "8c2384ec07176d204f1abed5f78a598bb31e0178c73baef07be0a6439316f6ef",
+    "D-05": "58d2d22b2fc5d18d046081238916ab5e1095815ff94de5528cd3bf47df912c56"
+  },
+  "material_sha256": {
+    "2004.04906-DPR.pdf": "3e67fc1a9977715acf722d85f0b7d124b03715e975f6310a4d6c12094190912f",
+    "2005.11401-RAG.pdf": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+    "2007.01282-FiD.pdf": "f1ee7e927c3fb31beb2146f8c205692a91b40dadd65d80e025c6686e4d430953",
+    "2104.08663-BEIR.pdf": "1925755aeb627123d1a63c66f02e5aa2432f7e92751a02bea7c8c3b6bbb6ec33",
+    "2112.04426-RETRO.pdf": "1b3e89b589b73d51ca76cb7d98f22fa5438f8b13e05363613bc6b3199f9777f4",
+    "2203.02155-InstructGPT.pdf": "c1984bb50a5b90fddb895fdc3a0f72e5bc977148c9f63ef6040cbe7a3e1f0d98",
+    "2310.11511-Self-RAG.pdf": "d9eaa1398abac0df67a9d0933a5bf8b6d9d83d2e72da2a486073cd842dd52978"
+  },
+  "contrasts": null,
+  "coordinator_sha256": {
+    "score_target_e2e_20261102.py": "9e585ec6c0af94371746054e488fd19daa071585b8a00e0adb6610983e30114e",
+    "score_target_worker_20261102.py": "c30eefc3f2c765b6cb9caf37958652f9453ebd5bf3a86cd09170b1e701b6c40a"
+  },
+  "native_tool_execution_verified": true,
+  "native_proof_sha256": "229b1396ed483330188e1c848aab98f8e1a946bc87763973cd9509a6b755c2e0",
+  "official_score": null,
+  "results": [
+    {
+      "variant": "candidate",
+      "case_id": "E-04",
+      "status": "completed",
+      "http_status": 200,
+      "trace_id": "4cbc4c329db3179b9df6cb91808aec9a",
+      "seconds": 479.734,
+      "model_calls": 10,
+      "total_tokens": 158235,
+      "quota_exhausted": false,
+      "papers": [],
+      "evidence_artifacts": 1,
+      "audit": {
+        "ok": false,
+        "mode": "model_report_needs_review",
+        "local_validation": true,
+        "model_issues": [
+          "正文“标签规则：a0可在p中匹配且无否定/数值冲突记支持；高相关段含明确否定或数值不一致且答案依赖之记矛盾；”把支持/矛盾锚定在首轮草稿a0上，且“答案依赖之”无操作化定义；a0错误时会把正确第二轮证据误判为矛盾并门控掉，代理量测的是与草稿一致而非事实支持。需补：a0置信低时改以问题或多段共识/独立证据判定，明确“答案依赖”的可测规则，并在a0正确/错误分层报告标签一致率与门控效果。",
+          "正文“支持=区间下界>0且EM与互补子集EM不降；”与前文“最小有意义差异为冲突错误率绝对降≥5个百分点、EM非劣且互补子集EM不降；EM非劣取配对差95%区间下界≥-1个百分点。”不一致：支持判据未要求5个百分点，也未说明“区间”是哪个指标的区间，可能把小于最小有意义差异的结果判为支持。需统一为冲突错误率配对差95%区间下界≥5个百分点且EM配对差下界≥-1个百分点、互补子集EM不降。",
+          "正文“多文献分工：前述FiD主干只解决融合，不提供冲突信号；RAG-Sequence的边缘化视角难表达段级矛盾；Self-RAG的中间量是反思token概率，本方案无此词表与critic，接口不兼容；RETRO块检索的块边界可能切断否定，故不用于标签粒度。”只把FiD作为实际使用主干，其余三篇均被排除，未给出至少第二篇机制的具体分工、传递中间量和接口适配，也未配对应消融。需补一个第二篇机制（如以Self-RAG式critic概率作辅助标签特征并加适配器，或RAG式边缘化用于段级聚合）的输入输出、接口和消融。",
+          "E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。",
+          "E要点experiment仍不完整，需补足：实验设计：选择有理由的基线；无新增机制/单模块/组合的消融；共用划分、种子、资源；支持/否定/证据不足三种判断。",
+          "E要点metrics仍不完整，需补足：量化指标：主要效果和成本指标逐一给计算口径、分子分母、统计单位；重复测量及比较方式。",
+          "E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。"
+        ],
+        "history": [
+          {
+            "stage": "audit",
+            "audit": {
+              "ok": false,
+              "issues": [
+                "p2“输出三值标签及w=0.6*support+0.4*(1-conflict)”与“置信<0.6或全未知时w=1并记录未知”未定义“未知”在三值到权重映射中的取值；若未知按support=0、conflict=0代入，则w=0.4，与全未知时w=1矛盾。需补充三值标签到w的完整映射（部分未知与全未知分别如何处理），保证门控规则前后一致。",
+                "p3“最小有意义差异为冲突错误率绝对降≥5个百分点且EM非劣”只给总体EM，未给互补证据子集（多段互补、需跨段整合的问题）的效果口径，无法检验p1假设中“不损失互补收益”。需在p3增加互补子集的EM或证据召回指标，明确分子分母与统计单位，并与冲突子集同时报告。",
+                ""
+              ],
+              "coverage": [
+                {
+                  "key": "motivation",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p1"
+                  ]
+                },
+                {
+                  "key": "route",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p2"
+                  ]
+                },
+                {
+                  "key": "experiment",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "data",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "metrics",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "bottleneck",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "complementarity",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "feasibility",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p5"
+                  ]
+                }
+              ]
+            },
+            "attempt": 1
+          },
+          {
+            "stage": "audit",
+            "audit": {
+              "ok": false,
+              "issues": [
+                "正文“标签规则：a0可在p中匹配且无否定/数值冲突记支持；高相关段含明确否定或数值不一致且答案依赖之记矛盾；”把支持/矛盾锚定在首轮草稿a0上，且“答案依赖之”无操作化定义；a0错误时会把正确第二轮证据误判为矛盾并门控掉，代理量测的是与草稿一致而非事实支持。需补：a0置信低时改以问题或多段共识/独立证据判定，明确“答案依赖”的可测规则，并在a0正确/错误分层报告标签一致率与门控效果。",
+                "正文“支持=区间下界>0且EM与互补子集EM不降；”与前文“最小有意义差异为冲突错误率绝对降≥5个百分点、EM非劣且互补子集EM不降；EM非劣取配对差95%区间下界≥-1个百分点。”不一致：支持判据未要求5个百分点，也未说明“区间”是哪个指标的区间，可能把小于最小有意义差异的结果判为支持。需统一为冲突错误率配对差95%区间下界≥5个百分点且EM配对差下界≥-1个百分点、互补子集EM不降。",
+                "正文“多文献分工：前述FiD主干只解决融合，不提供冲突信号；RAG-Sequence的边缘化视角难表达段级矛盾；Self-RAG的中间量是反思token概率，本方案无此词表与critic，接口不兼容；RETRO块检索的块边界可能切断否定，故不用于标签粒度。”只把FiD作为实际使用主干，其余三篇均被排除，未给出至少第二篇机制的具体分工、传递中间量和接口适配，也未配对应消融。需补一个第二篇机制（如以Self-RAG式critic概率作辅助标签特征并加适配器，或RAG式边缘化用于段级聚合）的输入输出、接口和消融。"
+              ],
+              "coverage": [
+                {
+                  "key": "motivation",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p1"
+                  ]
+                },
+                {
+                  "key": "route",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p2"
+                  ]
+                },
+                {
+                  "key": "experiment",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "data",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "metrics",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "bottleneck",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "complementarity",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "feasibility",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p5"
+                  ]
+                }
+              ]
+            },
+            "attempt": 2
+          },
+          {
+            "stage": "depth_rebuild_audit",
+            "audit": {
+              "ok": false,
+              "issues": [
+                "“删除该段后，依据在剩余段落中的匹配率<0.5，并且该段 w>0、确实被解码器消费。”——缺口：w 由同一个仲裁器根据标签映射给出（矛盾且满足答案依赖→w=0），却要求冲突候选先满足 w>0 才可判为“矛盾”，前后规则形成循环，该门控在自身定义下无法稳定触发。最小修订：把条件改为门控前的消费状态，如“该段在无门控 FiD 基线中被解码器消费（基线段权重>0）”，或明确 w>0 指加门前候选权重而非仲裁器输出。",
+                "“本方案用冻结分类器适配器把其语义映射为标量 p_c，作为仲裁器辅助特征。”——缺口：p_c 在第二节被列为仲裁器输入，但标签判定与权重映射（支持→1、矛盾且答案依赖→0、其余→1）没有任何一处使用 p_c，因此“移除适配器特征、只保留规则依据”的消融不会改变任何输出，无法检验该跨文献接口的增量，互补分工未真正连通。需补：给出 p_c 进入判定的具体规则和阈值（例如 c0<0.6 分支中 p_c≥0.5 记为一票独立“支持”证据，或作为段级偏置的加性项），并写明 p_c 与多段共识、规则冲突时的优先级。",
+                "“冲突错误率=固定人工冲突子集中目标错误问题数/该子集可判定问题数，零分母记 NA；”——缺口：所谓“固定人工冲突子集”（以及“互补子集”）的构造协议、规模、标注判据、何为“可判定”以及冻结时点均未写明；若在各组运行后按结果挑选子集，指标即成为事后选择，无法区分目标机制失效与一般质量下降。需补：以冻结问题清单为母集，对两轮候选并集做双人标注冲突/互补，给一致性门槛和可判定准入，并在任何一组运行前冻结，各组共用同一子集。"
+              ],
+              "coverage": [
+                {
+                  "key": "motivation",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p1",
+                    "p2"
+                  ]
+                },
+                {
+                  "key": "route",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p4",
+                    "p5"
+                  ]
+                },
+                {
+                  "key": "experiment",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p7",
+                    "p9"
+                  ]
+                },
+                {
+                  "key": "data",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p8"
+                  ]
+                },
+                {
+                  "key": "metrics",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p9"
+                  ]
+                },
+                {
+                  "key": "bottleneck",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p11",
+                    "p12"
+                  ]
+                },
+                {
+                  "key": "complementarity",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p14"
+                  ]
+                },
+                {
+                  "key": "feasibility",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p16"
+                  ]
+                }
+              ]
+            },
+            "issues": [
+              "“删除该段后，依据在剩余段落中的匹配率<0.5，并且该段 w>0、确实被解码器消费。”——缺口：w 由同一个仲裁器根据标签映射给出（矛盾且满足答案依赖→w=0），却要求冲突候选先满足 w>0 才可判为“矛盾”，前后规则形成循环，该门控在自身定义下无法稳定触发。最小修订：把条件改为门控前的消费状态，如“该段在无门控 FiD 基线中被解码器消费（基线段权重>0）”，或明确 w>0 指加门前候选权重而非仲裁器输出。",
+              "“本方案用冻结分类器适配器把其语义映射为标量 p_c，作为仲裁器辅助特征。”——缺口：p_c 在第二节被列为仲裁器输入，但标签判定与权重映射（支持→1、矛盾且答案依赖→0、其余→1）没有任何一处使用 p_c，因此“移除适配器特征、只保留规则依据”的消融不会改变任何输出，无法检验该跨文献接口的增量，互补分工未真正连通。需补：给出 p_c 进入判定的具体规则和阈值（例如 c0<0.6 分支中 p_c≥0.5 记为一票独立“支持”证据，或作为段级偏置的加性项），并写明 p_c 与多段共识、规则冲突时的优先级。",
+              "“冲突错误率=固定人工冲突子集中目标错误问题数/该子集可判定问题数，零分母记 NA；”——缺口：所谓“固定人工冲突子集”（以及“互补子集”）的构造协议、规模、标注判据、何为“可判定”以及冻结时点均未写明；若在各组运行后按结果挑选子集，指标即成为事后选择，无法区分目标机制失效与一般质量下降。需补：以冻结问题清单为母集，对两轮候选并集做双人标注冲突/互补，给一致性门槛和可判定准入，并在任何一组运行前冻结，各组共用同一子集。",
+              "E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。",
+              "E要点metrics仍不完整，需补足：量化指标：主要效果和成本指标逐一给计算口径、分子分母、统计单位；重复测量及比较方式。",
+              "E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。"
+            ]
+          },
+          {
+            "stage": "depth_final_audit",
+            "audit": {
+              "ok": false,
+              "issues": [
+                "第二节p5『权重映射为：支持→w=1；矛盾且满足答案依赖→w=0；其余→w=1 并记录标签』与p14『对标签为未知且 p_c≥0.5 的段令 w=min(1, w_rule+0.5×p_c)』前后不一致：未知段 w_rule 已为1，min(1,1+0.5×p_c)恒等于1，Self-RAG 适配器的 p_c 增项对段级权重完全无效；又因支持与未知都映射为 w=1，p_c 把『未知』升为『支持』也不改变被消费权重，接口传递空转，移除适配器的消融将难以显示预期增量。需给未知段设<1 的基础权重，或把增项改为能在[0,1]内生效的映射，使 p_c 真正连通到段权重。",
+                "p9『否定=冲突错误率升或 EM 显著降』与同段『证据不足=区间跨 0 或样本不足，不显著不等于假设被否定』相矛盾：冲突错误率仅写『升』而无『显著』限定，会使区间跨 0 的不显著上升同时被判为『否定』与『证据不足』。应改为『冲突错误率显著升』，与不显著归入证据不足的口径一致。"
+              ],
+              "coverage": [
+                {
+                  "key": "motivation",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p1",
+                    "p2"
+                  ]
+                },
+                {
+                  "key": "route",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4",
+                    "p5"
+                  ]
+                },
+                {
+                  "key": "experiment",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p7",
+                    "p9"
+                  ]
+                },
+                {
+                  "key": "data",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p8"
+                  ]
+                },
+                {
+                  "key": "metrics",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p9"
+                  ]
+                },
+                {
+                  "key": "bottleneck",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p11",
+                    "p12"
+                  ]
+                },
+                {
+                  "key": "complementarity",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p14"
+                  ]
+                },
+                {
+                  "key": "feasibility",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p16"
+                  ]
+                }
+              ]
+            },
+            "issues": [
+              "第二节p5『权重映射为：支持→w=1；矛盾且满足答案依赖→w=0；其余→w=1 并记录标签』与p14『对标签为未知且 p_c≥0.5 的段令 w=min(1, w_rule+0.5×p_c)』前后不一致：未知段 w_rule 已为1，min(1,1+0.5×p_c)恒等于1，Self-RAG 适配器的 p_c 增项对段级权重完全无效；又因支持与未知都映射为 w=1，p_c 把『未知』升为『支持』也不改变被消费权重，接口传递空转，移除适配器的消融将难以显示预期增量。需给未知段设<1 的基础权重，或把增项改为能在[0,1]内生效的映射，使 p_c 真正连通到段权重。",
+              "p9『否定=冲突错误率升或 EM 显著降』与同段『证据不足=区间跨 0 或样本不足，不显著不等于假设被否定』相矛盾：冲突错误率仅写『升』而无『显著』限定，会使区间跨 0 的不显著上升同时被判为『否定』与『证据不足』。应改为『冲突错误率显著升』，与不显著归入证据不足的口径一致。",
+              "E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。"
+            ],
+            "round": 1
+          },
+          {
+            "stage": "depth_rebuild_unavailable",
+            "issues": [
+              "numeric bracket token '[0,1]': reference 0 has no used evidence at this page; allowed pages: []. If these are parameter values, use braces; if these are mathematical closed intervals, use full-width brackets ［a,b］ to preserve meaning. Replace each offending token in the supplied passages; do not change valid citations or invent references."
+            ]
+          }
+        ]
+      },
+      "evidence_sha256": "d5647bf3aae84ec7f356a9b4f9d3696388f69afb05e29296266f981faadc1743",
+      "report_sha256": "e5a7411f75ad9e80840086184cf807fff7e64c5ad58505762697382b054e3e3c"
+    },
+    {
+      "variant": "candidate",
+      "case_id": "E-04",
+      "status": "completed",
+      "http_status": 200,
+      "trace_id": "ca64fb7b04cf56bf9b664cda3f4c18c8",
+      "seconds": 176.688,
+      "model_calls": 3,
+      "total_tokens": 52283,
+      "quota_exhausted": false,
+      "papers": [],
+      "evidence_artifacts": 1,
+      "audit": {
+        "ok": true,
+        "issues": [],
+        "coverage": [
+          {
+            "key": "motivation",
+            "status": "supported",
+            "paragraph_ids": [
+              "p1"
+            ]
+          },
+          {
+            "key": "route",
+            "status": "supported",
+            "paragraph_ids": [
+              "p3"
+            ]
+          },
+          {
+            "key": "experiment",
+            "status": "supported",
+            "paragraph_ids": [
+              "p3",
+              "p4"
+            ]
+          },
+          {
+            "key": "data",
+            "status": "supported",
+            "paragraph_ids": [
+              "p3"
+            ]
+          },
+          {
+            "key": "metrics",
+            "status": "supported",
+            "paragraph_ids": [
+              "p4"
+            ]
+          },
+          {
+            "key": "bottleneck",
+            "status": "supported",
+            "paragraph_ids": [
+              "p4"
+            ]
+          },
+          {
+            "key": "complementarity",
+            "status": "supported",
+            "paragraph_ids": [
+              "p2",
+              "p3"
+            ]
+          },
+          {
+            "key": "feasibility",
+            "status": "supported",
+            "paragraph_ids": [
+              "p4"
+            ]
+          }
+        ],
+        "history": [
+          {
+            "stage": "audit",
+            "audit": {
+              "ok": true,
+              "issues": [],
+              "coverage": [
+                {
+                  "key": "motivation",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p1"
+                  ]
+                },
+                {
+                  "key": "route",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "experiment",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p3",
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "data",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "metrics",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "bottleneck",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "complementarity",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p2",
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "feasibility",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                }
+              ]
+            },
+            "attempt": 1
+          }
+        ],
+        "local_validation": true
+      },
+      "evidence_sha256": "11ab8b19784455355e2f9ad813fa1ffd977bc11b9e3c81514c553d2a5cbcec73",
+      "report_sha256": "4f364e6daa86bfd4dadd19485526d14577c568aec233317e545203bbf9ffdf25"
+    },
+    {
+      "variant": "candidate",
+      "case_id": "E-04",
+      "status": "completed",
+      "http_status": 200,
+      "trace_id": "c31454de97cf88b04c229c62371e40ea",
+      "seconds": 571.453,
+      "model_calls": 9,
+      "total_tokens": 161480,
+      "quota_exhausted": false,
+      "papers": [],
+      "evidence_artifacts": 1,
+      "audit": {
+        "ok": false,
+        "mode": "model_report_needs_review",
+        "local_validation": true,
+        "model_issues": [
+          "检测规则：冲突c高于开发集校准阈值且支持s低才标冲突；低相似不判冲突，相关性不推因果；低置信记未知。该句未给“支持s低”和“低置信”的可校准阈值或判定边界，也未说明标为冲突后候选是丢弃、保留还是补位；需把s、u阈值和保留列表映射写成可执行规则，否则门控与消融无法复现。",
+          "拟议流水线：同一检索器首轮产出10候选；仅当门控触发检索需求时进行第二轮，仍产出10候选，合计至多20。未定义“触发检索需求”的输入特征、分数/阈值及其与冲突/回退规则的关系；而主对照又固定两轮均执行，条件式第二轮无法被主实验检验，需补触发规则并说明部署触发率如何单独评估。",
+          "固定同一问题、融合长度（前10段、每段100词元）、模型版本、共用原train/dev/test、种子集和总GPU时，只改变门控。门控过滤后保留列表可能少于10段，与前10段固定融合长度及等预算冲突；需规定过滤后如何补位或掩码到同一K，或明确报告可变长度成本，否则消融并非等预算对照。",
+          "E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。",
+          "E要点experiment仍不完整，需补足：实验设计：选择有理由的基线；无新增机制/单模块/组合的消融；共用划分、种子、资源；支持/否定/证据不足三种判断。",
+          "E要点complementarity仍不完整，需补足：多文献互补：至少两篇的真实机制、各自分工、传递的中间量和接口冲突；检测规则、拟议阈值及具体回退，配消融验证。"
+        ],
+        "history": [
+          {
+            "stage": "audit",
+            "audit": {
+              "ok": false,
+              "issues": [
+                "「消融：移除门控过滤，候选列表复原为原top10，但保留等量分类器前向作为等计算控制；“记录标记但不改列表”仅作诊断，不算效果消融」——处理组使用两轮检索，并由门控从至多20个候选中筛选；但主效果消融退回到单轮top10，因此候选池与检索轮数不同。这样收益可能来自多检索到的候选，而不是门控机制；而恰好等池的不过滤条件“记录标记但不改列表”又被降为诊断。最小修订是：改以同一20候选池、按检索器分数直接取前10段的未门控条件作为主效果消融，并让各条件下的检索轮数与候选池保持一致。",
+                "「开发集人工标支持/冲突/未知，按问题隔离拆为分类器拟合与阈值校准」与「主效果为固定人工标注冲突子集上的答案错误率」——主指标需要评测/测试划分上的人工标注冲突子集，但人工冲突标注只写在开发集，测试仅前向，因此该冲突子集在测试上无法计算。最小修订是：明确在留出评测划分上标注固定的冲突子集（规模、协议、标注一致性，且不参与分类器拟合与阈值校准），或把主指标定义在可标注的留出子集上。"
+              ],
+              "coverage": [
+                {
+                  "key": "motivation",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p1"
+                  ]
+                },
+                {
+                  "key": "route",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "experiment",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "data",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p3",
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "metrics",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "bottleneck",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "complementarity",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p2"
+                  ]
+                },
+                {
+                  "key": "feasibility",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                }
+              ]
+            },
+            "attempt": 1
+          },
+          {
+            "stage": "audit",
+            "audit": {
+              "ok": false,
+              "issues": [
+                "检测规则：冲突c高于开发集校准阈值且支持s低才标冲突；低相似不判冲突，相关性不推因果；低置信记未知。该句未给“支持s低”和“低置信”的可校准阈值或判定边界，也未说明标为冲突后候选是丢弃、保留还是补位；需把s、u阈值和保留列表映射写成可执行规则，否则门控与消融无法复现。",
+                "拟议流水线：同一检索器首轮产出10候选；仅当门控触发检索需求时进行第二轮，仍产出10候选，合计至多20。未定义“触发检索需求”的输入特征、分数/阈值及其与冲突/回退规则的关系；而主对照又固定两轮均执行，条件式第二轮无法被主实验检验，需补触发规则并说明部署触发率如何单独评估。",
+                "固定同一问题、融合长度（前10段、每段100词元）、模型版本、共用原train/dev/test、种子集和总GPU时，只改变门控。门控过滤后保留列表可能少于10段，与前10段固定融合长度及等预算冲突；需规定过滤后如何补位或掩码到同一K，或明确报告可变长度成本，否则消融并非等预算对照。"
+              ],
+              "coverage": [
+                {
+                  "key": "motivation",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p1"
+                  ]
+                },
+                {
+                  "key": "route",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p2",
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "experiment",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "data",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "metrics",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "bottleneck",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "complementarity",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p2",
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "feasibility",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                }
+              ]
+            },
+            "attempt": 2
+          },
+          {
+            "stage": "depth_rebuild_audit",
+            "audit": {
+              "ok": false,
+              "issues": [
+                "原句“冲突候选从保留列表剔除；若保留不足10，按原检索分数从未门控候选补位至10并标“中性””中，补位来源“未门控候选”未排除刚被判冲突而剔除的段落，可能把冲突段重新补回融合，造成前后规则不一致；应明确只从“未被判冲突且不在保留列表”的候选补位，不足则空段掩码，并记录补位来源与比例。",
+                "原句“主效果指标：固定人工标注冲突子集上的答案错误率=错误题数/可判定题数，未知单列，零分母报不适用；”只给冲突子集一般错误率，未按“该矛盾证据门控前是否被标冲突”分层，也未约束未知率，无法直接检验核心目标失效率；需分别报告门控前标冲突/未标冲突的矛盾错误率，并同时报告未知率或把未知纳入联合判据。",
+                "原句“NQ按开放域版本适配长答案。”与材料[3,p.4]所述开放域版本丢弃超过5词元的答案（discarding answers with more than 5 tokens）相反；应改为“NQ采用开放域版本，丢弃超过5词元的答案”，否则数据适配事实与引文不符。"
+              ],
+              "coverage": [
+                {
+                  "key": "motivation",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p1"
+                  ]
+                },
+                {
+                  "key": "route",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p2",
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "experiment",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4",
+                    "p5"
+                  ]
+                },
+                {
+                  "key": "data",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p4"
+                  ]
+                },
+                {
+                  "key": "metrics",
+                  "status": "partial",
+                  "paragraph_ids": [
+                    "p5"
+                  ]
+                },
+                {
+                  "key": "bottleneck",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p5"
+                  ]
+                },
+                {
+                  "key": "complementarity",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p2",
+                    "p3"
+                  ]
+                },
+                {
+                  "key": "feasibility",
+                  "status": "supported",
+                  "paragraph_ids": [
+                    "p4",
+                    "p5"
+                  ]
+                }
+              ]
+            },
+            "issues": [
+              "原句“冲突候选从保留列表剔除；若保留不足10，按原检索分数从未门控候选补位至10并标“中性””中，补位来源“未门控候选”未排除刚被判冲突而剔除的段落，可能把冲突段重新补回融合，造成前后规则不一致；应明确只从“未被判冲突且不在保留列表”的候选补位，不足则空段掩码，并记录补位来源与比例。",
+              "原句“主效果指标：固定人工标注冲突子集上的答案错误率=错误题数/可判定题数，未知单列，零分母报不适用；”只给冲突子集一般错误率，未按“该矛盾证据门控前是否被标冲突”分层，也未约束未知率，无法直接检验核心目标失效率；需分别报告门控前标冲突/未标冲突的矛盾错误率，并同时报告未知率或把未知纳入联合判据。",
+              "原句“NQ按开放域版本适配长答案。”与材料[3,p.4]所述开放域版本丢弃超过5词元的答案（discarding answers with more than 5 tokens）相反；应改为“NQ采用开放域版本，丢弃超过5词元的答案”，否则数据适配事实与引文不符。",
+              "E要点route仍不完整，需补足：技术路线：写清各模块输入、输出、连接顺序和相对给定材料新增的设计。",
+              "E要点data仍不完整，需补足：基准数据集：证据中的具体名称及其适配；拟议采样、划分单位和防泄漏。资料不足时给出可执行的获取、核查和替代步骤。",
+              "E要点metrics仍不完整，需补足：量化指标：主要效果和成本指标逐一给计算口径、分子分母、统计单位；重复测量及比较方式。"
+            ]
+          },
+          {
+            "stage": "depth_rebuild_unavailable",
+            "issues": [
+              "model response incomplete after retries"
+            ]
+          }
+        ]
+      },
+      "evidence_sha256": "b132ab43b94b170cf3cdb30f2a6bab9f49b217af05b8ffc9539286f7810f3eaf",
+      "report_sha256": "bb1342598d6946d4ad210e2fa89ae96e807ee14d543536491430de1319d8f17b"
+    }
+  ]
+}
