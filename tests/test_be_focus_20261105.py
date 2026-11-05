@@ -68,6 +68,27 @@ def test_e04_writer_receives_verified_plan_without_calling_it_proven():
     assert model.stages == ['extract_batch', 'report', 'audit']
 
 
+@pytest.mark.parametrize('case_id,stage,enabled', [
+    ('E-04', 'audit', True), ('E-01', 'audit', False), ('E-04', 'report', False),
+])
+def test_reasoned_audit_is_e04_only_and_restores_on_failure(case_id, stage, enabled):
+    from types import SimpleNamespace
+    from research_agent.workflows.idea_workflow import call
+    model = SimpleNamespace(thinking_override='disabled')
+
+    def fail(actual_stage, data, maximum, **kwargs):
+        assert actual_stage == stage
+        assert (model.thinking_override == 'enabled') is enabled
+        assert maximum == (12000 if enabled else 1600)
+        raise RuntimeError('injected model failure')
+
+    workflow = SimpleNamespace(llm=model, _budgeted_model_step=fail)
+    with CaseSession(case_id, 850).activate():
+        with pytest.raises(RuntimeError, match='injected'):
+            call(workflow, stage, {'task': {'case_id': case_id}}, 1600)
+    assert vars(model) == {'thinking_override': 'disabled'}
+
+
 def test_e04_long_plan_excerpt_still_requires_full_source_match():
     from dataclasses import replace
     passage = 'This continuous supplied excerpt describes the actual retrieval mechanism. ' * 4
