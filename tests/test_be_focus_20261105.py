@@ -148,6 +148,27 @@ def test_e04_final_local_repair_requires_fresh_semantic_acceptance():
     assert workflow.audit['history'][-1]['stage'] == 'depth_final_audit'
 
 
+@pytest.mark.parametrize('accepted', [True, False])
+def test_e04_additional_repairs_are_bounded_and_cannot_promote_unapproved_text(accepted):
+    from research_agent.integrations.llm import ModelError
+    rejected = {**good_audit(), 'ok': False, 'issues': ['统计判据跨节不一致。']}
+    responses = [ModelError('plan unavailable'), {'markdown': BODY}, rejected,
+                 {'patches': []}, {'markdown': '重新生成。' + BODY}, rejected]
+    for number in range(1, 4):
+        responses += [{'patches': [{'paragraph_id': 'p1', 'replacement': f'修订{number}。' + BODY}]},
+                      good_audit() if accepted and number == 2 else rejected]
+        if accepted and number == 2:
+            break
+    workflow, model = run(responses)
+    with CaseSession('E-04', 850).activate():
+        result = workflow.compose_report(CaseContext.from_dict(case('E-04')))
+    reviews = [r for r in workflow.audit['history'] if r['stage'] == 'depth_final_audit']
+    assert len(reviews) == (2 if accepted else 3)
+    assert workflow.audit['ok'] is accepted
+    assert ('修订2。' in result['markdown']) is accepted
+    assert '修订3。' not in result['markdown']
+
+
 @pytest.mark.parametrize('evidence_id,valid', [('ev-1', True), ('ev-999', False)])
 def test_e04_fullwidth_citation_retains_source_validation(evidence_id, valid):
     workflow, model = run([

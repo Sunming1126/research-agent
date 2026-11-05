@@ -331,20 +331,30 @@ def compose_idea(workflow, case):
                 workflow.last_draft = rebuilt_body
                 workflow.audit = {**rebuilt_audit,'history':history,'local_validation':True}
                 return workflow._report_result(case, rebuilt_body, filenames, refs)
-            if rebuilt_feedback and remaining() >= 160:
+            # 一次最多修三段；复审可揭示被前一轮三条上限遮住的跨节问题。
+            # 在正式总时限内最多三轮，空修改立即停止；每轮仍须完整格式与语义复验。
+            for repair_round in range(1, 4):
+                if not rebuilt_feedback or remaining() < 160:
+                    break
                 revised, repaired, patches = patch_draft(
                     workflow, case, rebuilt_body, rebuilt_feedback, rows)
                 final_body, final_used, final_ambiguities = normalize(
                     {'markdown': revised}, evidence, maximum_body=body_limit)
+                if final_body == rebuilt_body:
+                    history.append({'stage':'depth_repair_no_progress','round':repair_round})
+                    break
                 workflow.report_trace.append({'stage':'depth_final_repair','raw_response':repaired,
-                                              'raw_markdown':final_body,'patches':patches})
+                                              'raw_markdown':final_body,'patches':patches,'round':repair_round})
                 final_audit, final_feedback = review_draft(
                     workflow, case, final_body, rows, final_used, final_ambiguities)
-                history.append({'stage':'depth_final_audit','audit':final_audit,'issues':final_feedback})
+                history.append({'stage':'depth_final_audit','audit':final_audit,'issues':final_feedback,
+                                'round':repair_round})
                 if final_audit['ok'] and not final_feedback:
                     workflow.last_draft = final_body
                     workflow.audit = {**final_audit,'history':history,'local_validation':True}
                     return workflow._report_result(case, final_body, filenames, refs)
+                rebuilt_body, rebuilt_used, rebuilt_ambiguities = final_body, final_used, final_ambiguities
+                rebuilt_feedback = final_feedback
         except (ModelError, EvidenceError, TimeoutError, ValueError, TypeError, KeyError) as exc:
             history.append({'stage':'depth_rebuild_unavailable','issues':[str(exc)]})
     workflow.audit = {'ok':False,'mode':'model_report_needs_review','local_validation':True,
