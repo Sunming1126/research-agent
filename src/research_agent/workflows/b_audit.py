@@ -53,9 +53,9 @@ def assess_audit(row,candidate,task,plan):
                      for e in check['evidence_ids']}
         if not isinstance(dimensions, dict) or not set(dimensions) <= {'object', 'method', 'finding'}:
             raise ModelError('B-02 requires two supported relevance dimensions in final review')
-        dimensions = {key: ids for key, ids in dimensions.items()
-                      if isinstance(ids, list) and ids
-                      and all(isinstance(e, str) and e in supported for e in ids)}
+        dimensions = {key: [e for e in ids if isinstance(e, str) and e in supported]
+                      for key, ids in dimensions.items() if isinstance(ids, list)}
+        dimensions = {key: ids for key, ids in dimensions.items() if ids}
         if len(dimensions) < 2:
             raise ModelError('B-02 requires two supported relevance dimensions in final review')
         decision['match_dimensions'] = dimensions
