@@ -5,8 +5,8 @@ import pytest
 from fixtures import case
 from research_agent.core.models import CaseContext
 from research_agent.core.session import CaseSession
-from research_agent.workflows.b_audit import paper_context, scope_conflict, scope_profile, assess_audit
-from research_agent.workflows.idea_workflow import prepare_depth_plan
+from research_agent.workflows.b_audit import paper_context, scope_conflict, scope_profile, assess_audit, source_quote
+from research_agent.workflows.idea_workflow import prepare_depth_plan, call_window
 from research_agent.evidence import EvidenceError
 from test_b5_conditions import chunk
 from test_e4_resilience import BODY, good_audit, run
@@ -38,6 +38,19 @@ def test_e04_plan_requires_source_and_complete_contract(fault):
     assert model.stages == ['extract_batch']
     if fault == 'none':
         assert workflow.evidence_audit['idea_plan']['semantic_claims_verified'] is False
+
+
+def test_e04_planning_reasoning_is_scoped_and_restored():
+    from types import SimpleNamespace
+    model = SimpleNamespace(thinking_override='disabled')
+    with CaseSession('E-04', 850).activate() as session:
+        with call_window(model, 'extract_batch'):
+            assert model.thinking_override == 'enabled'
+            assert model.deadline < session.deadline
+    assert vars(model) == {'thinking_override': 'disabled'}
+    with call_window(model, 'report'):
+        assert model.thinking_override == 'disabled'
+    assert vars(model) == {'thinking_override': 'disabled'}
 
 
 def test_e04_writer_receives_verified_plan_without_calling_it_proven():
@@ -105,6 +118,13 @@ def test_b_context_recovers_paper_contribution_outside_query_window():
     context = paper_context(SimpleNamespace(chunks=entries), 'reader.pdf')
     assert any('generative reader' in row['text'] for row in context)
     assert all(row['chunk_id'] in {c.chunk_id for c in entries} for row in context)
+
+
+def test_b_scope_quotes_accept_pdf_layout_but_not_invented_words():
+    candidate = {'chunks': [], 'paper_context': [
+        {'chunk_id': 'abstract', 'text': 'We introduce a generative\nreader for open domain answering.'}]}
+    assert source_quote({'chunk_id': 'abstract', 'quote': 'We introduce a generative reader for open domain answering.'}, candidate)
+    assert not source_quote({'chunk_id': 'abstract', 'quote': 'We introduce a dense retriever for open domain answering.'}, candidate)
 
 
 def test_b02_independent_target_unknown_does_not_veto_grounded_target():

@@ -26,7 +26,7 @@ def remaining():
 
 @contextmanager
 def call_window(llm, stage, *, retry=False):
-    caps = {'extract_batch': (60, 360), 'report': (180, 90) if retry else (240, 180),
+    caps = {'extract_batch': (120, 360), 'report': (180, 90) if retry else (240, 180),
             'audit': (60, 30), 'repair': (120, 30)}
     cap, reserve = caps[stage]
     session = current_session()
@@ -44,7 +44,7 @@ def call_window(llm, stage, *, retry=False):
         llm.deadline = deadline
         llm.REQUEST_TIMEOUT_CAP = cap
         llm.RETRY_ATTEMPTS = 1
-        llm.thinking_override = 'disabled'
+        llm.thinking_override = 'enabled' if stage == 'extract_batch' else 'disabled'
         checkpoint('idea_'+stage)
         yield
     finally:
@@ -140,7 +140,7 @@ def prepare_depth_plan(workflow, case, rows):
         # 沿用已有idea_plan提示入口，一次有界调用，不改变公共提取/写作路径。
         value = call(workflow, 'extract_batch', {
             'task':report_task(case), 'purpose':'idea_plan', 'claims':compact_claims(rows),
-        }, 4000)
+        }, 12000)
         validate_source_plan(value, workflow.ledger, maximum_quote=600)
         contract = value.get('mechanism_contract')
         fields = ('shared_conditions', 'target_event', 'dataflow', 'fallback',

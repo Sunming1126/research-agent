@@ -121,7 +121,7 @@ def scope_profile(row, candidate):
 def source_quote(row, candidate):
     quote = row.get('quote')
     return (isinstance(quote, str) and len(quote.strip()) >= 16
-            and any(row.get('chunk_id') == c['chunk_id'] and quote.strip() in c['text']
+            and any(row.get('chunk_id') == c['chunk_id'] and source_span(quote, c['text'])
                     for c in candidate['chunks'] + candidate.get('paper_context', [])))
 
 
