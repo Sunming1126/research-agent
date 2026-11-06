@@ -1,0 +1,10 @@
+{
+  "scope": "Optional mirror of binary; requested local image and GitHub process archive are ready",
+  "python_upload": "URLError / connection reset after >=16MiB; not completed",
+  "curl_upload": "exit 55 connection reset after partial transfer; not completed",
+  "lfs_upload": "low throughput; own upload stopped to avoid delaying local handoff; not completed",
+  "remote_binary_upload_success_claimed": false,
+  "owned_empty_prerelease_cleaned": true,
+  "local_tar_preserved_and_verified": true,
+  "credentials_or_browser_storage_archived": false
+}

@@ -52,6 +52,7 @@
   {
     "stage": "11-github-archive",
     "branch": "archive/d30-release-20261106",
-    "result": "source and complete evidence, image binary linked as Release asset"
+    "result": "source/process branch uploaded; optional image mirror failed; verified local tar delivered; incomplete placeholder release cleaned",
+    "image_sha256": "98f3fc456473eb51531af72e01c8135b83dbc69d6991c16e319d6a92020bb892"
   }
 ]

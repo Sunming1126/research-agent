@@ -27,5 +27,9 @@
   "D02_D05_algorithm_score_gain_verified": false,
   "AGENT_VERSION_metadata": "2.0.10-bd7 (preserved from source; distinguish this build by SHA256 and revision label)",
   "package_evidence": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\d30-package-20261106-061dedf5",
-  "baseline_BE_image": "sha256:b7602723e9e6458fbdabf73bb75ed10cb916638a3ebcf4b98a1a213fb863ce7f"
+  "baseline_BE_image": "sha256:b7602723e9e6458fbdabf73bb75ed10cb916638a3ebcf4b98a1a213fb863ce7f",
+  "github_archive_branch": "archive/d30-release-20261106",
+  "github_archive_url": "https://github.com/Sunming1126/research-agent/tree/archive/d30-release-20261106",
+  "github_image_upload_complete": false,
+  "github_image_upload_note": "Optional binary transfer failed; source and complete process archive uploaded; use local tar"
 }

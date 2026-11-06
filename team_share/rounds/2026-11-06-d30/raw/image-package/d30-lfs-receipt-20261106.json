@@ -1,0 +1,9 @@
+{
+  "branch": "archive/d30-release-20261106",
+  "path": "team_share/image/d30-20261106/research-assistant-d30-2e6f51a643ac.tar",
+  "oid_sha256": "98f3fc456473eb51531af72e01c8135b83dbc69d6991c16e319d6a92020bb892",
+  "bytes": 295492096,
+  "lfs_push_returncode": 255,
+  "pointer": "version https://git-lfs.github.com/spec/v1\noid sha256:98f3fc456473eb51531af72e01c8135b83dbc69d6991c16e319d6a92020bb892\nsize 295492096\n",
+  "upload_acknowledged": false
+}

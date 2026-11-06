@@ -1,0 +1,14 @@
+{
+  "tag": "d30-20261106-2e6f51a643ac",
+  "branch": "archive/d30-release-20261106",
+  "assets": [],
+  "complete": false,
+  "release_id": 436051812,
+  "release_url": "https://github.com/Sunming1126/research-agent/releases/tag/d30-20261106-2e6f51a643ac",
+  "archive_commit": "5736833c3a9fd3379ba4bfd6f9f3e2115469254b",
+  "uploading": {
+    "name": "research-assistant-d30-2e6f51a643ac.tar",
+    "bytes_sent": 16777216,
+    "bytes_total": 295492096
+  }
+}

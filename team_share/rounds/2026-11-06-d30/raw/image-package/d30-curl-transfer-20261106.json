@@ -1,0 +1,20 @@
+{
+  "first_attempt": "Python streaming upload: connection reset, recorded >=16777216 bytes sent; not marked complete",
+  "release_id": 436051812,
+  "cleaned_owned_empty_assets": [
+    715701520
+  ],
+  "curl_returncode": 55,
+  "curl_metrics": {
+    "errormsg": "Send failure: Connection was reset",
+    "exitcode": 55,
+    "http_code": 100,
+    "response_code": 100,
+    "size_upload": 46907392,
+    "speed_upload": 195975,
+    "time_appconnect": 1.330346,
+    "time_connect": 0.789095,
+    "time_total": 239.354409
+  },
+  "privacy_note": "Public receipt retains outcome and transfer metrics; local/remote network addresses omitted."
+}

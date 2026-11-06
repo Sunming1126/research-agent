@@ -1,0 +1,10 @@
+{
+  "archive_branch": "archive/d30-release-20261106",
+  "archive_url": "https://github.com/Sunming1126/research-agent/tree/archive/d30-release-20261106",
+  "local_tar": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\交付物\\2026-11-06-d30-2e6f51a643ac\\research-assistant-d30-2e6f51a643ac.tar",
+  "tar_sha256": "98f3fc456473eb51531af72e01c8135b83dbc69d6991c16e319d6a92020bb892",
+  "backup": "D:\\Agent挑战赛\\2026-11-06-d30-release\\complete-d539dca9",
+  "backup_files_verified": 174,
+  "github_image_uploaded": false,
+  "official_evaluation_started": false
+}

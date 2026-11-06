@@ -1,0 +1,9 @@
+{
+  "removed_only_own_incomplete_prerelease": true,
+  "release_id": 436051812,
+  "removed_incomplete_asset_ids": [
+    715729826
+  ],
+  "archive_branch_preserved": "archive/d30-release-20261106",
+  "local_image_preserved": true
+}
