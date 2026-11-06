@@ -32,9 +32,19 @@ def run(proof):
     else:
         assert proof['native_tool_execution_verified'] and proof['session_id']==SID
     candidate=proof['candidate_commit']
+    resume=proof.get('reuse_native_pairs')
+    if resume:
+        assert offline
+        previous=Path(resume)
+        assert previous.resolve().is_relative_to((ROOT/'镜像测试/runs').resolve())
+        prior=json.loads((previous/'summary.json').read_text(encoding='utf-8'))
+        assert prior['complete'] and prior['paired_gate'] and prior['candidate_commit']==candidate
+        assert prior['full']['failed_ids']==['tests.test_cd2_isolation::test_non_e_prompt_instructions_are_byte_identical']
+        assert 'prompts-before.py' in (previous/'full.stdout').read_text(encoding='utf-8')
+        assert json.loads((previous/'native-proof.json').read_text())['native_tool_execution_verified']
     output=ROOT/'镜像测试/runs'/('d-contract-20261106-'+uuid.uuid4().hex[:8])
     output.mkdir()
-    claim=ROOT/'.session-audit'/('d-contract-claim-'+candidate[:12]+'.json')
+    claim=ROOT/'.session-audit'/('d-contract-claim-'+candidate[:12]+('-full-offline' if resume else '')+'.json')
     with claim.open('x',encoding='utf-8') as owned:
         json.dump({'candidate':candidate,'directory':str(output),'origin':'Codex offline' if offline else 'original Harness',
                    'purpose':'prevent duplicate execution of the same queued D comparison'},owned,indent=2)
@@ -65,6 +75,10 @@ def run(proof):
                               for cid in ('D-01','D-02','D-05') for name in ('method.md','protocol.json','sample.json')}}
     state['environment_fingerprint']=hashlib.sha256(json.dumps(environment,sort_keys=True).encode()).hexdigest()
     save(output/'environment.json',environment)
+    # The existing isolation test consumes the exact historical prompt fixture.
+    # Restore the missing mount input rather than skip or weaken its assertion.
+    (output/'prompts-before.py').write_bytes(subprocess.check_output(
+        ['git','show','04216cf:src/research_agent/integrations/prompts.py'],cwd=REPO))
     snapshot=output/'candidate'
     shutil.copytree(FIXTURE/'source',snapshot)
     def overlay(ref,target,paths):
@@ -89,6 +103,18 @@ def run(proof):
     assert changes==['src/research_agent/workflows/layered_d_runner.py'],changes
     assert (snapshot/'tests/test_d_contract_recovery.py').read_bytes()==(paired/'tests/test_d_contract_recovery.py').read_bytes()
     save(output/'source-manifest.json',{'baseline':baseline_hashes,'candidate':candidate_hashes,'production_changes':changes})
+    if resume:
+        assert environment==json.loads((previous/'environment.json').read_text())
+        assert json.loads((previous/'source-manifest.json').read_text())==json.loads((output/'source-manifest.json').read_text())
+        reused={}
+        for index,kind in enumerate(['baseline','candidate','candidate','baseline','baseline','candidate']):
+            name=f'pair-{index}-{kind}'
+            xml=previous/(name+'.xml')
+            counts={tag:sum(c.find(tag) is not None for c in ET.parse(xml).findall('.//testcase')) for tag in ('failure','error','skipped')}
+            assert counts=={k:prior[name][k] for k in counts}
+            assert counts=={'failure':2 if kind=='baseline' else 0,'error':0,'skipped':0}
+            reused[name]={'origin':'original Harness','sha256':hashlib.sha256(xml.read_bytes()).hexdigest(),'result':prior[name]}
+        state['reused_native_pairs']={'directory':str(previous),'summary_sha256':hashlib.sha256((previous/'summary.json').read_bytes()).hexdigest(),'cases':reused}
     history=Path(subprocess.check_output(['git','rev-parse','--path-format=absolute','--git-common-dir'],cwd=REPO,text=True).strip())
     mount=lambda src,dst: 'type=bind,source='+str(src)+',target='+dst+',readonly'
     command=['run','--rm','--network','none','--cpus','1','--memory','1g',
@@ -120,7 +146,8 @@ def run(proof):
     order=['baseline','candidate','candidate','baseline','baseline','candidate']
     pair=[]
     for index,kind in enumerate(order):
-        pair.append(pytest(f'pair-{index}-{kind}',paired if kind=='baseline' else snapshot,['tests/test_d_contract_recovery.py']))
+        pair.append(prior[f'pair-{index}-{kind}'] if resume else
+                    pytest(f'pair-{index}-{kind}',paired if kind=='baseline' else snapshot,['tests/test_d_contract_recovery.py']))
     state['paired_gate']=all(r['failure']==(2 if kind=='baseline' else 0) and not r['error'] and not r['skipped']
                              for kind,r in zip(order,pair))
     full=pytest('full',snapshot,['tests'])

@@ -1,0 +1,20 @@
+{
+  "closure.json": "8680803f51f2cf996292ebc089bf46acda3daf505130a0cb01512d94777276f1",
+  "codex-offline-environment.json": "07da4840c7da829a5059771b3ef60ad3350369231ea77be6fd7706193cf9cdce",
+  "codex-offline-full.stderr": "04e808c2851fcdfba8a6ae00f62fcec61948c59eeb9075e884ee43d6cb646be4",
+  "codex-offline-full.stdout": "fa9e0c4b44120fc0532f98cb1191078712d56f836e98f1a674d8008518dd7eb6",
+  "codex-offline-full.xml": "6f76381f433160ef1576a6f796bdf20776b93eacef6a98d99d9fb9ca99ba3140",
+  "codex-offline-source-manifest.json": "d2ab396f9d84e8192ff7a89746ddc15a933d8fec1292a625afaa37332649fc35",
+  "codex-offline-summary.json": "814f13da8db2c0fcc5cf34861a6345b1ff8b230f18c266fa486a2a838339169b",
+  "diagnostic-matrix.json": "cceb2195155447768d902c29c7b84d50f229af7def8bfbb4efbd55bed661ce6e",
+  "native-full.xml": "ee1aa0c3ddccbe618b1b87c37100ba962c337d3f2a3e21187b949f510a4c886e",
+  "native-pair-0-baseline.xml": "9ee16a18cd6a00e94f7a0e818318cb83ec34b75aa0a402ef68c92c7c9525f8e4",
+  "native-pair-1-candidate.xml": "40bed647b8cca28aa98d5417d7455d7884e67ceba574be315ddae6be06df2049",
+  "native-pair-2-candidate.xml": "95a68699596b226e0460207f61846320627996f1f484100b237649e1a4efa1fe",
+  "native-pair-3-baseline.xml": "629480ba07ab909fda334fed937d9e08995a1117c6dcc0802c2550dee43d8f1c",
+  "native-pair-4-baseline.xml": "b1bcdb7971741fec11cda99c93a88d8cb228a28b3ca1e16e5246aaecf24668ec",
+  "native-pair-5-candidate.xml": "02a5662cce4b66cea4fbb1bd644fbe1aae3c410cb030cbaf57dac054bb2b4458",
+  "native-proof-summary.json": "0ac8f2b4bfd3949b8e0ab8aa1d2b8555cc17f9cafc153044741fd75f1fc6ae52",
+  "native-summary.json": "41751ba0f0df8de71e37ccd96b2ac2a95309b165679c995b4b8f92b687c303e2",
+  "README.md": "751e70cb7158b9654a621f2577ffbd07ba04faa99f201be1b55c32b50507fbe2"
+}

@@ -1,0 +1,116 @@
+{
+  "baseline_commit": "dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd",
+  "candidate_commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+  "target_model_calls": 0,
+  "official_score": null,
+  "steps": {
+    "engine": {
+      "returncode": 0,
+      "seconds": 0.139
+    },
+    "environment": {
+      "returncode": 0,
+      "seconds": 0.111
+    },
+    "pair-0-baseline": {
+      "returncode": 1,
+      "seconds": 2.691
+    },
+    "pair-1-candidate": {
+      "returncode": 0,
+      "seconds": 1.886
+    },
+    "pair-2-candidate": {
+      "returncode": 0,
+      "seconds": 1.964
+    },
+    "pair-3-baseline": {
+      "returncode": 1,
+      "seconds": 2.12
+    },
+    "pair-4-baseline": {
+      "returncode": 1,
+      "seconds": 2.138
+    },
+    "pair-5-candidate": {
+      "returncode": 0,
+      "seconds": 1.37
+    },
+    "full": {
+      "returncode": 1,
+      "seconds": 27.267
+    }
+  },
+  "scope": "original Harness / Linux / current contract / synthetic fault injection",
+  "environment_fingerprint": "3eefbbc63098d513d8ac380fde9f2b19d863455ee6761d0b65eccf7b08ad6a69",
+  "pair-0-baseline": {
+    "failure": 2,
+    "error": 0,
+    "skipped": 0,
+    "passed": 3,
+    "failed_ids": [
+      "tests.test_d_contract_recovery::test_cancelled_generation_never_becomes_exhausted_source_retry[3]",
+      "tests.test_d_contract_recovery::test_response_arriving_after_cancellation_is_evidence_not_selected_source"
+    ],
+    "returncode": 1
+  },
+  "pair-1-candidate": {
+    "failure": 0,
+    "error": 0,
+    "skipped": 0,
+    "passed": 5,
+    "failed_ids": [],
+    "returncode": 0
+  },
+  "pair-2-candidate": {
+    "failure": 0,
+    "error": 0,
+    "skipped": 0,
+    "passed": 5,
+    "failed_ids": [],
+    "returncode": 0
+  },
+  "pair-3-baseline": {
+    "failure": 2,
+    "error": 0,
+    "skipped": 0,
+    "passed": 3,
+    "failed_ids": [
+      "tests.test_d_contract_recovery::test_cancelled_generation_never_becomes_exhausted_source_retry[3]",
+      "tests.test_d_contract_recovery::test_response_arriving_after_cancellation_is_evidence_not_selected_source"
+    ],
+    "returncode": 1
+  },
+  "pair-4-baseline": {
+    "failure": 2,
+    "error": 0,
+    "skipped": 0,
+    "passed": 3,
+    "failed_ids": [
+      "tests.test_d_contract_recovery::test_cancelled_generation_never_becomes_exhausted_source_retry[3]",
+      "tests.test_d_contract_recovery::test_response_arriving_after_cancellation_is_evidence_not_selected_source"
+    ],
+    "returncode": 1
+  },
+  "pair-5-candidate": {
+    "failure": 0,
+    "error": 0,
+    "skipped": 0,
+    "passed": 5,
+    "failed_ids": [],
+    "returncode": 0
+  },
+  "paired_gate": true,
+  "full": {
+    "failure": 1,
+    "error": 0,
+    "skipped": 0,
+    "passed": 635,
+    "failed_ids": [
+      "tests.test_cd2_isolation::test_non_e_prompt_instructions_are_byte_identical"
+    ],
+    "returncode": 1
+  },
+  "gate_passed": false,
+  "complete": true
+}
