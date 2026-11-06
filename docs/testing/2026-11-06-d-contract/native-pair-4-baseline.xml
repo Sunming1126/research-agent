@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="5" time="1.251" timestamp="2026-11-06T02:10:34.234249+00:00" hostname="9d76e4273f1d"><testcase classname="tests.test_d_contract_recovery" name="test_cancelled_generation_never_becomes_exhausted_source_retry[1]" time="0.005" /><testcase classname="tests.test_d_contract_recovery" name="test_cancelled_generation_never_becomes_exhausted_source_retry[2]" time="0.002" /><testcase classname="tests.test_d_contract_recovery" name="test_cancelled_generation_never_becomes_exhausted_source_retry[3]" time="0.002"><failure message="RuntimeError: no complete current-session model source available">args = ('d_source', '根据本轮本题授权材料实现指定方法，不假设题号对应任何旧算法。\n只返回唯一完整Python 3.9标准库源码代码块，UTF-8源文件不超过65536字节，必须定义run_experiment(request)... "message": "Return one complete syntactically valid implementation matching current materials."}\n重新返回完整实现；不得使用占位结果。')
+kwargs = {'max_tokens': 24000}
+
+    def complete(*args, **kwargs):
+        calls.append(args[0])
+        if len(calls) == attempt:
+            cancelled.set()
+&gt;           raise TimeoutError('transport interrupted after user cancellation')
+E           TimeoutError: transport interrupted after user cancellation
+
+tests/test_d_contract_recovery.py:21: TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_cancelled_generation_neve2')
+attempt = 3
+
+    @pytest.mark.parametrize('attempt', [1, 2, 3])
+    def test_cancelled_generation_never_becomes_exhausted_source_retry(tmp_path, attempt):
+        runner, case = setup_d(tmp_path, [])
+        cancelled = threading.Event()
+        calls = []
+        initial = vars(runner.llm).copy()
+        def complete(*args, **kwargs):
+            calls.append(args[0])
+            if len(calls) == attempt:
+                cancelled.set()
+                raise TimeoutError('transport interrupted after user cancellation')
+            return response('unfinished source', 'length')
+        runner.llm.completion = complete
+        with CaseSession(case.case_id,1780,cancelled=cancelled).activate():
+            with pytest.raises(TimeoutError,match='cancelled'):
+&gt;               runner.prepare_checked_implementation(case)
+
+tests/test_d_contract_recovery.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;research_agent.workflows.layered_d_runner.LayeredDRunner object at 0x7e2c3ee16890&gt;
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+tester = None
+
+    def prepare_checked_implementation(self, case, tester=None):
+        """Only generic syntax/source checks gate formal execution; no old-task oracle."""
+        history = []
+        feedback = None
+        for attempt in range(1, 4):
+            try:
+                path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                # save_source already checks complete response, Python syntax and entry point.
+                write_json(confined(self.work, 'public-selftest.json'), {
+                    'mode': 'generic_source_checks_only', 'semantic_selftest_performed': False,
+                    'selected_attempt': attempt, 'attempts': history,
+                    'source_sha256': sha256_file(path)})
+                return path
+            except ModelQuotaError:
+                raise
+            except (ModelError, ValueError, SyntaxError, RuntimeError, TimeoutError) as exc:
+                feedback = {'error_type': type(exc).__name__,
+                            'message': 'Return one complete syntactically valid implementation matching current materials.'}
+                history.append({'attempt': attempt, 'error_type': type(exc).__name__})
+                write_json(confined(self.work, 'public-selftest.json'), {'attempts': history})
+                session = current_session()
+                if attempt == 3 or (session and session.remaining() &lt; 420):
+&gt;                   raise RuntimeError('no complete current-session model source available') from exc
+E                   RuntimeError: no complete current-session model source available
+
+src/research_agent/workflows/layered_d_runner.py:130: RuntimeError</failure></testcase><testcase classname="tests.test_d_contract_recovery" name="test_response_arriving_after_cancellation_is_evidence_not_selected_source" time="0.002"><failure message="Failed: DID NOT RAISE &lt;class 'TimeoutError'&gt;">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_response_arriving_after_c0')
+
+    def test_response_arriving_after_cancellation_is_evidence_not_selected_source(tmp_path):
+        runner, case = setup_d(tmp_path, [])
+        cancelled = threading.Event()
+        reply = response()
+        calls = []
+        def complete(*args, **kwargs):
+            calls.append(args[0])
+            cancelled.set()
+            return reply
+        runner.llm.completion = complete
+        with CaseSession(case.case_id,1780,cancelled=cancelled).activate():
+&gt;           with pytest.raises(TimeoutError,match='cancelled'):
+E           Failed: DID NOT RAISE &lt;class 'TimeoutError'&gt;
+
+tests/test_d_contract_recovery.py:45: Failed</failure></testcase><testcase classname="tests.test_d_contract_recovery" name="test_uncancelled_request_timeouts_remain_bounded_and_honest" time="0.002" /></testsuite></testsuites>

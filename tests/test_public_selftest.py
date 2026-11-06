@@ -36,7 +36,7 @@ def test_model_repairs_complete_source_after_sample_failure(tmp_path):
     case_root.mkdir()
     for name, text in {"method.md": "public method", "protocol.json": "{}", "sample.json": "{}"}.items():
         (case_root / name).write_text(text, encoding="utf-8")
-    sources = ["def run_experiment(request):\n    return {}\n",
+    sources = ["def run_experiment(request):\n    return (\n",
                "def run_experiment(request):\n    return {'repaired': True}\n"]
 
     class LLM:
@@ -44,15 +44,13 @@ def test_model_repairs_complete_source_after_sample_failure(tmp_path):
 
         def completion(self, stage, prompt, max_tokens):
             if self.calls:
-                assert "missing baseline" in prompt
+                assert "syntactically valid implementation" in prompt
             content = sources[self.calls]
             self.calls += 1
             return {"choices": [{"finish_reason": "stop", "message": {"role": "assistant", "content": content}}]}
 
     def tester(path, materials, case_id):
-        if "repaired" not in path.read_text(encoding="utf-8"):
-            raise ValueError("missing baseline")
-        return {"status": "passed"}
+        pytest.fail('a retired practice oracle must not gate current-material source')
 
     case = CaseContext.from_dict({"case_id": "D-01", "function": "Reproduction", "title": "public",
         "input": "current case", "materials": [], "constraints": [], "expected_output": "result",
@@ -61,6 +59,7 @@ def test_model_repairs_complete_source_after_sample_failure(tmp_path):
     final = runner.prepare_checked_implementation(case, tester=tester)
     assert final.read_text(encoding="utf-8") == sources[1]
     history = json.loads((tmp_path / "work/public-selftest.json").read_text(encoding="utf-8"))["attempts"]
-    assert [r["status"] for r in history] == ["failed", "passed"]
+    assert history == [{"attempt":1,"error_type":"ValueError"}]
+    assert json.loads((tmp_path/'work/generation-response.json').read_text())["choices"][0]["message"]["content"] == sources[1]
     assert (tmp_path / "work/source-attempt-1.json").exists()
     assert (tmp_path / "work/source-attempt-2.json").exists()

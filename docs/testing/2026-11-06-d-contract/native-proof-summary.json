@@ -1,0 +1,11 @@
+{
+  "request_id": "abab5d91016d44edb14dbfa4df55bcc9",
+  "session_id": "session-9c903d0e-5884-44fe-bc7f-3719da00864b",
+  "workspace_id": "c61ec5e8-9932-4ef5-9709-fed302ad7355",
+  "stage": "d-contract",
+  "candidate_commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+  "native_tool_seq": 3925,
+  "native_tool_call_sha256": "7e80bbfb867b3a091e1d94c00d7f83cb9b3bb3c9a5b5c91e7167e70686b3b4fa",
+  "config_header_seq": 3924,
+  "native_tool_execution_verified": true
+}

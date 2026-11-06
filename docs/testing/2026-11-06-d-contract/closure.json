@@ -1,0 +1,333 @@
+{
+  "candidate_commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+  "baseline_commit": "dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd",
+  "resolution": [
+    {
+      "original_id": "tests.test_b5_conditions::test_protected_production_files_and_shared_dispatch_only",
+      "category": "historical_snapshot",
+      "current_id": "tests.test_b5_conditions::test_protected_production_files_and_shared_dispatch_only",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_cd2_isolation::test_d02_late_repair_requests_new_baseline_source[80-True]",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_cd2_isolation::test_d02_late_repair_requests_new_baseline_source[80-False]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_cd2_isolation::test_d02_late_repair_requests_new_baseline_source[90-True]",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_cd2_isolation::test_d02_late_repair_requests_new_baseline_source[90-False]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_cd2_isolation::test_d02_late_repair_requests_new_baseline_source[110-False]",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_cd2_isolation::test_d02_late_repair_requests_new_baseline_source[110-False]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_cd_runtime_regressions::test_d_client_partial_result_is_preserved",
+      "category": "client_fixture_provenance",
+      "current_id": "tests.test_cd_runtime_regressions::test_d_client_partial_result_is_preserved",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_cd_runtime_regressions::test_d_postprocessing_error_keeps_platform_result",
+      "category": "client_fixture_provenance",
+      "current_id": "tests.test_cd_runtime_regressions::test_d_postprocessing_error_keeps_platform_result",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_d_generation_restores_every_instance_attribute_and_class_default[False]",
+      "category": "versioned_generation_policy",
+      "current_id": "tests.test_d_isolated_revision::test_d_generation_restores_every_instance_attribute_and_class_default[False]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_d_generation_restores_every_instance_attribute_and_class_default[True]",
+      "category": "versioned_generation_policy",
+      "current_id": "tests.test_d_isolated_revision::test_d_generation_restores_every_instance_attribute_and_class_default[True]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_first_generation_strategy_is_case_scoped[D-01-False]",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_d_isolated_revision::test_first_generation_strategy_is_case_scoped[D-01-False]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_first_generation_strategy_is_case_scoped[D-02-False]",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_d_isolated_revision::test_first_generation_strategy_is_case_scoped[D-02-False]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_first_generation_strategy_is_case_scoped[D-05-False]",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_d_isolated_revision::test_first_generation_strategy_is_case_scoped[D-05-False]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_cancelled_d_does_not_retry_or_submit_source",
+      "category": "cancellation_injection",
+      "current_id": "tests.test_d_isolated_revision::test_cancelled_d_does_not_retry_or_submit_source",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_platform_service_failure_is_not_algorithm_failed[D_SOURCE_AUDIT_UNAVAILABLE]",
+      "category": "client_fixture_provenance",
+      "current_id": "tests.test_d_isolated_revision::test_platform_service_failure_is_not_algorithm_failed[D_SOURCE_AUDIT_UNAVAILABLE]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_platform_service_failure_is_not_algorithm_failed[HTTP Error 503: Service Unavailable]",
+      "category": "client_fixture_provenance",
+      "current_id": "tests.test_d_isolated_revision::test_platform_service_failure_is_not_algorithm_failed[HTTP Error 503: Service Unavailable]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_source_rejection_returns_honest_failed_schema_without_formal_retry",
+      "category": "client_fixture_provenance",
+      "current_id": "tests.test_d_isolated_revision::test_source_rejection_returns_honest_failed_schema_without_formal_retry",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_platform_partial_measurements_and_figures_are_preserved",
+      "category": "client_fixture_provenance",
+      "current_id": "tests.test_d_isolated_revision::test_platform_partial_measurements_and_figures_are_preserved",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_isolated_revision::test_postprocessing_failure_never_replaces_received_platform_result",
+      "category": "client_fixture_provenance",
+      "current_id": "tests.test_d_isolated_revision::test_postprocessing_failure_never_replaces_received_platform_result",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_official_client_flow::test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-02]",
+      "category": "formal_client_current_protocol",
+      "current_id": "tests.test_d_official_client_flow::test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-02]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_d_official_client_flow::test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-05]",
+      "category": "formal_client_current_protocol",
+      "current_id": "tests.test_d_official_client_flow::test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-05]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_de3_isolation::test_d_reasoning_is_case_scoped_and_restored[D-02-True-disabled]",
+      "category": "versioned_generation_policy",
+      "current_id": "tests.test_de3_isolation::test_d_reasoning_is_case_scoped_and_restored[D-02-True-enabled]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_de3_isolation::test_d_reasoning_is_case_scoped_and_restored[D-05-False-disabled]",
+      "category": "versioned_generation_policy",
+      "current_id": "tests.test_de3_isolation::test_d_reasoning_is_case_scoped_and_restored[D-05-False-enabled]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_de3_isolation::test_d_reasoning_is_case_scoped_and_restored[D-01-False-disabled]",
+      "category": "versioned_generation_policy",
+      "current_id": "tests.test_de3_isolation::test_d_reasoning_is_case_scoped_and_restored[D-01-False-enabled]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_e4_resilience::test_e4_freezes_all_d_and_c_specific_files",
+      "category": "historical_snapshot",
+      "current_id": "tests.test_e4_resilience::test_e4_freezes_all_d_and_c_specific_files",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_eval_20261026_regressions::test_public_failure_retains_only_complete_current_source_for_formal_runner[second0]",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_eval_20261026_regressions::test_public_failure_retains_only_complete_current_source_for_formal_runner[second0]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_eval_20261026_regressions::test_public_failure_retains_only_complete_current_source_for_formal_runner[second1]",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_eval_20261026_regressions::test_public_failure_retains_only_complete_current_source_for_formal_runner[second1]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_eval_20261026_regressions::test_public_failure_retains_only_complete_current_source_for_formal_runner[second2]",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_eval_20261026_regressions::test_public_failure_retains_only_complete_current_source_for_formal_runner[second2]",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_eval_20261026_regressions::test_without_complete_source_d_never_submits_a_stub",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_eval_20261026_regressions::test_without_complete_source_d_never_submits_a_stub",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_eval_20261026_regressions::test_honest_baseline_source_is_retained_without_mandatory_second_generation",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_eval_20261026_regressions::test_honest_baseline_source_is_retained_without_mandatory_second_generation",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_eval_20261026_regressions::test_failed_selftest_still_reaches_real_client_boundary",
+      "category": "formal_client_current_protocol",
+      "current_id": "tests.test_eval_20261026_regressions::test_failed_selftest_still_reaches_real_client_boundary",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    },
+    {
+      "original_id": "tests.test_public_selftest::test_model_repairs_complete_source_after_sample_failure",
+      "category": "obsolete_practice_oracle",
+      "current_id": "tests.test_public_selftest::test_model_repairs_complete_source_after_sample_failure",
+      "result": "passed",
+      "evidence": "codex-offline-full.xml",
+      "production_defect_count_inferred_from_pass": false
+    }
+  ],
+  "linux_full": {
+    "failure": 0,
+    "error": 0,
+    "skipped": 0,
+    "passed": 636,
+    "failed_ids": [],
+    "returncode": 0
+  },
+  "pair_order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline",
+    "baseline",
+    "candidate"
+  ],
+  "native_pair_results": {
+    "pair-0-baseline": {
+      "failure": 2,
+      "error": 0,
+      "skipped": 0,
+      "passed": 3,
+      "failed_ids": [
+        "tests.test_d_contract_recovery::test_cancelled_generation_never_becomes_exhausted_source_retry[3]",
+        "tests.test_d_contract_recovery::test_response_arriving_after_cancellation_is_evidence_not_selected_source"
+      ],
+      "returncode": 1
+    },
+    "pair-1-candidate": {
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "passed": 5,
+      "failed_ids": [],
+      "returncode": 0
+    },
+    "pair-2-candidate": {
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "passed": 5,
+      "failed_ids": [],
+      "returncode": 0
+    },
+    "pair-3-baseline": {
+      "failure": 2,
+      "error": 0,
+      "skipped": 0,
+      "passed": 3,
+      "failed_ids": [
+        "tests.test_d_contract_recovery::test_cancelled_generation_never_becomes_exhausted_source_retry[3]",
+        "tests.test_d_contract_recovery::test_response_arriving_after_cancellation_is_evidence_not_selected_source"
+      ],
+      "returncode": 1
+    },
+    "pair-4-baseline": {
+      "failure": 2,
+      "error": 0,
+      "skipped": 0,
+      "passed": 3,
+      "failed_ids": [
+        "tests.test_d_contract_recovery::test_cancelled_generation_never_becomes_exhausted_source_retry[3]",
+        "tests.test_d_contract_recovery::test_response_arriving_after_cancellation_is_evidence_not_selected_source"
+      ],
+      "returncode": 1
+    },
+    "pair-5-candidate": {
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "passed": 5,
+      "failed_ids": [],
+      "returncode": 0
+    }
+  },
+  "environment_fingerprint": "3eefbbc63098d513d8ac380fde9f2b19d863455ee6761d0b65eccf7b08ad6a69",
+  "production_changes": [
+    "src/research_agent/workflows/layered_d_runner.py"
+  ],
+  "source_policy": "D cancellation only; no algorithm/prompt/threshold/ABCE/shared SDK changes",
+  "old_30_failures_retained": true,
+  "native_first_full_missing_fixture_retained": true,
+  "target_model_calls": 0,
+  "official_score": null,
+  "official_score_delta": null,
+  "D02_second_scenario_and_D05_service_accounting_proven_fixed": false,
+  "scope": "D30 current-contract regression closure; not a scoring closure"
+}

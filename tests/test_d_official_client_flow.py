@@ -63,7 +63,7 @@ def test_unmodified_client_calls_source_then_run_despite_public_sample_failure(t
         raise ValueError('public example constraint mismatch')
     monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: prepare(c,tester=failed_test))
     try:
-        with CaseSession(case_id,170).activate():
+        with CaseSession(case_id,1780).activate():
             result = runner.run(CaseContext.from_dict(case(case_id)),specs)
     finally:
         server.shutdown()
@@ -73,4 +73,6 @@ def test_unmodified_client_calls_source_then_run_despite_public_sample_failure(t
     assert result == submission
     assert runner.proof['submission'] == result
     assert json.loads((runner.work/'platform-submission.json').read_text()) == result
-    assert json.loads((runner.work/'public-selftest.json').read_text())['public_selftest_passed'] is False
+    audit = json.loads((runner.work/'public-selftest.json').read_text())
+    assert audit['mode'] == 'generic_source_checks_only'
+    assert audit['semantic_selftest_performed'] is False

@@ -113,6 +113,9 @@ def test_d_client_partial_result_is_preserved(tmp_path, monkeypatch):
     source = tmp_path/'generated.py'
     source.write_text('def run_experiment(request): return {}')
     monkeypatch.setattr(runner, 'prepare_checked_implementation', lambda c: source)
+    runner.work.mkdir(parents=True,exist_ok=True)
+    (runner.work/'generation-response.json').write_text(json.dumps({'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':source.read_text()}}]}))
+    monkeypatch.setattr(runner, 'review_implementation', lambda c, path: path)
     relative = 'data/figure/platform-id/D-01-partial.png'
     figure = runner.work/'experiment'/relative
     figure.parent.mkdir(parents=True)
@@ -151,6 +154,10 @@ def test_d_postprocessing_error_keeps_platform_result(tmp_path, monkeypatch):
     real = Path.is_file
     monkeypatch.setattr(Path,'is_file',lambda p: True if str(p)=='/data/experiments/run_experiment.py' else real(p))
     monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: tmp_path/'source.py')
+    (tmp_path/'source.py').write_text('def run_experiment(request): return {}')
+    runner.work.mkdir(parents=True,exist_ok=True)
+    (runner.work/'generation-response.json').write_text(json.dumps({'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':(tmp_path/'source.py').read_text()}}]}))
+    monkeypatch.setattr(runner,'review_implementation',lambda c,path:path)
     original = failed_result('D-01',METRICS,'failed')
     original['metrics'][0]['name'] = 'Wrong metric'
     monkeypatch.setattr('research_agent.workflows.layered_d_runner.subprocess.run',lambda *a,**kw: subprocess.CompletedProcess([],0,json.dumps(original),''))
