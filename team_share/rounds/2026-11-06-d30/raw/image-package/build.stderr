@@ -1,0 +1,50 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 672B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/agenthack/base:1.1.1
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 667B done
+#3 DONE 0.0s
+
+#4 [1/7] FROM docker.io/agenthack/base:1.1.1@sha256:2d1023efe3e6a8dc7465326bab40d70408a579991fe60bff626145b0d29241b0
+#4 resolve docker.io/agenthack/base:1.1.1@sha256:2d1023efe3e6a8dc7465326bab40d70408a579991fe60bff626145b0d29241b0 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 464.55kB 0.1s done
+#5 DONE 0.1s
+
+#6 [2/7] WORKDIR /app
+#6 CACHED
+
+#7 [3/7] COPY requirements.txt /app/requirements.txt
+#7 CACHED
+
+#8 [4/7] RUN pip install --no-cache-dir -r /app/requirements.txt
+#8 CACHED
+
+#9 [5/7] COPY --chown=agent:agent src /app/src
+#9 DONE 0.1s
+
+#10 [6/7] COPY --chown=agent:agent agent.py README.md /app/
+#10 DONE 0.1s
+
+#11 [7/7] RUN mkdir -p /output && chown agent:agent /output
+#11 DONE 0.3s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 0.3s done
+#12 exporting manifest sha256:589faada05e7a2b15f51460433e42e92f29b4447caa93fadaf5dff84cd08d128 0.0s done
+#12 exporting config sha256:3e2b27116b58fbbcc8c9975898217e10153eb1e304d66077e088401fbfe6077d 0.0s done
+#12 exporting attestation manifest sha256:3d3531317897724fae854d694d0f25b4adf980527d80b53c5d9cdfbe4080229d 0.1s done
+#12 exporting manifest list sha256:f0d2b401409598c25e829284b1b782dbb204cdc5280d6751fb6c62b6994d9907
+#12 exporting manifest list sha256:f0d2b401409598c25e829284b1b782dbb204cdc5280d6751fb6c62b6994d9907 0.0s done
+#12 naming to docker.io/library/research-assistant:d30-2e6f51a643ac done
+#12 unpacking to docker.io/library/research-assistant:d30-2e6f51a643ac 0.1s done
+#12 DONE 0.6s

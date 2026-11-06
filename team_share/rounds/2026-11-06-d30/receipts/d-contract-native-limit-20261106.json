@@ -1,0 +1,13 @@
+{
+  "field": "agent-default-model.config.maxTokens",
+  "before": "absent (adapter default 32768)",
+  "after": 12288,
+  "provider": "magic",
+  "model": "deepseek-v4.1-flash",
+  "reason": "service rejected requests above 12288",
+  "config_sha256_before": "75291239247336488622044499ce0be6c39424608c4184d0297c25dd04375db9",
+  "config_sha256_after": "5c4d23655c28fcf0a165ec9025ac6e0e5d282ff4c501d41cdd2ba982e739574e",
+  "credentials_changed": false,
+  "workspace_or_session_changed": false,
+  "line_boundary_corrected": true
+}

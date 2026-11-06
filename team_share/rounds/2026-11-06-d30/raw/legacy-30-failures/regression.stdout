@@ -1,0 +1,1067 @@
+........................................................................ [ 11%]
+........................F............................................... [ 22%]
+........................................................................ [ 34%]
+........................................FFF.........F.F................. [ 45%]
+..................................FFFFFFFFFFF.......FF.................. [ 57%]
+...............................................FFF...................... [ 68%]
+..........F....................FFFFF.F.................................. [ 79%]
+........................................................................ [ 91%]
+.........F.............................................                  [100%]
+=================================== FAILURES ===================================
+___________ test_protected_production_files_and_shared_dispatch_only ___________
+
+    def test_protected_production_files_and_shared_dispatch_only():
+        expected={'src/research_agent/workflows/tasks.py': '        if case.function == "Literature_Retrieval":\n            from .b_workflow import retrieve\n            return retrieve(self, case, retriever)\n',
+                  'src/research_agent/integrations/prompts.py': "    if isinstance(data, dict) and data.get('b_protocol') == 'conditions-v1' and data.get('task', {}).get('function') == 'Literature_Retrieval' and stage in ('query', 'retrieve'):\n        from .b_prompt import QUERY, RETRIEVE\n        return QUERY if stage == 'query' else RETRIEVE\n"}
+        baseline=json.loads((ROOT/'tests/fixtures/b5-protected-source-hashes.json').read_text())
+        for name,old in baseline.items():
+            if name in {'src/research_agent/integrations/survey_prompt.py', 'src/research_agent/workflows/reports.py'}:
+                continue  # C201 explicitly changes C prompt/composition; checked separately.
+            new=(ROOT/name).read_text(encoding='utf-8')
+            if name == 'src/research_agent/integrations/prompts.py':
+                from test_c200_recovery import C_PROMPT_GUARD
+                assert new.count(C_PROMPT_GUARD) == 1
+                new = new.replace(C_PROMPT_GUARD, '')
+            if name in expected:
+                assert new.count(expected[name])==1;new=new.replace(expected[name],'')
+>           assert old==hashlib.sha256(new.encode()).hexdigest(),name
+E           AssertionError: src/research_agent/core/engine.py
+E           assert '60aa0499ccc4...58743e8230be1' == 'c5dee66861d1...b94786eabea00'
+E             
+E             - c5dee66861d19a47752d963514d27af1c7412c42a20843bae73b94786eabea00
+E             + 60aa0499ccc483575b7a1faadd264f54bb767199e583469979158743e8230be1
+
+tests/test_b5_conditions.py:157: AssertionError
+__________ test_d02_late_repair_requests_new_baseline_source[80-True] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_d02_late_repair_requests_0')
+remaining = 80, expected_baseline = True
+
+    @pytest.mark.parametrize('remaining,expected_baseline', [(80,True),(90,True),(110,False)])
+    def test_d02_late_repair_requests_new_baseline_source(tmp_path,remaining,expected_baseline):
+        from test_eval_20261026_regressions import setup_d, response, SOURCE
+        from research_agent.core.session import CaseSession
+        import time
+        runner,current=setup_d(tmp_path, [])
+        modes=[]
+        def generate(case,**kwargs):
+            modes.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True,exist_ok=True)
+            p=runner.work/'implementation.py';p.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return p
+        runner.prepare_generated_implementation=generate
+        session=CaseSession(current.case_id,170)
+        def check(*args):
+            if len(modes)==1:
+                session.started_at=time.monotonic()+remaining-session.timeout
+                raise ValueError('public group mean mismatch')
+            return {'status':'passed','candidate_present':False}
+>       with session.activate():runner.prepare_checked_implementation(current,tester=check)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_cd2_isolation.py:182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(case,**kwargs):
+>       modes.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_cd2_isolation.py:170: KeyError
+__________ test_d02_late_repair_requests_new_baseline_source[90-True] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_d02_late_repair_requests_1')
+remaining = 90, expected_baseline = True
+
+    @pytest.mark.parametrize('remaining,expected_baseline', [(80,True),(90,True),(110,False)])
+    def test_d02_late_repair_requests_new_baseline_source(tmp_path,remaining,expected_baseline):
+        from test_eval_20261026_regressions import setup_d, response, SOURCE
+        from research_agent.core.session import CaseSession
+        import time
+        runner,current=setup_d(tmp_path, [])
+        modes=[]
+        def generate(case,**kwargs):
+            modes.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True,exist_ok=True)
+            p=runner.work/'implementation.py';p.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return p
+        runner.prepare_generated_implementation=generate
+        session=CaseSession(current.case_id,170)
+        def check(*args):
+            if len(modes)==1:
+                session.started_at=time.monotonic()+remaining-session.timeout
+                raise ValueError('public group mean mismatch')
+            return {'status':'passed','candidate_present':False}
+>       with session.activate():runner.prepare_checked_implementation(current,tester=check)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_cd2_isolation.py:182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(case,**kwargs):
+>       modes.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_cd2_isolation.py:170: KeyError
+_________ test_d02_late_repair_requests_new_baseline_source[110-False] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_d02_late_repair_requests_2')
+remaining = 110, expected_baseline = False
+
+    @pytest.mark.parametrize('remaining,expected_baseline', [(80,True),(90,True),(110,False)])
+    def test_d02_late_repair_requests_new_baseline_source(tmp_path,remaining,expected_baseline):
+        from test_eval_20261026_regressions import setup_d, response, SOURCE
+        from research_agent.core.session import CaseSession
+        import time
+        runner,current=setup_d(tmp_path, [])
+        modes=[]
+        def generate(case,**kwargs):
+            modes.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True,exist_ok=True)
+            p=runner.work/'implementation.py';p.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return p
+        runner.prepare_generated_implementation=generate
+        session=CaseSession(current.case_id,170)
+        def check(*args):
+            if len(modes)==1:
+                session.started_at=time.monotonic()+remaining-session.timeout
+                raise ValueError('public group mean mismatch')
+            return {'status':'passed','candidate_present':False}
+>       with session.activate():runner.prepare_checked_implementation(current,tester=check)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_cd2_isolation.py:182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(case,**kwargs):
+>       modes.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_cd2_isolation.py:170: KeyError
+__________________ test_d_client_partial_result_is_preserved ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_d_client_partial_result_i0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f819d4f40d0>
+
+    def test_d_client_partial_result_is_preserved(tmp_path, monkeypatch):
+        import subprocess
+        from research_agent.workflows.layered_d_runner import LayeredDRunner
+        from research_agent.workflows.experiments import failed_result
+        from research_agent.contracts.validation import validate_result
+        from PIL import Image
+        settings = Settings(tmp_path/'data', tmp_path/'out', 'platform-id')
+        runner = LayeredDRunner(settings, tmp_path/'work')
+        script = Path('/data/experiments/run_experiment.py')
+        original_exists = Path.is_file
+        monkeypatch.setattr(Path, 'is_file', lambda p: True if p == script else original_exists(p))
+        monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE','D-01')
+        source = tmp_path/'generated.py'
+        source.write_text('def run_experiment(request): return {}')
+        monkeypatch.setattr(runner, 'prepare_checked_implementation', lambda c: source)
+        relative = 'data/figure/platform-id/D-01-partial.png'
+        figure = runner.work/'experiment'/relative
+        figure.parent.mkdir(parents=True)
+        Image.new('RGB', (4,4)).save(figure)
+        result = failed_result('D-01', METRICS, 'failed')
+        result['metrics'][0]['observed'] = .4
+        result['figures'] = [dict(path=relative, caption='fixture partial', x_label='x', y_label='y', legend='baseline')]
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.subprocess.run', lambda *a,**kw: subprocess.CompletedProcess([],0,json.dumps(result),''))
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.sha256_file', lambda p: 'fixture-hash')
+        got = runner.run(CaseContext.from_dict(case('D-01')),METRICS)
+>       assert got == result and (settings.output/relative).is_file()
+E       AssertionError: assert ({'case_id': '...us': 'failed'} == {'case_id': '...us': 'failed'}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'figures': []} != {'figures': [{'caption': 'fixture partial', 'legend': 'baseline', 'path': 'data/figure/platform-id/D-01-partial.png', 'x_label': 'x', ...}]}
+E         {'metrics': [{'name': 'Macro-F1', 'observed': None, 'reference': None, 'relative_error': None, ...}, {'name': 'Accurac...one, 'relative_error': None, ...}, {'name': '运行时间', 'observed': None, 'reference': None, 'relative_error': None, ...}]} != {'metrics': [{'name': 'Macro-F1', 'observed': 0.4, 'reference': None, 'relative_error': None, ...}, {'name': 'Accu...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show)
+
+tests/test_cd_runtime_regressions.py:126: AssertionError
+______________ test_d_postprocessing_error_keeps_platform_result _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_d_postprocessing_error_ke0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f819d24f1d0>
+
+    def test_d_postprocessing_error_keeps_platform_result(tmp_path, monkeypatch):
+        import subprocess
+        from research_agent.workflows.layered_d_runner import LayeredDRunner
+        from research_agent.workflows.experiments import failed_result
+        runner = LayeredDRunner(Settings(tmp_path/'data',tmp_path/'output'),tmp_path/'work')
+        monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE','D-01')
+        real = Path.is_file
+        monkeypatch.setattr(Path,'is_file',lambda p: True if str(p)=='/data/experiments/run_experiment.py' else real(p))
+        monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: tmp_path/'source.py')
+        original = failed_result('D-01',METRICS,'failed')
+        original['metrics'][0]['name'] = 'Wrong metric'
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.subprocess.run',lambda *a,**kw: subprocess.CompletedProcess([],0,json.dumps(original),''))
+>       with pytest.raises(RuntimeError,match='postprocessing'):
+E       Failed: DID NOT RAISE <class 'RuntimeError'>
+
+tests/test_cd_runtime_regressions.py:157: Failed
+_ test_d_generation_restores_every_instance_attribute_and_class_default[False] _
+
+failure = False
+
+    @pytest.mark.parametrize('failure', [False, True])
+    def test_d_generation_restores_every_instance_attribute_and_class_default(failure):
+        class Model:
+            REQUEST_TIMEOUT_CAP = 60
+            RETRY_ATTEMPTS = 2
+            def __init__(self):
+                self.deadline = time.monotonic() + 170
+        model = Model()
+        before = vars(model).copy()
+        try:
+            with generation_window(model, baseline=False):
+>               assert model.REQUEST_TIMEOUT_CAP <= 95
+E               assert 420 <= 95
+E                +  where 420 = <test_d_isolated_revision.test_d_generation_restores_every_instance_attribute_and_class_default.<locals>.Model object at 0x7f819d42afd0>.REQUEST_TIMEOUT_CAP
+
+tests/test_d_isolated_revision.py:33: AssertionError
+_ test_d_generation_restores_every_instance_attribute_and_class_default[True] __
+
+failure = True
+
+    @pytest.mark.parametrize('failure', [False, True])
+    def test_d_generation_restores_every_instance_attribute_and_class_default(failure):
+        class Model:
+            REQUEST_TIMEOUT_CAP = 60
+            RETRY_ATTEMPTS = 2
+            def __init__(self):
+                self.deadline = time.monotonic() + 170
+        model = Model()
+        before = vars(model).copy()
+        try:
+            with generation_window(model, baseline=False):
+>               assert model.REQUEST_TIMEOUT_CAP <= 95
+E               assert 420 <= 95
+E                +  where 420 = <test_d_isolated_revision.test_d_generation_restores_every_instance_attribute_and_class_default.<locals>.Model object at 0x7f819d578210>.REQUEST_TIMEOUT_CAP
+
+tests/test_d_isolated_revision.py:33: AssertionError
+__________ test_first_generation_strategy_is_case_scoped[D-01-False] ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_first_generation_strategy0')
+case_id = 'D-01', baseline = False
+
+    @pytest.mark.parametrize('case_id, baseline', [('D-01', False), ('D-02', False), ('D-05', False)])
+    def test_first_generation_strategy_is_case_scoped(tmp_path, case_id, baseline):
+        runner, _ = setup_d(tmp_path, [])
+        (tmp_path/'D-02').rename(tmp_path/case_id) if case_id != 'D-02' else None
+        current = CaseContext.from_dict(case(case_id))
+        calls = []
+        def generate(current, **kwargs):
+            calls.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True, exist_ok=True)
+            path = runner.work/'implementation.py'; path.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return path
+        runner.prepare_generated_implementation = generate
+>       runner.prepare_checked_implementation(current, tester=lambda *args: {'status':'passed', 'candidate_present':not baseline})
+
+tests/test_d_isolated_revision.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+current = CaseContext(case_id='D-01', function='Reproduction', title='Synthetic research fixture', input='name=Macro-F1, unit=分数...%; name=运行时间, unit=秒。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(current, **kwargs):
+>       calls.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_d_isolated_revision.py:52: KeyError
+__________ test_first_generation_strategy_is_case_scoped[D-02-False] ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_first_generation_strategy1')
+case_id = 'D-02', baseline = False
+
+    @pytest.mark.parametrize('case_id, baseline', [('D-01', False), ('D-02', False), ('D-05', False)])
+    def test_first_generation_strategy_is_case_scoped(tmp_path, case_id, baseline):
+        runner, _ = setup_d(tmp_path, [])
+        (tmp_path/'D-02').rename(tmp_path/case_id) if case_id != 'D-02' else None
+        current = CaseContext.from_dict(case(case_id))
+        calls = []
+        def generate(current, **kwargs):
+            calls.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True, exist_ok=True)
+            path = runner.work/'implementation.py'; path.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return path
+        runner.prepare_generated_implementation = generate
+>       runner.prepare_checked_implementation(current, tester=lambda *args: {'status':'passed', 'candidate_present':not baseline})
+
+tests/test_d_isolated_revision.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+current = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(current, **kwargs):
+>       calls.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_d_isolated_revision.py:52: KeyError
+__________ test_first_generation_strategy_is_case_scoped[D-05-False] ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_first_generation_strategy2')
+case_id = 'D-05', baseline = False
+
+    @pytest.mark.parametrize('case_id, baseline', [('D-01', False), ('D-02', False), ('D-05', False)])
+    def test_first_generation_strategy_is_case_scoped(tmp_path, case_id, baseline):
+        runner, _ = setup_d(tmp_path, [])
+        (tmp_path/'D-02').rename(tmp_path/case_id) if case_id != 'D-02' else None
+        current = CaseContext.from_dict(case(case_id))
+        calls = []
+        def generate(current, **kwargs):
+            calls.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True, exist_ok=True)
+            path = runner.work/'implementation.py'; path.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return path
+        runner.prepare_generated_implementation = generate
+>       runner.prepare_checked_implementation(current, tester=lambda *args: {'status':'passed', 'candidate_present':not baseline})
+
+tests/test_d_isolated_revision.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+current = CaseContext(case_id='D-05', function='Reproduction', title='Synthetic research fixture', input='name=公平性 Jain 指数, unit...name=平均等待时间, unit=ms。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(current, **kwargs):
+>       calls.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_d_isolated_revision.py:52: KeyError
+_______________ test_cancelled_d_does_not_retry_or_submit_source _______________
+
+self = <research_agent.workflows.layered_d_runner.LayeredDRunner object at 0x7f819d248ad0>
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+tester = <function test_cancelled_d_does_not_retry_or_submit_source.<locals>.tester at 0x7f819d37a160>
+
+    def prepare_checked_implementation(self, case, tester=None):
+        """Only generic syntax/source checks gate formal execution; no old-task oracle."""
+        history = []
+        feedback = None
+        for attempt in range(1, 4):
+            try:
+>               path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/research_agent/workflows/layered_d_runner.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:99: in prepare_generated_implementation
+    with generation_window(self.llm, baseline=baseline_only, case_id=case.case_id):
+/usr/local/lib/python3.11/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+src/research_agent/workflows/d_generation_policy.py:12: in generation_window
+    cap = min(cap, session.remaining(reserve=300))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = CaseSession(case_id='D-02', timeout=170, cancelled=<threading.Event at 0x7f819d24b0d0: unset>, started_at=209.422980689, stage='received', stages=[])
+reserve = 300
+
+    def remaining(self, reserve=0):
+        self.checkpoint()
+        value = self.deadline - time.monotonic() - reserve
+        if value <= 0:
+>           raise TimeoutError("insufficient case time reserved for next stage")
+E           TimeoutError: insufficient case time reserved for next stage
+
+src/research_agent/core/session.py:31: TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_cancelled_d_does_not_retr0')
+
+    def test_cancelled_d_does_not_retry_or_submit_source(tmp_path):
+        runner, current = setup_d(tmp_path, [response(), response()])
+        cancelled = threading.Event()
+        def tester(*args):
+            cancelled.set()
+            raise ValueError('failed sample while cancelled')
+        with CaseSession(current.case_id, 170, cancelled=cancelled).activate():
+            with pytest.raises(TimeoutError, match='cancelled'):
+>               runner.prepare_checked_implementation(current, tester=tester)
+
+tests/test_d_isolated_revision.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <research_agent.workflows.layered_d_runner.LayeredDRunner object at 0x7f819d248ad0>
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+tester = <function test_cancelled_d_does_not_retry_or_submit_source.<locals>.tester at 0x7f819d37a160>
+
+    def prepare_checked_implementation(self, case, tester=None):
+        """Only generic syntax/source checks gate formal execution; no old-task oracle."""
+        history = []
+        feedback = None
+        for attempt in range(1, 4):
+            try:
+                path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                # save_source already checks complete response, Python syntax and entry point.
+                write_json(confined(self.work, 'public-selftest.json'), {
+                    'mode': 'generic_source_checks_only', 'semantic_selftest_performed': False,
+                    'selected_attempt': attempt, 'attempts': history,
+                    'source_sha256': sha256_file(path)})
+                return path
+            except ModelQuotaError:
+                raise
+            except (ModelError, ValueError, SyntaxError, RuntimeError, TimeoutError) as exc:
+                feedback = {'error_type': type(exc).__name__,
+                            'message': 'Return one complete syntactically valid implementation matching current materials.'}
+                history.append({'attempt': attempt, 'error_type': type(exc).__name__})
+                write_json(confined(self.work, 'public-selftest.json'), {'attempts': history})
+                session = current_session()
+                if attempt == 3 or (session and session.remaining() < 420):
+>                   raise RuntimeError('no complete current-session model source available') from exc
+E                   RuntimeError: no complete current-session model source available
+
+src/research_agent/workflows/layered_d_runner.py:130: RuntimeError
+_ test_platform_service_failure_is_not_algorithm_failed[D_SOURCE_AUDIT_UNAVAILABLE] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_platform_service_failure_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f819d5c7610>
+error = 'D_SOURCE_AUDIT_UNAVAILABLE'
+
+    @pytest.mark.parametrize('error', ['D_SOURCE_AUDIT_UNAVAILABLE', 'HTTP Error 503: Service Unavailable'])
+    def test_platform_service_failure_is_not_algorithm_failed(tmp_path, monkeypatch, error):
+        runner, current = setup_d(tmp_path, [])
+        calls = enable_client(monkeypatch, runner, current, stderr='RuntimeError: '+error, code=1)
+>       with pytest.raises(PlatformExperimentUnavailable):
+E       Failed: DID NOT RAISE <class 'research_agent.workflows.d_generation_policy.PlatformExperimentUnavailable'>
+
+tests/test_d_isolated_revision.py:93: Failed
+_ test_platform_service_failure_is_not_algorithm_failed[HTTP Error 503: Service Unavailable] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_platform_service_failure_1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f819d438890>
+error = 'HTTP Error 503: Service Unavailable'
+
+    @pytest.mark.parametrize('error', ['D_SOURCE_AUDIT_UNAVAILABLE', 'HTTP Error 503: Service Unavailable'])
+    def test_platform_service_failure_is_not_algorithm_failed(tmp_path, monkeypatch, error):
+        runner, current = setup_d(tmp_path, [])
+        calls = enable_client(monkeypatch, runner, current, stderr='RuntimeError: '+error, code=1)
+>       with pytest.raises(PlatformExperimentUnavailable):
+E       Failed: DID NOT RAISE <class 'research_agent.workflows.d_generation_policy.PlatformExperimentUnavailable'>
+
+tests/test_d_isolated_revision.py:93: Failed
+___ test_source_rejection_returns_honest_failed_schema_without_formal_retry ____
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_source_rejection_returns_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f819d4f8b90>
+
+    def test_source_rejection_returns_honest_failed_schema_without_formal_retry(tmp_path, monkeypatch):
+        runner, current = setup_d(tmp_path, [])
+        calls = enable_client(monkeypatch, runner, current, stderr='RuntimeError: D_SOURCE_NOT_GENERATED_THIS_SESSION', code=1)
+        specs = [('m1','u1'), ('m2','u2'), ('m3','u3')]
+        result = runner.run(current, specs)
+        assert result == runner._failed(current.case_id, specs, 'failed')
+>       assert len(calls) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests/test_d_isolated_revision.py:106: AssertionError
+_________ test_platform_partial_measurements_and_figures_are_preserved _________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_platform_partial_measurem0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f819d2d9950>
+
+    def test_platform_partial_measurements_and_figures_are_preserved(tmp_path, monkeypatch):
+        runner, current = setup_d(tmp_path, [])
+        metrics = [{'name':n, 'unit':u, 'reference':None, 'observed':v, 'relative_error':None}
+                   for n,u,v in [('m1','u1',2),('m2','u2',None),('m3','u3',None)]]
+        result = {'case_id':current.case_id,'status':'failed','metrics':metrics,'figures':[]}
+        enable_client(monkeypatch, runner, current, reply=result)
+>       assert runner.run(current, [(m['name'],m['unit']) for m in metrics]) == result
+E       AssertionError: assert {'case_id': '...us': 'failed'} == {'case_id': '...us': 'failed'}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'metrics': [{'name': 'm1', 'observed': None, 'reference': None, 'relative_error': None, ...}, {'name': 'm2', 'observe... None, 'relative_error': None, ...}, {'name': 'm3', 'observed': None, 'reference': None, 'relative_error': None, ...}]} != {'metrics': [{'name': 'm1', 'observed': 2, 'reference': None, 'relative_error': None, ...}, {'name': 'm2', 'observed':... None, 'relative_error': None, ...}, {'name': 'm3', 'observed': None, 'reference': None, 'relative_error': None, ...}]}
+E         Use -v to get more diff
+
+tests/test_d_isolated_revision.py:115: AssertionError
+_____ test_postprocessing_failure_never_replaces_received_platform_result ______
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_postprocessing_failure_ne0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f819d1b7bd0>
+
+    def test_postprocessing_failure_never_replaces_received_platform_result(tmp_path, monkeypatch):
+        runner, current = setup_d(tmp_path, [])
+        result = {'case_id':current.case_id,'status':'completed','metrics':[],'figures':[]}
+        enable_client(monkeypatch, runner, current, reply=result)
+        def missing(*args):
+            raise FileNotFoundError('figure unavailable')
+        monkeypatch.setattr(runner, '_copy_figures', missing)
+>       with pytest.raises(RuntimeError, match='postprocessing'):
+E       Failed: DID NOT RAISE <class 'RuntimeError'>
+
+tests/test_d_isolated_revision.py:126: Failed
+_ test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-02] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_unmodified_client_calls_s0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f819d188350>
+case_id = 'D-02'
+
+    @pytest.mark.parametrize('case_id', ['D-02','D-05'])
+    def test_unmodified_client_calls_source_then_run_despite_public_sample_failure(tmp_path, monkeypatch, case_id):
+        source = 'def run_experiment(request):\n    return {"baseline": {}, "candidate": None, "details": {}}\n'
+        class Model:
+            def completion(self, *args, **kwargs):
+                return {'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':source}}]}
+        protocol = json.loads((CLIENT.parent/case_id/'protocol.json').read_text())
+        specs = [(m['name'],m['unit']) for m in protocol['metrics']]
+        submission = LayeredDRunner._failed(case_id, specs, 'failed')
+        calls = []
+        class RPC(BaseHTTPRequestHandler):
+            def do_POST(self):
+                payload = json.loads(self.rfile.read(int(self.headers['Content-Length'])))
+                calls.append((self.path,payload))
+                assert self.headers['Authorization'] == 'Bearer local-test-token'
+                assert payload['case_id'] == case_id
+                if self.path == '/source':
+                    assert payload['implementation_source'] == source
+                    result = {'source_credential':'local-fixture-only'}
+                else:
+                    assert self.path == '/run'
+                    assert payload['source_credential'] == 'local-fixture-only'
+                    result = {'status':'complete','case_id':case_id,'submission':submission}
+                data = json.dumps(result).encode()
+                self.send_response(200)
+                self.send_header('Content-Length',str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+            def log_message(self, *args):
+                pass
+        socket = tmp_path/'rpc.sock'
+        server = UnixStreamServer(str(socket),RPC)
+        thread = Thread(target=server.serve_forever,daemon=True)
+        thread.start()
+        for key, value in dict(RESEARCH_EXPERIMENT_CASE=case_id,RESEARCH_EXPERIMENT_URL='unix://'+str(socket),
+            RESEARCH_EXPERIMENT_TOKEN='local-test-token',RESEARCH_LAYERED_D='layered-d-v3',
+            RESEARCH_D_SOURCE_PROVENANCE='d-model-source-v1',RESEARCH_WORKSPACE_TEAM='runtime-id').items():
+            monkeypatch.setenv(key,value)
+        runner = LayeredDRunner(Settings(CLIENT.parent,tmp_path/'out','runtime-id'),tmp_path/'work',Model())
+        prepare = runner.prepare_checked_implementation
+        def failed_test(*args):
+            raise ValueError('public example constraint mismatch')
+        monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: prepare(c,tester=failed_test))
+        try:
+            with CaseSession(case_id,170).activate():
+                result = runner.run(CaseContext.from_dict(case(case_id)),specs)
+        finally:
+            server.shutdown()
+            thread.join()
+            server.server_close()
+>       assert [path for path,_ in calls] == ['/source','/run']
+E       AssertionError: assert [] == ['/source', '/run']
+E         
+E         Right contains 2 more items, first extra item: '/source'
+E         Use -v to get more diff
+
+tests/test_d_official_client_flow.py:72: AssertionError
+_ test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-05] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_unmodified_client_calls_s1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f819d3060d0>
+case_id = 'D-05'
+
+    @pytest.mark.parametrize('case_id', ['D-02','D-05'])
+    def test_unmodified_client_calls_source_then_run_despite_public_sample_failure(tmp_path, monkeypatch, case_id):
+        source = 'def run_experiment(request):\n    return {"baseline": {}, "candidate": None, "details": {}}\n'
+        class Model:
+            def completion(self, *args, **kwargs):
+                return {'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':source}}]}
+        protocol = json.loads((CLIENT.parent/case_id/'protocol.json').read_text())
+        specs = [(m['name'],m['unit']) for m in protocol['metrics']]
+        submission = LayeredDRunner._failed(case_id, specs, 'failed')
+        calls = []
+        class RPC(BaseHTTPRequestHandler):
+            def do_POST(self):
+                payload = json.loads(self.rfile.read(int(self.headers['Content-Length'])))
+                calls.append((self.path,payload))
+                assert self.headers['Authorization'] == 'Bearer local-test-token'
+                assert payload['case_id'] == case_id
+                if self.path == '/source':
+                    assert payload['implementation_source'] == source
+                    result = {'source_credential':'local-fixture-only'}
+                else:
+                    assert self.path == '/run'
+                    assert payload['source_credential'] == 'local-fixture-only'
+                    result = {'status':'complete','case_id':case_id,'submission':submission}
+                data = json.dumps(result).encode()
+                self.send_response(200)
+                self.send_header('Content-Length',str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+            def log_message(self, *args):
+                pass
+        socket = tmp_path/'rpc.sock'
+        server = UnixStreamServer(str(socket),RPC)
+        thread = Thread(target=server.serve_forever,daemon=True)
+        thread.start()
+        for key, value in dict(RESEARCH_EXPERIMENT_CASE=case_id,RESEARCH_EXPERIMENT_URL='unix://'+str(socket),
+            RESEARCH_EXPERIMENT_TOKEN='local-test-token',RESEARCH_LAYERED_D='layered-d-v3',
+            RESEARCH_D_SOURCE_PROVENANCE='d-model-source-v1',RESEARCH_WORKSPACE_TEAM='runtime-id').items():
+            monkeypatch.setenv(key,value)
+        runner = LayeredDRunner(Settings(CLIENT.parent,tmp_path/'out','runtime-id'),tmp_path/'work',Model())
+        prepare = runner.prepare_checked_implementation
+        def failed_test(*args):
+            raise ValueError('public example constraint mismatch')
+        monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: prepare(c,tester=failed_test))
+        try:
+            with CaseSession(case_id,170).activate():
+                result = runner.run(CaseContext.from_dict(case(case_id)),specs)
+        finally:
+            server.shutdown()
+            thread.join()
+            server.server_close()
+>       assert [path for path,_ in calls] == ['/source','/run']
+E       AssertionError: assert [] == ['/source', '/run']
+E         
+E         Right contains 2 more items, first extra item: '/source'
+E         Use -v to get more diff
+
+tests/test_d_official_client_flow.py:72: AssertionError
+_______ test_d_reasoning_is_case_scoped_and_restored[D-02-True-disabled] _______
+
+cid = 'D-02', baseline = True, thinking = 'disabled'
+
+    @pytest.mark.parametrize('cid,baseline,thinking', [('D-02',False,'enabled'),('D-02',True,'disabled'),('D-05',False,'disabled'),('D-01',False,'disabled')])
+    def test_d_reasoning_is_case_scoped_and_restored(cid,baseline,thinking):
+        from research_agent.workflows.d_generation_policy import generation_window
+        class Model:
+            REQUEST_TIMEOUT_CAP=60
+            RETRY_ATTEMPTS=2
+        model=Model(); before=vars(model).copy()
+        with generation_window(model,baseline=baseline,case_id=cid):
+>           assert model.thinking_override==thinking
+E           AssertionError: assert 'enabled' == 'disabled'
+E             
+E             - disabled
+E             + enabled
+
+tests/test_de3_isolation.py:235: AssertionError
+______ test_d_reasoning_is_case_scoped_and_restored[D-05-False-disabled] _______
+
+cid = 'D-05', baseline = False, thinking = 'disabled'
+
+    @pytest.mark.parametrize('cid,baseline,thinking', [('D-02',False,'enabled'),('D-02',True,'disabled'),('D-05',False,'disabled'),('D-01',False,'disabled')])
+    def test_d_reasoning_is_case_scoped_and_restored(cid,baseline,thinking):
+        from research_agent.workflows.d_generation_policy import generation_window
+        class Model:
+            REQUEST_TIMEOUT_CAP=60
+            RETRY_ATTEMPTS=2
+        model=Model(); before=vars(model).copy()
+        with generation_window(model,baseline=baseline,case_id=cid):
+>           assert model.thinking_override==thinking
+E           AssertionError: assert 'enabled' == 'disabled'
+E             
+E             - disabled
+E             + enabled
+
+tests/test_de3_isolation.py:235: AssertionError
+______ test_d_reasoning_is_case_scoped_and_restored[D-01-False-disabled] _______
+
+cid = 'D-01', baseline = False, thinking = 'disabled'
+
+    @pytest.mark.parametrize('cid,baseline,thinking', [('D-02',False,'enabled'),('D-02',True,'disabled'),('D-05',False,'disabled'),('D-01',False,'disabled')])
+    def test_d_reasoning_is_case_scoped_and_restored(cid,baseline,thinking):
+        from research_agent.workflows.d_generation_policy import generation_window
+        class Model:
+            REQUEST_TIMEOUT_CAP=60
+            RETRY_ATTEMPTS=2
+        model=Model(); before=vars(model).copy()
+        with generation_window(model,baseline=baseline,case_id=cid):
+>           assert model.thinking_override==thinking
+E           AssertionError: assert 'enabled' == 'disabled'
+E             
+E             - disabled
+E             + enabled
+
+tests/test_de3_isolation.py:235: AssertionError
+__________________ test_e4_freezes_all_d_and_c_specific_files __________________
+
+    def test_e4_freezes_all_d_and_c_specific_files():
+        import hashlib
+        before=json.loads((ROOT/'tests/fixtures/e4-protected-source-hashes.json').read_text())
+        allowed={'src/research_agent/workflows/reports.py','src/research_agent/integrations/idea_prompt.py',
+                 'src/research_agent/integrations/survey_prompt.py'}
+        for name,digest in before.items():
+            if name not in allowed:
+                content=(ROOT/name).read_text(encoding='utf-8')
+                b_guard = {
+                    'src/research_agent/workflows/tasks.py': '        if case.function == "Literature_Retrieval":\n            from .b_workflow import retrieve\n            return retrieve(self, case, retriever)\n',
+                    'src/research_agent/integrations/prompts.py': "    if isinstance(data, dict) and data.get('b_protocol') == 'conditions-v1' and data.get('task', {}).get('function') == 'Literature_Retrieval' and stage in ('query', 'retrieve'):\n        from .b_prompt import QUERY, RETRIEVE\n        return QUERY if stage == 'query' else RETRIEVE\n",
+                }.get(name)
+                if name == 'src/research_agent/integrations/prompts.py':
+                    from test_c200_recovery import C_PROMPT_GUARD
+                    assert content.count(C_PROMPT_GUARD) == 1
+                    content = content.replace(C_PROMPT_GUARD, '')
+                if b_guard:
+                    assert content.count(b_guard)==1
+                    content=content.replace(b_guard,'')
+>               assert hashlib.sha256(content.encode()).hexdigest()==digest,name
+E               AssertionError: src/research_agent/core/engine.py
+E               assert 'c5dee66861d1...b94786eabea00' == '60aa0499ccc4...58743e8230be1'
+E                 
+E                 - 60aa0499ccc483575b7a1faadd264f54bb767199e583469979158743e8230be1
+E                 + c5dee66861d19a47752d963514d27af1c7412c42a20843bae73b94786eabea00
+
+tests/test_e4_resilience.py:148: AssertionError
+_ test_public_failure_retains_only_complete_current_source_for_formal_runner[second0] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_public_failure_retains_on0')
+second = {'choices': [{'finish_reason': 'stop', 'message': {'content': "def run_experiment(request):\n    return {'baseline': {}, 'candidate': None, 'details': {}}\n", 'role': 'assistant'}}]}
+
+    @pytest.mark.parametrize('second', [response(), response('truncated code', 'length'), ModelError('timeout')])
+    def test_public_failure_retains_only_complete_current_source_for_formal_runner(tmp_path, second):
+        runner, current = setup_d(tmp_path, [response(), second])
+        def reject(*args):
+            raise ValueError('public sample incomplete')
+        source = runner.prepare_checked_implementation(current, tester=reject)
+        assert source.read_text() == SOURCE
+        saved = json.loads((runner.work/'generation-response.json').read_text())
+        assert saved['choices'][0]['message']['content'] == SOURCE
+        audit = json.loads((runner.work/'public-selftest.json').read_text())
+>       assert audit['public_selftest_passed'] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'public_selftest_passed'
+
+tests/test_eval_20261026_regressions.py:162: KeyError
+_ test_public_failure_retains_only_complete_current_source_for_formal_runner[second1] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_public_failure_retains_on1')
+second = {'choices': [{'finish_reason': 'length', 'message': {'content': 'truncated code', 'role': 'assistant'}}]}
+
+    @pytest.mark.parametrize('second', [response(), response('truncated code', 'length'), ModelError('timeout')])
+    def test_public_failure_retains_only_complete_current_source_for_formal_runner(tmp_path, second):
+        runner, current = setup_d(tmp_path, [response(), second])
+        def reject(*args):
+            raise ValueError('public sample incomplete')
+        source = runner.prepare_checked_implementation(current, tester=reject)
+        assert source.read_text() == SOURCE
+        saved = json.loads((runner.work/'generation-response.json').read_text())
+        assert saved['choices'][0]['message']['content'] == SOURCE
+        audit = json.loads((runner.work/'public-selftest.json').read_text())
+>       assert audit['public_selftest_passed'] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'public_selftest_passed'
+
+tests/test_eval_20261026_regressions.py:162: KeyError
+_ test_public_failure_retains_only_complete_current_source_for_formal_runner[second2] _
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_public_failure_retains_on2')
+second = ModelError('timeout')
+
+    @pytest.mark.parametrize('second', [response(), response('truncated code', 'length'), ModelError('timeout')])
+    def test_public_failure_retains_only_complete_current_source_for_formal_runner(tmp_path, second):
+        runner, current = setup_d(tmp_path, [response(), second])
+        def reject(*args):
+            raise ValueError('public sample incomplete')
+        source = runner.prepare_checked_implementation(current, tester=reject)
+        assert source.read_text() == SOURCE
+        saved = json.loads((runner.work/'generation-response.json').read_text())
+        assert saved['choices'][0]['message']['content'] == SOURCE
+        audit = json.loads((runner.work/'public-selftest.json').read_text())
+>       assert audit['public_selftest_passed'] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'public_selftest_passed'
+
+tests/test_eval_20261026_regressions.py:162: KeyError
+_____________ test_without_complete_source_d_never_submits_a_stub ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_without_complete_source_d0')
+
+    def test_without_complete_source_d_never_submits_a_stub(tmp_path):
+        runner, current = setup_d(tmp_path, [response('broken', 'length'), response('broken', 'length')])
+        with pytest.raises(RuntimeError, match='no complete'):
+>           runner.prepare_checked_implementation(current)
+
+tests/test_eval_20261026_regressions.py:169: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/research_agent/workflows/layered_d_runner.py:101: in prepare_generated_implementation
+    response = self.llm.completion("d_source", prompt, max_tokens=requested)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_eval_20261026_regressions.setup_d.<locals>.LLM object at 0x7f819d41ccd0>
+args = ('d_source', '根据本轮本题授权材料实现指定方法，不假设题号对应任何旧算法。\n只返回唯一完整Python 3.9标准库源码代码块，UTF-8源文件不超过65536字节，必须定义run_experiment(request)... "message": "Return one complete syntactically valid implementation matching current materials."}\n重新返回完整实现；不得使用占位结果。')
+kwargs = {'max_tokens': 24000}
+
+    def completion(self, *args, **kwargs):
+>       value = responses.pop(0)
+                ^^^^^^^^^^^^^^^^
+E       IndexError: pop from empty list
+
+tests/test_eval_20261026_regressions.py:137: IndexError
+_ test_honest_baseline_source_is_retained_without_mandatory_second_generation __
+
+self = <research_agent.workflows.layered_d_runner.LayeredDRunner object at 0x7f819d6dae50>
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+tester = <function test_honest_baseline_source_is_retained_without_mandatory_second_generation.<locals>.validate at 0x7f819d513240>
+
+    def prepare_checked_implementation(self, case, tester=None):
+        """Only generic syntax/source checks gate formal execution; no old-task oracle."""
+        history = []
+        feedback = None
+        for attempt in range(1, 4):
+            try:
+>               path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/research_agent/workflows/layered_d_runner.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:99: in prepare_generated_implementation
+    with generation_window(self.llm, baseline=baseline_only, case_id=case.case_id):
+/usr/local/lib/python3.11/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+src/research_agent/workflows/d_generation_policy.py:12: in generation_window
+    cap = min(cap, session.remaining(reserve=300))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = CaseSession(case_id='D-02', timeout=170, cancelled=<threading.Event at 0x7f819d6d9d50: unset>, started_at=213.747974887, stage='received', stages=[])
+reserve = 300
+
+    def remaining(self, reserve=0):
+        self.checkpoint()
+        value = self.deadline - time.monotonic() - reserve
+        if value <= 0:
+>           raise TimeoutError("insufficient case time reserved for next stage")
+E           TimeoutError: insufficient case time reserved for next stage
+
+src/research_agent/core/session.py:31: TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_honest_baseline_source_is0')
+
+    def test_honest_baseline_source_is_retained_without_mandatory_second_generation(tmp_path):
+        runner, current = setup_d(tmp_path, [response(), response('def run_experiment(request):\n    return {}\n')])
+        def validate(path, *args):
+            if path.read_text() != SOURCE:
+                raise ValueError('candidate upgrade has invalid output')
+            return {'status':'passed','candidate_present':False}
+        with CaseSession(current.case_id,170).activate():
+>           selected = runner.prepare_checked_implementation(current,tester=validate)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_eval_20261026_regressions.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <research_agent.workflows.layered_d_runner.LayeredDRunner object at 0x7f819d6dae50>
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+tester = <function test_honest_baseline_source_is_retained_without_mandatory_second_generation.<locals>.validate at 0x7f819d513240>
+
+    def prepare_checked_implementation(self, case, tester=None):
+        """Only generic syntax/source checks gate formal execution; no old-task oracle."""
+        history = []
+        feedback = None
+        for attempt in range(1, 4):
+            try:
+                path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                # save_source already checks complete response, Python syntax and entry point.
+                write_json(confined(self.work, 'public-selftest.json'), {
+                    'mode': 'generic_source_checks_only', 'semantic_selftest_performed': False,
+                    'selected_attempt': attempt, 'attempts': history,
+                    'source_sha256': sha256_file(path)})
+                return path
+            except ModelQuotaError:
+                raise
+            except (ModelError, ValueError, SyntaxError, RuntimeError, TimeoutError) as exc:
+                feedback = {'error_type': type(exc).__name__,
+                            'message': 'Return one complete syntactically valid implementation matching current materials.'}
+                history.append({'attempt': attempt, 'error_type': type(exc).__name__})
+                write_json(confined(self.work, 'public-selftest.json'), {'attempts': history})
+                session = current_session()
+                if attempt == 3 or (session and session.remaining() < 420):
+>                   raise RuntimeError('no complete current-session model source available') from exc
+E                   RuntimeError: no complete current-session model source available
+
+src/research_agent/workflows/layered_d_runner.py:130: RuntimeError
+___________ test_failed_selftest_still_reaches_real_client_boundary ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_failed_selftest_still_rea0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f819d313810>
+
+    def test_failed_selftest_still_reaches_real_client_boundary(tmp_path, monkeypatch):
+        import subprocess
+        runner, current = setup_d(tmp_path, [response(), response()])
+        # 公开样例失败后，生产路径必须调用当前挂载客户端；不伪造成功。
+        method = runner.prepare_checked_implementation
+        def reject(*args):
+            raise ValueError('public sample mismatch')
+        monkeypatch.setattr(runner, 'prepare_checked_implementation', lambda c: method(c, tester=reject))
+        monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE', current.case_id)
+        script = Path('/data/experiments/run_experiment.py')
+        real_exists = Path.is_file
+        monkeypatch.setattr(Path, 'is_file', lambda p: True if p == script else real_exists(p))
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.sha256_file', lambda p: 'test-hash')
+        result = {'case_id':current.case_id, 'status':'failed', 'metrics':[], 'figures':[]}
+        calls = []
+        def invoke(command, **kwargs):
+            calls.append(command)
+            assert Path(command[-1]).read_text() == SOURCE
+            return subprocess.CompletedProcess(command, 0, json.dumps(result), '')
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.subprocess.run', invoke)
+>       assert runner.run(current, []) == result
+               ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_eval_20261026_regressions.py:237: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:240: in run
+    implementation = self.review_implementation(case, implementation)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/research_agent/workflows/layered_d_runner.py:188: in review_implementation
+    review = self.llm.completion("d_review", prompt + "\n上次审查需重新核对（" + retry_reason + "）。请先检查失败测试是否合法并独立手算期望，再核对源码。测试可能错误，不强制修代码；确有错误才repair并逐字引用材料和源码，否则keep。完整输出约定JSON。", max_tokens=8000)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_eval_20261026_regressions.setup_d.<locals>.LLM object at 0x7f819d313790>
+args = ('d_review', '审查本轮完整实现是否违反当前材料。不要重写代码，不要提出风格/性能偏好，不得假设旧题算法。逐项核对公式、状态更新、阶段分支、字段与类型、单位、默认值、并列次序、空输入及终止条件。run_experiment接...: null}\n上次审查需重新核对（invalid_response）。请先检查失败测试是否合法并独立手算期望，再核对源码。测试可能错误，不强制修代码；确有错误才repair并逐字引用材料和源码，否则keep。完整输出约定JSON。')
+kwargs = {'max_tokens': 8000}
+
+    def completion(self, *args, **kwargs):
+>       value = responses.pop(0)
+                ^^^^^^^^^^^^^^^^
+E       IndexError: pop from empty list
+
+tests/test_eval_20261026_regressions.py:137: IndexError
+___________ test_model_repairs_complete_source_after_sample_failure ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_model_repairs_complete_so0')
+
+    def test_model_repairs_complete_source_after_sample_failure(tmp_path):
+        case_root = tmp_path / "D-01"
+        case_root.mkdir()
+        for name, text in {"method.md": "public method", "protocol.json": "{}", "sample.json": "{}"}.items():
+            (case_root / name).write_text(text, encoding="utf-8")
+        sources = ["def run_experiment(request):\n    return {}\n",
+                   "def run_experiment(request):\n    return {'repaired': True}\n"]
+    
+        class LLM:
+            calls = 0
+    
+            def completion(self, stage, prompt, max_tokens):
+                if self.calls:
+                    assert "missing baseline" in prompt
+                content = sources[self.calls]
+                self.calls += 1
+                return {"choices": [{"finish_reason": "stop", "message": {"role": "assistant", "content": content}}]}
+    
+        def tester(path, materials, case_id):
+            if "repaired" not in path.read_text(encoding="utf-8"):
+                raise ValueError("missing baseline")
+            return {"status": "passed"}
+    
+        case = CaseContext.from_dict({"case_id": "D-01", "function": "Reproduction", "title": "public",
+            "input": "current case", "materials": [], "constraints": [], "expected_output": "result",
+            "output_schema_ref": "Reproduction"})
+        runner = LayeredDRunner(Settings(tmp_path, tmp_path / "out"), tmp_path / "work", llm=LLM())
+        final = runner.prepare_checked_implementation(case, tester=tester)
+>       assert final.read_text(encoding="utf-8") == sources[1]
+E       assert 'def run_expe...  return {}\n' == "def run_expe...red': True}\n"
+E         
+E           def run_experiment(request):
+E         -     return {'repaired': True}
+E         +     return {}
+
+tests/test_public_selftest.py:62: AssertionError
+=============================== warnings summary ===============================
+<frozen importlib._bootstrap>:241
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:241
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+../usr/local/lib/python3.11/site-packages/starlette/testclient.py:41
+  /usr/local/lib/python3.11/site-packages/starlette/testclient.py:41: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    [], typing.ContextManager[anyio.abc.BlockingPortal]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+----------------- generated xml file: /results/regression.xml ------------------
+=========================== short test summary info ============================
+FAILED tests/test_b5_conditions.py::test_protected_production_files_and_shared_dispatch_only
+FAILED tests/test_cd2_isolation.py::test_d02_late_repair_requests_new_baseline_source[80-True]
+FAILED tests/test_cd2_isolation.py::test_d02_late_repair_requests_new_baseline_source[90-True]
+FAILED tests/test_cd2_isolation.py::test_d02_late_repair_requests_new_baseline_source[110-False]
+FAILED tests/test_cd_runtime_regressions.py::test_d_client_partial_result_is_preserved
+FAILED tests/test_cd_runtime_regressions.py::test_d_postprocessing_error_keeps_platform_result
+FAILED tests/test_d_isolated_revision.py::test_d_generation_restores_every_instance_attribute_and_class_default[False]
+FAILED tests/test_d_isolated_revision.py::test_d_generation_restores_every_instance_attribute_and_class_default[True]
+FAILED tests/test_d_isolated_revision.py::test_first_generation_strategy_is_case_scoped[D-01-False]
+FAILED tests/test_d_isolated_revision.py::test_first_generation_strategy_is_case_scoped[D-02-False]
+FAILED tests/test_d_isolated_revision.py::test_first_generation_strategy_is_case_scoped[D-05-False]
+FAILED tests/test_d_isolated_revision.py::test_cancelled_d_does_not_retry_or_submit_source
+FAILED tests/test_d_isolated_revision.py::test_platform_service_failure_is_not_algorithm_failed[D_SOURCE_AUDIT_UNAVAILABLE]
+FAILED tests/test_d_isolated_revision.py::test_platform_service_failure_is_not_algorithm_failed[HTTP Error 503: Service Unavailable]
+FAILED tests/test_d_isolated_revision.py::test_source_rejection_returns_honest_failed_schema_without_formal_retry
+FAILED tests/test_d_isolated_revision.py::test_platform_partial_measurements_and_figures_are_preserved
+FAILED tests/test_d_isolated_revision.py::test_postprocessing_failure_never_replaces_received_platform_result
+FAILED tests/test_d_official_client_flow.py::test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-02]
+FAILED tests/test_d_official_client_flow.py::test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-05]
+FAILED tests/test_de3_isolation.py::test_d_reasoning_is_case_scoped_and_restored[D-02-True-disabled]
+FAILED tests/test_de3_isolation.py::test_d_reasoning_is_case_scoped_and_restored[D-05-False-disabled]
+FAILED tests/test_de3_isolation.py::test_d_reasoning_is_case_scoped_and_restored[D-01-False-disabled]
+FAILED tests/test_e4_resilience.py::test_e4_freezes_all_d_and_c_specific_files
+FAILED tests/test_eval_20261026_regressions.py::test_public_failure_retains_only_complete_current_source_for_formal_runner[second0]
+FAILED tests/test_eval_20261026_regressions.py::test_public_failure_retains_only_complete_current_source_for_formal_runner[second1]
+FAILED tests/test_eval_20261026_regressions.py::test_public_failure_retains_only_complete_current_source_for_formal_runner[second2]
+FAILED tests/test_eval_20261026_regressions.py::test_without_complete_source_d_never_submits_a_stub
+FAILED tests/test_eval_20261026_regressions.py::test_honest_baseline_source_is_retained_without_mandatory_second_generation
+FAILED tests/test_eval_20261026_regressions.py::test_failed_selftest_still_reaches_real_client_boundary
+FAILED tests/test_public_selftest.py::test_model_repairs_complete_source_after_sample_failure
+30 failed, 601 passed, 6 warnings in 27.29s

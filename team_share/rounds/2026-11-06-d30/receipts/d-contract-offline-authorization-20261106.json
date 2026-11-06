@@ -1,0 +1,9 @@
+{
+  "explicit_user_authorization": true,
+  "scope": "D zero-model fault injection and Linux regression",
+  "user_reply": "已允许",
+  "question_context": "是否允许本轮无目标模型的 D 类故障注入、新旧对照及 Linux 全量契约回归，由 Codex 在原 Agent挑战赛目录直接执行",
+  "candidate_commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+  "reuse_native_pairs": "C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/d-contract-20261106-bdd77c7e",
+  "real_model_calls_authorized_outside_original_harness": false
+}

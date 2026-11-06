@@ -1,0 +1,9 @@
+{
+  "candidate_commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+  "execution_origin": "Codex offline",
+  "target_model_calls": 0,
+  "native_tool_execution_verified": false,
+  "authorization_receipt": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\.session-audit\\d-contract-offline-authorization-20261106.json",
+  "user_reply": "已允许",
+  "reuse_native_pairs": "C:/Users/lenovo/Desktop/Agent挑战赛/镜像测试/runs/d-contract-20261106-bdd77c7e"
+}

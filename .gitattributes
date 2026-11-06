@@ -4,3 +4,7 @@
 /docs/testing/2026-11-06-d-contract/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Captured pytest tracebacks contain original trailing spaces; never trim evidence.
 /docs/testing/2026-11-06-d-contract/native-*.xml -whitespace
+
+# This round is an immutable evidence archive, including original failure logs.
+/team_share/rounds/2026-11-06-d30/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/team_share/rounds/2026-11-06-d30/raw/** -whitespace

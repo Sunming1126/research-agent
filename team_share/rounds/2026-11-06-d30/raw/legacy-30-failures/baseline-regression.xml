@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="30" skipped="0" tests="584" time="28.262" timestamp="2026-11-05T16:12:01.166551+00:00" hostname="be1e4b1aa8e3"><testcase classname="tests.test_agent_core.CoreTests" name="test_alias_limits_material_set" time="0.017" /><testcase classname="tests.test_agent_core.CoreTests" name="test_ambiguous_duplicate_name" time="0.014" /><testcase classname="tests.test_agent_core.CoreTests" name="test_cancellation_prevents_submission" time="0.014" /><testcase classname="tests.test_agent_core.CoreTests" name="test_case_insensitive_duplicate_selection" time="0.014" /><testcase classname="tests.test_agent_core.CoreTests" name="test_dispatch_hash_and_ownership" time="0.023" /><testcase classname="tests.test_agent_core.CoreTests" name="test_empty_and_invalid_pdf" time="0.013" /><testcase classname="tests.test_agent_core.CoreTests" name="test_failed_retry_does_not_leave_stale_result" time="0.018" /><testcase classname="tests.test_agent_core.CoreTests" name="test_failure_does_not_borrow_other_metrics" time="0.016" /><testcase classname="tests.test_agent_core.CoreTests" name="test_fake_page_and_missing_citation_rejected" time="0.014" /><testcase classname="tests.test_agent_core.CoreTests" name="test_full_25_case_batch_with_real_d" time="8.201" /><testcase classname="tests.test_agent_core.CoreTests" name="test_handlers_and_report_readback" time="0.070" /><testcase classname="tests.test_agent_core.CoreTests" name="test_http_health_solve_and_sdk_adapter" time="0.530" /><testcase classname="tests.test_agent_core.CoreTests" name="test_long_paragraph_really_splits" time="0.012" /><testcase classname="tests.test_agent_core.CoreTests" name="test_metric_identity_not_relabelled" time="1.496" /><testcase classname="tests.test_agent_core.CoreTests" name="test_no_fallback_to_other_papers" time="0.013" /><testcase classname="tests.test_agent_core.CoreTests" name="test_no_gateway_no_fake_answer" time="0.012" /><testcase classname="tests.test_agent_core.CoreTests" name="test_no_relevant_results" time="0.026" /><testcase classname="tests.test_agent_core.CoreTests" name="test_path_traversal_and_unknown_prose" time="0.013" /><testcase classname="tests.test_agent_core.CoreTests" name="test_platform_without_active_session_fails_honestly" time="0.030" /><testcase classname="tests.test_agent_core.CoreTests" name="test_real_pdf_chunk_retrieve_and_cache" time="0.027" /><testcase classname="tests.test_agent_core.CoreTests" name="test_scanned_pdf_requires_ocr" time="0.022" /><testcase classname="tests.test_agent_core.CoreTests" name="test_schema_and_case_validation" time="0.012" /><testcase classname="tests.test_agent_core.CoreTests" name="test_symlink_escape" time="0.013" /><testcase classname="tests.test_agent_core.CoreTests" name="test_three_metrics_and_finite_values" time="0.013" /><testcase classname="tests.test_agent_core.CoreTests" name="test_timeout_maps_to_failed" time="0.037" /><testcase classname="tests.test_agent_core.CoreTests" name="test_wrong_team_figure_and_extra_fields" time="0.015" /><testcase classname="tests.test_architecture_regressions" name="test_rejected_responses_still_count_all_usage[length-{}]" time="0.001" /><testcase classname="tests.test_architecture_regressions" name="test_rejected_responses_still_count_all_usage[stop-{bad]" time="0.001" /><testcase classname="tests.test_architecture_regressions" name="test_retry_rechecks_tokens_after_invalid_response" time="0.001" /><testcase classname="tests.test_architecture_regressions" name="test_all_eight_distinct_targets_survive_query_plan" time="0.000" /><testcase classname="tests.test_architecture_regressions" name="test_appendix_after_references_is_searchable" time="0.000" /><testcase classname="tests.test_architecture_regressions" name="test_negating_exclusion_does_not_reject_paper[This paper is not explicitly excluded and is relevant.]" time="0.001" /><testcase classname="tests.test_architecture_regressions" name="test_negating_exclusion_does_not_reject_paper[\u8be5\u6587\u4e0d\u5c5e\u4e8e\u9898\u76ee\u660e\u786e\u6392\u9664\u9879\uff0c\u7b26\u5408\u7814\u7a76\u8303\u56f4\u3002]" time="0.000" /><testcase classname="tests.test_architecture_regressions" name="test_negating_exclusion_does_not_reject_paper[\u8be5\u65b9\u6cd5\u4e0d\u5e94\u6392\u9664\uff0c\u4e0e\u8981\u6c42\u76f4\u63a5\u76f8\u5173\u3002]" time="0.000" /><testcase classname="tests.test_architecture_regressions" name="test_session_cancellation_and_context_are_isolated" time="0.000" /><testcase classname="tests.test_architecture_regressions" name="test_session_counts_time_before_execution_and_stops_model_call" time="0.000" /><testcase classname="tests.test_architecture_regressions" name="test_sdk_and_http_fallback_share_thinking_and_system_constraints" time="0.001" /><testcase classname="tests.test_architecture_regressions" name="test_malformed_gateway_envelope_is_bounded_and_accounted[None]" time="0.001" /><testcase classname="tests.test_architecture_regressions" name="test_malformed_gateway_envelope_is_bounded_and_accounted[invalid]" time="0.001" /><testcase classname="tests.test_architecture_regressions" name="test_malformed_gateway_envelope_is_bounded_and_accounted[choices2]" time="0.001" /><testcase classname="tests.test_b209" name="test_new_queries_find_outside_old_pool_without_turning_queries_into_evidence" time="0.001" /><testcase classname="tests.test_b209" name="test_bad_replan_preserves_original_task[None]" time="0.000" /><testcase classname="tests.test_b209" name="test_bad_replan_preserves_original_task[value1]" time="0.000" /><testcase classname="tests.test_b209" name="test_bad_replan_preserves_original_task[value2]" time="0.000" /><testcase classname="tests.test_b209" name="test_bad_replan_preserves_original_task[value3]" time="0.000" /><testcase classname="tests.test_b209" name="test_recovery_budget_and_quota_do_not_loop" time="0.000" /><testcase classname="tests.test_b209" name="test_empty_audit_selects_original_task_evidence_instead_of_bad_plan" time="0.003" /><testcase classname="tests.test_b209" name="test_nonmatching_own_method_is_available_during_first_screen" time="0.001" /><testcase classname="tests.test_b209" name="test_empty_first_round_can_recover_from_fresh_evidence" time="0.001" /><testcase classname="tests.test_b210" name="test_nonempty_answer_can_have_an_uncovered_target" time="0.000" /><testcase classname="tests.test_b210" name="test_single_target_does_not_force_more_papers" time="0.000" /><testcase classname="tests.test_b210" name="test_workflow_recovers_missing_target_without_discarding_existing_match" time="0.002" /><testcase classname="tests.test_b5_conditions" name="test_all_conditions_and_exclusion[states0-True]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_all_conditions_and_exclusion[states1-False]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_all_conditions_and_exclusion[states2-False]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_all_conditions_and_exclusion[states3-False]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_all_conditions_and_exclusion[states4-False]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_bad_evidence_cannot_approve[quote]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_bad_evidence_cannot_approve[id]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_bad_evidence_cannot_approve[duplicate]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_bad_evidence_cannot_approve[missing]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_bad_evidence_cannot_approve[status]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_bad_evidence_cannot_approve[evidence_type]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_bad_evidence_cannot_approve[reason]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_bad_evidence_cannot_approve[filename]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_independent_targets_are_or_but_common_conditions_stay_and" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_explicit_quantity_semantics[\u81f3\u5c11\u4e09\u7bc7-None]" time="0.001" /><testcase classname="tests.test_b5_conditions" name="test_explicit_quantity_semantics[\u5404\u65b9\u5411\u627e\u4e00\u7bc7-None]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_explicit_quantity_semantics[\u6bd4\u8f83\u540c\u4e00\u7bc7\u7684\u4e24\u4e2a\u5b9e\u9a8c-None]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_explicit_quantity_semantics[\u627e\u5341\u4e8c\u7bc7-12]" time="0.001" /><testcase classname="tests.test_b5_conditions" name="test_explicit_quantity_semantics[\u5408\u8ba1\u4e09\u7bc7-3]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_explicit_quantity_semantics[Find at least 12 papers-None]" time="0.001" /><testcase classname="tests.test_b5_conditions" name="test_explicit_quantity_semantics[Find 12 papers-12]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_explicit_quantity_semantics[Find one paper for each target-None]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_explicit_quantity_semantics[\u6700\u591a0\u7bc7-0]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_explicit_quantity_semantics[Find at most five papers-5]" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_source_grounded_plan_and_bad_scope" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_multichannel_keeps_complementary_spans_and_fair_target_order" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_background_exclusion_does_not_reduce_recall" time="0.001" /><testcase classname="tests.test_b5_conditions" name="test_query_window_is_contiguous_and_keeps_late_method" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_no_unrequested_ten_paper_cap_or_lexical_tail_cut" time="0.005" /><testcase classname="tests.test_b5_conditions" name="test_first_batch_timeout_has_one_recovery_round" time="0.001" /><testcase classname="tests.test_b5_conditions" name="test_later_quota_preserves_only_verified_papers" time="0.003" /><testcase classname="tests.test_b5_conditions" name="test_no_valid_draft_does_not_disguise_failure_as_no_matches" time="0.001" /><testcase classname="tests.test_b5_conditions" name="test_unknown_condition_triggers_fulltext_read_once" time="0.001" /><testcase classname="tests.test_b5_conditions" name="test_llm_settings_restore_on_failure" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_protected_production_files_and_shared_dispatch_only" time="0.038"><failure message="AssertionError: src/research_agent/core/engine.py&#10;assert '60aa0499ccc4...58743e8230be1' == 'c5dee66861d1...b94786eabea00'&#10;  &#10;  - c5dee66861d19a47752d963514d27af1c7412c42a20843bae73b94786eabea00&#10;  + 60aa0499ccc483575b7a1faadd264f54bb767199e583469979158743e8230be1">def test_protected_production_files_and_shared_dispatch_only():
+        expected={'src/research_agent/workflows/tasks.py': '        if case.function == "Literature_Retrieval":\n            from .b_workflow import retrieve\n            return retrieve(self, case, retriever)\n',
+                  'src/research_agent/integrations/prompts.py': "    if isinstance(data, dict) and data.get('b_protocol') == 'conditions-v1' and data.get('task', {}).get('function') == 'Literature_Retrieval' and stage in ('query', 'retrieve'):\n        from .b_prompt import QUERY, RETRIEVE\n        return QUERY if stage == 'query' else RETRIEVE\n"}
+        baseline=json.loads((ROOT/'tests/fixtures/b5-protected-source-hashes.json').read_text())
+        for name,old in baseline.items():
+            if name in {'src/research_agent/integrations/survey_prompt.py', 'src/research_agent/workflows/reports.py'}:
+                continue  # C201 explicitly changes C prompt/composition; checked separately.
+            new=(ROOT/name).read_text(encoding='utf-8')
+            if name == 'src/research_agent/integrations/prompts.py':
+                from test_c200_recovery import C_PROMPT_GUARD
+                assert new.count(C_PROMPT_GUARD) == 1
+                new = new.replace(C_PROMPT_GUARD, '')
+            if name in expected:
+                assert new.count(expected[name])==1;new=new.replace(expected[name],'')
+&gt;           assert old==hashlib.sha256(new.encode()).hexdigest(),name
+E           AssertionError: src/research_agent/core/engine.py
+E           assert '60aa0499ccc4...58743e8230be1' == 'c5dee66861d1...b94786eabea00'
+E             
+E             - c5dee66861d19a47752d963514d27af1c7412c42a20843bae73b94786eabea00
+E             + 60aa0499ccc483575b7a1faadd264f54bb767199e583469979158743e8230be1
+
+tests/test_b5_conditions.py:157: AssertionError</failure></testcase><testcase classname="tests.test_b5_conditions" name="test_compact_document_judgment_does_not_grow_with_condition_count" time="0.005" /><testcase classname="tests.test_b5_conditions" name="test_transport_recovery_does_not_expand_already_loaded_evidence" time="0.001" /><testcase classname="tests.test_b5_conditions" name="test_target_local_order_is_not_overridden_by_common_query_popularity" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_partial_other_target_checks_do_not_discard_a_proven_target" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_pdf_line_hyphen_is_restored_to_actual_source_quote" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_all_unknown_evidence_is_a_failure_not_a_valid_empty_search" time="0.002" /><testcase classname="tests.test_b5_conditions" name="test_negative_gets_at_most_one_review_without_automatic_acceptance" time="0.001" /><testcase classname="tests.test_b5_conditions" name="test_selected_span_id_binds_original_text_without_model_transcription" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_evidence_spans_are_bounded_and_remain_contiguous_source" time="0.004" /><testcase classname="tests.test_b5_conditions" name="test_borderline_negative_with_an_unknown_still_gets_review" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_low_remaining_time_returns_only_already_verified_papers" time="0.003" /><testcase classname="tests.test_b5_conditions" name="test_disjoint_complete_target_quotes_repair_incorrect_common_scopes" time="0.000" /><testcase classname="tests.test_b5_conditions" name="test_multiple_targets_cannot_silently_collapse_to_common_and" time="0.001" /><testcase classname="tests.test_b5_http" name="test_b_contract_and_failure_trace[normal]" time="0.344" /><testcase classname="tests.test_b5_http" name="test_b_contract_and_failure_trace[transient]" time="0.062" /><testcase classname="tests.test_b5_http" name="test_b_contract_and_failure_trace[quota]" time="0.043" /><testcase classname="tests.test_b5_http" name="test_b_contract_and_failure_trace[bad_evidence]" time="0.063" /><testcase classname="tests.test_b6_retrieval" name="test_pdf_lexical_normalization_is_symmetric_and_shared_index_unchanged" time="0.000" /><testcase classname="tests.test_b6_retrieval" name="test_all_40_documents_are_reviewed_in_five_calls_not_14" time="0.006" /><testcase classname="tests.test_b6_retrieval" name="test_unknown_does_not_stop_unseen_candidates_after_nine_documents" time="0.006" /><testcase classname="tests.test_b6_retrieval" name="test_small_library_zero_lexical_match_still_gets_semantic_screen" time="0.001" /><testcase classname="tests.test_b6_retrieval" name="test_full_task_judgment_not_invented_condition_matrix_is_authoritative" time="0.001" /><testcase classname="tests.test_b6_retrieval" name="test_bad_screening_output_cannot_approve[invented_id]" time="0.000" /><testcase classname="tests.test_b6_retrieval" name="test_bad_screening_output_cannot_approve[other_filename]" time="0.000" /><testcase classname="tests.test_b6_retrieval" name="test_bad_screening_output_cannot_approve[missing_ids]" time="0.000" /><testcase classname="tests.test_b6_retrieval" name="test_bad_screening_output_cannot_approve[bad_status]" time="0.000" /><testcase classname="tests.test_b6_retrieval" name="test_bad_screening_output_cannot_approve[bad_targets]" time="0.000" /><testcase classname="tests.test_b6_retrieval" name="test_missing_or_duplicate_rows_never_become_valid_empty_results" time="0.001" /><testcase classname="tests.test_b6_retrieval" name="test_uncertain_fulltext_expansion_is_once_and_evidence_is_original" time="0.001" /><testcase classname="tests.test_b6_retrieval" name="test_compact_evidence_budget_and_complementary_sections" time="0.003" /><testcase classname="tests.test_b6_retrieval" name="test_method_action_not_crowded_out_by_keyword_rich_background" time="0.002" /><testcase classname="tests.test_b6_retrieval" name="test_invalid_condition_does_not_discard_search_only_translation" time="0.001" /><testcase classname="tests.test_b_runtime_failures" name="test_one_unusable_or_non_pdf_file_does_not_abort_b[bad_pdf]" time="0.181" /><testcase classname="tests.test_b_runtime_failures" name="test_one_unusable_or_non_pdf_file_does_not_abort_b[bad_json]" time="0.177" /><testcase classname="tests.test_b_runtime_failures" name="test_one_unusable_or_non_pdf_file_does_not_abort_b[bad_text]" time="0.180" /><testcase classname="tests.test_b_runtime_failures" name="test_one_unusable_or_non_pdf_file_does_not_abort_b[duplicate_copy]" time="0.176" /><testcase classname="tests.test_b_runtime_failures" name="test_missing_material_keeps_b_schema_and_records_real_failure" time="0.017" /><testcase classname="tests.test_b_runtime_failures" name="test_explicit_pdf_library_scopes_work[*.pdf]" time="0.172" /><testcase classname="tests.test_b_runtime_failures" name="test_explicit_pdf_library_scopes_work[data/papers/*.pdf]" time="0.171" /><testcase classname="tests.test_b_runtime_failures" name="test_explicit_pdf_library_scopes_work[\u672c\u5730\u8bba\u6587\u6587\u4ef6\u5939\u4e0b\u7684 PDF]" time="0.172" /><testcase classname="tests.test_b_runtime_failures" name="test_b_errors_remain_visible_without_invalid_answer[all_bad]" time="0.017" /><testcase classname="tests.test_b_runtime_failures" name="test_b_errors_remain_visible_without_invalid_answer[ambiguous]" time="0.016" /><testcase classname="tests.test_b_runtime_failures" name="test_b_errors_remain_visible_without_invalid_answer[model_error]" time="0.094" /><testcase classname="tests.test_b_runtime_failures" name="test_b_errors_remain_visible_without_invalid_answer[timeout]" time="0.099" /><testcase classname="tests.test_b_runtime_failures" name="test_b_errors_remain_visible_without_invalid_answer[outside_scope]" time="0.020" /><testcase classname="tests.test_b_runtime_failures" name="test_b_corrupt_cache_is_rebuilt_from_authorized_pdf" time="0.341" /><testcase classname="tests.test_b_runtime_failures" name="test_b_write_denied_does_not_claim_saved" time="0.017" /><testcase classname="tests.test_b_runtime_failures" name="test_b_invalid_assignment_cannot_write_empty_answer" time="0.014" /><testcase classname="tests.test_b_runtime_failures" name="test_b_reads_real_pdf_text_without_expensive_table_detection" time="0.175" /><testcase classname="tests.test_batched_report" name="test_five_paper_report_uses_one_batch_and_persists_valid_result" time="0.033" /><testcase classname="tests.test_batched_report" name="test_batch_cannot_omit_a_paper" time="0.026" /><testcase classname="tests.test_batched_report" name="test_batch_rejects_a_quote_bound_to_another_paper" time="0.018" /><testcase classname="tests.test_bd208" name="test_b_audit_recovers_candidate_missing_from_every_screen" time="0.001" /><testcase classname="tests.test_bd208" name="test_b_empty_result_audit_reaches_beyond_old_twelve_without_fabrication" time="0.006" /><testcase classname="tests.test_bd208" name="test_b_final_review_reserves_deadline" time="0.000" /><testcase classname="tests.test_bd208" name="test_d_retry_only_for_incomplete_or_conflicting_review[ungrounded-execution0-ungrounded]" time="0.000" /><testcase classname="tests.test_bd208" name="test_d_retry_only_for_incomplete_or_conflicting_review[keep-execution1-keep_despite_test_failure]" time="0.001" /><testcase classname="tests.test_bd208" name="test_d_retry_only_for_incomplete_or_conflicting_review[keep-execution2-None]" time="0.000" /><testcase classname="tests.test_bd208" name="test_d_retry_only_for_incomplete_or_conflicting_review[keep-execution3-None]" time="0.001" /><testcase classname="tests.test_bd208" name="test_d_retry_only_for_incomplete_or_conflicting_review[repair-execution4-None]" time="0.000" /><testcase classname="tests.test_bd208" name="test_d_failed_test_keep_is_rechecked_without_forcing_repair[keep]" time="0.003" /><testcase classname="tests.test_bd208" name="test_d_failed_test_keep_is_rechecked_without_forcing_repair[repair]" time="0.004" /><testcase classname="tests.test_bd208" name="test_d_invalid_test_response_gets_one_recovery" time="0.003" /><testcase classname="tests.test_bd208" name="test_d_material_ids_bind_without_model_copying_or_inventing_quote" time="0.000" /><testcase classname="tests.test_bd208" name="test_d_object_string_confusion_is_caught_by_generated_contract_test" time="0.130" /><testcase classname="tests.test_bd208" name="test_b_empty_audit_does_not_reuse_strengthened_planner_target" time="0.001" /><testcase classname="tests.test_be207" name="test_category_budget_isolation[A-01-Chat-170-False]" time="0.001" /><testcase classname="tests.test_be207" name="test_category_budget_isolation[B-02-Literature_Retrieval-530-True]" time="0.001" /><testcase classname="tests.test_be207" name="test_category_budget_isolation[C-05-Survey-170-False]" time="0.002" /><testcase classname="tests.test_be207" name="test_category_budget_isolation[D-02-Reproduction-1780-True]" time="0.002" /><testcase classname="tests.test_be207" name="test_category_budget_isolation[E-04-Idea-885-True]" time="0.001" /><testcase classname="tests.test_be207" name="test_e_model_failure_after_old_180_second_boundary_can_recover" time="0.002" /><testcase classname="tests.test_be207" name="test_e_extended_window_restores_llm_and_does_not_extend_case_deadline" time="0.000" /><testcase classname="tests.test_be207" name="test_b_no_approval_checks_outside_original_pool" time="0.004" /><testcase classname="tests.test_be207" name="test_b_audit_has_bounded_calls_and_preserves_results" time="0.005" /><testcase classname="tests.test_be207" name="test_sdk_envelope_timeout_is_category_specific[E-04-900000]" time="0.001" /><testcase classname="tests.test_be207" name="test_sdk_envelope_timeout_is_category_specific[C-05-180000]" time="0.001" /><testcase classname="tests.test_be207" name="test_sdk_envelope_timeout_is_category_specific[B-02-540000]" time="0.001" /><testcase classname="tests.test_be207" name="test_sdk_envelope_timeout_is_category_specific[D-02-1800000]" time="0.001" /><testcase classname="tests.test_c200_recovery" name="test_normalize_explicit_known_ids[[E:ev-1,ev-2]]" time="0.001" /><testcase classname="tests.test_c200_recovery" name="test_normalize_explicit_known_ids[\uff3bE\uff1aev-1\uff0cev-2\uff3d]" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_normalize_explicit_known_ids[[e: EV-1; ev-2]]" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_normalize_explicit_known_ids[[ev-1,ev-2]]" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_unknown_ambiguous_ids_rejected[[E:ev-999]]" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_unknown_ambiguous_ids_rejected[[E:ev-1-ev-2]]" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_unknown_ambiguous_ids_rejected[[E:ev-1]" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_unknown_ambiguous_ids_rejected[[ev-1 nonsense]]" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_unknown_ambiguous_ids_rejected[\uff3bE\uff1a\u672a\u63d0\u4f9b\uff3d]" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_actual_citations_only" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_atomic_patch_rejects_other_paragraph" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_overlapping_patches_rejected" time="0.000" /><testcase classname="tests.test_c200_recovery" name="test_metadata_cannot_destroy_valid_body[None]" time="0.049" /><testcase classname="tests.test_c200_recovery" name="test_metadata_cannot_destroy_valid_body[metadata1]" time="0.034" /><testcase classname="tests.test_c200_recovery" name="test_metadata_cannot_destroy_valid_body[metadata2]" time="0.032" /><testcase classname="tests.test_c200_recovery" name="test_metadata_cannot_destroy_valid_body[metadata3]" time="0.033" /><testcase classname="tests.test_c200_recovery" name="test_metadata_cannot_destroy_valid_body[metadata4]" time="0.033" /><testcase classname="tests.test_c200_recovery" name="test_format_repair_and_bounded_regeneration[bad]" time="0.034" /><testcase classname="tests.test_c200_recovery" name="test_format_repair_and_bounded_regeneration[good]" time="0.034" /><testcase classname="tests.test_c200_recovery" name="test_format_repair_and_bounded_regeneration[persistent]" time="0.033" /><testcase classname="tests.test_c200_recovery" name="test_failed_semantic_patch_keeps_valid_draft" time="0.034" /><testcase classname="tests.test_c200_recovery" name="test_malformed_audit_never_loses_valid_body[None]" time="0.033" /><testcase classname="tests.test_c200_recovery" name="test_malformed_audit_never_loses_valid_body[bad1]" time="0.033" /><testcase classname="tests.test_c200_recovery" name="test_malformed_audit_never_loses_valid_body[ok]" time="0.032" /><testcase classname="tests.test_c200_recovery" name="test_malformed_audit_never_loses_valid_body[bad3]" time="0.032" /><testcase classname="tests.test_c200_recovery" name="test_abcde_prompt_isolation" time="0.064" /><testcase classname="tests.test_c200_recovery" name="test_recovery_does_not_start_without_time" time="0.031" /><testcase classname="tests.test_c200_recovery" name="test_shared_report_non_c_methods_unchanged" time="0.062" /><testcase classname="tests.test_c201_http" name="test_c_http_recovery_and_real_failure_status[recover-200]" time="0.044" /><testcase classname="tests.test_c201_http" name="test_c_http_recovery_and_real_failure_status[quota-500]" time="0.040" /><testcase classname="tests.test_c201_http" name="test_c_http_recovery_and_real_failure_status[always_invalid-500]" time="0.042" /><testcase classname="tests.test_c201_http" name="test_c_http_recovery_and_real_failure_status[metadata-200]" time="0.044" /><testcase classname="tests.test_c201_http" name="test_c_http_recovery_and_real_failure_status[bad_patch-200]" time="0.048" /><testcase classname="tests.test_cd2_isolation" name="test_baseline_only_checks_rank[True]" time="0.089" /><testcase classname="tests.test_cd2_isolation" name="test_baseline_only_checks_rank[False]" time="0.344" /><testcase classname="tests.test_cd2_isolation" name="test_rank_corrupt_scores_cannot_pass_on_ids_alone" time="0.103" /><testcase classname="tests.test_cd2_isolation" name="test_default_rank_does_not_require_dev_labels" time="0.096" /><testcase classname="tests.test_cd2_isolation" name="test_survey_reserves_method_results_and_limitations_with_continuous_quotes" time="0.036" /><testcase classname="tests.test_cd2_isolation" name="test_survey_excerpt_uses_focus_beyond_input_and_sentence_boundary" time="0.002" /><testcase classname="tests.test_cd2_isolation" name="test_c_prompt_has_one_consistent_target_and_no_program_appended_facts" time="0.012" /><testcase classname="tests.test_cd2_isolation" name="test_idea_prompt_path_is_dedicated" time="0.000" /><testcase classname="tests.test_cd2_isolation" name="test_d02_prompt_distinguishes_baseline_and_benchmark_field" time="0.026" /><testcase classname="tests.test_cd2_isolation" name="test_source_audit_deduplicates_excerpts_but_preserves_semantic_claims" time="0.001" /><testcase classname="tests.test_cd2_isolation" name="test_non_e_prompt_instructions_are_byte_identical" time="0.003" /><testcase classname="tests.test_cd2_isolation" name="test_real_model_omitted_rank_gets_actionable_diagnostic" time="0.084" /><testcase classname="tests.test_cd2_isolation" name="test_d02_late_repair_requests_new_baseline_source[80-True]" time="0.002"><failure message="KeyError: 'baseline_only'">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_d02_late_repair_requests_0')
+remaining = 80, expected_baseline = True
+
+    @pytest.mark.parametrize('remaining,expected_baseline', [(80,True),(90,True),(110,False)])
+    def test_d02_late_repair_requests_new_baseline_source(tmp_path,remaining,expected_baseline):
+        from test_eval_20261026_regressions import setup_d, response, SOURCE
+        from research_agent.core.session import CaseSession
+        import time
+        runner,current=setup_d(tmp_path, [])
+        modes=[]
+        def generate(case,**kwargs):
+            modes.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True,exist_ok=True)
+            p=runner.work/'implementation.py';p.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return p
+        runner.prepare_generated_implementation=generate
+        session=CaseSession(current.case_id,170)
+        def check(*args):
+            if len(modes)==1:
+                session.started_at=time.monotonic()+remaining-session.timeout
+                raise ValueError('public group mean mismatch')
+            return {'status':'passed','candidate_present':False}
+&gt;       with session.activate():runner.prepare_checked_implementation(current,tester=check)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_cd2_isolation.py:182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(case,**kwargs):
+&gt;       modes.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_cd2_isolation.py:170: KeyError</failure></testcase><testcase classname="tests.test_cd2_isolation" name="test_d02_late_repair_requests_new_baseline_source[90-True]" time="0.002"><failure message="KeyError: 'baseline_only'">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_d02_late_repair_requests_1')
+remaining = 90, expected_baseline = True
+
+    @pytest.mark.parametrize('remaining,expected_baseline', [(80,True),(90,True),(110,False)])
+    def test_d02_late_repair_requests_new_baseline_source(tmp_path,remaining,expected_baseline):
+        from test_eval_20261026_regressions import setup_d, response, SOURCE
+        from research_agent.core.session import CaseSession
+        import time
+        runner,current=setup_d(tmp_path, [])
+        modes=[]
+        def generate(case,**kwargs):
+            modes.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True,exist_ok=True)
+            p=runner.work/'implementation.py';p.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return p
+        runner.prepare_generated_implementation=generate
+        session=CaseSession(current.case_id,170)
+        def check(*args):
+            if len(modes)==1:
+                session.started_at=time.monotonic()+remaining-session.timeout
+                raise ValueError('public group mean mismatch')
+            return {'status':'passed','candidate_present':False}
+&gt;       with session.activate():runner.prepare_checked_implementation(current,tester=check)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_cd2_isolation.py:182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(case,**kwargs):
+&gt;       modes.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_cd2_isolation.py:170: KeyError</failure></testcase><testcase classname="tests.test_cd2_isolation" name="test_d02_late_repair_requests_new_baseline_source[110-False]" time="0.002"><failure message="KeyError: 'baseline_only'">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_d02_late_repair_requests_2')
+remaining = 110, expected_baseline = False
+
+    @pytest.mark.parametrize('remaining,expected_baseline', [(80,True),(90,True),(110,False)])
+    def test_d02_late_repair_requests_new_baseline_source(tmp_path,remaining,expected_baseline):
+        from test_eval_20261026_regressions import setup_d, response, SOURCE
+        from research_agent.core.session import CaseSession
+        import time
+        runner,current=setup_d(tmp_path, [])
+        modes=[]
+        def generate(case,**kwargs):
+            modes.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True,exist_ok=True)
+            p=runner.work/'implementation.py';p.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return p
+        runner.prepare_generated_implementation=generate
+        session=CaseSession(current.case_id,170)
+        def check(*args):
+            if len(modes)==1:
+                session.started_at=time.monotonic()+remaining-session.timeout
+                raise ValueError('public group mean mismatch')
+            return {'status':'passed','candidate_present':False}
+&gt;       with session.activate():runner.prepare_checked_implementation(current,tester=check)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_cd2_isolation.py:182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(case,**kwargs):
+&gt;       modes.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_cd2_isolation.py:170: KeyError</failure></testcase><testcase classname="tests.test_cd_runtime_regressions" name="test_metric_input_forms[\u6838\u5fc3\u6307\u6807\uff1aMacro-F1\uff08\u5206\u6570\uff09\u3001Accuracy\uff08%\uff09\u3001\u8fd0\u884c\u65f6\u95f4\uff08\u79d2\uff09\u3002]" time="0.000" /><testcase classname="tests.test_cd_runtime_regressions" name="test_metric_input_forms[name=Macro-F1, unit=\u5206\u6570\uff1bname=Accuracy, unit=%\uff1bname=\u8fd0\u884c\u65f6\u95f4, unit=\u79d2]" time="0.000" /><testcase classname="tests.test_cd_runtime_regressions" name="test_metric_input_forms[&quot;name&quot;:&quot;Macro-F1&quot;,&quot;unit&quot;:&quot;\u5206\u6570&quot;; &quot;name&quot;:&quot;Accuracy&quot;,&quot;unit&quot;:&quot;%&quot;; &quot;name&quot;:&quot;\u8fd0\u884c\u65f6\u95f4&quot;,&quot;unit&quot;:&quot;\u79d2&quot;]" time="0.000" /><testcase classname="tests.test_cd_runtime_regressions" name="test_metric_input_forms[|\u6307\u6807|\u5355\u4f4d|\n|---|---|\n|Macro-F1|\u5206\u6570|\n|Accuracy|%|\n|\u8fd0\u884c\u65f6\u95f4|\u79d2|]" time="0.000" /><testcase classname="tests.test_cd_runtime_regressions" name="test_d_protocol_order_and_identity_are_checked" time="0.002" /><testcase classname="tests.test_cd_runtime_regressions" name="test_d_natural_input_can_save_honest_missing_session" time="0.004" /><testcase classname="tests.test_cd_runtime_regressions" name="test_c_wrong_chunk_id_can_recover_only_exact_quote_in_same_paper" time="0.030" /><testcase classname="tests.test_cd_runtime_regressions" name="test_c_model_stages_reserve_time_and_restore_deadline" time="0.000" /><testcase classname="tests.test_cd_runtime_regressions" name="test_d_partial_measurements_require_exact_current_proof" time="0.001" /><testcase classname="tests.test_cd_runtime_regressions" name="test_d_client_partial_result_is_preserved" time="0.014"><failure message="AssertionError: assert ({'case_id': '...us': 'failed'} == {'case_id': '...us': 'failed'}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'figures': []} != {'figures': [{'caption': 'fixture partial', 'legend': 'baseline', 'path': 'data/figure/platform-id/D-01-partial.png', 'x_label': 'x', ...}]}&#10;  {'metrics': [{'name': 'Macro-F1', 'observed': None, 'reference': None, 'relative_error': None, ...}, {'name': 'Accurac...one, 'relative_error': None, ...}, {'name': '运行时间', 'observed': None, 'reference': None, 'relative_error': None, ...}]} != {'metrics': [{'name': 'Macro-F1', 'observed': 0.4, 'reference': None, 'relative_error': None, ...}, {'name': 'Accu...&#10;  &#10;  ...Full output truncated (2 lines hidden), use '-vv' to show)">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_d_client_partial_result_i0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7d115ca064d0&gt;
+
+    def test_d_client_partial_result_is_preserved(tmp_path, monkeypatch):
+        import subprocess
+        from research_agent.workflows.layered_d_runner import LayeredDRunner
+        from research_agent.workflows.experiments import failed_result
+        from research_agent.contracts.validation import validate_result
+        from PIL import Image
+        settings = Settings(tmp_path/'data', tmp_path/'out', 'platform-id')
+        runner = LayeredDRunner(settings, tmp_path/'work')
+        script = Path('/data/experiments/run_experiment.py')
+        original_exists = Path.is_file
+        monkeypatch.setattr(Path, 'is_file', lambda p: True if p == script else original_exists(p))
+        monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE','D-01')
+        source = tmp_path/'generated.py'
+        source.write_text('def run_experiment(request): return {}')
+        monkeypatch.setattr(runner, 'prepare_checked_implementation', lambda c: source)
+        relative = 'data/figure/platform-id/D-01-partial.png'
+        figure = runner.work/'experiment'/relative
+        figure.parent.mkdir(parents=True)
+        Image.new('RGB', (4,4)).save(figure)
+        result = failed_result('D-01', METRICS, 'failed')
+        result['metrics'][0]['observed'] = .4
+        result['figures'] = [dict(path=relative, caption='fixture partial', x_label='x', y_label='y', legend='baseline')]
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.subprocess.run', lambda *a,**kw: subprocess.CompletedProcess([],0,json.dumps(result),''))
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.sha256_file', lambda p: 'fixture-hash')
+        got = runner.run(CaseContext.from_dict(case('D-01')),METRICS)
+&gt;       assert got == result and (settings.output/relative).is_file()
+E       AssertionError: assert ({'case_id': '...us': 'failed'} == {'case_id': '...us': 'failed'}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'figures': []} != {'figures': [{'caption': 'fixture partial', 'legend': 'baseline', 'path': 'data/figure/platform-id/D-01-partial.png', 'x_label': 'x', ...}]}
+E         {'metrics': [{'name': 'Macro-F1', 'observed': None, 'reference': None, 'relative_error': None, ...}, {'name': 'Accurac...one, 'relative_error': None, ...}, {'name': '运行时间', 'observed': None, 'reference': None, 'relative_error': None, ...}]} != {'metrics': [{'name': 'Macro-F1', 'observed': 0.4, 'reference': None, 'relative_error': None, ...}, {'name': 'Accu...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show)
+
+tests/test_cd_runtime_regressions.py:126: AssertionError</failure></testcase><testcase classname="tests.test_cd_runtime_regressions" name="test_d_experiment_directory_is_not_parsed_as_paper" time="0.005" /><testcase classname="tests.test_cd_runtime_regressions" name="test_d_postprocessing_error_keeps_platform_result" time="0.014"><failure message="Failed: DID NOT RAISE &lt;class 'RuntimeError'&gt;">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_d_postprocessing_error_ke0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7d115cc38ad0&gt;
+
+    def test_d_postprocessing_error_keeps_platform_result(tmp_path, monkeypatch):
+        import subprocess
+        from research_agent.workflows.layered_d_runner import LayeredDRunner
+        from research_agent.workflows.experiments import failed_result
+        runner = LayeredDRunner(Settings(tmp_path/'data',tmp_path/'output'),tmp_path/'work')
+        monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE','D-01')
+        real = Path.is_file
+        monkeypatch.setattr(Path,'is_file',lambda p: True if str(p)=='/data/experiments/run_experiment.py' else real(p))
+        monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: tmp_path/'source.py')
+        original = failed_result('D-01',METRICS,'failed')
+        original['metrics'][0]['name'] = 'Wrong metric'
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.subprocess.run',lambda *a,**kw: subprocess.CompletedProcess([],0,json.dumps(original),''))
+&gt;       with pytest.raises(RuntimeError,match='postprocessing'):
+E       Failed: DID NOT RAISE &lt;class 'RuntimeError'&gt;
+
+tests/test_cd_runtime_regressions.py:157: Failed</failure></testcase><testcase classname="tests.test_claim_ledger_section.ClaimLedgerSectionTests" name="test_each_verified_claim_has_filename_page_and_id" time="0.001" /><testcase classname="tests.test_contract_044" name="test_report_length_counts_spaces_and_markdown_but_excludes_references[Survey-4500]" time="0.000" /><testcase classname="tests.test_contract_044" name="test_report_length_counts_spaces_and_markdown_but_excludes_references[Idea-6000]" time="0.000" /><testcase classname="tests.test_contract_044" name="test_survey_composite_and_repeated_citations_count_as_instances" time="0.000" /><testcase classname="tests.test_contract_044" name="test_output_mounted_library_is_selected_without_searching_team_directories" time="0.003" /><testcase classname="tests.test_contract_044" name="test_two_default_libraries_require_explicit_selection" time="0.002" /><testcase classname="tests.test_contract_044" name="test_absolute_authorized_file_still_rejects_symlinks_and_traversal" time="0.001" /><testcase classname="tests.test_contract_044" name="test_d_current_case_directory_reaches_runner_without_authorizing_other_cases" time="0.009" /><testcase classname="tests.test_contract_044" name="test_survey_global_citation_limit_requests_a_shorter_report_instead_of_full_document_patches" time="0.002" /><testcase classname="tests.test_contract_044" name="test_supplemental_report_extraction_preserves_time_for_writing_and_audit" time="0.000" /><testcase classname="tests.test_current_review" name="test_reject_stale_text_and_foreign_evidence" time="0.001" /><testcase classname="tests.test_current_review" name="test_reference_list_alone_cannot_earn_fact_credit" time="0.000" /><testcase classname="tests.test_current_review" name="test_partial_fact_does_not_receive_full_credit" time="0.000" /><testcase classname="tests.test_d205_budget" name="test_d_source_generation_after_90000_tokens_keeps_finite_output_limit" time="0.002" /><testcase classname="tests.test_d209" name="test_second_repair_preserves_best_source_response_pair[improve]" time="0.004" /><testcase classname="tests.test_d209" name="test_second_repair_preserves_best_source_response_pair[regress]" time="0.004" /><testcase classname="tests.test_d209" name="test_second_repair_preserves_best_source_response_pair[unchanged]" time="0.003" /><testcase classname="tests.test_d209" name="test_second_repair_preserves_best_source_response_pair[timeout]" time="0.003" /><testcase classname="tests.test_d209" name="test_second_repair_preserves_best_source_response_pair[invalid]" time="0.003" /><testcase classname="tests.test_d209" name="test_second_repair_preserves_best_source_response_pair[keep]" time="0.002" /><testcase classname="tests.test_d209" name="test_second_review_only_with_real_failure_and_time[execution0-1780]" time="0.002" /><testcase classname="tests.test_d209" name="test_second_review_only_with_real_failure_and_time[execution1-1000]" time="0.003" /><testcase classname="tests.test_d209" name="test_second_review_only_with_real_failure_and_time[execution2-1780]" time="0.002" /><testcase classname="tests.test_d209" name="test_runner_second_iteration_fixes_only_remaining_failure" time="0.005" /><testcase classname="tests.test_d210" name="test_independent_validation_preserves_source_pair[regression]" time="0.001" /><testcase classname="tests.test_d210" name="test_independent_validation_preserves_source_pair[wrong_oracle]" time="0.001" /><testcase classname="tests.test_d210" name="test_independent_validation_preserves_source_pair[improvement]" time="0.001" /><testcase classname="tests.test_d210" name="test_independent_validation_preserves_source_pair[timeout]" time="0.001" /><testcase classname="tests.test_d210" name="test_independent_validation_preserves_source_pair[unavailable]" time="0.001" /><testcase classname="tests.test_d210" name="test_independent_validation_preserves_source_pair[duplicate]" time="0.001" /><testcase classname="tests.test_d210" name="test_short_comparison_defect_is_not_discarded" time="0.000" /><testcase classname="tests.test_d210" name="test_holdout_reserves_time_before_reading_or_calling" time="0.001" /><testcase classname="tests.test_d_formal_20261102" name="test_current_materials_only[D-01]" time="0.000" /><testcase classname="tests.test_d_formal_20261102" name="test_current_materials_only[D-02]" time="0.000" /><testcase classname="tests.test_d_formal_20261102" name="test_current_materials_only[D-05]" time="0.000" /><testcase classname="tests.test_d_formal_20261102" name="test_no_practice_semantic_gate[D-01]" time="0.003" /><testcase classname="tests.test_d_formal_20261102" name="test_no_practice_semantic_gate[D-02]" time="0.003" /><testcase classname="tests.test_d_formal_20261102" name="test_no_practice_semantic_gate[D-05]" time="0.002" /><testcase classname="tests.test_d_formal_20261102" name="test_truncation_retry_bounded[1]" time="0.003" /><testcase classname="tests.test_d_formal_20261102" name="test_truncation_retry_bounded[2]" time="0.004" /><testcase classname="tests.test_d_formal_20261102" name="test_truncation_retry_bounded[3]" time="0.004" /><testcase classname="tests.test_d_formal_20261102" name="test_formal_entry_called_after_generation[D-02]" time="0.004" /><testcase classname="tests.test_d_formal_20261102" name="test_formal_entry_called_after_generation[D-05]" time="0.004" /><testcase classname="tests.test_d_formal_20261102" name="test_d_timeout_and_non_d_unchanged" time="0.001" /><testcase classname="tests.test_d_formal_20261102" name="test_window_restores_model_controls" time="0.000" /><testcase classname="tests.test_d_formal_20261102" name="test_packaging_excludes_old_semantic_modules" time="0.004" /><testcase classname="tests.test_d_formal_20261102" name="test_http_sdk_timeout[Reproduction-1800000]" time="0.001" /><testcase classname="tests.test_d_formal_20261102" name="test_http_sdk_timeout[Survey-180000]" time="0.001" /><testcase classname="tests.test_d_formal_20261102" name="test_http_sdk_timeout[Idea-900000]" time="0.001" /><testcase classname="tests.test_d_formal_20261102" name="test_http_sdk_timeout[Literature_Retrieval-540000]" time="0.001" /><testcase classname="tests.test_d_formal_20261102" name="test_http_sdk_timeout[Chat-180000]" time="0.001" /><testcase classname="tests.test_d_isolated_revision" name="test_d_generation_restores_every_instance_attribute_and_class_default[False]" time="0.001"><failure message="assert 420 &lt;= 95&#10; +  where 420 = &lt;test_d_isolated_revision.test_d_generation_restores_every_instance_attribute_and_class_default.&lt;locals&gt;.Model object at 0x7d115cd9dc50&gt;.REQUEST_TIMEOUT_CAP">failure = False
+
+    @pytest.mark.parametrize('failure', [False, True])
+    def test_d_generation_restores_every_instance_attribute_and_class_default(failure):
+        class Model:
+            REQUEST_TIMEOUT_CAP = 60
+            RETRY_ATTEMPTS = 2
+            def __init__(self):
+                self.deadline = time.monotonic() + 170
+        model = Model()
+        before = vars(model).copy()
+        try:
+            with generation_window(model, baseline=False):
+&gt;               assert model.REQUEST_TIMEOUT_CAP &lt;= 95
+E               assert 420 &lt;= 95
+E                +  where 420 = &lt;test_d_isolated_revision.test_d_generation_restores_every_instance_attribute_and_class_default.&lt;locals&gt;.Model object at 0x7d115cd9dc50&gt;.REQUEST_TIMEOUT_CAP
+
+tests/test_d_isolated_revision.py:33: AssertionError</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_d_generation_restores_every_instance_attribute_and_class_default[True]" time="0.001"><failure message="assert 420 &lt;= 95&#10; +  where 420 = &lt;test_d_isolated_revision.test_d_generation_restores_every_instance_attribute_and_class_default.&lt;locals&gt;.Model object at 0x7d115cc31410&gt;.REQUEST_TIMEOUT_CAP">failure = True
+
+    @pytest.mark.parametrize('failure', [False, True])
+    def test_d_generation_restores_every_instance_attribute_and_class_default(failure):
+        class Model:
+            REQUEST_TIMEOUT_CAP = 60
+            RETRY_ATTEMPTS = 2
+            def __init__(self):
+                self.deadline = time.monotonic() + 170
+        model = Model()
+        before = vars(model).copy()
+        try:
+            with generation_window(model, baseline=False):
+&gt;               assert model.REQUEST_TIMEOUT_CAP &lt;= 95
+E               assert 420 &lt;= 95
+E                +  where 420 = &lt;test_d_isolated_revision.test_d_generation_restores_every_instance_attribute_and_class_default.&lt;locals&gt;.Model object at 0x7d115cc31410&gt;.REQUEST_TIMEOUT_CAP
+
+tests/test_d_isolated_revision.py:33: AssertionError</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_first_generation_strategy_is_case_scoped[D-01-False]" time="0.002"><failure message="KeyError: 'baseline_only'">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_first_generation_strategy0')
+case_id = 'D-01', baseline = False
+
+    @pytest.mark.parametrize('case_id, baseline', [('D-01', False), ('D-02', False), ('D-05', False)])
+    def test_first_generation_strategy_is_case_scoped(tmp_path, case_id, baseline):
+        runner, _ = setup_d(tmp_path, [])
+        (tmp_path/'D-02').rename(tmp_path/case_id) if case_id != 'D-02' else None
+        current = CaseContext.from_dict(case(case_id))
+        calls = []
+        def generate(current, **kwargs):
+            calls.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True, exist_ok=True)
+            path = runner.work/'implementation.py'; path.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return path
+        runner.prepare_generated_implementation = generate
+&gt;       runner.prepare_checked_implementation(current, tester=lambda *args: {'status':'passed', 'candidate_present':not baseline})
+
+tests/test_d_isolated_revision.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+current = CaseContext(case_id='D-01', function='Reproduction', title='Synthetic research fixture', input='name=Macro-F1, unit=分数...%; name=运行时间, unit=秒。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(current, **kwargs):
+&gt;       calls.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_d_isolated_revision.py:52: KeyError</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_first_generation_strategy_is_case_scoped[D-02-False]" time="0.002"><failure message="KeyError: 'baseline_only'">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_first_generation_strategy1')
+case_id = 'D-02', baseline = False
+
+    @pytest.mark.parametrize('case_id, baseline', [('D-01', False), ('D-02', False), ('D-05', False)])
+    def test_first_generation_strategy_is_case_scoped(tmp_path, case_id, baseline):
+        runner, _ = setup_d(tmp_path, [])
+        (tmp_path/'D-02').rename(tmp_path/case_id) if case_id != 'D-02' else None
+        current = CaseContext.from_dict(case(case_id))
+        calls = []
+        def generate(current, **kwargs):
+            calls.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True, exist_ok=True)
+            path = runner.work/'implementation.py'; path.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return path
+        runner.prepare_generated_implementation = generate
+&gt;       runner.prepare_checked_implementation(current, tester=lambda *args: {'status':'passed', 'candidate_present':not baseline})
+
+tests/test_d_isolated_revision.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+current = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(current, **kwargs):
+&gt;       calls.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_d_isolated_revision.py:52: KeyError</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_first_generation_strategy_is_case_scoped[D-05-False]" time="0.001"><failure message="KeyError: 'baseline_only'">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_first_generation_strategy2')
+case_id = 'D-05', baseline = False
+
+    @pytest.mark.parametrize('case_id, baseline', [('D-01', False), ('D-02', False), ('D-05', False)])
+    def test_first_generation_strategy_is_case_scoped(tmp_path, case_id, baseline):
+        runner, _ = setup_d(tmp_path, [])
+        (tmp_path/'D-02').rename(tmp_path/case_id) if case_id != 'D-02' else None
+        current = CaseContext.from_dict(case(case_id))
+        calls = []
+        def generate(current, **kwargs):
+            calls.append(kwargs['baseline_only'])
+            runner.work.mkdir(parents=True, exist_ok=True)
+            path = runner.work/'implementation.py'; path.write_text(SOURCE)
+            (runner.work/'generation-response.json').write_text(json.dumps(response()))
+            return path
+        runner.prepare_generated_implementation = generate
+&gt;       runner.prepare_checked_implementation(current, tester=lambda *args: {'status':'passed', 'candidate_present':not baseline})
+
+tests/test_d_isolated_revision.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+current = CaseContext(case_id='D-05', function='Reproduction', title='Synthetic research fixture', input='name=公平性 Jain 指数, unit...name=平均等待时间, unit=ms。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+kwargs = {'attempt': 1, 'feedback': None}
+
+    def generate(current, **kwargs):
+&gt;       calls.append(kwargs['baseline_only'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'baseline_only'
+
+tests/test_d_isolated_revision.py:52: KeyError</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_cancelled_d_does_not_retry_or_submit_source" time="0.002"><failure message="RuntimeError: no complete current-session model source available">self = &lt;research_agent.workflows.layered_d_runner.LayeredDRunner object at 0x7d115cc4e310&gt;
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+tester = &lt;function test_cancelled_d_does_not_retry_or_submit_source.&lt;locals&gt;.tester at 0x7d115cd09da0&gt;
+
+    def prepare_checked_implementation(self, case, tester=None):
+        """Only generic syntax/source checks gate formal execution; no old-task oracle."""
+        history = []
+        feedback = None
+        for attempt in range(1, 4):
+            try:
+&gt;               path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/research_agent/workflows/layered_d_runner.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:99: in prepare_generated_implementation
+    with generation_window(self.llm, baseline=baseline_only, case_id=case.case_id):
+/usr/local/lib/python3.11/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+src/research_agent/workflows/d_generation_policy.py:12: in generation_window
+    cap = min(cap, session.remaining(reserve=300))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = CaseSession(case_id='D-02', timeout=170, cancelled=&lt;threading.Event at 0x7d115cc4fe50: unset&gt;, started_at=240.867211021, stage='received', stages=[])
+reserve = 300
+
+    def remaining(self, reserve=0):
+        self.checkpoint()
+        value = self.deadline - time.monotonic() - reserve
+        if value &lt;= 0:
+&gt;           raise TimeoutError("insufficient case time reserved for next stage")
+E           TimeoutError: insufficient case time reserved for next stage
+
+src/research_agent/core/session.py:31: TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_cancelled_d_does_not_retr0')
+
+    def test_cancelled_d_does_not_retry_or_submit_source(tmp_path):
+        runner, current = setup_d(tmp_path, [response(), response()])
+        cancelled = threading.Event()
+        def tester(*args):
+            cancelled.set()
+            raise ValueError('failed sample while cancelled')
+        with CaseSession(current.case_id, 170, cancelled=cancelled).activate():
+            with pytest.raises(TimeoutError, match='cancelled'):
+&gt;               runner.prepare_checked_implementation(current, tester=tester)
+
+tests/test_d_isolated_revision.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;research_agent.workflows.layered_d_runner.LayeredDRunner object at 0x7d115cc4e310&gt;
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+tester = &lt;function test_cancelled_d_does_not_retry_or_submit_source.&lt;locals&gt;.tester at 0x7d115cd09da0&gt;
+
+    def prepare_checked_implementation(self, case, tester=None):
+        """Only generic syntax/source checks gate formal execution; no old-task oracle."""
+        history = []
+        feedback = None
+        for attempt in range(1, 4):
+            try:
+                path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                # save_source already checks complete response, Python syntax and entry point.
+                write_json(confined(self.work, 'public-selftest.json'), {
+                    'mode': 'generic_source_checks_only', 'semantic_selftest_performed': False,
+                    'selected_attempt': attempt, 'attempts': history,
+                    'source_sha256': sha256_file(path)})
+                return path
+            except ModelQuotaError:
+                raise
+            except (ModelError, ValueError, SyntaxError, RuntimeError, TimeoutError) as exc:
+                feedback = {'error_type': type(exc).__name__,
+                            'message': 'Return one complete syntactically valid implementation matching current materials.'}
+                history.append({'attempt': attempt, 'error_type': type(exc).__name__})
+                write_json(confined(self.work, 'public-selftest.json'), {'attempts': history})
+                session = current_session()
+                if attempt == 3 or (session and session.remaining() &lt; 420):
+&gt;                   raise RuntimeError('no complete current-session model source available') from exc
+E                   RuntimeError: no complete current-session model source available
+
+src/research_agent/workflows/layered_d_runner.py:130: RuntimeError</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_platform_service_failure_is_not_algorithm_failed[D_SOURCE_AUDIT_UNAVAILABLE]" time="0.003"><failure message="Failed: DID NOT RAISE &lt;class 'research_agent.workflows.d_generation_policy.PlatformExperimentUnavailable'&gt;">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_platform_service_failure_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7d115ca07c10&gt;
+error = 'D_SOURCE_AUDIT_UNAVAILABLE'
+
+    @pytest.mark.parametrize('error', ['D_SOURCE_AUDIT_UNAVAILABLE', 'HTTP Error 503: Service Unavailable'])
+    def test_platform_service_failure_is_not_algorithm_failed(tmp_path, monkeypatch, error):
+        runner, current = setup_d(tmp_path, [])
+        calls = enable_client(monkeypatch, runner, current, stderr='RuntimeError: '+error, code=1)
+&gt;       with pytest.raises(PlatformExperimentUnavailable):
+E       Failed: DID NOT RAISE &lt;class 'research_agent.workflows.d_generation_policy.PlatformExperimentUnavailable'&gt;
+
+tests/test_d_isolated_revision.py:93: Failed</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_platform_service_failure_is_not_algorithm_failed[HTTP Error 503: Service Unavailable]" time="0.002"><failure message="Failed: DID NOT RAISE &lt;class 'research_agent.workflows.d_generation_policy.PlatformExperimentUnavailable'&gt;">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_platform_service_failure_1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7d115ccee050&gt;
+error = 'HTTP Error 503: Service Unavailable'
+
+    @pytest.mark.parametrize('error', ['D_SOURCE_AUDIT_UNAVAILABLE', 'HTTP Error 503: Service Unavailable'])
+    def test_platform_service_failure_is_not_algorithm_failed(tmp_path, monkeypatch, error):
+        runner, current = setup_d(tmp_path, [])
+        calls = enable_client(monkeypatch, runner, current, stderr='RuntimeError: '+error, code=1)
+&gt;       with pytest.raises(PlatformExperimentUnavailable):
+E       Failed: DID NOT RAISE &lt;class 'research_agent.workflows.d_generation_policy.PlatformExperimentUnavailable'&gt;
+
+tests/test_d_isolated_revision.py:93: Failed</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_source_rejection_returns_honest_failed_schema_without_formal_retry" time="0.002"><failure message="assert 0 == 1&#10; +  where 0 = len([])">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_source_rejection_returns_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7d115ccecc50&gt;
+
+    def test_source_rejection_returns_honest_failed_schema_without_formal_retry(tmp_path, monkeypatch):
+        runner, current = setup_d(tmp_path, [])
+        calls = enable_client(monkeypatch, runner, current, stderr='RuntimeError: D_SOURCE_NOT_GENERATED_THIS_SESSION', code=1)
+        specs = [('m1','u1'), ('m2','u2'), ('m3','u3')]
+        result = runner.run(current, specs)
+        assert result == runner._failed(current.case_id, specs, 'failed')
+&gt;       assert len(calls) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests/test_d_isolated_revision.py:106: AssertionError</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_platform_partial_measurements_and_figures_are_preserved" time="0.003"><failure message="AssertionError: assert {'case_id': '...us': 'failed'} == {'case_id': '...us': 'failed'}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'metrics': [{'name': 'm1', 'observed': None, 'reference': None, 'relative_error': None, ...}, {'name': 'm2', 'observe... None, 'relative_error': None, ...}, {'name': 'm3', 'observed': None, 'reference': None, 'relative_error': None, ...}]} != {'metrics': [{'name': 'm1', 'observed': 2, 'reference': None, 'relative_error': None, ...}, {'name': 'm2', 'observed':... None, 'relative_error': None, ...}, {'name': 'm3', 'observed': None, 'reference': None, 'relative_error': None, ...}]}&#10;  Use -v to get more diff">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_platform_partial_measurem0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7d115cc87a10&gt;
+
+    def test_platform_partial_measurements_and_figures_are_preserved(tmp_path, monkeypatch):
+        runner, current = setup_d(tmp_path, [])
+        metrics = [{'name':n, 'unit':u, 'reference':None, 'observed':v, 'relative_error':None}
+                   for n,u,v in [('m1','u1',2),('m2','u2',None),('m3','u3',None)]]
+        result = {'case_id':current.case_id,'status':'failed','metrics':metrics,'figures':[]}
+        enable_client(monkeypatch, runner, current, reply=result)
+&gt;       assert runner.run(current, [(m['name'],m['unit']) for m in metrics]) == result
+E       AssertionError: assert {'case_id': '...us': 'failed'} == {'case_id': '...us': 'failed'}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'metrics': [{'name': 'm1', 'observed': None, 'reference': None, 'relative_error': None, ...}, {'name': 'm2', 'observe... None, 'relative_error': None, ...}, {'name': 'm3', 'observed': None, 'reference': None, 'relative_error': None, ...}]} != {'metrics': [{'name': 'm1', 'observed': 2, 'reference': None, 'relative_error': None, ...}, {'name': 'm2', 'observed':... None, 'relative_error': None, ...}, {'name': 'm3', 'observed': None, 'reference': None, 'relative_error': None, ...}]}
+E         Use -v to get more diff
+
+tests/test_d_isolated_revision.py:115: AssertionError</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_postprocessing_failure_never_replaces_received_platform_result" time="0.002"><failure message="Failed: DID NOT RAISE &lt;class 'RuntimeError'&gt;">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_postprocessing_failure_ne0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7d115cb0acd0&gt;
+
+    def test_postprocessing_failure_never_replaces_received_platform_result(tmp_path, monkeypatch):
+        runner, current = setup_d(tmp_path, [])
+        result = {'case_id':current.case_id,'status':'completed','metrics':[],'figures':[]}
+        enable_client(monkeypatch, runner, current, reply=result)
+        def missing(*args):
+            raise FileNotFoundError('figure unavailable')
+        monkeypatch.setattr(runner, '_copy_figures', missing)
+&gt;       with pytest.raises(RuntimeError, match='postprocessing'):
+E       Failed: DID NOT RAISE &lt;class 'RuntimeError'&gt;
+
+tests/test_d_isolated_revision.py:126: Failed</failure></testcase><testcase classname="tests.test_d_isolated_revision" name="test_d01_detects_false_idf_even_when_predictions_consistent" time="0.025" /><testcase classname="tests.test_d_isolated_revision" name="test_d02_detects_fabricated_group_statistics" time="0.014" /><testcase classname="tests.test_d_isolated_revision" name="test_d02_detects_rankings_that_ignore_query_tokens" time="0.008" /><testcase classname="tests.test_d_isolated_revision" name="test_d05_detects_missing_flow_switch_cost" time="0.006" /><testcase classname="tests.test_d_isolated_revision" name="test_d05_reject_then_dispatch_regression" time="0.326" /><testcase classname="tests.test_d_isolated_revision" name="test_d05_arrival_event_must_not_skip_dispatch" time="0.074" /><testcase classname="tests.test_d_isolated_revision" name="test_d_generation_failure_then_c_uses_fresh_state" time="0.094" /><testcase classname="tests.test_d_official_client_flow" name="test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-02]" time="0.505"><failure message="AssertionError: assert [] == ['/source', '/run']&#10;  &#10;  Right contains 2 more items, first extra item: '/source'&#10;  Use -v to get more diff">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_unmodified_client_calls_s0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7d115cd547d0&gt;
+case_id = 'D-02'
+
+    @pytest.mark.parametrize('case_id', ['D-02','D-05'])
+    def test_unmodified_client_calls_source_then_run_despite_public_sample_failure(tmp_path, monkeypatch, case_id):
+        source = 'def run_experiment(request):\n    return {"baseline": {}, "candidate": None, "details": {}}\n'
+        class Model:
+            def completion(self, *args, **kwargs):
+                return {'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':source}}]}
+        protocol = json.loads((CLIENT.parent/case_id/'protocol.json').read_text())
+        specs = [(m['name'],m['unit']) for m in protocol['metrics']]
+        submission = LayeredDRunner._failed(case_id, specs, 'failed')
+        calls = []
+        class RPC(BaseHTTPRequestHandler):
+            def do_POST(self):
+                payload = json.loads(self.rfile.read(int(self.headers['Content-Length'])))
+                calls.append((self.path,payload))
+                assert self.headers['Authorization'] == 'Bearer local-test-token'
+                assert payload['case_id'] == case_id
+                if self.path == '/source':
+                    assert payload['implementation_source'] == source
+                    result = {'source_credential':'local-fixture-only'}
+                else:
+                    assert self.path == '/run'
+                    assert payload['source_credential'] == 'local-fixture-only'
+                    result = {'status':'complete','case_id':case_id,'submission':submission}
+                data = json.dumps(result).encode()
+                self.send_response(200)
+                self.send_header('Content-Length',str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+            def log_message(self, *args):
+                pass
+        socket = tmp_path/'rpc.sock'
+        server = UnixStreamServer(str(socket),RPC)
+        thread = Thread(target=server.serve_forever,daemon=True)
+        thread.start()
+        for key, value in dict(RESEARCH_EXPERIMENT_CASE=case_id,RESEARCH_EXPERIMENT_URL='unix://'+str(socket),
+            RESEARCH_EXPERIMENT_TOKEN='local-test-token',RESEARCH_LAYERED_D='layered-d-v3',
+            RESEARCH_D_SOURCE_PROVENANCE='d-model-source-v1',RESEARCH_WORKSPACE_TEAM='runtime-id').items():
+            monkeypatch.setenv(key,value)
+        runner = LayeredDRunner(Settings(CLIENT.parent,tmp_path/'out','runtime-id'),tmp_path/'work',Model())
+        prepare = runner.prepare_checked_implementation
+        def failed_test(*args):
+            raise ValueError('public example constraint mismatch')
+        monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: prepare(c,tester=failed_test))
+        try:
+            with CaseSession(case_id,170).activate():
+                result = runner.run(CaseContext.from_dict(case(case_id)),specs)
+        finally:
+            server.shutdown()
+            thread.join()
+            server.server_close()
+&gt;       assert [path for path,_ in calls] == ['/source','/run']
+E       AssertionError: assert [] == ['/source', '/run']
+E         
+E         Right contains 2 more items, first extra item: '/source'
+E         Use -v to get more diff
+
+tests/test_d_official_client_flow.py:72: AssertionError</failure></testcase><testcase classname="tests.test_d_official_client_flow" name="test_unmodified_client_calls_source_then_run_despite_public_sample_failure[D-05]" time="0.505"><failure message="AssertionError: assert [] == ['/source', '/run']&#10;  &#10;  Right contains 2 more items, first extra item: '/source'&#10;  Use -v to get more diff">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_unmodified_client_calls_s1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7d115cb5ec10&gt;
+case_id = 'D-05'
+
+    @pytest.mark.parametrize('case_id', ['D-02','D-05'])
+    def test_unmodified_client_calls_source_then_run_despite_public_sample_failure(tmp_path, monkeypatch, case_id):
+        source = 'def run_experiment(request):\n    return {"baseline": {}, "candidate": None, "details": {}}\n'
+        class Model:
+            def completion(self, *args, **kwargs):
+                return {'choices':[{'finish_reason':'stop','message':{'role':'assistant','content':source}}]}
+        protocol = json.loads((CLIENT.parent/case_id/'protocol.json').read_text())
+        specs = [(m['name'],m['unit']) for m in protocol['metrics']]
+        submission = LayeredDRunner._failed(case_id, specs, 'failed')
+        calls = []
+        class RPC(BaseHTTPRequestHandler):
+            def do_POST(self):
+                payload = json.loads(self.rfile.read(int(self.headers['Content-Length'])))
+                calls.append((self.path,payload))
+                assert self.headers['Authorization'] == 'Bearer local-test-token'
+                assert payload['case_id'] == case_id
+                if self.path == '/source':
+                    assert payload['implementation_source'] == source
+                    result = {'source_credential':'local-fixture-only'}
+                else:
+                    assert self.path == '/run'
+                    assert payload['source_credential'] == 'local-fixture-only'
+                    result = {'status':'complete','case_id':case_id,'submission':submission}
+                data = json.dumps(result).encode()
+                self.send_response(200)
+                self.send_header('Content-Length',str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+            def log_message(self, *args):
+                pass
+        socket = tmp_path/'rpc.sock'
+        server = UnixStreamServer(str(socket),RPC)
+        thread = Thread(target=server.serve_forever,daemon=True)
+        thread.start()
+        for key, value in dict(RESEARCH_EXPERIMENT_CASE=case_id,RESEARCH_EXPERIMENT_URL='unix://'+str(socket),
+            RESEARCH_EXPERIMENT_TOKEN='local-test-token',RESEARCH_LAYERED_D='layered-d-v3',
+            RESEARCH_D_SOURCE_PROVENANCE='d-model-source-v1',RESEARCH_WORKSPACE_TEAM='runtime-id').items():
+            monkeypatch.setenv(key,value)
+        runner = LayeredDRunner(Settings(CLIENT.parent,tmp_path/'out','runtime-id'),tmp_path/'work',Model())
+        prepare = runner.prepare_checked_implementation
+        def failed_test(*args):
+            raise ValueError('public example constraint mismatch')
+        monkeypatch.setattr(runner,'prepare_checked_implementation',lambda c: prepare(c,tester=failed_test))
+        try:
+            with CaseSession(case_id,170).activate():
+                result = runner.run(CaseContext.from_dict(case(case_id)),specs)
+        finally:
+            server.shutdown()
+            thread.join()
+            server.server_close()
+&gt;       assert [path for path,_ in calls] == ['/source','/run']
+E       AssertionError: assert [] == ['/source', '/run']
+E         
+E         Right contains 2 more items, first extra item: '/source'
+E         Use -v to get more diff
+
+tests/test_d_official_client_flow.py:72: AssertionError</failure></testcase><testcase classname="tests.test_db203" name="test_d_review_failure_preserves_exact_source_response_pair[truncated]" time="0.002" /><testcase classname="tests.test_db203" name="test_d_review_failure_preserves_exact_source_response_pair[transport]" time="0.003" /><testcase classname="tests.test_db203" name="test_d_review_failure_preserves_exact_source_response_pair[quota]" time="0.002" /><testcase classname="tests.test_db203" name="test_d_review_selects_matching_complete_response" time="0.003" /><testcase classname="tests.test_db203" name="test_d_review_skips_when_official_execution_budget_needed[500-40000]" time="0.002" /><testcase classname="tests.test_db203" name="test_d_review_skips_when_official_execution_budget_needed[1780-1000]" time="0.002" /><testcase classname="tests.test_db203" name="test_b_omitted_response_gets_fulltext_not_same_shallow_evidence" time="0.001" /><testcase classname="tests.test_db203" name="test_b_window_restores_instance_settings" time="0.001" /><testcase classname="tests.test_db204" name="test_d_unsubstantiated_review_never_rewrites[content0]" time="0.003" /><testcase classname="tests.test_db204" name="test_d_unsubstantiated_review_never_rewrites[content1]" time="0.003" /><testcase classname="tests.test_db204" name="test_d_unsubstantiated_review_never_rewrites[None]" time="0.003" /><testcase classname="tests.test_db204" name="test_malformed_d_review_is_not_a_source_replacement[None]" time="0.000" /><testcase classname="tests.test_db204" name="test_malformed_d_review_is_not_a_source_replacement[bad1]" time="0.000" /><testcase classname="tests.test_db204" name="test_malformed_d_review_is_not_a_source_replacement[bad2]" time="0.000" /><testcase classname="tests.test_db204" name="test_malformed_d_review_is_not_a_source_replacement[bad3]" time="0.000" /><testcase classname="tests.test_db204" name="test_b_reserves_recovery_before_spending_whole_budget" time="0.006" /><testcase classname="tests.test_db204" name="test_b_recovery_splits_large_fulltext_batch_before_model_rejection" time="0.002" /><testcase classname="tests.test_db204" name="test_only_bd_remove_local_total_token_limit[A-01]" time="0.001" /><testcase classname="tests.test_db204" name="test_only_bd_remove_local_total_token_limit[B-02]" time="0.001" /><testcase classname="tests.test_db204" name="test_only_bd_remove_local_total_token_limit[C-03]" time="0.001" /><testcase classname="tests.test_db204" name="test_only_bd_remove_local_total_token_limit[D-02]" time="0.001" /><testcase classname="tests.test_db204" name="test_only_bd_remove_local_total_token_limit[E-01]" time="0.001" /><testcase classname="tests.test_db206" name="test_fenced_review_and_one_bad_defect_do_not_erase_good_diagnosis" time="0.001" /><testcase classname="tests.test_db206" name="test_invalid_review_is_distinct_from_keep[content0]" time="0.000" /><testcase classname="tests.test_db206" name="test_invalid_review_is_distinct_from_keep[None]" time="0.000" /><testcase classname="tests.test_db206" name="test_invalid_review_is_distinct_from_keep[content2]" time="0.000" /><testcase classname="tests.test_db206" name="test_test_plan_requires_real_material_and_json_expected" time="0.000" /><testcase classname="tests.test_db206" name="test_local_result_comparison[actual0-expected0-True]" time="0.000" /><testcase classname="tests.test_db206" name="test_local_result_comparison[actual1-expected1-False]" time="0.000" /><testcase classname="tests.test_db206" name="test_local_result_comparison[True-1-False]" time="0.000" /><testcase classname="tests.test_db206" name="test_local_result_comparison[1.000000001-1.0-True]" time="0.000" /><testcase classname="tests.test_db206" name="test_local_result_comparison[actual4-expected4-False]" time="0.001" /><testcase classname="tests.test_db206" name="test_isolated_worker_computes_and_denies_files_network_and_processes" time="0.373" /><testcase classname="tests.test_db206" name="test_wrong_algorithm_is_detected_and_regressing_repair_rejected" time="0.129" /><testcase classname="tests.test_db206" name="test_b_valid_ids_alone_cannot_approve_a_contradicted_condition" time="0.001" /><testcase classname="tests.test_db206" name="test_b_terminal_fulltext_audit_corrects_false_positive_and_false_negative" time="0.001" /><testcase classname="tests.test_db206" name="test_b_malformed_audit_preserves_previous_sourced_approval" time="0.001" /><testcase classname="tests.test_db206" name="test_d_regressing_rewrite_preserves_original_source_response_pair" time="0.011" /><testcase classname="tests.test_db206" name="test_d_empty_invalid_test_plan_retries_once_and_does_not_prevent_formal_candidate" time="0.003" /><testcase classname="tests.test_db206" name="test_b_condition_ids_bind_to_original_task_without_retyping_chinese" time="0.000" /><testcase classname="tests.test_db206" name="test_integer_contract_does_not_accept_float_or_overflow" time="0.000" /><testcase classname="tests.test_db206" name="test_b_irrelevant_extra_condition_does_not_erase_grounded_counterevidence" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_non_idea_prompts_equal_committed_baseline" time="0.042" /><testcase classname="tests.test_de3_isolation" name="test_c_audit_request_equal_committed_baseline" time="0.042" /><testcase classname="tests.test_de3_isolation" name="test_e_coverage_cannot_be_inferred_from_ok_or_headings" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_e_sources_cover_evidence_facets_with_bounded_continuous_quotes" time="0.007" /><testcase classname="tests.test_de3_isolation" name="test_d05_replay_rejects_fifo_disguised_as_fair_candidate" time="0.001" /><testcase classname="tests.test_de3_isolation" name="test_d05_replay_checks_drop_reason_and_exact_window" time="0.001" /><testcase classname="tests.test_de3_isolation" name="test_d02_broader_cases_check_non_degenerate_search" time="0.597" /><testcase classname="tests.test_de3_isolation" name="test_previous_real_model_busy_server_bug_is_detected" time="0.406" /><testcase classname="tests.test_de3_isolation" name="test_d02_empty_document_lengths_are_not_inflated" time="0.093" /><testcase classname="tests.test_de3_isolation" name="test_e_repairs_by_paragraph_id_and_preserves_complete_model_draft" time="0.001" /><testcase classname="tests.test_de3_isolation" name="test_e_plan_only_accepts_verbatim_authorized_sources[False]" time="0.026" /><testcase classname="tests.test_de3_isolation" name="test_e_plan_only_accepts_verbatim_authorized_sources[True]" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_e_plan_uses_existing_gateway_stage_and_specific_prompt" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_d02_wrong_tie_direction_reports_expected_and_actual_config" time="0.081" /><testcase classname="tests.test_de3_isolation" name="test_e_repair_rejects_unknown_or_malformed_paragraph_ids[p99]" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_e_repair_rejects_unknown_or_malformed_paragraph_ids[None]" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_e_repair_rejects_unknown_or_malformed_paragraph_ids[key2]" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_e_bad_audit_fields_are_diagnostics_not_runtime_errors[override0]" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_e_bad_audit_fields_are_diagnostics_not_runtime_errors[override1]" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_e_bad_audit_fields_are_diagnostics_not_runtime_errors[override2]" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_e_bad_audit_fields_are_diagnostics_not_runtime_errors[override3]" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_e_audit_can_locate_multiple_nonadjacent_paragraphs" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_d_reasoning_is_case_scoped_and_restored[D-02-False-enabled]" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_d_reasoning_is_case_scoped_and_restored[D-02-True-disabled]" time="0.001"><failure message="AssertionError: assert 'enabled' == 'disabled'&#10;  &#10;  - disabled&#10;  + enabled">cid = 'D-02', baseline = True, thinking = 'disabled'
+
+    @pytest.mark.parametrize('cid,baseline,thinking', [('D-02',False,'enabled'),('D-02',True,'disabled'),('D-05',False,'disabled'),('D-01',False,'disabled')])
+    def test_d_reasoning_is_case_scoped_and_restored(cid,baseline,thinking):
+        from research_agent.workflows.d_generation_policy import generation_window
+        class Model:
+            REQUEST_TIMEOUT_CAP=60
+            RETRY_ATTEMPTS=2
+        model=Model(); before=vars(model).copy()
+        with generation_window(model,baseline=baseline,case_id=cid):
+&gt;           assert model.thinking_override==thinking
+E           AssertionError: assert 'enabled' == 'disabled'
+E             
+E             - disabled
+E             + enabled
+
+tests/test_de3_isolation.py:235: AssertionError</failure></testcase><testcase classname="tests.test_de3_isolation" name="test_d_reasoning_is_case_scoped_and_restored[D-05-False-disabled]" time="0.001"><failure message="AssertionError: assert 'enabled' == 'disabled'&#10;  &#10;  - disabled&#10;  + enabled">cid = 'D-05', baseline = False, thinking = 'disabled'
+
+    @pytest.mark.parametrize('cid,baseline,thinking', [('D-02',False,'enabled'),('D-02',True,'disabled'),('D-05',False,'disabled'),('D-01',False,'disabled')])
+    def test_d_reasoning_is_case_scoped_and_restored(cid,baseline,thinking):
+        from research_agent.workflows.d_generation_policy import generation_window
+        class Model:
+            REQUEST_TIMEOUT_CAP=60
+            RETRY_ATTEMPTS=2
+        model=Model(); before=vars(model).copy()
+        with generation_window(model,baseline=baseline,case_id=cid):
+&gt;           assert model.thinking_override==thinking
+E           AssertionError: assert 'enabled' == 'disabled'
+E             
+E             - disabled
+E             + enabled
+
+tests/test_de3_isolation.py:235: AssertionError</failure></testcase><testcase classname="tests.test_de3_isolation" name="test_d_reasoning_is_case_scoped_and_restored[D-01-False-disabled]" time="0.001"><failure message="AssertionError: assert 'enabled' == 'disabled'&#10;  &#10;  - disabled&#10;  + enabled">cid = 'D-01', baseline = False, thinking = 'disabled'
+
+    @pytest.mark.parametrize('cid,baseline,thinking', [('D-02',False,'enabled'),('D-02',True,'disabled'),('D-05',False,'disabled'),('D-01',False,'disabled')])
+    def test_d_reasoning_is_case_scoped_and_restored(cid,baseline,thinking):
+        from research_agent.workflows.d_generation_policy import generation_window
+        class Model:
+            REQUEST_TIMEOUT_CAP=60
+            RETRY_ATTEMPTS=2
+        model=Model(); before=vars(model).copy()
+        with generation_window(model,baseline=baseline,case_id=cid):
+&gt;           assert model.thinking_override==thinking
+E           AssertionError: assert 'enabled' == 'disabled'
+E             
+E             - disabled
+E             + enabled
+
+tests/test_de3_isolation.py:235: AssertionError</failure></testcase><testcase classname="tests.test_de3_isolation" name="test_e_reasoning_never_changes_c_or_shared_defaults[Survey-disabled]" time="0.001" /><testcase classname="tests.test_de3_isolation" name="test_e_reasoning_never_changes_c_or_shared_defaults[Idea-disabled]" time="0.000" /><testcase classname="tests.test_de3_isolation" name="test_d02_baseline_rescue_instructions_do_not_demand_grid_search" time="0.009" /><testcase classname="tests.test_dispatch_v3" name="test_load_dispatch_v3_accepts_11_cases" time="0.004" /><testcase classname="tests.test_dispatch_v3" name="test_load_dispatch_v3_accepts_three_digit_case_id" time="0.004" /><testcase classname="tests.test_dispatch_v3" name="test_run_dispatch_uses_runtime_case_count" time="0.005" /><testcase classname="tests.test_e4_http" name="test_e_http_recovery_and_real_failure_status[recover-200]" time="0.035" /><testcase classname="tests.test_e4_http" name="test_e_http_recovery_and_real_failure_status[quota-500]" time="0.038" /><testcase classname="tests.test_e4_http" name="test_e_http_recovery_and_real_failure_status[always_invalid-500]" time="0.033" /><testcase classname="tests.test_e4_resilience" name="test_initial_failure_gets_one_bounded_e_only_retry[failure0]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_initial_failure_gets_one_bounded_e_only_retry[failure1]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_initial_failure_gets_one_bounded_e_only_retry[failure2]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_initial_failure_gets_one_bounded_e_only_retry[failure3]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_initial_failure_gets_one_bounded_e_only_retry[failure4]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_initial_failure_gets_one_bounded_e_only_retry[failure5]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_permanent_failure_is_not_retried_or_faked[error0]" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_permanent_failure_is_not_retried_or_faked[error1]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_incomplete_response_recovers_only_complete_markdown_field" time="0.002" /><testcase classname="tests.test_e4_resilience" name="test_partial_or_ambiguous_markdown_is_not_reconstructed[{&quot;markdown&quot;:&quot;\u672a\u95ed\u5408\u6b63\u6587]" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_partial_or_ambiguous_markdown_is_not_reconstructed[{&quot;other&quot;:&quot;\\&quot;markdown\\&quot;:not a field&quot;}]" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_partial_or_ambiguous_markdown_is_not_reconstructed[{&quot;markdown&quot;:null}]" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_partial_or_ambiguous_markdown_is_not_reconstructed[{&quot;markdown&quot;:&quot;valid&quot;,&quot;markdown&quot;:&quot;duplicate&quot;}]" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_audit_failure_preserves_hard_valid_actual_draft[failure0]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_audit_failure_preserves_hard_valid_actual_draft[failure1]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_audit_failure_preserves_hard_valid_actual_draft[failure2]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_bad_repair_never_overwrites_previous_valid_draft[patch0]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_bad_repair_never_overwrites_previous_valid_draft[patch1]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_bad_repair_never_overwrites_previous_valid_draft[patch2]" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_exhausted_recovery_never_fabricates_report" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_e_call_restores_shared_instance_and_class_after_failure" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_e4_freezes_all_d_and_c_specific_files" time="0.032"><failure message="AssertionError: src/research_agent/core/engine.py&#10;assert 'c5dee66861d1...b94786eabea00' == '60aa0499ccc4...58743e8230be1'&#10;  &#10;  - 60aa0499ccc483575b7a1faadd264f54bb767199e583469979158743e8230be1&#10;  + c5dee66861d19a47752d963514d27af1c7412c42a20843bae73b94786eabea00">def test_e4_freezes_all_d_and_c_specific_files():
+        import hashlib
+        before=json.loads((ROOT/'tests/fixtures/e4-protected-source-hashes.json').read_text())
+        allowed={'src/research_agent/workflows/reports.py','src/research_agent/integrations/idea_prompt.py',
+                 'src/research_agent/integrations/survey_prompt.py'}
+        for name,digest in before.items():
+            if name not in allowed:
+                content=(ROOT/name).read_text(encoding='utf-8')
+                b_guard = {
+                    'src/research_agent/workflows/tasks.py': '        if case.function == "Literature_Retrieval":\n            from .b_workflow import retrieve\n            return retrieve(self, case, retriever)\n',
+                    'src/research_agent/integrations/prompts.py': "    if isinstance(data, dict) and data.get('b_protocol') == 'conditions-v1' and data.get('task', {}).get('function') == 'Literature_Retrieval' and stage in ('query', 'retrieve'):\n        from .b_prompt import QUERY, RETRIEVE\n        return QUERY if stage == 'query' else RETRIEVE\n",
+                }.get(name)
+                if name == 'src/research_agent/integrations/prompts.py':
+                    from test_c200_recovery import C_PROMPT_GUARD
+                    assert content.count(C_PROMPT_GUARD) == 1
+                    content = content.replace(C_PROMPT_GUARD, '')
+                if b_guard:
+                    assert content.count(b_guard)==1
+                    content=content.replace(b_guard,'')
+&gt;               assert hashlib.sha256(content.encode()).hexdigest()==digest,name
+E               AssertionError: src/research_agent/core/engine.py
+E               assert 'c5dee66861d1...b94786eabea00' == '60aa0499ccc4...58743e8230be1'
+E                 
+E                 - 60aa0499ccc483575b7a1faadd264f54bb767199e583469979158743e8230be1
+E                 + c5dee66861d19a47752d963514d27af1c7412c42a20843bae73b94786eabea00
+
+tests/test_e4_resilience.py:127: AssertionError</failure></testcase><testcase classname="tests.test_e4_resilience" name="test_shared_reports_keeps_non_c_methods_and_e_dispatch" time="0.106" /><testcase classname="tests.test_e4_resilience" name="test_no_second_draft_when_only_fifty_seconds_remain" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_malformed_gateway_choices_do_not_break_e_recovery[None]" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_malformed_gateway_choices_do_not_break_e_recovery[choices1]" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_malformed_gateway_choices_do_not_break_e_recovery[choices2]" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_malformed_gateway_choices_do_not_break_e_recovery[choices3]" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_malformed_gateway_choices_do_not_break_e_recovery[choices4]" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_recovery_does_not_override_provider_content_filter" time="0.000" /><testcase classname="tests.test_e4_resilience" name="test_local_repair_keeps_global_paragraph_ids_and_full_context" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_repair_cannot_edit_unselected_global_paragraph" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_numeric_interval_gets_model_local_patch_not_whole_regeneration" time="0.001" /><testcase classname="tests.test_e4_resilience" name="test_failed_format_patch_never_returns_invalid_first_draft" time="0.000" /><testcase classname="tests.test_eval_20261026_regressions" name="test_first_call_writes_body_and_optional_review_cannot_remove_valid_files[C-01]" time="0.035" /><testcase classname="tests.test_eval_20261026_regressions" name="test_first_call_writes_body_and_optional_review_cannot_remove_valid_files[E-01]" time="0.024" /><testcase classname="tests.test_eval_20261026_regressions" name="test_source_report_keeps_real_deadline_and_restores_transport_controls" time="0.000" /><testcase classname="tests.test_eval_20261026_regressions" name="test_internal_citation_space_keeps_exact_original_source_binding" time="0.000" /><testcase classname="tests.test_eval_20261026_regressions" name="test_source_content_question_is_recorded_but_unknown_citation_still_fails" time="0.001" /><testcase classname="tests.test_eval_20261026_regressions" name="test_gateway_requests_json_mode_and_saves_original_invalid_response" time="0.000" /><testcase classname="tests.test_eval_20261026_regressions" name="test_no_model_body_means_no_counterfeit_submission[C-01]" time="0.032" /><testcase classname="tests.test_eval_20261026_regressions" name="test_no_model_body_means_no_counterfeit_submission[E-01]" time="0.033" /><testcase classname="tests.test_eval_20261026_regressions" name="test_public_failure_retains_only_complete_current_source_for_formal_runner[second0]" time="0.003"><failure message="KeyError: 'public_selftest_passed'">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_public_failure_retains_on0')
+second = {'choices': [{'finish_reason': 'stop', 'message': {'content': "def run_experiment(request):\n    return {'baseline': {}, 'candidate': None, 'details': {}}\n", 'role': 'assistant'}}]}
+
+    @pytest.mark.parametrize('second', [response(), response('truncated code', 'length'), ModelError('timeout')])
+    def test_public_failure_retains_only_complete_current_source_for_formal_runner(tmp_path, second):
+        runner, current = setup_d(tmp_path, [response(), second])
+        def reject(*args):
+            raise ValueError('public sample incomplete')
+        source = runner.prepare_checked_implementation(current, tester=reject)
+        assert source.read_text() == SOURCE
+        saved = json.loads((runner.work/'generation-response.json').read_text())
+        assert saved['choices'][0]['message']['content'] == SOURCE
+        audit = json.loads((runner.work/'public-selftest.json').read_text())
+&gt;       assert audit['public_selftest_passed'] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'public_selftest_passed'
+
+tests/test_eval_20261026_regressions.py:162: KeyError</failure></testcase><testcase classname="tests.test_eval_20261026_regressions" name="test_public_failure_retains_only_complete_current_source_for_formal_runner[second1]" time="0.003"><failure message="KeyError: 'public_selftest_passed'">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_public_failure_retains_on1')
+second = {'choices': [{'finish_reason': 'length', 'message': {'content': 'truncated code', 'role': 'assistant'}}]}
+
+    @pytest.mark.parametrize('second', [response(), response('truncated code', 'length'), ModelError('timeout')])
+    def test_public_failure_retains_only_complete_current_source_for_formal_runner(tmp_path, second):
+        runner, current = setup_d(tmp_path, [response(), second])
+        def reject(*args):
+            raise ValueError('public sample incomplete')
+        source = runner.prepare_checked_implementation(current, tester=reject)
+        assert source.read_text() == SOURCE
+        saved = json.loads((runner.work/'generation-response.json').read_text())
+        assert saved['choices'][0]['message']['content'] == SOURCE
+        audit = json.loads((runner.work/'public-selftest.json').read_text())
+&gt;       assert audit['public_selftest_passed'] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'public_selftest_passed'
+
+tests/test_eval_20261026_regressions.py:162: KeyError</failure></testcase><testcase classname="tests.test_eval_20261026_regressions" name="test_public_failure_retains_only_complete_current_source_for_formal_runner[second2]" time="0.003"><failure message="KeyError: 'public_selftest_passed'">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_public_failure_retains_on2')
+second = ModelError('timeout')
+
+    @pytest.mark.parametrize('second', [response(), response('truncated code', 'length'), ModelError('timeout')])
+    def test_public_failure_retains_only_complete_current_source_for_formal_runner(tmp_path, second):
+        runner, current = setup_d(tmp_path, [response(), second])
+        def reject(*args):
+            raise ValueError('public sample incomplete')
+        source = runner.prepare_checked_implementation(current, tester=reject)
+        assert source.read_text() == SOURCE
+        saved = json.loads((runner.work/'generation-response.json').read_text())
+        assert saved['choices'][0]['message']['content'] == SOURCE
+        audit = json.loads((runner.work/'public-selftest.json').read_text())
+&gt;       assert audit['public_selftest_passed'] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'public_selftest_passed'
+
+tests/test_eval_20261026_regressions.py:162: KeyError</failure></testcase><testcase classname="tests.test_eval_20261026_regressions" name="test_without_complete_source_d_never_submits_a_stub" time="0.003"><failure message="IndexError: pop from empty list">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_without_complete_source_d0')
+
+    def test_without_complete_source_d_never_submits_a_stub(tmp_path):
+        runner, current = setup_d(tmp_path, [response('broken', 'length'), response('broken', 'length')])
+        with pytest.raises(RuntimeError, match='no complete'):
+&gt;           runner.prepare_checked_implementation(current)
+
+tests/test_eval_20261026_regressions.py:169: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:114: in prepare_checked_implementation
+    path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/research_agent/workflows/layered_d_runner.py:101: in prepare_generated_implementation
+    response = self.llm.completion("d_source", prompt, max_tokens=requested)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;test_eval_20261026_regressions.setup_d.&lt;locals&gt;.LLM object at 0x7d115cd56210&gt;
+args = ('d_source', '根据本轮本题授权材料实现指定方法，不假设题号对应任何旧算法。\n只返回唯一完整Python 3.9标准库源码代码块，UTF-8源文件不超过65536字节，必须定义run_experiment(request)... "message": "Return one complete syntactically valid implementation matching current materials."}\n重新返回完整实现；不得使用占位结果。')
+kwargs = {'max_tokens': 24000}
+
+    def completion(self, *args, **kwargs):
+&gt;       value = responses.pop(0)
+                ^^^^^^^^^^^^^^^^
+E       IndexError: pop from empty list
+
+tests/test_eval_20261026_regressions.py:137: IndexError</failure></testcase><testcase classname="tests.test_eval_20261026_regressions" name="test_honest_baseline_source_is_retained_without_mandatory_second_generation" time="0.002"><failure message="RuntimeError: no complete current-session model source available">self = &lt;research_agent.workflows.layered_d_runner.LayeredDRunner object at 0x7d115ca59fd0&gt;
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+tester = &lt;function test_honest_baseline_source_is_retained_without_mandatory_second_generation.&lt;locals&gt;.validate at 0x7d115cbcfb00&gt;
+
+    def prepare_checked_implementation(self, case, tester=None):
+        """Only generic syntax/source checks gate formal execution; no old-task oracle."""
+        history = []
+        feedback = None
+        for attempt in range(1, 4):
+            try:
+&gt;               path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/research_agent/workflows/layered_d_runner.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:99: in prepare_generated_implementation
+    with generation_window(self.llm, baseline=baseline_only, case_id=case.case_id):
+/usr/local/lib/python3.11/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+src/research_agent/workflows/d_generation_policy.py:12: in generation_window
+    cap = min(cap, session.remaining(reserve=300))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = CaseSession(case_id='D-02', timeout=170, cancelled=&lt;threading.Event at 0x7d115ca5ac50: unset&gt;, started_at=245.245688724, stage='received', stages=[])
+reserve = 300
+
+    def remaining(self, reserve=0):
+        self.checkpoint()
+        value = self.deadline - time.monotonic() - reserve
+        if value &lt;= 0:
+&gt;           raise TimeoutError("insufficient case time reserved for next stage")
+E           TimeoutError: insufficient case time reserved for next stage
+
+src/research_agent/core/session.py:31: TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_honest_baseline_source_is0')
+
+    def test_honest_baseline_source_is_retained_without_mandatory_second_generation(tmp_path):
+        runner, current = setup_d(tmp_path, [response(), response('def run_experiment(request):\n    return {}\n')])
+        def validate(path, *args):
+            if path.read_text() != SOURCE:
+                raise ValueError('candidate upgrade has invalid output')
+            return {'status':'passed','candidate_present':False}
+        with CaseSession(current.case_id,170).activate():
+&gt;           selected = runner.prepare_checked_implementation(current,tester=validate)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_eval_20261026_regressions.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;research_agent.workflows.layered_d_runner.LayeredDRunner object at 0x7d115ca59fd0&gt;
+case = CaseContext(case_id='D-02', function='Reproduction', title='Synthetic research fixture', input='name=Recall@5, unit=%;...查询吞吐, unit=queries/s。', materials=[], constraints=[], expected_output='Reproduction', output_schema_ref='Reproduction')
+tester = &lt;function test_honest_baseline_source_is_retained_without_mandatory_second_generation.&lt;locals&gt;.validate at 0x7d115cbcfb00&gt;
+
+    def prepare_checked_implementation(self, case, tester=None):
+        """Only generic syntax/source checks gate formal execution; no old-task oracle."""
+        history = []
+        feedback = None
+        for attempt in range(1, 4):
+            try:
+                path = self.prepare_generated_implementation(case, feedback=feedback, attempt=attempt)
+                # save_source already checks complete response, Python syntax and entry point.
+                write_json(confined(self.work, 'public-selftest.json'), {
+                    'mode': 'generic_source_checks_only', 'semantic_selftest_performed': False,
+                    'selected_attempt': attempt, 'attempts': history,
+                    'source_sha256': sha256_file(path)})
+                return path
+            except ModelQuotaError:
+                raise
+            except (ModelError, ValueError, SyntaxError, RuntimeError, TimeoutError) as exc:
+                feedback = {'error_type': type(exc).__name__,
+                            'message': 'Return one complete syntactically valid implementation matching current materials.'}
+                history.append({'attempt': attempt, 'error_type': type(exc).__name__})
+                write_json(confined(self.work, 'public-selftest.json'), {'attempts': history})
+                session = current_session()
+                if attempt == 3 or (session and session.remaining() &lt; 420):
+&gt;                   raise RuntimeError('no complete current-session model source available') from exc
+E                   RuntimeError: no complete current-session model source available
+
+src/research_agent/workflows/layered_d_runner.py:130: RuntimeError</failure></testcase><testcase classname="tests.test_eval_20261026_regressions" name="test_d05_selftest_exercises_simultaneous_arrivals_not_only_easy_sample" time="0.182" /><testcase classname="tests.test_eval_20261026_regressions" name="test_failed_selftest_still_reaches_real_client_boundary" time="0.003"><failure message="IndexError: pop from empty list">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_failed_selftest_still_rea0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7d115c97aed0&gt;
+
+    def test_failed_selftest_still_reaches_real_client_boundary(tmp_path, monkeypatch):
+        import subprocess
+        runner, current = setup_d(tmp_path, [response(), response()])
+        # 公开样例失败后，生产路径必须调用当前挂载客户端；不伪造成功。
+        method = runner.prepare_checked_implementation
+        def reject(*args):
+            raise ValueError('public sample mismatch')
+        monkeypatch.setattr(runner, 'prepare_checked_implementation', lambda c: method(c, tester=reject))
+        monkeypatch.setenv('RESEARCH_EXPERIMENT_CASE', current.case_id)
+        script = Path('/data/experiments/run_experiment.py')
+        real_exists = Path.is_file
+        monkeypatch.setattr(Path, 'is_file', lambda p: True if p == script else real_exists(p))
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.sha256_file', lambda p: 'test-hash')
+        result = {'case_id':current.case_id, 'status':'failed', 'metrics':[], 'figures':[]}
+        calls = []
+        def invoke(command, **kwargs):
+            calls.append(command)
+            assert Path(command[-1]).read_text() == SOURCE
+            return subprocess.CompletedProcess(command, 0, json.dumps(result), '')
+        monkeypatch.setattr('research_agent.workflows.layered_d_runner.subprocess.run', invoke)
+&gt;       assert runner.run(current, []) == result
+               ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_eval_20261026_regressions.py:237: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/research_agent/workflows/layered_d_runner.py:237: in run
+    implementation = self.review_implementation(case, implementation)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/research_agent/workflows/layered_d_runner.py:185: in review_implementation
+    review = self.llm.completion("d_review", prompt + "\n上次审查需重新核对（" + retry_reason + "）。请先检查失败测试是否合法并独立手算期望，再核对源码。测试可能错误，不强制修代码；确有错误才repair并逐字引用材料和源码，否则keep。完整输出约定JSON。", max_tokens=8000)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;test_eval_20261026_regressions.setup_d.&lt;locals&gt;.LLM object at 0x7d115c978450&gt;
+args = ('d_review', '审查本轮完整实现是否违反当前材料。不要重写代码，不要提出风格/性能偏好，不得假设旧题算法。逐项核对公式、状态更新、阶段分支、字段与类型、单位、默认值、并列次序、空输入及终止条件。run_experiment接...: null}\n上次审查需重新核对（invalid_response）。请先检查失败测试是否合法并独立手算期望，再核对源码。测试可能错误，不强制修代码；确有错误才repair并逐字引用材料和源码，否则keep。完整输出约定JSON。')
+kwargs = {'max_tokens': 8000}
+
+    def completion(self, *args, **kwargs):
+&gt;       value = responses.pop(0)
+                ^^^^^^^^^^^^^^^^
+E       IndexError: pop from empty list
+
+tests/test_eval_20261026_regressions.py:137: IndexError</failure></testcase><testcase classname="tests.test_evidence_recovery.EvidenceRecoveryTests" name="test_cross_line_quote_stays_on_same_pdf_page" time="0.000" /><testcase classname="tests.test_evidence_recovery.EvidenceRecoveryTests" name="test_crystal_orientation_is_not_a_citation" time="0.001" /><testcase classname="tests.test_evidence_recovery.EvidenceRecoveryTests" name="test_fallback_is_limited_to_missing_authorized_paper" time="0.000" /><testcase classname="tests.test_evidence_recovery.EvidenceRecoveryTests" name="test_short_pdf_lines_remain_available_for_evidence" time="0.000" /><testcase classname="tests.test_evidence_recovery.EvidenceRecoveryTests" name="test_source_internal_reference_is_not_output_citation" time="0.000" /><testcase classname="tests.test_evidence_recovery.EvidenceRecoveryTests" name="test_total_paper_count_overrides_per_topic_count" time="0.001" /><testcase classname="tests.test_evidence_support" name="test_unsupported_interpretation_returns_to_exact_source_quote" time="0.001" /><testcase classname="tests.test_evidence_support" name="test_verifier_missing_ids_cannot_certify_unchecked_claims" time="0.000" /><testcase classname="tests.test_evidence_support" name="test_selection_preserves_papers_and_different_facets" time="0.000" /><testcase classname="tests.test_evidence_support" name="test_proposal_word_in_same_paragraph_does_not_excuse_factual_number" time="0.001" /><testcase classname="tests.test_evidence_support" name="test_reserved_budget_blocks_early_request_and_restores_afterwards" time="0.000" /><testcase classname="tests.test_evidence_support" name="test_internal_evidence_tags_generate_physical_pages_and_used_ids" time="0.000" /><testcase classname="tests.test_evidence_support" name="test_citation_diagnostics_identify_exact_passage_for_repair" time="0.000" /><testcase classname="tests.test_evidence_support" name="test_verbatim_excerpt_does_not_leak_paper_internal_reference_number" time="0.000" /><testcase classname="tests.test_evidence_support" name="test_explicit_proposal_heading_allows_designed_numeric_parameters" time="0.001" /><testcase classname="tests.test_evidence_support" name="test_soft_wrapped_source_fact_keeps_its_following_page_citation" time="0.001" /><testcase classname="tests.test_evidence_support" name="test_designed_stopping_threshold_is_not_an_observed_paper_measurement" time="0.001" /><testcase classname="tests.test_evidence_support" name="test_markdown_proposal_section_carries_scope_across_paragraphs" time="0.001" /><testcase classname="tests.test_fulltext_deepening" name="test_deepening_finds_late_evidence_without_losing_authorized_files" time="0.023" /><testcase classname="tests.test_fulltext_deepening" name="test_explicit_uncertainty_is_not_overridden_by_high_lexical_score" time="0.000" /><testcase classname="tests.test_fulltext_deepening" name="test_exact_filename_matches_even_without_body_keyword_overlap" time="0.000" /><testcase classname="tests.test_gateway_retry.GatewayRetryTests" name="test_connection_failure_then_success" time="0.001" /><testcase classname="tests.test_http_runtime" name="test_direct_question_returns_exact_case_schema_and_preserves_metadata_in_headers" time="0.007" /><testcase classname="tests.test_http_runtime" name="test_platform_trace_parent_task_and_session_headers_are_preserved" time="0.007" /><testcase classname="tests.test_http_runtime" name="test_official_transport_id_and_challenge_session_are_distinct_from_case_and_team" time="0.007" /><testcase classname="tests.test_http_runtime" name="test_direct_timeout_uses_case_budget_instead_of_sdk_thirty_seconds" time="0.009" /><testcase classname="tests.test_http_runtime" name="test_legacy_sdk_envelope_still_returns_metadata" time="0.006" /><testcase classname="tests.test_http_runtime" name="test_business_failure_preserves_sdk_error_metadata_and_trace" time="0.006" /><testcase classname="tests.test_http_runtime" name="test_invalid_question_is_rejected_before_running_agent" time="0.006" /><testcase classname="tests.test_http_runtime" name="test_timeout_preserves_sdk_timeout_response_and_trace" time="0.006" /><testcase classname="tests.test_http_runtime" name="test_sdk_routes_stay_owned_by_official_runtime" time="0.006" /><testcase classname="tests.test_http_runtime" name="test_malformed_json_uses_native_sdk_validation" time="0.005" /><testcase classname="tests.test_http_runtime" name="test_final_http_schema_has_only_case_fields_for_all_five_categories[Chat-fields0]" time="0.007" /><testcase classname="tests.test_http_runtime" name="test_final_http_schema_has_only_case_fields_for_all_five_categories[Literature_Retrieval-fields1]" time="0.007" /><testcase classname="tests.test_http_runtime" name="test_final_http_schema_has_only_case_fields_for_all_five_categories[Survey-fields2]" time="0.007" /><testcase classname="tests.test_http_runtime" name="test_final_http_schema_has_only_case_fields_for_all_five_categories[Idea-fields3]" time="0.007" /><testcase classname="tests.test_http_runtime" name="test_final_http_schema_has_only_case_fields_for_all_five_categories[Reproduction-fields4]" time="0.006" /><testcase classname="tests.test_http_runtime" name="test_invalid_success_wrapper_cannot_be_returned_as_a_valid_case" time="0.006" /><testcase classname="tests.test_http_runtime" name="test_real_b_workflow_writes_platform_directory_and_matches_http" time="0.063" /><testcase classname="tests.test_idea_fallback.IdeaFallbackTests" name="test_idea_uses_verified_claims_and_is_long_enough" time="0.001" /><testcase classname="tests.test_idea_runtime_regressions" name="test_idea_stage_reserves_later_work_and_restores_deadline[extract_batch-90]" time="0.000" /><testcase classname="tests.test_idea_runtime_regressions" name="test_idea_stage_reserves_later_work_and_restores_deadline[verify_claims-70]" time="0.000" /><testcase classname="tests.test_idea_runtime_regressions" name="test_idea_stage_reserves_later_work_and_restores_deadline[report-35]" time="0.000" /><testcase classname="tests.test_idea_runtime_regressions" name="test_idea_stage_reserves_later_work_and_restores_deadline[repair-10]" time="0.000" /><testcase classname="tests.test_idea_runtime_regressions" name="test_idea_stage_reserves_later_work_and_restores_deadline[audit-5]" time="0.000" /><testcase classname="tests.test_idea_runtime_regressions" name="test_idea_writing_transport_cap_matches_stage_budget_and_restores" time="0.000" /><testcase classname="tests.test_idea_runtime_regressions" name="test_idea_repair_and_audit_keep_input_observation_and_constraints" time="0.000" /><testcase classname="tests.test_idea_runtime_regressions" name="test_idea_reads_pdf_text_without_table_grid_reconstruction" time="0.027" /><testcase classname="tests.test_idea_runtime_regressions" name="test_numeric_parameter_brackets_are_repaired_before_final_submission" time="0.001" /><testcase classname="tests.test_idea_runtime_regressions" name="test_grouped_citations_survive_evidence_check_and_reference_generation" time="0.001" /><testcase classname="tests.test_idea_runtime_regressions" name="test_contradictory_audit_requires_repair_and_keeps_unresolved_review_visible[True]" time="0.001" /><testcase classname="tests.test_idea_runtime_regressions" name="test_contradictory_audit_requires_repair_and_keeps_unresolved_review_visible[False]" time="0.001" /><testcase classname="tests.test_idea_runtime_regressions" name="test_math_interval_fix_still_allows_one_semantic_repair" time="0.001" /><testcase classname="tests.test_idea_runtime_regressions" name="test_repair_localization_keeps_all_issues_despite_markdown_emphasis" time="0.000" /><testcase classname="tests.test_idea_runtime_regressions" name="test_multiple_wrong_attributions_are_reported_in_one_repair" time="0.001" /><testcase classname="tests.test_idea_runtime_regressions" name="test_revision_audit_supplies_evidence_for_visible_neighbor_paragraphs" time="0.000" /><testcase classname="tests.test_idea_runtime_regressions" name="test_advisory_audit_does_not_bypass_hard_citation_validation[False]" time="0.001" /><testcase classname="tests.test_idea_runtime_regressions" name="test_advisory_audit_does_not_bypass_hard_citation_validation[True]" time="0.001" /><testcase classname="tests.test_idea_runtime_regressions" name="test_idea_native_runtime_saves_result_and_keeps_model_failure_visible" time="0.037" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_clear_subquery_peaks_remove_weak_model_approvals" time="0.001" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_document_candidates_are_not_globally_chunk_capped" time="0.003" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_empty_model_query_falls_back_to_original_question" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_explicit_three_papers_discards_extra_model_approval" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_high_ranked_wrong_chunk_id_gets_single_paper_recheck" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_independent_subquery_rescues_compound_request" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_invalid_model_approval_is_recorded_without_failing_whole_case" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_long_abstract_is_kept_after_short_title_and_column_tail" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_no_tail_pruning_when_score_gap_is_small" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_original_question_keeps_targets_when_rewrite_has_other_candidates" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_query_stage_retries_then_uses_original_question" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_report_evidence_keeps_abstract_and_spreads_across_pages" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_report_evidence_selects_abstract_body_instead_of_heading" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_strong_title_cannot_override_missing_semantic_approval" time="0.000" /><testcase classname="tests.test_large_library_retrieval.LargeLibraryRetrievalTests" name="test_subquery_replaces_lower_scored_duplicate" time="0.000" /><testcase classname="tests.test_layered_d_algorithms" name="test_d01_returns_reproducible_baseline_candidate_and_model_details" time="0.036" /><testcase classname="tests.test_layered_d_algorithms" name="test_d02_run_selects_config_and_rank_reuses_it" time="0.013" /><testcase classname="tests.test_layered_d_algorithms" name="test_d05_conserves_jobs_and_applies_deadline_rules" time="0.000" /><testcase classname="tests.test_layered_d_runner" name="test_layered_command_contains_case_and_implementation" time="0.001" /><testcase classname="tests.test_layered_d_runner" name="test_complete_rpc_status_is_normalized_to_completed" time="0.000" /><testcase classname="tests.test_layered_d_runner" name="test_direct_final_submission_from_client_is_accepted" time="0.000" /><testcase classname="tests.test_layered_d_runner" name="test_prepare_implementation_is_case_scoped" time="0.016" /><testcase classname="tests.test_layered_d_runner" name="test_prepare_generated_implementation_uses_gateway_response_verbatim" time="0.003" /><testcase classname="tests.test_limited_index_cache.LimitedIndexCacheTests" name="test_limited_and_full_index_never_share_cache" time="0.008" /><testcase classname="tests.test_mixed_text_pdf.MixedTextPdfTests" name="test_scanned_page_does_not_hide_text_pages" time="0.596" /><testcase classname="tests.test_model_evidence.ModelEvidenceTests" name="test_compact_rows_keep_identity_but_remove_raw_quote" time="0.000" /><testcase classname="tests.test_model_evidence.ModelEvidenceTests" name="test_single_digit_paper_id_typo_is_corrected" time="0.000" /><testcase classname="tests.test_model_evidence.ModelEvidenceTests" name="test_unsupported_author_attribution_is_removed" time="0.000" /><testcase classname="tests.test_pdf_unicode.PDFUnicodeTests" name="test_unpaired_surrogate_is_replaced_before_hashing_and_json" time="0.000" /><testcase classname="tests.test_platform_clarification" name="test_official_papers_mount_and_explicit_papers_path" time="0.002" /><testcase classname="tests.test_platform_clarification" name="test_single_reads_current_assignment_only_in_output" time="0.005" /><testcase classname="tests.test_platform_clarification" name="test_challenge_gateway_values_override_compat_and_carry_session" time="0.001" /><testcase classname="tests.test_platform_clarification" name="test_whole_library_scope_maps_only_to_dedicated_mount[\u672c\u5730\u8bba\u6587\u5e93\u4e2d\u7684 PDF]" time="0.003" /><testcase classname="tests.test_platform_clarification" name="test_whole_library_scope_maps_only_to_dedicated_mount[\u672c\u5730\u8bba\u6587\u5e93\u5185\u7684\uff30\uff24\uff26]" time="0.003" /><testcase classname="tests.test_platform_clarification" name="test_whole_library_scope_maps_only_to_dedicated_mount[\u672c\u5730\u8bba\u6587\u6587\u4ef6\u5939\u5185\u7684\u6240\u6709 PDF]" time="0.003" /><testcase classname="tests.test_platform_clarification" name="test_whole_library_scope_maps_only_to_dedicated_mount[data/\u8bba\u6587\u5e93]" time="0.003" /><testcase classname="tests.test_platform_clarification" name="test_whole_library_scope_maps_only_to_dedicated_mount[/data/\u8bba\u6587\u5e93/]" time="0.002" /><testcase classname="tests.test_platform_clarification" name="test_whole_library_scope_maps_only_to_dedicated_mount[\u8bba\u6587\u5e93]" time="0.002" /><testcase classname="tests.test_platform_clarification" name="test_whole_library_scope_maps_only_to_dedicated_mount[data/papers]" time="0.003" /><testcase classname="tests.test_platform_clarification" name="test_whole_library_scope_maps_only_to_dedicated_mount[/data/papers]" time="0.003" /><testcase classname="tests.test_platform_defaults" name="test_standard_library_and_public_description_work_without_custom_config[False]" time="0.002" /><testcase classname="tests.test_platform_defaults" name="test_standard_library_and_public_description_work_without_custom_config[True]" time="0.002" /><testcase classname="tests.test_platform_defaults" name="test_explicit_config_overrides_library_team_and_aliases" time="0.002" /><testcase classname="tests.test_platform_defaults" name="test_environment_overrides_config_and_empty_roots_are_respected" time="0.002" /><testcase classname="tests.test_platform_defaults" name="test_default_library_does_not_infer_survey_specific_material_descriptions" time="0.002" /><testcase classname="tests.test_platform_defaults" name="test_missing_material_is_an_error_instead_of_an_empty_result" time="0.001" /><testcase classname="tests.test_platform_defaults" name="test_workspace_team_is_not_a_real_team_name_or_telemetry_id" time="0.003" /><testcase classname="tests.test_platform_defaults" name="test_default_library_rejects_symlink_escape" time="0.001" /><testcase classname="tests.test_public_selftest" name="test_public_samples_run_in_separate_process[D-01]" time="0.103" /><testcase classname="tests.test_public_selftest" name="test_public_samples_run_in_separate_process[D-02]" time="0.342" /><testcase classname="tests.test_public_selftest" name="test_public_samples_run_in_separate_process[D-05]" time="0.601" /><testcase classname="tests.test_public_selftest" name="test_selftest_rejects_runtime_and_io_access[import socket]" time="0.000" /><testcase classname="tests.test_public_selftest" name="test_selftest_rejects_runtime_and_io_access[import os]" time="0.000" /><testcase classname="tests.test_public_selftest" name="test_selftest_rejects_runtime_and_io_access[x = open('secret')]" time="0.000" /><testcase classname="tests.test_public_selftest" name="test_selftest_rejects_runtime_and_io_access[x = (1).__class__]" time="0.000" /><testcase classname="tests.test_public_selftest" name="test_selftest_rejects_runtime_and_io_access[import math\nx = math.__dict__]" time="0.000" /><testcase classname="tests.test_public_selftest" name="test_model_repairs_complete_source_after_sample_failure" time="0.002"><failure message="assert 'def run_expe...  return {}\n' == &quot;def run_expe...red': True}\n&quot;&#10;  &#10;    def run_experiment(request):&#10;  -     return {'repaired': True}&#10;  +     return {}">tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-0/test_model_repairs_complete_so0')
+
+    def test_model_repairs_complete_source_after_sample_failure(tmp_path):
+        case_root = tmp_path / "D-01"
+        case_root.mkdir()
+        for name, text in {"method.md": "public method", "protocol.json": "{}", "sample.json": "{}"}.items():
+            (case_root / name).write_text(text, encoding="utf-8")
+        sources = ["def run_experiment(request):\n    return {}\n",
+                   "def run_experiment(request):\n    return {'repaired': True}\n"]
+    
+        class LLM:
+            calls = 0
+    
+            def completion(self, stage, prompt, max_tokens):
+                if self.calls:
+                    assert "missing baseline" in prompt
+                content = sources[self.calls]
+                self.calls += 1
+                return {"choices": [{"finish_reason": "stop", "message": {"role": "assistant", "content": content}}]}
+    
+        def tester(path, materials, case_id):
+            if "repaired" not in path.read_text(encoding="utf-8"):
+                raise ValueError("missing baseline")
+            return {"status": "passed"}
+    
+        case = CaseContext.from_dict({"case_id": "D-01", "function": "Reproduction", "title": "public",
+            "input": "current case", "materials": [], "constraints": [], "expected_output": "result",
+            "output_schema_ref": "Reproduction"})
+        runner = LayeredDRunner(Settings(tmp_path, tmp_path / "out"), tmp_path / "work", llm=LLM())
+        final = runner.prepare_checked_implementation(case, tester=tester)
+&gt;       assert final.read_text(encoding="utf-8") == sources[1]
+E       assert 'def run_expe...  return {}\n' == "def run_expe...red': True}\n"
+E         
+E           def run_experiment(request):
+E         -     return {'repaired': True}
+E         +     return {}
+
+tests/test_public_selftest.py:62: AssertionError</failure></testcase><testcase classname="tests.test_quote_verification.QuoteVerificationTests" name="test_paraphrase_or_spliced_fragments_are_rejected" time="0.000" /><testcase classname="tests.test_quote_verification.QuoteVerificationTests" name="test_pdf_line_breaks_ligatures_and_hyphens_are_normalized" time="0.000" /><testcase classname="tests.test_report_budget_history" name="test_audit_history_preserves_initial_rejection_before_budget_fallback" time="0.001" /><testcase classname="tests.test_report_evidence_selection" name="test_report_recalls_experiments_and_limitations_beyond_topic_pages" time="0.002" /><testcase classname="tests.test_report_fix_regressions" name="test_patch_audit_retains_local_conditions_without_repeating_unrelated_sections" time="0.000" /><testcase classname="tests.test_report_fix_regressions" name="test_partial_support_cannot_certify_full_claim_even_if_verdict_is_inconsistent" time="0.001" /><testcase classname="tests.test_report_fix_regressions" name="test_late_definition_is_kept_as_a_continuous_source_window" time="0.000" /><testcase classname="tests.test_report_fix_regressions" name="test_new_targeted_method_fact_is_not_always_displaced_by_old_method_rows" time="0.000" /><testcase classname="tests.test_report_fix_regressions" name="test_repair_reservation_depends_on_the_actual_document_size" time="0.001" /><testcase classname="tests.test_report_fix_regressions" name="test_idea_requires_shared_concrete_experiment_conditions" time="0.000" /><testcase classname="tests.test_report_fix_regressions" name="test_hypothetical_repair_cost_does_not_block_an_affordable_first_audit" time="0.003" /><testcase classname="tests.test_report_fix_regressions" name="test_unavailable_audit_is_not_sent_as_a_text_repair_instruction" time="0.001" /><testcase classname="tests.test_report_fix_regressions" name="test_proposed_hypothesis_keeps_confidence_interval_in_the_same_paragraph_scope" time="0.001" /><testcase classname="tests.test_report_fix_regressions" name="test_proposed_steps_and_table_do_not_need_fake_paper_citations" time="0.001" /><testcase classname="tests.test_report_fix_regressions" name="test_other_papers_reader_cannot_be_renamed_to_a_different_authorized_method" time="0.002" /><testcase classname="tests.test_report_fix_regressions" name="test_core_mechanism_is_selected_before_high_frequency_related_work" time="0.002" /><testcase classname="tests.test_report_fix_regressions" name="test_ambiguous_idea_numbers_require_semantic_classification_instead_of_false_repair" time="0.001" /><testcase classname="tests.test_report_fix_regressions" name="test_survey_digest_keeps_multiple_method_components_and_an_experiment" time="0.000" /><testcase classname="tests.test_report_fix_regressions" name="test_survey_does_not_cut_a_short_chunk_again_before_extraction" time="0.000" /><testcase classname="tests.test_report_fix_regressions" name="test_precheck_repair_still_requires_the_first_full_semantic_audit" time="0.001" /><testcase classname="tests.test_report_fix_regressions" name="test_explicit_account_quota_rejection_is_not_retried_or_charged_as_unknown_inference" time="0.001" /><testcase classname="tests.test_report_fix_regressions" name="test_stdlib_transport_distinguishes_account_quota_from_transient_429" time="0.001" /><testcase classname="tests.test_report_fix_regressions" name="test_sdk_transport_distinguishes_account_quota_from_transient_429" time="0.001" /><testcase classname="tests.test_report_patch" name="test_patch_changes_only_current_exact_passage" time="0.000" /><testcase classname="tests.test_report_patch" name="test_patch_rejects_unknown_or_ambiguous_original" time="0.000" /><testcase classname="tests.test_report_patch" name="test_second_audit_reviews_only_exact_changes_and_keeps_valid_report" time="0.001" /><testcase classname="tests.test_report_resilience.ReportResilienceTests" name="test_idea_model_budget_failure_keeps_verified_evidence" time="0.001" /><testcase classname="tests.test_report_resilience.ReportResilienceTests" name="test_survey_recovers_one_missing_paper_before_fallback" time="0.001" /><testcase classname="tests.test_report_routing" name="test_survey_and_idea_have_separate_report_instructions" time="0.000" /><testcase classname="tests.test_report_routing" name="test_budget_estimate_uses_the_same_prompt_as_actual_request" time="0.000" /><testcase classname="tests.test_retrieval_exclusions" name="test_negative_approval_and_named_filename_exclusion" time="0.000" /><testcase classname="tests.test_retrieval_exclusions" name="test_mentioning_an_excluded_baseline_does_not_exclude_valid_paper" time="0.000" /><testcase classname="tests.test_retrieval_exclusions" name="test_exclusion_variants_and_compound_method_names" time="0.000" /><testcase classname="tests.test_source_generation" name="test_extracts_one_complete_source_without_rewriting_code" time="0.000" /><testcase classname="tests.test_source_generation" name="test_rejects_truncated_or_multiple_model_versions" time="0.000" /><testcase classname="tests.test_source_generation" name="test_saves_utf8_source_and_hash" time="0.001" /><testcase classname="tests.test_source_generation" name="test_prompt_contains_current_case_materials" time="0.001" /><testcase classname="tests.test_survey_input_contract" name="test_full_official_case_reaches_report_and_audit_and_saved_receipt" time="0.033" /><testcase classname="tests.test_survey_input_contract" name="test_survey_repair_retains_requirements_outside_input" time="0.000" /><testcase classname="tests.test_survey_input_contract" name="test_bad_first_model_response_is_regenerated_not_submitted[invalid0]" time="0.034" /><testcase classname="tests.test_survey_input_contract" name="test_bad_first_model_response_is_regenerated_not_submitted[invalid1]" time="0.033" /><testcase classname="tests.test_survey_input_contract" name="test_bad_first_model_response_is_regenerated_not_submitted[invalid2]" time="0.036" /><testcase classname="tests.test_survey_input_contract" name="test_bad_first_model_response_is_regenerated_not_submitted[invalid3]" time="0.034" /><testcase classname="tests.test_survey_input_contract" name="test_transport_failure_does_not_retry_or_create_fake_report" time="0.034" /><testcase classname="tests.test_v3_integration" name="test_platform_reproduction_routes_layered_d_runner" time="0.002" /></testsuite></testsuites>

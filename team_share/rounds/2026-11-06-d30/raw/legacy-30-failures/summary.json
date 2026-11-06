@@ -1,0 +1,37 @@
+{
+  "commit": "dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd",
+  "steps": {
+    "engine": 0,
+    "base": 0,
+    "image-build": 0,
+    "structure": 0,
+    "health-start": 0,
+    "health": 0,
+    "health-stop": 0,
+    "test-build": 0,
+    "d-linux": 0,
+    "regression": 1,
+    "baseline-regression": 1
+  },
+  "target_model_calls": 0,
+  "d-linux": {
+    "failure": 0,
+    "error": 0,
+    "skipped": 0,
+    "passed": 3
+  },
+  "regression": {
+    "failure": 30,
+    "error": 0,
+    "skipped": 0,
+    "passed": 601
+  },
+  "baseline_commit": "046324bae9425aa0a1aeff49b9d8128831d18479",
+  "baseline-regression": {
+    "failure": 30,
+    "error": 0,
+    "skipped": 0,
+    "passed": 554
+  },
+  "gate_passed": false
+}

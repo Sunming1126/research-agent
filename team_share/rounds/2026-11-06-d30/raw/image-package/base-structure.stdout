@@ -1,0 +1,131 @@
+[
+    {
+        "Id": "sha256:2d1023efe3e6a8dc7465326bab40d70408a579991fe60bff626145b0d29241b0",
+        "RepoTags": [
+            "agenthack/base:1.1.1"
+        ],
+        "RepoDigests": [
+            "agenthack/base@sha256:2d1023efe3e6a8dc7465326bab40d70408a579991fe60bff626145b0d29241b0"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-10T05:05:27.114265097Z",
+        "Config": {
+            "User": "agent",
+            "ExposedPorts": {
+                "8080/tcp": {}
+            },
+            "Env": [
+                "PATH=/opt/platform-tools:/opt/platform-tools:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D",
+                "PYTHON_VERSION=3.11.16",
+                "PYTHON_SHA256=91bcdebfdde239a003ae93738a7fce0f9230fee5c4bc2b86f6e6e8c6f98aabe8",
+                "PYTHONUNBUFFERED=1",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PLATFORM_LLM_URL=",
+                "PLATFORM_API_KEY=",
+                "TEAM_ID=",
+                "DATA_PATH=/data",
+                "AGENTHACK_LOG_LEVEL=INFO",
+                "AGENTHACK_SDK_VERSION=1.1.1"
+            ],
+            "Cmd": [
+                "sh",
+                "-c",
+                "echo 'ERROR: 选手必须覆盖 CMD 指令以启动自己的智能体服务。请检查 Dockerfile。' && exit 1"
+            ],
+            "WorkingDir": "/app",
+            "Labels": {
+                "description": "AgentHack Competition Official Base Image",
+                "maintainer": "platform@agenthack.io",
+                "org.agenthack.base": "true",
+                "org.agenthack.base.version": "1.1.1",
+                "org.agenthack.team_id": "team-001",
+                "org.agenthack.version": "1.0.0"
+            },
+            "ArgsEscaped": true,
+            "Healthcheck": {
+                "Test": [
+                    "CMD-SHELL",
+                    "curl -fsS http://localhost:8080/health > /dev/null || exit 1"
+                ],
+                "Interval": 5000000000,
+                "Timeout": 3000000000,
+                "StartPeriod": 10000000000,
+                "Retries": 6
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 175717211,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac",
+                "sha256:a5c84380b3657bb723a1f71fa963f1e3a3f01e2c6bcba12e3b9a0d336158c7a9",
+                "sha256:4a01ba3ac604812ef31dab0006efecd1d572676f7a68afa169a9d57883025006",
+                "sha256:d190d09d7bd91836f809045799a7024a54026b3da5de1ccb811627fcf9878b92",
+                "sha256:a16f39486427daf06618c5af462769216c12fe3772761538356c382006763e0b",
+                "sha256:e909a049dc9308653a78fb91188a27382912c05ba73b95f82aeb2fb3aac1d13f",
+                "sha256:0d0db59d7726e88e81419067f16119ce5af101ba4c0a0a65933faf35aa930563",
+                "sha256:94a7fb2072bb66e7633bc6e692f942e95b67e602c145946f0cc3b42dac10cbc2",
+                "sha256:d206eeb62442a423a4a2109310d4bf99aa9cc4db078bd5969bb500f18de5020d",
+                "sha256:d6ae4288cb4c4015bb42e427cd5a1dc2cc678ff3834a6d0f77f9f62fee4a05de",
+                "sha256:b18af4c61309b2d7eef1bcffb7774584b386951eeee8e220241c6ac698db798f",
+                "sha256:bed1fb5a918eb591e52d65d7cdcb6a6156e29cc6e8c39447536c3e516b02607e",
+                "sha256:17f98c0fc04e9590e9f629501fd0e6a20b00814c4531e5e2d9f477d3106213d0",
+                "sha256:8064aad9e57c2d8d7a0429dc208a483c187f117efe0dd94961533f874d5d6a19",
+                "sha256:9eeafb3bf1fc729c6614cfcc3d8001ac86c63beb1c7df9e12ac1f3b022f93d4c",
+                "sha256:e15d034a5ccc1573a9749651d31b08e10c295f78342804aceb1b29b8622cfdbc",
+                "sha256:8df37fbc4e19cc03def6859dd43eac61d12e6d3c674f47e813acfadc7c8ddc46",
+                "sha256:68debf4a19f09f180fdc39e3bfba96eba749fa4e6f5f30b07785b1d17ed6be05",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:9fe16eba3aef1fabbe77b52f5b38196840b429df0ae183c4dd3de41b5af62aff",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:5f78fab50affeaa81dbe2a041d69f47d94520d7be5f22da04a05802a0e39fbfa",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:390896f85b56a2ec742609799d1d893e8e3ada607a8766ae4804ef0fcb77ca5b",
+                "sha256:06877ba25e677327ff6fec522334651136459667eb617a9fde138a4b769c22a2",
+                "sha256:82cb69e1f741bcb56b4acaf1a1b900b0c15a02e343ec1fa3fef4784a39749b2d",
+                "sha256:7f240e9ac05bfaad49b7e96d42ee68df53d4099e72df02f3817a846959d74d1e",
+                "sha256:681a9d24984b2dd725c748838edcbd52b256521b753d7f1af12d2165938f3013",
+                "sha256:04e57cdfda8ddf197c0b4654742bca1bbd40639a6ab93188ad87971c102f9e7c",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:50e39ae264a55115ed94727e3335a6c2af4ec7ac1804e84b8086d122b8b8de39",
+                "sha256:0446e8df91841eea3cbd516cab805024361bce891b304c631b406c304f76e06d",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:e2d2d5468a7fd987c7c16e43870f43797f016698eb545b8af57be1cbfca9d9a8",
+                "sha256:e530418fd9cf122beeabd1df0bd8ce0b87387c5ddc4616812077a16105023870",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:f731f07ca7c8b42f665aeac12cd6c3ce97a64ad66996450e84711a35cfe9a577",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:4c6c4cffd59b1750d535052c3db2681549392ab678217cab033e0443854e7f55",
+                "sha256:adf1de77cc6c70f20b6b0b21b73d9df5a86196deee6536987a6d5595ded037a7"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-22T16:39:58.41236317Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:2d1023efe3e6a8dc7465326bab40d70408a579991fe60bff626145b0d29241b0",
+            "size": 856,
+            "annotations": {
+                "containerd.io/distribution.source.docker.io": "agenthack/base",
+                "io.containerd.image.name": "docker.io/agenthack/base:1.1.1",
+                "org.opencontainers.image.ref.name": "1.1.1"
+            }
+        },
+        "Identity": {
+            "Pull": [
+                {
+                    "Repository": "docker.io/agenthack/base"
+                }
+            ]
+        }
+    }
+]

@@ -1,0 +1,116 @@
+{
+  "scope": "only this round; no credentials or unrelated native message content",
+  "events": [
+    {
+      "seq": 3907,
+      "type": "agent/inbox/spliced",
+      "raw_row_sha256": "1104d7e13f28ed1bd041934735040c6fa33418e3a52978741e9d29966fe1e612"
+    },
+    {
+      "seq": 3908,
+      "type": "turn/start",
+      "raw_row_sha256": "d01c26d55d515f85ea2dec1448214e78c289e97561fa5be80bda5821497d9467"
+    },
+    {
+      "seq": 3909,
+      "type": "agent/inbox/spliced",
+      "raw_row_sha256": "36459220c4422771d33f1bec1af37c77b29868d23ee0a3243d137d57e46ec6fc"
+    },
+    {
+      "seq": 3910,
+      "type": "step/start",
+      "raw_row_sha256": "92fb7f33ff6ec3e5baabbe1d26476183526a003fb5b13a7dee45dd4b715babe8"
+    },
+    {
+      "seq": 3911,
+      "type": "user/message",
+      "raw_row_sha256": "70994a6eb4c27028a910e471d364565eeded5769a9604fc688efec239eed6e7d"
+    },
+    {
+      "seq": 3912,
+      "type": "user/message",
+      "raw_row_sha256": "a7acf91414a8e7b39b46d4dc05aaf23e8a559f956f1a4c3851d476d5e0c2d36d"
+    },
+    {
+      "seq": 3913,
+      "type": "assistant/attempt",
+      "raw_row_sha256": "da21356058eb70ce0c8089a8b8204a8663e669bd42a0de2717dd635713e3c6e8"
+    },
+    {
+      "seq": 3914,
+      "type": "step/end",
+      "raw_row_sha256": "72b45c32b9e74aca5cbbdcbecbca2c27d0cbedffae20da052d96f371537b45f8"
+    },
+    {
+      "seq": 3915,
+      "type": "turn/end",
+      "raw_row_sha256": "cc693a9c21c843644d60c89a033af20f7de1bdc5dc7a5fd007e87f35b9248498",
+      "reason": {
+        "kind": "error",
+        "error": {
+          "message": "400: {\"code\":\"InvalidParameter\",\"message\":\"The parameter `max_completion_tokens` specified in the request are not valid: integer above maximum value, expected a value <= 12288, but got 32768 instead. Request id: 021793898559678af77c6bdcb28310871ba6ee41ea156a6526112\",\"param\":\"max_completion_tokens\",\"type\":\"BadRequest\"}",
+          "code": "INVALID_REQUEST"
+        }
+      }
+    },
+    {
+      "seq": 3916,
+      "type": "session/end-seed",
+      "raw_row_sha256": "5d7c1c52ee25118bd1653b7f91bc489485399353d90a2e446fe2805d94a140c5"
+    },
+    {
+      "seq": 3917,
+      "type": "agent/inbox/spliced",
+      "raw_row_sha256": "8c41104e32df1f3e7ab51ad8fb323280b7e655ff01e525f411021cd72650d1bb"
+    },
+    {
+      "seq": 3918,
+      "type": "turn/start",
+      "raw_row_sha256": "f3356948bb89f698857e732a60d52560bb070f6aada509d858b2e8d512ed7865"
+    },
+    {
+      "seq": 3919,
+      "type": "agent/inbox/spliced",
+      "raw_row_sha256": "5f4838ed2aae6608123f6e8af343879d4d9b7aee418525e24a6c8d3c8015053d"
+    },
+    {
+      "seq": 3920,
+      "type": "step/start",
+      "raw_row_sha256": "b2d2feff5b0f83cf1120c1ff4749fb735b0eaf7e8741423f285120c8eb7cfaaf"
+    },
+    {
+      "seq": 3921,
+      "type": "user/message",
+      "raw_row_sha256": "161ef009c6537c634cb0e2244a92ab0d8108b810a1011460f828f51d93854e8a"
+    },
+    {
+      "seq": 3922,
+      "type": "user/message",
+      "raw_row_sha256": "15f7243d4784e49351d6ec269dcc92ce671c63ed9041fb4db45cde26940a99df"
+    },
+    {
+      "seq": 3923,
+      "type": "user/message",
+      "raw_row_sha256": "dba7573f0330b373d46b7af5670bbfef470fb8a23d6fb168a86e881ebffaa0b1"
+    },
+    {
+      "seq": 3924,
+      "type": "request/header",
+      "raw_row_sha256": "a1c686b75b124c5f7240e4038181557fa3cf00fd47b8b04a91e983e8c935fcc7",
+      "model_selection": {
+        "provider": "magic",
+        "model": "deepseek-v4.1-flash"
+      }
+    },
+    {
+      "seq": 3925,
+      "type": "assistant/message",
+      "raw_row_sha256": "6a0c27a496226fb0e5841572975e43c3d375c5efe39d51efd3da6129407006a5"
+    },
+    {
+      "seq": 3926,
+      "type": "tool/call",
+      "raw_row_sha256": "01670b18ca2c35b382f3331f42e0fff38faf8eab1efe73683724eab38e0813e5"
+    }
+  ]
+}

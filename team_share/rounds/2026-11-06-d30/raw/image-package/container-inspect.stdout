@@ -1,0 +1,256 @@
+[
+    {
+        "Id": "f1ef5fc8705dd84711fa81233baeb2480bf02c8f31abb7c632925f589586e94f",
+        "Created": "2026-11-06T02:52:41.22202464Z",
+        "Path": "python",
+        "Args": [
+            "agent.py"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 710,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-11-06T02:52:41.321261424Z",
+            "FinishedAt": "0001-01-01T00:00:00Z",
+            "Health": {
+                "Status": "starting",
+                "FailingStreak": 0,
+                "Log": []
+            }
+        },
+        "Image": "sha256:f0d2b401409598c25e829284b1b782dbb204cdc5280d6751fb6c62b6994d9907",
+        "ResolvConfPath": "/var/lib/docker/containers/f1ef5fc8705dd84711fa81233baeb2480bf02c8f31abb7c632925f589586e94f/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/f1ef5fc8705dd84711fa81233baeb2480bf02c8f31abb7c632925f589586e94f/hostname",
+        "HostsPath": "/var/lib/docker/containers/f1ef5fc8705dd84711fa81233baeb2480bf02c8f31abb7c632925f589586e94f/hosts",
+        "LogPath": "/var/lib/docker/containers/f1ef5fc8705dd84711fa81233baeb2480bf02c8f31abb7c632925f589586e94f/f1ef5fc8705dd84711fa81233baeb2480bf02c8f31abb7c632925f589586e94f-json.log",
+        "Name": "/anic-d30-health-061dedf5",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "none",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 1073741824,
+            "NanoCpus": 1000000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 2147483648,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "Mounts": [
+                {
+                    "Type": "bind",
+                    "Source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\d30-package-20261106-061dedf5\\health.py",
+                    "Target": "/tmp/check_health.py",
+                    "ReadOnly": true
+                }
+            ],
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\d30-package-20261106-061dedf5\\health.py",
+                "Destination": "/tmp/check_health.py",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "f1ef5fc8705d",
+            "Domainname": "",
+            "User": "agent",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8080/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "AGENTHACK_TELEMETRY_REQUIRED=false",
+                "PATH=/opt/platform-tools:/opt/platform-tools:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D",
+                "PYTHON_VERSION=3.11.16",
+                "PYTHON_SHA256=91bcdebfdde239a003ae93738a7fce0f9230fee5c4bc2b86f6e6e8c6f98aabe8",
+                "PYTHONUNBUFFERED=1",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PLATFORM_LLM_URL=",
+                "PLATFORM_API_KEY=",
+                "TEAM_ID=",
+                "DATA_PATH=/data",
+                "AGENTHACK_LOG_LEVEL=INFO",
+                "AGENTHACK_SDK_VERSION=1.1.1",
+                "PYTHONPATH=/app/src",
+                "RESEARCH_WORKSPACE_ROOT=/data",
+                "RESEARCH_RESULT_ROOT=/output",
+                "AGENT_VERSION=2.0.10-bd7"
+            ],
+            "Cmd": [
+                "python",
+                "agent.py"
+            ],
+            "Healthcheck": {
+                "Test": [
+                    "CMD-SHELL",
+                    "curl -fsS http://localhost:8080/health \u003e /dev/null || exit 1"
+                ],
+                "Interval": 5000000000,
+                "Timeout": 3000000000,
+                "StartPeriod": 10000000000,
+                "Retries": 6
+            },
+            "Image": "research-assistant:d30-2e6f51a643ac",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "Labels": {
+                "description": "AgentHack Competition Official Base Image",
+                "maintainer": "platform@agenthack.io",
+                "org.agenthack.base": "true",
+                "org.agenthack.base.version": "1.1.1",
+                "org.agenthack.prompt_version": "20261103-b-query-recovery-d-refinement",
+                "org.agenthack.protocol": "layered-d-v3-source-v1",
+                "org.agenthack.team_id": "team-001",
+                "org.agenthack.version": "2.0.10-bd7",
+                "org.opencontainers.image.revision": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+                "org.opencontainers.image.version": "2026-11-06-d30-2e6f51a643ac"
+            }
+        },
+        "NetworkSettings": {
+            "SandboxID": "b27f084046e83bd733f825ee9e7f92e1371b413e1ac486e22beffddf9cabb3f3",
+            "SandboxKey": "/var/run/docker/netns/b27f084046e8",
+            "Ports": {},
+            "Networks": {
+                "none": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "03c975fabe466410df6cff88088903c29190721b332edccf91b23383414bc30f",
+                    "EndpointID": "cd434ef2c3c90235e5ee9bd1ffd491122b766e245123e26563dd302fdd151694",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "MacAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:589faada05e7a2b15f51460433e42e92f29b4447caa93fadaf5dff84cd08d128",
+            "size": 9757,
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]

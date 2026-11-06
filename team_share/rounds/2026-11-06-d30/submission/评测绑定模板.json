@@ -1,0 +1,15 @@
+{
+  "source_commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+  "archive_sha256": "98f3fc456473eb51531af72e01c8135b83dbc69d6991c16e319d6a92020bb892",
+  "image_id": "sha256:f0d2b401409598c25e829284b1b782dbb204cdc5280d6751fb6c62b6994d9907",
+  "submission_id": null,
+  "eval_id": null,
+  "platform_health": null,
+  "automatic_score": null,
+  "per_case_scores": {},
+  "tokens": null,
+  "elapsed_seconds": null,
+  "official_baseline": "eval-20261103-f8116b95",
+  "official_baseline_score": 80.9,
+  "causal_comparison_valid": false
+}

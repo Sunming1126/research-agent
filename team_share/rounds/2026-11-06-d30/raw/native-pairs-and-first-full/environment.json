@@ -1,0 +1,18 @@
+{
+  "image": "sha256:feb2f0f7a525df4c9b8d3e611a79a2ad127045eade98d29faf2135d0a7c27841 linux amd64",
+  "cpu": 1,
+  "memory": "1g",
+  "network": "none",
+  "seed": 42,
+  "materials": {
+    "D-01/method.md": "ec0fb4012c7cf450ac3c4f887a3759d61b407875d2a57c9669dbd4690e85e369",
+    "D-01/protocol.json": "db47f63e721d1d8afcc94696cf3f55dc1effc46ee010a20b4acab5380721a27f",
+    "D-01/sample.json": "14399045230359a0a76172e9e6628e69f3cd3abd3064bb63ade8c345a620e954",
+    "D-02/method.md": "86d56abd424be51cddbe43a1cd8ebddf05b2621622669e23c573cdb3afbf06ef",
+    "D-02/protocol.json": "a2d34db5bc7f4be1d67383d7ea9c485489f3f3d4819a4976c11908713acc9cfe",
+    "D-02/sample.json": "77d6816b8c434b3fe3dec60d486bdb2a7b284b3b60cb7fdf0e6423d2a9982cde",
+    "D-05/method.md": "2f65b4e6377f5931b35ad513f2cd2fd1e26120efee2a1c3f65ed1482b1f7f7cf",
+    "D-05/protocol.json": "be9e991e5c950613fa0a566ce38bef00354c76d7a7419d4eb4a8a502ba990af5",
+    "D-05/sample.json": "f4aa19a2d29ae87ab8152fb53eb3592bfddcebdc46085c84748e58b4515e6045"
+  }
+}

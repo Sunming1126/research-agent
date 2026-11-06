@@ -1,0 +1,116 @@
+{
+  "source_commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+  "execution_origin": "Codex offline",
+  "target_model_calls": 0,
+  "official_evaluation_started": false,
+  "steps": {
+    "engine": {
+      "returncode": 0,
+      "seconds": 0.169
+    },
+    "base": {
+      "returncode": 0,
+      "seconds": 8.209
+    },
+    "build": {
+      "returncode": 0,
+      "seconds": 2.527
+    },
+    "structure": {
+      "returncode": 0,
+      "seconds": 0.232
+    },
+    "base-structure": {
+      "returncode": 0,
+      "seconds": 0.194
+    },
+    "image-content": {
+      "returncode": 0,
+      "seconds": 0.98
+    },
+    "base-content": {
+      "returncode": 0,
+      "seconds": 0.837
+    },
+    "module-origin": {
+      "returncode": 0,
+      "seconds": 0.488
+    },
+    "health-start": {
+      "returncode": 0,
+      "seconds": 0.403
+    },
+    "health": {
+      "returncode": 0,
+      "seconds": 1.299
+    },
+    "server-logs": {
+      "returncode": 0,
+      "seconds": 0.162
+    },
+    "container-inspect": {
+      "returncode": 0,
+      "seconds": 0.158
+    },
+    "health-stop": {
+      "returncode": 0,
+      "seconds": 0.26
+    },
+    "test-build": {
+      "returncode": 0,
+      "seconds": 12.294
+    },
+    "image-contract": {
+      "returncode": 0,
+      "seconds": 3.435
+    },
+    "save": {
+      "returncode": 0,
+      "seconds": 5.048
+    },
+    "reload": {
+      "returncode": 0,
+      "seconds": 21.458
+    },
+    "reload-id": {
+      "returncode": 0,
+      "seconds": 0.226
+    }
+  },
+  "complete": true,
+  "image": "research-assistant:d30-2e6f51a643ac",
+  "image_id": "sha256:f0d2b401409598c25e829284b1b782dbb204cdc5280d6751fb6c62b6994d9907",
+  "gate_passed": true,
+  "delivery": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\交付物\\2026-11-06-d30-2e6f51a643ac",
+  "manifest": {
+    "source_commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+    "image": "research-assistant:d30-2e6f51a643ac",
+    "image_id": "sha256:f0d2b401409598c25e829284b1b782dbb204cdc5280d6751fb6c62b6994d9907",
+    "archive": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\交付物\\2026-11-06-d30-2e6f51a643ac\\research-assistant-d30-2e6f51a643ac.tar",
+    "sha256": "98f3fc456473eb51531af72e01c8135b83dbc69d6991c16e319d6a92020bb892",
+    "bytes": 295492096,
+    "source_files_verified": 63,
+    "candidate_files_verified": 59,
+    "base_image_id": "sha256:2d1023efe3e6a8dc7465326bab40d70408a579991fe60bff626145b0d29241b0",
+    "local_health": "10/10 HTTP 200",
+    "official_runtime_entry": "agenthack.AgentRuntime(ResearchAgent()).run()",
+    "image_contract_tests": 10,
+    "image_contract_failures": 0,
+    "image_contract_skips": 0,
+    "source_regression": {
+      "passed": 636,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "source": "Codex offline Linux"
+    },
+    "native_pair_repetitions_per_variant": 3,
+    "new_target_model_calls": 0,
+    "platform_health": "not run",
+    "official_score": null,
+    "D02_D05_algorithm_score_gain_verified": false,
+    "AGENT_VERSION_metadata": "2.0.10-bd7 (preserved from source; distinguish this build by SHA256 and revision label)",
+    "package_evidence": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\d30-package-20261106-061dedf5",
+    "baseline_BE_image": "sha256:b7602723e9e6458fbdabf73bb75ed10cb916638a3ebcf4b98a1a213fb863ce7f"
+  }
+}

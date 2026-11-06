@@ -1,0 +1,120 @@
+{
+  "baseline_commit": "dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd",
+  "candidate_commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+  "target_model_calls": 0,
+  "official_score": null,
+  "steps": {
+    "engine": {
+      "returncode": 0,
+      "seconds": 0.216
+    },
+    "environment": {
+      "returncode": 0,
+      "seconds": 0.214
+    },
+    "full": {
+      "returncode": 0,
+      "seconds": 23.311
+    }
+  },
+  "scope": "Codex offline / Linux / current contract / synthetic fault injection",
+  "environment_fingerprint": "3eefbbc63098d513d8ac380fde9f2b19d863455ee6761d0b65eccf7b08ad6a69",
+  "reused_native_pairs": {
+    "directory": "C:\\Users\\lenovo\\Desktop\\Agent挑战赛\\镜像测试\\runs\\d-contract-20261106-bdd77c7e",
+    "summary_sha256": "41751ba0f0df8de71e37ccd96b2ac2a95309b165679c995b4b8f92b687c303e2",
+    "cases": {
+      "pair-0-baseline": {
+        "origin": "original Harness",
+        "sha256": "9ee16a18cd6a00e94f7a0e818318cb83ec34b75aa0a402ef68c92c7c9525f8e4",
+        "result": {
+          "failure": 2,
+          "error": 0,
+          "skipped": 0,
+          "passed": 3,
+          "failed_ids": [
+            "tests.test_d_contract_recovery::test_cancelled_generation_never_becomes_exhausted_source_retry[3]",
+            "tests.test_d_contract_recovery::test_response_arriving_after_cancellation_is_evidence_not_selected_source"
+          ],
+          "returncode": 1
+        }
+      },
+      "pair-1-candidate": {
+        "origin": "original Harness",
+        "sha256": "40bed647b8cca28aa98d5417d7455d7884e67ceba574be315ddae6be06df2049",
+        "result": {
+          "failure": 0,
+          "error": 0,
+          "skipped": 0,
+          "passed": 5,
+          "failed_ids": [],
+          "returncode": 0
+        }
+      },
+      "pair-2-candidate": {
+        "origin": "original Harness",
+        "sha256": "95a68699596b226e0460207f61846320627996f1f484100b237649e1a4efa1fe",
+        "result": {
+          "failure": 0,
+          "error": 0,
+          "skipped": 0,
+          "passed": 5,
+          "failed_ids": [],
+          "returncode": 0
+        }
+      },
+      "pair-3-baseline": {
+        "origin": "original Harness",
+        "sha256": "629480ba07ab909fda334fed937d9e08995a1117c6dcc0802c2550dee43d8f1c",
+        "result": {
+          "failure": 2,
+          "error": 0,
+          "skipped": 0,
+          "passed": 3,
+          "failed_ids": [
+            "tests.test_d_contract_recovery::test_cancelled_generation_never_becomes_exhausted_source_retry[3]",
+            "tests.test_d_contract_recovery::test_response_arriving_after_cancellation_is_evidence_not_selected_source"
+          ],
+          "returncode": 1
+        }
+      },
+      "pair-4-baseline": {
+        "origin": "original Harness",
+        "sha256": "b1bcdb7971741fec11cda99c93a88d8cb228a28b3ca1e16e5246aaecf24668ec",
+        "result": {
+          "failure": 2,
+          "error": 0,
+          "skipped": 0,
+          "passed": 3,
+          "failed_ids": [
+            "tests.test_d_contract_recovery::test_cancelled_generation_never_becomes_exhausted_source_retry[3]",
+            "tests.test_d_contract_recovery::test_response_arriving_after_cancellation_is_evidence_not_selected_source"
+          ],
+          "returncode": 1
+        }
+      },
+      "pair-5-candidate": {
+        "origin": "original Harness",
+        "sha256": "02a5662cce4b66cea4fbb1bd644fbe1aae3c410cb030cbaf57dac054bb2b4458",
+        "result": {
+          "failure": 0,
+          "error": 0,
+          "skipped": 0,
+          "passed": 5,
+          "failed_ids": [],
+          "returncode": 0
+        }
+      }
+    }
+  },
+  "paired_gate": true,
+  "full": {
+    "failure": 0,
+    "error": 0,
+    "skipped": 0,
+    "passed": 636,
+    "failed_ids": [],
+    "returncode": 0
+  },
+  "gate_passed": true,
+  "complete": true
+}

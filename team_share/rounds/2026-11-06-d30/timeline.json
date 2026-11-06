@@ -1,0 +1,57 @@
+[
+  {
+    "stage": "01-diagnosis",
+    "commit": "8cf1963",
+    "result": "30 failures recorded before changes; raw baseline retained"
+  },
+  {
+    "stage": "02-contract-fixtures",
+    "commit": "6e0fc45",
+    "result": "current formal contract and cancellation fault injection"
+  },
+  {
+    "stage": "03-single-factor-source-fix",
+    "commit": "24a222b",
+    "result": "two D-only cancellation checkpoints"
+  },
+  {
+    "stage": "04-pinned-candidate",
+    "commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+    "result": "BE/shared runtime preserved"
+  },
+  {
+    "stage": "05-native-service-rejection",
+    "request_id": "6f7244a532724127a108d51ac882725b",
+    "result": "400 before tools: output request 32768 exceeded service limit 12288; not a D test result"
+  },
+  {
+    "stage": "06-native-execution",
+    "request_id": "abab5d91016d44edb14dbfa4df55bcc9",
+    "tool_seq": 3925,
+    "result": "old/new each three rounds; old each 2 cancellation failures, candidate each 5 passes; full 635 pass/1 missing-fixture failure"
+  },
+  {
+    "stage": "07-explicit-offline-exception",
+    "user_reply": "已允许",
+    "scope": "D zero-model fault injection and Linux regression"
+  },
+  {
+    "stage": "08-offline-linux-full",
+    "result": "636 pass, 0 failure/error/skip; exact historical prompt fixture supplied; native pairs reused only after source/material/environment/JUnit verification"
+  },
+  {
+    "stage": "09-repair-review",
+    "url": "https://github.com/Sunming1126/research-agent/pull/16",
+    "result": "open, not merged"
+  },
+  {
+    "stage": "10-package",
+    "result": "exact image source, base SDK, module origin, Linux structure, 10 health checks, 10 image contracts, tar save/load all passed",
+    "image_sha256": "98f3fc456473eb51531af72e01c8135b83dbc69d6991c16e319d6a92020bb892"
+  },
+  {
+    "stage": "11-github-archive",
+    "branch": "archive/d30-release-20261106",
+    "result": "source and complete evidence, image binary linked as Release asset"
+  }
+]
