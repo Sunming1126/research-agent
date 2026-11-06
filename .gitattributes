@@ -2,3 +2,5 @@
 
 # Preserve byte-level checksums of retained D experiment evidence on Windows.
 /docs/testing/2026-11-06-d-contract/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Captured pytest tracebacks contain original trailing spaces; never trim evidence.
+/docs/testing/2026-11-06-d-contract/native-*.xml -whitespace
