@@ -1,0 +1,110 @@
+{
+  "materials": {
+    "method": "For a legal run request, return request.x exactly. For a legal rank request, return request.x + 10. Do not substitute a constant."
+  },
+  "original": "def run_experiment(request):\n    return request[\"x\"]\n",
+  "revision": "def run_experiment(request):\n    return request[\"x\"] + 10 if request[\"phase\"] == \"rank\" else 0\n",
+  "test_plans": {
+    "valid_test_detects_regression": [
+      {
+        "name": "valid",
+        "derivation": "synthetic diagnostic oracle",
+        "material_id": "method:1",
+        "request": {
+          "phase": "run",
+          "x": 1
+        },
+        "expected": 1
+      }
+    ],
+    "empty_test_plan": [],
+    "conflicting_oracles_only": [
+      {
+        "name": "valid",
+        "derivation": "synthetic diagnostic oracle",
+        "material_id": "method:1",
+        "request": {
+          "phase": "run",
+          "x": 1
+        },
+        "expected": 1
+      },
+      {
+        "name": "wrong",
+        "derivation": "synthetic diagnostic oracle",
+        "material_id": "method:1",
+        "request": {
+          "phase": "run",
+          "x": 1
+        },
+        "expected": 2
+      }
+    ],
+    "conflict_plus_independent_valid": [
+      {
+        "name": "valid",
+        "derivation": "synthetic diagnostic oracle",
+        "material_id": "method:1",
+        "request": {
+          "phase": "run",
+          "x": 1
+        },
+        "expected": 1
+      },
+      {
+        "name": "wrong",
+        "derivation": "synthetic diagnostic oracle",
+        "material_id": "method:1",
+        "request": {
+          "phase": "run",
+          "x": 1
+        },
+        "expected": 2
+      },
+      {
+        "name": "independent",
+        "derivation": "synthetic diagnostic oracle",
+        "material_id": "method:1",
+        "request": {
+          "phase": "run",
+          "x": 2
+        },
+        "expected": 2
+      }
+    ],
+    "duplicate_same_oracle": [
+      {
+        "name": "valid",
+        "derivation": "synthetic diagnostic oracle",
+        "material_id": "method:1",
+        "request": {
+          "phase": "run",
+          "x": 1
+        },
+        "expected": 1
+      },
+      {
+        "name": "duplicate",
+        "derivation": "synthetic diagnostic oracle",
+        "material_id": "method:1",
+        "request": {
+          "phase": "run",
+          "x": 1
+        },
+        "expected": 1
+      }
+    ],
+    "both_implementations_fail_all_tests": [
+      {
+        "name": "wrong",
+        "derivation": "synthetic diagnostic oracle",
+        "material_id": "method:1",
+        "request": {
+          "phase": "run",
+          "x": 1
+        },
+        "expected": 2
+      }
+    ]
+  }
+}

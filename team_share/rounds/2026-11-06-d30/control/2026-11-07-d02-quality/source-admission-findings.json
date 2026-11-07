@@ -1,0 +1,102 @@
+{
+  "origin": "Codex offline read-only source-admission counterexamples",
+  "source_of_inputs": "Four authored Python signature fixtures; not competition questions or hidden inputs",
+  "target_model_calls": 0,
+  "production_files_changed": 0,
+  "official_80p9_ref_verified": false,
+  "finding": "All three references accept syntax-valid entrypoints that cannot receive the actual positional request argument.",
+  "introduced_by_latest_changes": false,
+  "proves_latest_official_failure_cause": false,
+  "observations": [
+    {
+      "ref": "046324bae9425aa0a1aeff49b9d8128831d18479",
+      "module_sha256": "4850970d46bd39650cd04aaeb0e179b2bce793cc009a5a2473efafec1be08b9e",
+      "fixtures": [
+        {
+          "fixture": "valid_one_argument",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": true,
+          "fixture_sha256": "50f3e588235123ec29eda0229be383397d07166ebf3f595e13ea29c4b17373e4"
+        },
+        {
+          "fixture": "missing_request_argument",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": false,
+          "fixture_sha256": "4599bc9e113f6e0fd8e9e6f1f359a1784914153330b38b6a46ae0ea16b643005"
+        },
+        {
+          "fixture": "extra_required_argument",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": false,
+          "fixture_sha256": "84a14ceb6c7a76e49c0419cfdefdb2ec4cedee8c7aa9d43c8219f9dad7d6a97b"
+        },
+        {
+          "fixture": "keyword_only_request",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": false,
+          "fixture_sha256": "f872ce774a9710839cbfc573e698949de8780de5a473b68f04d2810400cf09e0"
+        }
+      ]
+    },
+    {
+      "ref": "dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd",
+      "module_sha256": "da56d655a9431fe93391c4c9ca16a10ccd41834fd84229f813a597ecd9e842ee",
+      "fixtures": [
+        {
+          "fixture": "valid_one_argument",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": true,
+          "fixture_sha256": "50f3e588235123ec29eda0229be383397d07166ebf3f595e13ea29c4b17373e4"
+        },
+        {
+          "fixture": "missing_request_argument",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": false,
+          "fixture_sha256": "4599bc9e113f6e0fd8e9e6f1f359a1784914153330b38b6a46ae0ea16b643005"
+        },
+        {
+          "fixture": "extra_required_argument",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": false,
+          "fixture_sha256": "84a14ceb6c7a76e49c0419cfdefdb2ec4cedee8c7aa9d43c8219f9dad7d6a97b"
+        },
+        {
+          "fixture": "keyword_only_request",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": false,
+          "fixture_sha256": "f872ce774a9710839cbfc573e698949de8780de5a473b68f04d2810400cf09e0"
+        }
+      ]
+    },
+    {
+      "ref": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+      "module_sha256": "da56d655a9431fe93391c4c9ca16a10ccd41834fd84229f813a597ecd9e842ee",
+      "fixtures": [
+        {
+          "fixture": "valid_one_argument",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": true,
+          "fixture_sha256": "50f3e588235123ec29eda0229be383397d07166ebf3f595e13ea29c4b17373e4"
+        },
+        {
+          "fixture": "missing_request_argument",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": false,
+          "fixture_sha256": "4599bc9e113f6e0fd8e9e6f1f359a1784914153330b38b6a46ae0ea16b643005"
+        },
+        {
+          "fixture": "extra_required_argument",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": false,
+          "fixture_sha256": "84a14ceb6c7a76e49c0419cfdefdb2ec4cedee8c7aa9d43c8219f9dad7d6a97b"
+        },
+        {
+          "fixture": "keyword_only_request",
+          "accepted_by_source_gate": true,
+          "callable_as_run_experiment_request": false,
+          "fixture_sha256": "f872ce774a9710839cbfc573e698949de8780de5a473b68f04d2810400cf09e0"
+        }
+      ]
+    }
+  ]
+}

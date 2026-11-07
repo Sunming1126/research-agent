@@ -1,0 +1,19 @@
+{
+  "selected": "original",
+  "semantic_verified": false,
+  "selftest": {
+    "state": "tested",
+    "count": 1,
+    "passed": 1,
+    "received": 1,
+    "rejected": []
+  },
+  "state": "repair",
+  "grounded_defects": 1,
+  "rejected_defects": 0,
+  "repair": "rejected_test_regression",
+  "retest": {
+    "state": "tested",
+    "passed": 0
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "selected": "review",
+  "semantic_verified": false,
+  "selftest": {
+    "state": "no_tests",
+    "count": 0,
+    "passed": 0,
+    "observed_phases": [],
+    "received": 0,
+    "rejected": []
+  },
+  "state": "repair",
+  "grounded_defects": 1,
+  "rejected_defects": 0,
+  "repair": "selected",
+  "retest": {
+    "state": "no_tests",
+    "passed": 0
+  },
+  "followup": {
+    "selected": false,
+    "state": "not_needed"
+  },
+  "independent_validation": {
+    "state": "not_started",
+    "reverted": false
+  }
+}

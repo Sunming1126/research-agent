@@ -1,0 +1,1116 @@
+{
+  "origin": "Codex offline",
+  "scope": "exact Git function ASTs; synthetic decision gate only",
+  "target_model_calls": 0,
+  "official_score": null,
+  "full_workflow_executed": false,
+  "review_implementation_exact_ast_executed_with_explicit_synthetic_dependencies": true,
+  "linux_isolation_executed": false,
+  "agent_or_test_source_modified": false,
+  "identity_note": "046324b is teammate source; not established as the official 80.9 baseline.",
+  "input_sha256": "12ba0d151a96da26d5596f054a14718aa7a36e068a2df913ac9706ede2469ee6",
+  "script_sha256": "baf07e99682dc4696ceef34c414d7bc0aa9a5ea37a41c0a912da42426a769fd6",
+  "source_sha256": {
+    "046324b": {
+      "src/research_agent/workflows/d_selftest.py": "af9846277a2e60723d119ad1104e54bb26e978059ad07b8c4aee6f0c3ea3e432",
+      "src/research_agent/workflows/d_review.py": "976558af54c1b79c96e922b409676a322e18e84e5ff8919a642737c9ea496002",
+      "src/research_agent/workflows/layered_d_runner.py": "36ef327434813fa9fa056209f6f68b452a7179836912b56cf0140a1f52282ca7"
+    },
+    "dc9ef0f": {
+      "src/research_agent/workflows/d_selftest.py": "75b69e2ce0e587d213a2d0064d1daab5c507ee79c98e27bf9b27511fe0ca56dc",
+      "src/research_agent/workflows/d_review.py": "976558af54c1b79c96e922b409676a322e18e84e5ff8919a642737c9ea496002",
+      "src/research_agent/workflows/layered_d_runner.py": "4254ad4f402055fcdc0928b878040434f451e2152c663175adb85b3c117dbafe"
+    },
+    "2e6f51a": {
+      "src/research_agent/workflows/d_selftest.py": "75b69e2ce0e587d213a2d0064d1daab5c507ee79c98e27bf9b27511fe0ca56dc",
+      "src/research_agent/workflows/d_review.py": "976558af54c1b79c96e922b409676a322e18e84e5ff8919a642737c9ea496002",
+      "src/research_agent/workflows/layered_d_runner.py": "5e47df5b4b859810553cad814161fe809b3677db147feb597dadfcdbef73b612"
+    }
+  },
+  "environment": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "variants": {
+    "046324b": {
+      "commit": "046324bae9425aa0a1aeff49b9d8128831d18479",
+      "cases": {
+        "valid_test_detects_regression": {
+          "received": 1,
+          "accepted_tests": 1,
+          "rejected": [],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": true,
+                "actual": 1,
+                "expected": 1
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": false,
+                "actual": 0,
+                "expected": 1
+              }
+            ]
+          },
+          "preserves_tests": false
+        },
+        "empty_test_plan": {
+          "received": 0,
+          "accepted_tests": 0,
+          "rejected": [],
+          "before": {
+            "state": "no_tests",
+            "results": []
+          },
+          "after": {
+            "state": "no_tests",
+            "results": []
+          },
+          "preserves_tests": true
+        },
+        "conflicting_oracles_only": {
+          "received": 2,
+          "accepted_tests": 2,
+          "rejected": [],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": true,
+                "actual": 1,
+                "expected": 1
+              },
+              {
+                "name": "wrong",
+                "passed": false,
+                "actual": 1,
+                "expected": 2
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": false,
+                "actual": 0,
+                "expected": 1
+              },
+              {
+                "name": "wrong",
+                "passed": false,
+                "actual": 0,
+                "expected": 2
+              }
+            ]
+          },
+          "preserves_tests": false
+        },
+        "conflict_plus_independent_valid": {
+          "received": 3,
+          "accepted_tests": 3,
+          "rejected": [],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": true,
+                "actual": 1,
+                "expected": 1
+              },
+              {
+                "name": "wrong",
+                "passed": false,
+                "actual": 1,
+                "expected": 2
+              },
+              {
+                "name": "independent",
+                "passed": true,
+                "actual": 2,
+                "expected": 2
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": false,
+                "actual": 0,
+                "expected": 1
+              },
+              {
+                "name": "wrong",
+                "passed": false,
+                "actual": 0,
+                "expected": 2
+              },
+              {
+                "name": "independent",
+                "passed": false,
+                "actual": 0,
+                "expected": 2
+              }
+            ]
+          },
+          "preserves_tests": false
+        },
+        "duplicate_same_oracle": {
+          "received": 2,
+          "accepted_tests": 2,
+          "rejected": [],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": true,
+                "actual": 1,
+                "expected": 1
+              },
+              {
+                "name": "duplicate",
+                "passed": true,
+                "actual": 1,
+                "expected": 1
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": false,
+                "actual": 0,
+                "expected": 1
+              },
+              {
+                "name": "duplicate",
+                "passed": false,
+                "actual": 0,
+                "expected": 1
+              }
+            ]
+          },
+          "preserves_tests": false
+        },
+        "both_implementations_fail_all_tests": {
+          "received": 1,
+          "accepted_tests": 1,
+          "rejected": [],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "wrong",
+                "passed": false,
+                "actual": 1,
+                "expected": 2
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "wrong",
+                "passed": false,
+                "actual": 0,
+                "expected": 2
+              }
+            ]
+          },
+          "preserves_tests": true
+        },
+        "unavailable_before_and_after": {
+          "preserves_tests": true
+        }
+      },
+      "actual_review_method_simulations": {
+        "valid_test_detects_regression": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "original",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "tested",
+              "count": 1,
+              "passed": 1,
+              "received": 1,
+              "rejected": []
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "rejected_test_regression",
+            "retest": {
+              "state": "tested",
+              "passed": 0
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "b29bb365d1e0cbb11cc54b3f665903f967344c02e89a3329f4ff9aa053cfbe7e",
+          "selected_run_value": 1,
+          "selected_rank_value": 1
+        },
+        "empty_test_plan": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "review",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "no_tests",
+              "count": 0,
+              "passed": 0,
+              "received": 0,
+              "rejected": []
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "selected",
+            "retest": {
+              "state": "no_tests",
+              "passed": 0
+            },
+            "followup": {
+              "selected": false,
+              "state": "not_needed"
+            },
+            "independent_validation": {
+              "state": "not_started",
+              "reverted": false
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "81386be6426e6dcd0f5e8ec80b54f363cc52b0a8d93e5ecd211cdd8bb50d7ed0",
+          "selected_run_value": 0,
+          "selected_rank_value": 11
+        },
+        "conflicting_oracles_only": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "original",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "tested",
+              "count": 2,
+              "passed": 1,
+              "received": 2,
+              "rejected": []
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "rejected_test_regression",
+            "retest": {
+              "state": "tested",
+              "passed": 0
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "b29bb365d1e0cbb11cc54b3f665903f967344c02e89a3329f4ff9aa053cfbe7e",
+          "selected_run_value": 1,
+          "selected_rank_value": 1
+        },
+        "conflict_plus_independent_valid": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "original",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "tested",
+              "count": 3,
+              "passed": 2,
+              "received": 3,
+              "rejected": []
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "rejected_test_regression",
+            "retest": {
+              "state": "tested",
+              "passed": 0
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "b29bb365d1e0cbb11cc54b3f665903f967344c02e89a3329f4ff9aa053cfbe7e",
+          "selected_run_value": 1,
+          "selected_rank_value": 1
+        },
+        "duplicate_same_oracle": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "original",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "tested",
+              "count": 2,
+              "passed": 2,
+              "received": 2,
+              "rejected": []
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "rejected_test_regression",
+            "retest": {
+              "state": "tested",
+              "passed": 0
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "b29bb365d1e0cbb11cc54b3f665903f967344c02e89a3329f4ff9aa053cfbe7e",
+          "selected_run_value": 1,
+          "selected_rank_value": 1
+        }
+      }
+    },
+    "dc9ef0f": {
+      "commit": "dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd",
+      "cases": {
+        "valid_test_detects_regression": {
+          "received": 1,
+          "accepted_tests": 1,
+          "rejected": [],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": true,
+                "actual": 1,
+                "expected": 1
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": false,
+                "actual": 0,
+                "expected": 1
+              }
+            ]
+          },
+          "preserves_tests": false
+        },
+        "empty_test_plan": {
+          "received": 0,
+          "accepted_tests": 0,
+          "rejected": [],
+          "before": {
+            "state": "no_tests",
+            "results": []
+          },
+          "after": {
+            "state": "no_tests",
+            "results": []
+          },
+          "preserves_tests": true
+        },
+        "conflicting_oracles_only": {
+          "received": 2,
+          "accepted_tests": 0,
+          "rejected": [
+            "conflicting_oracle"
+          ],
+          "before": {
+            "state": "no_tests",
+            "results": []
+          },
+          "after": {
+            "state": "no_tests",
+            "results": []
+          },
+          "preserves_tests": true
+        },
+        "conflict_plus_independent_valid": {
+          "received": 3,
+          "accepted_tests": 1,
+          "rejected": [
+            "conflicting_oracle"
+          ],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "independent",
+                "passed": true,
+                "actual": 2,
+                "expected": 2
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "independent",
+                "passed": false,
+                "actual": 0,
+                "expected": 2
+              }
+            ]
+          },
+          "preserves_tests": false
+        },
+        "duplicate_same_oracle": {
+          "received": 2,
+          "accepted_tests": 1,
+          "rejected": [
+            "duplicate_request"
+          ],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": true,
+                "actual": 1,
+                "expected": 1
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": false,
+                "actual": 0,
+                "expected": 1
+              }
+            ]
+          },
+          "preserves_tests": false
+        },
+        "both_implementations_fail_all_tests": {
+          "received": 1,
+          "accepted_tests": 1,
+          "rejected": [],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "wrong",
+                "passed": false,
+                "actual": 1,
+                "expected": 2
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "wrong",
+                "passed": false,
+                "actual": 0,
+                "expected": 2
+              }
+            ]
+          },
+          "preserves_tests": true
+        },
+        "unavailable_before_and_after": {
+          "preserves_tests": true
+        }
+      },
+      "actual_review_method_simulations": {
+        "valid_test_detects_regression": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "original",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "tested",
+              "count": 1,
+              "passed": 1,
+              "observed_phases": [
+                "run"
+              ],
+              "received": 1,
+              "rejected": []
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "rejected_test_regression",
+            "retest": {
+              "state": "tested",
+              "passed": 0
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "b29bb365d1e0cbb11cc54b3f665903f967344c02e89a3329f4ff9aa053cfbe7e",
+          "selected_run_value": 1,
+          "selected_rank_value": 1
+        },
+        "empty_test_plan": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "review",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "no_tests",
+              "count": 0,
+              "passed": 0,
+              "observed_phases": [],
+              "received": 0,
+              "rejected": []
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "selected",
+            "retest": {
+              "state": "no_tests",
+              "passed": 0
+            },
+            "followup": {
+              "selected": false,
+              "state": "not_needed"
+            },
+            "independent_validation": {
+              "state": "not_started",
+              "reverted": false
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "81386be6426e6dcd0f5e8ec80b54f363cc52b0a8d93e5ecd211cdd8bb50d7ed0",
+          "selected_run_value": 0,
+          "selected_rank_value": 11
+        },
+        "conflicting_oracles_only": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "review",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "no_tests",
+              "count": 0,
+              "passed": 0,
+              "observed_phases": [],
+              "received": 2,
+              "rejected": [
+                "conflicting_oracle"
+              ]
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "selected",
+            "retest": {
+              "state": "no_tests",
+              "passed": 0
+            },
+            "followup": {
+              "selected": false,
+              "state": "not_needed"
+            },
+            "independent_validation": {
+              "state": "not_started",
+              "reverted": false
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "81386be6426e6dcd0f5e8ec80b54f363cc52b0a8d93e5ecd211cdd8bb50d7ed0",
+          "selected_run_value": 0,
+          "selected_rank_value": 11
+        },
+        "conflict_plus_independent_valid": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "original",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "tested",
+              "count": 1,
+              "passed": 1,
+              "observed_phases": [
+                "run"
+              ],
+              "received": 3,
+              "rejected": [
+                "conflicting_oracle"
+              ]
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "rejected_test_regression",
+            "retest": {
+              "state": "tested",
+              "passed": 0
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "b29bb365d1e0cbb11cc54b3f665903f967344c02e89a3329f4ff9aa053cfbe7e",
+          "selected_run_value": 1,
+          "selected_rank_value": 1
+        },
+        "duplicate_same_oracle": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "original",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "tested",
+              "count": 1,
+              "passed": 1,
+              "observed_phases": [
+                "run"
+              ],
+              "received": 2,
+              "rejected": [
+                "duplicate_request"
+              ]
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "rejected_test_regression",
+            "retest": {
+              "state": "tested",
+              "passed": 0
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "b29bb365d1e0cbb11cc54b3f665903f967344c02e89a3329f4ff9aa053cfbe7e",
+          "selected_run_value": 1,
+          "selected_rank_value": 1
+        }
+      }
+    },
+    "2e6f51a": {
+      "commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+      "cases": {
+        "valid_test_detects_regression": {
+          "received": 1,
+          "accepted_tests": 1,
+          "rejected": [],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": true,
+                "actual": 1,
+                "expected": 1
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": false,
+                "actual": 0,
+                "expected": 1
+              }
+            ]
+          },
+          "preserves_tests": false
+        },
+        "empty_test_plan": {
+          "received": 0,
+          "accepted_tests": 0,
+          "rejected": [],
+          "before": {
+            "state": "no_tests",
+            "results": []
+          },
+          "after": {
+            "state": "no_tests",
+            "results": []
+          },
+          "preserves_tests": true
+        },
+        "conflicting_oracles_only": {
+          "received": 2,
+          "accepted_tests": 0,
+          "rejected": [
+            "conflicting_oracle"
+          ],
+          "before": {
+            "state": "no_tests",
+            "results": []
+          },
+          "after": {
+            "state": "no_tests",
+            "results": []
+          },
+          "preserves_tests": true
+        },
+        "conflict_plus_independent_valid": {
+          "received": 3,
+          "accepted_tests": 1,
+          "rejected": [
+            "conflicting_oracle"
+          ],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "independent",
+                "passed": true,
+                "actual": 2,
+                "expected": 2
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "independent",
+                "passed": false,
+                "actual": 0,
+                "expected": 2
+              }
+            ]
+          },
+          "preserves_tests": false
+        },
+        "duplicate_same_oracle": {
+          "received": 2,
+          "accepted_tests": 1,
+          "rejected": [
+            "duplicate_request"
+          ],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": true,
+                "actual": 1,
+                "expected": 1
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "valid",
+                "passed": false,
+                "actual": 0,
+                "expected": 1
+              }
+            ]
+          },
+          "preserves_tests": false
+        },
+        "both_implementations_fail_all_tests": {
+          "received": 1,
+          "accepted_tests": 1,
+          "rejected": [],
+          "before": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "wrong",
+                "passed": false,
+                "actual": 1,
+                "expected": 2
+              }
+            ]
+          },
+          "after": {
+            "state": "tested",
+            "results": [
+              {
+                "name": "wrong",
+                "passed": false,
+                "actual": 0,
+                "expected": 2
+              }
+            ]
+          },
+          "preserves_tests": true
+        },
+        "unavailable_before_and_after": {
+          "preserves_tests": true
+        }
+      },
+      "actual_review_method_simulations": {
+        "valid_test_detects_regression": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "original",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "tested",
+              "count": 1,
+              "passed": 1,
+              "observed_phases": [
+                "run"
+              ],
+              "received": 1,
+              "rejected": []
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "rejected_test_regression",
+            "retest": {
+              "state": "tested",
+              "passed": 0
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "b29bb365d1e0cbb11cc54b3f665903f967344c02e89a3329f4ff9aa053cfbe7e",
+          "selected_run_value": 1,
+          "selected_rank_value": 1
+        },
+        "empty_test_plan": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "review",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "no_tests",
+              "count": 0,
+              "passed": 0,
+              "observed_phases": [],
+              "received": 0,
+              "rejected": []
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "selected",
+            "retest": {
+              "state": "no_tests",
+              "passed": 0
+            },
+            "followup": {
+              "selected": false,
+              "state": "not_needed"
+            },
+            "independent_validation": {
+              "state": "not_started",
+              "reverted": false
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "81386be6426e6dcd0f5e8ec80b54f363cc52b0a8d93e5ecd211cdd8bb50d7ed0",
+          "selected_run_value": 0,
+          "selected_rank_value": 11
+        },
+        "conflicting_oracles_only": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "review",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "no_tests",
+              "count": 0,
+              "passed": 0,
+              "observed_phases": [],
+              "received": 2,
+              "rejected": [
+                "conflicting_oracle"
+              ]
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "selected",
+            "retest": {
+              "state": "no_tests",
+              "passed": 0
+            },
+            "followup": {
+              "selected": false,
+              "state": "not_needed"
+            },
+            "independent_validation": {
+              "state": "not_started",
+              "reverted": false
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "81386be6426e6dcd0f5e8ec80b54f363cc52b0a8d93e5ecd211cdd8bb50d7ed0",
+          "selected_run_value": 0,
+          "selected_rank_value": 11
+        },
+        "conflict_plus_independent_valid": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "original",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "tested",
+              "count": 1,
+              "passed": 1,
+              "observed_phases": [
+                "run"
+              ],
+              "received": 3,
+              "rejected": [
+                "conflicting_oracle"
+              ]
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "rejected_test_regression",
+            "retest": {
+              "state": "tested",
+              "passed": 0
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "b29bb365d1e0cbb11cc54b3f665903f967344c02e89a3329f4ff9aa053cfbe7e",
+          "selected_run_value": 1,
+          "selected_rank_value": 1
+        },
+        "duplicate_same_oracle": {
+          "origin": "mechanism simulation, not Linux or official experiment",
+          "audit": {
+            "selected": "original",
+            "semantic_verified": false,
+            "selftest": {
+              "state": "tested",
+              "count": 1,
+              "passed": 1,
+              "observed_phases": [
+                "run"
+              ],
+              "received": 2,
+              "rejected": [
+                "duplicate_request"
+              ]
+            },
+            "state": "repair",
+            "grounded_defects": 1,
+            "rejected_defects": 0,
+            "repair": "rejected_test_regression",
+            "retest": {
+              "state": "tested",
+              "passed": 0
+            }
+          },
+          "synthetic_calls": [
+            "d_tests",
+            "d_review",
+            "synthetic_revision"
+          ],
+          "target_model_calls": 0,
+          "selected_source_sha256": "b29bb365d1e0cbb11cc54b3f665903f967344c02e89a3329f4ff9aa053cfbe7e",
+          "selected_run_value": 1,
+          "selected_rank_value": 1
+        }
+      }
+    }
+  },
+  "conclusion": {
+    "new_combination_risk": "conflicting oracle removal can empty the valid-test set; existing non-tested acceptance then permits an unvalidated regression",
+    "inherited_gaps": [
+      "empty plan permits revision",
+      "unavailable before permits revision",
+      "equal all-failed results permit revision"
+    ],
+    "recommended_boundary": "retain conflict rejection; retain original whenever no valid executable verification supports selecting its replacement",
+    "not_proven": [
+      "online cause",
+      "current frozen-input behavior",
+      "official 80.9 identity",
+      "score delta"
+    ]
+  }
+}

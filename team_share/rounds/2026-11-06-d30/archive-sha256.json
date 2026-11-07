@@ -75,6 +75,226 @@
     "sha256": "da3e8a64f7563cacdda41fd6306cea90515a1d970cd3048da5b1d91e49b1a0db",
     "bytes": 7129
   },
+  "control/2026-11-07-d02-quality/archive_d02_quality_20261107.py": {
+    "sha256": "3cbe0b2b63a4c7de109fab1c5b9ab5f5034823cd0a0551206887ae83196add58",
+    "bytes": 5084
+  },
+  "control/2026-11-07-d02-quality/compare_selection_mechanisms.py": {
+    "sha256": "baf07e99682dc4696ceef34c414d7bc0aa9a5ea37a41c0a912da42426a769fd6",
+    "bytes": 13013
+  },
+  "control/2026-11-07-d02-quality/D02候选选择旧新机制对照.md": {
+    "sha256": "d2318722bc07e7fa88ef502ecc1920678d23223e2dfeac434f2e035d14079992",
+    "bytes": 5278
+  },
+  "control/2026-11-07-d02-quality/history-loss-update.json": {
+    "sha256": "6069b92b2d8e611550042936debdca365d574351394093e7982ec418875e8028",
+    "bytes": 898
+  },
+  "control/2026-11-07-d02-quality/selection-gate-execution-history.json": {
+    "sha256": "77da0a8d29a51c654c8a31dca4b9e9f2d9d36a1771d2088a644a93ab71accf8f",
+    "bytes": 1122
+  },
+  "control/2026-11-07-d02-quality/selection-gate-synthetic-input.json": {
+    "sha256": "12ba0d151a96da26d5596f054a14718aa7a36e068a2df913ac9706ede2469ee6",
+    "bytes": 2689
+  },
+  "control/2026-11-07-d02-quality/selection-gate-three-revisions.json": {
+    "sha256": "130292e1ac7c3853fa58b6d9e2b42af8a8b3e1911dc10f59c4e10bb55c9003c4",
+    "bytes": 33896
+  },
+  "control/2026-11-07-d02-quality/source-admission-findings.json": {
+    "sha256": "e8b28bec35040ec9607a73ba195e7818ac03fdd8e8569d3bcd56fcbd32a142aa",
+    "bytes": 4312
+  },
+  "control/2026-11-07-d02-quality/source_admission_probe.py": {
+    "sha256": "9fbc3460849746e232878dee822858456da63597f9bdee637d2cee297d917869",
+    "bytes": 3049
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/conflict_plus_independent_valid/generation-response.json": {
+    "sha256": "581c49c6141f9ea5f6e9d0c05d298bb82bb7e85885796c94e088a6ac35b43e9d",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/conflict_plus_independent_valid/implementation.py": {
+    "sha256": "151d5a69bb85046e3f9ff3169549ef9e315cfbcb687700c7fade67605d7bc240",
+    "bytes": 55
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/conflict_plus_independent_valid/source-review.json": {
+    "sha256": "a1a02fa8f92a762a722f45b817cafd9f79dbffb3c8b8c60df6e79ddfddc8e5db",
+    "bytes": 362
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/conflicting_oracles_only/generation-response.json": {
+    "sha256": "581c49c6141f9ea5f6e9d0c05d298bb82bb7e85885796c94e088a6ac35b43e9d",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/conflicting_oracles_only/implementation.py": {
+    "sha256": "151d5a69bb85046e3f9ff3169549ef9e315cfbcb687700c7fade67605d7bc240",
+    "bytes": 55
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/conflicting_oracles_only/source-review.json": {
+    "sha256": "e5c80769d5588ca955acc4fbba80a8d1131750556b41867daf8e1444872b6a37",
+    "bytes": 362
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/duplicate_same_oracle/generation-response.json": {
+    "sha256": "581c49c6141f9ea5f6e9d0c05d298bb82bb7e85885796c94e088a6ac35b43e9d",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/duplicate_same_oracle/implementation.py": {
+    "sha256": "151d5a69bb85046e3f9ff3169549ef9e315cfbcb687700c7fade67605d7bc240",
+    "bytes": 55
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/duplicate_same_oracle/source-review.json": {
+    "sha256": "705af3998f68eb46a98cf4a362bf52ee003e7438a4f860945d377c28f2beba45",
+    "bytes": 362
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/empty_test_plan/generation-response.json": {
+    "sha256": "84b247fd5ed5b76a18a34707920866c1c587b024e629fe56ebc38c63597b8602",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/empty_test_plan/implementation.py": {
+    "sha256": "0a229040ad92a1eaae547ce6b3ed87a084411d3c917973c38870ad613cabca57",
+    "bytes": 97
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/empty_test_plan/source-review.json": {
+    "sha256": "0f5a45e1712b29c2a0eb0c287dcf52e2f48504974d75f7941ba1a661c82cc653",
+    "bytes": 511
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/valid_test_detects_regression/generation-response.json": {
+    "sha256": "581c49c6141f9ea5f6e9d0c05d298bb82bb7e85885796c94e088a6ac35b43e9d",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/valid_test_detects_regression/implementation.py": {
+    "sha256": "151d5a69bb85046e3f9ff3169549ef9e315cfbcb687700c7fade67605d7bc240",
+    "bytes": 55
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/046324b/valid_test_detects_regression/source-review.json": {
+    "sha256": "4a140107120208778ac9933f174881cfe94eaed2b3c087cb8420bb76477f36f5",
+    "bytes": 362
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/conflict_plus_independent_valid/generation-response.json": {
+    "sha256": "581c49c6141f9ea5f6e9d0c05d298bb82bb7e85885796c94e088a6ac35b43e9d",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/conflict_plus_independent_valid/implementation.py": {
+    "sha256": "151d5a69bb85046e3f9ff3169549ef9e315cfbcb687700c7fade67605d7bc240",
+    "bytes": 55
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/conflict_plus_independent_valid/source-review.json": {
+    "sha256": "7d2fe49f7dbf06a286a767b8cbe7254b4384d21a673557b956c94f0e749da45e",
+    "bytes": 443
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/conflicting_oracles_only/generation-response.json": {
+    "sha256": "84b247fd5ed5b76a18a34707920866c1c587b024e629fe56ebc38c63597b8602",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/conflicting_oracles_only/implementation.py": {
+    "sha256": "0a229040ad92a1eaae547ce6b3ed87a084411d3c917973c38870ad613cabca57",
+    "bytes": 97
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/conflicting_oracles_only/source-review.json": {
+    "sha256": "2e5e55985690bb65bb15001e35581c27c267ed65bd922539ab29bf083f05f369",
+    "bytes": 573
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/duplicate_same_oracle/generation-response.json": {
+    "sha256": "581c49c6141f9ea5f6e9d0c05d298bb82bb7e85885796c94e088a6ac35b43e9d",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/duplicate_same_oracle/implementation.py": {
+    "sha256": "151d5a69bb85046e3f9ff3169549ef9e315cfbcb687700c7fade67605d7bc240",
+    "bytes": 55
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/duplicate_same_oracle/source-review.json": {
+    "sha256": "c587e9a6eed3c3abfebbecd6b9dea8ea8ea98406fbd1a41041733db2523e3873",
+    "bytes": 442
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/empty_test_plan/generation-response.json": {
+    "sha256": "84b247fd5ed5b76a18a34707920866c1c587b024e629fe56ebc38c63597b8602",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/empty_test_plan/implementation.py": {
+    "sha256": "0a229040ad92a1eaae547ce6b3ed87a084411d3c917973c38870ad613cabca57",
+    "bytes": 97
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/empty_test_plan/source-review.json": {
+    "sha256": "b9fdc025fbc01ca1cb3bec16debc446044c3cbb12328c441593bda78e1fc8a7d",
+    "bytes": 539
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/valid_test_detects_regression/generation-response.json": {
+    "sha256": "581c49c6141f9ea5f6e9d0c05d298bb82bb7e85885796c94e088a6ac35b43e9d",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/valid_test_detects_regression/implementation.py": {
+    "sha256": "151d5a69bb85046e3f9ff3169549ef9e315cfbcb687700c7fade67605d7bc240",
+    "bytes": 55
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/2e6f51a/valid_test_detects_regression/source-review.json": {
+    "sha256": "da7e102d1a007079dfa5255b524461a6d15fea042f323a725731f25d7090ce86",
+    "bytes": 409
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/conflict_plus_independent_valid/generation-response.json": {
+    "sha256": "581c49c6141f9ea5f6e9d0c05d298bb82bb7e85885796c94e088a6ac35b43e9d",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/conflict_plus_independent_valid/implementation.py": {
+    "sha256": "151d5a69bb85046e3f9ff3169549ef9e315cfbcb687700c7fade67605d7bc240",
+    "bytes": 55
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/conflict_plus_independent_valid/source-review.json": {
+    "sha256": "7d2fe49f7dbf06a286a767b8cbe7254b4384d21a673557b956c94f0e749da45e",
+    "bytes": 443
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/conflicting_oracles_only/generation-response.json": {
+    "sha256": "84b247fd5ed5b76a18a34707920866c1c587b024e629fe56ebc38c63597b8602",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/conflicting_oracles_only/implementation.py": {
+    "sha256": "0a229040ad92a1eaae547ce6b3ed87a084411d3c917973c38870ad613cabca57",
+    "bytes": 97
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/conflicting_oracles_only/source-review.json": {
+    "sha256": "2e5e55985690bb65bb15001e35581c27c267ed65bd922539ab29bf083f05f369",
+    "bytes": 573
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/duplicate_same_oracle/generation-response.json": {
+    "sha256": "581c49c6141f9ea5f6e9d0c05d298bb82bb7e85885796c94e088a6ac35b43e9d",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/duplicate_same_oracle/implementation.py": {
+    "sha256": "151d5a69bb85046e3f9ff3169549ef9e315cfbcb687700c7fade67605d7bc240",
+    "bytes": 55
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/duplicate_same_oracle/source-review.json": {
+    "sha256": "c587e9a6eed3c3abfebbecd6b9dea8ea8ea98406fbd1a41041733db2523e3873",
+    "bytes": 442
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/empty_test_plan/generation-response.json": {
+    "sha256": "84b247fd5ed5b76a18a34707920866c1c587b024e629fe56ebc38c63597b8602",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/empty_test_plan/implementation.py": {
+    "sha256": "0a229040ad92a1eaae547ce6b3ed87a084411d3c917973c38870ad613cabca57",
+    "bytes": 97
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/empty_test_plan/source-review.json": {
+    "sha256": "b9fdc025fbc01ca1cb3bec16debc446044c3cbb12328c441593bda78e1fc8a7d",
+    "bytes": 539
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/valid_test_detects_regression/generation-response.json": {
+    "sha256": "581c49c6141f9ea5f6e9d0c05d298bb82bb7e85885796c94e088a6ac35b43e9d",
+    "bytes": 36
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/valid_test_detects_regression/implementation.py": {
+    "sha256": "151d5a69bb85046e3f9ff3169549ef9e315cfbcb687700c7fade67605d7bc240",
+    "bytes": 55
+  },
+  "control/2026-11-07-d02-quality/synthetic-review-method/dc9ef0f/valid_test_detects_regression/source-review.json": {
+    "sha256": "da7e102d1a007079dfa5255b524461a6d15fea042f323a725731f25d7090ce86",
+    "bytes": 409
+  },
+  "control/2026-11-07-d02-quality/原版借鉴与单变量方案.md": {
+    "sha256": "fe6aa1e3c6167b9eea371711529515233a06c5172174dc9f01f504eee02c6c23",
+    "bytes": 5537
+  },
   "D30闭环报告.md": {
     "sha256": "87edb9910fc4e4a45fb45f75df9d055a533071310756531f6238ffce6df08f2a",
     "bytes": 5937
@@ -612,8 +832,8 @@
     "bytes": 2984
   },
   "README.md": {
-    "sha256": "4c7a67fa8ab1787c1fdc1ffd704449552da381c4f0ac77e2258e19bfaca0766b",
-    "bytes": 2306
+    "sha256": "c81329e61344c28f7b02f00785ae6477d11c716565feefc737326f789521326d",
+    "bytes": 2816
   },
   "receipts/d-contract-native-limit-20261106.json": {
     "sha256": "f1726dcc2cca8c3c4d89c5199274fea03c318d08b744218ae09c7f87abb9c0a7",

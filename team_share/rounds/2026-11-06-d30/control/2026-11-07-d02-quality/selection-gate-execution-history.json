@@ -1,0 +1,29 @@
+{
+  "origin": "Codex offline mechanism simulation",
+  "target_model_calls": 0,
+  "attempts": [
+    {
+      "order": 1,
+      "result": "simulation harness failed before comparison",
+      "exception": "NameError: name 're' is not defined",
+      "stage": "exact AST response_json function dependency injection",
+      "correction": "include re in the simulation's isolated function globals",
+      "agent_or_frozen_test_change": false
+    },
+    {
+      "order": 2,
+      "result": "simulation harness failed before review-method comparison",
+      "exception": "AssertionError selecting review_implementation from module-only FunctionDef nodes",
+      "stage": "extracting class method AST",
+      "correction": "select exact FunctionDef from ast.walk, including class method; production function body unmodified",
+      "agent_or_frozen_test_change": false
+    },
+    {
+      "order": 3,
+      "result": "comparison completed; all fixed mechanism assertions held",
+      "result_file": "selection-gate-three-revisions.json",
+      "agent_or_frozen_test_change": false,
+      "official_score_verified": false
+    }
+  ]
+}
