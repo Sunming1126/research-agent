@@ -1,0 +1,41 @@
+{
+  "origin": "Codex offline coordination check; not Agent/model/score validation",
+  "target_model_calls": 0,
+  "agent_runtime_edits": 0,
+  "cases": [
+    {
+      "stage": "academic-score-final",
+      "blocked": true,
+      "reason": "80.9 baseline source identity is unbound; release coordination stopped before execution"
+    },
+    {
+      "stage": "academic-score-preflight",
+      "blocked": true,
+      "reason": "80.9 baseline source identity is unbound; release coordination stopped before execution"
+    },
+    {
+      "stage": "be-platform",
+      "blocked": true,
+      "reason": "80.9 baseline source identity is unbound; release coordination stopped before execution"
+    },
+    {
+      "stage": "be-release",
+      "blocked": true,
+      "reason": "80.9 baseline source identity is unbound; release coordination stopped before execution"
+    },
+    {
+      "stage": "be-submit",
+      "blocked": true,
+      "reason": "80.9 baseline source identity is unbound; release coordination stopped before execution"
+    },
+    {
+      "stage": "platform-canary",
+      "blocked": true,
+      "reason": "80.9 baseline source identity is unbound; release coordination stopped before execution"
+    },
+    {
+      "stage": "baseline",
+      "audit_allowed": true
+    }
+  ]
+}

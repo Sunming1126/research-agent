@@ -1,0 +1,38 @@
+{
+  "D30本轮过程与证据.zip": {
+    "sha256": "84b28462c26d9efc40586be3cd096efc40097a49ddde1bcbc8fc1bae5a960d5c",
+    "bytes": 307651
+  },
+  "environment.json": {
+    "sha256": "b7971ab93cc57b54144778558e545ec2f328a3c951c816c4448a0d417d2feaea",
+    "bytes": 10642
+  },
+  "GitHub归档说明.md": {
+    "sha256": "be8576eac2352e799ebdd156fd97b445cc449830098469123dff4e82e514c185",
+    "bytes": 540
+  },
+  "manifest.json": {
+    "sha256": "69b7742159ceece335ce8e06be1fd22e5a87e76da274ed859a3e74a147780209",
+    "bytes": 1834
+  },
+  "research-assistant-d30-2e6f51a643ac.tar": {
+    "sha256": "98f3fc456473eb51531af72e01c8135b83dbc69d6991c16e319d6a92020bb892",
+    "bytes": 295492096
+  },
+  "SHA256SUMS.txt": {
+    "sha256": "297fb0c467557167f40c3d8654d781e10dfbeb2e007f844888ac899e78381707",
+    "bytes": 107
+  },
+  "提交说明.md": {
+    "sha256": "cfded5fab2de0155ddc3dcba6616a724da1f8e6da738a8a0934332245038e730",
+    "bytes": 2028
+  },
+  "源码与测试-2e6f51a.zip": {
+    "sha256": "29619f30ccba5db158b56fabeed0be923830aa75eb0aaeae8e36c5184f9110bf",
+    "bytes": 363667
+  },
+  "评测绑定模板.json": {
+    "sha256": "38760d7df816e90eb0615301d72d601457e92f3893057ac38eb7a9ddb2901fb4",
+    "bytes": 546
+  }
+}

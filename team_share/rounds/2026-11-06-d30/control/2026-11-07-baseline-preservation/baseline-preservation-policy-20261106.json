@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "priority": "preserve official 80.9 baseline before improving any ceiling",
+  "official_baseline": {
+    "eval_id": "eval-20261103-f8116b95",
+    "upload_id": "sub-20261103-26c503c6.tar",
+    "score": 80.9,
+    "original_tar": null,
+    "tar_sha256": null,
+    "image_id": null,
+    "source_commit": null,
+    "binding_verified": false
+  },
+  "candidate_source": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+  "candidate_status": "rejected for adoption after user-provided negative official feedback",
+  "submission_status": "blocked",
+  "reasons": [
+    "80.9 source/archive identity has not been bound",
+    "current candidate combines B, E and shared D changes relative to teammate 046324b",
+    "shared D cancellation changes also affect D-01; they are not D-02/D-05-only algorithm fixes",
+    "636 regression passes do not establish official score preservation or target score gain"
+  ],
+  "single_case_per_iteration": true,
+  "protected": [
+    "public entry",
+    "official SDK",
+    "dependencies",
+    "environment",
+    "Dockerfile and packaging logic",
+    "all non-target case scores"
+  ],
+  "criteria": {
+    "B-02": {
+      "baseline_confirmed_core_filenames_must_be_subset": true,
+      "hits_not_lower": true,
+      "false_positives_strictly_lower": true
+    },
+    "D-02_or_D-05": {
+      "same_frozen_test_suite": true,
+      "same_inputs_and_environment": true,
+      "all_baseline_passes_preserved": true,
+      "new_failures": 0,
+      "test_migration_is_not_algorithm_gain": true
+    },
+    "E-04": {
+      "framework_preserved": true,
+      "only_additions": [
+        "metric definitions",
+        "equal-budget ablation",
+        "fallback inputs"
+      ],
+      "real_semantic_runs": 3,
+      "all_pass": true,
+      "new_semantic_issues": 0
+    }
+  },
+  "approved_candidates": [],
+  "scope": "external submission coordination policy; does not change Agent source, SDK or native Harness approval policy",
+  "negative_result_record": "d02-official-feedback-20261107.json"
+}

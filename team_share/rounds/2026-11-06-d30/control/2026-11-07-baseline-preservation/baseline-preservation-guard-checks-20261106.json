@@ -1,0 +1,23 @@
+{
+  "origin": "Codex offline coordination-guard check, not a competition test",
+  "target_model_calls": 0,
+  "agent_source_or_image_changed": false,
+  "cases": [
+    {
+      "stage": "be-submit",
+      "candidate": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+      "blocked": true,
+      "reason": "80.9 baseline source identity is unbound; release coordination stopped before execution"
+    },
+    {
+      "stage": "be-platform",
+      "candidate": "dc9ef0f2c9d257d14536389cbf72fa0b3e89b9bd",
+      "blocked": true,
+      "reason": "80.9 baseline source identity is unbound; release coordination stopped before execution"
+    },
+    {
+      "stage": "baseline",
+      "audit_allowed": true
+    }
+  ]
+}

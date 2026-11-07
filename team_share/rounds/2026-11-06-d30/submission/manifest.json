@@ -31,5 +31,14 @@
   "github_archive_branch": "archive/d30-release-20261106",
   "github_archive_url": "https://github.com/Sunming1126/research-agent/tree/archive/d30-release-20261106",
   "github_image_upload_complete": false,
-  "github_image_upload_note": "Optional binary transfer failed; source and complete process archive uploaded; use local tar"
+  "github_image_upload_note": "Optional binary transfer failed; source and complete process archive uploaded; use local tar",
+  "adoption_gate_20261107": {
+    "eligible": false,
+    "decision": "rejected",
+    "baseline_binding_verified": false,
+    "single_module_verified": false,
+    "score_preservation_verified": false,
+    "negative_feedback": "D-02=0, E-04 displayed 5.6; see control/2026-11-07-baseline-preservation",
+    "original_image_and_evidence_retained": true
+  }
 }

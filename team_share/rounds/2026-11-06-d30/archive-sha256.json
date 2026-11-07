@@ -1,4 +1,80 @@
 {
+  "control/2026-11-07-baseline-preservation/AGENTS.md": {
+    "sha256": "2de334e268ded8110e97a3b1451d50628ce13f08ac55ceee0e24c8130384d9f6",
+    "bytes": 7703
+  },
+  "control/2026-11-07-baseline-preservation/baseline-preservation-guard-checks-20261106.json": {
+    "sha256": "e7c062a65bd1ef46ee1d089b843ee991d4e765ff9375053f2a93a94de44a9451",
+    "bytes": 726
+  },
+  "control/2026-11-07-baseline-preservation/baseline-preservation-guard-checks-20261107.json": {
+    "sha256": "2e3f1a5ab6a852085595be2092f8eff8835a76ba196f58d82ee849e954304d49",
+    "bytes": 1321
+  },
+  "control/2026-11-07-baseline-preservation/baseline-preservation-policy-20261106.json": {
+    "sha256": "2791cea8bed807538752083004e7b202595c3a3445f9d021a3f7455fd9794dfd",
+    "bytes": 2085
+  },
+  "control/2026-11-07-baseline-preservation/baseline_submission_guard_20261106.py": {
+    "sha256": "4f079fb6cffbb85457d5d90e037a3efecad8243dea4873d54f81151ea7720453",
+    "bytes": 1538
+  },
+  "control/2026-11-07-baseline-preservation/candidate-boundary-audit.json": {
+    "sha256": "a3bf4a979071623056da01271fee21f369c4740d34e8deb52bc0e664837c55a3",
+    "bytes": 918
+  },
+  "control/2026-11-07-baseline-preservation/dispatch_score_native_20261102.py": {
+    "sha256": "22ab274da40efa681481fe3d8aad83695a4fae99dc1a6d02f141249cb20a00e5",
+    "bytes": 17234
+  },
+  "control/2026-11-07-baseline-preservation/negative-official-feedback.json": {
+    "sha256": "0221af13460dfe960004c10e37d3cf6bcf715b8fba57d198acb690452d8f6536",
+    "bytes": 4125
+  },
+  "control/2026-11-07-baseline-preservation/official-80p9-reference.json": {
+    "sha256": "5cda2aeda0f26efad761c93df6479b4256bdca1fb2978914086b1c2f6581a282",
+    "bytes": 9198
+  },
+  "control/2026-11-07-baseline-preservation/prior-handoff/manifest.json": {
+    "sha256": "69b7742159ceece335ce8e06be1fd22e5a87e76da274ed859a3e74a147780209",
+    "bytes": 1834
+  },
+  "control/2026-11-07-baseline-preservation/prior-handoff/交付材料校验.json": {
+    "sha256": "73ee1e192cde9c92cd75992e778fa98a5397bf3290ab090fc4d4ed5d05883052",
+    "bytes": 1261
+  },
+  "control/2026-11-07-baseline-preservation/prior-handoff/提交说明.md": {
+    "sha256": "cfded5fab2de0155ddc3dcba6616a724da1f8e6da738a8a0934332245038e730",
+    "bytes": 2028
+  },
+  "control/2026-11-07-baseline-preservation/record_d02_negative_result_20261107.py": {
+    "sha256": "af830d69b3c13f32020e3bb0166726215a890a1da2d1fb07f75c5d8731b36571",
+    "bytes": 9166
+  },
+  "control/2026-11-07-baseline-preservation/score_compat_20261102.py": {
+    "sha256": "a757250ae2b393d7b4a8c294c219c9c385fe51e2ec3416d5da5ff3a208e90d49",
+    "bytes": 16234
+  },
+  "control/2026-11-07-baseline-preservation/seal_baseline_preservation_20261107.py": {
+    "sha256": "51c8c82699e03278a37c079053093276e950aa66a0a1de6a3bf99b025604609a",
+    "bytes": 3655
+  },
+  "control/2026-11-07-baseline-preservation/user-provided-screenshots/codex-clipboard-3cd28368-5fe1-4bc1-9883-b7d73170fff9.png": {
+    "sha256": "9dd6d728887c49d7415e582f2638ecdfbcadd0d827358230699a194d8c462124",
+    "bytes": 146839
+  },
+  "control/2026-11-07-baseline-preservation/user-provided-screenshots/codex-clipboard-6ee00473-43a5-47bd-b40f-5b1d77811af2.png": {
+    "sha256": "cb605c4c3e462f3f9bf3af9f22c5d68b31cfdbae77f84e756129d0f3ab776c3e",
+    "bytes": 102255
+  },
+  "control/2026-11-07-baseline-preservation/user-provided-screenshots/codex-clipboard-c5c1287c-ff29-450e-893f-f2ccc2078eff.png": {
+    "sha256": "1f284025e0057046f61e7f1b3c613bf474fe9319d892cb0b9c734b349db9c4d1",
+    "bytes": 132160
+  },
+  "control/2026-11-07-baseline-preservation/诊断与单模块验证矩阵.md": {
+    "sha256": "da3e8a64f7563cacdda41fd6306cea90515a1d970cd3048da5b1d91e49b1a0db",
+    "bytes": 7129
+  },
   "D30闭环报告.md": {
     "sha256": "87edb9910fc4e4a45fb45f75df9d055a533071310756531f6238ffce6df08f2a",
     "bytes": 5937
@@ -536,8 +612,8 @@
     "bytes": 2984
   },
   "README.md": {
-    "sha256": "5485c2d497e89551a604022ed653afb8bafc6f4a7472aeb4f850b7a4cc6f47fe",
-    "bytes": 1916
+    "sha256": "4c7a67fa8ab1787c1fdc1ffd704449552da381c4f0ac77e2258e19bfaca0766b",
+    "bytes": 2306
   },
   "receipts/d-contract-native-limit-20261106.json": {
     "sha256": "f1726dcc2cca8c3c4d89c5199274fea03c318d08b744218ae09c7f87abb9c0a7",
@@ -568,16 +644,16 @@
     "bytes": 540
   },
   "submission/manifest.json": {
-    "sha256": "69b7742159ceece335ce8e06be1fd22e5a87e76da274ed859a3e74a147780209",
-    "bytes": 1834
+    "sha256": "8b0ea45e17c366b475e041c0229bda98a12505c0120937c3dc2e95ee8b275460",
+    "bytes": 2198
   },
   "submission/SHA256SUMS.txt": {
     "sha256": "297fb0c467557167f40c3d8654d781e10dfbeb2e007f844888ac899e78381707",
     "bytes": 107
   },
   "submission/提交说明.md": {
-    "sha256": "cfded5fab2de0155ddc3dcba6616a724da1f8e6da738a8a0934332245038e730",
-    "bytes": 2028
+    "sha256": "ed21e6314ab328de157b15bab53bb47541afdebf8fa992d82768e991ffe90af9",
+    "bytes": 2445
   },
   "submission/评测绑定模板.json": {
     "sha256": "38760d7df816e90eb0615301d72d601457e92f3893057ac38eb7a9ddb2901fb4",

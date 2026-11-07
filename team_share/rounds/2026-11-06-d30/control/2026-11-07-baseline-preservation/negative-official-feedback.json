@@ -1,0 +1,134 @@
+{
+  "recorded_at_china": "2026-11-07",
+  "origin": "User-provided competition screenshots and liaison feedback; not a rerun",
+  "completed_at_china_visible": "2026-11-06 21:29",
+  "eval_id": null,
+  "platform_upload_id": null,
+  "artifact_binding": {
+    "user_confirmed_prepared_version": true,
+    "prepared_source_commit": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+    "prepared_tar_sha256": "98f3fc456473eb51531af72e01c8135b83dbc69d6991c16e319d6a92020bb892",
+    "platform_digest_verified": false,
+    "note": "User confirmed uploading our prepared version. Platform digest/eval ID have not been supplied."
+  },
+  "official_total_visible": null,
+  "precision_note": "Case scores are transcribed displayed rounded values; no exact total or exact positive deltas inferred.",
+  "tokens": 505225,
+  "calls": 72,
+  "wall_seconds": 5533,
+  "cases": {
+    "A-03": {
+      "displayed_score": 5,
+      "protocol_status": "协议有效",
+      "calls": 1,
+      "tokens": 513,
+      "model_seconds": 12.1,
+      "processing_seconds": 4.2
+    },
+    "B-01": {
+      "displayed_score": 12.8,
+      "protocol_status": "协议有效",
+      "calls": 13,
+      "tokens": 76697,
+      "model_seconds": 427,
+      "processing_seconds": 22.9
+    },
+    "B-02": {
+      "displayed_score": 1.5,
+      "protocol_status": "协议有效",
+      "calls": 11,
+      "tokens": 62159,
+      "model_seconds": 446,
+      "processing_seconds": 16.7
+    },
+    "B-03": {
+      "displayed_score": 14.3,
+      "protocol_status": "协议有效",
+      "calls": 13,
+      "tokens": 75587,
+      "model_seconds": 400,
+      "processing_seconds": 17.7
+    },
+    "C-03": {
+      "displayed_score": 24.3,
+      "protocol_status": "协议有效",
+      "calls": 4,
+      "tokens": 30905,
+      "model_seconds": 141,
+      "processing_seconds": 4.0
+    },
+    "C-05": {
+      "displayed_score": 25,
+      "protocol_status": "协议有效",
+      "calls": 2,
+      "tokens": 16579,
+      "model_seconds": 111,
+      "processing_seconds": 0.0
+    },
+    "D-01": {
+      "displayed_score": 40,
+      "protocol_status": "协议有效",
+      "calls": 6,
+      "tokens": 42234,
+      "model_seconds": 463,
+      "processing_seconds": 166
+    },
+    "D-02": {
+      "displayed_score": 0,
+      "protocol_status": "协议有效",
+      "calls": 5,
+      "tokens": 50419,
+      "model_seconds": 326,
+      "processing_seconds": 167
+    },
+    "D-05": {
+      "displayed_score": 39.3,
+      "protocol_status": "协议有效",
+      "calls": 5,
+      "tokens": 41405,
+      "model_seconds": 517,
+      "processing_seconds": 216
+    },
+    "E-01": {
+      "displayed_score": 10.1,
+      "protocol_status": "协议有效",
+      "calls": 4,
+      "tokens": 29853,
+      "model_seconds": 144,
+      "processing_seconds": 3.9
+    },
+    "E-04": {
+      "displayed_score": 5.6,
+      "protocol_status": "协议有效",
+      "calls": 8,
+      "tokens": 78874,
+      "model_seconds": 439,
+      "processing_seconds": 4.9
+    }
+  },
+  "D02_confirmed_feedback": {
+    "solve_http_status": 200,
+    "schema_passed": true,
+    "model_calls": 5,
+    "all_model_calls_successful": true,
+    "tokens": 50419,
+    "run_assigned_case_invoked": true,
+    "execute_authorized_experiment_invoked": true,
+    "experiment_status": "failed",
+    "completed_conditions": 0,
+    "reported_conditions": 2,
+    "condition_names": null,
+    "first_error": null,
+    "stderr": null,
+    "raw_user_report": "/solve 返回 HTTP 200，协议校验通过。run_assigned_case 和 execute_authorized_experiment 都被正常调用。但实验最终返回 status: failed，两个条件均未完成。"
+  },
+  "adoption_decision": "rejected",
+  "reasons": [
+    "D-02 fell from 31.055555555555554 to 0",
+    "E-04 fell from 9 to displayed 5.6",
+    "B-02 remained 1.5; accuracy benefit not demonstrated",
+    "80.9 source identity and matching input/environment fingerprints remain unbound"
+  ],
+  "causal_conclusion": null,
+  "new_target_model_calls_in_this_audit": 0
+}

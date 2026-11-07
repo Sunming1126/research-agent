@@ -1,0 +1,22 @@
+{
+  "comparison_ref": "046324bae9425aa0a1aeff49b9d8128831d18479",
+  "comparison_is_proven_80p9": false,
+  "candidate": "2e6f51a643acf66920612f83555a1c3a59d9d8b8",
+  "changed_runtime_files": [
+    "src/research_agent/integrations/b_prompt.py",
+    "src/research_agent/integrations/idea_prompt.py",
+    "src/research_agent/integrations/prompts.py",
+    "src/research_agent/workflows/b_audit.py",
+    "src/research_agent/workflows/b_workflow.py",
+    "src/research_agent/workflows/d_holdout.py",
+    "src/research_agent/workflows/d_selftest.py",
+    "src/research_agent/workflows/idea_plan.py",
+    "src/research_agent/workflows/idea_workflow.py",
+    "src/research_agent/workflows/layered_d_runner.py",
+    "src/research_agent/workflows/source_generation.py"
+  ],
+  "changed_runtime_files_count": 11,
+  "single_module_gate": false,
+  "shared_D_also_affects_D01": true,
+  "actual_80p9_diff": null
+}
